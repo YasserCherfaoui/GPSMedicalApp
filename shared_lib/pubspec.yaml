@@ -8,12 +8,18 @@ environment:
   flutter: ">=3.32.0"
 
 dependencies:
+  built_collection: ^5.1.1
+  built_value: ^8.9.0
+  dio: ^5.7.0
   flutter:
     sdk: flutter
+  gps_medical_api:
+    path: packages/gps_medical_api
 
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
+  http_mock_adapter: ^0.6.1
 
 flutter:

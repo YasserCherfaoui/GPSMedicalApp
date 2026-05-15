@@ -1,0 +1,14 @@
+# Generated package — relax rules for OpenAPI output and *.g.dart.
+analyzer:
+  exclude:
+    - test/**
+    - doc/**
+    - "**/*.g.dart"
+  errors:
+    invalid_annotation_target: ignore
+
+linter:
+  rules:
+    public_member_api_docs: false
+    constant_identifier_names: false
+    non_constant_identifier_names: false

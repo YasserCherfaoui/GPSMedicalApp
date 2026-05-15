@@ -33,13 +33,30 @@ class _BootstrapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final client = GpsMedicalClient(tokenStore: InMemoryTokenStore());
+    const healthStatus = HealthCheckStatusEnum.ok;
+
     return Scaffold(
       appBar: AppBar(title: Text(appInfo.displayName)),
       body: Center(
-        child: Text(
-          'Patient app — Phase 1 scaffolding',
-          style: Theme.of(context).textTheme.titleMedium,
-          textAlign: TextAlign.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Patient app — Phase 1 scaffolding',
+              style: Theme.of(context).textTheme.titleMedium,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'API client: ${client.v1BaseUrl}',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            Text(
+              'Shared model: HealthCheck.status = ${healthStatus.name}',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
         ),
       ),
     );

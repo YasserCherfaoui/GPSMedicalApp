@@ -6,8 +6,22 @@
 #   make -C mobile ci        # format check + analyze (matches CI)
 
 PACKAGES := shared_lib patient_app specialist_app
+OPENAPI_SPEC := $(abspath ../docs/api/openapi.yaml)
+API_PKG := shared_lib/packages/gps_medical_api
+API_PUBSPEC := shared_lib/tool/gps_medical_api.pubspec.yaml
 
-.PHONY: pub-get analyze format format-check test ci build-apk build-ios
+.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models
+
+gen-models:
+	rm -rf $(API_PKG)
+	npx --yes @openapitools/openapi-generator-cli generate \
+		-i $(OPENAPI_SPEC) \
+		-g dart-dio \
+		-o $(API_PKG) \
+		--additional-properties=pubName=gps_medical_api,dateLibrary=core,useEnumExtension=true
+	cp $(API_PUBSPEC) $(API_PKG)/pubspec.yaml
+	cp shared_lib/tool/gps_medical_api.analysis_options.yaml $(API_PKG)/analysis_options.yaml
+	cd $(API_PKG) && dart pub get && dart run build_runner build --delete-conflicting-outputs
 
 pub-get:
 	@for d in $(PACKAGES); do \
@@ -22,10 +36,10 @@ analyze: pub-get
 	done
 
 format:
-	dart format $(PACKAGES)
+	dart format shared_lib/lib shared_lib/test patient_app specialist_app
 
 format-check:
-	dart format --set-exit-if-changed $(PACKAGES)
+	dart format --set-exit-if-changed shared_lib/lib shared_lib/test patient_app specialist_app
 
 test: pub-get
 	@for d in $(PACKAGES); do \

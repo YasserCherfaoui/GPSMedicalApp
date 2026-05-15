@@ -1,22 +1,11 @@
-/// Shared types and utilities for GPS Médical mobile clients.
+/// Shared library for GPS Médical patient and specialist mobile apps.
 library;
 
-/// Identifies which mobile client is running.
-enum GpsMedicalClientKind {
-  /// Patient-facing application.
-  patient,
+export 'package:gps_medical_api/gps_medical_api.dart';
 
-  /// Specialist (médecin) application.
-  specialist,
-}
-
-/// Application metadata shared across patient and specialist apps.
-class GpsMedicalAppInfo {
-  const GpsMedicalAppInfo({
-    required this.displayName,
-    required this.clientKind,
-  });
-
-  final String displayName;
-  final GpsMedicalClientKind clientKind;
-}
+export 'src/auth/token_store.dart';
+export 'src/client/auth_refresh_interceptor.dart';
+export 'src/client/gps_medical_client.dart';
+export 'src/client/phase1_api.dart';
+export 'src/constants/api_constants.dart';
+export 'src/models/app_info.dart';

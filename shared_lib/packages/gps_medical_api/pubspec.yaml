@@ -1,0 +1,20 @@
+name: gps_medical_api
+description: OpenAPI-generated Dart client for GPS Médical Algérie (do not edit by hand).
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  built_collection: ^5.1.1
+  built_value: ^8.9.0
+  dio: ^5.7.0
+  one_of: ^1.5.0
+  one_of_serializer: ^1.5.0
+
+dev_dependencies:
+  build_runner: ^2.4.0
+  built_value_generator: ^8.9.0
+  flutter_lints: ^5.0.0
+  test: ^1.25.0
