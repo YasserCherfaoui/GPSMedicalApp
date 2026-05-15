@@ -1,0 +1,19 @@
+name: gps_medical_shared
+description: Shared Dart library for GPS Médical patient and specialist mobile apps.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.8.0
+  flutter: ">=3.32.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
