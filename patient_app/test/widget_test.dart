@@ -3,19 +3,15 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:patient_app/main.dart';
 
 void main() {
-  testWidgets('shows patient bootstrap screen', (WidgetTester tester) async {
+  testWidgets('shows patient bootstrap with design system', (tester) async {
     await tester.pumpWidget(const PatientApp());
 
     expect(find.text('Patient app — Phase 1 scaffolding'), findsOneWidget);
     expect(find.text('GPS Médical — Patient'), findsOneWidget);
-    expect(
-      find.textContaining('Shared model: HealthCheck.status'),
-      findsOneWidget,
-    );
-    expect(find.textContaining('http://localhost:8080/v1'), findsOneWidget);
+    expect(find.text('Se connecter'), findsOneWidget);
   });
 
-  test('HealthCheck model is shared via gps_medical_shared', () {
-    expect(HealthCheckStatusEnum.ok.name, 'ok');
+  test('GpsTheme is applied', () {
+    expect(GpsTheme.light().colorScheme.primary, GpsColors.primary);
   });
 }

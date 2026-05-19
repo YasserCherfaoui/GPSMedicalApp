@@ -13,6 +13,7 @@ dependencies:
   dio: ^5.7.0
   flutter:
     sdk: flutter
+  google_fonts: ^6.2.1
   gps_medical_api:
     path: packages/gps_medical_api
 

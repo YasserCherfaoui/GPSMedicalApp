@@ -17,11 +17,12 @@ class PatientApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _appInfo.displayName,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0A2540)),
-        useMaterial3: true,
+      theme: GpsTheme.light(),
+      darkTheme: GpsTheme.dark(),
+      themeMode: ThemeMode.system,
+      home: const DesignSystemShowcaseLauncher(
+        child: _BootstrapScreen(appInfo: _appInfo),
       ),
-      home: const _BootstrapScreen(appInfo: _appInfo),
     );
   }
 }
@@ -38,24 +39,34 @@ class _BootstrapScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(appInfo.displayName)),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(GpsSpacing.md),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              'Patient app — Phase 1 scaffolding',
-              style: Theme.of(context).textTheme.titleMedium,
-              textAlign: TextAlign.center,
+            GpsCard(
+              showAccentBorder: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Patient app — Phase 1 scaffolding',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  const SizedBox(height: GpsSpacing.sm),
+                  Text(
+                    'API: ${client.v1BaseUrl}',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  Text(
+                    'HealthCheck.status = ${healthStatus.name}',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 12),
-            Text(
-              'API client: ${client.v1BaseUrl}',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            Text(
-              'Shared model: HealthCheck.status = ${healthStatus.name}',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
+            const SizedBox(height: GpsSpacing.lg),
+            PrimaryButton(label: 'Se connecter', onPressed: () {}),
           ],
         ),
       ),
