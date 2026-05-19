@@ -1,0 +1,77 @@
+{
+  "@@locale": "fr",
+  "splashSubtitle": "De l'errance à l'orientation intelligente",
+  "chooseLanguage": "Choisissez votre langue",
+  "continueLabel": "Continuer",
+  "skip": "Passer",
+  "next": "Suivant",
+  "start": "Commencer",
+  "onboardingTitle1": "De l'errance à l'orientation intelligente",
+  "onboardingTitle2": "Comment ça fonctionne ?",
+  "onboardingTitle3": "Vos données, protégées en Algérie",
+  "onboardingBody1": "Fini le nomadisme médical. Le bon spécialiste, au bon moment.",
+  "onboardingBody2": "Parcours en 4 étapes : localisation, dépistage, coaching, orientation.",
+  "onboardingBody3": "Hébergement local ANPDP, chiffrement, médecins vérifiés.",
+  "welcomeTitle": "Bienvenue",
+  "welcomeSubtitle": "Votre parcours santé commence ici",
+  "createAccount": "Créer un compte",
+  "signIn": "Se connecter",
+  "loginTitle": "Connexion",
+  "loginSubtitle": "Heureux de vous revoir",
+  "phoneLabel": "Téléphone",
+  "passwordLabel": "Mot de passe",
+  "confirmPasswordLabel": "Confirmer le mot de passe",
+  "forgotPassword": "Mot de passe oublié ?",
+  "registration": "Inscription",
+  "verification": "Vérification",
+  "ninTitle": "Votre identité",
+  "ninSubtitle": "Numéro d'Identification National (18 chiffres)",
+  "ninHint": "Visible sur votre carte d'identité biométrique",
+  "phoneTitle": "Votre numéro de téléphone",
+  "phoneSubtitle": "Nous vous enverrons un code de vérification par SMS",
+  "phoneFormatHint": "Format : +213 5XX, 6XX ou 7XX",
+  "sendCode": "Envoyer le code",
+  "otpTitle": "Entrez le code reçu",
+  "otpSubtitle": "Code à 6 chiffres envoyé au {phone}",
+  "@otpSubtitle": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "resendCode": "Renvoyer le code",
+  "resendIn": "Renvoyer dans 0:{seconds}",
+  "@resendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "verify": "Vérifier",
+  "passwordTitle": "Créez votre mot de passe",
+  "consentTitle": "Vos consentements",
+  "consentSubtitle": "Conformément à la loi algérienne ANPDP",
+  "consentHealth": "Traitement de mes données de santé",
+  "consentData": "Traitement de mes données personnelles",
+  "consentTerms": "Conditions et politique ANPDP",
+  "consentMarketing": "Communications marketing (optionnel)",
+  "acceptTerms": "J'accepte les CGU et la Politique de confidentialité",
+  "createMyAccount": "Créer mon compte",
+  "biometricTitle": "Connexion biométrique",
+  "biometricSubtitle": "Face ID ou empreinte pour vous connecter plus vite",
+  "enable": "Activer",
+  "later": "Plus tard",
+  "successTitle": "Bienvenue sur GPS Médical !",
+  "successSubtitle": "Votre compte a été créé avec succès.",
+  "discoverApp": "Découvrir l'application",
+  "forgotTitle": "Récupération du compte",
+  "resetTitle": "Nouveau mot de passe",
+  "resetAction": "Réinitialiser",
+  "invalidPhone": "Numéro invalide (+213 5/6/7 + 8 chiffres)",
+  "invalidNin": "NIN invalide (18 chiffres)",
+  "passwordsMismatch": "Les mots de passe ne correspondent pas",
+  "requiredConsents": "Veuillez accepter tous les consentements obligatoires",
+  "networkError": "Erreur réseau. Réessayez."
+}

@@ -6,6 +6,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../l10n/app_locale.dart';
 import '../l10n/auth_strings.dart';
+import '../l10n/generated/app_localizations.dart';
 import '../l10n/locale_notifier.dart';
 import '../theme/gps_theme.dart';
 import 'design_system_showcase.dart';
@@ -34,7 +35,10 @@ class GpsMedicalMaterialApp extends ConsumerWidget {
       locale: appLocale.locale,
       supportedLocales: AppLocale.values.map((e) => e.locale),
       localizationsDelegates: const [
+        AppLocalizations.delegate,
         AuthStrings.delegate,
+        FallbackMaterialLocalizationsDelegate(),
+        FallbackCupertinoLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

@@ -7,17 +7,6 @@ import '../l10n/auth_strings.dart';
 import '../l10n/locale_notifier.dart';
 import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
-import '../widgets/primary_button.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-
-import '../l10n/app_locale.dart';
-import '../l10n/auth_strings.dart';
-import '../l10n/locale_notifier.dart';
-import '../routing/gps_routes.dart';
-import '../theme/gps_spacing.dart';
 import '../widgets/gps_blur_background.dart';
 import '../widgets/primary_button.dart';
 

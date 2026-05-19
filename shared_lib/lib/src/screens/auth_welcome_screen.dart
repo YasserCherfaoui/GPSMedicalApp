@@ -121,7 +121,7 @@ class _HeroComposition extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Center(
-      child: Container(
+      child: SizedBox(
         height: 300,
         width: 320,
         child: Stack(

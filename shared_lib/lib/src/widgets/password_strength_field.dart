@@ -120,9 +120,9 @@ class _StrengthMeter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    String textStrength = "Faible";
-    if (score == 2) textStrength = "Moyen";
-    if (score >= 3) textStrength = "Fort";
+    String textStrength = 'Faible';
+    if (score == 2) textStrength = 'Moyen';
+    if (score >= 3) textStrength = 'Fort';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

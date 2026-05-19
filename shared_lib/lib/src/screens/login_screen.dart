@@ -7,10 +7,10 @@ import '../auth/auth_repository.provider.dart';
 import '../auth/auth_session.provider.dart';
 import '../l10n/auth_strings.dart';
 import '../routing/gps_routes.dart';
+import '../theme/gps_spacing.dart';
 import '../widgets/algerian_phone_field.dart';
 import '../widgets/auth_flow_scaffold.dart';
 import '../widgets/gps_text_field.dart';
-import '../theme/gps_spacing.dart';
 import '../widgets/primary_button.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {

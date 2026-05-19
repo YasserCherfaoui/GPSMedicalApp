@@ -20,8 +20,8 @@ dependencies:
   google_fonts: ^6.2.1
   gps_medical_api:
     path: packages/gps_medical_api
+  intl: any
   responsive_framework: ^1.5.1
-
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
@@ -29,3 +29,4 @@ dev_dependencies:
   http_mock_adapter: ^0.6.1
 
 flutter:
+  generate: true

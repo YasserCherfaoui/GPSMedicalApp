@@ -118,7 +118,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
                       ),
                       const SizedBox(height: GpsSpacing.xs),
                       Text(
-                        "Le NIN se situe en haut à droite de votre carte biométrique.",
+                        'Le NIN se situe en haut à droite de votre carte biométrique.',
                         style: Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: colorScheme.onSurfaceVariant,
                             ),
@@ -493,14 +493,14 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
           const SizedBox(height: GpsSpacing.md),
           _ConsentCard(
             title: strings.consentTerms,
-            subtitle: "Consentement explicite pour la collecte des données conformément à la réglementation ANPDP.",
+            subtitle: 'Consentement explicite pour la collecte des données conformément à la réglementation ANPDP.',
             value: _terms,
             onChanged: (v) => setState(() => _terms = v),
           ),
           const SizedBox(height: GpsSpacing.md),
           _ConsentCard(
             title: strings.consentMarketing,
-            subtitle: "Recevez des conseils de coaching biologique personnalisés et des actualités de santé.",
+            subtitle: 'Recevez des conseils de coaching biologique personnalisés et des actualités de santé.',
             value: _marketing,
             onChanged: (v) => setState(() => _marketing = v),
           ),
@@ -800,7 +800,7 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        "Si vous ne recevez pas le code, vérifiez votre connexion réseau ou contactez notre support.",
+                        'Si vous ne recevez pas le code, vérifiez votre connexion réseau ou contactez notre support.',
                         style: Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: colorScheme.onSurfaceVariant,
                               height: 1.4,
@@ -1051,7 +1051,7 @@ class BiometricSetupScreen extends StatelessWidget {
           ),
           const SizedBox(height: GpsSpacing.xl),
           Text(
-            "Activez la connexion biométrique",
+            'Activez la connexion biométrique',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w800,
                   color: colorScheme.onSurface,
@@ -1060,7 +1060,7 @@ class BiometricSetupScreen extends StatelessWidget {
           ),
           const SizedBox(height: GpsSpacing.sm),
           Text(
-            "Connectez-vous plus rapidement avec Face ID ou votre empreinte digitale, en toute sécurité.",
+            'Connectez-vous plus rapidement avec Face ID ou votre empreinte digitale, en toute sécurité.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
@@ -1208,7 +1208,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
           ),
           const SizedBox(height: GpsSpacing.xl),
           Text(
-            "Bienvenue sur GPS Médical !",
+            'Bienvenue sur GPS Médical !',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w800,
                   color: colorScheme.onSurface,
@@ -1320,7 +1320,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
                     ),
                 children: [
                   TextSpan(
-                    text: "Consulter le guide",
+                    text: 'Consulter le guide',
                     style: TextStyle(
                       color: colorScheme.primary,
                       fontWeight: FontWeight.bold,
