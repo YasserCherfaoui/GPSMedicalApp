@@ -10,6 +10,7 @@ import 'phase1_api.dart';
 class GpsMedicalClient {
   GpsMedicalClient({
     required this.tokenStore,
+    this.onSessionExpired,
     String apiRootUrl = kDefaultApiRootUrl,
     Dio? v1Dio,
     Duration connectTimeout = const Duration(seconds: 15),
@@ -41,6 +42,7 @@ class GpsMedicalClient {
         dio: authenticatedDio,
         tokenStore: tokenStore,
         refreshDio: refreshDio,
+        onSessionExpired: onSessionExpired,
       ),
     );
 
@@ -67,6 +69,7 @@ class GpsMedicalClient {
   final String apiRootUrl;
   final String v1BaseUrl;
   final TokenStore tokenStore;
+  final Future<void> Function()? onSessionExpired;
 
   late final GpsMedicalApi _v1;
   late final GpsMedicalApi _root;

@@ -1,0 +1,68 @@
+/// Type-safe route paths for Phase 1 mobile flows.
+///
+/// Use [GpsRoutes] constants in `go_router` configuration and navigation
+/// calls — avoid hard-coded path strings in feature code.
+abstract final class GpsRoutes {
+  // Pre-auth
+  static const splash = '/';
+  static const language = '/language';
+  static const onboarding = '/onboarding';
+  static String onboardingStep(int step) => '$onboarding/$step';
+
+  // Auth entry
+  static const authWelcome = '/auth';
+  static const login = '/auth/login';
+
+  // Registration
+  static const registerNin = '/auth/register/nin';
+  static const registerPhone = '/auth/register/phone';
+  static const registerOtp = '/auth/register/otp';
+  static const registerPassword = '/auth/register/password';
+  static const registerConsent = '/auth/register/consent';
+
+  // Password recovery
+  static const forgotPassword = '/auth/forgot-password';
+  static const resetPassword = '/auth/reset-password';
+
+  // Post-auth (placeholders until task 1.16+)
+  static const profile = '/profile';
+  static const biometricSetup = '/setup/biometric';
+  static const registrationSuccess = '/setup/success';
+
+  /// Debug-only design system QA (see [createGpsRouter]).
+  static const designSystemShowcase = '/dev/design-system';
+
+  /// Routes reachable without an authenticated session.
+  static const Set<String> publicPaths = {
+    splash,
+    language,
+    onboarding,
+    authWelcome,
+    login,
+    registerNin,
+    registerPhone,
+    registerOtp,
+    registerPassword,
+    registerConsent,
+    forgotPassword,
+    resetPassword,
+    designSystemShowcase,
+  };
+
+  static bool isPublicPath(String location) {
+    if (publicPaths.contains(location)) {
+      return true;
+    }
+    if (location.startsWith('$onboarding/')) {
+      return true;
+    }
+    if (location.startsWith('/auth')) {
+      return true;
+    }
+    return false;
+  }
+
+  static bool isAuthEntryPath(String location) {
+    return location == authWelcome || location == login;
+  }
+}

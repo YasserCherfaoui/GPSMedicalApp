@@ -24,37 +24,40 @@ class EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
 
-    return Padding(
-      padding: const EdgeInsets.all(GpsSpacing.lg),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 48, color: scheme.primary),
-          const SizedBox(height: GpsSpacing.md),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.headlineMedium,
-            textAlign: TextAlign.center,
-          ),
-          if (message != null) ...[
-            const SizedBox(height: GpsSpacing.sm),
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(GpsSpacing.lg),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 48, color: scheme.primary),
+            const SizedBox(height: GpsSpacing.md),
             Text(
-              message!,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
+              title,
+              style: Theme.of(context).textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
+            if (message != null) ...[
+              const SizedBox(height: GpsSpacing.sm),
+              Text(
+                message!,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
+                textAlign: TextAlign.center,
+              ),
+            ],
+            if (actionLabel != null && onAction != null) ...[
+              const SizedBox(height: GpsSpacing.lg),
+              PrimaryButton(
+                label: actionLabel!,
+                onPressed: onAction,
+                expand: false,
+              ),
+            ],
           ],
-          if (actionLabel != null && onAction != null) ...[
-            const SizedBox(height: GpsSpacing.lg),
-            PrimaryButton(
-              label: actionLabel!,
-              onPressed: onAction,
-              expand: false,
-            ),
-          ],
-        ],
+        ),
       ),
     );
   }

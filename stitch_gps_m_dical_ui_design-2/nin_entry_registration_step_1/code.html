@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#97f3e2",
+                        "surface-container": "#ebefec",
+                        "outline": "#6e7a76",
+                        "inverse-primary": "#7ad7c6",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#00796b",
+                        "surface-tint": "#006b5e",
+                        "surface-container-high": "#e5e9e7",
+                        "outline-variant": "#bdc9c5",
+                        "on-background": "#181d1b",
+                        "on-secondary-container": "#56656e",
+                        "surface-container-highest": "#dfe3e1",
+                        "primary-fixed-dim": "#7ad7c6",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2d3130",
+                        "surface-variant": "#dfe3e1",
+                        "surface-container-low": "#f0f4f2",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#3e4946",
+                        "on-primary-fixed-variant": "#005047",
+                        "surface-bright": "#f6faf8",
+                        "on-tertiary-fixed": "#3a0a00",
+                        "surface-dim": "#d7dbd8",
+                        "surface": "#f6faf8",
+                        "secondary-fixed": "#d6e5ef",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00201b",
+                        "secondary-fixed-dim": "#bac9d3",
+                        "on-surface": "#181d1b",
+                        "tertiary-container": "#a2563f",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#3b4951",
+                        "inverse-on-surface": "#eef2ef",
+                        "tertiary-fixed": "#ffdbd1",
+                        "secondary-container": "#d3e2ed",
+                        "on-tertiary-fixed-variant": "#75331f",
+                        "tertiary-fixed-dim": "#ffb59f",
+                        "on-primary": "#ffffff",
+                        "background": "#f6faf8",
+                        "tertiary": "#843f29",
+                        "on-tertiary-container": "#ffe8e2",
+                        "on-secondary-fixed": "#0f1d25",
+                        "secondary": "#526069",
+                        "primary": "#005e53",
+                        "on-primary-container": "#a1feec"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "md": "16px",
+                        "container-max": "1280px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "xxl": "48px",
+                        "xs": "4px",
+                        "unit": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h3": ["Manrope"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<nav class="bg-surface/80 backdrop-blur-xl sticky top-0 z-50 flex justify-between items-center w-full px-md h-16 shadow-[0px_4px_30px_rgba(0,121,107,0.04)]">
+<div class="flex items-center gap-sm">
+<button class="p-sm rounded-full hover:bg-primary-container/10 transition-colors flex items-center justify-center text-primary active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<span class="font-h3 text-h3 font-bold text-primary">Inscription</span>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-label-caps text-label-caps text-primary bg-primary-fixed/30 px-sm py-xs rounded-lg">1/5</span>
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:bg-primary-container/10 px-sm py-xs rounded transition-colors active:scale-95 duration-150">Aide</button>
+</div>
+</nav>
+<main class="flex-grow flex flex-col items-center px-gutter pt-xxl pb-xxl max-w-container-max mx-auto w-full">
+<!-- Content Container -->
+<div class="w-full max-w-[480px]">
+<!-- Headline Section -->
+<header class="mb-xl text-center md:text-left">
+<h1 class="font-h1 text-h1 text-primary mb-sm">Votre identité</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Saisissez votre Numéro d'Identification National (NIN) à 18 chiffres
+                </p>
+</header>
+<!-- Card Illustration (Bento-style element) -->
+<div class="mb-xl bg-surface-container-low p-lg rounded-xl border border-outline-variant/30 flex items-center gap-lg shadow-[0px_4px_30px_rgba(0,121,107,0.04)] overflow-hidden relative group">
+<div class="bg-primary/5 p-md rounded-lg">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="badge">badge</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-label-caps text-label-caps text-primary uppercase mb-xs tracking-widest">Guide Visuel</h3>
+<p class="text-on-surface-variant text-sm">Le NIN se situe en haut à droite de votre carte biométrique.</p>
+</div>
+<!-- Abstract graphic for depth -->
+<div class="absolute -right-4 -bottom-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[120px]" data-icon="fingerprint">fingerprint</span>
+</div>
+</div>
+<!-- Input Section -->
+<div class="space-y-lg">
+<div class="space-y-sm">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-xs" for="nin">NIN</label>
+<span class="font-label-caps text-label-caps text-outline-variant">18 CHIFFRES</span>
+</div>
+<div class="relative group">
+<input class="w-full h-14 px-md bg-[#F7FAFC] border-2 border-transparent rounded-xl font-h3 text-h3 tracking-[0.2em] focus:bg-white focus:border-primary-container focus:ring-0 transition-all placeholder:text-outline-variant/50 placeholder:font-body-md placeholder:tracking-normal" id="nin" placeholder="1234 5678 9012 3456 78" type="text"/>
+<div class="absolute right-md top-1/2 -translate-y-1/2 text-outline-variant opacity-0 group-focus-within:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="dialpad">dialpad</span>
+</div>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant flex items-center gap-xs mt-sm ml-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="info">info</span>
+                        Visible sur votre carte d'identité biométrique
+                    </p>
+</div>
+<!-- Action Button -->
+<div class="pt-md space-y-md">
+<button class="w-full h-14 bg-outline-variant/40 text-white font-h3 rounded-xl cursor-not-allowed flex items-center justify-center gap-sm transition-all" disabled="">
+                        Continuer
+                    </button>
+<a class="flex items-center justify-center gap-xs font-label-caps text-label-caps text-primary hover:text-primary-container transition-colors py-sm mx-auto w-max group" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="help_outline">help_outline</span>
+                        Pourquoi le NIN?
+                        <div class="h-[1px] w-0 group-hover:w-full bg-primary absolute bottom-0 transition-all duration-300"></div>
+</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant py-xl px-lg mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center gap-md max-w-container-max mx-auto">
+<div class="font-h3 text-h3 text-primary font-bold">GPS Médical</div>
+<p class="font-body-md text-on-surface-variant text-sm">© 2024 GPS Médical Algérie.</p>
+<div class="flex gap-lg">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Conditions d'utilisation</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Confidentialité</a>
+</div>
+</div>
+</footer>
+</body></html>

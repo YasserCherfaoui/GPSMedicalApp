@@ -16,18 +16,21 @@ class AuthRefreshInterceptor extends Interceptor {
     required this.dio,
     required this.tokenStore,
     required TokenRefresher refreshTokens,
+    this.onSessionExpired,
   }) : _refreshTokens = refreshTokens;
 
   factory AuthRefreshInterceptor.withDio({
     required Dio dio,
     required TokenStore tokenStore,
     required Dio refreshDio,
+    Future<void> Function()? onSessionExpired,
     Serializers? serializers,
   }) {
     final resolvedSerializers = serializers ?? standardSerializers;
     return AuthRefreshInterceptor(
       dio: dio,
       tokenStore: tokenStore,
+      onSessionExpired: onSessionExpired,
       refreshTokens: (refreshToken) async {
         final response = await AuthApi(refreshDio, resolvedSerializers)
             .refreshTokens(
@@ -43,6 +46,7 @@ class AuthRefreshInterceptor extends Interceptor {
   final Dio dio;
   final TokenStore tokenStore;
   final TokenRefresher _refreshTokens;
+  final Future<void> Function()? onSessionExpired;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -93,6 +97,7 @@ class AuthRefreshInterceptor extends Interceptor {
 
     final refreshToken = tokenStore.refreshToken;
     if (refreshToken == null || refreshToken.isEmpty) {
+      await onSessionExpired?.call();
       return null;
     }
 
@@ -101,6 +106,7 @@ class AuthRefreshInterceptor extends Interceptor {
       if (pair == null ||
           pair.accessToken == null ||
           pair.refreshToken == null) {
+        await onSessionExpired?.call();
         return null;
       }
 
@@ -115,8 +121,10 @@ class AuthRefreshInterceptor extends Interceptor {
         ..httpClientAdapter = dio.httpClientAdapter;
       return retryDio.fetch<dynamic>(retryOptions);
     } on DioException {
+      await onSessionExpired?.call();
       return null;
     } catch (_) {
+      await onSessionExpired?.call();
       return null;
     }
   }

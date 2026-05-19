@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bienvenue | Santé DZ</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#bac9d3",
+                        "secondary-container": "#d3e2ed",
+                        "outline-variant": "#bdc9c5",
+                        "on-secondary-fixed-variant": "#3b4951",
+                        "surface-container-highest": "#dfe3e1",
+                        "inverse-on-surface": "#eef2ef",
+                        "primary": "#005e53",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#526069",
+                        "on-tertiary-fixed-variant": "#75331f",
+                        "on-tertiary-container": "#ffe8e2",
+                        "surface-variant": "#dfe3e1",
+                        "tertiary-fixed": "#ffdbd1",
+                        "primary-fixed-dim": "#7ad7c6",
+                        "on-primary-container": "#a1feec",
+                        "tertiary": "#843f29",
+                        "on-error": "#ffffff",
+                        "on-surface": "#181d1b",
+                        "on-tertiary-fixed": "#3a0a00",
+                        "outline": "#6e7a76",
+                        "on-primary-fixed-variant": "#005047",
+                        "on-primary-fixed": "#00201b",
+                        "on-surface-variant": "#3e4946",
+                        "surface-container": "#ebefec",
+                        "surface-tint": "#006b5e",
+                        "tertiary-container": "#a2563f",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f6faf8",
+                        "tertiary-fixed-dim": "#ffb59f",
+                        "surface": "#f6faf8",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e5e9e7",
+                        "secondary-fixed": "#d6e5ef",
+                        "surface-container-low": "#f0f4f2",
+                        "on-secondary-container": "#56656e",
+                        "surface-dim": "#d7dbd8",
+                        "surface-bright": "#f6faf8",
+                        "primary-fixed": "#97f3e2",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-background": "#181d1b",
+                        "inverse-surface": "#2d3130",
+                        "primary-container": "#00796b",
+                        "inverse-primary": "#7ad7c6",
+                        "on-secondary-fixed": "#0f1d25"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-max": "1280px",
+                        "xxl": "48px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "gutter": "20px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h3": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .ambient-shadow {
+            box-shadow: 0 30px 60px -12px rgba(0, 121, 107, 0.04), 0 18px 36px -18px rgba(0, 121, 107, 0.04);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen flex flex-col">
+<!-- Simplified Header for Onboarding Journey -->
+<header class="h-16 flex items-center justify-center px-4 sticky top-0 z-50">
+<h1 class="font-h2 text-h3 text-primary-container tracking-tight">Santé DZ</h1>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-gutter max-w-container-max mx-auto w-full pb-xl">
+<!-- Illustration Section -->
+<div class="relative w-full max-w-2xl mb-xl">
+<div class="aspect-square md:aspect-video rounded-[32px] overflow-hidden ambient-shadow border-4 border-white">
+<img alt="Friendly medical professional using a tablet with health data visualizations" class="w-full h-full object-cover" data-alt="Modern medical professional in a clean clinic environment smiling warmly, holding a digital tablet displaying high-tech health metrics and 3D medical data." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByP-imNm4Utk0dUHuql4NcpRujn9neAuw6yrnrgi6yCv7bh8Bv68umCoiv1ID7zutCh44LMzClDIEE_liA05GvH1X9SbEY9LVPdB-dgrHL7YSDQs2cTsz7f6vZX7PfonI9H2yVmf07IC4u7fE7FcuWJQsIhf-0QsUsLgw3THn1NTRNIIvh2V1AZi4HFRmy1DFZLIiIYipvKZiopZ051FXIV3uqR0mCAVCQeDwecE3e_aN4XFoeYsg4e3_xIZKsxIe_Zwq8xf41qEg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+</div>
+<!-- Floating Tech Elements -->
+<div class="absolute -bottom-6 -right-4 md:right-4 glass-card p-md rounded-xl flex items-center gap-md shadow-lg animate-bounce-subtle">
+<div class="bg-primary-fixed-dim p-sm rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="neurology">neurology</span>
+</div>
+<div>
+<p class="font-label-caps text-on-surface-variant uppercase mb-xs">Statut IA</p>
+<p class="font-bold text-primary">Analyse Active</p>
+</div>
+</div>
+</div>
+<!-- Content Section -->
+<div class="text-center max-w-xl space-y-md">
+<h2 class="font-h1 text-h1 text-on-surface leading-tight">
+                Votre GPS Médical <span class="text-primary-container">intelligent</span>
+</h2>
+<p class="font-body-lg text-on-surface-variant text-lg leading-relaxed">
+                Naviguez sereinement dans le paysage médical Algérien. Santé DZ utilise l'IA pour vous guider vers les meilleurs soins et surveiller votre vitalité en temps réel.
+            </p>
+</div>
+<!-- Bento Features (Compact) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md w-full max-w-3xl mt-xl">
+<div class="bg-surface-container-lowest p-lg rounded-2xl border border-slate-100 flex gap-md items-start ambient-shadow">
+<div class="bg-secondary-container p-sm rounded-xl text-primary">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+</div>
+<div>
+<h3 class="font-h3 text-body-md font-bold mb-xs">Guidance Experte</h3>
+<p class="text-on-surface-variant text-sm">Trouvez les spécialistes adaptés à vos besoins partout en Algérie.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-2xl border border-slate-100 flex gap-md items-start ambient-shadow">
+<div class="bg-tertiary-container/10 p-sm rounded-xl text-tertiary">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+</div>
+<div>
+<h3 class="font-h3 text-body-md font-bold mb-xs">Monitoring IA</h3>
+<p class="text-on-surface-variant text-sm">Une surveillance intelligente de vos constantes pour prévenir les risques.</p>
+</div>
+</div>
+</div>
+<!-- Navigation Actions -->
+<div class="w-full max-w-3xl mt-xl flex flex-col md:flex-row items-center justify-between gap-lg border-t border-slate-100 pt-xl">
+<!-- Progress Dots -->
+<div class="flex gap-sm">
+<div class="h-2 w-8 bg-primary-container rounded-full"></div>
+<div class="h-2 w-2 bg-outline-variant rounded-full"></div>
+<div class="h-2 w-2 bg-outline-variant rounded-full"></div>
+</div>
+<div class="flex items-center gap-md w-full md:w-auto">
+<button class="flex-1 md:flex-none px-xl py-md text-on-surface-variant font-semibold hover:bg-surface-container-high rounded-xl transition-all">
+                    Passer
+                </button>
+<button class="flex-[2] md:flex-none px-xxl py-md bg-primary-container text-white font-bold rounded-xl shadow-lg shadow-primary-container/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-sm">
+                    Suivant
+                    <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Visual Polish: Background Gradients -->
+<div class="fixed top-0 right-0 -z-10 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
+<div class="fixed bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-secondary-container/20 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+</body></html>

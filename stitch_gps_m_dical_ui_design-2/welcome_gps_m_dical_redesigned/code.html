@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>GPS Médical Algérie - Bienvenue</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-variant": "#dfe3e1",
+                "surface-container-highest": "#dfe3e1",
+                "inverse-on-surface": "#eef2ef",
+                "surface-tint": "#006b5e",
+                "on-surface-variant": "#3e4946",
+                "tertiary-fixed-dim": "#ffb59f",
+                "on-tertiary-fixed": "#3a0a00",
+                "tertiary-container": "#a2563f",
+                "tertiary": "#843f29",
+                "secondary": "#526069",
+                "on-error-container": "#93000a",
+                "surface-bright": "#f6faf8",
+                "primary-fixed": "#97f3e2",
+                "secondary-container": "#d3e2ed",
+                "outline-variant": "#bdc9c5",
+                "on-tertiary-container": "#ffe8e2",
+                "surface-container-low": "#f0f4f2",
+                "on-error": "#ffffff",
+                "primary-fixed-dim": "#7ad7c6",
+                "secondary-fixed-dim": "#bac9d3",
+                "on-background": "#181d1b",
+                "surface": "#f6faf8",
+                "primary": "#005e53",
+                "surface-container-high": "#e5e9e7",
+                "on-primary-fixed-variant": "#005047",
+                "secondary-fixed": "#d6e5ef",
+                "on-primary-fixed": "#00201b",
+                "error-container": "#ffdad6",
+                "on-secondary-fixed-variant": "#3b4951",
+                "on-secondary-container": "#56656e",
+                "on-primary": "#ffffff",
+                "on-tertiary-fixed-variant": "#75331f",
+                "on-surface": "#181d1b",
+                "on-secondary": "#ffffff",
+                "surface-dim": "#d7dbd8",
+                "on-tertiary": "#ffffff",
+                "primary-container": "#00796b",
+                "error": "#ba1a1a",
+                "surface-container-lowest": "#ffffff",
+                "outline": "#6e7a76",
+                "inverse-surface": "#2d3130",
+                "inverse-primary": "#7ad7c6",
+                "tertiary-fixed": "#ffdbd1",
+                "on-secondary-fixed": "#0f1d25",
+                "background": "#f6faf8",
+                "surface-container": "#ebefec",
+                "on-primary-container": "#a1feec"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "gutter": "20px",
+                "xs": "4px",
+                "xl": "32px",
+                "lg": "24px",
+                "xxl": "48px",
+                "md": "16px",
+                "unit": "4px",
+                "container-max": "1280px",
+                "sm": "8px"
+            },
+            "fontFamily": {
+                "body-md": ["Inter"],
+                "label-caps": ["Inter"],
+                "h2": ["Manrope"],
+                "h1": ["Manrope"],
+                "body-lg": ["Inter"],
+                "h3": ["Manrope"]
+            },
+            "fontSize": {
+                "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background: linear-gradient(180deg, #f6faf8 0%, #ffffff 100%);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 121, 107, 0.08) 0%, transparent 70%);
+        }
+        .btn-active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface min-h-screen flex flex-col items-center justify-between overflow-x-hidden">
+<!-- Top: Centered brand logo -->
+<header class="w-full pt-xxl flex flex-col items-center px-gutter">
+<div class="w-20 h-20 mb-md">
+<img alt="GPS Médical Algérie Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujRFC5v-qRH6PU68IC_R7TjFH-yZO98-Z1UrfHZBiKplICw0me1ADujiZMpkSMQsmZhDzV_PzNS95xADxelwgVy334vTBOxXVKfKdOIv8dwqPf3IMZxr2ueX_sAtM3k28hb7K-MilIDqZFA44ve3eBWbnKzWK-axvcx6oDeV5eD5msc_Ho2FDOPNiTsYrPkNMM_GEE-d_R02K6tCOzWpTa1Z50VLwXV_ERlKJu77-52cNWZTDqkrriftpc"/>
+</div>
+<!-- Center-top: Headline & Subtitle -->
+<div class="text-center space-y-xs max-w-sm">
+<h1 class="font-h1 text-h1 text-[#0a2540] tracking-tight">Bienvenue</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Votre parcours santé commence ici</p>
+</div>
+</header>
+<!-- Center: Dynamic Composition with UI Widgets -->
+<main class="flex-grow flex items-center justify-center w-full px-gutter py-xl relative">
+<div class="hero-gradient absolute inset-0 -z-10"></div>
+<div class="relative w-full max-w-sm h-80 flex items-center justify-center">
+<!-- Medical GPS Widget -->
+<div class="absolute top-0 left-4 animate-float glass-card p-sm rounded-xl shadow-xl border border-white/50 w-36">
+<div class="flex items-center gap-xs mb-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-outline">Medical GPS</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+<p class="text-[11px] mt-xs text-on-surface-variant font-semibold">Proximité optimisée</p>
+</div>
+<!-- Health Records Widget -->
+<div class="absolute bottom-4 right-4 animate-float-delayed glass-card p-sm rounded-xl shadow-xl border border-white/50 w-44">
+<div class="flex items-center gap-xs mb-sm">
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed-variant text-[18px]">folder_shared</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-wider text-outline">Dossiers</p>
+<p class="text-[12px] font-bold text-[#0a2540]">Santé Numérique</p>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="h-1.5 w-full bg-surface-container-high rounded-full"></div>
+<div class="h-1.5 w-4/5 bg-surface-container-high rounded-full"></div>
+</div>
+</div>
+<!-- Smart Analysis Widget (Center) -->
+<div class="z-10 glass-card p-md rounded-2xl shadow-2xl border border-white/80 w-48 text-center transform scale-110">
+<div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center mx-auto mb-sm">
+<span class="material-symbols-outlined text-on-primary-container text-[28px]">monitoring</span>
+</div>
+<h3 class="text-body-md font-bold text-[#0a2540] mb-xs">Analyse Smart</h3>
+<p class="text-[12px] text-on-surface-variant">Diagnostics intelligents en temps réel</p>
+</div>
+<!-- Floating Decorative Icons -->
+<span class="material-symbols-outlined absolute top-12 right-12 text-primary/20 text-[40px] animate-pulse">health_metrics</span>
+<span class="material-symbols-outlined absolute bottom-12 left-12 text-tertiary/20 text-[32px] animate-pulse" style="animation-delay: 1s">ecg_heart</span>
+</div>
+</main>
+<!-- Bottom: Actions & Footer -->
+<section class="w-full max-w-md px-gutter pb-xxl space-y-md">
+<!-- Two stacked full-width buttons -->
+<div class="flex flex-col gap-sm">
+<!-- Primary button -->
+<button class="w-full h-14 bg-primary text-on-primary font-h3 text-body-lg flex items-center justify-center rounded-xl shadow-lg hover:brightness-110 active:btn-active transition-all">
+                Créer un compte
+            </button>
+<!-- Outlined button -->
+<button class="w-full h-14 border-2 border-[#0a2540] text-[#0a2540] font-h3 text-body-lg flex items-center justify-center rounded-xl hover:bg-[#0a2540]/5 active:btn-active transition-all">
+                J'ai déjà un compte
+            </button>
+</div>
+<!-- Footer: Small text link -->
+<footer class="text-center pt-md">
+<a class="font-label-caps text-label-caps text-outline hover:text-primary transition-colors inline-flex items-center gap-xs" href="#">
+<span class="material-symbols-outlined text-[16px]">help_outline</span>
+                Besoin d'aide ?
+            </a>
+</footer>
+</section>
+<!-- Subtle Background Elements -->
+<div class="fixed -bottom-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="fixed -top-12 -right-12 w-48 h-48 bg-tertiary/5 rounded-full blur-3xl pointer-events-none"></div>
+</body></html>

@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
 import '../theme/gps_theme.dart';
 import 'empty_state.dart';
@@ -154,8 +156,13 @@ class _DesignSystemShowcaseScreenState
 
 /// Wraps [child] with a debug-only FAB that opens [DesignSystemShowcaseScreen].
 class DesignSystemShowcaseLauncher extends StatelessWidget {
-  const DesignSystemShowcaseLauncher({required this.child, super.key});
+  const DesignSystemShowcaseLauncher({
+    required this.router,
+    required this.child,
+    super.key,
+  });
 
+  final GoRouter router;
   final Widget child;
 
   @override
@@ -173,14 +180,7 @@ class DesignSystemShowcaseLauncher extends StatelessWidget {
           child: SafeArea(
             child: FloatingActionButton.small(
               heroTag: 'gps_design_showcase',
-              tooltip: 'Design System Showcase',
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => const DesignSystemShowcaseScreen(),
-                  ),
-                );
-              },
+              onPressed: () => router.push(GpsRoutes.designSystemShowcase),
               child: const Icon(Icons.palette_outlined),
             ),
           ),

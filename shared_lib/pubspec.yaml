@@ -13,9 +13,14 @@ dependencies:
   dio: ^5.7.0
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^2.6.1
+  go_router: ^14.8.1
   google_fonts: ^6.2.1
   gps_medical_api:
     path: packages/gps_medical_api
+  responsive_framework: ^1.5.1
 
 dev_dependencies:
   flutter_lints: ^5.0.0

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "background": "#f6faf8",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e5e9e7",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#006b5e",
+                    "on-secondary-fixed": "#0f1d25",
+                    "primary-fixed": "#97f3e2",
+                    "surface": "#f6faf8",
+                    "on-secondary-fixed-variant": "#3b4951",
+                    "tertiary-fixed": "#ffdbd1",
+                    "on-primary-fixed-variant": "#005047",
+                    "primary-fixed-dim": "#7ad7c6",
+                    "inverse-on-surface": "#eef2ef",
+                    "surface-dim": "#d7dbd8",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#00796b",
+                    "primary": "#005e53",
+                    "surface-variant": "#dfe3e1",
+                    "secondary-container": "#d3e2ed",
+                    "inverse-primary": "#7ad7c6",
+                    "tertiary": "#843f29",
+                    "secondary-fixed-dim": "#bac9d3",
+                    "on-tertiary-container": "#ffe8e2",
+                    "surface-container-low": "#f0f4f2",
+                    "on-background": "#181d1b",
+                    "on-primary-fixed": "#00201b",
+                    "outline-variant": "#bdc9c5",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#a2563f",
+                    "outline": "#6e7a76",
+                    "on-tertiary-fixed-variant": "#75331f",
+                    "on-surface-variant": "#3e4946",
+                    "secondary-fixed": "#d6e5ef",
+                    "surface-container-highest": "#dfe3e1",
+                    "on-primary-container": "#a1feec",
+                    "secondary": "#526069",
+                    "inverse-surface": "#2d3130",
+                    "surface-bright": "#f6faf8",
+                    "tertiary-fixed-dim": "#ffb59f",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#56656e",
+                    "on-tertiary-fixed": "#3a0a00",
+                    "surface-container": "#ebefec",
+                    "on-surface": "#181d1b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xs": "4px",
+                    "gutter": "20px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "xl": "32px",
+                    "container-max": "1280px",
+                    "unit": "4px",
+                    "xxl": "48px"
+            },
+            "fontFamily": {
+                    "h2": ["Manrope"],
+                    "label-caps": ["Inter"],
+                    "h3": ["Manrope"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "h1": ["Manrope"]
+            },
+            "fontSize": {
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                    "h3-mobile": ["20px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .bg-soft-gradient {
+            background: linear-gradient(180deg, #FFFFFF 0%, #E3F2FD 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-soft-gradient min-h-screen text-on-surface flex flex-col font-body-md">
+<!-- TopAppBar Fragment -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-md bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl">
+<div class="flex items-center gap-md">
+<!-- Page Indicators -->
+<div class="flex gap-xs">
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<span class="font-h3 text-h3-mobile font-bold text-primary dark:text-primary-fixed-dim">GPS Médical</span>
+</div>
+<button class="font-label-caps text-label-caps text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity active:scale-95">Passer</button>
+</header>
+<main class="flex-grow pt-[80px] pb-[120px] px-gutter max-w-container-max mx-auto w-full">
+<section class="mt-lg">
+<h1 class="font-h2 text-h2 text-on-background text-center mb-xl">Comment ça fonctionne ?</h1>
+<!-- Vertical Timeline Bento -->
+<div class="relative max-w-md mx-auto">
+<!-- Connecting Line -->
+<div class="absolute left-[24px] top-6 bottom-6 w-[2px] bg-primary/20"></div>
+<!-- Steps -->
+<div class="space-y-xl">
+<!-- Step 1 -->
+<div class="relative flex gap-lg group transition-all duration-300">
+<div class="z-10 w-12 h-12 rounded-xl bg-surface shadow-md flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary-container text-[28px]" data-icon="body_system">body_system</span>
+</div>
+<div class="flex-grow pt-xs">
+<h3 class="font-h3 text-h3-mobile text-primary mb-xs">Localisez votre douleur</h3>
+<p class="text-on-surface-variant font-body-md">Identifiez précisément vos zones d'inconfort.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative flex gap-lg group transition-all duration-300">
+<div class="z-10 w-12 h-12 rounded-xl bg-surface shadow-md flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary-container text-[28px]" data-icon="clinical_notes">clinical_notes</span>
+</div>
+<div class="flex-grow pt-xs">
+<h3 class="font-h3 text-h3-mobile text-primary mb-xs">Dépistage intelligent</h3>
+<p class="text-on-surface-variant font-body-md">Notre IA analyse vos symptômes et documents.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative flex gap-lg group transition-all duration-300">
+<div class="z-10 w-12 h-12 rounded-xl bg-surface shadow-md flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary-container text-[28px]" data-icon="nutrition">nutrition</span>
+</div>
+<div class="flex-grow pt-xs">
+<h3 class="font-h3 text-h3-mobile text-primary mb-xs">Préparez votre corps</h3>
+<p class="text-on-surface-variant font-body-md">Recevez des conseils personnalisés de pré-consultation.</p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative flex gap-lg group transition-all duration-300">
+<div class="z-10 w-12 h-12 rounded-xl bg-surface shadow-md flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary-container text-[28px]" data-icon="distance">distance</span>
+</div>
+<div class="flex-grow pt-xs">
+<h3 class="font-h3 text-h3-mobile text-primary mb-xs">Rencontrez l'expert</h3>
+<p class="text-on-surface-variant font-body-md">Prenez rendez-vous avec le bon spécialiste près de chez vous.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Context Image -->
+<div class="mt-xxl rounded-xl overflow-hidden shadow-[0_30px_30px_rgba(0,121,107,0.04)] bg-surface border border-outline-variant/30">
+<img alt="Medical clarity and technology" class="w-full h-48 object-cover" data-alt="A clean, bright medical clinic interior in Algeria with soft lighting and professional atmosphere. The scene captures a modern medical tablet displaying an anatomical human model with glowing hotspots. The background features a blurred healthcare professional in a pristine white coat, symbolizing the blend of advanced technology and compassionate human care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsEVjOGTDTRAVINDckDNgTV1H5miuVrMmSLFOvPw69N0mMVPSn17amGPzZcuAz1JZ74DyJDAylF_wgJmV0GUGdAXI4ovBFKeLdGN7Fk2_n9nXJ4XODtj7PsVEhaR5AAlxmXocnEEJlieVlzoWhgw0h4Rz3XQS5n0vykjp0I-JF2OTHZvPVBmXVvCSqmSG5hYUe6BEkesLfOfs6qpswom5MN0pPJaE5bEsK0pS0_LpnIDVdw91d1RZ9HtxdQNlVarcCxNLkgpqDMzo"/>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Fragment -->
+<nav class="fixed bottom-0 left-0 w-full z-50 px-gutter pb-xl pt-md flex items-center justify-between bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-[0_-4px_30px_rgba(0,121,107,0.04)]">
+<button class="text-secondary font-label-caps text-label-caps hover:opacity-80 transition-opacity">
+            Passer
+        </button>
+<button class="flex items-center justify-center gap-sm bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container rounded-full px-xl py-md hover:scale-[1.02] transition-transform duration-200 active:scale-98 shadow-lg">
+<span class="font-label-caps text-label-caps">Suivant</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</nav>
+</body></html>

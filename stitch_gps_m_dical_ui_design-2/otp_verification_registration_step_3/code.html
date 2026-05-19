@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb59f",
+                    "primary-fixed": "#97f3e2",
+                    "on-surface": "#181d1b",
+                    "on-tertiary-fixed": "#3a0a00",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#dfe3e1",
+                    "surface-dim": "#d7dbd8",
+                    "on-primary-container": "#a1feec",
+                    "tertiary-fixed": "#ffdbd1",
+                    "surface-container-high": "#e5e9e7",
+                    "on-secondary-fixed": "#0f1d25",
+                    "surface-bright": "#f6faf8",
+                    "tertiary": "#843f29",
+                    "primary-fixed-dim": "#7ad7c6",
+                    "secondary": "#526069",
+                    "outline-variant": "#bdc9c5",
+                    "error": "#ba1a1a",
+                    "inverse-surface": "#2d3130",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#181d1b",
+                    "on-primary-fixed": "#00201b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#56656e",
+                    "on-surface-variant": "#3e4946",
+                    "inverse-primary": "#7ad7c6",
+                    "outline": "#6e7a76",
+                    "secondary-container": "#d3e2ed",
+                    "surface-variant": "#dfe3e1",
+                    "background": "#f6faf8",
+                    "surface-container": "#ebefec",
+                    "surface-tint": "#006b5e",
+                    "surface": "#f6faf8",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#ffe8e2",
+                    "on-secondary-fixed-variant": "#3b4951",
+                    "inverse-on-surface": "#eef2ef",
+                    "secondary-fixed": "#d6e5ef",
+                    "primary": "#005e53",
+                    "secondary-fixed-dim": "#bac9d3",
+                    "on-primary-fixed-variant": "#005047",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#00796b",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f0f4f2",
+                    "tertiary-container": "#a2563f",
+                    "on-tertiary-fixed-variant": "#75331f",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "unit": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "xxl": "48px",
+                    "gutter": "20px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Inter"],
+                    "h1": ["Manrope"],
+                    "h2": ["Manrope"],
+                    "body-md": ["Inter"],
+                    "h3": ["Manrope"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .otp-input:focus {
+            border-color: #00796b;
+            box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  <style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style></head>
+<body class="bg-background font-body-md text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md shadow-[0_30px_30px_rgba(0,121,107,0.04)]">
+<div class="flex justify-between items-center px-gutter py-md max-w-container-max mx-auto">
+<div class="flex items-center gap-md">
+<button class="flex items-center justify-center p-xs hover:scale-[1.02] transition-transform duration-200 active:scale-95 transition-all text-primary">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-h3 text-h3 font-bold text-primary">Vérification</h1>
+</div>
+<div class="font-h3 text-h3 font-semibold text-primary">
+                3/5
+            </div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-[88px] px-gutter flex flex-col items-center max-w-lg mx-auto w-full">
+<!-- Illustration/Icon -->
+<div class="mt-xl mb-xxl flex justify-center">
+<div class="w-24 h-24 bg-primary-fixed-dim/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings: 'FILL' 1;">shield_lock</span>
+</div>
+</div>
+<!-- Text Section -->
+<div class="text-center mb-xxl">
+<h2 class="font-h2 text-h2 text-primary mb-sm">Entrez le code reçu</h2>
+<p class="font-body-md text-on-surface-variant">
+                Code à 6 chiffres envoyé au <span class="font-semibold">+213 551 23 45 67</span>
+<button class="ml-xs text-primary font-semibold hover:underline cursor-pointer">Modifier</button>
+</p>
+</div>
+<!-- OTP Input Grid -->
+<div class="grid grid-cols-6 gap-sm w-full mb-lg">
+<input autofocus="" class="otp-input w-full aspect-square text-center font-h2 text-h2 bg-surface-container-low border-2 border-outline-variant rounded-xl focus:outline-none transition-all" maxlength="1" type="text" value="">
+<input class="otp-input w-full aspect-square text-center font-h2 text-h2 bg-surface-container-low border-2 border-outline-variant rounded-xl focus:outline-none transition-all" maxlength="1" type="text" value="">
+<input class="otp-input w-full aspect-square text-center font-h2 text-h2 bg-surface-container-low border-2 border-outline-variant rounded-xl focus:outline-none transition-all" maxlength="1" type="text" value="">
+<input class="otp-input w-full aspect-square text-center font-h2 text-h2 bg-surface-container-low border-2 border-outline-variant rounded-xl focus:outline-none transition-all" maxlength="1" type="text" value="">
+<input class="otp-input w-full aspect-square text-center font-h2 text-h2 bg-surface-container-low border-2 border-outline-variant rounded-xl focus:outline-none transition-all" maxlength="1" type="text" value="">
+<input class="otp-input w-full aspect-square text-center font-h2 text-h2 bg-surface-container-low border-2 border-outline-variant rounded-xl focus:outline-none transition-all" maxlength="1" type="text" value="">
+</div>
+<!-- Timer -->
+<div class="flex items-center gap-sm text-on-surface-variant font-body-md mb-xxl">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span class="">Renvoyer le code dans <span class="font-semibold text-primary">0:45</span></span>
+</div>
+<!-- Action Button -->
+<div class="w-full mt-auto mb-xl">
+<button class="w-full py-md font-h3 text-h3 rounded-xl cursor-not-allowed flex items-center justify-center gap-sm bg-primary-container/40 text-on-primary-container/50" disabled="">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+                Vérifier
+            </button>
+<p class="text-center mt-md font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">
+                Étape sécurisée par cryptage AES-256
+            </p>
+</div>
+<!-- Decorative Card (Bento style hint) -->
+<div class="w-full bg-surface-container-lowest p-md rounded-xl border border-outline-variant/30 shadow-sm flex items-start gap-md mb-xl">
+<div class="p-sm bg-secondary-container rounded-lg">
+<span class="material-symbols-outlined text-on-secondary-container">info</span>
+</div>
+<div>
+<p class="font-body-md font-semibold text-primary">Besoin d'aide ?</p>
+<p class="font-label-caps text-on-surface-variant">Si vous ne recevez pas le code, vérifiez votre connexion réseau ou contactez notre support technique.</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface border-t border-outline-variant w-full py-xl">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter gap-md max-w-container-max mx-auto">
+<p class="font-body-md text-secondary">© 2024 Algerian Medical Portal. All rights reserved.</p>
+<div class="flex gap-lg">
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+
+
+</body></html>

@@ -22,37 +22,40 @@ class ErrorState extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
 
-    return Padding(
-      padding: const EdgeInsets.all(GpsSpacing.lg),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.error_outline, size: 48, color: scheme.error),
-          const SizedBox(height: GpsSpacing.md),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.headlineMedium,
-            textAlign: TextAlign.center,
-          ),
-          if (message != null) ...[
-            const SizedBox(height: GpsSpacing.sm),
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(GpsSpacing.lg),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.error_outline, size: 48, color: scheme.error),
+            const SizedBox(height: GpsSpacing.md),
             Text(
-              message!,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
+              title,
+              style: Theme.of(context).textTheme.headlineMedium,
               textAlign: TextAlign.center,
             ),
+            if (message != null) ...[
+              const SizedBox(height: GpsSpacing.sm),
+              Text(
+                message!,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
+                textAlign: TextAlign.center,
+              ),
+            ],
+            if (onRetry != null) ...[
+              const SizedBox(height: GpsSpacing.lg),
+              SecondaryButton(
+                label: retryLabel,
+                onPressed: onRetry,
+                expand: false,
+              ),
+            ],
           ],
-          if (onRetry != null) ...[
-            const SizedBox(height: GpsSpacing.lg),
-            SecondaryButton(
-              label: retryLabel,
-              onPressed: onRetry,
-              expand: false,
-            ),
-          ],
-        ],
+        ),
       ),
     );
   }
