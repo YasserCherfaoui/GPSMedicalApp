@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,7 +15,7 @@ import 'primary_button.dart';
 import 'secondary_button.dart';
 
 /// Whether the design-system showcase is available (debug builds only).
-bool get isDesignSystemShowcaseEnabled => kDebugMode;
+bool get isDesignSystemShowcaseEnabled => false; // Set to kDebugMode to enable the design system FAB again
 
 /// Visual QA screen for tokens and components.
 class DesignSystemShowcaseScreen extends StatefulWidget {

@@ -30,6 +30,7 @@ class GpsMedicalMaterialApp extends ConsumerWidget {
       theme: GpsTheme.light(),
       darkTheme: GpsTheme.dark(),
       themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
       locale: appLocale.locale,
       supportedLocales: AppLocale.values.map((e) => e.locale),
       localizationsDelegates: const [
