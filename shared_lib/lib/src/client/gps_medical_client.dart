@@ -11,12 +11,15 @@ class GpsMedicalClient {
   GpsMedicalClient({
     required this.tokenStore,
     this.onSessionExpired,
-    String apiRootUrl = kDefaultApiRootUrl,
+    String? apiRootUrl,
     Dio? v1Dio,
     Duration connectTimeout = const Duration(seconds: 15),
     Duration receiveTimeout = const Duration(seconds: 30),
-  }) : apiRootUrl = apiRootUrl.replaceAll(RegExp(r'/+$'), ''),
-       v1BaseUrl = '${apiRootUrl.replaceAll(RegExp(r'/+$'), '')}/v1' {
+  }) : apiRootUrl = resolveApiUrl(
+         apiRootUrl ?? kDefaultApiRootUrl,
+       ).replaceAll(RegExp(r'/+$'), ''),
+       v1BaseUrl =
+           '${resolveApiUrl(apiRootUrl ?? kDefaultApiRootUrl).replaceAll(RegExp(r'/+$'), '')}/v1' {
     final refreshDio = Dio(
       BaseOptions(
         baseUrl: v1BaseUrl,
@@ -55,7 +58,7 @@ class GpsMedicalClient {
     _root = GpsMedicalApi(
       dio: Dio(
         BaseOptions(
-          baseUrl: apiRootUrl,
+          baseUrl: this.apiRootUrl,
           connectTimeout: connectTimeout,
           receiveTimeout: receiveTimeout,
           headers: const {'Accept': 'application/json'},

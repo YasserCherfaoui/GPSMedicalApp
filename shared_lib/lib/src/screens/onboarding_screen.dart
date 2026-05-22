@@ -28,9 +28,9 @@ class OnboardingScreen extends StatelessWidget {
           title: Text(
             'GPS Médical',
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           actions: [
             if (clamped < 3)
@@ -69,13 +69,18 @@ class OnboardingScreen extends StatelessWidget {
               Expanded(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(horizontal: GpsSpacing.md),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: GpsSpacing.md,
+                  ),
                   child: Column(
                     children: [
                       const SizedBox(height: GpsSpacing.md),
-                      if (clamped == 1) _buildStep1(context)
-                      else if (clamped == 2) _buildStep2(context)
-                      else _buildStep3(context),
+                      if (clamped == 1)
+                        _buildStep1(context)
+                      else if (clamped == 2)
+                        _buildStep2(context)
+                      else
+                        _buildStep3(context),
                       const SizedBox(height: GpsSpacing.xl),
                     ],
                   ),
@@ -89,9 +94,8 @@ class OnboardingScreen extends StatelessWidget {
                     if (clamped > 1)
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: () => context.go(
-                            GpsRoutes.onboardingStep(clamped - 1),
-                          ),
+                          onPressed: () =>
+                              context.go(GpsRoutes.onboardingStep(clamped - 1)),
                           child: const Text('Retour'),
                         ),
                       )
@@ -198,9 +202,7 @@ class OnboardingScreen extends StatelessWidget {
                       children: [
                         Text(
                           'STATUT IA',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelSmall
+                          style: Theme.of(context).textTheme.labelSmall
                               ?.copyWith(
                                 color: colorScheme.onSurfaceVariant,
                                 fontWeight: FontWeight.bold,
@@ -209,9 +211,7 @@ class OnboardingScreen extends StatelessWidget {
                         ),
                         Text(
                           'Analyse Active',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium
+                          style: Theme.of(context).textTheme.labelMedium
                               ?.copyWith(
                                 color: colorScheme.primary,
                                 fontWeight: FontWeight.w800,
@@ -230,18 +230,18 @@ class OnboardingScreen extends StatelessWidget {
         Text(
           'Votre GPS Médical intelligent',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: colorScheme.onSurface,
-              ),
+            fontWeight: FontWeight.bold,
+            color: colorScheme.onSurface,
+          ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: GpsSpacing.sm),
         Text(
           "Naviguez sereinement dans le paysage médical Algérien. Santé DZ utilise l'IA pour vous guider vers les meilleurs soins et surveiller votre vitalité en temps réel.",
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: colorScheme.onSurfaceVariant,
-                height: 1.5,
-              ),
+            color: colorScheme.onSurfaceVariant,
+            height: 1.5,
+          ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: GpsSpacing.xl),
@@ -316,18 +316,18 @@ class OnboardingScreen extends StatelessWidget {
           Text(
             title,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: colorScheme.onSurface,
-                ),
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onSurface,
+            ),
           ),
           const SizedBox(height: GpsSpacing.xs),
           Expanded(
             child: Text(
               desc,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
-                    height: 1.3,
-                  ),
+                color: colorScheme.onSurfaceVariant,
+                height: 1.3,
+              ),
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
             ),
@@ -369,9 +369,9 @@ class OnboardingScreen extends StatelessWidget {
         Text(
           'Comment ça fonctionne ?',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: colorScheme.onSurface,
-              ),
+            fontWeight: FontWeight.bold,
+            color: colorScheme.onSurface,
+          ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: GpsSpacing.xl),
@@ -429,19 +429,17 @@ class OnboardingScreen extends StatelessWidget {
                       children: [
                         Text(
                           item.title,
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: colorScheme.primary,
-                                  ),
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: colorScheme.primary,
+                              ),
                         ),
                         const SizedBox(height: GpsSpacing.xs),
                         Text(
                           item.desc,
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: colorScheme.onSurfaceVariant,
-                                  ),
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(color: colorScheme.onSurfaceVariant),
                         ),
                         const SizedBox(height: GpsSpacing.lg),
                       ],
@@ -459,7 +457,9 @@ class OnboardingScreen extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: colorScheme.outlineVariant.withOpacity(0.3)),
+            border: Border.all(
+              color: colorScheme.outlineVariant.withOpacity(0.3),
+            ),
             boxShadow: [
               BoxShadow(
                 color: colorScheme.primary.withOpacity(0.03),
@@ -501,7 +501,8 @@ class OnboardingScreen extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: colorScheme.outlineVariant.withOpacity(0.2),
-                    style: BorderStyle.solid, // Note: Flutter doesn't natively draw dashed borders directly via Border.all easily, solid with low opacity looks great and clean.
+                    style: BorderStyle
+                        .solid, // Note: Flutter doesn't natively draw dashed borders directly via Border.all easily, solid with low opacity looks great and clean.
                   ),
                 ),
               ),
@@ -537,11 +538,7 @@ class OnboardingScreen extends StatelessWidget {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Icon(
-                        Icons.shield,
-                        size: 56,
-                        color: colorScheme.primary,
-                      ),
+                      Icon(Icons.shield, size: 56, color: colorScheme.primary),
                       Positioned(
                         right: 14,
                         bottom: 14,
@@ -596,9 +593,9 @@ class OnboardingScreen extends StatelessWidget {
         Text(
           'Vos données, protégées en Algérie',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: colorScheme.onSurface,
-              ),
+            fontWeight: FontWeight.bold,
+            color: colorScheme.onSurface,
+          ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: GpsSpacing.xl),
@@ -635,9 +632,7 @@ class OnboardingScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerLowest.withOpacity(0.95),
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: colorScheme.outlineVariant.withOpacity(0.4),
-        ),
+        border: Border.all(color: colorScheme.outlineVariant.withOpacity(0.4)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.06),
@@ -665,15 +660,15 @@ class OnboardingScreen extends StatelessWidget {
               Text(
                 title,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: colorScheme.onSurface,
-                    ),
+                  fontWeight: FontWeight.bold,
+                  color: colorScheme.onSurface,
+                ),
               ),
               Text(
                 subtitle,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                    ),
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
           ),
@@ -694,20 +689,16 @@ class OnboardingScreen extends StatelessWidget {
             color: colorScheme.primaryContainer.withOpacity(0.2),
             shape: BoxShape.circle,
           ),
-          child: Icon(
-            Icons.check,
-            size: 14,
-            color: colorScheme.primary,
-          ),
+          child: Icon(Icons.check, size: 14, color: colorScheme.primary),
         ),
         const SizedBox(width: GpsSpacing.md),
         Expanded(
           child: Text(
             text,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: colorScheme.onSurfaceVariant,
-                ),
+              fontWeight: FontWeight.w600,
+              color: colorScheme.onSurfaceVariant,
+            ),
           ),
         ),
       ],
@@ -716,11 +707,7 @@ class OnboardingScreen extends StatelessWidget {
 }
 
 class _TimelineItem {
-  _TimelineItem({
-    required this.icon,
-    required this.title,
-    required this.desc,
-  });
+  _TimelineItem({required this.icon, required this.title, required this.desc});
 
   final IconData icon;
   final String title;

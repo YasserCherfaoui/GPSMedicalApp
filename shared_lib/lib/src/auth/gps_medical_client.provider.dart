@@ -8,8 +8,12 @@ final gpsMedicalClientProvider = Provider<GpsMedicalClient>((ref) {
   final tokenStore = ref.watch(tokenStoreProvider);
   final sessionNotifier = ref.watch(authSessionProvider);
 
+  const apiRootUrlFromEnv = String.fromEnvironment('API_ROOT_URL');
+  final apiRootUrl = apiRootUrlFromEnv.isNotEmpty ? apiRootUrlFromEnv : null;
+
   return GpsMedicalClient(
     tokenStore: tokenStore,
     onSessionExpired: sessionNotifier.handleSessionExpired,
+    apiRootUrl: apiRootUrl,
   );
 });

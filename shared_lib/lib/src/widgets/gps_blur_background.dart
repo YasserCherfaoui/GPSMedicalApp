@@ -17,11 +17,7 @@ class GpsBlurBackground extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         // Solid background base
-        Positioned.fill(
-          child: Container(
-            color: colorScheme.surface,
-          ),
-        ),
+        Positioned.fill(child: Container(color: colorScheme.surface)),
         // Top-right soft primary glow
         Positioned(
           top: -200,
@@ -62,9 +58,7 @@ class GpsBlurBackground extends StatelessWidget {
             ),
           ),
         ),
-        Positioned.fill(
-          child: child,
-        ),
+        Positioned.fill(child: child),
       ],
     );
   }

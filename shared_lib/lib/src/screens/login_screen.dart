@@ -143,13 +143,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   children: [
                     Expanded(child: Divider(color: colorScheme.outlineVariant)),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: GpsSpacing.md),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: GpsSpacing.md,
+                      ),
                       child: Text(
                         'OU',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: colorScheme.outline,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          color: colorScheme.outline,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     Expanded(child: Divider(color: colorScheme.outlineVariant)),
@@ -179,8 +181,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               Text(
                 'Pas encore inscrit ?',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                    ),
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
               TextButton(
                 onPressed: () => context.go(GpsRoutes.registerNin),

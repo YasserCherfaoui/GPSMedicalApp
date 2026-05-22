@@ -34,24 +34,14 @@ class LanguageScreen extends ConsumerWidget {
             width: 32,
             height: 22,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) => const Text(
-              '🇩🇿',
-              style: TextStyle(fontSize: 20),
-            ),
+            errorBuilder: (_, __, ___) =>
+                const Text('🇩🇿', style: TextStyle(fontSize: 20)),
           ),
         );
       case AppLocale.french:
-        return Icon(
-          Icons.translate,
-          color: color,
-          size: 24,
-        );
+        return Icon(Icons.translate, color: color, size: 24);
       case AppLocale.tamazight:
-        return Icon(
-          Icons.auto_awesome,
-          color: color,
-          size: 24,
-        );
+        return Icon(Icons.auto_awesome, color: color, size: 24);
     }
   }
 
@@ -80,7 +70,9 @@ class LanguageScreen extends ConsumerWidget {
                     width: 64,
                     height: 64,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.primary.withOpacity(0.1),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -95,17 +87,17 @@ class LanguageScreen extends ConsumerWidget {
                 Text(
                   'Choisissez votre langue\nاختر لغتك',
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        height: 1.3,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    height: 1.3,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: GpsSpacing.xs),
                 Text(
                   'GPS Médical Algérie',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurfaceVariant,
-                      ),
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: GpsSpacing.xxl),
@@ -147,9 +139,9 @@ class LanguageScreen extends ConsumerWidget {
                       Text(
                         'SanteDZ • GPS Médical',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: Theme.of(context).colorScheme.outline,
-                              letterSpacing: 1.5,
-                            ),
+                          color: Theme.of(context).colorScheme.outline,
+                          letterSpacing: 1.5,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -225,15 +217,17 @@ class _LanguageCard extends StatelessWidget {
                   child: Text(
                     label,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: colorScheme.onSurface,
-                        ),
+                      fontWeight: FontWeight.w600,
+                      color: colorScheme.onSurface,
+                    ),
                   ),
                 ),
                 // Trailing Chevron
                 Icon(
                   Icons.chevron_right,
-                  color: selected ? colorScheme.primary : colorScheme.outlineVariant,
+                  color: selected
+                      ? colorScheme.primary
+                      : colorScheme.outlineVariant,
                 ),
               ],
             ),

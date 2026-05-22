@@ -1,0 +1,8 @@
+flutter_native_splash:
+  color: "#ffffff"
+  image: "../gps_medical_logo_icons/gps_medical_icon_staging.png"
+  android_12:
+    image: "../gps_medical_logo_icons/gps_medical_icon_staging.png"
+    color: "#ffffff"
+  android: true
+  ios: true

@@ -44,23 +44,21 @@ class AuthWelcomeScreen extends StatelessWidget {
                 Text(
                   strings.welcomeTitle,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: colorScheme.onSurface,
-                      ),
+                    fontWeight: FontWeight.w800,
+                    color: colorScheme.onSurface,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: GpsSpacing.xs),
                 Text(
                   'Votre parcours santé commence ici',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: colorScheme.onSurfaceVariant,
-                      ),
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 // Center Floating Composition Space
-                const Expanded(
-                  child: _HeroComposition(),
-                ),
+                const Expanded(child: _HeroComposition()),
                 // Actions & stacked buttons
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -81,7 +79,8 @@ class AuthWelcomeScreen extends StatelessWidget {
                       ),
                       child: Text(
                         "J'ai déjà un compte",
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(
                               color: colorScheme.primary,
                               fontWeight: FontWeight.bold,
                             ),
@@ -95,9 +94,8 @@ class AuthWelcomeScreen extends StatelessWidget {
                         icon: const Icon(Icons.help_outline, size: 16),
                         label: Text(
                           "Besoin d'aide ?",
-                          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                                color: colorScheme.outline,
-                              ),
+                          style: Theme.of(context).textTheme.labelLarge
+                              ?.copyWith(color: colorScheme.outline),
                         ),
                       ),
                     ),
@@ -184,9 +182,7 @@ class _HeroComposition extends StatelessWidget {
                         Expanded(
                           child: Text(
                             'MEDICAL GPS',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelSmall
+                            style: Theme.of(context).textTheme.labelSmall
                                 ?.copyWith(
                                   color: colorScheme.outline,
                                   fontWeight: FontWeight.bold,
@@ -212,9 +208,9 @@ class _HeroComposition extends StatelessWidget {
                     Text(
                       'Proximité optimisée',
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: colorScheme.onSurfaceVariant,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        color: colorScheme.onSurfaceVariant,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -265,9 +261,7 @@ class _HeroComposition extends StatelessWidget {
                         children: [
                           Text(
                             'DOSSIERS',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelSmall
+                            style: Theme.of(context).textTheme.labelSmall
                                 ?.copyWith(
                                   color: colorScheme.outline,
                                   fontWeight: FontWeight.bold,
@@ -276,9 +270,7 @@ class _HeroComposition extends StatelessWidget {
                           ),
                           Text(
                             'Santé Numérique',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium
+                            style: Theme.of(context).textTheme.labelMedium
                                 ?.copyWith(
                                   color: colorScheme.onSurface,
                                   fontWeight: FontWeight.bold,
@@ -333,16 +325,16 @@ class _HeroComposition extends StatelessWidget {
                       Text(
                         'Analyse Smart',
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: colorScheme.onSurface,
-                            ),
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.onSurface,
+                        ),
                       ),
                       const SizedBox(height: GpsSpacing.xs),
                       Text(
                         'Diagnostics en temps réel',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: colorScheme.onSurfaceVariant,
-                            ),
+                          color: colorScheme.onSurfaceVariant,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ],

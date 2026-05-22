@@ -1,0 +1,5 @@
+{
+  "API_ROOT_URL": "https://api.gpsmedical.dz",
+  "SENTRY_DSN": "https://9c72e2dfeb8d4f40a1b63574c8bc23ab@o0.ingest.sentry.io/0",
+  "FLAVOR": "prod"
+}

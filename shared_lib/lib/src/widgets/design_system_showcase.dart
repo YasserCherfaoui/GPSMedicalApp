@@ -15,7 +15,8 @@ import 'primary_button.dart';
 import 'secondary_button.dart';
 
 /// Whether the design-system showcase is available (debug builds only).
-bool get isDesignSystemShowcaseEnabled => false; // Set to kDebugMode to enable the design system FAB again
+bool get isDesignSystemShowcaseEnabled =>
+    false; // Set to kDebugMode to enable the design system FAB again
 
 /// Visual QA screen for tokens and components.
 class DesignSystemShowcaseScreen extends StatefulWidget {

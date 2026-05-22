@@ -40,9 +40,9 @@ class ErrorState extends StatelessWidget {
               const SizedBox(height: GpsSpacing.sm),
               Text(
                 message!,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: scheme.onSurfaceVariant,
+                ),
                 textAlign: TextAlign.center,
               ),
             ],

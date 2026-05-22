@@ -1,0 +1,36 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2E90E6"/>
+      <stop offset="100%" stop-color="#1565C0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded-square background -->
+  <rect width="1024" height="1024" rx="225" ry="225" fill="url(#bg)"/>
+
+  <!-- ============ STETHOSCOPE — enlarged, centered ============ -->
+
+  <!-- Earpieces — bigger filled discs, wider apart for visual weight -->
+  <circle cx="340" cy="260" r="42" fill="#FFFFFF"/>
+  <circle cx="684" cy="260" r="42" fill="#FFFFFF"/>
+
+  <!-- Binaurals: tubes curve outward, then come together at junction -->
+  <path
+    d="M 340 260 C 260 380, 260 480, 512 555"
+    fill="none" stroke="#FFFFFF" stroke-width="48" stroke-linecap="round"/>
+  <path
+    d="M 684 260 C 764 380, 764 480, 512 555"
+    fill="none" stroke="#FFFFFF" stroke-width="48" stroke-linecap="round"/>
+
+  <!-- Stem from junction down to chest piece -->
+  <path
+    d="M 512 555 L 512 690"
+    stroke="#FFFFFF" stroke-width="48" stroke-linecap="round"/>
+
+  <!-- Chest piece — diaphragm disc, large for impact -->
+  <circle cx="512" cy="770" r="92" fill="#FFFFFF"/>
+
+  <!-- Small orange accent inside chest piece — brings brand DNA back -->
+  <circle cx="512" cy="770" r="44" fill="#FF6B47"/>
+</svg>

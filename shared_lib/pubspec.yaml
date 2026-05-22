@@ -15,13 +15,16 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  flutter_native_splash: ^2.4.4
   flutter_riverpod: ^2.6.1
   go_router: ^14.8.1
   google_fonts: ^6.2.1
   gps_medical_api:
     path: packages/gps_medical_api
   intl: any
+  package_info_plus: ^8.0.0
   responsive_framework: ^1.5.1
+  sentry_flutter: ^8.10.0
 dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:

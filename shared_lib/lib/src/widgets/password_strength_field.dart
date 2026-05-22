@@ -50,7 +50,8 @@ class _PasswordStrengthFieldState extends State<PasswordStrengthField> {
               _obscurePassword ? Icons.visibility : Icons.visibility_off,
               color: colorScheme.outline,
             ),
-            onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+            onPressed: () =>
+                setState(() => _obscurePassword = !_obscurePassword),
           ),
         ),
         const SizedBox(height: GpsSpacing.sm),
@@ -103,7 +104,8 @@ class _PasswordStrengthFieldState extends State<PasswordStrengthField> {
                 _obscureConfirm ? Icons.visibility : Icons.visibility_off,
                 color: colorScheme.outline,
               ),
-              onPressed: () => setState(() => _obscureConfirm = !_obscureConfirm),
+              onPressed: () =>
+                  setState(() => _obscureConfirm = !_obscureConfirm),
             ),
           ),
         ],
@@ -132,18 +134,18 @@ class _StrengthMeter extends StatelessWidget {
           children: [
             Text(
               'Force du mot de passe :',
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: colorScheme.outline,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.labelSmall?.copyWith(color: colorScheme.outline),
             ),
             Text(
               textStrength,
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: score >= 3
-                        ? colorScheme.primary
-                        : (score == 2 ? colorScheme.tertiary : colorScheme.error),
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: score >= 3
+                    ? colorScheme.primary
+                    : (score == 2 ? colorScheme.tertiary : colorScheme.error),
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),
@@ -164,9 +166,7 @@ class _StrengthMeter extends StatelessWidget {
                 height: 4,
                 margin: EdgeInsets.only(right: index < 3 ? 4 : 0),
                 decoration: BoxDecoration(
-                  color: filled
-                      ? color
-                      : colorScheme.surfaceContainerHighest,
+                  color: filled ? color : colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
@@ -199,10 +199,10 @@ class _RequirementRow extends StatelessWidget {
         Text(
           label,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: met
-                    ? Theme.of(context).colorScheme.onSurface
-                    : Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
+            color: met
+                ? Theme.of(context).colorScheme.onSurface
+                : Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
         ),
       ],
     );

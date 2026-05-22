@@ -27,18 +27,18 @@ class AuthStrings {
   String get start => _localizations.start;
 
   String onboardingTitle(int step) => switch (step) {
-        1 => _localizations.onboardingTitle1,
-        2 => _localizations.onboardingTitle2,
-        3 => _localizations.onboardingTitle3,
-        _ => '',
-      };
+    1 => _localizations.onboardingTitle1,
+    2 => _localizations.onboardingTitle2,
+    3 => _localizations.onboardingTitle3,
+    _ => '',
+  };
 
   String onboardingBody(int step) => switch (step) {
-        1 => _localizations.onboardingBody1,
-        2 => _localizations.onboardingBody2,
-        3 => _localizations.onboardingBody3,
-        _ => '',
-      };
+    1 => _localizations.onboardingBody1,
+    2 => _localizations.onboardingBody2,
+    3 => _localizations.onboardingBody3,
+    _ => '',
+  };
 
   String get welcomeTitle => _localizations.welcomeTitle;
   String get welcomeSubtitle => _localizations.welcomeSubtitle;
@@ -128,7 +128,9 @@ class FallbackMaterialLocalizationsDelegate
   }
 
   @override
-  bool shouldReload(covariant LocalizationsDelegate<MaterialLocalizations> old) => false;
+  bool shouldReload(
+    covariant LocalizationsDelegate<MaterialLocalizations> old,
+  ) => false;
 }
 
 /// A fallback cupertino delegate that handles locales unsupported by
@@ -146,5 +148,7 @@ class FallbackCupertinoLocalizationsDelegate
   }
 
   @override
-  bool shouldReload(covariant LocalizationsDelegate<CupertinoLocalizations> old) => false;
+  bool shouldReload(
+    covariant LocalizationsDelegate<CupertinoLocalizations> old,
+  ) => false;
 }

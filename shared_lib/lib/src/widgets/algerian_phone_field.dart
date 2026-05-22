@@ -62,10 +62,7 @@ class _AlgerianPhoneFieldState extends State<AlgerianPhoneField> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              '🇩🇿',
-              style: TextStyle(fontSize: 18),
-            ),
+            const Text('🇩🇿', style: TextStyle(fontSize: 18)),
             const SizedBox(width: GpsSpacing.xs),
             Text(
               '+213',

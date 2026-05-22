@@ -68,8 +68,8 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
           Text(
             strings.ninSubtitle,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
+              color: colorScheme.onSurfaceVariant,
+            ),
           ),
           const SizedBox(height: GpsSpacing.lg),
           // Bento guide visual card
@@ -111,17 +111,16 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
                       Text(
                         'GUIDE VISUEL',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: colorScheme.primary,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.2,
-                            ),
+                          color: colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.2,
+                        ),
                       ),
                       const SizedBox(height: GpsSpacing.xs),
                       Text(
                         'Le NIN se situe en haut à droite de votre carte biométrique.',
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                              color: colorScheme.onSurfaceVariant,
-                            ),
+                        style: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(color: colorScheme.onSurfaceVariant),
                       ),
                     ],
                   ),
@@ -137,16 +136,16 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
               Text(
                 'NIN',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: colorScheme.outline,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: colorScheme.outline,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
                 '18 CHIFFRES',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: colorScheme.outlineVariant,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: colorScheme.outlineVariant,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -165,18 +164,14 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
           const SizedBox(height: GpsSpacing.sm),
           Row(
             children: [
-              Icon(
-                Icons.info_outline,
-                size: 16,
-                color: colorScheme.outline,
-              ),
+              Icon(Icons.info_outline, size: 16, color: colorScheme.outline),
               const SizedBox(width: GpsSpacing.xs),
               Expanded(
                 child: Text(
                   strings.ninHint,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: colorScheme.onSurfaceVariant,
-                      ),
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ),
             ],
@@ -189,9 +184,9 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
               label: Text(
                 'Pourquoi le NIN ?',
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: colorScheme.primary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  color: colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -240,8 +235,8 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
           Text(
             strings.phoneSubtitle,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
+              color: colorScheme.onSurfaceVariant,
+            ),
           ),
           const SizedBox(height: GpsSpacing.lg),
           AlgerianPhoneField(
@@ -259,8 +254,8 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
               Text(
                 'Format attendu : +213 5XX, 6XX ou 7XX',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                    ),
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
             ],
           ),
@@ -380,8 +375,8 @@ class _RegisterPasswordScreenState
                 child: Text(
                   'Chiffrement de bout en bout conforme ANPDP',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: colorScheme.onSurfaceVariant,
-                      ),
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ),
             ],
@@ -470,14 +465,15 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
           Text(
             'Conformément à la loi algérienne ANPDP',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
+              color: colorScheme.onSurfaceVariant,
+            ),
           ),
           const SizedBox(height: GpsSpacing.lg),
           // Consent Cards List
           _ConsentCard(
             title: strings.consentHealth,
-            subtitle: "Nécessaire pour le fonctionnement de l'application et le suivi de votre dossier médical.",
+            subtitle:
+                "Nécessaire pour le fonctionnement de l'application et le suivi de votre dossier médical.",
             value: _health,
             isRequired: true,
             onChanged: (v) => setState(() => _health = v),
@@ -485,7 +481,8 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
           const SizedBox(height: GpsSpacing.md),
           _ConsentCard(
             title: strings.consentData,
-            subtitle: "Autoriser le traitement sécurisé et l'hébergement de vos données cliniques.",
+            subtitle:
+                "Autoriser le traitement sécurisé et l'hébergement de vos données cliniques.",
             value: _data,
             isRequired: true,
             onChanged: (v) => setState(() => _data = v),
@@ -493,14 +490,16 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
           const SizedBox(height: GpsSpacing.md),
           _ConsentCard(
             title: strings.consentTerms,
-            subtitle: 'Consentement explicite pour la collecte des données conformément à la réglementation ANPDP.',
+            subtitle:
+                'Consentement explicite pour la collecte des données conformément à la réglementation ANPDP.',
             value: _terms,
             onChanged: (v) => setState(() => _terms = v),
           ),
           const SizedBox(height: GpsSpacing.md),
           _ConsentCard(
             title: strings.consentMarketing,
-            subtitle: 'Recevez des conseils de coaching biologique personnalisés et des actualités de santé.',
+            subtitle:
+                'Recevez des conseils de coaching biologique personnalisés et des actualités de santé.',
             value: _marketing,
             onChanged: (v) => setState(() => _marketing = v),
           ),
@@ -560,9 +559,7 @@ class _ConsentCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerLowest.withOpacity(0.8),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: colorScheme.outlineVariant.withOpacity(0.3),
-        ),
+        border: Border.all(color: colorScheme.outlineVariant.withOpacity(0.3)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -574,17 +571,17 @@ class _ConsentCard extends StatelessWidget {
                 Text(
                   title,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: colorScheme.onSurface,
-                      ),
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onSurface,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: colorScheme.onSurfaceVariant,
-                        height: 1.4,
-                      ),
+                    color: colorScheme.onSurfaceVariant,
+                    height: 1.4,
+                  ),
                 ),
               ],
             ),
@@ -718,8 +715,8 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
           Text(
             strings.otpSubtitle(displayPhone),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
+              color: colorScheme.onSurfaceVariant,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: GpsSpacing.xl),
@@ -739,8 +736,8 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
                 Text(
                   'Renvoyer le code dans 0:${_resendSeconds.toString().padLeft(2, '0')}',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: colorScheme.onSurfaceVariant,
-                      ),
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                 )
               else
                 TextButton(
@@ -794,14 +791,15 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
                       Text(
                         "Besoin d'aide ?",
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: colorScheme.primary,
-                            ),
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.primary,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         'Si vous ne recevez pas le code, vérifiez votre connexion réseau ou contactez notre support.',
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        style: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(
                               color: colorScheme.onSurfaceVariant,
                               height: 1.4,
                             ),
@@ -982,10 +980,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
           ),
           if (_error != null) ...[
             const SizedBox(height: GpsSpacing.sm),
-            Text(
-              _error!,
-              style: TextStyle(color: colorScheme.error),
-            ),
+            Text(_error!, style: TextStyle(color: colorScheme.error)),
           ],
         ],
       ),
@@ -1053,17 +1048,17 @@ class BiometricSetupScreen extends StatelessWidget {
           Text(
             'Activez la connexion biométrique',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  color: colorScheme.onSurface,
-                ),
+              fontWeight: FontWeight.w800,
+              color: colorScheme.onSurface,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: GpsSpacing.sm),
           Text(
             'Connectez-vous plus rapidement avec Face ID ou votre empreinte digitale, en toute sécurité.',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
+              color: colorScheme.onSurfaceVariant,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: GpsSpacing.xl),
@@ -1083,14 +1078,18 @@ class BiometricSetupScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.verified_user, color: colorScheme.primary, size: 20),
+                      Icon(
+                        Icons.verified_user,
+                        color: colorScheme.primary,
+                        size: 20,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         'Sécurisé',
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: colorScheme.onSurfaceVariant,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          color: colorScheme.onSurfaceVariant,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -1115,9 +1114,9 @@ class BiometricSetupScreen extends StatelessWidget {
                       Text(
                         'Instantané',
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: colorScheme.onSurfaceVariant,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          color: colorScheme.onSurfaceVariant,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -1147,9 +1146,9 @@ class BiometricSetupScreen extends StatelessWidget {
             child: Text(
               'Plus tard',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: colorScheme.primary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: colorScheme.primary,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(height: GpsSpacing.md),
@@ -1210,17 +1209,17 @@ class RegistrationSuccessScreen extends StatelessWidget {
           Text(
             'Bienvenue sur GPS Médical !',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  color: colorScheme.onSurface,
-                ),
+              fontWeight: FontWeight.w800,
+              color: colorScheme.onSurface,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: GpsSpacing.sm),
           Text(
             strings.successSubtitle,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
-                ),
+              color: colorScheme.onSurfaceVariant,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: GpsSpacing.xl),
@@ -1245,18 +1244,18 @@ class RegistrationSuccessScreen extends StatelessWidget {
                       Text(
                         'NAVIGATION',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: colorScheme.outline,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 9,
-                            ),
+                          color: colorScheme.outline,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 9,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         'Trouvez des cliniques',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: colorScheme.onSurface,
-                            ),
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.onSurface,
+                        ),
                       ),
                     ],
                   ),
@@ -1276,23 +1275,27 @@ class RegistrationSuccessScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(Icons.calendar_month, color: colorScheme.primary, size: 24),
+                      Icon(
+                        Icons.calendar_month,
+                        color: colorScheme.primary,
+                        size: 24,
+                      ),
                       const SizedBox(height: 8),
                       Text(
                         'RENDEZ-VOUS',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                              color: colorScheme.outline,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 9,
-                            ),
+                          color: colorScheme.outline,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 9,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         'Gestion facile',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: colorScheme.onSurface,
-                            ),
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.onSurface,
+                        ),
                       ),
                     ],
                   ),
@@ -1316,8 +1319,8 @@ class RegistrationSuccessScreen extends StatelessWidget {
               text: TextSpan(
                 text: "Besoin d'aide ? ",
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                    ),
+                  color: colorScheme.onSurfaceVariant,
+                ),
                 children: [
                   TextSpan(
                     text: 'Consulter le guide',
