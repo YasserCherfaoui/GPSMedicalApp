@@ -23,6 +23,37 @@ class ApiAuthRepository implements AuthRepository {
     }
   }
 
+  void _throwIfNotNoContent(Response<dynamic> response) {
+    if (response.statusCode == 204) {
+      return;
+    }
+    throw DioException(
+      requestOptions: response.requestOptions,
+      response: response,
+      type: DioExceptionType.badResponse,
+    );
+  }
+
+  @override
+  Future<void> checkRegisterNin(String nin) async {
+    try {
+      final response = await _phase1.checkRegisterNin(nin: nin);
+      _throwIfNotNoContent(response);
+    } on DioException catch (e) {
+      throw _mapDio(e);
+    }
+  }
+
+  @override
+  Future<void> checkRegisterPhone(String phoneE164) async {
+    try {
+      final response = await _phase1.checkRegisterPhone(phone: phoneE164);
+      _throwIfNotNoContent(response);
+    } on DioException catch (e) {
+      throw _mapDio(e);
+    }
+  }
+
   @override
   Future<RegisterResponse> register({
     required RegistrationDraft draft,

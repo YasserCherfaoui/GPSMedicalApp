@@ -38,6 +38,32 @@ class Phase1Api {
     required RegisterRequest registerRequest,
   }) => _auth.registerUser(registerRequest: registerRequest);
 
+  /// POST `/auth/register/check-nin` — 204 when valid and available.
+  Future<Response<void>> checkRegisterNin({required String nin}) {
+    return _v1.dio.post<void>(
+      '/auth/register/check-nin',
+      data: <String, dynamic>{'nin': nin},
+      options: Options(
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.plain,
+        validateStatus: (status) => status != null && status < 500,
+      ),
+    );
+  }
+
+  /// POST `/auth/register/check-phone` — 204 when valid and available.
+  Future<Response<void>> checkRegisterPhone({required String phone}) {
+    return _v1.dio.post<void>(
+      '/auth/register/check-phone',
+      data: <String, dynamic>{'phone': phone},
+      options: Options(
+        contentType: Headers.jsonContentType,
+        responseType: ResponseType.plain,
+        validateStatus: (status) => status != null && status < 500,
+      ),
+    );
+  }
+
   Future<Response<TokenPair>> verifyOtp({
     required OtpVerifyRequest otpVerifyRequest,
   }) => _auth.verifyOtp(otpVerifyRequest: otpVerifyRequest);

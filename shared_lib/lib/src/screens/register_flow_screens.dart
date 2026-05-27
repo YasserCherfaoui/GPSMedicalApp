@@ -36,6 +36,7 @@ class RegisterNinScreen extends ConsumerStatefulWidget {
 class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
   final _controller = TextEditingController();
   String? _error;
+  bool _checking = false;
 
   @override
   void dispose() {
@@ -43,15 +44,34 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
     super.dispose();
   }
 
-  void _continue() {
+  Future<void> _continue() async {
     final strings = AuthStrings.of(context);
     final nin = NinValidator.validate(_controller.text);
     if (nin == null) {
       setState(() => _error = strings.invalidNin);
       return;
     }
-    ref.read(registrationDraftProvider.notifier).updateNin(nin);
-    context.go(GpsRoutes.registerFullName);
+
+    setState(() {
+      _checking = true;
+      _error = null;
+    });
+
+    try {
+      await ref.read(authRepositoryProvider).checkRegisterNin(nin);
+      ref.read(registrationDraftProvider.notifier).updateNin(nin);
+      if (mounted) {
+        context.go(GpsRoutes.registerFullName);
+      }
+    } on AuthException catch (e) {
+      if (mounted) {
+        showAuthErrorToast(context, e.message);
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _checking = false);
+      }
+    }
   }
 
   @override
@@ -194,7 +214,11 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
           ),
         ],
       ),
-      bottom: PrimaryButton(label: strings.continueLabel, onPressed: _continue),
+      bottom: PrimaryButton(
+        label: strings.continueLabel,
+        onPressed: _checking ? null : _continue,
+        isLoading: _checking,
+      ),
     );
   }
 }
@@ -277,15 +301,35 @@ class RegisterPhoneScreen extends ConsumerStatefulWidget {
 class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
   String? _phoneE164;
   String? _error;
+  bool _checking = false;
 
-  void _continue() {
+  Future<void> _continue() async {
     final strings = AuthStrings.of(context);
     if (_phoneE164 == null) {
       setState(() => _error = strings.invalidPhone);
       return;
     }
-    ref.read(registrationDraftProvider.notifier).updatePhone(_phoneE164!);
-    context.go(GpsRoutes.registerPassword);
+
+    setState(() {
+      _checking = true;
+      _error = null;
+    });
+
+    try {
+      await ref.read(authRepositoryProvider).checkRegisterPhone(_phoneE164!);
+      ref.read(registrationDraftProvider.notifier).updatePhone(_phoneE164!);
+      if (mounted) {
+        context.go(GpsRoutes.registerPassword);
+      }
+    } on AuthException catch (e) {
+      if (mounted) {
+        showAuthErrorToast(context, e.message);
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _checking = false);
+      }
+    }
   }
 
   @override
@@ -363,12 +407,16 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
           ),
         ],
       ),
-      bottom: PrimaryButton(label: 'Envoyer le code', onPressed: _continue),
+      bottom: PrimaryButton(
+        label: strings.continueLabel,
+        onPressed: _checking ? null : _continue,
+        isLoading: _checking,
+      ),
     );
   }
 }
 
-// --- STEP 3: PASSWORD CREATION ---
+// --- STEP 4: PASSWORD CREATION ---
 class RegisterPasswordScreen extends ConsumerStatefulWidget {
   const RegisterPasswordScreen({super.key});
 

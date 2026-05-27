@@ -14,7 +14,7 @@ void main() {
 
   test('Phase1Api documents every implemented backend route', () {
     // Keep in sync with backend/internal/apicontract/phase1_paths_test.go
-    expect(phase1RouteMethodNames, hasLength(25));
+    expect(phase1RouteMethodNames, hasLength(27));
   });
 
   test('HealthCheck model deserializes from API JSON', () {
@@ -39,6 +39,8 @@ const phase1RouteMethodNames = [
   'getHealth',
   'getJwks',
   'registerUser',
+  'checkRegisterNin',
+  'checkRegisterPhone',
   'verifyOtp',
   'resendOtp',
   'login',

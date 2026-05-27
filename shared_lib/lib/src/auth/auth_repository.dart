@@ -1,6 +1,8 @@
 import 'package:gps_medical_api/gps_medical_api.dart';
 
 import '../models/app_info.dart';
+import '../validation/algerian_phone.dart';
+import '../validation/nin.dart';
 import 'auth_exception.dart';
 import 'registration_draft.dart';
 
@@ -30,6 +32,12 @@ abstract interface class AuthRepository {
     required String code,
     required String newPassword,
   });
+
+  /// Validates NIN format and ensures it is not already registered.
+  Future<void> checkRegisterNin(String nin);
+
+  /// Validates phone format and ensures it is not already registered.
+  Future<void> checkRegisterPhone(String phoneE164);
 }
 
 /// Week 3 mock — deterministic OTP `123456`, simulated latency.
@@ -143,4 +151,30 @@ class MockAuthRepository implements AuthRepository {
       ..refreshToken = 'mock-refresh-token'
       ..expiresIn = 3600,
   );
+
+  @override
+  Future<void> checkRegisterNin(String nin) async {
+    await Future<void>.delayed(simulatedDelay);
+    if (failNextCall) {
+      failNextCall = false;
+      throw const AuthNetworkException('Réseau indisponible (mock).');
+    }
+    if (NinValidator.validate(nin) == null) {
+      throw const AuthValidationException('NIN invalide (18 chiffres).');
+    }
+  }
+
+  @override
+  Future<void> checkRegisterPhone(String phoneE164) async {
+    await Future<void>.delayed(simulatedDelay);
+    if (failNextCall) {
+      failNextCall = false;
+      throw const AuthNetworkException('Réseau indisponible (mock).');
+    }
+    if (AlgerianPhone.validateE164(phoneE164) == null) {
+      throw const AuthValidationException(
+        'Numéro invalide (+213 5/6/7 + 8 chiffres).',
+      );
+    }
+  }
 }

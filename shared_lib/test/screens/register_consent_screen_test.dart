@@ -49,6 +49,12 @@ class _SuccessAuthRepository implements AuthRepository {
   }) async {
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> checkRegisterNin(String nin) async {}
+
+  @override
+  Future<void> checkRegisterPhone(String phoneE164) async {}
 }
 
 void main() {

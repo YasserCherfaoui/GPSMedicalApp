@@ -10,5 +10,20 @@ void main() {
     test('rejects wrong length', () {
       expect(NinValidator.validate('123'), isNull);
     });
+
+    test('rejects all-same-digit NIN', () {
+      expect(NinValidator.validate('111111111111111111'), isNull);
+    });
+
+    test('rejects commune code all zeros', () {
+      expect(NinValidator.validate('119850000101234567'), isNull);
+    });
+
+    test('normalizes separators', () {
+      expect(
+        NinValidator.validate('1098-8055 4003 4500 00'),
+        '109880554003450000',
+      );
+    });
   });
 }
