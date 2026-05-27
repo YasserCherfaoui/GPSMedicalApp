@@ -65,7 +65,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
       }
     } on AuthException catch (e) {
       if (mounted) {
-        showAuthErrorToast(context, e.message);
+        showAuthErrorToast(context, e);
       }
     } finally {
       if (mounted) {
@@ -324,7 +324,7 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
       }
     } on AuthException catch (e) {
       if (mounted) {
-        showAuthErrorToast(context, e.message);
+        showAuthErrorToast(context, e);
       }
     } finally {
       if (mounted) {
@@ -561,7 +561,7 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
       }
     } on AuthException catch (e) {
       if (mounted) {
-        showAuthErrorToast(context, e.message);
+        showAuthErrorToast(context, e);
       }
     } finally {
       if (mounted) {
@@ -784,7 +784,7 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
       }
     } on AuthException catch (e) {
       if (mounted) {
-        showAuthErrorToast(context, e.message);
+        showAuthErrorToast(context, e);
       }
     } finally {
       if (mounted) {
@@ -803,7 +803,7 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
       _startTimer();
     } on AuthException catch (e) {
       if (mounted) {
-        showAuthErrorToast(context, e.message);
+        showAuthErrorToast(context, e);
       }
     }
   }
@@ -979,7 +979,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       }
     } on AuthException catch (e) {
       if (mounted) {
-        showAuthErrorToast(context, e.message);
+        showAuthErrorToast(context, e);
       }
     } finally {
       if (mounted) {
@@ -1074,7 +1074,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
       }
     } on AuthException catch (e) {
       if (mounted) {
-        showAuthErrorToast(context, e.message);
+        showAuthErrorToast(context, e);
       }
     } finally {
       if (mounted) {

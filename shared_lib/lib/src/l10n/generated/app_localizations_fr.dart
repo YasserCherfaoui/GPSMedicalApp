@@ -211,4 +211,31 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get invalidFullName => 'Nom invalide (2 à 120 caractères).';
+
+  @override
+  String get errorInvalidCredentials =>
+      'Identifiants incorrects. Veuillez vérifier votre numéro de téléphone et votre mot de passe.';
+
+  @override
+  String get errorAccessDenied =>
+      'Accès refusé. Vous n\'avez pas l\'autorisation d\'accéder à cette application.';
+
+  @override
+  String get errorTooManyRequests =>
+      'Trop de tentatives. Veuillez réessayer dans quelques minutes.';
+
+  @override
+  String get errorInternalServer =>
+      'Erreur interne du serveur. Veuillez réessayer plus tard.';
+
+  @override
+  String get errorNetworkTimeout =>
+      'Connexion expirée. Veuillez vérifier votre connexion Internet et réessayer.';
+
+  @override
+  String get errorNetworkConnection =>
+      'Impossible de se connecter au serveur. Veuillez vérifier votre connexion Internet.';
+
+  @override
+  String get errorPasswordRequired => 'Veuillez saisir votre mot de passe.';
 }

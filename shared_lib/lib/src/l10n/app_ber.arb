@@ -63,5 +63,12 @@
   "fullNameTitle": "Isem-ik ummid",
   "fullNameSubtitle": "Am wakken yerzan deg imeḥlun imeṣyediyan (gar 2 akked 120 n yiḥerfufen).",
   "fullNameHint": "Isem d tuzwalt",
-  "invalidFullName": "Isem ur yettwasenqed ara (gar 2 akked 120 n yiḥerfufen)."
+  "invalidFullName": "Isem ur yettwasenqed ara (gar 2 akked 120 n yiḥerfufen).",
+  "errorInvalidCredentials": "Isefka n tuqqna ur mṣadan ara. Senqed uṭṭun n tiliɣri d wawal uffir.",
+  "errorAccessDenied": "Anekcum yettwagdel. Ur tesɛiḍ ara tixutert n unekcum.",
+  "errorTooManyRequests": "Aṭas n urramen. Ales tikkelt-nniḍen deg kra n tedqiqin.",
+  "errorInternalServer": "Tuccḍa deg uqeddac. Ales tikkelt-nniḍen ticki.",
+  "errorNetworkTimeout": "Akud n tuqqna yemmut. Senqed azeṭṭa-ik n internet u ales.",
+  "errorNetworkConnection": "Ur yezmir ara ad yeqqen ɣer uqeddac. Senqed azeṭṭa-ik.",
+  "errorPasswordRequired": "Sider awal uffir."
 }

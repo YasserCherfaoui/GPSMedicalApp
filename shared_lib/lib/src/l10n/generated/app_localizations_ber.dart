@@ -208,4 +208,31 @@ class AppLocalizationsBer extends AppLocalizations {
   @override
   String get invalidFullName =>
       'Isem ur yettwasenqed ara (gar 2 akked 120 n yiḥerfufen).';
+
+  @override
+  String get errorInvalidCredentials =>
+      'Isefka n tuqqna ur mṣadan ara. Senqed uṭṭun n tiliɣri d wawal uffir.';
+
+  @override
+  String get errorAccessDenied =>
+      'Anekcum yettwagdel. Ur tesɛiḍ ara tixutert n unekcum.';
+
+  @override
+  String get errorTooManyRequests =>
+      'Aṭas n urramen. Ales tikkelt-nniḍen deg kra n tedqiqin.';
+
+  @override
+  String get errorInternalServer =>
+      'Tuccḍa deg uqeddac. Ales tikkelt-nniḍen ticki.';
+
+  @override
+  String get errorNetworkTimeout =>
+      'Akud n tuqqna yemmut. Senqed azeṭṭa-ik n internet u ales.';
+
+  @override
+  String get errorNetworkConnection =>
+      'Ur yezmir ara ad yeqqen ɣer uqeddac. Senqed azeṭṭa-ik.';
+
+  @override
+  String get errorPasswordRequired => 'Sider awal uffir.';
 }

@@ -201,42 +201,113 @@ class ApiAuthRepository implements AuthRepository {
   }
 
   AuthException _mapDio(DioException e) {
-    const fallback = 'Erreur réseau. Réessayez.';
-    if (e.response == null &&
-        (e.type == DioExceptionType.connectionTimeout ||
-            e.type == DioExceptionType.sendTimeout ||
-            e.type == DioExceptionType.receiveTimeout ||
-            e.type == DioExceptionType.connectionError ||
-            e.type == DioExceptionType.unknown)) {
-      return const AuthNetworkException(fallback);
+    if (e.response == null) {
+      final String networkMessage;
+      final AuthErrorCode errorCode;
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.sendTimeout ||
+          e.type == DioExceptionType.receiveTimeout) {
+        networkMessage =
+            'Connexion expirée. Veuillez vérifier votre connexion Internet et réessayer.';
+        errorCode = AuthErrorCode.connectionTimeout;
+      } else if (e.type == DioExceptionType.connectionError) {
+        networkMessage =
+            'Impossible de se connecter au serveur. Veuillez vérifier votre connexion Internet.';
+        errorCode = AuthErrorCode.connectionError;
+      } else {
+        networkMessage =
+            'Erreur réseau. Veuillez vérifier votre connexion Internet et réessayer.';
+        errorCode = AuthErrorCode.unknownNetwork;
+      }
+      return AuthNetworkException(networkMessage, errorCode: errorCode);
     }
 
-    final response = e.response;
-    if (response == null) {
-      return const AuthNetworkException(fallback);
-    }
-
+    final response = e.response!;
     final statusCode = response.statusCode ?? 0;
-    final message = _parseErrorPayload(response.data) ?? fallback;
 
-    if (statusCode == 401 || statusCode == 403) {
-      return AuthUnauthorizedException(message);
+    final parsedMessage = _parseErrorPayload(response.data);
+    final String fallback;
+
+    if (statusCode == 401) {
+      fallback =
+          'Identifiants incorrects. Veuillez vérifier votre numéro de téléphone et votre mot de passe.';
+    } else if (statusCode == 403) {
+      fallback = 'Accès refusé. Vous n\'avez pas les permissions nécessaires.';
+    } else if (statusCode == 409) {
+      fallback =
+          'Un conflit est survenu (cette ressource existe peut-être déjà).';
+    } else if (statusCode == 422 || statusCode == 400) {
+      fallback = 'Les informations fournies sont invalides.';
+    } else if (statusCode == 429) {
+      fallback =
+          'Trop de tentatives. Veuillez réessayer dans quelques minutes.';
+    } else if (statusCode >= 500) {
+      fallback = 'Erreur interne du serveur. Veuillez réessayer plus tard.';
+    } else {
+      fallback = 'Une erreur inattendue est survenue (Code: $statusCode).';
+    }
+
+    final message = parsedMessage ?? fallback;
+
+    if (statusCode == 401) {
+      return AuthUnauthorizedException(
+        message,
+        errorCode: AuthErrorCode.invalidCredentials,
+      );
+    }
+    if (statusCode == 403) {
+      return AuthUnauthorizedException(
+        message,
+        errorCode: AuthErrorCode.accessDenied,
+      );
     }
     if (statusCode == 409) {
-      return AuthConflictException(message);
+      return AuthConflictException(
+        message,
+        errorCode: AuthErrorCode.conflictError,
+      );
     }
     if (statusCode == 400 || statusCode == 422) {
-      return AuthValidationException(message);
+      return AuthValidationException(
+        message,
+        errorCode: AuthErrorCode.validationError,
+      );
     }
-    return AuthNetworkException(message);
+    if (statusCode == 429) {
+      return AuthNetworkException(
+        message,
+        errorCode: AuthErrorCode.tooManyRequests,
+      );
+    }
+    if (statusCode >= 500) {
+      return AuthNetworkException(
+        message,
+        errorCode: AuthErrorCode.internalServerError,
+      );
+    }
+    return AuthNetworkException(
+      message,
+      errorCode: AuthErrorCode.unknownNetwork,
+    );
   }
 }
 
 String? _parseErrorPayload(Object? data) {
   if (data is! Map) {
+    if (data is String && data.isNotEmpty) {
+      return data;
+    }
     return null;
   }
   final raw = Map<String, Object?>.from(data);
+
+  final keys = ['detail', 'message', 'error', 'error_description', 'title'];
+  for (final key in keys) {
+    final val = raw[key];
+    if (val is String && val.isNotEmpty) {
+      return val;
+    }
+  }
 
   try {
     final deserialized = standardSerializers.deserialize(

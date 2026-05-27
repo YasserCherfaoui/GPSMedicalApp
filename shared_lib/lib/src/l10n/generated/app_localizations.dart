@@ -483,6 +483,48 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Nom invalide (2 à 120 caractères).'**
   String get invalidFullName;
+
+  /// No description provided for @errorInvalidCredentials.
+  ///
+  /// In fr, this message translates to:
+  /// **'Identifiants incorrects. Veuillez vérifier votre numéro de téléphone et votre mot de passe.'**
+  String get errorInvalidCredentials;
+
+  /// No description provided for @errorAccessDenied.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accès refusé. Vous n\'avez pas l\'autorisation d\'accéder à cette application.'**
+  String get errorAccessDenied;
+
+  /// No description provided for @errorTooManyRequests.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trop de tentatives. Veuillez réessayer dans quelques minutes.'**
+  String get errorTooManyRequests;
+
+  /// No description provided for @errorInternalServer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Erreur interne du serveur. Veuillez réessayer plus tard.'**
+  String get errorInternalServer;
+
+  /// No description provided for @errorNetworkTimeout.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connexion expirée. Veuillez vérifier votre connexion Internet et réessayer.'**
+  String get errorNetworkTimeout;
+
+  /// No description provided for @errorNetworkConnection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de se connecter au serveur. Veuillez vérifier votre connexion Internet.'**
+  String get errorNetworkConnection;
+
+  /// No description provided for @errorPasswordRequired.
+  ///
+  /// In fr, this message translates to:
+  /// **'Veuillez saisir votre mot de passe.'**
+  String get errorPasswordRequired;
 }
 
 class _AppLocalizationsDelegate

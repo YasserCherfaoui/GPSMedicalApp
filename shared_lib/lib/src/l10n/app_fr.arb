@@ -77,5 +77,12 @@
   "fullNameTitle": "Votre nom complet",
   "fullNameSubtitle": "Tel qu'indiqué sur vos documents officiels (2 à 120 caractères).",
   "fullNameHint": "Nom et prénom",
-  "invalidFullName": "Nom invalide (2 à 120 caractères)."
+  "invalidFullName": "Nom invalide (2 à 120 caractères).",
+  "errorInvalidCredentials": "Identifiants incorrects. Veuillez vérifier votre numéro de téléphone et votre mot de passe.",
+  "errorAccessDenied": "Accès refusé. Vous n'avez pas l'autorisation d'accéder à cette application.",
+  "errorTooManyRequests": "Trop de tentatives. Veuillez réessayer dans quelques minutes.",
+  "errorInternalServer": "Erreur interne du serveur. Veuillez réessayer plus tard.",
+  "errorNetworkTimeout": "Connexion expirée. Veuillez vérifier votre connexion Internet et réessayer.",
+  "errorNetworkConnection": "Impossible de se connecter au serveur. Veuillez vérifier votre connexion Internet.",
+  "errorPasswordRequired": "Veuillez saisir votre mot de passe."
 }

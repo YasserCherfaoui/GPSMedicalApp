@@ -205,4 +205,30 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get invalidFullName => 'اسم غير صالح (من 2 إلى 120 حرفًا).';
+
+  @override
+  String get errorInvalidCredentials =>
+      'بيانات الاعتماد غير صحيحة. يرجى التحقق من رقم الهاتف وكلمة المرور.';
+
+  @override
+  String get errorAccessDenied => 'تم رفض الوصول. لا تملك الصلاحيات الكافية.';
+
+  @override
+  String get errorTooManyRequests =>
+      'محاولات كثيرة جداً. يرجى إعادة المحاولة بعد بضع دقائق.';
+
+  @override
+  String get errorInternalServer =>
+      'خطأ داخلي في الخادم. يرجى المحاولة لاحقاً.';
+
+  @override
+  String get errorNetworkTimeout =>
+      'انتهت مهلة الاتصال. يرجى التحقق من اتصال الإنترنت وإعادة المحاولة.';
+
+  @override
+  String get errorNetworkConnection =>
+      'تعذر الاتصال بالخادم. يرجى التحقق من اتصال الإنترنت.';
+
+  @override
+  String get errorPasswordRequired => 'يرجى إدخال كلمة المرور.';
 }

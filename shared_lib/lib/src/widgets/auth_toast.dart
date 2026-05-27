@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
 
-void showAuthErrorToast(BuildContext context, String message) {
+import '../auth/auth_exception.dart';
+import '../l10n/auth_strings.dart';
+
+void showAuthErrorToast(BuildContext context, Object error) {
+  final strings = AuthStrings.of(context);
+  final String message;
+  if (error is AuthException) {
+    message = error.getLocalizedMessage(strings);
+  } else {
+    message = error.toString();
+  }
+
   toastification.show(
     context: context,
     type: ToastificationType.error,

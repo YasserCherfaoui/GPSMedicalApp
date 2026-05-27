@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../l10n/auth_strings.dart';
 import '../routing/gps_routes.dart';
+import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 import '../widgets/gps_blur_background.dart';
 import '../widgets/primary_button.dart';
@@ -71,19 +72,20 @@ class AuthWelcomeScreen extends StatelessWidget {
                     OutlinedButton(
                       onPressed: () => context.push(GpsRoutes.login),
                       style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        minimumSize: const Size.fromHeight(
+                          GpsSpacing.minTouchTarget,
+                        ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: GpsRadii.button,
                         ),
                         side: BorderSide(color: colorScheme.primary),
                       ),
                       child: Text(
                         "J'ai déjà un compte",
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(
-                              color: colorScheme.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: colorScheme.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     const SizedBox(height: GpsSpacing.lg),

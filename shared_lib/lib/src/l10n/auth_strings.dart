@@ -96,6 +96,13 @@ class AuthStrings {
   String get passwordsMismatch => _localizations.passwordsMismatch;
   String get requiredConsents => _localizations.requiredConsents;
   String get networkError => _localizations.networkError;
+  String get errorInvalidCredentials => _localizations.errorInvalidCredentials;
+  String get errorAccessDenied => _localizations.errorAccessDenied;
+  String get errorTooManyRequests => _localizations.errorTooManyRequests;
+  String get errorInternalServer => _localizations.errorInternalServer;
+  String get errorNetworkTimeout => _localizations.errorNetworkTimeout;
+  String get errorNetworkConnection => _localizations.errorNetworkConnection;
+  String get errorPasswordRequired => _localizations.errorPasswordRequired;
 }
 
 class _AuthStringsDelegate extends LocalizationsDelegate<AuthStrings> {

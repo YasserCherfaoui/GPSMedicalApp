@@ -7,6 +7,7 @@ import '../auth/auth_repository.provider.dart';
 import '../auth/auth_session.provider.dart';
 import '../l10n/auth_strings.dart';
 import '../routing/gps_routes.dart';
+import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 import '../widgets/algerian_phone_field.dart';
 import '../widgets/auth_flow_scaffold.dart';
@@ -41,7 +42,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       return;
     }
     if (_passwordController.text.isEmpty) {
-      setState(() => _error = strings.passwordLabel);
+      setState(() => _error = strings.errorPasswordRequired);
       return;
     }
 
@@ -60,7 +61,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       }
     } on AuthException catch (e) {
       if (mounted) {
-        showAuthErrorToast(context, e.message);
+        showAuthErrorToast(context, e);
       }
     } finally {
       if (mounted) {
@@ -167,9 +168,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   icon: const Icon(Icons.fingerprint),
                   label: const Text('Se connecter avec biométrie'),
                   style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    minimumSize: const Size.fromHeight(
+                      GpsSpacing.minTouchTarget,
+                    ),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: GpsRadii.button,
                     ),
                     side: BorderSide(color: colorScheme.outline),
                   ),
