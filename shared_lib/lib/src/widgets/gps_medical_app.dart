@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:toastification/toastification.dart';
 
 import '../l10n/app_locale.dart';
 import '../l10n/auth_strings.dart';
@@ -55,11 +56,13 @@ class GpsMedicalMaterialApp extends ConsumerWidget {
           ],
         );
 
-        return Directionality(
-          textDirection: appLocale.textDirection,
-          child: DesignSystemShowcaseLauncher(
-            router: routerConfig,
-            child: responsiveChild,
+        return ToastificationWrapper(
+          child: Directionality(
+            textDirection: appLocale.textDirection,
+            child: DesignSystemShowcaseLauncher(
+              router: routerConfig,
+              child: responsiveChild,
+            ),
           ),
         );
       },

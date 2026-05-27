@@ -19,6 +19,7 @@ import '../validation/nin.dart';
 import '../validation/password_strength.dart';
 import '../widgets/algerian_phone_field.dart';
 import '../widgets/auth_flow_scaffold.dart';
+import '../widgets/auth_toast.dart';
 import '../widgets/gps_text_field.dart';
 import '../widgets/otp_pin_input.dart';
 import '../widgets/password_strength_field.dart';
@@ -510,7 +511,9 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
         context.go(GpsRoutes.registerOtp);
       }
     } on AuthException catch (e) {
-      setState(() => _error = e.message);
+      if (mounted) {
+        showAuthErrorToast(context, e.message);
+      }
     } finally {
       if (mounted) {
         setState(() => _loading = false);
@@ -731,7 +734,9 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
         context.go(GpsRoutes.biometricSetup);
       }
     } on AuthException catch (e) {
-      setState(() => _error = e.message);
+      if (mounted) {
+        showAuthErrorToast(context, e.message);
+      }
     } finally {
       if (mounted) {
         setState(() => _loading = false);
@@ -748,7 +753,9 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
       await ref.read(authRepositoryProvider).resendOtp(phoneE164: phone);
       _startTimer();
     } on AuthException catch (e) {
-      setState(() => _error = e.message);
+      if (mounted) {
+        showAuthErrorToast(context, e.message);
+      }
     }
   }
 
@@ -922,7 +929,9 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         context.go(GpsRoutes.resetPassword);
       }
     } on AuthException catch (e) {
-      setState(() => _error = e.message);
+      if (mounted) {
+        showAuthErrorToast(context, e.message);
+      }
     } finally {
       if (mounted) {
         setState(() => _loading = false);
@@ -1014,7 +1023,9 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
         context.go(GpsRoutes.profile);
       }
     } on AuthException catch (e) {
-      setState(() => _error = e.message);
+      if (mounted) {
+        showAuthErrorToast(context, e.message);
+      }
     } finally {
       if (mounted) {
         setState(() => _loading = false);

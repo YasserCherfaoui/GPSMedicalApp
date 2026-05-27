@@ -10,6 +10,7 @@ import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
 import '../widgets/algerian_phone_field.dart';
 import '../widgets/auth_flow_scaffold.dart';
+import '../widgets/auth_toast.dart';
 import '../widgets/gps_text_field.dart';
 import '../widgets/primary_button.dart';
 
@@ -58,7 +59,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         context.go(GpsRoutes.profile);
       }
     } on AuthException catch (e) {
-      setState(() => _error = e.message);
+      if (mounted) {
+        showAuthErrorToast(context, e.message);
+      }
     } finally {
       if (mounted) {
         setState(() => _loading = false);
