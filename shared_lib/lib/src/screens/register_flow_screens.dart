@@ -61,7 +61,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
       await ref.read(authRepositoryProvider).checkRegisterNin(nin);
       ref.read(registrationDraftProvider.notifier).updateNin(nin);
       if (mounted) {
-        context.go(GpsRoutes.registerFullName);
+        context.push(GpsRoutes.registerFullName);
       }
     } on AuthException catch (e) {
       if (mounted) {
@@ -80,6 +80,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return AuthFlowScaffold(
+      fallbackPopLocation: GpsRoutes.authWelcome,
       title: strings.registration,
       step: 1,
       totalSteps: 6,
@@ -251,7 +252,7 @@ class _RegisterFullNameScreenState
       return;
     }
     ref.read(registrationDraftProvider.notifier).updateFullName(trimmed);
-    context.go(GpsRoutes.registerPhone);
+    context.push(GpsRoutes.registerPhone);
   }
 
   @override
@@ -319,7 +320,7 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
       await ref.read(authRepositoryProvider).checkRegisterPhone(_phoneE164!);
       ref.read(registrationDraftProvider.notifier).updatePhone(_phoneE164!);
       if (mounted) {
-        context.go(GpsRoutes.registerPassword);
+        context.push(GpsRoutes.registerPassword);
       }
     } on AuthException catch (e) {
       if (mounted) {
@@ -456,7 +457,7 @@ class _RegisterPasswordScreenState
     ref
         .read(registrationDraftProvider.notifier)
         .updatePassword(_passwordController.text);
-    context.go(GpsRoutes.registerConsent);
+    context.push(GpsRoutes.registerConsent);
   }
 
   @override
@@ -556,7 +557,7 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
       await repo.register(draft: draft, role: appInfo.clientKind);
       ref.read(registrationDraftProvider.notifier).markOtpSent();
       if (mounted) {
-        context.go(GpsRoutes.registerOtp);
+        context.push(GpsRoutes.registerOtp);
       }
     } on AuthException catch (e) {
       if (mounted) {
@@ -974,7 +975,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
           .forgotPassword(phoneE164: _phoneE164!);
       ref.read(recoveryPhoneProvider.notifier).state = _phoneE164;
       if (mounted) {
-        context.go(GpsRoutes.resetPassword);
+        context.push(GpsRoutes.resetPassword);
       }
     } on AuthException catch (e) {
       if (mounted) {
@@ -992,6 +993,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
     final strings = AuthStrings.of(context);
 
     return AuthFlowScaffold(
+      fallbackPopLocation: GpsRoutes.login,
       title: strings.forgotTitle,
       subtitle: strings.forgotTitle,
       body: AlgerianPhoneField(
@@ -1087,6 +1089,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return AuthFlowScaffold(
+      fallbackPopLocation: GpsRoutes.forgotPassword,
       title: strings.resetTitle,
       body: Column(
         children: [

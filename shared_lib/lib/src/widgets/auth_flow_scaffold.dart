@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import '../theme/gps_spacing.dart';
 import 'gps_blur_background.dart';
@@ -14,6 +15,11 @@ class AuthFlowScaffold extends StatelessWidget {
     this.subtitle,
     this.bottom,
     this.showBack = true,
+
+    /// When the route stack cannot pop (e.g. deep link), back uses [go] here.
+    /// Mid-flow screens should use [context.push] so [pop] returns to the
+    /// previous step; set this only on entry screens (welcome, login, …).
+    this.fallbackPopLocation,
     this.floatingActionButton,
   });
 
@@ -24,10 +30,42 @@ class AuthFlowScaffold extends StatelessWidget {
   final int? step;
   final int totalSteps;
   final bool showBack;
+
+  /// See [AuthFlowScaffold.fallbackPopLocation] constructor param.
+  final String? fallbackPopLocation;
   final Widget? floatingActionButton;
+
+  void _onLeadingPressed(BuildContext context) {
+    final router = GoRouter.maybeOf(context);
+    final navigator = Navigator.of(context);
+
+    if (router != null) {
+      if (router.canPop()) {
+        router.pop();
+        return;
+      }
+      final loc = fallbackPopLocation;
+      if (loc != null && loc.isNotEmpty) {
+        router.go(loc);
+        return;
+      }
+    }
+
+    if (navigator.canPop()) {
+      navigator.pop();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final router = GoRouter.maybeOf(context);
+    final navigatorCanPop = Navigator.of(context).canPop();
+    final routerCanPop = router?.canPop() ?? false;
+    final fallback = fallbackPopLocation;
+    final hasFallback =
+        router != null && fallback != null && fallback.isNotEmpty;
+    final hasBackTarget = navigatorCanPop || routerCanPop || hasFallback;
+
     return GpsBlurBackground(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -35,10 +73,11 @@ class AuthFlowScaffold extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           scrolledUnderElevation: 0,
-          leading: showBack && Navigator.canPop(context)
+          leading: showBack && hasBackTarget
               ? IconButton(
                   icon: const Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.maybePop(context),
+                  tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+                  onPressed: () => _onLeadingPressed(context),
                 )
               : null,
           title: Text(title),

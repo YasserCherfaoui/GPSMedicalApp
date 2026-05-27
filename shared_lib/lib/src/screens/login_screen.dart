@@ -75,6 +75,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final colorScheme = Theme.of(context).colorScheme;
 
     return AuthFlowScaffold(
+      fallbackPopLocation: GpsRoutes.authWelcome,
       title: strings.loginTitle,
       subtitle: strings.loginSubtitle,
       body: Column(
@@ -117,7 +118,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 Align(
                   alignment: AlignmentDirectional.centerEnd,
                   child: TextButton(
-                    onPressed: () => context.go(GpsRoutes.forgotPassword),
+                    onPressed: () => context.push(GpsRoutes.forgotPassword),
                     child: Text(
                       strings.forgotPassword,
                       style: TextStyle(
@@ -188,7 +189,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
               ),
               TextButton(
-                onPressed: () => context.go(GpsRoutes.registerNin),
+                onPressed: () => context.push(GpsRoutes.registerNin),
                 child: Text(
                   strings.createAccount,
                   style: TextStyle(

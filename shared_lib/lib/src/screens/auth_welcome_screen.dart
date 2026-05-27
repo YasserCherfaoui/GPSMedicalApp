@@ -65,11 +65,11 @@ class AuthWelcomeScreen extends StatelessWidget {
                   children: [
                     PrimaryButton(
                       label: strings.createAccount,
-                      onPressed: () => context.go(GpsRoutes.registerNin),
+                      onPressed: () => context.push(GpsRoutes.registerNin),
                     ),
                     const SizedBox(height: GpsSpacing.sm),
                     OutlinedButton(
-                      onPressed: () => context.go(GpsRoutes.login),
+                      onPressed: () => context.push(GpsRoutes.login),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         shape: RoundedRectangleBorder(
