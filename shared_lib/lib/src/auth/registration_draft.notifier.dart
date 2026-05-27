@@ -18,6 +18,10 @@ class RegistrationDraftNotifier extends Notifier<RegistrationDraft> {
     state = state.copyWith(password: password);
   }
 
+  void updateFullName(String fullName) {
+    state = state.copyWith(fullName: fullName);
+  }
+
   void updateConsents({
     bool? dataProcessing,
     bool? healthData,

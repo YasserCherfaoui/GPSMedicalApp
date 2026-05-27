@@ -193,4 +193,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get networkError => 'خطأ في الشبكة. أعد المحاولة.';
+
+  @override
+  String get fullNameTitle => 'اسمكم الكامل';
+
+  @override
+  String get fullNameSubtitle => 'كما في الوثائق الرسمية (من 2 إلى 120 حرفًا).';
+
+  @override
+  String get fullNameHint => 'الاسم واللقب';
+
+  @override
+  String get invalidFullName => 'اسم غير صالح (من 2 إلى 120 حرفًا).';
 }

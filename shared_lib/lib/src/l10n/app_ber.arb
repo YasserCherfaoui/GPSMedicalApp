@@ -59,5 +59,9 @@
   "invalidNin": "NIN ur yettwasenqed ara",
   "passwordsMismatch": "Awalen uffiren ur mṣadan ara",
   "requiredConsents": "Qbal akk isenqaden yettwasra",
-  "networkError": "Tuccḍa n uzeṭṭa. Ales."
+  "networkError": "Tuccḍa n uzeṭṭa. Ales.",
+  "fullNameTitle": "Isem-ik ummid",
+  "fullNameSubtitle": "Am wakken yerzan deg imeḥlun imeṣyediyan (gar 2 akked 120 n yiḥerfufen).",
+  "fullNameHint": "Isem d tuzwalt",
+  "invalidFullName": "Isem ur yettwasenqed ara (gar 2 akked 120 n yiḥerfufen)."
 }

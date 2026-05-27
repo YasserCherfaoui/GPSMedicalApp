@@ -7,6 +7,7 @@ void main() {
       nin: '109880554003450000',
       phoneE164: '+213551234567',
       password: 'SecurePass1!',
+      fullName: 'Amine Test',
       consentDataProcessing: true,
       consentHealthData: true,
       consentAnpdpTerms: true,
@@ -19,6 +20,19 @@ void main() {
       nin: '109880554003450000',
       phoneE164: '+213551234567',
       password: 'SecurePass1!',
+      fullName: 'Amine Test',
+    );
+    expect(draft.readyToRegister, isFalse);
+  });
+
+  test('not ready without full name', () {
+    const draft = RegistrationDraft(
+      nin: '109880554003450000',
+      phoneE164: '+213551234567',
+      password: 'SecurePass1!',
+      consentDataProcessing: true,
+      consentHealthData: true,
+      consentAnpdpTerms: true,
     );
     expect(draft.readyToRegister, isFalse);
   });

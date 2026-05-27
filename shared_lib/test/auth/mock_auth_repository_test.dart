@@ -11,6 +11,7 @@ void main() {
     nin: '109880554003450000',
     phoneE164: '+213551234567',
     password: 'SecurePass1!',
+    fullName: 'Test User',
     consentDataProcessing: true,
     consentHealthData: true,
     consentAnpdpTerms: true,

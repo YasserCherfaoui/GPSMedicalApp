@@ -198,4 +198,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get networkError => 'Erreur réseau. Réessayez.';
+
+  @override
+  String get fullNameTitle => 'Votre nom complet';
+
+  @override
+  String get fullNameSubtitle =>
+      'Tel qu\'indiqué sur vos documents officiels (2 à 120 caractères).';
+
+  @override
+  String get fullNameHint => 'Nom et prénom';
+
+  @override
+  String get invalidFullName => 'Nom invalide (2 à 120 caractères).';
 }

@@ -15,6 +15,7 @@ abstract final class GpsRoutes {
 
   // Registration
   static const registerNin = '/auth/register/nin';
+  static const registerFullName = '/auth/register/name';
   static const registerPhone = '/auth/register/phone';
   static const registerOtp = '/auth/register/otp';
   static const registerPassword = '/auth/register/password';
@@ -40,6 +41,7 @@ abstract final class GpsRoutes {
     authWelcome,
     login,
     registerNin,
+    registerFullName,
     registerPhone,
     registerOtp,
     registerPassword,

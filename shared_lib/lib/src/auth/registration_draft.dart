@@ -25,11 +25,15 @@ class RegistrationDraft {
   bool get requiredConsentsGranted =>
       consentDataProcessing && consentHealthData && consentAnpdpTerms;
 
-  bool get readyToRegister =>
-      nin != null &&
-      phoneE164 != null &&
-      password != null &&
-      requiredConsentsGranted;
+  bool get readyToRegister {
+    final name = fullName?.trim();
+    return nin != null &&
+        phoneE164 != null &&
+        password != null &&
+        name != null &&
+        name.length >= 2 &&
+        requiredConsentsGranted;
+  }
 
   RegistrationDraft copyWith({
     String? nin,

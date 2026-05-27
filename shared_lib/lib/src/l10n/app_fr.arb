@@ -73,5 +73,9 @@
   "invalidNin": "NIN invalide (18 chiffres)",
   "passwordsMismatch": "Les mots de passe ne correspondent pas",
   "requiredConsents": "Veuillez accepter tous les consentements obligatoires",
-  "networkError": "Erreur réseau. Réessayez."
+  "networkError": "Erreur réseau. Réessayez.",
+  "fullNameTitle": "Votre nom complet",
+  "fullNameSubtitle": "Tel qu'indiqué sur vos documents officiels (2 à 120 caractères).",
+  "fullNameHint": "Nom et prénom",
+  "invalidFullName": "Nom invalide (2 à 120 caractères)."
 }

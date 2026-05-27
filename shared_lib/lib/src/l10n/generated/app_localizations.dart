@@ -459,6 +459,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Erreur réseau. Réessayez.'**
   String get networkError;
+
+  /// No description provided for @fullNameTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre nom complet'**
+  String get fullNameTitle;
+
+  /// No description provided for @fullNameSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tel qu\'indiqué sur vos documents officiels (2 à 120 caractères).'**
+  String get fullNameSubtitle;
+
+  /// No description provided for @fullNameHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom et prénom'**
+  String get fullNameHint;
+
+  /// No description provided for @invalidFullName.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom invalide (2 à 120 caractères).'**
+  String get invalidFullName;
 }
 
 class _AppLocalizationsDelegate

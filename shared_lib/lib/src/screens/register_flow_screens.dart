@@ -50,7 +50,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
       return;
     }
     ref.read(registrationDraftProvider.notifier).updateNin(nin);
-    context.go(GpsRoutes.registerPhone);
+    context.go(GpsRoutes.registerFullName);
   }
 
   @override
@@ -61,6 +61,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
     return AuthFlowScaffold(
       title: strings.registration,
       step: 1,
+      totalSteps: 6,
       subtitle: strings.ninTitle,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -197,7 +198,73 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
   }
 }
 
-// --- STEP 2: PHONE ENTRY ---
+// --- Full name (required by API) ---
+class RegisterFullNameScreen extends ConsumerStatefulWidget {
+  const RegisterFullNameScreen({super.key});
+
+  @override
+  ConsumerState<RegisterFullNameScreen> createState() =>
+      _RegisterFullNameScreenState();
+}
+
+class _RegisterFullNameScreenState
+    extends ConsumerState<RegisterFullNameScreen> {
+  final _controller = TextEditingController();
+  String? _error;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _continue() {
+    final strings = AuthStrings.of(context);
+    final trimmed = _controller.text.trim();
+    if (trimmed.length < 2 || trimmed.length > 120) {
+      setState(() => _error = strings.invalidFullName);
+      return;
+    }
+    ref.read(registrationDraftProvider.notifier).updateFullName(trimmed);
+    context.go(GpsRoutes.registerPhone);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = AuthStrings.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return AuthFlowScaffold(
+      title: strings.registration,
+      step: 2,
+      totalSteps: 6,
+      subtitle: strings.fullNameTitle,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            strings.fullNameSubtitle,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: GpsSpacing.lg),
+          GpsTextField(
+            controller: _controller,
+            hint: strings.fullNameHint,
+            keyboardType: TextInputType.name,
+            errorText: _error,
+            inputFormatters: [LengthLimitingTextInputFormatter(120)],
+            onChanged: (_) => setState(() => _error = null),
+          ),
+        ],
+      ),
+      bottom: PrimaryButton(label: strings.continueLabel, onPressed: _continue),
+    );
+  }
+}
+
+// --- STEP 3: PHONE ENTRY ---
 class RegisterPhoneScreen extends ConsumerStatefulWidget {
   const RegisterPhoneScreen({super.key});
 
@@ -227,7 +294,8 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
 
     return AuthFlowScaffold(
       title: strings.registration,
-      step: 2,
+      step: 3,
+      totalSteps: 6,
       subtitle: strings.phoneTitle,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -349,7 +417,8 @@ class _RegisterPasswordScreenState
 
     return AuthFlowScaffold(
       title: strings.registration,
-      step: 3,
+      step: 4,
+      totalSteps: 6,
       subtitle: strings.passwordTitle,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -457,7 +526,8 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
 
     return AuthFlowScaffold(
       title: strings.registration,
-      step: 4,
+      step: 5,
+      totalSteps: 6,
       subtitle: strings.consentTitle,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -693,7 +763,8 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
 
     return AuthFlowScaffold(
       title: strings.verification,
-      step: 5,
+      step: 6,
+      totalSteps: 6,
       subtitle: strings.otpTitle,
       body: Column(
         children: [

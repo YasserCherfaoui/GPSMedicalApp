@@ -89,6 +89,10 @@ class AuthStrings {
   String get resetAction => _localizations.resetAction;
   String get invalidPhone => _localizations.invalidPhone;
   String get invalidNin => _localizations.invalidNin;
+  String get fullNameTitle => _localizations.fullNameTitle;
+  String get fullNameSubtitle => _localizations.fullNameSubtitle;
+  String get fullNameHint => _localizations.fullNameHint;
+  String get invalidFullName => _localizations.invalidFullName;
   String get passwordsMismatch => _localizations.passwordsMismatch;
   String get requiredConsents => _localizations.requiredConsents;
   String get networkError => _localizations.networkError;

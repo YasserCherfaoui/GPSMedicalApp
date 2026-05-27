@@ -194,4 +194,18 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get networkError => 'Tuccḍa n uzeṭṭa. Ales.';
+
+  @override
+  String get fullNameTitle => 'Isem-ik ummid';
+
+  @override
+  String get fullNameSubtitle =>
+      'Am wakken yerzan deg imeḥlun imeṣyediyan (gar 2 akked 120 n yiḥerfufen).';
+
+  @override
+  String get fullNameHint => 'Isem d tuzwalt';
+
+  @override
+  String get invalidFullName =>
+      'Isem ur yettwasenqed ara (gar 2 akked 120 n yiḥerfufen).';
 }

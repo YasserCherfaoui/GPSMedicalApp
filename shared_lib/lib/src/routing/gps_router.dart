@@ -60,6 +60,10 @@ GoRouter createGpsRouter({
         builder: (context, state) => const RegisterNinScreen(),
       ),
       GoRoute(
+        path: GpsRoutes.registerFullName,
+        builder: (context, state) => const RegisterFullNameScreen(),
+      ),
+      GoRoute(
         path: GpsRoutes.registerPhone,
         builder: (context, state) => const RegisterPhoneScreen(),
       ),

@@ -17,6 +17,7 @@ void main() {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
+          useMockAuthProvider.overrideWith((ref) => true),
           appInfoProvider.overrideWithValue(
             const GpsMedicalAppInfo(
               displayName: 'Test',

@@ -59,5 +59,9 @@
   "invalidNin": "رقم تعريف غير صالح (18 رقماً)",
   "passwordsMismatch": "كلمتا المرور غير متطابقتين",
   "requiredConsents": "يرجى قبول جميع الموافقات الإلزامية",
-  "networkError": "خطأ في الشبكة. أعد المحاولة."
+  "networkError": "خطأ في الشبكة. أعد المحاولة.",
+  "fullNameTitle": "اسمكم الكامل",
+  "fullNameSubtitle": "كما في الوثائق الرسمية (من 2 إلى 120 حرفًا).",
+  "fullNameHint": "الاسم واللقب",
+  "invalidFullName": "اسم غير صالح (من 2 إلى 120 حرفًا)."
 }
