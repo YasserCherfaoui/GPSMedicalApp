@@ -10,7 +10,11 @@ OPENAPI_SPEC := $(abspath ../docs/api/openapi.yaml)
 API_PKG := shared_lib/packages/gps_medical_api
 API_PUBSPEC := shared_lib/tool/gps_medical_api.pubspec.yaml
 
-.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models
+.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models gen-providers
+
+gen-providers:
+	cd shared_lib && dart pub get && dart run build_runner build --delete-conflicting-outputs
+	cd patient_app && dart pub get && dart run build_runner build --delete-conflicting-outputs
 
 gen-models:
 	rm -rf $(API_PKG)

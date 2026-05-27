@@ -8,7 +8,7 @@ import 'package:toastification/toastification.dart';
 import '../l10n/app_locale.dart';
 import '../l10n/auth_strings.dart';
 import '../l10n/generated/app_localizations.dart';
-import '../l10n/locale_notifier.dart';
+import '../l10n/locale.provider.dart' hide AppLocale;
 import '../theme/gps_theme.dart';
 import 'design_system_showcase.dart';
 

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../l10n/app_locale.dart';
 import '../l10n/auth_strings.dart';
-import '../l10n/locale_notifier.dart';
+import '../l10n/locale.provider.dart' hide AppLocale;
 import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
 import '../widgets/gps_blur_background.dart';

@@ -973,7 +973,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       await ref
           .read(authRepositoryProvider)
           .forgotPassword(phoneE164: _phoneE164!);
-      ref.read(recoveryPhoneProvider.notifier).state = _phoneE164;
+      ref.read(recoveryPhoneProvider.notifier).set(_phoneE164);
       if (mounted) {
         context.push(GpsRoutes.resetPassword);
       }
