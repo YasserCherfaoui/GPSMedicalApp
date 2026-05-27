@@ -1,0 +1,30 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "gps-medical-dev",
+          "appId": "1:647636807219:android:35b41f6682c4a20d393d46",
+          "fileOutput": "android/app/src/dev/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "gps-medical-dev",
+          "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "gps-medical-dev",
+          "configurations": {
+            "android": "1:647636807219:android:35b41f6682c4a20d393d46",
+            "ios": "1:647636807219:ios:7c6393de3a22b4ad393d46"
+          }
+        }
+      }
+    }
+  }
+}

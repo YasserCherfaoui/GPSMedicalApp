@@ -5,6 +5,11 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// Applied only after `make -C mobile configure-firebase-patient` writes google-services.json.
+if (file("src/dev/google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+}
+
 android {
     namespace = "com.gpsmedical.patient_app"
     compileSdk = flutter.compileSdkVersion

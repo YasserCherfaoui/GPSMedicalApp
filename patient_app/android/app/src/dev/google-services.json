@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "647636807219",
+    "project_id": "gps-medical-dev",
+    "storage_bucket": "gps-medical-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647636807219:android:35b41f6682c4a20d393d46",
+        "android_client_info": {
+          "package_name": "com.gpsmedical.patient_app.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNcxkxBtjJCG89grIjYSUjtbjlvCjQfk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

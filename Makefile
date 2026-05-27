@@ -10,11 +10,17 @@ OPENAPI_SPEC := $(abspath ../docs/api/openapi.yaml)
 API_PKG := shared_lib/packages/gps_medical_api
 API_PUBSPEC := shared_lib/tool/gps_medical_api.pubspec.yaml
 
-.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models gen-providers
+.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models gen-providers configure-firebase-patient
 
 gen-providers:
 	cd shared_lib && dart pub get && dart run build_runner build --delete-conflicting-outputs
 	cd patient_app && dart pub get && dart run build_runner build --delete-conflicting-outputs
+
+# Downloads google-services.json, GoogleService-Info.plist, and firebase_options.dart
+# for project gps-medical-dev. Requires: firebase login --reauth
+configure-firebase-patient:
+	chmod +x patient_app/scripts/configure_firebase.sh
+	patient_app/scripts/configure_firebase.sh
 
 gen-models:
 	rm -rf $(API_PKG)
