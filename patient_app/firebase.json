@@ -14,6 +14,80 @@
           "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
           "uploadDebugSymbols": false,
           "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        },
+        "buildConfigurations": {
+          "Debug": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Release": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Profile": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Debug-dev": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Release-dev": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Profile-dev": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Debug-staging": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Release-staging": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Profile-staging": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Debug-prod": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Release-prod": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Profile-prod": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:7c6393de3a22b4ad393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          }
         }
       },
       "dart": {

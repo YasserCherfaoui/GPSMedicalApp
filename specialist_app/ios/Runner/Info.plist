@@ -47,5 +47,12 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSBonjourServices</key>
+		<array>
+			<string>_dartobservatory._tcp</string>
+		</array>
+		<key>NSLocalNetworkUsageDescription</key>
+		<string>Allow Flutter tools to connect to the app for debugging.</string>
 	</dict>
 </plist>
+
