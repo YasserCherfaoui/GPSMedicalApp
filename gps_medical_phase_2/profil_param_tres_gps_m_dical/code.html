@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Profil - GPS Médical Algérie</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#005047",
+                    "on-secondary-fixed": "#0f1d25",
+                    "surface-container-low": "#f0f4f2",
+                    "secondary-fixed-dim": "#bac9d3",
+                    "tertiary-fixed": "#ffdbd1",
+                    "on-tertiary-fixed-variant": "#75331f",
+                    "primary-fixed-dim": "#7ad7c6",
+                    "on-surface-variant": "#3e4946",
+                    "secondary-container": "#d3e2ed",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#843f29",
+                    "on-secondary-fixed-variant": "#3b4951",
+                    "tertiary-fixed-dim": "#ffb59f",
+                    "outline-variant": "#bdc9c5",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f6faf8",
+                    "secondary-fixed": "#d6e5ef",
+                    "on-surface": "#181d1b",
+                    "surface-bright": "#f6faf8",
+                    "primary-fixed": "#97f3e2",
+                    "secondary": "#526069",
+                    "on-tertiary-container": "#ffe8e2",
+                    "surface-variant": "#dfe3e1",
+                    "on-tertiary-fixed": "#3a0a00",
+                    "on-primary-container": "#a1feec",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#ebefec",
+                    "outline": "#6e7a76",
+                    "surface-tint": "#006b5e",
+                    "on-background": "#181d1b",
+                    "surface-container-highest": "#dfe3e1",
+                    "primary-container": "#00796b",
+                    "inverse-primary": "#7ad7c6",
+                    "on-primary-fixed": "#00201b",
+                    "surface-container-high": "#e5e9e7",
+                    "primary": "#005e53",
+                    "tertiary-container": "#a2563f",
+                    "inverse-surface": "#2d3130",
+                    "background": "#f6faf8",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#56656e",
+                    "inverse-on-surface": "#eef2ef",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#d7dbd8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "unit": "4px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "xxl": "48px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "gutter": "20px"
+            },
+            "fontFamily": {
+                    "h3": ["Manrope"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "h1": ["Manrope"],
+                    "h2": ["Manrope"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32">
+<!-- Top AppBar -->
+<header class="sticky top-0 w-full z-50 backdrop-blur-xl bg-surface/80 shadow-sm px-md py-sm flex items-center justify-between">
+<div class="flex items-center gap-md">
+<button class="active:scale-95 duration-200 text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-h2 text-h2 text-primary">GPS Médical Algérie</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary font-bold overflow-hidden">
+<img alt="Amine Saadi" class="w-full h-full object-cover" data-alt="A professional studio portrait of a young Algerian man with short dark hair and a neat beard, wearing a modern charcoal grey suit. The lighting is bright and high-key with soft diffused shadows against a clinical white background. The overall aesthetic is clean, medical-grade corporate minimalism with a sense of trust and professionalism in a bright light-mode setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZAXNvj2s1Oe7_gesBq8svbiQjLtv6KZfgtb2r6WdAqnCqu_ZI7iPKsjJjhkSjE-WwgTHrbwL2bJqaSZVBNsw1BPw_pdSDvV1ungNZVjQWRewztcGHIGUcEYzSgbAzfBLxSfNpCFlCLZkcAeLpzdJ_a69Zyyj0-6R4jHuMwrWGPwKvjt83LQPDov6dkJgUEOL8aRD8w7svVji3xFdxLry176cfR5DNlP80FqzxsC8qmriPYT9EW-EKEnwQ-F9efPv50VrpNAsCPew"/>
+</div>
+</header>
+<main class="max-w-xl mx-auto px-md py-lg space-y-lg">
+<!-- Profile Header Card -->
+<section class="bg-surface-container-low rounded-xl p-lg flex items-center gap-lg shadow-[0_30px_30px_rgba(0,121,107,0.04)]">
+<div class="relative">
+<div class="w-20 h-20 rounded-full border-4 border-white shadow-sm overflow-hidden">
+<img alt="Profile picture" class="w-full h-full object-cover" data-alt="Close up of a professional Mediterranean man smiling confidently, dressed in a sharp business shirt. The background is a clean, bright medical clinic hallway with soft out-of-focus highlights. High-end photography style with a calm, reassuring atmosphere and pristine lighting suitable for a medical GPS application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzp29YibNPL9Sdk-zYkEW9aMz26D3kNyoyBd1HFoTkftBD4SgTByjIV7VyBqs7y0xfAfi2eezNaELD6_LI1HHwJPB8AaWdJKjRMH8J64DOe9dRA9couO8otXUjnHqnM-8Md2rIYHnVXLsz6ji5rrMjFW7HYaYvOOfGESJA7Gje8S6UDerkxjwUg6LV7lJ0m-MnLdn2ExFa1wp4JIiuH1gUglC87oJRYNovfDqmuZp6O5ZESs7A5okXpWcIRuJS-HbKpn6Y_5aUR7Y"/>
+</div>
+</div>
+<div class="flex-1">
+<h2 class="font-h3 text-h3 text-on-surface">Amine Saadi</h2>
+<p class="text-on-surface-variant text-body-md">+213 551 23 45 67</p>
+<button class="mt-sm text-primary font-semibold hover:opacity-80 transition-opacity flex items-center gap-xs">
+                    Modifier
+                </button>
+</div>
+</section>
+<!-- Settings Groups -->
+<div class="space-y-xl">
+<!-- Group 1: Compte -->
+<div>
+<h3 class="font-label-caps text-label-caps text-outline px-sm mb-sm">Compte</h3>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_30px_30px_rgba(0,121,107,0.04)]">
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-high transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md text-on-surface">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+<span class="font-body-md">Profil médical</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="h-[1px] bg-surface-container mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-high transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md text-on-surface">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="font-body-md">Mes consentements</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="h-[1px] bg-surface-container mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-high transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md text-on-surface">
+<span class="material-symbols-outlined text-primary">language</span>
+<span class="font-body-md">Langue (Français)</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="h-[1px] bg-surface-container mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-high transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md text-on-surface">
+<span class="material-symbols-outlined text-primary">notifications</span>
+<span class="font-body-md">Notifications</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Group 2: Sécurité -->
+<div>
+<h3 class="font-label-caps text-label-caps text-outline px-sm mb-sm">Sécurité</h3>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_30px_30px_rgba(0,121,107,0.04)]">
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-high transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md text-on-surface">
+<span class="material-symbols-outlined text-primary">fingerprint</span>
+<span class="font-body-md">Biométrie</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-4 bg-primary-container rounded-full relative">
+<div class="absolute right-0.5 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+</button>
+<div class="h-[1px] bg-surface-container mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-high transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md text-on-surface">
+<span class="material-symbols-outlined text-primary">lock</span>
+<span class="font-body-md">Changer le mot de passe</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Group 3: Support -->
+<div>
+<h3 class="font-label-caps text-label-caps text-outline px-sm mb-sm">Support</h3>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_30px_30px_rgba(0,121,107,0.04)]">
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-high transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md text-on-surface">
+<span class="material-symbols-outlined text-primary">help_outline</span>
+<span class="font-body-md">Aide</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="h-[1px] bg-surface-container mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-high transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md text-on-surface">
+<span class="material-symbols-outlined text-primary">help_outline</span>
+<span class="font-body-md">À propos</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="h-[1px] bg-surface-container mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-high transition-colors active:scale-[0.98] duration-150">
+<div class="flex items-center gap-md text-on-surface">
+<span class="material-symbols-outlined text-primary">shield</span>
+<span class="font-body-md">Confidentialité ANPDP</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Danger Zone -->
+<div class="pt-md space-y-md">
+<button class="w-full p-md text-error font-medium hover:bg-error-container/20 rounded-xl transition-colors active:scale-95 duration-150 text-center">
+                    Supprimer mon compte
+                </button>
+<button class="w-full py-md px-lg border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary/5 transition-all active:scale-[0.98] duration-150 flex items-center justify-center gap-md">
+<span class="material-symbols-outlined">logout</span>
+                    Se déconnecter
+                </button>
+</div>
+<!-- Version Info -->
+<div class="text-center py-md">
+<p class="text-label-caps font-label-caps text-outline">Version 2.4.1 (Build 108)</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm py-xs pb-safe backdrop-blur-xl bg-surface/80 shadow-[0_-4px_30px_rgba(0,121,107,0.04)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1 active:scale-90 duration-200">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Accueil</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1 active:scale-90 duration-200">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-caps text-label-caps">Parcours</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1 active:scale-90 duration-200">
+<span class="material-symbols-outlined">fitness_center</span>
+<span class="font-label-caps text-label-caps">Coaching</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors px-4 py-1 active:scale-90 duration-200">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-caps text-label-caps">Messages</span>
+</button>
+<!-- ACTIVE TAB: Profil -->
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profil</span>
+</button>
+</nav>
+<script>
+        // Micro-interactions and subtle effects
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('touchstart', () => {
+                button.style.opacity = '0.7';
+            });
+            button.addEventListener('touchend', () => {
+                button.style.opacity = '1';
+            });
+        });
+        
+        // Add a soft glow on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

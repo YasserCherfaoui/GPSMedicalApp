@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#0f1d25",
+                      "primary-fixed": "#97f3e2",
+                      "tertiary": "#843f29",
+                      "surface-container-high": "#e5e9e7",
+                      "on-secondary-container": "#56656e",
+                      "outline-variant": "#bdc9c5",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed": "#3a0a00",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#ebefec",
+                      "tertiary-fixed": "#ffdbd1",
+                      "secondary-fixed": "#d6e5ef",
+                      "on-error": "#ffffff",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#eef2ef",
+                      "inverse-primary": "#7ad7c6",
+                      "secondary-fixed-dim": "#bac9d3",
+                      "on-tertiary-fixed-variant": "#75331f",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#d7dbd8",
+                      "surface-bright": "#f6faf8",
+                      "primary": "#005e53",
+                      "on-background": "#181d1b",
+                      "secondary-container": "#d3e2ed",
+                      "on-primary-fixed": "#00201b",
+                      "on-tertiary-container": "#ffe8e2",
+                      "on-primary-fixed-variant": "#005047",
+                      "surface": "#f6faf8",
+                      "surface-variant": "#dfe3e1",
+                      "surface-tint": "#006b5e",
+                      "inverse-surface": "#2d3130",
+                      "on-surface": "#181d1b",
+                      "secondary": "#526069",
+                      "surface-container-highest": "#dfe3e1",
+                      "on-secondary-fixed-variant": "#3b4951",
+                      "surface-container-low": "#f0f4f2",
+                      "error-container": "#ffdad6",
+                      "background": "#f6faf8",
+                      "on-primary-container": "#a1feec",
+                      "tertiary-fixed-dim": "#ffb59f",
+                      "primary-fixed-dim": "#7ad7c6",
+                      "outline": "#6e7a76",
+                      "on-surface-variant": "#3e4946",
+                      "tertiary-container": "#a2563f",
+                      "primary-container": "#00796b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "gutter": "20px",
+                      "xxl": "48px",
+                      "md": "16px",
+                      "unit": "4px",
+                      "lg": "24px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Inter"],
+                      "h3": ["Manrope"],
+                      "h2": ["Manrope"],
+                      "h1": ["Manrope"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                      "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .gauge-ring {
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .shadow-level-1 {
+            box-shadow: 0 10px 30px -5px rgba(0, 121, 107, 0.04);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md shadow-sm flex justify-between items-center px-gutter h-16">
+<button class="w-10 h-10 flex items-center justify-center text-primary hover:bg-surface-container-high rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-h3 text-h3 font-bold text-primary">AI Analysis Result</h1>
+<button class="w-10 h-10 flex items-center justify-center text-primary hover:bg-surface-container-high rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<main class="flex-grow pt-24 pb-32 px-gutter max-w-lg mx-auto w-full flex flex-col items-center">
+<!-- Animated Circular Gauge Section -->
+<div class="relative w-64 h-64 mb-6 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90 transform" viewbox="0 0 100 100">
+<!-- Background Circle -->
+<circle class="text-surface-variant stroke-current" cx="50" cy="50" fill="transparent" r="42" stroke-width="8"></circle>
+<!-- Progress Circle -->
+<circle class="gauge-ring stroke-current" cx="50" cy="50" fill="transparent" id="gauge-progress" r="42" stroke-linecap="round" stroke-width="8" style="stroke-dasharray: 264; stroke-dashoffset: 264; stroke: url(#gradient-gauge);"></circle>
+<defs>
+<lineargradient id="gradient-gauge" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#00796b"></stop>
+<stop offset="100%" style="stop-color:#f59e0b"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-h1 text-h1 text-primary" id="score-text">0%</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Score</span>
+</div>
+</div>
+<div class="text-center mb-8">
+<h2 class="font-h3 text-h3 text-on-surface mb-2">Score de Pertinence Régénérative</h2>
+<!-- Status Banner -->
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary-container rounded-full shadow-level-1 animate-float">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-caps text-label-caps font-bold">Forte compatibilité — médecine régénérative</span>
+</div>
+</div>
+<!-- Interpretation Paragraph -->
+<div class="bg-surface-container-low p-md rounded-xl mb-xl border border-outline-variant/30">
+<p class="text-on-surface-variant text-center font-body-md leading-relaxed">
+                Sur la base de votre profil clinique et des paramètres biométriques analysés, vous présentez un potentiel élevé de régénération tissulaire. Cette compatibilité suggère que les thérapies par cellules souches ou plasma riche en plaquettes (PRP) pourraient être particulièrement efficaces dans votre cas.
+            </p>
+</div>
+<!-- Legal Disclaimer Card -->
+<div class="w-full bg-surface-container-high/50 p-md rounded-xl flex gap-md items-start mb-xxl border-l-4 border-error">
+<span class="material-symbols-outlined text-error shrink-0" data-icon="warning">warning</span>
+<p class="text-on-surface-variant font-label-caps leading-snug">
+                ⚠️ Ce score est une orientation et non un diagnostic médical. Seul un médecin agréé peut poser un diagnostic.
+            </p>
+</div>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-md">
+<!-- Orange Primary Action -->
+<button class="w-full h-14 bg-[#f59e0b] hover:bg-[#d97706] text-white font-h3 rounded-xl flex items-center justify-center gap-sm transition-all shadow-lg active:scale-95">
+                Continuer vers le dépistage
+                <span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Ghost Secondary Action -->
+<button class="w-full h-12 bg-transparent text-primary font-body-lg rounded-xl border-2 border-primary/10 hover:bg-primary/5 transition-all active:scale-95">
+                Voir le détail
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-md shadow-lg flex justify-around items-center px-md py-sm pb-safe h-20">
+<div class="flex flex-col items-center justify-center text-secondary px-4 py-1 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps mt-1">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary px-4 py-1 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps mt-1">Patients</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-caps text-label-caps mt-1">Analysis</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary px-4 py-1 hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</div>
+</nav>
+<script>
+        // Animation Logic for Gauge
+        window.addEventListener('DOMContentLoaded', () => {
+            const circle = document.getElementById('gauge-progress');
+            const scoreText = document.getElementById('score-text');
+            const targetScore = 92;
+            const circumference = 2 * Math.PI * 42; // r=42 from svg
+            
+            // Set initial dasharray
+            circle.style.strokeDasharray = circumference;
+            
+            // Trigger animation after a slight delay
+            setTimeout(() => {
+                const offset = circumference - (targetScore / 100) * circumference;
+                circle.style.strokeDashoffset = offset;
+                
+                // Count up text animation
+                let currentScore = 0;
+                const duration = 1500; // ms
+                const startTime = performance.now();
+                
+                function updateScore(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Ease out cubic
+                    const easedProgress = 1 - Math.pow(1 - progress, 3);
+                    currentScore = Math.floor(easedProgress * targetScore);
+                    
+                    scoreText.innerText = `${currentScore}%`;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateScore);
+                    }
+                }
+                
+                requestAnimationFrame(updateScore);
+            }, 300);
+        });
+    </script>
+</body></html>

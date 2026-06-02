@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mon dossier santé - GPS Médical Algérie</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "secondary-fixed": "#d6e5ef",
+                "surface-dim": "#d7dbd8",
+                "outline-variant": "#bdc9c5",
+                "surface-container-low": "#f0f4f2",
+                "error": "#ba1a1a",
+                "surface-bright": "#f6faf8",
+                "tertiary-fixed": "#ffdbd1",
+                "on-secondary-fixed": "#0f1d25",
+                "surface-tint": "#006b5e",
+                "on-surface-variant": "#3e4946",
+                "on-error": "#ffffff",
+                "surface": "#f6faf8",
+                "on-surface": "#181d1b",
+                "on-tertiary-container": "#ffe8e2",
+                "tertiary-container": "#a2563f",
+                "on-secondary": "#ffffff",
+                "surface-variant": "#dfe3e1",
+                "secondary-container": "#d3e2ed",
+                "inverse-on-surface": "#eef2ef",
+                "secondary-fixed-dim": "#bac9d3",
+                "on-primary-fixed-variant": "#005047",
+                "on-tertiary-fixed-variant": "#75331f",
+                "primary-fixed-dim": "#7ad7c6",
+                "on-secondary-container": "#56656e",
+                "surface-container-high": "#e5e9e7",
+                "error-container": "#ffdad6",
+                "surface-container-highest": "#dfe3e1",
+                "surface-container": "#ebefec",
+                "secondary": "#526069",
+                "on-primary-fixed": "#00201b",
+                "tertiary": "#843f29",
+                "primary-fixed": "#97f3e2",
+                "inverse-surface": "#2d3130",
+                "on-primary-container": "#a1feec",
+                "tertiary-fixed-dim": "#ffb59f",
+                "surface-container-lowest": "#ffffff",
+                "primary-container": "#00796b",
+                "on-error-container": "#93000a",
+                "outline": "#6e7a76",
+                "on-tertiary": "#ffffff",
+                "on-background": "#181d1b",
+                "on-primary": "#ffffff",
+                "primary": "#005e53",
+                "on-tertiary-fixed": "#3a0a00",
+                "background": "#f6faf8",
+                "on-secondary-fixed-variant": "#3b4951",
+                "inverse-primary": "#7ad7c6"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "container-max": "1280px",
+                "xs": "4px",
+                "sm": "8px",
+                "md": "16px",
+                "xl": "32px",
+                "lg": "24px",
+                "unit": "4px",
+                "gutter": "20px",
+                "xxl": "48px"
+              },
+              "fontFamily": {
+                "label-caps": ["Inter"],
+                "h1": ["Manrope"],
+                "body-md": ["Inter"],
+                "h3": ["Manrope"],
+                "h2": ["Manrope"],
+                "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .timeline-line {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #00796b, #00796b, transparent);
+            opacity: 0.3;
+            z-index: 0;
+        }
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #00796b;
+            border: 3px solid #f6faf8;
+            position: absolute;
+            left: 19px;
+            z-index: 10;
+        }
+        .glass-header {
+            background: rgba(246, 250, 248, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm h-16 flex flex-col justify-center">
+<div class="flex items-center justify-between px-md w-full">
+<div class="flex items-center gap-md">
+<button class="text-primary hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-h3 text-h3 font-bold text-primary">Mon dossier santé</h1>
+</div>
+<button class="text-primary hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-24 px-md max-w-container-max mx-auto">
+<!-- Search Bar -->
+<div class="mt-md mb-lg">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">search</span>
+<input class="w-full h-12 pl-12 pr-4 bg-surface-container-lowest border-none rounded-xl shadow-sm focus:ring-2 focus:ring-primary transition-all font-body-md placeholder:text-on-surface-variant" placeholder="Rechercher dans vos examens..." type="text"/>
+</div>
+</div>
+<!-- Summary Strip -->
+<div class="flex items-center gap-sm mb-xl overflow-x-auto no-scrollbar py-xs">
+<div class="px-md py-1 bg-secondary-container/50 text-on-secondary-container rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">clinical_notes</span>
+<span class="font-label-caps text-label-caps">3 bilans</span>
+</div>
+<div class="px-md py-1 bg-secondary-container/50 text-on-secondary-container rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">description</span>
+<span class="font-label-caps text-label-caps">2 documents</span>
+</div>
+<div class="px-md py-1 bg-surface-container-high text-on-surface-variant rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">history</span>
+<span class="font-label-caps text-label-caps">Février - Mars 2024</span>
+</div>
+</div>
+<!-- Timeline Content -->
+<div class="relative">
+<!-- Central Line -->
+<div class="timeline-line"></div>
+<!-- Items -->
+<div class="space-y-xl">
+<!-- Item 1: 12 mars -->
+<div class="relative pl-12">
+<div class="timeline-dot top-4"></div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-sm">12 mars</p>
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_30px_30px_rgba(0,121,107,0.04)] hover:scale-[1.01] transition-transform cursor-pointer border-l-4 border-primary">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">medical_information</span>
+</div>
+<div>
+<h3 class="font-h3 text-body-lg font-bold text-on-surface">Anamnèse genou</h3>
+<div class="flex items-center gap-sm mt-xs">
+<span class="px-sm py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-[12px] font-semibold">92% Score</span>
+<span class="text-[12px] text-on-surface-variant">Dr. Benali</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Item 2: 28 fév -->
+<div class="relative pl-12">
+<div class="timeline-dot top-4"></div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-sm">28 fév.</p>
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_30px_30px_rgba(0,121,107,0.04)] hover:scale-[1.01] transition-transform cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-md">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">folder_open</span>
+</div>
+<div>
+<h3 class="font-h3 text-body-lg font-bold text-on-surface">Documents ajoutés (2)</h3>
+<div class="mt-md space-y-sm">
+<div class="flex items-center gap-sm p-sm bg-surface-container rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary">picture_as_pdf</span>
+<span class="font-body-md text-[14px]">IRM_Genou_Droit.pdf</span>
+</div>
+<div class="flex items-center gap-sm p-sm bg-surface-container rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<span class="font-body-md text-[14px]">Bilan_Sanguin.pdf</span>
+</div>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline mt-1">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Item 3: 20 fév -->
+<div class="relative pl-12">
+<div class="timeline-dot top-4"></div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-sm">20 fév.</p>
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_30px_30px_rgba(0,121,107,0.04)] hover:scale-[1.01] transition-transform cursor-pointer border-t-2 border-secondary-fixed">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-secondary-fixed/50 flex items-center justify-center text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<div>
+<h3 class="font-h3 text-body-lg font-bold text-on-surface">Coaching démarré</h3>
+<p class="text-on-surface-variant text-[14px] mt-xs">Programme de rééducation fonctionnelle</p>
+<div class="w-full bg-surface-container rounded-full h-1.5 mt-md">
+<div class="bg-primary h-1.5 rounded-full" style="width: 15%"></div>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Spacer to let user scroll past bottom nav -->
+<div class="h-24"></div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface/80 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0_-4px_30px_rgba(0,121,107,0.04)]">
+<div class="flex justify-around items-center h-20 px-sm pb-safe w-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Accueil</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">folder_shared</span>
+<span class="font-label-caps text-label-caps">Dossier</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-caps text-label-caps">Rendez-vous</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profil</span>
+</a>
+</div>
+</nav>
+<script>
+        // Micro-interactions for timeline items
+        document.querySelectorAll('.bg-surface-container-lowest').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1.01)';
+            });
+        });
+
+        // Search bar focus effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.01]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.01]');
+        });
+    </script>
+</body></html>

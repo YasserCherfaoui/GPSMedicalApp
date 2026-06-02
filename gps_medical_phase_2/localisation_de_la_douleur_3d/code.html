@@ -1,0 +1,224 @@
+<!DOCTYPE html><html class="light" lang="fr" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>GPS Médical Algérie - Localisation de la douleur</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d7dbd8",
+                        "on-primary-fixed": "#00201b",
+                        "on-background": "#181d1b",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#ebefec",
+                        "secondary": "#526069",
+                        "primary-fixed": "#97f3e2",
+                        "surface": "#f6faf8",
+                        "on-surface": "#181d1b",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f0f4f2",
+                        "primary": "#005e53",
+                        "on-primary-fixed-variant": "#005047",
+                        "surface-bright": "#f6faf8",
+                        "primary-container": "#00796b",
+                        "on-secondary-fixed": "#0f1d25",
+                        "surface-variant": "#dfe3e1",
+                        "tertiary-fixed": "#ffdbd1",
+                        "on-tertiary-fixed-variant": "#75331f",
+                        "on-tertiary-fixed": "#3a0a00",
+                        "on-tertiary-container": "#ffe8e2",
+                        "on-surface-variant": "#3e4946",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#006b5e",
+                        "inverse-primary": "#7ad7c6",
+                        "secondary-container": "#d3e2ed",
+                        "secondary-fixed": "#d6e5ef",
+                        "primary-fixed-dim": "#7ad7c6",
+                        "on-primary-container": "#a1feec",
+                        "surface-container-high": "#e5e9e7",
+                        "outline": "#6e7a76",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eef2ef",
+                        "on-secondary-container": "#56656e",
+                        "error-container": "#ffdad6",
+                        "background": "#f6faf8",
+                        "on-secondary-fixed-variant": "#3b4951",
+                        "tertiary-fixed-dim": "#ffb59f",
+                        "outline-variant": "#bdc9c5",
+                        "tertiary-container": "#a2563f",
+                        "surface-container-highest": "#dfe3e1",
+                        "secondary-fixed-dim": "#bac9d3",
+                        "inverse-surface": "#2d3130",
+                        "tertiary": "#843f29"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "xxl": "48px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "h2": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "h3": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes pulse-teal {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 121, 107, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 121, 107, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 121, 107, 0); }
+        }
+        .pulse-marker {
+            animation: pulse-teal 2s infinite;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            background-color: rgba(246, 250, 248, 0.8);
+        }
+        .anatomical-canvas {
+            background: radial-gradient(circle, #f0f4f2 0%, #d7dbd8 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 glass-nav border-none shadow-sm h-16 flex items-center px-md justify-between">
+<div class="flex items-center gap-md">
+<button aria-label="Retour" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant/20 transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-h3 text-h3 text-primary leading-tight">Où avez-vous mal ?</h1>
+<span class="font-label-caps text-label-caps text-secondary uppercase">Étape 1/4</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A clean, professional headshot of a person for a medical profile. The lighting is bright and airy with a neutral studio background. The style is modern corporate minimalism, featuring high-quality digital photography that feels professional yet compassionate, aligning with a premium healthcare app aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnD1n10tLN57XgJocta2BSoHYpXKdeVNZlVbFsf0nya1DVCkWQ3uVK9WE78ZtcG8kS9ns1R0Tg4zD14n4XPH_dXWcc8fvXbV5uyvGJRZQrYZP1okAxIz5jWHx_Xexb1JgOI_1QOSNv32mT23xfbkgfaslOTRX23bCggVytjzs0umhbqEQNHH98qErdNLOh5WGzctH52IkHcggrRn2Ipea_o8nALVaZsgJkyCAax7GaWmkkQJ-5zQSC-2bruyrpR8GOzylgH5Xbjlg">
+</div>
+</header>
+<!-- Main Content: 3D Anatomical Interaction Area -->
+<main class="flex-1 mt-16 relative overflow-hidden flex flex-col items-center anatomical-canvas pb-20">
+<!-- Toggle & Hint -->
+<div class="absolute top-4 left-0 w-full px-md flex justify-between items-start pointer-events-none z-10">
+<div class="bg-surface-container-lowest/90 backdrop-blur-md rounded-full p-1 shadow-sm flex pointer-events-auto border border-outline-variant/20">
+<button class="px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-caps text-label-caps transition-all">FACE</button>
+<button class="px-4 py-1.5 rounded-full text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-variant/30 transition-all">DOS</button>
+</div>
+<div class="flex flex-col items-end gap-xs opacity-60">
+<span class="material-symbols-outlined text-primary text-xl">pinch</span>
+<span class="font-label-caps text-label-caps text-secondary">Pincer pour zoomer</span>
+</div>
+</div>
+<!-- The 3D Human Figure Layer -->
+<div class="relative w-full max-w-md h-full flex items-center justify-center pointer-events-auto">
+<!-- Simulated Anatomical Visual -->
+<div class="relative h-[80%] aspect-[1/2]">
+<img alt="Anatomical human model" class="h-full w-auto object-contain opacity-80 mix-blend-multiply" data-alt="A high-quality 3D render of a neutral human anatomical figure viewed from the front. The lighting is soft and clinical with subtle highlights defining the muscle groups. The figure is set against a clean, light gray medical background. The aesthetic is professional, minimalist, and educational, emphasizing clinical precision and clarity for a medical interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSeT7FU-NQ0JBOgi0vwC4x7LiFWU60ND1eFTE9KeyaC2_fm7SUj0v_iZH6z9Fkg5AYBThJX9dQoXmlK5z9sTucwgaSJsSTQplYribEY_6fMRgqNzVSn-96u92j9aCY13gfApgYPWu6AD8sSbRcAj0O2AhT5Epqs4kJXm7z73D-0d8pvtXje8AGlHXa0bRtzaSjPAgFxRRwg3saKFHoVlD5n6JEYbhBk6C9oyLBbSCVdbGSUoP0YP5WIFtq-6PZSkuWSoFzGT1Iuh4" style="transform: translate(0.49px, 3.83px);">
+<!-- Interaction Hotspots (SVG Overlay) -->
+<svg class="absolute inset-0 w-full h-full cursor-pointer" viewBox="0 0 100 200">
+<!-- Head -->
+<circle class="hover:fill-primary/20 transition-colors" cx="50" cy="18" fill="rgba(0,94,83,0.05)" r="8"></circle>
+<!-- Shoulder L/R -->
+<circle class="hover:fill-primary/20 transition-colors" cx="38" cy="40" fill="rgba(0,94,83,0.05)" r="5"></circle>
+<circle class="hover:fill-primary/20 transition-colors" cx="62" cy="40" fill="rgba(0,94,83,0.05)" r="5"></circle>
+<!-- Chest -->
+<rect class="hover:fill-primary/20 transition-colors" fill="rgba(0,94,83,0.05)" height="20" rx="4" width="16" x="42" y="45"></rect>
+<!-- Abdomen -->
+<rect class="hover:fill-primary/20 transition-colors" fill="rgba(0,94,83,0.05)" height="15" rx="3" width="12" x="44" y="68"></rect>
+<!-- Right Knee (SELECTED) -->
+<g id="selected-knee">
+<circle cx="43" cy="135" fill="rgba(0, 121, 107, 0.2)" r="7"></circle>
+<circle class="fill-primary pulse-marker" cx="43" cy="135" r="4"></circle>
+</g>
+<!-- Left Knee -->
+<circle class="hover:fill-primary/20 transition-colors" cx="57" cy="135" fill="rgba(0,94,83,0.05)" r="5"></circle>
+</svg>
+</div>
+</div>
+<!-- Selected Chip Section -->
+<div class="absolute bottom-[160px] left-1/2 -translate-x-1/2 flex justify-center z-20 animate-in fade-in slide-in-from-bottom-2 duration-500 w-auto">
+  <div class="bg-[#00796B] text-white px-5 py-2.5 rounded-full flex items-center gap-3 shadow-xl border border-white/10">
+    <span class="material-symbols-outlined text-[20px] text-white" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+    <span class="font-label-caps text-label-caps font-semibold whitespace-nowrap">Genou droit</span>
+    <button class="ml-1 hover:bg-white/20 rounded-full p-1 transition-colors flex items-center justify-center" aria-label="Supprimer">
+      <span class="material-symbols-outlined text-[18px] text-white">close</span>
+    </button>
+  </div>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<footer class="fixed bottom-0 w-full glass-nav z-50 pt-md pb-8 px-md space-y-md">
+<div class="max-w-container-max mx-auto flex flex-col items-center gap-sm">
+<button class="w-full bg-primary-container text-on-primary-container py-4 rounded-xl font-h3 text-body-lg font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all duration-200">
+                Continuer
+            </button>
+<button class="text-primary font-label-caps text-label-caps hover:underline transition-all">
+                Je ne trouve pas ma zone
+            </button>
+</div>
+</footer>
+<!-- Bottom Navigation Shell (Filter Applied: Hidden as this is task-focused) -->
+<!-- The context is a sub-page with a "Back" action, so global nav is suppressed as per guidelines. -->
+<script>
+        // Simple Interaction: Toggle active state of chips (visual only for demo)
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.innerText === 'DOS' || this.innerText === 'FACE') {
+                    this.parentElement.querySelectorAll('button').forEach(b => {
+                        b.classList.remove('bg-primary-container', 'text-on-primary-container');
+                        b.classList.add('text-on-surface-variant');
+                    });
+                    this.classList.remove('text-on-surface-variant');
+                    this.classList.add('bg-primary-container', 'text-on-primary-container');
+                }
+            });
+        });
+
+        // Atmospheric parallax effect on figure
+        document.addEventListener('mousemove', (e) => {
+            const figure = document.querySelector('.anatomical-canvas img');
+            if (figure) {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+                figure.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+    </script>
+
+
+</body></html>

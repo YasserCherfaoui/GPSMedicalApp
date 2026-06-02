@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bilan Médical - GPS Médical Algérie</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Manrope & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#ebefec",
+                        "outline": "#6e7a76",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#97f3e2",
+                        "on-primary-fixed-variant": "#005047",
+                        "tertiary-container": "#a2563f",
+                        "on-secondary-fixed-variant": "#3b4951",
+                        "on-secondary-fixed": "#0f1d25",
+                        "on-secondary-container": "#56656e",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffdbd1",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f6faf8",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#dfe3e1",
+                        "on-tertiary-fixed-variant": "#75331f",
+                        "on-primary-fixed": "#00201b",
+                        "inverse-surface": "#2d3130",
+                        "background": "#f6faf8",
+                        "surface-container-highest": "#dfe3e1",
+                        "inverse-primary": "#7ad7c6",
+                        "surface": "#f6faf8",
+                        "secondary-container": "#d3e2ed",
+                        "on-primary-container": "#a1feec",
+                        "surface-container-high": "#e5e9e7",
+                        "on-tertiary-container": "#ffe8e2",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#7ad7c6",
+                        "tertiary": "#843f29",
+                        "primary": "#005e53",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f0f4f2",
+                        "on-surface-variant": "#3e4946",
+                        "surface-dim": "#d7dbd8",
+                        "secondary": "#526069",
+                        "on-tertiary-fixed": "#3a0a00",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#eef2ef",
+                        "tertiary-fixed-dim": "#ffb59f",
+                        "on-surface": "#181d1b",
+                        "outline-variant": "#bdc9c5",
+                        "surface-tint": "#006b5e",
+                        "on-background": "#181d1b",
+                        "secondary-fixed-dim": "#bac9d3",
+                        "secondary-fixed": "#d6e5ef",
+                        "primary-container": "#00796b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "md": "16px",
+                        "gutter": "20px",
+                        "xxl": "48px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "xl": "32px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Manrope"],
+                        "h3": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "h1": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            backdrop-filter: blur(12px);
+            background-color: rgba(246, 250, 248, 0.8);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        .accordion-open .accordion-content {
+            max-height: 1000px;
+            padding-bottom: 24px;
+        }
+        .accordion-open .chevron-icon {
+            transform: rotate(180deg);
+        }
+        .gauge-circle {
+            transition: stroke-dashoffset 1s ease-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen pb-32">
+<!-- Top App Bar (From Shared Components) -->
+<header class="fixed top-0 w-full z-50 glass-header shadow-sm flex items-center px-md h-xxl">
+<div class="flex items-center w-full justify-between">
+<div class="flex items-center gap-md">
+<button aria-label="Retour" class="flex items-center justify-center p-sm active:scale-95 transition-transform text-primary">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-h3 text-h3 font-bold text-primary truncate">Bilan du 12 mars 2026</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center justify-center p-sm hover:opacity-80 transition-opacity text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+<button class="flex items-center justify-center p-sm hover:opacity-80 transition-opacity text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-xxl px-gutter max-w-container-max mx-auto space-y-md mt-lg">
+<!-- Header Hero Style Card -->
+<div class="bg-white rounded-xl p-lg shadow-[0_30px_30px_rgba(0,121,107,0.04)] border-t-2 border-[#E3F2FD]">
+<div class="flex items-center gap-md mb-md">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div>
+<h2 class="font-h3 text-h3 text-on-surface">GPS Médical Algérie</h2>
+<p class="text-on-surface-variant text-body-md">Identifiant du rapport: #AZ-992-2026</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-sm">
+<span class="px-sm py-xs bg-[#E3F2FD] text-primary rounded-lg font-label-caps text-label-caps">ARCHIVE SÉCURISÉE</span>
+<span class="px-sm py-xs bg-surface-container text-on-surface-variant rounded-lg font-label-caps text-label-caps">VALIDE 24 MOIS</span>
+</div>
+</div>
+<!-- Accordion Section 1: Localisation & douleur -->
+<div class="bg-white rounded-xl shadow-[0_30px_30px_rgba(0,121,107,0.04)] overflow-hidden transition-all duration-300 accordion-group" id="acc-1">
+<button class="w-full flex items-center justify-between p-lg text-left hover:bg-surface-container-low transition-colors" onclick="toggleAccordion('acc-1')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<span class="font-h3 text-h3 text-on-surface">Localisation &amp; douleur</span>
+</div>
+<span class="material-symbols-outlined chevron-icon transition-transform duration-300" data-icon="expand_more">expand_more</span>
+</button>
+<div class="accordion-content px-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="p-md rounded-xl bg-surface-container-low border border-outline-variant/30">
+<p class="font-label-caps text-label-caps text-outline mb-xs">ZONES SÉLECTIONNÉES</p>
+<ul class="space-y-sm">
+<li class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-body-md">Région lombaire (L4-L5)</span>
+</li>
+<li class="flex items-center gap-sm">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-body-md">Articulation sacro-iliaque droite</span>
+</li>
+</ul>
+</div>
+<div class="relative h-48 rounded-xl overflow-hidden bg-surface-container">
+<img alt="Anatomy visualization" class="w-full h-full object-cover opacity-60 mix-blend-multiply" data-alt="A clean, medical scientific 3D illustration of a human skeletal lumbar spine. The lighting is bright and clinical, using a soft teal and white color palette typical of high-end medical software. Subtle glowing highlights in deep teal indicate specific areas of focus on the vertebrae. The overall mood is professional, precise, and reassuring." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDayWdfHwF-AprZ0m1C7dMI2XD-x6S0ukXk1iVRIsbH-Yx7AlAZUnvGVVk9bIeUrLYxdCGgFo5AxKifNxHBwPZewfwDzxFC8RgsHuO0QgszbpV-Qny3r0n5h-II3b5NdP-jFi_AmmWQd9HZNbF7BnXQ3ntRNAQ29loGGwTY6JMDBHtYpTO2VTnwxnqMSDXkKJc9HvmvmlJ473OIk6Cj5TA_ToHWqfTypJCLtXL2Yf-hrDf-WU2y7xeIimK16ZdUmD_y_ZtCkEYQ_Hk"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="bg-white/90 backdrop-blur px-sm py-xs rounded-full text-primary font-label-caps text-label-caps shadow-sm">VUE ANATOMIQUE</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Accordion Section 2: Réponses anamnèse -->
+<div class="bg-white rounded-xl shadow-[0_30px_30px_rgba(0,121,107,0.04)] overflow-hidden transition-all duration-300 accordion-group" id="acc-2">
+<button class="w-full flex items-center justify-between p-lg text-left hover:bg-surface-container-low transition-colors" onclick="toggleAccordion('acc-2')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="quiz">quiz</span>
+<span class="font-h3 text-h3 text-on-surface">Réponses anamnèse</span>
+</div>
+<span class="material-symbols-outlined chevron-icon transition-transform duration-300" data-icon="expand_more">expand_more</span>
+</button>
+<div class="accordion-content px-lg space-y-md">
+<div class="border-l-4 border-primary pl-md py-xs">
+<p class="text-on-surface font-semibold text-body-md">Historique de la pathologie</p>
+<p class="text-on-surface-variant text-body-md">Douleur chronique évoluant depuis plus de 6 mois, intensité variable (EVA 4/10 à 7/10). Aggravation en position assise prolongée.</p>
+</div>
+<div class="border-l-4 border-secondary pl-md py-xs">
+<p class="text-on-surface font-semibold text-body-md">Traitements antérieurs</p>
+<p class="text-on-surface-variant text-body-md">Kinesithérapie classique (10 séances), anti-inflammatoires non stéroïdiens (ponctuel).</p>
+</div>
+</div>
+</div>
+<!-- Accordion Section 3: Documents (2) -->
+<div class="bg-white rounded-xl shadow-[0_30px_30px_rgba(0,121,107,0.04)] overflow-hidden transition-all duration-300 accordion-group" id="acc-3">
+<button class="w-full flex items-center justify-between p-lg text-left hover:bg-surface-container-low transition-colors" onclick="toggleAccordion('acc-3')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<span class="font-h3 text-h3 text-on-surface">Documents (2)</span>
+</div>
+<span class="material-symbols-outlined chevron-icon transition-transform duration-300" data-icon="expand_more">expand_more</span>
+</button>
+<div class="accordion-content px-lg space-y-sm">
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-xl border border-outline-variant/30 hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-white flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">IRM_LOMBAIRE_MARS26.pdf</p>
+<p class="text-label-caps text-outline">12 MARS 2026 • 2.4 MB</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="visibility">visibility</span>
+</div>
+<div class="flex items-center justify-between p-md bg-surface-container-low rounded-xl border border-outline-variant/30 hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-white flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">SCANNER_RADIO.jpg</p>
+<p class="text-label-caps text-outline">05 FÉV. 2026 • 4.1 MB</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="visibility">visibility</span>
+</div>
+</div>
+</div>
+<!-- Section 4: Score de pertinence (92%) - Non-collapsible for impact -->
+<div class="bg-white rounded-xl shadow-[0_30px_30px_rgba(0,121,107,0.04)] p-lg flex flex-col items-center text-center">
+<div class="flex items-center gap-md mb-lg w-full justify-start">
+<span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+<span class="font-h3 text-h3 text-on-surface">Score de pertinence</span>
+</div>
+<div class="relative w-48 h-48 mb-lg">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle class="text-surface-variant" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary gauge-circle" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="20.1" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-h1 font-h1 text-primary">92%</span>
+<span class="font-label-caps text-label-caps text-outline">EXCELLENT</span>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant mb-lg max-w-md">
+                Ce score indique une corrélation très élevée entre vos symptômes décrits et le parcours de soins recommandé par nos algorithmes cliniques.
+            </p>
+<div class="w-full p-sm bg-surface-container-low rounded-lg border border-outline-variant/20 flex items-start gap-sm text-left">
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="info">info</span>
+<p class="text-[11px] leading-snug text-outline italic">
+                    Ce document est un bilan informatif généré par l'outil GPS Médical. Il ne remplace en aucun cas une consultation médicale présentielle. Les données sont traitées conformément aux normes RGPD.
+                </p>
+</div>
+</div>
+<!-- Accordion Section 5: Coaching réalisé -->
+<div class="bg-white rounded-xl shadow-[0_30px_30px_rgba(0,121,107,0.04)] overflow-hidden transition-all duration-300 accordion-group" id="acc-5">
+<button class="w-full flex items-center justify-between p-lg text-left hover:bg-surface-container-low transition-colors" onclick="toggleAccordion('acc-5')">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="fitness_center">fitness_center</span>
+<span class="font-h3 text-h3 text-on-surface">Coaching réalisé</span>
+</div>
+<span class="material-symbols-outlined chevron-icon transition-transform duration-300" data-icon="expand_more">expand_more</span>
+</button>
+<div class="accordion-content px-lg space-y-md">
+<div class="space-y-sm">
+<div class="flex justify-between items-end">
+<span class="text-body-md font-semibold text-on-surface">Mobilité lombaire</span>
+<span class="text-primary font-bold">85%</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between items-end">
+<span class="text-body-md font-semibold text-on-surface">Renforcement core</span>
+<span class="text-primary font-bold">60%</span>
+</div>
+<div class="w-full bg-surface-variant h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant pt-md border-t border-outline-variant/30">
+                    Progrès constants observés sur les 4 dernières semaines. Recommandation : Maintenir le rythme actuel de 3 séances hebdomadaires.
+                </p>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Bar -->
+<div class="fixed bottom-0 left-0 w-full glass-header p-md z-50">
+<div class="max-w-container-max mx-auto">
+<button class="w-full bg-primary hover:opacity-90 text-white font-h3 text-body-lg py-md rounded-xl shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+                Exporter en PDF
+            </button>
+</div>
+</div>
+<!-- Hidden Bottom Nav Mock for Hierarchy consistency (Shared Component) -->
+<nav class="fixed bottom-0 left-0 w-full z-40 flex justify-around items-center px-md py-sm glass-header md:hidden invisible">
+<!-- Invisible because this is a sub-page/details screen, as per instructions -->
+</nav>
+<script>
+        function toggleAccordion(id) {
+            const element = document.getElementById(id);
+            const isOpen = element.classList.contains('accordion-open');
+            
+            // Close all first for true accordion feel (optional)
+            // document.querySelectorAll('.accordion-group').forEach(el => el.classList.remove('accordion-open'));
+            
+            if (isOpen) {
+                element.classList.remove('accordion-open');
+            } else {
+                element.classList.add('accordion-open');
+            }
+        }
+
+        // Initialize first accordion as open
+        window.onload = () => {
+            toggleAccordion('acc-1');
+        };
+    </script>
+</body></html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SanteDz - Questionnaire Adaptatif</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-container-low": "#f0f4f2",
+                    "tertiary-container": "#a2563f",
+                    "inverse-surface": "#2d3130",
+                    "tertiary-fixed": "#ffdbd1",
+                    "on-surface": "#181d1b",
+                    "on-secondary-fixed-variant": "#3b4951",
+                    "surface-variant": "#dfe3e1",
+                    "on-error-container": "#93000a",
+                    "background": "#f6faf8",
+                    "on-primary-fixed": "#00201b",
+                    "on-primary-container": "#a1feec",
+                    "secondary": "#526069",
+                    "on-background": "#181d1b",
+                    "inverse-on-surface": "#eef2ef",
+                    "secondary-fixed-dim": "#bac9d3",
+                    "on-secondary-fixed": "#0f1d25",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary": "#843f29",
+                    "inverse-primary": "#7ad7c6",
+                    "primary-container": "#00796b",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#bdc9c5",
+                    "outline": "#6e7a76",
+                    "surface-container-high": "#e5e9e7",
+                    "tertiary-fixed-dim": "#ffb59f",
+                    "surface-container": "#ebefec",
+                    "secondary-container": "#d3e2ed",
+                    "primary-fixed": "#97f3e2",
+                    "primary-fixed-dim": "#7ad7c6",
+                    "surface": "#f6faf8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f6faf8",
+                    "on-tertiary-container": "#ffe8e2",
+                    "surface-dim": "#d7dbd8",
+                    "on-tertiary-fixed-variant": "#75331f",
+                    "on-surface-variant": "#3e4946",
+                    "surface-tint": "#006b5e",
+                    "secondary-fixed": "#d6e5ef",
+                    "on-tertiary-fixed": "#3a0a00",
+                    "primary": "#005e53",
+                    "on-primary-fixed-variant": "#005047",
+                    "on-secondary-container": "#56656e",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#dfe3e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "lg": "24px",
+                    "gutter": "20px",
+                    "xl": "32px",
+                    "xxl": "48px",
+                    "unit": "4px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "h2": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "body-lg": ["Inter"],
+                    "h3": ["Manrope"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"]
+            },
+            "fontSize": {
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .selected-card {
+            border: 2px solid #a2563f; /* Using tertiary color for the "orange" highlight as per design brief vs token mapping */
+            background-color: rgba(162, 86, 63, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- Top App Bar Space - Simplified for Question Journey -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md">
+<div class="max-w-container-max mx-auto px-md py-sm flex items-center justify-between">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant transition-colors active:scale-95">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<div class="flex-1 px-lg max-w-2xl">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full transition-all duration-700 ease-out" style="width: 75%;"></div>
+</div>
+<div class="mt-xs text-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Question 6 sur ~8</span>
+</div>
+</div>
+<div class="w-10"></div> <!-- Balance spacer -->
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow pt-[80px] pb-[100px] px-md max-w-2xl mx-auto w-full flex flex-col justify-center">
+<!-- Headline -->
+<header class="mb-xl text-center md:text-left">
+<h1 class="font-h2 text-h2 text-on-surface mb-sm">Votre douleur est-elle soulagée par le repos ?</h1>
+</header>
+<!-- Question List -->
+<section class="space-y-md">
+<!-- Card 1: Selected -->
+<label class="block cursor-pointer group">
+<input checked="" class="hidden peer" name="pain_relief" type="radio"/>
+<div class="p-lg rounded-xl bg-surface-container-lowest border-2 border-transparent transition-all duration-200 shadow-[0_30px_30px_rgba(0,121,107,0.04)] peer-checked:border-tertiary-container peer-checked:bg-tertiary-fixed/10 group-hover:scale-[1.01] flex items-center gap-md">
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center peer-checked:border-tertiary-container group-hover:border-tertiary-container">
+<div class="w-3 h-3 rounded-full bg-tertiary-container opacity-0 transition-opacity peer-checked:opacity-100"></div>
+</div>
+<span class="font-h3 text-body-lg text-on-surface">Oui, nettement</span>
+</div>
+</label>
+<!-- Card 2 -->
+<label class="block cursor-pointer group">
+<input class="hidden peer" name="pain_relief" type="radio"/>
+<div class="p-lg rounded-xl bg-surface-container-lowest border-2 border-transparent transition-all duration-200 shadow-[0_30px_30px_rgba(0,121,107,0.04)] peer-checked:border-tertiary-container peer-checked:bg-tertiary-fixed/10 group-hover:scale-[1.01] flex items-center gap-md">
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center peer-checked:border-tertiary-container group-hover:border-tertiary-container">
+<div class="w-3 h-3 rounded-full bg-tertiary-container opacity-0 transition-opacity peer-checked:opacity-100"></div>
+</div>
+<span class="font-h3 text-body-lg text-on-surface">Un peu</span>
+</div>
+</label>
+<!-- Card 3 -->
+<label class="block cursor-pointer group">
+<input class="hidden peer" name="pain_relief" type="radio"/>
+<div class="p-lg rounded-xl bg-surface-container-lowest border-2 border-transparent transition-all duration-200 shadow-[0_30px_30px_rgba(0,121,107,0.04)] peer-checked:border-tertiary-container peer-checked:bg-tertiary-fixed/10 group-hover:scale-[1.01] flex items-center gap-md">
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center peer-checked:border-tertiary-container group-hover:border-tertiary-container">
+<div class="w-3 h-3 rounded-full bg-tertiary-container opacity-0 transition-opacity peer-checked:opacity-100"></div>
+</div>
+<span class="font-h3 text-body-lg text-on-surface">Pas du tout</span>
+</div>
+</label>
+<!-- Card 4 -->
+<label class="block cursor-pointer group">
+<input class="hidden peer" name="pain_relief" type="radio"/>
+<div class="p-lg rounded-xl bg-surface-container-lowest border-2 border-transparent transition-all duration-200 shadow-[0_30px_30px_rgba(0,121,107,0.04)] peer-checked:border-tertiary-container peer-checked:bg-tertiary-fixed/10 group-hover:scale-[1.01] flex items-center gap-md">
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center peer-checked:border-tertiary-container group-hover:border-tertiary-container">
+<div class="w-3 h-3 rounded-full bg-tertiary-container opacity-0 transition-opacity peer-checked:opacity-100"></div>
+</div>
+<span class="font-h3 text-body-lg text-on-surface">Je ne sais pas</span>
+</div>
+</label>
+</section>
+<!-- Contextual Info -->
+<footer class="mt-xl space-y-sm text-center">
+<p class="text-on-surface-variant font-body-md opacity-80 italic">
+                Vos réponses adaptent les questions suivantes.
+            </p>
+<div class="inline-flex items-center gap-xs px-md py-xs bg-surface-container rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="cloud_off">cloud_off</span>
+<span class="font-label-caps text-label-caps">Hors ligne — sera synchronisé</span>
+</div>
+</footer>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/80 backdrop-blur-md z-50">
+<div class="max-w-2xl mx-auto px-lg py-md flex items-center justify-between gap-md">
+<button class="px-md py-sm font-body-md text-on-surface-variant hover:text-on-surface transition-colors active:scale-95">
+                Précédent
+            </button>
+<button class="flex-1 max-w-[240px] bg-primary-container text-on-primary-container px-xl py-md rounded-xl font-h3 text-h3 shadow-lg hover:scale-[1.02] active:scale-95 transition-all">
+                Suivant
+            </button>
+</div>
+</div>
+<script>
+        // Simple micro-interaction for radio cards
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Since Peer handles the styling, we just add a small haptic-like animation via JS
+                if(this.checked) {
+                    const card = this.nextElementSibling;
+                    card.classList.add('scale-[0.98]');
+                    setTimeout(() => {
+                        card.classList.remove('scale-[0.98]');
+                    }, 100);
+                }
+            });
+        });
+
+        // Atmospheric effect: subtle ambient glow following the mouse on desktop
+        if (window.innerWidth > 768) {
+            const glow = document.createElement('div');
+            glow.className = 'fixed pointer-events-none w-[600px] h-[600px] rounded-full blur-[100px] bg-primary/5 -z-10 transition-opacity duration-500 opacity-0';
+            document.body.appendChild(glow);
+
+            document.addEventListener('mousemove', (e) => {
+                glow.style.opacity = '1';
+                glow.style.left = `${e.clientX - 300}px`;
+                glow.style.top = `${e.clientY - 300}px`;
+            });
+        }
+    </script>
+</body></html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .water-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(180deg, #00796b 0%, #005e53 100%);
+            opacity: 0.2;
+            border-radius: 40%;
+            animation: wave 10s linear infinite;
+        }
+        @keyframes wave {
+            0% { transform: translateX(0) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#7ad7c6",
+                        "surface-variant": "#dfe3e1",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#00796b",
+                        "surface-container-highest": "#dfe3e1",
+                        "on-surface-variant": "#3e4946",
+                        "secondary-fixed": "#d6e5ef",
+                        "outline": "#6e7a76",
+                        "surface-tint": "#006b5e",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#3a0a00",
+                        "inverse-on-surface": "#eef2ef",
+                        "on-secondary-fixed": "#0f1d25",
+                        "on-secondary-container": "#56656e",
+                        "on-primary-fixed": "#00201b",
+                        "on-primary-container": "#a1feec",
+                        "secondary-fixed-dim": "#bac9d3",
+                        "tertiary": "#843f29",
+                        "surface-dim": "#d7dbd8",
+                        "tertiary-fixed-dim": "#ffb59f",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f6faf8",
+                        "on-tertiary-container": "#ffe8e2",
+                        "on-tertiary-fixed-variant": "#75331f",
+                        "surface-container": "#ebefec",
+                        "on-background": "#181d1b",
+                        "inverse-surface": "#2d3130",
+                        "background": "#f6faf8",
+                        "primary-fixed-dim": "#7ad7c6",
+                        "on-primary-fixed-variant": "#005047",
+                        "tertiary-container": "#a2563f",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#bdc9c5",
+                        "secondary-container": "#d3e2ed",
+                        "on-surface": "#181d1b",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#526069",
+                        "primary": "#005e53",
+                        "surface-container-low": "#f0f4f2",
+                        "on-secondary-fixed-variant": "#3b4951",
+                        "tertiary-fixed": "#ffdbd1",
+                        "surface-container-high": "#e5e9e7",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f6faf8",
+                        "primary-fixed": "#97f3e2",
+                        "on-tertiary": "#ffffff",
+                        "action-orange": "#E67E22"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xxl": "48px",
+                        "gutter": "20px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "unit": "4px",
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h2": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "h3": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32 overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-sm">
+<div class="flex items-center justify-between px-md h-16 w-full max-w-container-max mx-auto">
+<button class="active:scale-95 transition-transform duration-200 p-2 rounded-full hover:bg-surface-variant/50">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-h3 text-h3 font-bold text-primary dark:text-primary-fixed">Hydratation &amp; sommeil</h1>
+<button class="active:scale-95 transition-transform duration-200 p-2 rounded-full hover:bg-surface-variant/50">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="mt-20 px-gutter space-y-lg">
+<!-- Section 1: Hydratation -->
+<section class="space-y-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-h3 text-h3 text-primary">Hydratation</h2>
+<span class="text-on-surface-variant font-label-caps text-label-caps">OBJECTIF DU JOUR</span>
+</div>
+<div class="bg-surface-container shadow-[0_30px_30px_rgba(0,121,107,0.04)] rounded-xl p-lg relative overflow-hidden">
+<div class="flex flex-col items-center justify-center space-y-md relative z-10">
+<!-- Progress Circle Representation -->
+<div class="relative w-40 h-40 rounded-full bg-surface-container-lowest border-4 border-primary/10 flex items-center justify-center overflow-hidden">
+<div class="water-wave" style="bottom: -30%;"></div>
+<div class="text-center z-10">
+<p class="font-h2 text-h2 text-primary">1,4 <span class="text-body-md font-body-md">/ 2 L</span></p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">70% complété</p>
+</div>
+</div>
+<!-- Action Button -->
+<button class="flex items-center gap-xs bg-[#E67E22] text-white px-lg py-md rounded-full font-h3 text-h3 shadow-lg active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="water_drop">water_drop</span>
+                        + Verre
+                    </button>
+<!-- Quick Add Chips -->
+<div class="flex gap-sm">
+<button class="bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-md py-sm rounded-full active:scale-95 transition-all">+ 250ml</button>
+<button class="bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-md py-sm rounded-full active:scale-95 transition-all">+ 500ml</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Sommeil -->
+<section class="space-y-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-h3 text-h3 text-primary">Sommeil</h2>
+<span class="text-on-surface-variant font-label-caps text-label-caps">DERNIÈRE NUIT</span>
+</div>
+<div class="bg-surface-container shadow-[0_30px_30px_rgba(0,121,107,0.04)] rounded-xl p-lg space-y-lg">
+<div class="flex justify-between items-start">
+<div class="space-y-xs">
+<p class="font-h1 text-h1 text-on-surface leading-none">7h20</p>
+<p class="text-on-surface-variant font-body-md">Durée totale du repos</p>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed-variant p-sm rounded-lg flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="bedtime">bedtime</span>
+<span class="font-label-caps text-label-caps">QUALITÉ : BON</span>
+</div>
+</div>
+<!-- Quality Selector -->
+<div class="space-y-sm">
+<p class="font-label-caps text-label-caps text-on-surface-variant">COMMENT ÉVALUEREZ-VOUS VOTRE RÉVEIL ?</p>
+<div class="grid grid-cols-3 gap-sm">
+<button class="flex flex-col items-center gap-xs p-md rounded-xl bg-surface-container-low border-2 border-transparent hover:border-primary active:scale-95 transition-all">
+<span class="text-2xl">😴</span>
+<span class="font-label-caps text-label-caps">Excellent</span>
+</button>
+<button class="flex flex-col items-center gap-xs p-md rounded-xl bg-primary-container text-on-primary-container border-2 border-primary-container active:scale-95 transition-all">
+<span class="text-2xl">🙂</span>
+<span class="font-label-caps text-label-caps">Bon</span>
+</button>
+<button class="flex flex-col items-center gap-xs p-md rounded-xl bg-surface-container-low border-2 border-transparent hover:border-primary active:scale-95 transition-all">
+<span class="text-2xl">😣</span>
+<span class="font-label-caps text-label-caps">Médiocre</span>
+</button>
+</div>
+</div>
+<!-- Mini Bar Chart -->
+<div class="pt-md">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-md">HISTORIQUE (7 JOURS)</p>
+<div class="flex items-end justify-between h-24 gap-xs">
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full bg-surface-variant rounded-full h-12"></div>
+<span class="font-label-caps text-[10px] text-on-surface-variant">LUN</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full bg-surface-variant rounded-full h-16"></div>
+<span class="font-label-caps text-[10px] text-on-surface-variant">MAR</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full bg-primary-container rounded-full h-20"></div>
+<span class="font-label-caps text-[10px] text-on-surface-variant">MER</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full bg-surface-variant rounded-full h-14"></div>
+<span class="font-label-caps text-[10px] text-on-surface-variant">JEU</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full bg-surface-variant rounded-full h-18"></div>
+<span class="font-label-caps text-[10px] text-on-surface-variant">VEN</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full bg-surface-variant rounded-full h-10"></div>
+<span class="font-label-caps text-[10px] text-on-surface-variant">SAM</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-sm">
+<div class="w-full bg-surface-variant rounded-full h-22"></div>
+<span class="font-label-caps text-[10px] text-on-surface-variant">DIM</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights -->
+<div class="bg-secondary-container/30 border border-outline-variant p-md rounded-xl flex items-start gap-md">
+<span class="material-symbols-outlined text-primary-container" data-icon="lightbulb">lightbulb</span>
+<p class="font-body-md text-on-secondary-container italic">
+                Boire 500ml d'eau au réveil aide à stimuler votre métabolisme après votre nuit de sommeil.
+            </p>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-[0_-4px_30px_rgba(0,121,107,0.04)]">
+<div class="flex justify-around items-center h-20 px-gutter pb-safe w-full">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-label-caps text-label-caps">Journey</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="fitness_center" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+<span class="font-label-caps text-label-caps">Coaching</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-90 duration-150">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</button>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for water addition
+        document.querySelector('button[data-icon="water_drop"]').parentElement.addEventListener('click', function() {
+            const wave = document.querySelector('.water-wave');
+            const currentBottom = parseInt(window.getComputedStyle(wave).bottom);
+            if (currentBottom < 0) {
+                wave.style.bottom = (currentBottom + 5) + '%';
+            }
+        });
+
+        // Toggle Active State for Sleep Quality
+        const qualityButtons = document.querySelectorAll('.grid.grid-cols-3 button');
+        qualityButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                qualityButtons.forEach(b => {
+                    b.classList.remove('bg-primary-container', 'text-on-primary-container', 'border-primary-container');
+                    b.classList.add('bg-surface-container-low', 'border-transparent');
+                });
+                btn.classList.add('bg-primary-container', 'text-on-primary-container', 'border-primary-container');
+                btn.classList.remove('bg-surface-container-low', 'border-transparent');
+            });
+        });
+    </script>
+</body></html>

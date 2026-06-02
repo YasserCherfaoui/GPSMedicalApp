@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eef2ef",
+                        "surface-variant": "#dfe3e1",
+                        "on-surface-variant": "#3e4946",
+                        "background": "#f6faf8",
+                        "tertiary": "#843f29",
+                        "tertiary-container": "#a2563f",
+                        "on-error": "#ffffff",
+                        "surface": "#f6faf8",
+                        "on-secondary-fixed": "#0f1d25",
+                        "inverse-surface": "#2d3130",
+                        "on-tertiary-fixed": "#3a0a00",
+                        "outline": "#6e7a76",
+                        "surface-container-low": "#f0f4f2",
+                        "tertiary-fixed": "#ffdbd1",
+                        "primary-fixed": "#97f3e2",
+                        "secondary-fixed": "#d6e5ef",
+                        "tertiary-fixed-dim": "#ffb59f",
+                        "surface-tint": "#006b5e",
+                        "on-secondary-container": "#56656e",
+                        "surface-container-high": "#e5e9e7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#7ad7c6",
+                        "on-surface": "#181d1b",
+                        "surface-bright": "#f6faf8",
+                        "surface-dim": "#d7dbd8",
+                        "inverse-primary": "#7ad7c6",
+                        "secondary": "#526069",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#bac9d3",
+                        "primary-container": "#00796b",
+                        "on-primary-container": "#a1feec",
+                        "primary": "#005e53",
+                        "on-tertiary-fixed-variant": "#75331f",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#bdc9c5",
+                        "on-tertiary-container": "#ffe8e2",
+                        "on-secondary-fixed-variant": "#3b4951",
+                        "on-primary-fixed": "#00201b",
+                        "on-background": "#181d1b",
+                        "surface-container": "#ebefec",
+                        "surface-container-highest": "#dfe3e1",
+                        "secondary-container": "#d3e2ed",
+                        "on-primary-fixed-variant": "#005047",
+                        "unread-orange": "#F97316"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xxl": "48px",
+                        "xl": "32px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "gutter": "20px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "container-max": "1280px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "h1": ["Manrope"],
+                        "h3": ["Manrope"],
+                        "h2": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+<!-- Top AppBar (JSON Logic) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md text-primary font-h3 text-h3 shadow-sm flex items-center justify-between px-md h-16">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined hover:opacity-80 transition-opacity active:scale-95 duration-200">menu</button>
+<h1 class="font-h3 text-h3 font-bold text-primary">Messages</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a Mediterranean man in his 40s, with a friendly and composed expression, looking directly at the camera. The background is a softly blurred modern office interior with clean, clinical teal and white tones. The lighting is high-key and natural, creating a premium and trustworthy medical atmosphere consistent with a high-end health application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDezsLVlmDBCO08QBYuroeTYOia400fPtpe2pJ77jxgS025WQDmIRFikjPC9m8lnYI2dJoXnecZ1Yr3GyeP1OzW651ZNVuIDsGnCYDwiA0d1RXdnoP0qr90xN6hteB50UlOIIiYZJKDeW9rSJchCqgjwJdtpZr197vrQuawRzPEn7Ca0CFRvZmNmj4M3GSuZNTvHwMpGYe-Ic7JzrgQSVu1eT8FfYe3igslkkmZ-rq2oHvDytkngurydVwqOS8Q1isLQgL6W6U1Bzw"/>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="pt-24 px-md max-w-container-max mx-auto space-y-lg">
+<!-- Pinned Conversation Section -->
+<section class="space-y-sm">
+<div class="flex items-center justify-between px-xs">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Épinglé</h2>
+<span class="material-symbols-outlined text-outline text-sm">push_pin</span>
+</div>
+<!-- Concierge Card -->
+<div class="relative group cursor-pointer active:scale-[0.98] transition-all duration-200">
+<div class="bg-surface-container-lowest rounded-xl p-md flex items-center gap-md shadow-[0_30px_30px_rgba(0,121,107,0.04)] border-l-4 border-primary">
+<!-- Avatar Container -->
+<div class="relative flex-shrink-0">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-primary-container/10 flex items-center justify-center">
+<img alt="Concierge Avatar" class="w-full h-full object-cover" data-alt="A warm, professional female medical concierge with a gentle smile, wearing a subtle teal clinical uniform. She is set against a bright, airy medical office background with soft bokeh. The image uses a clean, high-tech clinical palette with vibrant teal accents, emphasizing trust, care, and professional guidance in a modern healthcare setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfVvzHw0B4DKBQxd_3WKNUwYXJom4c9ZAdIlCuKy3YWfHR1DiSwDJWyqhkcCt7Z7gwOPEmDs-LzABk79ML7uXwB1dsfFRNAO2jKcRVGjmZ_zB9S4vKJnRXYHkvuPPTGD0g7mgi_O98-FW_8WZ4oJS_sTh-ctpmYcFYzFgQ53GHCriSFQ87KOYBExF7PEcrCMsdBttjXUKNDjra4QAP42Uwov8LNMJgQebDMC7Abdx9JMC4twimcY4XQgnwDLROb3wxBVTyvaBWBss"/>
+</div>
+<!-- Agréé Badge -->
+<div class="absolute -bottom-1 -right-1 bg-primary text-white rounded-full p-0.5 border-2 border-white flex items-center justify-center" title="Agréé">
+<span class="material-symbols-outlined !text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<!-- Message Details -->
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h3 class="font-h3 text-[16px] font-bold text-on-surface truncate">Conciergerie GPS Médical</h3>
+<span class="text-xs text-outline font-medium">10:45</span>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-body-md text-on-surface-variant truncate pr-md">Bonjour Amine, comment vous sentez-vous aujourd'hui ?</p>
+<!-- Unread Bubble -->
+<div class="bg-unread-orange text-white text-[11px] font-bold h-5 w-5 rounded-full flex items-center justify-center shadow-sm">1</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-md pt-sm">
+<p class="text-on-surface-variant italic text-sm flex items-center gap-sm">
+<span class="material-symbols-outlined !text-[16px] text-primary">info</span>
+                    Votre conseiller vous accompagne à chaque étape.
+                </p>
+</div>
+</section>
+<!-- Search Bar Component -->
+<div class="relative pt-md">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary z-10">search</span>
+<input class="w-full bg-surface-container border-none rounded-xl py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary focus:bg-white transition-all text-body-md placeholder-outline" placeholder="Rechercher une discussion..." type="text"/>
+</div>
+<!-- Other Conversations (Standard List Logic but Modernized) -->
+<section class="space-y-xs">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant px-xs pb-sm">Récent</h2>
+<!-- Conversation 1 -->
+<div class="bg-white/50 hover:bg-surface-container rounded-xl p-md flex items-center gap-md transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold text-lg">
+                    DR
+                </div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h4 class="font-body-md font-semibold text-on-surface">Dr. Redouane Benzine</h4>
+<span class="text-[11px] text-outline">Hier</span>
+</div>
+<p class="text-sm text-outline truncate">Vos résultats d'analyses sont prêts.</p>
+</div>
+</div>
+<div class="h-px bg-surface-container-high mx-md opacity-50"></div>
+<!-- Conversation 2 -->
+<div class="bg-white/50 hover:bg-surface-container rounded-xl p-md flex items-center gap-md transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container-high">
+<img alt="Pharmacy" class="w-full h-full object-cover" data-alt="A brightly lit, modern pharmacy counter in Algiers, featuring clean white shelves stocked with medicine boxes in organized rows. Soft teal LED accents illuminate the shelves, creating a high-end clinical aesthetic. A professional pharmacist in a crisp white coat is partially visible, suggesting a helpful and organized medical environment with plenty of breathable whitespace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIb13vNLU44DFCp3uZGEIS2qeByg4ilTQDsrCzH69y1aOBIBTkezR9Z4EIvTqtWNRnRWkevYqC95N4GZmkJ21REHeW51BskS2O7GlhF1oGNSUaccvmklwknz2JiKJ9HbGw3qppfv5cnqMjcPhYufM8shg_L-49bxhj1yh7t6ExWSuCzQtIA1xzVRp7g9kuwImCifRd0okatkTpckHWv6TE92VtLmWpYc5oU2NjS8dqr-Ou4v4z8xXpIy6hTYuzOJ9sMoA1_78Ig4o"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h4 class="font-body-md font-semibold text-on-surface">Pharmacie Centrale</h4>
+<span class="text-[11px] text-outline">Lun.</span>
+</div>
+<p class="text-sm text-outline truncate">La commande #902 est disponible.</p>
+</div>
+</div>
+<div class="h-px bg-surface-container-high mx-md opacity-50"></div>
+<!-- Conversation 3 -->
+<div class="bg-white/50 hover:bg-surface-container rounded-xl p-md flex items-center gap-md transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary-container">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h4 class="font-body-md font-semibold text-on-surface">Assurance AXA Algérie</h4>
+<span class="text-[11px] text-outline">24 Oct.</span>
+</div>
+<p class="text-sm text-outline truncate">Remboursement validé pour votre soin.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (JSON Logic) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-md pt-sm bg-surface/80 backdrop-blur-md rounded-t-xl shadow-[0_-4px_30px_rgba(0,121,107,0.04)] text-on-surface-variant font-label-caps text-label-caps">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-md py-unit hover:bg-surface-container transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1">home</span>
+<span>Accueil</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-md py-unit hover:bg-surface-container transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1">location_on</span>
+<span>Parcours</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-md py-unit hover:bg-surface-container transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1">fitness_center</span>
+<span>Coaching</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-lg py-unit active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1 active-nav-icon">chat_bubble</span>
+<span>Messages</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-md py-unit hover:bg-surface-container transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1">person</span>
+<span>Profil</span>
+</button>
+</nav>
+<!-- Contextual FAB (Logic Check: Primary Action is "New Message") -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined !text-[28px]">edit_square</span>
+</button>
+<script>
+        // Micro-interactions for clicks
+        document.querySelectorAll('button, .cursor-pointer').forEach(el => {
+            el.addEventListener('click', function() {
+                // Subtle feedback for interactions
+                this.classList.add('opacity-70');
+                setTimeout(() => this.classList.remove('opacity-70'), 150);
+            });
+        });
+    </script>
+</body></html>

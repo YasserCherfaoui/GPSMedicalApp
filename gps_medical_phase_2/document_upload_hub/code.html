@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-low": "#f0f4f2",
+            "secondary-fixed-dim": "#bac9d3",
+            "error-container": "#ffdad6",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed-variant": "#005047",
+            "on-secondary-fixed": "#0f1d25",
+            "secondary-container": "#d3e2ed",
+            "on-primary": "#ffffff",
+            "tertiary-fixed": "#ffdbd1",
+            "on-tertiary-fixed-variant": "#75331f",
+            "primary-fixed-dim": "#7ad7c6",
+            "on-surface-variant": "#3e4946",
+            "surface": "#f6faf8",
+            "secondary-fixed": "#d6e5ef",
+            "tertiary": "#843f29",
+            "on-secondary-fixed-variant": "#3b4951",
+            "tertiary-fixed-dim": "#ffb59f",
+            "outline-variant": "#bdc9c5",
+            "on-tertiary": "#ffffff",
+            "secondary": "#526069",
+            "on-tertiary-container": "#ffe8e2",
+            "surface-variant": "#dfe3e1",
+            "on-surface": "#181d1b",
+            "surface-bright": "#f6faf8",
+            "primary-fixed": "#97f3e2",
+            "surface-tint": "#006b5e",
+            "on-background": "#181d1b",
+            "on-tertiary-fixed": "#3a0a00",
+            "on-primary-container": "#a1feec",
+            "on-error-container": "#93000a",
+            "surface-container": "#ebefec",
+            "outline": "#6e7a76",
+            "on-primary-fixed": "#00201b",
+            "surface-container-high": "#e5e9e7",
+            "primary": "#005e53",
+            "surface-container-highest": "#dfe3e1",
+            "primary-container": "#00796b",
+            "inverse-primary": "#7ad7c6",
+            "tertiary-container": "#a2563f",
+            "inverse-surface": "#2d3130",
+            "background": "#f6faf8",
+            "on-error": "#ffffff",
+            "surface-dim": "#d7dbd8",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#56656e",
+            "inverse-on-surface": "#eef2ef"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "container-max": "1280px",
+            "unit": "4px",
+            "xs": "4px",
+            "sm": "8px",
+            "xxl": "48px",
+            "xl": "32px",
+            "md": "16px",
+            "lg": "24px",
+            "gutter": "20px"
+          },
+          "fontFamily": {
+            "h2": ["Manrope"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "label-caps": ["Inter"],
+            "h1": ["Manrope"],
+            "h3": ["Manrope"]
+          },
+          "fontSize": {
+            "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+            "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+            "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .progress-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .7; }
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-xxl">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md shadow-sm flex items-center px-md h-xxl">
+<button class="mr-md text-primary active:scale-95 transition-transform hover:opacity-80">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-h3 text-h3 font-bold text-primary">Vos documents médicaux</h1>
+</header>
+<main class="pt-[64px] px-md">
+<!-- Step Indicator -->
+<div class="mt-lg flex items-center gap-xs">
+<div class="h-1 w-8 bg-primary rounded-full"></div>
+<div class="h-1 w-8 bg-primary rounded-full"></div>
+<div class="h-1 w-8 bg-surface-variant rounded-full"></div>
+<div class="h-1 w-8 bg-surface-variant rounded-full"></div>
+<span class="ml-auto font-label-caps text-label-caps text-outline">ÉTAPE 2/4</span>
+</div>
+<!-- Hero / Subtitle -->
+<section class="mt-lg">
+<h2 class="font-h2 text-[24px] leading-tight text-on-surface mb-sm">Ajoutez vos comptes-rendus d'IRM, radios ou analyses.</h2>
+<p class="font-body-md text-on-surface-variant italic">Optionnel mais recommandé.</p>
+</section>
+<!-- Source Selection -->
+<section class="mt-xl grid grid-cols-3 gap-sm">
+<button class="flex flex-col items-center justify-center p-md bg-surface-container-lowest rounded-xl shadow-[0_4px_30px_rgba(0,121,107,0.04)] border border-transparent active:border-primary transition-all group">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-xs text-primary group-active:bg-primary group-active:text-on-primary">
+<span class="material-symbols-outlined">camera</span>
+</div>
+<span class="text-[12px] font-semibold text-center leading-tight">Appareil photo</span>
+</button>
+<button class="flex flex-col items-center justify-center p-md bg-surface-container-lowest rounded-xl shadow-[0_4px_30px_rgba(0,121,107,0.04)] border border-transparent active:border-primary transition-all group">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-xs text-primary group-active:bg-primary group-active:text-on-primary">
+<span class="material-symbols-outlined">image</span>
+</div>
+<span class="text-[12px] font-semibold text-center leading-tight">Galerie</span>
+</button>
+<button class="flex flex-col items-center justify-center p-md bg-surface-container-lowest rounded-xl shadow-[0_4px_30px_rgba(0,121,107,0.04)] border border-transparent active:border-primary transition-all group">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-xs text-primary group-active:bg-primary group-active:text-on-primary">
+<span class="material-symbols-outlined">folder</span>
+</div>
+<span class="text-[12px] font-semibold text-center leading-tight">Fichiers</span>
+</button>
+</section>
+<!-- Uploaded Files List -->
+<section class="mt-xl space-y-md">
+<h3 class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Documents ajoutés</h3>
+<!-- Card 1: Uploading -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0_4px_30px_rgba(0,121,107,0.04)] flex flex-col gap-sm">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-semibold truncate">IRM_genou.pdf</p>
+<p class="text-[13px] text-outline">2.4 MB</p>
+</div>
+<span class="text-primary font-bold text-[13px]">60%</span>
+</div>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[60%] rounded-full progress-pulse"></div>
+</div>
+</div>
+<!-- Card 2: Success -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0_4px_30px_rgba(0,121,107,0.04)] flex items-center gap-md border-l-4 border-primary">
+<div class="w-10 h-10 rounded-lg bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">image</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-semibold truncate">Radio_Bassin.jpg</p>
+<p class="text-[13px] text-outline">1.1 MB</p>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Card 3: Error -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-[0_4px_30px_rgba(0,121,107,0.04)] flex items-center gap-md border-l-4 border-error">
+<div class="w-10 h-10 rounded-lg bg-error/5 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-semibold truncate">Analyses_Sang.pdf</p>
+<p class="text-[13px] text-error">Échec de l'envoi • 850 KB</p>
+</div>
+<button class="w-8 h-8 rounded-full bg-error/10 flex items-center justify-center text-error active:scale-90 transition-transform">
+<span class="material-symbols-outlined">replay</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Section -->
+<footer class="fixed bottom-0 left-0 w-full p-md bg-surface/80 backdrop-blur-md z-50">
+<div class="max-w-md mx-auto flex flex-col gap-sm">
+<button class="w-full py-md px-lg bg-tertiary-container text-on-tertiary-container rounded-full font-bold flex items-center justify-center gap-sm shadow-lg active:scale-[0.98] transition-all">
+<span>Lancer l'analyse</span>
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<button class="w-full py-sm text-outline font-semibold hover:text-primary transition-colors">
+        Passer cette étape
+      </button>
+</div>
+</footer>
+<!-- BottomNavBar Suppression for Transactional flow -->
+<!-- Navigation is hidden to prioritize focus on the upload task -->
+<script>
+    // Simple ripple/active state micro-interactions
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        let x = e.clientX - e.target.offsetLeft;
+        let y = e.clientY - e.target.offsetTop;
+        let ripples = document.createElement('span');
+        ripples.style.left = x + 'px';
+        ripples.style.top = y + 'px';
+        this.appendChild(ripples);
+        setTimeout(() => { ripples.remove() }, 1000);
+      });
+    });
+  </script>
+</body></html>

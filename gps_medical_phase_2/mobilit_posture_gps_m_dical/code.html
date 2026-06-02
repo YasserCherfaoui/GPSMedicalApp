@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Mobilité &amp; Posture - GPS Médical Algérie</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f6faf8",
+                        "tertiary-fixed-dim": "#ffb59f",
+                        "inverse-primary": "#7ad7c6",
+                        "background": "#f6faf8",
+                        "surface-container-low": "#f0f4f2",
+                        "on-secondary-fixed": "#0f1d25",
+                        "inverse-on-surface": "#eef2ef",
+                        "primary-fixed-dim": "#7ad7c6",
+                        "surface-container-highest": "#dfe3e1",
+                        "on-background": "#181d1b",
+                        "secondary-container": "#d3e2ed",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#d6e5ef",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2d3130",
+                        "on-tertiary-fixed-variant": "#75331f",
+                        "on-tertiary-container": "#ffe8e2",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#526069",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "tertiary": "#843f29",
+                        "on-primary-fixed-variant": "#005047",
+                        "surface-tint": "#006b5e",
+                        "tertiary-container": "#a2563f",
+                        "primary-container": "#00796b",
+                        "tertiary-fixed": "#ffdbd1",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#3a0a00",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#181d1b",
+                        "on-secondary-container": "#56656e",
+                        "primary-fixed": "#97f3e2",
+                        "secondary-fixed-dim": "#bac9d3",
+                        "surface-dim": "#d7dbd8",
+                        "surface-container": "#ebefec",
+                        "on-secondary-fixed-variant": "#3b4951",
+                        "outline-variant": "#bdc9c5",
+                        "outline": "#6e7a76",
+                        "primary": "#005e53",
+                        "surface": "#f6faf8",
+                        "on-surface-variant": "#3e4946",
+                        "surface-variant": "#dfe3e1",
+                        "surface-container-high": "#e5e9e7",
+                        "on-primary-fixed": "#00201b",
+                        "on-primary-container": "#a1feec"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "xs": "4px",
+                        "xxl": "48px",
+                        "md": "16px",
+                        "container-max": "1280px",
+                        "gutter": "20px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "h1": ["Manrope"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h3": ["Manrope"],
+                        "h2": ["Manrope"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .exercise-card {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .exercise-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-bright text-on-surface font-body-md min-h-screen pb-24">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-md h-16 bg-surface/80 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-md">
+<button class="transition-transform active:scale-95 text-primary">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-h3 text-h3 font-bold text-primary">Mobilité &amp; posture</h1>
+</div>
+<button class="transition-transform active:scale-95 text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="pt-20 px-md max-w-container-max mx-auto space-y-xl">
+<!-- Section 1: Exercices recommandés -->
+<section>
+<h2 class="font-h2 text-h2 mb-md text-on-surface">Exercices recommandés</h2>
+<div class="flex overflow-x-auto gap-md no-scrollbar pb-sm -mx-md px-md">
+<!-- Card 1 -->
+<div class="exercise-card min-w-[260px] bg-surface-container-lowest rounded-xl p-md shadow-sm flex flex-col gap-sm border border-outline-variant/30">
+<div class="h-32 bg-secondary-container/20 rounded-lg flex items-center justify-center relative overflow-hidden">
+<img alt="" class="h-full w-full object-cover" data-alt="A clean, medical-grade line illustration of a person performing a quadriceps stretch. The character is standing on one leg, holding the other foot behind them. The lines are a professional deep navy blue against a soft white background. The style is clinical, minimalist, and educational, consistent with a high-end medical app's visual identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBscAWew55lz77bBTcLVIjMzR6C7O3cq9f7l-u-CyVbtzBZn6pQ-3NMFYrfhJOXvoDTFhUEH_b29hFZyKQccU18N0Q21rnz3ZXv0u-z00MEh-S1ujDwFkrBu9QSUIgBxsbZELvGvThdn429VoFLQQmVOmJwj53TV9xkfyS6SeKHPmBc0KWA4irLHnTiD8m5yhzJ6ipMvNNZ8hXlxbuiY8oKpDGecJAHgW2o3g4Chy-E2C-AWc_J9HOFa4Q6f7OSa-60tr_jri2y-eo"/>
+<span class="absolute top-2 right-2 bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold">2 min</span>
+</div>
+<div class="space-y-xs">
+<h3 class="font-h3 text-body-lg font-bold">Étirement quadriceps</h3>
+<p class="text-on-surface-variant text-sm">Améliore la souplesse jambière.</p>
+</div>
+<button class="mt-auto bg-primary text-on-primary py-sm rounded-full text-sm font-bold transition-all hover:opacity-90 active:scale-95">
+                        Commencer
+                    </button>
+</div>
+<!-- Card 2 -->
+<div class="exercise-card min-w-[260px] bg-surface-container-lowest rounded-xl p-md shadow-sm flex flex-col gap-sm border border-outline-variant/30">
+<div class="h-32 bg-secondary-container/20 rounded-lg flex items-center justify-center relative overflow-hidden">
+<img alt="" class="h-full w-full object-cover" data-alt="A professional medical illustration showing a neck rotation exercise. A stylized human figure is shown from the shoulders up with arrows indicating slow cervical rotation. The drawing uses elegant navy blue strokes on a crisp white backdrop, maintaining a clinical yet approachable aesthetic for a high-end medical wellness platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8p4PaDqrseLTonusRkF0d6-J2u9UEVB5Y5LAexVDfwZTxthUkIK0licdyx4MmGGynKevEoDnWFcD4GaFK3MnQKs4CT-heIUmPyEMunBkOZNKv7pFCz7PsdT54Zl8c5v_IaxR4L4dUlLONtMufo59Z7JG1eHItHun4HCIRZO4veSslo4HLbJhuSJ27xPXxEfM5AmP06cBl8fH-H0yZfcgyBVSQFJ7Q0jOpzNZdkORros889qv0KrSi5daG-TuhMNKMuSK0YFnf0kg"/>
+<span class="absolute top-2 right-2 bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold">3 min</span>
+</div>
+<div class="space-y-xs">
+<h3 class="font-h3 text-body-lg font-bold">Rotation cervicale</h3>
+<p class="text-on-surface-variant text-sm">Relâche les tensions du cou.</p>
+</div>
+<button class="mt-auto bg-primary text-on-primary py-sm rounded-full text-sm font-bold transition-all hover:opacity-90 active:scale-95">
+                        Commencer
+                    </button>
+</div>
+<!-- Card 3 -->
+<div class="exercise-card min-w-[260px] bg-surface-container-lowest rounded-xl p-md shadow-sm flex flex-col gap-sm border border-outline-variant/30">
+<div class="h-32 bg-secondary-container/20 rounded-lg flex items-center justify-center relative overflow-hidden">
+<img alt="" class="h-full w-full object-cover" data-alt="A clean, minimalist medical line drawing illustrating a psoas muscle stretch. A character is in a deep lunge position, stretching the hip flexor. The aesthetic is modern corporate minimalism with deep navy outlines on a bright, airy background, designed to reduce cognitive load for patients using a medical GPS application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDk8W4_tDS3pb8kI_CWhYofOrGWlxWHQkyT9BHDB5OTVbVmIoNot6JV9f5PAnk4Ntk2mgMZMmqRl9qnWZ4wpeMNuBb-ek-IiMRVVmny5CS-RiTJ1qyDJRg6eC_23cNh4u_1llHC5g3mf3aawpqRLjVArjuqyXI1eIytW3Y3-9_vEv_zJIH4TlsVnjlQ8yrLjOZBCbrxp0tg5HXJfOxMSppreYjW5SB5MODioQVVc06RpHhP7FPBF16Y8fJ-y9TWpwEf_vXQErz_Ok"/>
+<span class="absolute top-2 right-2 bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold">2 min</span>
+</div>
+<div class="space-y-xs">
+<h3 class="font-h3 text-body-lg font-bold">Étirement psoas</h3>
+<p class="text-on-surface-variant text-sm">Détend les fléchisseurs.</p>
+</div>
+<button class="mt-auto bg-primary text-on-primary py-sm rounded-full text-sm font-bold transition-all hover:opacity-90 active:scale-95">
+                        Commencer
+                    </button>
+</div>
+</div>
+</section>
+<!-- Section 2: Postures à éviter -->
+<section>
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-h2 text-h2 text-on-surface">Postures à éviter</h2>
+<span class="text-error text-sm font-bold flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="warning">warning</span>
+                    Attention
+                </span>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="bg-error-container/10 border border-error/20 rounded-xl p-sm flex flex-col items-center text-center gap-xs relative overflow-hidden">
+<div class="w-full aspect-square bg-error-container/20 rounded-lg flex items-center justify-center mb-sm">
+<img alt="" class="h-3/4 opacity-80" data-alt="A cautionary medical illustration showing a side profile of a person slouching at a desk with a rounded back. The illustration uses thin red-tinted navy lines to highlight poor ergonomics. A translucent red overlay and a subtle X-mark indicate this is a posture to avoid. The style is clinical, clean, and professional for a medical application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCNy3h49vGtiOHWlN89xz9gA-5wjDCO3RTpJB-45Y_xa49QyqtY8Dba4ttqF1ggzega3PM-iu__wRANhGFCqfeNVFr95wMsvEBuI-6r8-O14kjHVlTkiyoS6UGf6rcajmujvAcHkiLLX9p-8IS8z9tL0B03DrLwqoN-YhfneUs3r64LcoYVqKS4hq9jaWBiOWicmxCZ2Ck6sGJ2HJnMkdu95snc688wOtqvUvzrfuc5rQAPo_J63dY6Ht3mD-ivAF2aL9E3MEgwXU"/>
+</div>
+<div class="absolute top-2 right-2 bg-error text-on-error rounded-full w-5 h-5 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</div>
+<p class="font-bold text-on-error-container text-sm">Dos voûté</p>
+<p class="text-[11px] text-on-surface-variant">Évitez l'arrondi dorsal.</p>
+</div>
+<div class="bg-error-container/10 border border-error/20 rounded-xl p-sm flex flex-col items-center text-center gap-xs relative overflow-hidden">
+<div class="w-full aspect-square bg-error-container/20 rounded-lg flex items-center justify-center mb-sm">
+<img alt="" class="h-3/4 opacity-80" data-alt="A professional medical drawing of a person with their head tilted down sharply towards a mobile phone, showing neck strain. The illustration uses red accent lines to indicate points of high pressure. The visual style is minimalist and clean, consistent with a modern health dashboard, using a soft white and teal-gray color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuRGBgliLG6I7rJUUu9wAOtyhMnX6n4nrk63Ndtgk8bhmiYIdbMquGGtolMpY_SFVgnJUA3boWReXeUe00RXgaO7LJFsmvF0_PGQvvx1uGit8v0k8jinedMxGvEVoLWO_N64-YyFR6Ug2YGUltZc1AFw134Q_z8c7-bo5iOKWDbqgigDbOpsyCL2k4_RgErvuQvdZ6O2U_2iDTc5HMfJgbOc2vmt5yWbNGOuXIqxpOrIbrizZ8gFpiqVBxwubW9vWPx_yLAc1blsw"/>
+</div>
+<div class="absolute top-2 right-2 bg-error text-on-error rounded-full w-5 h-5 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</div>
+<p class="font-bold text-on-error-container text-sm">Cou cassé</p>
+<p class="text-[11px] text-on-surface-variant">Maintenez l'alignement.</p>
+</div>
+</div>
+</section>
+<!-- Section 3: Exercice en cours -->
+<section class="pb-8">
+<h2 class="font-h2 text-h2 mb-md text-on-surface">Exercice en cours</h2>
+<div class="bg-surface-container-lowest rounded-xxl p-lg shadow-[0_30px_60px_-15px_rgba(0,121,107,0.08)] border border-primary/5 relative overflow-hidden">
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-h3 text-h3 font-extrabold text-primary">Étirement des hanches</h3>
+<p class="text-on-surface-variant text-sm font-medium">Relâchement du bassin • Étape 1/4</p>
+</div>
+<div class="flex gap-xs">
+<div class="w-8 h-1.5 rounded-full bg-primary"></div>
+<div class="w-8 h-1.5 rounded-full bg-outline-variant"></div>
+<div class="w-8 h-1.5 rounded-full bg-outline-variant"></div>
+<div class="w-8 h-1.5 rounded-full bg-outline-variant"></div>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden bg-secondary-container/10 aspect-video mb-lg group">
+<img alt="" class="w-full h-full object-cover" data-alt="A serene, high-definition video frame showing a medical professional demonstrating a hip stretching exercise in a bright, modern clinic. The lighting is soft and airy, creating a calm atmosphere. The colors are predominantly teal, white, and soft gray. The composition is focused and instructional, symbolizing compassionate care and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPjSNktG52hedGftwiueKlUVkpDhYjZMgdquNaYoi12VzQ1x36pinbs_FC2ZV6RWQQQ9J5n0Sb46bOfDVcPcw6aafyTHZH2e9b0qdGDh1uZwri7iw2DJKr6jN6rLUbcTd4iBeQJFkTdEXxi_Rmsruhc4XtfXRLaLu4rKanafvQ7uQWOp4zl1Z6uh3Eu_Q4PPcq216fJiqoMsCAc1D7BlYGTT6HbW7o12INKEPEni7YLsuDsTnsGpPuKI3Bm9vSfuCVbrSA8EsOv40"/>
+<div class="absolute inset-0 bg-black/10 flex items-center justify-center">
+<button class="w-16 h-16 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg transition-transform active:scale-90 hover:scale-105">
+<span class="material-symbols-outlined text-[40px] leading-none" data-icon="play_arrow">play_arrow</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4 right-4 flex items-center gap-sm">
+<div class="h-1 bg-white/30 flex-1 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/3 rounded-full"></div>
+</div>
+<span class="text-white text-xs font-bold">0:45 / 2:00</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl flex items-start gap-md border border-primary/10">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="air">air</span>
+</div>
+<div>
+<p class="font-bold text-on-surface mb-1">Conseil Pro</p>
+<p class="text-body-md text-on-surface-variant italic">"Respirez profondément pendant l'exercice. Inspirez par le nez, expirez lentement par la bouche pour maximiser la détente musculaire."</p>
+</div>
+</div>
+<div class="mt-lg flex gap-md">
+<button class="flex-1 bg-surface-container-high text-on-surface font-bold py-md rounded-xl transition-all active:scale-95">Passer</button>
+<button class="flex-[2] bg-primary text-on-primary font-bold py-md rounded-xl flex items-center justify-center gap-sm transition-all active:scale-95 shadow-md">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+                        Suivant
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-sm pb-safe h-20 bg-surface/80 backdrop-blur-md shadow-[0_-1px_10px_rgba(0,121,107,0.04)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps mt-1">Accueil</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="rebase_edit">rebase_edit</span>
+<span class="font-label-caps text-label-caps mt-1">Parcours</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="psychology" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-caps text-label-caps mt-1">Coaching</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profil</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for exercise cards
+        document.querySelectorAll('.exercise-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.add('ring-2', 'ring-primary', 'ring-offset-2');
+                setTimeout(() => card.classList.remove('ring-2', 'ring-primary', 'ring-offset-2'), 600);
+            });
+        });
+
+        // Breathing animation logic for the reassure text
+        const airIcon = document.querySelector('[data-icon="air"]');
+        if (airIcon) {
+            setInterval(() => {
+                airIcon.style.transform = 'scale(1.2)';
+                airIcon.style.transition = 'transform 2s ease-in-out';
+                setTimeout(() => {
+                    airIcon.style.transform = 'scale(1)';
+                }, 2000);
+            }, 4000);
+        }
+    </script>
+</body></html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Profile - GPS Médical Algérie</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eef2ef",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e5e9e7",
+                        "surface-bright": "#f6faf8",
+                        "surface": "#f6faf8",
+                        "primary-container": "#00796b",
+                        "outline": "#6e7a76",
+                        "on-secondary-fixed-variant": "#3b4951",
+                        "surface-variant": "#dfe3e1",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#7ad7c6",
+                        "surface-container-highest": "#dfe3e1",
+                        "secondary-fixed": "#d6e5ef",
+                        "on-background": "#181d1b",
+                        "on-primary-fixed-variant": "#005047",
+                        "tertiary": "#843f29",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f0f4f2",
+                        "inverse-primary": "#7ad7c6",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#97f3e2",
+                        "on-tertiary-container": "#ffe8e2",
+                        "secondary": "#526069",
+                        "on-tertiary-fixed-variant": "#75331f",
+                        "on-primary-container": "#a1feec",
+                        "on-surface": "#181d1b",
+                        "background": "#f6faf8",
+                        "surface-tint": "#006b5e",
+                        "on-secondary-fixed": "#0f1d25",
+                        "on-secondary-container": "#56656e",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb59f",
+                        "surface-dim": "#d7dbd8",
+                        "on-surface-variant": "#3e4946",
+                        "surface-container": "#ebefec",
+                        "inverse-surface": "#2d3130",
+                        "on-tertiary-fixed": "#3a0a00",
+                        "tertiary-container": "#a2563f",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#bac9d3",
+                        "error": "#ba1a1a",
+                        "primary": "#005e53",
+                        "on-primary-fixed": "#00201b",
+                        "tertiary-fixed": "#ffdbd1",
+                        "secondary-container": "#d3e2ed",
+                        "outline-variant": "#bdc9c5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "4px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "gutter": "20px",
+                        "xxl": "48px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "h3": ["Manrope"],
+                        "h2": ["Manrope"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "h1": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .segmented-control input:checked + label {
+            background-color: #00796b;
+            color: #a1feec;
+            font-weight: 600;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center justify-between px-md h-16 backdrop-blur-xl bg-surface/80 shadow-sm">
+<div class="flex items-center gap-md">
+<button aria-label="Back" class="active:scale-95 transition-all hover:scale-105">
+<span class="material-symbols-outlined text-primary text-h3">arrow_back</span>
+</button>
+<h1 class="font-h3 text-h3 font-bold text-primary">Profil médical</h1>
+</div>
+<button class="text-primary font-bold transition-all active:scale-95 hover:scale-105">Enregistrer</button>
+</header>
+<main class="pt-20 pb-32 px-md max-w-xl mx-auto space-y-xl">
+<!-- Form Content Container -->
+<div class="space-y-lg">
+<!-- Date of Birth -->
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant px-xs">DATE DE NAISSANCE</label>
+<div class="relative">
+<input class="w-full h-12 bg-surface-container-low border-2 border-transparent focus:border-primary focus:bg-surface rounded-xl px-md text-body-md transition-all outline-none appearance-none" type="date" value="1990-05-15"/>
+<span class="material-symbols-outlined absolute right-4 top-3 text-primary pointer-events-none">calendar_today</span>
+</div>
+</div>
+<!-- Sex Segmented Control -->
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant px-xs">SEXE</label>
+<div class="segmented-control flex p-1 bg-surface-container-high rounded-xl h-12">
+<input checked="" class="hidden" id="homme" name="sexe" type="radio"/>
+<label class="flex-1 flex items-center justify-center rounded-lg text-body-md transition-all cursor-pointer" for="homme">Homme</label>
+<input class="hidden" id="femme" name="sexe" type="radio"/>
+<label class="flex-1 flex items-center justify-center rounded-lg text-body-md transition-all cursor-pointer" for="femme">Femme</label>
+<input class="hidden" id="autre" name="sexe" type="radio"/>
+<label class="flex-1 flex items-center justify-center rounded-lg text-body-md transition-all cursor-pointer" for="autre">Autre</label>
+</div>
+</div>
+<!-- Blood Group Dropdown -->
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant px-xs">GROUPE SANGUIN</label>
+<div class="relative">
+<select class="w-full h-12 bg-surface-container-low border-2 border-transparent focus:border-primary focus:bg-surface rounded-xl px-md text-body-md transition-all outline-none appearance-none cursor-pointer">
+<option value="A+">A+</option>
+<option value="A-">A-</option>
+<option value="B+">B+</option>
+<option value="B-">B-</option>
+<option value="AB+">AB+</option>
+<option value="AB-">AB-</option>
+<option selected="" value="O+">O+</option>
+<option value="O-">O-</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-3 text-primary pointer-events-none">unfold_more</span>
+</div>
+</div>
+<!-- Allergies Section -->
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant px-xs">ALLERGIES</label>
+<div class="flex flex-wrap gap-sm items-center">
+<div class="flex items-center gap-xs px-sm py-2 bg-secondary-container text-on-secondary-container rounded-lg border border-outline-variant/30">
+<span class="text-body-md">Pénicilline</span>
+<button class="flex items-center"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+<div class="flex items-center gap-xs px-sm py-2 bg-secondary-container text-on-secondary-container rounded-lg border border-outline-variant/30">
+<span class="text-body-md">Pollen</span>
+<button class="flex items-center"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+<button class="flex items-center gap-xs px-sm py-2 bg-primary/5 text-primary border border-dashed border-primary/40 rounded-lg hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="text-body-md font-bold">Ajouter</span>
+</button>
+</div>
+</div>
+<!-- Chronic Diseases Section -->
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant px-xs">MALADIES CHRONIQUES</label>
+<div class="flex flex-wrap gap-sm items-center">
+<div class="flex items-center gap-xs px-sm py-2 bg-secondary-container text-on-secondary-container rounded-lg border border-outline-variant/30">
+<span class="text-body-md">Diabète</span>
+<button class="flex items-center"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+<div class="flex items-center gap-xs px-sm py-2 bg-secondary-container text-on-secondary-container rounded-lg border border-outline-variant/30">
+<span class="text-body-md">Hypertension</span>
+<button class="flex items-center"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+<button class="flex items-center gap-xs px-sm py-2 bg-primary/5 text-primary border border-dashed border-primary/40 rounded-lg hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="text-body-md font-bold">Ajouter</span>
+</button>
+</div>
+</div>
+<!-- Ongoing Treatments -->
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant px-xs">TRAITEMENTS EN COURS</label>
+<textarea class="w-full bg-surface-container-low border-2 border-transparent focus:border-primary focus:bg-surface rounded-xl p-md text-body-md transition-all outline-none resize-none" placeholder="Listez vos médicaments et dosages actuels..." rows="4"></textarea>
+</div>
+</div>
+<!-- Trust Card -->
+<div class="bg-surface p-md rounded-xl shadow-[0_4px_30px_rgba(0,121,107,0.04)] border border-outline-variant/20 flex flex-col items-center gap-sm text-center">
+<div class="w-12 h-12 bg-primary-container/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-h3" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<p class="text-body-md text-secondary leading-tight">
+                Vos informations médicales sont protégées. Seuls les professionnels autorisés y ont accès.
+            </p>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-xl px-md pb-8 pt-4 space-y-md z-40">
+<div class="flex items-center justify-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span class="text-label-caps font-label-caps">Ces données restent chiffrées et hébergées en Algérie.</span>
+</div>
+<button class="w-full h-14 bg-primary text-on-primary rounded-xl font-bold text-body-lg flex items-center justify-center shadow-lg active:scale-[0.98] transition-all">
+            Enregistrer
+        </button>
+</div>
+<!-- Background Decorative Element -->
+<div class="fixed -bottom-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+<div class="fixed -top-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+<script>
+        // Micro-interaction for the "Save" text button and primary button
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.innerText.includes('Enregistrer')) {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span>';
+                    btn.disabled = true;
+                    setTimeout(() => {
+                        btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Profil mis à jour';
+                        btn.classList.replace('bg-primary', 'bg-green-600');
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                            btn.classList.replace('bg-green-600', 'bg-primary');
+                            btn.disabled = false;
+                        }, 2000);
+                    }, 1200);
+                }
+            });
+        });
+    </script>
+</body></html>
