@@ -6,7 +6,7 @@ part of 'app_info.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appInfoHash() => r'fe6b7dc03957b8005fc5ee4a06a4ff1ecabc70b1';
+String _$appInfoHash() => r'8a74d58c7e9a9d07e186b5384d359f11cadd5aa8';
 
 /// Overridden in each app entrypoint (`patient_app`, `specialist_app`).
 ///

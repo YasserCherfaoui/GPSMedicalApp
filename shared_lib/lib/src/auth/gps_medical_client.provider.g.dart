@@ -6,7 +6,7 @@ part of 'gps_medical_client.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$gpsMedicalClientHash() => r'cf54faaa0913c9c647f7d657ba0e553aae351109';
+String _$gpsMedicalClientHash() => r'8fdf22186cd8ca9617eb63f511b4f68b25ad9790';
 
 /// Shared API client wired to the session [TokenStore] and expiry handler.
 ///

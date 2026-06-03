@@ -30,6 +30,13 @@ abstract final class GpsRoutes {
   static const biometricSetup = '/setup/biometric';
   static const registrationSuccess = '/setup/success';
 
+  // Discovery & Week 6/7 Flows
+  static const discover = '/discover';
+  static const map = '/map';
+  static const search = '/search';
+  static const appointments = '/appointments';
+  static String doctorDetail(String id) => '/doctors/$id';
+
   /// Debug-only design system QA (see [createGpsRouter]).
   static const designSystemShowcase = '/dev/design-system';
 

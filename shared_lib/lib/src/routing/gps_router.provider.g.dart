@@ -6,7 +6,7 @@ part of 'gps_router.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$gpsRouterHash() => r'd63c6bc7f82921d2b146912f314f50670c23aeee';
+String _$gpsRouterHash() => r'5b27418007999a8c8c51c84389c668dce1a5dc41';
 
 /// Application [GoRouter] with auth-aware redirects.
 ///

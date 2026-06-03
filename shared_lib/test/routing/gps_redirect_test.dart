@@ -32,7 +32,7 @@ void main() {
           session: authenticated,
           matchedLocation: GpsRoutes.login,
         ),
-        GpsRoutes.profile,
+        GpsRoutes.discover,
       );
     });
 

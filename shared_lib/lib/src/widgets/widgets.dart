@@ -1,6 +1,7 @@
 export 'algerian_phone_field.dart';
 export 'auth_flow_scaffold.dart';
 export 'design_system_showcase.dart';
+export 'doctor_card.dart';
 export 'empty_state.dart';
 export 'error_state.dart';
 export 'gps_badge.dart';
@@ -12,4 +13,6 @@ export 'loading_skeleton.dart';
 export 'otp_pin_input.dart';
 export 'password_strength_field.dart';
 export 'primary_button.dart';
+export 'rating_display.dart';
 export 'secondary_button.dart';
+export 'specialty_chip.dart';

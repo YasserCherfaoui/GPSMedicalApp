@@ -139,4 +139,62 @@ void main() {
       expect(GpsTheme.dark().brightness, Brightness.dark);
     });
   });
+
+  group('SpecialtyChip', () {
+    testWidgets('renders specialty label', (tester) async {
+      await tester.pumpWidget(_wrap(const SpecialtyChip(label: 'Pédiatrie')));
+      expect(find.text('Pédiatrie'), findsOneWidget);
+    });
+  });
+
+  group('RatingDisplay', () {
+    testWidgets('renders rating average and count', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(body: RatingDisplay(rating: 4.8, count: 12)),
+        ),
+      );
+      expect(find.text('4.8'), findsOneWidget);
+      expect(find.text('(12)'), findsOneWidget);
+    });
+  });
+
+  group('DoctorCard', () {
+    testWidgets('renders doctor details and handles actions', (tester) async {
+      var booked = false;
+      var favorited = false;
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DoctorCard(
+              name: 'Dr. Karim Benali',
+              specialty: 'Cardiologie',
+              rating: 4.9,
+              reviewCount: 42,
+              city: 'Alger',
+              fee: 2500,
+              isVerified: true,
+              offersTelehealth: true,
+              matchPercentage: 95,
+              onBookPressed: () => booked = true,
+              onFavoritePressed: () => favorited = true,
+            ),
+          ),
+        ),
+      );
+
+      expect(find.text('Dr. Karim Benali'), findsOneWidget);
+      expect(find.text('Cardiologie'), findsOneWidget);
+      expect(find.text('Match 95%'), findsOneWidget);
+      expect(find.text('2500 DZD'), findsOneWidget);
+      expect(find.text('Téléconsultation'), findsOneWidget);
+      expect(find.byIcon(Icons.verified), findsOneWidget);
+
+      await tester.tap(find.text('Prendre RDV'));
+      expect(booked, isTrue);
+
+      await tester.tap(find.byIcon(Icons.favorite_border));
+      expect(favorited, isTrue);
+    });
+  });
 }

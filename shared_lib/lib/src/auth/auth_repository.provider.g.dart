@@ -6,7 +6,7 @@ part of 'auth_repository.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$useMockAuthHash() => r'6023f89d3a801fa0b965f9f290b2358db676da6e';
+String _$useMockAuthHash() => r'597a6cf473e4354bd5befaad51bc01d334de5f40';
 
 /// When true, [MockAuthRepository] is used (UI/tests without a backend).
 ///
@@ -27,7 +27,7 @@ final useMockAuthProvider = Provider<bool>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef UseMockAuthRef = ProviderRef<bool>;
-String _$authRepositoryHash() => r'dc21a0b357c388a8884d18fc00c78a36e0033421';
+String _$authRepositoryHash() => r'640f53e49d64c51da74e805d0f085311925a26e4';
 
 /// See also [authRepository].
 @ProviderFor(authRepository)

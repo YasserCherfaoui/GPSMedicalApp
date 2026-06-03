@@ -1,0 +1,150 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:gps_medical_shared/gps_medical_shared.dart';
+
+import '../features/dashboard/screens/patient_dashboard_screen.dart';
+import '../features/discovery/screens/doctor_detail_screen.dart';
+import '../features/discovery/screens/doctor_list_screen.dart';
+import '../features/discovery/screens/doctor_search_screen.dart';
+import '../features/discovery/screens/nearby_doctors_map_screen.dart';
+
+/// Configures GoRouter for the Patient Application, embedding Shell and Discovery routes.
+GoRouter createPatientRouter({
+  required AuthSessionNotifier authListenable,
+  required GpsMedicalAppInfo appInfo,
+}) {
+  AuthSession sessionOf() => authListenable.session;
+
+  return GoRouter(
+    initialLocation: GpsRoutes.splash,
+    refreshListenable: authListenable,
+    redirect: (context, state) {
+      return resolveGpsRedirect(
+        session: sessionOf(),
+        matchedLocation: state.matchedLocation,
+      );
+    },
+    routes: [
+      GoRoute(
+        path: GpsRoutes.splash,
+        builder: (context, state) => SplashScreen(appInfo: appInfo),
+      ),
+      GoRoute(
+        path: GpsRoutes.language,
+        builder: (context, state) => const LanguageScreen(),
+      ),
+      GoRoute(
+        path: '${GpsRoutes.onboarding}/:step',
+        builder: (context, state) {
+          final step = int.tryParse(state.pathParameters['step'] ?? '') ?? 1;
+          return OnboardingScreen(step: step.clamp(1, 3));
+        },
+      ),
+      GoRoute(
+        path: GpsRoutes.authWelcome,
+        builder: (context, state) => const AuthWelcomeScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.login,
+        builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.registerNin,
+        builder: (context, state) => const RegisterNinScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.registerFullName,
+        builder: (context, state) => const RegisterFullNameScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.registerPhone,
+        builder: (context, state) => const RegisterPhoneScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.registerOtp,
+        builder: (context, state) => const RegisterOtpScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.registerPassword,
+        builder: (context, state) => const RegisterPasswordScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.registerConsent,
+        builder: (context, state) => const RegisterConsentScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.forgotPassword,
+        builder: (context, state) => const ForgotPasswordScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.resetPassword,
+        builder: (context, state) => const ResetPasswordScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.biometricSetup,
+        builder: (context, state) => const BiometricSetupScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.registrationSuccess,
+        builder: (context, state) => const RegistrationSuccessScreen(),
+      ),
+
+      // Top-level full screen routes
+      GoRoute(
+        path: GpsRoutes.search,
+        builder: (context, state) => const DoctorSearchScreen(),
+      ),
+      GoRoute(
+        path: '/doctors/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return DoctorDetailScreen(doctorId: id);
+        },
+      ),
+
+      // Dashboard shell route
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return PatientDashboardScreen(navigationShell: navigationShell);
+        },
+        branches: [
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: GpsRoutes.discover,
+                builder: (context, state) => const DoctorListScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: GpsRoutes.map,
+                builder: (context, state) => const NearbyDoctorsMapScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: GpsRoutes.appointments,
+                builder: (context, state) => const Scaffold(
+                  body: Center(child: Text('Consultations Placeholder')),
+                ),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: GpsRoutes.profile,
+                builder: (context, state) =>
+                    ProfilePlaceholderScreen(appInfo: appInfo),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ],
+  );
+}

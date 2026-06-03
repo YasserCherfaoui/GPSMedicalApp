@@ -6,7 +6,7 @@ part of 'auth_session.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tokenStoreHash() => r'99148dcfbf6ee767a66c62fb83f38f23a1b9cd6b';
+String _$tokenStoreHash() => r'd7cbea745a0b59dd6c94127a267f348fa8bf5c26';
 
 /// See also [tokenStore].
 @ProviderFor(tokenStore)
@@ -23,7 +23,7 @@ final tokenStoreProvider = Provider<TokenStore>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef TokenStoreRef = ProviderRef<TokenStore>;
-String _$authSessionStateHash() => r'0b502e43231e4c733a8667091c49f6819850dbd7';
+String _$authSessionStateHash() => r'4c33e5ed07c11e46da159c5c1eae7f9998115d57';
 
 /// Read-only view of the current session.
 ///

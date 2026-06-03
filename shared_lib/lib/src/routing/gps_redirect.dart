@@ -20,7 +20,7 @@ String? resolveGpsRedirect({
         location.startsWith('/auth/register') ||
         location == GpsRoutes.forgotPassword ||
         location == GpsRoutes.resetPassword) {
-      return GpsRoutes.profile;
+      return GpsRoutes.discover;
     }
   }
 

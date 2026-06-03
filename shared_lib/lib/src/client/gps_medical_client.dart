@@ -98,6 +98,8 @@ class GpsMedicalClient {
 
   SystemApi get system => _root.getSystemApi();
 
+  GeolocationApi get geolocation => _v1.getGeolocationApi();
+
   /// Sets the bearer token on the generated client's interceptor map.
   void applyBearerToken(String accessToken) {
     _v1.setBearerAuth(kBearerAuthSchemeName, accessToken);

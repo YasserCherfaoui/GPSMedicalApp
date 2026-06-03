@@ -62,12 +62,23 @@ class AuthRefreshInterceptor extends Interceptor {
     DioException err,
     ErrorInterceptorHandler handler,
   ) async {
-    final retried = await _retryAfterRefresh(err.requestOptions);
-    if (retried != null) {
-      handler.resolve(retried);
+    if (err.response?.statusCode != 401) {
+      handler.next(err);
       return;
     }
-    handler.next(err);
+
+    try {
+      final retried = await _retryAfterRefresh(err.requestOptions);
+      if (retried != null) {
+        handler.resolve(retried);
+        return;
+      }
+      handler.next(err);
+    } on DioException catch (e) {
+      handler.next(e);
+    } catch (e) {
+      handler.next(err);
+    }
   }
 
   @override
@@ -80,12 +91,25 @@ class AuthRefreshInterceptor extends Interceptor {
       return;
     }
 
-    final retried = await _retryAfterRefresh(response.requestOptions);
-    if (retried != null) {
-      handler.resolve(retried);
-      return;
+    try {
+      final retried = await _retryAfterRefresh(response.requestOptions);
+      if (retried != null) {
+        handler.resolve(retried);
+        return;
+      }
+      handler.next(response);
+    } on DioException catch (e) {
+      handler.reject(e);
+    } catch (e) {
+      handler.reject(
+        DioException(
+          requestOptions: response.requestOptions,
+          response: response,
+          type: DioExceptionType.unknown,
+          error: e,
+        ),
+      );
     }
-    handler.next(response);
   }
 
   Future<Response<dynamic>?> _retryAfterRefresh(
@@ -101,25 +125,16 @@ class AuthRefreshInterceptor extends Interceptor {
       return null;
     }
 
+    final TokenPair pair;
     try {
-      final pair = await _refreshTokens(refreshToken);
-      if (pair == null ||
-          pair.accessToken == null ||
-          pair.refreshToken == null) {
+      final refreshed = await _refreshTokens(refreshToken);
+      if (refreshed == null ||
+          refreshed.accessToken == null ||
+          refreshed.refreshToken == null) {
         await onSessionExpired?.call();
         return null;
       }
-
-      await tokenStore.saveTokens(pair);
-
-      final retryOptions = requestOptions;
-      retryOptions.extra = Map<String, dynamic>.from(retryOptions.extra)
-        ..[_retriedExtraKey] = true;
-      retryOptions.headers['Authorization'] = 'Bearer ${pair.accessToken}';
-
-      final retryDio = Dio(dio.options)
-        ..httpClientAdapter = dio.httpClientAdapter;
-      return retryDio.fetch<dynamic>(retryOptions);
+      pair = refreshed;
     } on DioException {
       await onSessionExpired?.call();
       return null;
@@ -127,6 +142,17 @@ class AuthRefreshInterceptor extends Interceptor {
       await onSessionExpired?.call();
       return null;
     }
+
+    await tokenStore.saveTokens(pair);
+
+    final retryOptions = requestOptions;
+    retryOptions.extra = Map<String, dynamic>.from(retryOptions.extra)
+      ..[_retriedExtraKey] = true;
+    retryOptions.headers['Authorization'] = 'Bearer ${pair.accessToken}';
+
+    final retryDio = Dio(dio.options)
+      ..httpClientAdapter = dio.httpClientAdapter;
+    return await retryDio.fetch<dynamic>(retryOptions);
   }
 
   bool _shouldAttachAccessToken(RequestOptions options) {

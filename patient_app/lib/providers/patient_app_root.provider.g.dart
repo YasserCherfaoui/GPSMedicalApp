@@ -6,7 +6,7 @@ part of 'patient_app_root.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$patientAppFlavorHash() => r'4f994ed497548f4c23c931a133050bc7d34d2da7';
+String _$patientAppFlavorHash() => r'e25e6157c2838f2d4493346537cd98eee7315350';
 
 /// App flavor from `--dart-define=APP_FLAVOR=...` (dev / staging / prod).
 ///

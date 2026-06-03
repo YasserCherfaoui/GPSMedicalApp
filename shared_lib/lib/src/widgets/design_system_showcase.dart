@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
 import '../theme/gps_theme.dart';
+import 'doctor_card.dart';
 import 'empty_state.dart';
 import 'error_state.dart';
 import 'gps_badge.dart';
@@ -12,7 +13,9 @@ import 'gps_modal.dart';
 import 'gps_text_field.dart';
 import 'loading_skeleton.dart';
 import 'primary_button.dart';
+import 'rating_display.dart';
 import 'secondary_button.dart';
+import 'specialty_chip.dart';
 
 /// Whether the design-system showcase is available (debug builds only).
 bool get isDesignSystemShowcaseEnabled =>
@@ -110,6 +113,30 @@ class _DesignSystemShowcaseScreenState
                   'Medical profile card with soft-blue accent.',
                   style: Theme.of(innerContext).textTheme.bodyMedium,
                 ),
+              ),
+              const SizedBox(height: GpsSpacing.lg),
+              const Wrap(
+                spacing: GpsSpacing.sm,
+                children: [
+                  SpecialtyChip(label: 'Neurologie'),
+                  SpecialtyChip(label: 'Pédiatrie'),
+                ],
+              ),
+              const SizedBox(height: GpsSpacing.md),
+              const RatingDisplay(rating: 4.85, count: 124),
+              const SizedBox(height: GpsSpacing.md),
+              DoctorCard(
+                name: 'Dr. Karim Benali',
+                specialty: 'Traumatologie',
+                rating: 4.8,
+                reviewCount: 124,
+                city: 'Alger',
+                fee: 2500,
+                isVerified: true,
+                offersTelehealth: true,
+                matchPercentage: 94,
+                onBookPressed: () {},
+                onFavoritePressed: () {},
               ),
               const SizedBox(height: GpsSpacing.lg),
               const LoadingSkeleton.card(),
