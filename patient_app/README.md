@@ -41,6 +41,54 @@ Project: **`gps-medical-dev`**
 
 Until step 2 completes, the app builds and runs but **skips** Firebase init (debug log only).
 
+### Google Maps (nearby doctors tab)
+
+#### API keys (recommended)
+
+1. Copy the template and add your key(s):
+
+   ```bash
+   cd mobile/patient_app
+   cp secrets.env.example secrets.env
+   # Edit secrets.env — set GOOGLE_MAPS_API_KEY=AIza...
+   ```
+
+2. Apply to iOS and Android native config (gitignored generated files):
+
+   ```bash
+   make -C mobile setup-maps-secrets
+   ```
+
+3. Full rebuild:
+
+   ```bash
+   flutter run --flavor dev --dart-define=APP_FLAVOR=dev
+   ```
+
+| Variable | Purpose |
+| -------- | ------- |
+| `GOOGLE_MAPS_API_KEY` | Same key for iOS and Android |
+| `GOOGLE_MAPS_API_KEY_IOS` | iOS-only (overrides generic for iOS) |
+| `GOOGLE_MAPS_API_KEY_ANDROID` | Android-only (overrides generic for Android) |
+
+Generated files (do not commit): `ios/Flutter/MapsSecrets.xcconfig`, `android/maps-secrets.properties`.
+
+**Fallback:** if those files are missing, Android reads `google-services.json` and iOS reads `GoogleService-Info.plist` (`API_KEY`).
+
+On [Google Cloud Console](https://console.cloud.google.com/) for project `gpsmedical`, enable **Maps SDK for iOS** and **Maps SDK for Android** on the key you use.
+
+If the map shows pins on a blank gray background (no roads or labels), the SDK is running but **tile loading failed** — usually because the API key’s **iOS application restrictions** omit your flavor bundle ID:
+
+| Flavor  | iOS bundle ID                    |
+| ------- | -------------------------------- |
+| dev     | `com.gpsmedical.patientApp.dev`  |
+| staging | `com.gpsmedical.patientApp.staging` |
+| prod    | `com.gpsmedical.patientApp`      |
+
+Either allow all three bundle IDs on the key, or use an unrestricted key for local development.
+
+After changing native iOS config, run `cd ios && pod install` once, then **full rebuild** the app (not hot reload).
+
 ### iOS push (manual, Firebase Console)
 
 Project settings → Cloud Messaging → upload your **APNs authentication key** (or certificate) so FCM can reach iOS devices.

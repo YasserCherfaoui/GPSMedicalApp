@@ -1,8 +1,8 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../utils/location_permission.dart';
 import '../utils/wilaya_centroids.dart';
 import 'discovery_repositories.provider.dart';
 
@@ -59,8 +59,7 @@ class NearbyDoctors extends _$NearbyDoctors {
 
   @override
   Future<NearbyDoctorsState> build() async {
-    final permission = await Permission.locationWhenInUse.status;
-    final granted = permission.isGranted;
+    final granted = await isLocationWhenInUseGranted();
 
     var lat = defaultLat;
     var lng = defaultLng;
@@ -99,28 +98,37 @@ class NearbyDoctors extends _$NearbyDoctors {
     );
   }
 
+  /// Refetches doctors while keeping the map mounted (no [AsyncLoading] flash).
+  Future<void> _refetch(NearbyDoctorsState next) async {
+    final current = state.value;
+    if (current == null) return;
+
+    state = AsyncValue.data(next.copyWith(doctors: current.doctors));
+    state = await AsyncValue.guard(() async {
+      final docs = await _fetchNearby(next);
+      return next.copyWith(doctors: docs);
+    });
+  }
+
   Future<void> requestLocationPermission() async {
-    final status = await Permission.locationWhenInUse.request();
-    if (!status.isGranted) return;
+    final granted = await requestLocationWhenInUse();
+    if (!granted) return;
 
     try {
       final position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
         timeLimit: const Duration(seconds: 5),
       );
-      state = const AsyncValue.loading();
-      state = await AsyncValue.guard(() async {
-        final updated = NearbyDoctorsState(
-          doctors: [],
-          lat: position.latitude,
-          lng: position.longitude,
-          radiusKm: state.value?.radiusKm ?? 5,
-          permissionGranted: true,
-          specialtyId: state.value?.specialtyId,
-        );
-        final docs = await _fetchNearby(updated);
-        return updated.copyWith(doctors: docs, clearManualWilaya: true);
-      });
+      final current = state.value;
+      final updated = NearbyDoctorsState(
+        doctors: current?.doctors ?? [],
+        lat: position.latitude,
+        lng: position.longitude,
+        radiusKm: current?.radiusKm ?? 5,
+        permissionGranted: true,
+        specialtyId: current?.specialtyId,
+      );
+      await _refetch(updated.copyWith(clearManualWilaya: true));
     } catch (_) {}
   }
 
@@ -129,42 +137,29 @@ class NearbyDoctors extends _$NearbyDoctors {
     final current = state.value;
     if (current == null) return;
 
-    state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
-      final updated = current.copyWith(
+    await _refetch(
+      current.copyWith(
         lat: lat,
         lng: lng,
         manualWilayaCode: wilayaCode,
         permissionGranted: false,
-      );
-      final docs = await _fetchNearby(updated);
-      return updated.copyWith(doctors: docs);
-    });
+      ),
+    );
   }
 
   Future<void> updateRadius(double radiusKm) async {
     final current = state.value;
     if (current == null || current.radiusKm == radiusKm) return;
-
-    state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
-      final updated = current.copyWith(radiusKm: radiusKm);
-      final docs = await _fetchNearby(updated);
-      return updated.copyWith(doctors: docs);
-    });
+    await _refetch(current.copyWith(radiusKm: radiusKm));
   }
 
   Future<void> filterBySpecialty(String? specialtyId) async {
     final current = state.value;
     if (current == null) return;
 
-    state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async {
-      final updated = specialtyId == null
-          ? current.copyWith(clearSpecialty: true)
-          : current.copyWith(specialtyId: specialtyId);
-      final docs = await _fetchNearby(updated);
-      return updated.copyWith(doctors: docs);
-    });
+    final updated = specialtyId == null
+        ? current.copyWith(clearSpecialty: true)
+        : current.copyWith(specialtyId: specialtyId);
+    await _refetch(updated);
   }
 }

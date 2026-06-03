@@ -40,19 +40,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCNcxkxBtjJCG89grIjYSUjtbjlvCjQfk0',
-    appId: '1:647636807219:android:35b41f6682c4a20d393d46',
-    messagingSenderId: '647636807219',
-    projectId: 'gps-medical-dev',
-    storageBucket: 'gps-medical-dev.firebasestorage.app',
+    apiKey: 'AIzaSyAZTeqlh2wWnnxwvWJXN3tJ-1Kh6K9K2es',
+    appId: '1:32898565434:android:914d7760395c10a9a37c03',
+    messagingSenderId: '32898565434',
+    projectId: 'gpsmedical',
+    storageBucket: 'gpsmedical.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB5sJnJ_vaT3tIuYUxuYX9BcXDAMmb19h4',
-    appId: '1:647636807219:ios:7c6393de3a22b4ad393d46',
-    messagingSenderId: '647636807219',
-    projectId: 'gps-medical-dev',
-    storageBucket: 'gps-medical-dev.firebasestorage.app',
+    apiKey: 'AIzaSyDIJNkzc9dUE-ULgIj4YdCIPNwEhTGsfvE',
+    appId: '1:32898565434:ios:6a09368b87d80e5da37c03',
+    messagingSenderId: '32898565434',
+    projectId: 'gpsmedical',
+    storageBucket: 'gpsmedical.firebasestorage.app',
     iosBundleId: 'com.gpsmedical.patientApp',
   );
+
 }

@@ -39,6 +39,11 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
+# Local API keys (see secrets.env.example + make -C mobile setup-maps-secrets)
+/secrets.env
+/ios/Flutter/MapsSecrets.xcconfig
+/android/maps-secrets.properties
+
 # Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile

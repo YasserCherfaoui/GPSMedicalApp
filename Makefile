@@ -10,7 +10,7 @@ OPENAPI_SPEC := $(abspath ../docs/api/openapi.yaml)
 API_PKG := shared_lib/packages/gps_medical_api
 API_PUBSPEC := shared_lib/tool/gps_medical_api.pubspec.yaml
 
-.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models gen-providers configure-firebase-patient
+.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models gen-providers configure-firebase-patient setup-maps-secrets
 
 gen-providers:
 	cd shared_lib && dart pub get && dart run build_runner build --delete-conflicting-outputs
@@ -21,6 +21,11 @@ gen-providers:
 configure-firebase-patient:
 	chmod +x patient_app/scripts/configure_firebase.sh
 	patient_app/scripts/configure_firebase.sh
+
+# Writes ios/Flutter/MapsSecrets.xcconfig and android/maps-secrets.properties from patient_app/secrets.env
+setup-maps-secrets:
+	chmod +x patient_app/scripts/apply_maps_secrets.sh
+	patient_app/scripts/apply_maps_secrets.sh
 
 gen-models:
 	rm -rf $(API_PKG)

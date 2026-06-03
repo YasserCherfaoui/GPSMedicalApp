@@ -1,6 +1,7 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../utils/location_permission.dart';
 
 part 'user_location.provider.g.dart';
 
@@ -22,8 +23,7 @@ class UserLocationState {
 class UserLocation extends _$UserLocation {
   @override
   Future<UserLocationState> build() async {
-    final permission = await Permission.locationWhenInUse.status;
-    if (!permission.isGranted) {
+    if (!await isLocationWhenInUseGranted()) {
       return const UserLocationState();
     }
     return _readPosition();
@@ -48,8 +48,7 @@ class UserLocation extends _$UserLocation {
   Future<void> refresh() async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      final status = await Permission.locationWhenInUse.request();
-      if (!status.isGranted) {
+      if (!await requestLocationWhenInUse()) {
         return const UserLocationState();
       }
       return _readPosition();

@@ -5,6 +5,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../providers/nearby_doctors.provider.dart';
 import '../utils/map_marker_cluster.dart';
+import '../utils/map_zoom_for_radius.dart';
 import '../widgets/discovery_error_view.dart';
 import '../widgets/doctor_card_tile.dart';
 import '../widgets/specialties_picker.dart';
@@ -22,107 +23,22 @@ class _NearbyDoctorsMapScreenState
     extends ConsumerState<NearbyDoctorsMapScreen> {
   GoogleMapController? _mapController;
   DoctorWithDistance? _selectedDoctor;
-  double _mapZoom = 13;
+  double _mapZoom = zoomLevelForRadiusKm(5);
+  double? _sliderRadiusKm;
 
-  // Custom retro-teal styling configuration for Google Maps (ADR 0009)
   static const String _mapStyleJson = '''
 [
-  {
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#f5f5f5"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#616161"
-      }
-    ]
-  },
-  {
-    "elementType": "labels.text.stroke",
-    "stylers": [
-      {
-        "color": "#f5f5f5"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.land_parcel",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#bdbdbd"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#eeeeee"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#757575"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#ffffff"
-      }
-    ]
-  },
-  {
-    "featureType": "road.arterial",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#757575"
-      }
-    ]
-  },
-  {
-    "featureType": "road.highway",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#dadada"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "color": "#a1feec"
-      }
-    ]
-  },
-  {
-    "featureType": "water",
-    "elementType": "labels.text.fill",
-    "stylers": [
-      {
-        "color": "#005e53"
-      }
-    ]
-  }
+  {"elementType": "geometry", "stylers": [{"color": "#f5f5f5"}]},
+  {"elementType": "labels.text.fill", "stylers": [{"color": "#616161"}]},
+  {"elementType": "labels.text.stroke", "stylers": [{"color": "#f5f5f5"}]},
+  {"featureType": "administrative.land_parcel", "elementType": "labels.text.fill", "stylers": [{"color": "#bdbdbd"}]},
+  {"featureType": "poi", "elementType": "geometry", "stylers": [{"color": "#eeeeee"}]},
+  {"featureType": "poi", "elementType": "labels.text.fill", "stylers": [{"color": "#757575"}]},
+  {"featureType": "road", "elementType": "geometry", "stylers": [{"color": "#ffffff"}]},
+  {"featureType": "road.arterial", "elementType": "labels.text.fill", "stylers": [{"color": "#757575"}]},
+  {"featureType": "road.highway", "elementType": "geometry", "stylers": [{"color": "#dadada"}]},
+  {"featureType": "water", "elementType": "geometry", "stylers": [{"color": "#a1feec"}]},
+  {"featureType": "water", "elementType": "labels.text.fill", "stylers": [{"color": "#005e53"}]}
 ]
   ''';
 
@@ -139,223 +55,33 @@ class _NearbyDoctorsMapScreenState
         actions: [
           IconButton(
             icon: const Icon(Icons.filter_alt_outlined),
-            onPressed: () => _openSpecialtyFilter(),
+            onPressed: _openSpecialtyFilter,
           ),
         ],
       ),
       body: geoStateAsync.when(
-        data: (geoState) {
-          final clusters = clusterNearbyDoctors(
-            doctors: geoState.doctors,
-            zoom: _mapZoom,
-          );
-
-          final Set<Marker> markers = clusters.map((cluster) {
-            if (cluster.isCluster) {
-              return Marker(
-                markerId: MarkerId('cluster-${cluster.id}'),
-                position: cluster.position,
-                icon: BitmapDescriptor.defaultMarkerWithHue(
-                  BitmapDescriptor.hueAzure,
-                ),
-                infoWindow: InfoWindow(
-                  title: '${cluster.doctors.length} médecins',
-                ),
-                onTap: () {
-                  _mapController?.animateCamera(
-                    CameraUpdate.newLatLngZoom(cluster.position, 13),
-                  );
-                },
-              );
-            }
-
-            final doc = cluster.doctors.first;
-            return Marker(
-              markerId: MarkerId(doc.id ?? cluster.id),
-              position: cluster.position,
-              onTap: () {
-                setState(() {
-                  _selectedDoctor = doc;
-                });
-              },
+        data: (geoState) => _buildMapStack(
+          context,
+          geoState,
+          theme,
+          colorScheme,
+          isAr,
+          isRefetching: geoStateAsync.isRefreshing,
+        ),
+        loading: () {
+          final cached = geoStateAsync.value;
+          if (cached != null) {
+            return _buildMapStack(
+              context,
+              cached,
+              theme,
+              colorScheme,
+              isAr,
+              isRefetching: true,
             );
-          }).toSet();
-
-          return Stack(
-            children: [
-              // Google Map view
-              GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(geoState.lat, geoState.lng),
-                  zoom: 13,
-                ),
-                markers: markers,
-                myLocationEnabled: geoState.permissionGranted,
-                myLocationButtonEnabled: false,
-                zoomControlsEnabled: false,
-                onMapCreated: (controller) {
-                  _mapController = controller;
-                  _mapController?.setMapStyle(_mapStyleJson);
-                },
-                onCameraMove: (position) {
-                  final zoom = position.zoom;
-                  if ((zoom - _mapZoom).abs() > 0.3) {
-                    setState(() => _mapZoom = zoom);
-                  }
-                },
-                onTap: (_) {
-                  setState(() {
-                    _selectedDoctor = null;
-                  });
-                },
-              ),
-
-              // Permission Request Overlay if permission not granted
-              if (!geoState.permissionGranted)
-                Positioned(
-                  top: GpsSpacing.md,
-                  left: GpsSpacing.md,
-                  right: GpsSpacing.md,
-                  child: Card(
-                    color: colorScheme.surface.withValues(alpha: 0.9),
-                    elevation: 4,
-                    child: Padding(
-                      padding: const EdgeInsets.all(GpsSpacing.md),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            isAr
-                                ? 'Autoriser la localisation pour voir les médecins autour de vous.'
-                                : 'Autoriser la localisation pour voir les médecins autour de vous.',
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: GpsSpacing.sm),
-                          ElevatedButton(
-                            onPressed: () {
-                              ref
-                                  .read(nearbyDoctorsProvider.notifier)
-                                  .requestLocationPermission();
-                            },
-                            child: Text(isAr ? 'Autoriser' : 'Autoriser'),
-                          ),
-                          const SizedBox(height: GpsSpacing.xs),
-                          OutlinedButton(
-                            onPressed: _openWilayaFallback,
-                            child: Text(
-                              isAr
-                                  ? 'Choisir une wilaya'
-                                  : 'Choisir une wilaya',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-
-              // Floating Controls Overlay (Radius slider and locate button)
-              Positioned(
-                bottom: _selectedDoctor != null ? 220 : 100,
-                left: GpsSpacing.md,
-                right: GpsSpacing.md,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    // Locate Me FAB
-                    if (geoState.permissionGranted)
-                      FloatingActionButton.small(
-                        backgroundColor: colorScheme.surface,
-                        foregroundColor: colorScheme.primary,
-                        onPressed: () async {
-                          final provider = ref.read(
-                            nearbyDoctorsProvider.notifier,
-                          );
-                          await provider.requestLocationPermission();
-                          final updatedState = ref
-                              .read(nearbyDoctorsProvider)
-                              .value;
-                          if (updatedState != null) {
-                            _mapController?.animateCamera(
-                              CameraUpdate.newLatLng(
-                                LatLng(updatedState.lat, updatedState.lng),
-                              ),
-                            );
-                          }
-                        },
-                        child: const Icon(Icons.my_location),
-                      ),
-                    const SizedBox(height: GpsSpacing.sm),
-
-                    // Radius slider widget
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: GpsSpacing.md,
-                          vertical: GpsSpacing.xs,
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              isAr ? 'Rayon : ' : 'Rayon : ',
-                              style: theme.textTheme.labelSmall?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '${geoState.radiusKm.toStringAsFixed(0)} km',
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: colorScheme.primary,
-                              ),
-                            ),
-                            Expanded(
-                              child: Slider(
-                                value: geoState.radiusKm,
-                                min: 1,
-                                max: 50,
-                                divisions: 10,
-                                activeColor: colorScheme.primary,
-                                onChanged: (val) {
-                                  ref
-                                      .read(nearbyDoctorsProvider.notifier)
-                                      .updateRadius(val);
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Selected Doctor Sheet Card overlay
-              if (_selectedDoctor != null)
-                Positioned(
-                  bottom: GpsSpacing.md,
-                  left: GpsSpacing.md,
-                  right: GpsSpacing.md,
-                  child: Material(
-                    elevation: 8,
-                    borderRadius: BorderRadius.circular(GpsRadii.lg),
-                    child: buildDoctorCardTile(
-                      context: context,
-                      doc: _selectedDoctor!,
-                      isAr: isAr,
-                      userLat: geoState.lat,
-                      userLng: geoState.lng,
-                    ),
-                  ),
-                ),
-            ],
-          );
+          }
+          return const Center(child: CircularProgressIndicator());
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(
           child: Padding(
             padding: const EdgeInsets.all(GpsSpacing.md),
@@ -371,6 +97,279 @@ class _NearbyDoctorsMapScreenState
     );
   }
 
+  Widget _buildMapStack(
+    BuildContext context,
+    NearbyDoctorsState geoState,
+    ThemeData theme,
+    ColorScheme colorScheme,
+    bool isAr, {
+    bool isRefetching = false,
+  }) {
+    final displayRadius = _sliderRadiusKm ?? geoState.radiusKm;
+    final mapZoomForRadius = zoomLevelForRadiusKm(displayRadius);
+
+    final clusters = clusterNearbyDoctors(
+      doctors: geoState.doctors,
+      zoom: _mapZoom,
+    );
+
+    final markers = clusters.map((cluster) {
+      if (cluster.isCluster) {
+        return Marker(
+          markerId: MarkerId('cluster-${cluster.id}'),
+          position: cluster.position,
+          icon: BitmapDescriptor.defaultMarkerWithHue(
+            BitmapDescriptor.hueAzure,
+          ),
+          infoWindow: InfoWindow(
+            title: '${cluster.doctors.length} médecins',
+          ),
+          onTap: () {
+            _mapController?.animateCamera(
+              CameraUpdate.newLatLngZoom(cluster.position, 13),
+            );
+          },
+        );
+      }
+
+      final doc = cluster.doctors.first;
+      return Marker(
+        markerId: MarkerId(doc.id ?? cluster.id),
+        position: cluster.position,
+        onTap: () => setState(() => _selectedDoctor = doc),
+      );
+    }).toSet();
+
+    return Stack(
+      children: [
+        GoogleMap(
+          initialCameraPosition: CameraPosition(
+            target: LatLng(geoState.lat, geoState.lng),
+            zoom: mapZoomForRadius,
+          ),
+          markers: markers,
+          myLocationEnabled: geoState.permissionGranted,
+          myLocationButtonEnabled: false,
+          zoomControlsEnabled: false,
+          onMapCreated: (controller) async {
+            _mapController = controller;
+            try {
+              await _mapController?.setMapStyle(_mapStyleJson);
+            } catch (_) {
+              // If styling fails, keep the default map tiles visible.
+            }
+            _syncMapZoomToRadius(
+              displayRadius,
+              geoState.lat,
+              geoState.lng,
+              animate: false,
+            );
+          },
+          onCameraMove: (position) {
+            final zoom = position.zoom;
+            if ((zoom - _mapZoom).abs() > 0.3) {
+              setState(() => _mapZoom = zoom);
+            }
+          },
+          onTap: (_) => setState(() => _selectedDoctor = null),
+        ),
+
+        if (!geoState.permissionGranted)
+          Positioned(
+            top: GpsSpacing.md,
+            left: GpsSpacing.md,
+            right: GpsSpacing.md,
+            child: Card(
+              color: colorScheme.surface.withValues(alpha: 0.9),
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(GpsSpacing.md),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      isAr
+                          ? 'Autoriser la localisation pour voir les médecins autour de vous.'
+                          : 'Autoriser la localisation pour voir les médecins autour de vous.',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: GpsSpacing.sm),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () => ref
+                                .read(nearbyDoctorsProvider.notifier)
+                                .requestLocationPermission(),
+                            child: Text(isAr ? 'Autoriser' : 'Autoriser'),
+                          ),
+                        ),
+                        const SizedBox(width: GpsSpacing.sm),
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: _openWilayaFallback,
+                            child: Text(
+                              isAr
+                                  ? 'Choisir une wilaya'
+                                  : 'Choisir une wilaya',
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+        Positioned(
+          bottom: _selectedDoctor != null ? 220 : 100,
+          left: GpsSpacing.md,
+          right: GpsSpacing.md,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              if (geoState.permissionGranted)
+                FloatingActionButton.small(
+                  backgroundColor: colorScheme.surface,
+                  foregroundColor: colorScheme.primary,
+                  onPressed: () async {
+                    await ref
+                        .read(nearbyDoctorsProvider.notifier)
+                        .requestLocationPermission();
+                    final updated = ref.read(nearbyDoctorsProvider).value;
+                    if (updated != null) {
+                      _syncMapZoomToRadius(
+                        updated.radiusKm,
+                        updated.lat,
+                        updated.lng,
+                      );
+                    }
+                  },
+                  child: const Icon(Icons.my_location),
+                ),
+              const SizedBox(height: GpsSpacing.sm),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: GpsSpacing.md,
+                    vertical: GpsSpacing.xs,
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        isAr ? 'Rayon : ' : 'Rayon : ',
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        '${displayRadius.toStringAsFixed(0)} km',
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.primary,
+                        ),
+                      ),
+                      Expanded(
+                        child: Slider(
+                          value: displayRadius,
+                          min: 1,
+                          max: 50,
+                          divisions: 10,
+                          activeColor: colorScheme.primary,
+                          onChanged: isRefetching
+                              ? null
+                              : (val) {
+                                  setState(() => _sliderRadiusKm = val);
+                                  _syncMapZoomToRadius(
+                                    val,
+                                    geoState.lat,
+                                    geoState.lng,
+                                  );
+                                },
+                          onChangeEnd: (val) {
+                            setState(() => _sliderRadiusKm = null);
+                            _syncMapZoomToRadius(val, geoState.lat, geoState.lng);
+                            ref
+                                .read(nearbyDoctorsProvider.notifier)
+                                .updateRadius(val);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        if (_selectedDoctor != null)
+          Positioned(
+            bottom: GpsSpacing.md,
+            left: GpsSpacing.md,
+            right: GpsSpacing.md,
+            child: Material(
+              elevation: 8,
+              borderRadius: BorderRadius.circular(GpsRadii.lg),
+              child: buildDoctorCardTile(
+                context: context,
+                doc: _selectedDoctor!,
+                isAr: isAr,
+                userLat: geoState.lat,
+                userLng: geoState.lng,
+              ),
+            ),
+          ),
+
+        if (isRefetching)
+          const Positioned(
+            top: GpsSpacing.md,
+            right: GpsSpacing.md,
+            child: Card(
+              child: Padding(
+                padding: EdgeInsets.all(GpsSpacing.sm),
+                child: SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  void _syncMapZoomToRadius(
+    double radiusKm,
+    double lat,
+    double lng, {
+    bool animate = true,
+  }) {
+    final zoom = zoomLevelForRadiusKm(radiusKm);
+    if ((zoom - _mapZoom).abs() < 0.05 && !animate) return;
+    setState(() => _mapZoom = zoom);
+
+    final target = LatLng(lat, lng);
+    final update = CameraUpdate.newLatLngZoom(target, zoom);
+    final controller = _mapController;
+    if (controller == null) return;
+
+    if (animate) {
+      controller.animateCamera(update);
+    } else {
+      controller.moveCamera(update);
+    }
+  }
+
   void _openWilayaFallback() {
     showModalBottomSheet<void>(
       context: context,
@@ -382,15 +381,11 @@ class _NearbyDoctorsMapScreenState
               ref
                   .read(nearbyDoctorsProvider.notifier)
                   .setWilayaCenter(wilaya!.code!);
-              _mapController?.animateCamera(
-                CameraUpdate.newLatLngZoom(
-                  LatLng(
-                    ref.read(nearbyDoctorsProvider).value?.lat ?? 36.7538,
-                    ref.read(nearbyDoctorsProvider).value?.lng ?? 3.0588,
-                  ),
-                  11,
-                ),
-              );
+              final updated = ref.read(nearbyDoctorsProvider).value;
+              final lat = updated?.lat ?? 36.7538;
+              final lng = updated?.lng ?? 3.0588;
+              final radius = updated?.radiusKm ?? 5;
+              _syncMapZoomToRadius(radius, lat, lng);
             }
             Navigator.of(context).pop();
           },

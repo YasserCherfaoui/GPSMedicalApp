@@ -19,7 +19,7 @@ fi
 
 echo "Configuring FlutterFire for project gps-medical-dev..."
 flutterfire configure \
-  --project=gps-medical-dev \
+  --project=gpsmedical \
   --yes \
   --overwrite-firebase-options \
   --platforms=android,ios \
@@ -27,6 +27,9 @@ flutterfire configure \
   --android-package-name=com.gpsmedical.patient_app.dev \
   --android-out=android/app/src/dev \
   --ios-out=ios/Runner
+
+chmod +x scripts/patch_firebase_ios_build_configurations.sh
+scripts/patch_firebase_ios_build_configurations.sh
 
 echo ""
 echo "Done. Verify:"
