@@ -8,18 +8,29 @@ part of 'commune.dart';
 
 class _$Commune extends Commune {
   @override
-  final String? id;
+  final String id;
   @override
-  final String? wilayaCode;
+  final String wilayaCode;
   @override
-  final String? nameFr;
+  final String nameFr;
   @override
-  final String? nameAr;
+  final String nameAr;
+  @override
+  final double latitude;
+  @override
+  final double longitude;
 
   factory _$Commune([void Function(CommuneBuilder)? updates]) =>
       (CommuneBuilder()..update(updates))._build();
 
-  _$Commune._({this.id, this.wilayaCode, this.nameFr, this.nameAr}) : super._();
+  _$Commune._({
+    required this.id,
+    required this.wilayaCode,
+    required this.nameFr,
+    required this.nameAr,
+    required this.latitude,
+    required this.longitude,
+  }) : super._();
   @override
   Commune rebuild(void Function(CommuneBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -34,7 +45,9 @@ class _$Commune extends Commune {
         id == other.id &&
         wilayaCode == other.wilayaCode &&
         nameFr == other.nameFr &&
-        nameAr == other.nameAr;
+        nameAr == other.nameAr &&
+        latitude == other.latitude &&
+        longitude == other.longitude;
   }
 
   @override
@@ -44,6 +57,8 @@ class _$Commune extends Commune {
     _$hash = $jc(_$hash, wilayaCode.hashCode);
     _$hash = $jc(_$hash, nameFr.hashCode);
     _$hash = $jc(_$hash, nameAr.hashCode);
+    _$hash = $jc(_$hash, latitude.hashCode);
+    _$hash = $jc(_$hash, longitude.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -54,7 +69,9 @@ class _$Commune extends Commune {
           ..add('id', id)
           ..add('wilayaCode', wilayaCode)
           ..add('nameFr', nameFr)
-          ..add('nameAr', nameAr))
+          ..add('nameAr', nameAr)
+          ..add('latitude', latitude)
+          ..add('longitude', longitude))
         .toString();
   }
 }
@@ -78,6 +95,14 @@ class CommuneBuilder implements Builder<Commune, CommuneBuilder> {
   String? get nameAr => _$this._nameAr;
   set nameAr(String? nameAr) => _$this._nameAr = nameAr;
 
+  double? _latitude;
+  double? get latitude => _$this._latitude;
+  set latitude(double? latitude) => _$this._latitude = latitude;
+
+  double? _longitude;
+  double? get longitude => _$this._longitude;
+  set longitude(double? longitude) => _$this._longitude = longitude;
+
   CommuneBuilder() {
     Commune._defaults(this);
   }
@@ -89,6 +114,8 @@ class CommuneBuilder implements Builder<Commune, CommuneBuilder> {
       _wilayaCode = $v.wilayaCode;
       _nameFr = $v.nameFr;
       _nameAr = $v.nameAr;
+      _latitude = $v.latitude;
+      _longitude = $v.longitude;
       _$v = null;
     }
     return this;
@@ -111,10 +138,32 @@ class CommuneBuilder implements Builder<Commune, CommuneBuilder> {
     final _$result =
         _$v ??
         _$Commune._(
-          id: id,
-          wilayaCode: wilayaCode,
-          nameFr: nameFr,
-          nameAr: nameAr,
+          id: BuiltValueNullFieldError.checkNotNull(id, r'Commune', 'id'),
+          wilayaCode: BuiltValueNullFieldError.checkNotNull(
+            wilayaCode,
+            r'Commune',
+            'wilayaCode',
+          ),
+          nameFr: BuiltValueNullFieldError.checkNotNull(
+            nameFr,
+            r'Commune',
+            'nameFr',
+          ),
+          nameAr: BuiltValueNullFieldError.checkNotNull(
+            nameAr,
+            r'Commune',
+            'nameAr',
+          ),
+          latitude: BuiltValueNullFieldError.checkNotNull(
+            latitude,
+            r'Commune',
+            'latitude',
+          ),
+          longitude: BuiltValueNullFieldError.checkNotNull(
+            longitude,
+            r'Commune',
+            'longitude',
+          ),
         );
     replace(_$result);
     return _$result;

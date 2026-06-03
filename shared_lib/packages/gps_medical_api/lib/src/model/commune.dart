@@ -15,19 +15,27 @@ part 'commune.g.dart';
 /// * [wilayaCode] 
 /// * [nameFr] 
 /// * [nameAr] 
+/// * [latitude] 
+/// * [longitude] 
 @BuiltValue()
 abstract class Commune implements Built<Commune, CommuneBuilder> {
   @BuiltValueField(wireName: r'id')
-  String? get id;
+  String get id;
 
   @BuiltValueField(wireName: r'wilaya_code')
-  String? get wilayaCode;
+  String get wilayaCode;
 
   @BuiltValueField(wireName: r'name_fr')
-  String? get nameFr;
+  String get nameFr;
 
   @BuiltValueField(wireName: r'name_ar')
-  String? get nameAr;
+  String get nameAr;
+
+  @BuiltValueField(wireName: r'latitude')
+  double get latitude;
+
+  @BuiltValueField(wireName: r'longitude')
+  double get longitude;
 
   Commune._();
 
@@ -52,34 +60,36 @@ class _$CommuneSerializer implements PrimitiveSerializer<Commune> {
     Commune object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.wilayaCode != null) {
-      yield r'wilaya_code';
-      yield serializers.serialize(
-        object.wilayaCode,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.nameFr != null) {
-      yield r'name_fr';
-      yield serializers.serialize(
-        object.nameFr,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.nameAr != null) {
-      yield r'name_ar';
-      yield serializers.serialize(
-        object.nameAr,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'id';
+    yield serializers.serialize(
+      object.id,
+      specifiedType: const FullType(String),
+    );
+    yield r'wilaya_code';
+    yield serializers.serialize(
+      object.wilayaCode,
+      specifiedType: const FullType(String),
+    );
+    yield r'name_fr';
+    yield serializers.serialize(
+      object.nameFr,
+      specifiedType: const FullType(String),
+    );
+    yield r'name_ar';
+    yield serializers.serialize(
+      object.nameAr,
+      specifiedType: const FullType(String),
+    );
+    yield r'latitude';
+    yield serializers.serialize(
+      object.latitude,
+      specifiedType: const FullType(double),
+    );
+    yield r'longitude';
+    yield serializers.serialize(
+      object.longitude,
+      specifiedType: const FullType(double),
+    );
   }
 
   @override
@@ -130,6 +140,20 @@ class _$CommuneSerializer implements PrimitiveSerializer<Commune> {
             specifiedType: const FullType(String),
           ) as String;
           result.nameAr = valueDes;
+          break;
+        case r'latitude':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double;
+          result.latitude = valueDes;
+          break;
+        case r'longitude':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double;
+          result.longitude = valueDes;
           break;
         default:
           unhandled.add(key);

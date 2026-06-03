@@ -8,16 +8,26 @@ part of 'wilaya.dart';
 
 class _$Wilaya extends Wilaya {
   @override
-  final String? code;
+  final String code;
   @override
-  final String? nameFr;
+  final String nameFr;
   @override
-  final String? nameAr;
+  final String nameAr;
+  @override
+  final double latitude;
+  @override
+  final double longitude;
 
   factory _$Wilaya([void Function(WilayaBuilder)? updates]) =>
       (WilayaBuilder()..update(updates))._build();
 
-  _$Wilaya._({this.code, this.nameFr, this.nameAr}) : super._();
+  _$Wilaya._({
+    required this.code,
+    required this.nameFr,
+    required this.nameAr,
+    required this.latitude,
+    required this.longitude,
+  }) : super._();
   @override
   Wilaya rebuild(void Function(WilayaBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -31,7 +41,9 @@ class _$Wilaya extends Wilaya {
     return other is Wilaya &&
         code == other.code &&
         nameFr == other.nameFr &&
-        nameAr == other.nameAr;
+        nameAr == other.nameAr &&
+        latitude == other.latitude &&
+        longitude == other.longitude;
   }
 
   @override
@@ -40,6 +52,8 @@ class _$Wilaya extends Wilaya {
     _$hash = $jc(_$hash, code.hashCode);
     _$hash = $jc(_$hash, nameFr.hashCode);
     _$hash = $jc(_$hash, nameAr.hashCode);
+    _$hash = $jc(_$hash, latitude.hashCode);
+    _$hash = $jc(_$hash, longitude.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -49,7 +63,9 @@ class _$Wilaya extends Wilaya {
     return (newBuiltValueToStringHelper(r'Wilaya')
           ..add('code', code)
           ..add('nameFr', nameFr)
-          ..add('nameAr', nameAr))
+          ..add('nameAr', nameAr)
+          ..add('latitude', latitude)
+          ..add('longitude', longitude))
         .toString();
   }
 }
@@ -69,6 +85,14 @@ class WilayaBuilder implements Builder<Wilaya, WilayaBuilder> {
   String? get nameAr => _$this._nameAr;
   set nameAr(String? nameAr) => _$this._nameAr = nameAr;
 
+  double? _latitude;
+  double? get latitude => _$this._latitude;
+  set latitude(double? latitude) => _$this._latitude = latitude;
+
+  double? _longitude;
+  double? get longitude => _$this._longitude;
+  set longitude(double? longitude) => _$this._longitude = longitude;
+
   WilayaBuilder() {
     Wilaya._defaults(this);
   }
@@ -79,6 +103,8 @@ class WilayaBuilder implements Builder<Wilaya, WilayaBuilder> {
       _code = $v.code;
       _nameFr = $v.nameFr;
       _nameAr = $v.nameAr;
+      _latitude = $v.latitude;
+      _longitude = $v.longitude;
       _$v = null;
     }
     return this;
@@ -99,7 +125,30 @@ class WilayaBuilder implements Builder<Wilaya, WilayaBuilder> {
 
   _$Wilaya _build() {
     final _$result =
-        _$v ?? _$Wilaya._(code: code, nameFr: nameFr, nameAr: nameAr);
+        _$v ??
+        _$Wilaya._(
+          code: BuiltValueNullFieldError.checkNotNull(code, r'Wilaya', 'code'),
+          nameFr: BuiltValueNullFieldError.checkNotNull(
+            nameFr,
+            r'Wilaya',
+            'nameFr',
+          ),
+          nameAr: BuiltValueNullFieldError.checkNotNull(
+            nameAr,
+            r'Wilaya',
+            'nameAr',
+          ),
+          latitude: BuiltValueNullFieldError.checkNotNull(
+            latitude,
+            r'Wilaya',
+            'latitude',
+          ),
+          longitude: BuiltValueNullFieldError.checkNotNull(
+            longitude,
+            r'Wilaya',
+            'longitude',
+          ),
+        );
     replace(_$result);
     return _$result;
   }

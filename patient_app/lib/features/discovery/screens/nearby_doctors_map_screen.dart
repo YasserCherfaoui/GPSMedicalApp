@@ -197,9 +197,7 @@ class _NearbyDoctorsMapScreenState
                     const SizedBox(width: GpsSpacing.sm),
                     Expanded(
                       child: Text(
-                        isAr
-                            ? 'Recherche par wilaya (n° ${geoState.manualWilayaCode})'
-                            : 'Recherche par wilaya (n° ${geoState.manualWilayaCode})',
+                        _manualLocationBannerLabel(geoState, isAr),
                         style: theme.textTheme.bodySmall?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),
@@ -460,6 +458,28 @@ class _NearbyDoctorsMapScreenState
     }
   }
 
+  String _manualLocationBannerLabel(NearbyDoctorsState geoState, bool isAr) {
+    final wilaya = geoState.manualWilaya;
+    if (wilaya == null) {
+      return isAr ? 'Recherche par wilaya' : 'Recherche par wilaya';
+    }
+    final wilayaName = isAr
+        ? (wilaya.nameAr ?? wilaya.nameFr ?? wilaya.code)
+        : (wilaya.nameFr ?? wilaya.code);
+    final commune = geoState.manualCommune;
+    if (commune != null) {
+      final communeName = isAr
+          ? (commune.nameAr ?? commune.nameFr ?? '')
+          : (commune.nameFr ?? '');
+      if (communeName.isNotEmpty) {
+        return isAr ? '$communeName، $wilayaName' : '$communeName, $wilayaName';
+      }
+    }
+    return isAr
+        ? 'Recherche par wilaya ($wilayaName)'
+        : 'Recherche par wilaya ($wilayaName)';
+  }
+
   void _openWilayaFallback() {
     showModalBottomSheet<void>(
       context: context,
@@ -467,10 +487,11 @@ class _NearbyDoctorsMapScreenState
       builder: (context) {
         return WilayaCommunePicker(
           onLocationChanged: (wilaya, commune) {
-            if (wilaya?.code != null) {
-              ref
-                  .read(nearbyDoctorsProvider.notifier)
-                  .setWilayaCenter(wilaya!.code!);
+            if (wilaya != null) {
+              ref.read(nearbyDoctorsProvider.notifier).setManualLocation(
+                    wilaya: wilaya,
+                    commune: commune,
+                  );
               final updated = ref.read(nearbyDoctorsProvider).value;
               final lat = updated?.lat ?? 36.7538;
               final lng = updated?.lng ?? 3.0588;

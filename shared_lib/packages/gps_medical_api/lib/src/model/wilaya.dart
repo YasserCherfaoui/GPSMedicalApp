@@ -14,16 +14,24 @@ part 'wilaya.g.dart';
 /// * [code] 
 /// * [nameFr] 
 /// * [nameAr] 
+/// * [latitude] 
+/// * [longitude] 
 @BuiltValue()
 abstract class Wilaya implements Built<Wilaya, WilayaBuilder> {
   @BuiltValueField(wireName: r'code')
-  String? get code;
+  String get code;
 
   @BuiltValueField(wireName: r'name_fr')
-  String? get nameFr;
+  String get nameFr;
 
   @BuiltValueField(wireName: r'name_ar')
-  String? get nameAr;
+  String get nameAr;
+
+  @BuiltValueField(wireName: r'latitude')
+  double get latitude;
+
+  @BuiltValueField(wireName: r'longitude')
+  double get longitude;
 
   Wilaya._();
 
@@ -48,27 +56,31 @@ class _$WilayaSerializer implements PrimitiveSerializer<Wilaya> {
     Wilaya object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.code != null) {
-      yield r'code';
-      yield serializers.serialize(
-        object.code,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.nameFr != null) {
-      yield r'name_fr';
-      yield serializers.serialize(
-        object.nameFr,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.nameAr != null) {
-      yield r'name_ar';
-      yield serializers.serialize(
-        object.nameAr,
-        specifiedType: const FullType(String),
-      );
-    }
+    yield r'code';
+    yield serializers.serialize(
+      object.code,
+      specifiedType: const FullType(String),
+    );
+    yield r'name_fr';
+    yield serializers.serialize(
+      object.nameFr,
+      specifiedType: const FullType(String),
+    );
+    yield r'name_ar';
+    yield serializers.serialize(
+      object.nameAr,
+      specifiedType: const FullType(String),
+    );
+    yield r'latitude';
+    yield serializers.serialize(
+      object.latitude,
+      specifiedType: const FullType(double),
+    );
+    yield r'longitude';
+    yield serializers.serialize(
+      object.longitude,
+      specifiedType: const FullType(double),
+    );
   }
 
   @override
@@ -112,6 +124,20 @@ class _$WilayaSerializer implements PrimitiveSerializer<Wilaya> {
             specifiedType: const FullType(String),
           ) as String;
           result.nameAr = valueDes;
+          break;
+        case r'latitude':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double;
+          result.latitude = valueDes;
+          break;
+        case r'longitude':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double;
+          result.longitude = valueDes;
           break;
         default:
           unhandled.add(key);

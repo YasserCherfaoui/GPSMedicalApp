@@ -16,7 +16,8 @@ class NearbyDoctorsState {
     required this.radiusKm,
     this.permissionGranted = false,
     this.specialtyId,
-    this.manualWilayaCode,
+    this.manualWilaya,
+    this.manualCommune,
   });
 
   final List<DoctorWithDistance> doctors;
@@ -25,10 +26,13 @@ class NearbyDoctorsState {
   final double radiusKm;
   final bool permissionGranted;
   final String? specialtyId;
-  final String? manualWilayaCode;
+  final Wilaya? manualWilaya;
+  final Commune? manualCommune;
 
-  /// Map/search center comes from wilaya (and commune step), not device GPS.
-  bool get usesManualLocation => manualWilayaCode != null;
+  /// Map/search center comes from wilaya/commune API data, not device GPS.
+  bool get usesManualLocation => manualWilaya != null;
+
+  String? get manualWilayaCode => manualWilaya?.code;
 
   NearbyDoctorsState copyWith({
     List<DoctorWithDistance>? doctors,
@@ -37,9 +41,10 @@ class NearbyDoctorsState {
     double? radiusKm,
     bool? permissionGranted,
     String? specialtyId,
-    String? manualWilayaCode,
+    Wilaya? manualWilaya,
+    Commune? manualCommune,
     bool clearSpecialty = false,
-    bool clearManualWilaya = false,
+    bool clearManualLocation = false,
   }) {
     return NearbyDoctorsState(
       doctors: doctors ?? this.doctors,
@@ -48,9 +53,12 @@ class NearbyDoctorsState {
       radiusKm: radiusKm ?? this.radiusKm,
       permissionGranted: permissionGranted ?? this.permissionGranted,
       specialtyId: clearSpecialty ? null : (specialtyId ?? this.specialtyId),
-      manualWilayaCode: clearManualWilaya
+      manualWilaya: clearManualLocation
           ? null
-          : (manualWilayaCode ?? this.manualWilayaCode),
+          : (manualWilaya ?? this.manualWilaya),
+      manualCommune: clearManualLocation
+          ? null
+          : (manualCommune ?? this.manualCommune),
     );
   }
 }
@@ -131,22 +139,43 @@ class NearbyDoctors extends _$NearbyDoctors {
         permissionGranted: true,
         specialtyId: current?.specialtyId,
       );
-      await _refetch(updated.copyWith(clearManualWilaya: true));
+      await _refetch(updated.copyWith(clearManualLocation: true));
     } catch (_) {}
   }
 
-  Future<void> setWilayaCenter(String wilayaCode) async {
-    final (lat, lng) = wilayaCentroid(wilayaCode);
+  /// Centers the map from API reference coordinates (commune preferred over wilaya).
+  Future<void> setManualLocation({
+    required Wilaya wilaya,
+    Commune? commune,
+  }) async {
     final current = state.value;
     if (current == null) return;
 
+    final (lat, lng) = _manualCenter(wilaya, commune);
     await _refetch(
       current.copyWith(
         lat: lat,
         lng: lng,
-        manualWilayaCode: wilayaCode,
+        manualWilaya: wilaya,
+        manualCommune: commune,
       ),
     );
+  }
+
+  (double lat, double lng) _manualCenter(Wilaya wilaya, Commune? commune) {
+    if (commune != null && _hasApiCoords(commune.latitude, commune.longitude)) {
+      return (commune.latitude, commune.longitude);
+    }
+    if (_hasApiCoords(wilaya.latitude, wilaya.longitude)) {
+      return (wilaya.latitude, wilaya.longitude);
+    }
+    return wilayaCentroid(wilaya.code);
+  }
+
+  bool _hasApiCoords(double lat, double lng) {
+    if (lat.isNaN || lng.isNaN) return false;
+    if (lat < -90 || lat > 90 || lng < -180 || lng > 180) return false;
+    return true;
   }
 
   /// Recenters on device GPS and clears wilaya/commune selection.
@@ -169,7 +198,7 @@ class NearbyDoctors extends _$NearbyDoctors {
           lat: position.latitude,
           lng: position.longitude,
           permissionGranted: true,
-          clearManualWilaya: true,
+          clearManualLocation: true,
         ),
       );
     } catch (_) {}

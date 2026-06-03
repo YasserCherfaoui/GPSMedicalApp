@@ -6,7 +6,7 @@ part of 'nearby_doctors.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$nearbyDoctorsHash() => r'502040024a955c2ecaddfd55e161b9990d41e65d';
+String _$nearbyDoctorsHash() => r'7635931fd220915ca032aee4e1906b3902364b17';
 
 /// See also [NearbyDoctors].
 @ProviderFor(NearbyDoctors)

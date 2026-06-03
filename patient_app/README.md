@@ -89,6 +89,8 @@ Either allow all three bundle IDs on the key, or use an unrestricted key for loc
 
 After changing native iOS config, run `cd ios && pod install` once, then **full rebuild** the app (not hot reload).
 
+**Manual map center:** when GPS is denied, the wilaya/commune picker centers the map using `latitude`/`longitude` from `GET /geo/wilayas` and `GET /geo/wilayas/{code}/communes` (see [ADR 0010](../../docs/adr/0010-geo-reference-coordinates.md)). `lib/features/discovery/utils/wilaya_centroids.dart` is only a fallback if API coordinates are missing.
+
 ### iOS push (manual, Firebase Console)
 
 Project settings → Cloud Messaging → upload your **APNs authentication key** (or certificate) so FCM can reach iOS devices.
