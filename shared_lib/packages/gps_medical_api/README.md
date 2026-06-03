@@ -115,6 +115,8 @@ Class | Method | HTTP request | Description
 [*AppointmentsApi*](doc/AppointmentsApi.md) | [**appointmentsAppointmentIdPatch**](doc/AppointmentsApi.md#appointmentsappointmentidpatch) | **PATCH** /appointments/{appointmentId} | Reprogrammation ou modification (motif, notes)
 [*AppointmentsApi*](doc/AppointmentsApi.md) | [**appointmentsGet**](doc/AppointmentsApi.md#appointmentsget) | **GET** /appointments | Liste des rendez-vous de l&#39;utilisateur courant
 [*AppointmentsApi*](doc/AppointmentsApi.md) | [**appointmentsPost**](doc/AppointmentsApi.md#appointmentspost) | **POST** /appointments | Création d&#39;un rendez-vous
+[*AuthApi*](doc/AuthApi.md) | [**checkRegisterNin**](doc/AuthApi.md#checkregisternin) | **POST** /auth/register/check-nin | Vérifier le format et la disponibilité d&#39;un NIN avant inscription
+[*AuthApi*](doc/AuthApi.md) | [**checkRegisterPhone**](doc/AuthApi.md#checkregisterphone) | **POST** /auth/register/check-phone | Vérifier le format et la disponibilité d&#39;un numéro avant inscription
 [*AuthApi*](doc/AuthApi.md) | [**forgotPassword**](doc/AuthApi.md#forgotpassword) | **POST** /auth/password/forgot | Demande de réinitialisation du mot de passe
 [*AuthApi*](doc/AuthApi.md) | [**getJWKS**](doc/AuthApi.md#getjwks) | **GET** /.well-known/jwks.json | Clés publiques RSA pour vérifier les JWT (RS256)
 [*AuthApi*](doc/AuthApi.md) | [**getMe**](doc/AuthApi.md#getme) | **GET** /auth/me | Renvoie l&#39;utilisateur courant
@@ -200,6 +202,8 @@ Class | Method | HTTP request | Description
  - [AppointmentsAppointmentIdCancelPostRequest](doc/AppointmentsAppointmentIdCancelPostRequest.md)
  - [AuditEntry](doc/AuditEntry.md)
  - [AvailabilitySlot](doc/AvailabilitySlot.md)
+ - [CheckNinRequest](doc/CheckNinRequest.md)
+ - [CheckPhoneRequest](doc/CheckPhoneRequest.md)
  - [Commune](doc/Commune.md)
  - [ConsentGrant](doc/ConsentGrant.md)
  - [Credential](doc/Credential.md)

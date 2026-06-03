@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
+
 /// tests for DoctorsApi
 void main() {
   final instance = GpsMedicalApi().getDoctorsApi();
@@ -22,7 +23,7 @@ void main() {
 
     // Téléversement d'un diplôme ou justificatif (PDF/image)
     //
-    // `multipart/form-data` : champs `file` et `type`. Taille maximale **10 Mo**. PDF, JPEG ou PNG uniquement ; le contenu est contrôlé par magic bytes.
+    // `multipart/form-data` : champs `file` et `type`. Taille maximale **10 Mo**. PDF, JPEG ou PNG uniquement ; le contenu est contrôlé par magic bytes. 
     //
     //Future<Credential> doctorsMeCredentialsPost(MultipartFile file, String type, { int issuedYear }) async
     test('test doctorsMeCredentialsPost', () async {
@@ -45,7 +46,7 @@ void main() {
 
     // Téléchargement du justificatif déchiffré (lien signé)
     //
-    // Diffuse le fichier en clair après vérification du jeton HMAC (`exp`, `token`) émis dans `Credential.file_url` à la création ou via un flux équivalent. Accès sans en-tête `Authorization` : le secret est porté par la query.
+    // Diffuse le fichier en clair après vérification du jeton HMAC (`exp`, `token`) émis dans `Credential.file_url` à la création ou via un flux équivalent. Accès sans en-tête `Authorization` : le secret est porté par la query. 
     //
     //Future<Uint8List> getDoctorCredentialFile(String credentialId, int exp, String token) async
     test('test getDoctorCredentialFile', () async {
@@ -58,5 +59,6 @@ void main() {
     test('test specialtiesGet', () async {
       // TODO
     });
+
   });
 }

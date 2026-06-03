@@ -1,6 +1,9 @@
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../repositories/doctor_repository.dart';
+import 'discovery_repositories.provider.dart';
+
 part 'doctor_detail.provider.g.dart';
 
 class DoctorDetailState {
@@ -21,26 +24,27 @@ class DoctorDetailState {
 class DoctorDetail extends _$DoctorDetail {
   @override
   Future<DoctorDetailState> build(String doctorId) async {
-    final client = ref.watch(gpsMedicalClientProvider);
-    final doctorResponse = await client.doctors.doctorsDoctorIdGet(
-      doctorId: doctorId,
-    );
-    final doctor = doctorResponse.data!;
+    final repo = ref.watch(doctorRepositoryProvider);
+    try {
+      final doctor = await repo.fetchById(doctorId);
+      final reviewsResult = await repo.fetchReviews(
+        doctorId: doctorId,
+        page: 1,
+        pageSize: 10,
+      );
+      final reviews = reviewsResult.reviews;
+      final total = reviewsResult.total;
+      final hasMore = reviews.length == 10 && reviews.length < total;
 
-    final reviewsResponse = await client.v1
-        .getReviewsApi()
-        .doctorsDoctorIdReviewsGet(doctorId: doctorId, page: 1, pageSize: 10);
-    final reviewsPaginated = reviewsResponse.data;
-    final reviews = reviewsPaginated?.data?.toList() ?? [];
-    final total = reviewsPaginated?.meta?.total ?? 0;
-    final hasMore = reviews.length == 10 && reviews.length < total;
-
-    return DoctorDetailState(
-      doctor: doctor,
-      reviews: reviews,
-      reviewsPage: 1,
-      hasMoreReviews: hasMore,
-    );
+      return DoctorDetailState(
+        doctor: doctor,
+        reviews: reviews,
+        reviewsPage: 1,
+        hasMoreReviews: hasMore,
+      );
+    } on DoctorNotFoundException {
+      throw const DoctorNotFoundException();
+    }
   }
 
   Future<void> loadMoreReviews() async {
@@ -50,18 +54,15 @@ class DoctorDetail extends _$DoctorDetail {
 
     state = AsyncValue.data(current);
     final nextPageData = await AsyncValue.guard(() async {
-      final client = ref.read(gpsMedicalClientProvider);
+      final repo = ref.read(doctorRepositoryProvider);
       final nextPage = current.reviewsPage + 1;
-      final reviewsResponse = await client.v1
-          .getReviewsApi()
-          .doctorsDoctorIdReviewsGet(
-            doctorId: doctorId,
-            page: nextPage,
-            pageSize: 10,
-          );
-      final reviewsPaginated = reviewsResponse.data;
-      final reviews = reviewsPaginated?.data?.toList() ?? [];
-      final total = reviewsPaginated?.meta?.total ?? 0;
+      final reviewsResult = await repo.fetchReviews(
+        doctorId: doctorId,
+        page: nextPage,
+        pageSize: 10,
+      );
+      final reviews = reviewsResult.reviews;
+      final total = reviewsResult.total;
       final hasMore = (current.reviews.length + reviews.length) < total;
 
       return DoctorDetailState(

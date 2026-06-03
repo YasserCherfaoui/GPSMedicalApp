@@ -14,17 +14,16 @@ part 'patient_update.g.dart';
 /// PatientUpdate
 ///
 /// Properties:
-/// * [fullName]
-/// * [email]
-/// * [birthDate]
-/// * [gender]
-/// * [bloodType]
-/// * [address]
-/// * [allergies]
-/// * [chronicConditions]
+/// * [fullName] 
+/// * [email] 
+/// * [birthDate] 
+/// * [gender] 
+/// * [bloodType] 
+/// * [address] 
+/// * [allergies] 
+/// * [chronicConditions] 
 @BuiltValue()
-abstract class PatientUpdate
-    implements Built<PatientUpdate, PatientUpdateBuilder> {
+abstract class PatientUpdate implements Built<PatientUpdate, PatientUpdateBuilder> {
   @BuiltValueField(wireName: r'full_name')
   String? get fullName;
 
@@ -53,15 +52,13 @@ abstract class PatientUpdate
 
   PatientUpdate._();
 
-  factory PatientUpdate([void updates(PatientUpdateBuilder b)]) =
-      _$PatientUpdate;
+  factory PatientUpdate([void updates(PatientUpdateBuilder b)]) = _$PatientUpdate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PatientUpdateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PatientUpdate> get serializer =>
-      _$PatientUpdateSerializer();
+  static Serializer<PatientUpdate> get serializer => _$PatientUpdateSerializer();
 }
 
 class _$PatientUpdateSerializer implements PrimitiveSerializer<PatientUpdate> {
@@ -140,11 +137,7 @@ class _$PatientUpdateSerializer implements PrimitiveSerializer<PatientUpdate> {
     PatientUpdate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -160,79 +153,59 @@ class _$PatientUpdateSerializer implements PrimitiveSerializer<PatientUpdate> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'full_name':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.fullName = valueDes;
           break;
         case r'email':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.email = valueDes;
           break;
         case r'birth_date':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(Date),
-                  )
-                  as Date;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Date),
+          ) as Date;
           result.birthDate = valueDes;
           break;
         case r'gender':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PatientUpdateGenderEnum),
-                  )
-                  as PatientUpdateGenderEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PatientUpdateGenderEnum),
+          ) as PatientUpdateGenderEnum;
           result.gender = valueDes;
           break;
         case r'blood_type':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PatientUpdateBloodTypeEnum),
-                  )
-                  as PatientUpdateBloodTypeEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PatientUpdateBloodTypeEnum),
+          ) as PatientUpdateBloodTypeEnum;
           result.bloodType = valueDes;
           break;
         case r'address':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(Address),
-                  )
-                  as Address;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Address),
+          ) as Address;
           result.address.replace(valueDes);
           break;
         case r'allergies':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(String),
-                    ]),
-                  )
-                  as BuiltList<String>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
           result.allergies.replace(valueDes);
           break;
         case r'chronic_conditions':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(String),
-                    ]),
-                  )
-                  as BuiltList<String>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
           result.chronicConditions.replace(valueDes);
           break;
         default:
@@ -265,55 +238,46 @@ class _$PatientUpdateSerializer implements PrimitiveSerializer<PatientUpdate> {
 }
 
 class PatientUpdateGenderEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'male')
   static const PatientUpdateGenderEnum male = _$patientUpdateGenderEnum_male;
   @BuiltValueEnumConst(wireName: r'female')
-  static const PatientUpdateGenderEnum female =
-      _$patientUpdateGenderEnum_female;
+  static const PatientUpdateGenderEnum female = _$patientUpdateGenderEnum_female;
   @BuiltValueEnumConst(wireName: r'other')
   static const PatientUpdateGenderEnum other = _$patientUpdateGenderEnum_other;
 
-  static Serializer<PatientUpdateGenderEnum> get serializer =>
-      _$patientUpdateGenderEnumSerializer;
+  static Serializer<PatientUpdateGenderEnum> get serializer => _$patientUpdateGenderEnumSerializer;
 
-  const PatientUpdateGenderEnum._(String name) : super(name);
+  const PatientUpdateGenderEnum._(String name): super(name);
 
-  static BuiltSet<PatientUpdateGenderEnum> get values =>
-      _$patientUpdateGenderEnumValues;
-  static PatientUpdateGenderEnum valueOf(String name) =>
-      _$patientUpdateGenderEnumValueOf(name);
+  static BuiltSet<PatientUpdateGenderEnum> get values => _$patientUpdateGenderEnumValues;
+  static PatientUpdateGenderEnum valueOf(String name) => _$patientUpdateGenderEnumValueOf(name);
 }
 
 class PatientUpdateBloodTypeEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'A+')
-  static const PatientUpdateBloodTypeEnum aPlus =
-      _$patientUpdateBloodTypeEnum_aPlus;
+  static const PatientUpdateBloodTypeEnum aPlus = _$patientUpdateBloodTypeEnum_aPlus;
   @BuiltValueEnumConst(wireName: r'A-')
   static const PatientUpdateBloodTypeEnum A_ = _$patientUpdateBloodTypeEnum_A_;
   @BuiltValueEnumConst(wireName: r'B+')
-  static const PatientUpdateBloodTypeEnum bPlus =
-      _$patientUpdateBloodTypeEnum_bPlus;
+  static const PatientUpdateBloodTypeEnum bPlus = _$patientUpdateBloodTypeEnum_bPlus;
   @BuiltValueEnumConst(wireName: r'B-')
   static const PatientUpdateBloodTypeEnum B_ = _$patientUpdateBloodTypeEnum_B_;
   @BuiltValueEnumConst(wireName: r'AB+')
-  static const PatientUpdateBloodTypeEnum aBPlus =
-      _$patientUpdateBloodTypeEnum_aBPlus;
+  static const PatientUpdateBloodTypeEnum aBPlus = _$patientUpdateBloodTypeEnum_aBPlus;
   @BuiltValueEnumConst(wireName: r'AB-')
-  static const PatientUpdateBloodTypeEnum AB_ =
-      _$patientUpdateBloodTypeEnum_AB_;
+  static const PatientUpdateBloodTypeEnum AB_ = _$patientUpdateBloodTypeEnum_AB_;
   @BuiltValueEnumConst(wireName: r'O+')
-  static const PatientUpdateBloodTypeEnum oPlus =
-      _$patientUpdateBloodTypeEnum_oPlus;
+  static const PatientUpdateBloodTypeEnum oPlus = _$patientUpdateBloodTypeEnum_oPlus;
   @BuiltValueEnumConst(wireName: r'O-')
   static const PatientUpdateBloodTypeEnum O_ = _$patientUpdateBloodTypeEnum_O_;
 
-  static Serializer<PatientUpdateBloodTypeEnum> get serializer =>
-      _$patientUpdateBloodTypeEnumSerializer;
+  static Serializer<PatientUpdateBloodTypeEnum> get serializer => _$patientUpdateBloodTypeEnumSerializer;
 
-  const PatientUpdateBloodTypeEnum._(String name) : super(name);
+  const PatientUpdateBloodTypeEnum._(String name): super(name);
 
-  static BuiltSet<PatientUpdateBloodTypeEnum> get values =>
-      _$patientUpdateBloodTypeEnumValues;
-  static PatientUpdateBloodTypeEnum valueOf(String name) =>
-      _$patientUpdateBloodTypeEnumValueOf(name);
+  static BuiltSet<PatientUpdateBloodTypeEnum> get values => _$patientUpdateBloodTypeEnumValues;
+  static PatientUpdateBloodTypeEnum valueOf(String name) => _$patientUpdateBloodTypeEnumValueOf(name);
 }
+

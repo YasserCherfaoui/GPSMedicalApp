@@ -15,6 +15,7 @@ import 'package:gps_medical_api/src/model/paginated_doctors_with_distance.dart';
 import 'package:gps_medical_api/src/model/wilaya.dart';
 
 class GeolocationApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -22,15 +23,15 @@ class GeolocationApi {
   const GeolocationApi(this._dio, this._serializers);
 
   /// Médecins à proximité d&#39;un point GPS
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [lat]
-  /// * [lng]
-  /// * [radiusKm]
-  /// * [specialtyId]
-  /// * [page]
-  /// * [pageSize]
+  /// * [lat] 
+  /// * [lng] 
+  /// * [radiusKm] 
+  /// * [specialtyId] 
+  /// * [page] 
+  /// * [pageSize] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -40,7 +41,7 @@ class GeolocationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PaginatedDoctorsWithDistance] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaginatedDoctorsWithDistance>> geoDoctorsNearbyGet({
+  Future<Response<PaginatedDoctorsWithDistance>> geoDoctorsNearbyGet({ 
     required double lat,
     required double lng,
     num? radiusKm = 5,
@@ -57,34 +58,23 @@ class GeolocationApi {
     final _path = r'/geo/doctors/nearby';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
     final _queryParameters = <String, dynamic>{
       r'lat': encodeQueryParameter(_serializers, lat, const FullType(double)),
       r'lng': encodeQueryParameter(_serializers, lng, const FullType(double)),
-      if (radiusKm != null)
-        r'radius_km': encodeQueryParameter(
-          _serializers,
-          radiusKm,
-          const FullType(num),
-        ),
-      if (specialtyId != null)
-        r'specialty_id': encodeQueryParameter(
-          _serializers,
-          specialtyId,
-          const FullType(String),
-        ),
-      if (page != null)
-        r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (pageSize != null)
-        r'page_size': encodeQueryParameter(
-          _serializers,
-          pageSize,
-          const FullType(int),
-        ),
+      if (radiusKm != null) r'radius_km': encodeQueryParameter(_serializers, radiusKm, const FullType(num)),
+      if (specialtyId != null) r'specialty_id': encodeQueryParameter(_serializers, specialtyId, const FullType(String)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -100,13 +90,11 @@ class GeolocationApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(PaginatedDoctorsWithDistance),
-                )
-                as PaginatedDoctorsWithDistance;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedDoctorsWithDistance),
+      ) as PaginatedDoctorsWithDistance;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -130,7 +118,7 @@ class GeolocationApi {
   }
 
   /// Liste des 58 wilayas algériennes
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -142,7 +130,7 @@ class GeolocationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<Wilaya>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<Wilaya>>> geoWilayasGet({
+  Future<Response<BuiltList<Wilaya>>> geoWilayasGet({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -153,8 +141,13 @@ class GeolocationApi {
     final _path = r'/geo/wilayas';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -170,13 +163,11 @@ class GeolocationApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(BuiltList, [FullType(Wilaya)]),
-                )
-                as BuiltList<Wilaya>;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Wilaya)]),
+      ) as BuiltList<Wilaya>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -200,10 +191,10 @@ class GeolocationApi {
   }
 
   /// Communes d&#39;une wilaya donnée
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [wilayaCode]
+  /// * [wilayaCode] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -213,7 +204,7 @@ class GeolocationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<Commune>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<Commune>>> geoWilayasWilayaCodeCommunesGet({
+  Future<Response<BuiltList<Commune>>> geoWilayasWilayaCodeCommunesGet({ 
     required String wilayaCode,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -222,20 +213,16 @@ class GeolocationApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/geo/wilayas/{wilayaCode}/communes'.replaceAll(
-      '{'
-      r'wilayaCode'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        wilayaCode,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/geo/wilayas/{wilayaCode}/communes'.replaceAll('{' r'wilayaCode' '}', encodeQueryParameter(_serializers, wilayaCode, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -251,13 +238,11 @@ class GeolocationApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(BuiltList, [FullType(Commune)]),
-                )
-                as BuiltList<Commune>;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Commune)]),
+      ) as BuiltList<Commune>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -279,4 +264,5 @@ class GeolocationApi {
       extra: _response.extra,
     );
   }
+
 }

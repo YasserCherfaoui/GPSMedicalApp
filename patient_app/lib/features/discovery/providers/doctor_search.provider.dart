@@ -1,7 +1,9 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import 'discovery_repositories.provider.dart';
+import 'user_location.provider.dart';
 
 part 'doctor_search.provider.g.dart';
 
@@ -35,7 +37,7 @@ class SearchFilters {
   final String sort;
 
   int get activeFiltersCount {
-    int count = 0;
+    var count = 0;
     if (specialtyId != null) count++;
     if (wilayaCode != null) count++;
     if (communeCode != null) count++;
@@ -91,44 +93,32 @@ class SearchFilters {
 @riverpod
 class SearchFiltersNotifier extends _$SearchFiltersNotifier {
   @override
-  SearchFilters build() {
-    return const SearchFilters();
-  }
+  SearchFilters build() => const SearchFilters();
 
-  void updateQuery(String query) {
-    state = state.copyWith(query: query);
-  }
+  void updateQuery(String query) => state = state.copyWith(query: query);
 
   void selectSpecialty(String? specialtyId) {
-    if (specialtyId == null) {
-      state = state.copyWith(clearSpecialty: true);
-    } else {
-      state = state.copyWith(specialtyId: specialtyId);
-    }
+    state = specialtyId == null
+        ? state.copyWith(clearSpecialty: true)
+        : state.copyWith(specialtyId: specialtyId);
   }
 
   void selectWilaya(String? wilayaCode) {
-    if (wilayaCode == null) {
-      state = state.copyWith(clearWilaya: true, clearCommune: true);
-    } else {
-      state = state.copyWith(wilayaCode: wilayaCode, clearCommune: true);
-    }
+    state = wilayaCode == null
+        ? state.copyWith(clearWilaya: true, clearCommune: true)
+        : state.copyWith(wilayaCode: wilayaCode, clearCommune: true);
   }
 
   void selectCommune(String? communeCode) {
-    if (communeCode == null) {
-      state = state.copyWith(clearCommune: true);
-    } else {
-      state = state.copyWith(communeCode: communeCode);
-    }
+    state = communeCode == null
+        ? state.copyWith(clearCommune: true)
+        : state.copyWith(communeCode: communeCode);
   }
 
   void selectGender(String? gender) {
-    if (gender == null) {
-      state = state.copyWith(clearGender: true);
-    } else {
-      state = state.copyWith(gender: gender);
-    }
+    state = gender == null
+        ? state.copyWith(clearGender: true)
+        : state.copyWith(gender: gender);
   }
 
   void toggleLanguage(String lang) {
@@ -141,37 +131,24 @@ class SearchFiltersNotifier extends _$SearchFiltersNotifier {
     state = state.copyWith(languages: list);
   }
 
-  void toggleCnas(bool value) {
-    state = state.copyWith(acceptsCnas: value);
-  }
+  void toggleCnas(bool value) => state = state.copyWith(acceptsCnas: value);
 
-  void toggleCasnos(bool value) {
-    state = state.copyWith(acceptsCasnos: value);
-  }
+  void toggleCasnos(bool value) => state = state.copyWith(acceptsCasnos: value);
 
-  void updateMaxFee(int fee) {
-    state = state.copyWith(maxFee: fee);
-  }
+  void updateMaxFee(int fee) => state = state.copyWith(maxFee: fee);
 
-  void toggleTelehealth(bool value) {
-    state = state.copyWith(offersTelehealth: value);
-  }
+  void toggleTelehealth(bool value) =>
+      state = state.copyWith(offersTelehealth: value);
 
   void selectAvailableWithinDays(int? days) {
-    if (days == null) {
-      state = state.copyWith(clearAvailableWithinDays: true);
-    } else {
-      state = state.copyWith(availableWithinDays: days);
-    }
+    state = days == null
+        ? state.copyWith(clearAvailableWithinDays: true)
+        : state.copyWith(availableWithinDays: days);
   }
 
-  void updateSort(String sort) {
-    state = state.copyWith(sort: sort);
-  }
+  void updateSort(String sort) => state = state.copyWith(sort: sort);
 
-  void reset() {
-    state = const SearchFilters();
-  }
+  void reset() => state = const SearchFilters();
 }
 
 class SearchResultState {
@@ -197,38 +174,16 @@ class DoctorSearch extends _$DoctorSearch {
   }
 
   Future<SearchResultState> _fetchPage(SearchFilters filters, int page) async {
-    final client = ref.read(gpsMedicalClientProvider);
-
-    // Parse gender to API enum if needed, else null
-    final response = await client.v1.getSearchApi().searchDoctorsGet(
-      q: filters.query.isNotEmpty ? filters.query : null,
-      specialtyId: filters.specialtyId,
-      wilayaCode: filters.wilayaCode,
-      communeId: filters.communeCode,
-      gender: filters.gender,
-      language: filters.languages.isNotEmpty
-          ? BuiltList<String>(filters.languages)
-          : null,
-      acceptsCnas: filters.acceptsCnas ? true : null,
-      acceptsCasnos: filters.acceptsCasnos ? true : null,
-      maxFeeDzd: filters.maxFee < 10000 ? filters.maxFee : null,
-      telehealth: filters.offersTelehealth ? true : null,
-      availableWithinDays: filters.availableWithinDays,
-      sort: filters.sort,
+    final location = ref.read(userLocationProvider).valueOrNull;
+    final result = await ref.read(searchRepositoryProvider).searchDoctors(
+      filters: filters,
       page: page,
       pageSize: 20,
+      userLat: location?.lat,
+      userLng: location?.lng,
     );
-
-    final paginated = response.data;
-    if (paginated == null) {
-      return const SearchResultState(
-        doctors: [],
-        currentPage: 1,
-        hasMore: false,
-      );
-    }
-    final doctors = paginated.data?.toList() ?? [];
-    final total = paginated.meta?.total ?? 0;
+    final doctors = result.doctors;
+    final total = result.total;
     final hasMore = doctors.length == 20 && (page * 20) < total;
 
     return SearchResultState(
@@ -273,13 +228,10 @@ Future<SearchSuggestGet200Response?> searchSuggestions(
 ) async {
   if (query.trim().length < 2) return null;
 
-  // Riverpod debounce pattern
   var isDisposed = false;
   ref.onDispose(() => isDisposed = true);
   await Future<void>.delayed(const Duration(milliseconds: 250));
   if (isDisposed) return null;
 
-  final client = ref.read(gpsMedicalClientProvider);
-  final response = await client.v1.getSearchApi().searchSuggestGet(q: query);
-  return response.data;
+  return ref.read(searchRepositoryProvider).suggest(query);
 }

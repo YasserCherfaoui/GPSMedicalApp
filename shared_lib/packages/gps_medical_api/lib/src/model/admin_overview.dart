@@ -11,16 +11,15 @@ part 'admin_overview.g.dart';
 /// AdminOverview
 ///
 /// Properties:
-/// * [usersTotal]
-/// * [patientsActive]
-/// * [doctorsActive]
-/// * [doctorsPendingVerification]
-/// * [appointmentsLast30d]
-/// * [gmvDzdLast30d]
-/// * [avgAppointmentsPerActiveUser]
+/// * [usersTotal] 
+/// * [patientsActive] 
+/// * [doctorsActive] 
+/// * [doctorsPendingVerification] 
+/// * [appointmentsLast30d] 
+/// * [gmvDzdLast30d] 
+/// * [avgAppointmentsPerActiveUser] 
 @BuiltValue()
-abstract class AdminOverview
-    implements Built<AdminOverview, AdminOverviewBuilder> {
+abstract class AdminOverview implements Built<AdminOverview, AdminOverviewBuilder> {
   @BuiltValueField(wireName: r'users_total')
   int? get usersTotal;
 
@@ -44,15 +43,13 @@ abstract class AdminOverview
 
   AdminOverview._();
 
-  factory AdminOverview([void updates(AdminOverviewBuilder b)]) =
-      _$AdminOverview;
+  factory AdminOverview([void updates(AdminOverviewBuilder b)]) = _$AdminOverview;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(AdminOverviewBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<AdminOverview> get serializer =>
-      _$AdminOverviewSerializer();
+  static Serializer<AdminOverview> get serializer => _$AdminOverviewSerializer();
 }
 
 class _$AdminOverviewSerializer implements PrimitiveSerializer<AdminOverview> {
@@ -124,11 +121,7 @@ class _$AdminOverviewSerializer implements PrimitiveSerializer<AdminOverview> {
     AdminOverview object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -144,48 +137,52 @@ class _$AdminOverviewSerializer implements PrimitiveSerializer<AdminOverview> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'users_total':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.usersTotal = valueDes;
           break;
         case r'patients_active':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.patientsActive = valueDes;
           break;
         case r'doctors_active':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.doctorsActive = valueDes;
           break;
         case r'doctors_pending_verification':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.doctorsPendingVerification = valueDes;
           break;
         case r'appointments_last_30d':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.appointmentsLast30d = valueDes;
           break;
         case r'gmv_dzd_last_30d':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.gmvDzdLast30d = valueDes;
           break;
         case r'avg_appointments_per_active_user':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double;
           result.avgAppointmentsPerActiveUser = valueDes;
           break;
         default:
@@ -216,3 +213,4 @@ class _$AdminOverviewSerializer implements PrimitiveSerializer<AdminOverview> {
     return result.build();
   }
 }
+

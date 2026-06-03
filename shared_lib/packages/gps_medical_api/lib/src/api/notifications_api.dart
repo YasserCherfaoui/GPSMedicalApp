@@ -15,6 +15,7 @@ import 'package:gps_medical_api/src/model/notification_preferences.dart';
 import 'package:gps_medical_api/src/model/paginated_notifications.dart';
 
 class NotificationsApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -22,10 +23,10 @@ class NotificationsApi {
   const NotificationsApi(this._dio, this._serializers);
 
   /// Désinscription d&#39;un device
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [deviceId]
+  /// * [deviceId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -35,7 +36,7 @@ class NotificationsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> notificationsDevicesDeviceIdDelete({
+  Future<Response<void>> notificationsDevicesDeviceIdDelete({ 
     required String deviceId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -44,22 +45,19 @@ class NotificationsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/notifications/devices/{deviceId}'.replaceAll(
-      '{'
-      r'deviceId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        deviceId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/notifications/devices/{deviceId}'.replaceAll('{' r'deviceId' '}', encodeQueryParameter(_serializers, deviceId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -78,10 +76,10 @@ class NotificationsApi {
   }
 
   /// Enregistrement d&#39;un device pour les push (FCM)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [deviceRegistration]
+  /// * [deviceRegistration] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -91,7 +89,7 @@ class NotificationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Device] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Device>> notificationsDevicesPost({
+  Future<Response<Device>> notificationsDevicesPost({ 
     required DeviceRegistration deviceRegistration,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -103,10 +101,16 @@ class NotificationsApi {
     final _path = r'/notifications/devices';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -118,13 +122,14 @@ class NotificationsApi {
 
     try {
       const _type = FullType(DeviceRegistration);
-      _bodyData = _serializers.serialize(
-        deviceRegistration,
-        specifiedType: _type,
-      );
-    } catch (error, stackTrace) {
+      _bodyData = _serializers.serialize(deviceRegistration, specifiedType: _type);
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -144,13 +149,11 @@ class NotificationsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Device),
-                )
-                as Device;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Device),
+      ) as Device;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -174,12 +177,12 @@ class NotificationsApi {
   }
 
   /// Liste des notifications de l&#39;utilisateur
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [unreadOnly]
-  /// * [page]
-  /// * [pageSize]
+  /// * [unreadOnly] 
+  /// * [page] 
+  /// * [pageSize] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -189,7 +192,7 @@ class NotificationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PaginatedNotifications] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaginatedNotifications>> notificationsGet({
+  Future<Response<PaginatedNotifications>> notificationsGet({ 
     bool? unreadOnly = false,
     int? page = 1,
     int? pageSize = 20,
@@ -203,10 +206,16 @@ class NotificationsApi {
     final _path = r'/notifications';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -214,20 +223,9 @@ class NotificationsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (unreadOnly != null)
-        r'unread_only': encodeQueryParameter(
-          _serializers,
-          unreadOnly,
-          const FullType(bool),
-        ),
-      if (page != null)
-        r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (pageSize != null)
-        r'page_size': encodeQueryParameter(
-          _serializers,
-          pageSize,
-          const FullType(int),
-        ),
+      if (unreadOnly != null) r'unread_only': encodeQueryParameter(_serializers, unreadOnly, const FullType(bool)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -243,13 +241,11 @@ class NotificationsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(PaginatedNotifications),
-                )
-                as PaginatedNotifications;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedNotifications),
+      ) as PaginatedNotifications;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -273,10 +269,10 @@ class NotificationsApi {
   }
 
   /// Marquer comme lu
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [notificationId]
+  /// * [notificationId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -286,7 +282,7 @@ class NotificationsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> notificationsNotificationIdReadPost({
+  Future<Response<void>> notificationsNotificationIdReadPost({ 
     required String notificationId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -295,22 +291,19 @@ class NotificationsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/notifications/{notificationId}/read'.replaceAll(
-      '{'
-      r'notificationId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        notificationId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/notifications/{notificationId}/read'.replaceAll('{' r'notificationId' '}', encodeQueryParameter(_serializers, notificationId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -329,7 +322,7 @@ class NotificationsApi {
   }
 
   /// Préférences de notification
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -341,7 +334,7 @@ class NotificationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [NotificationPreferences] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<NotificationPreferences>> notificationsPreferencesGet({
+  Future<Response<NotificationPreferences>> notificationsPreferencesGet({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -352,10 +345,16 @@ class NotificationsApi {
     final _path = r'/notifications/preferences';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -374,13 +373,11 @@ class NotificationsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(NotificationPreferences),
-                )
-                as NotificationPreferences;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(NotificationPreferences),
+      ) as NotificationPreferences;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -404,10 +401,10 @@ class NotificationsApi {
   }
 
   /// Mise à jour des préférences
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [notificationPreferences]
+  /// * [notificationPreferences] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -417,7 +414,7 @@ class NotificationsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [NotificationPreferences] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<NotificationPreferences>> notificationsPreferencesPut({
+  Future<Response<NotificationPreferences>> notificationsPreferencesPut({ 
     required NotificationPreferences notificationPreferences,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -429,10 +426,16 @@ class NotificationsApi {
     final _path = r'/notifications/preferences';
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -444,13 +447,14 @@ class NotificationsApi {
 
     try {
       const _type = FullType(NotificationPreferences);
-      _bodyData = _serializers.serialize(
-        notificationPreferences,
-        specifiedType: _type,
-      );
-    } catch (error, stackTrace) {
+      _bodyData = _serializers.serialize(notificationPreferences, specifiedType: _type);
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -470,13 +474,11 @@ class NotificationsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(NotificationPreferences),
-                )
-                as NotificationPreferences;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(NotificationPreferences),
+      ) as NotificationPreferences;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -500,7 +502,7 @@ class NotificationsApi {
   }
 
   /// Marquer toutes les notifications comme lues
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -512,7 +514,7 @@ class NotificationsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> notificationsReadAllPost({
+  Future<Response<void>> notificationsReadAllPost({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -523,10 +525,16 @@ class NotificationsApi {
     final _path = r'/notifications/read-all';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -543,4 +551,5 @@ class NotificationsApi {
 
     return _response;
   }
+
 }

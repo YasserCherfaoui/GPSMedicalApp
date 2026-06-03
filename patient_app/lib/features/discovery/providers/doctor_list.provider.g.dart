@@ -6,7 +6,7 @@ part of 'doctor_list.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$doctorListHash() => r'ec04ba967e9e8eeefb2e82816676d51a7a14fd65';
+String _$doctorListHash() => r'de92ff81b0d87b80fd3f45f56fecb8c140ea1a23';
 
 /// See also [DoctorList].
 @ProviderFor(DoctorList)

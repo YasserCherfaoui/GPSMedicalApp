@@ -1,6 +1,8 @@
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'discovery_repositories.provider.dart';
+
 part 'doctor_list.provider.g.dart';
 
 class DoctorListState {
@@ -25,19 +27,12 @@ class DoctorList extends _$DoctorList {
   }
 
   Future<DoctorListState> _fetchPage(int page) async {
-    final client = ref.read(gpsMedicalClientProvider);
-    final response = await client.doctors.doctorsGet(
+    final result = await ref.read(doctorRepositoryProvider).listVerified(
       page: page,
       pageSize: 20,
-      verifiedOnly: true,
     );
-    final paginated = response.data;
-    if (paginated == null) {
-      return const DoctorListState(doctors: [], currentPage: 1, hasMore: false);
-    }
-    final doctors = paginated.data?.toList() ?? [];
-    final total = paginated.meta?.total ?? 0;
-    // If we fetched a full page and haven't hit the total yet, there's more.
+    final doctors = result.doctors;
+    final total = result.total;
     final hasMore = doctors.length == 20 && (page * 20) < total;
 
     return DoctorListState(
@@ -53,7 +48,6 @@ class DoctorList extends _$DoctorList {
     if (current == null || !current.hasMore) return;
     if (state.isLoading || state.isRefreshing || state.hasError) return;
 
-    // Set temporary data with loading state
     state = AsyncValue.data(current);
 
     final nextPageData = await AsyncValue.guard(() async {

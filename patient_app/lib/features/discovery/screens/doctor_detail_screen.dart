@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
+
 import '../providers/doctor_detail.provider.dart';
+import '../repositories/doctor_repository.dart';
+import '../utils/relative_time.dart';
+import '../widgets/discovery_error_view.dart';
 
 class DoctorDetailScreen extends ConsumerWidget {
   const DoctorDetailScreen({required this.doctorId, super.key});
@@ -288,9 +293,7 @@ class DoctorDetailScreen extends ConsumerWidget {
                                 ),
                               ),
                             ),
-                            onPressed: () {
-                              // Deep link into booking flow with telehealth pre-selected
-                            },
+                            onPressed: () => _showBookingComingSoon(context),
                             icon: const Icon(Icons.videocam_outlined),
                             label: Text(
                               isAr ? 'Téléconsultation' : 'Téléconsultation',
@@ -302,7 +305,7 @@ class DoctorDetailScreen extends ConsumerWidget {
                       Expanded(
                         child: PrimaryButton(
                           label: isAr ? 'Réserver' : 'Prendre RDV',
-                          onPressed: onBookPressed,
+                          onPressed: () => _showBookingComingSoon(context),
                         ),
                       ),
                     ],
@@ -313,22 +316,45 @@ class DoctorDetailScreen extends ConsumerWidget {
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stack) => Center(
-          child: Padding(
-            padding: const EdgeInsets.all(GpsSpacing.md),
-            child: ErrorState(
-              title: 'Médecin introuvable',
-              message: 'Le profil de ce spécialiste n\'est pas disponible.',
-              onRetry: () => ref.refresh(doctorDetailProvider(doctorId)),
+        error: (error, stack) {
+          if (error is DoctorNotFoundException) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(GpsSpacing.md),
+                child: ErrorState(
+                  title: 'Médecin introuvable',
+                  message:
+                      'Le profil de ce spécialiste n\'est pas disponible.',
+                  onRetry: () => context.pop(),
+                ),
+              ),
+            );
+          }
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(GpsSpacing.md),
+              child: DiscoveryErrorView(
+                error: error,
+                defaultTitle: 'Erreur',
+                defaultMessage:
+                    'Impossible de charger le profil de ce spécialiste.',
+                onRetry: () => ref.refresh(doctorDetailProvider(doctorId)),
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
 
-  void onBookPressed() {
-    // Action trigger for booking flow (Week 7)
+  void _showBookingComingSoon(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'La prise de rendez-vous sera disponible dans la prochaine version.',
+        ),
+      ),
+    );
   }
 
   Widget _buildSectionTitle(ThemeData theme, String title) {
@@ -388,17 +414,32 @@ class DoctorDetailScreen extends ConsumerWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Row(
-                      children: List.generate(5, (index) {
-                        final starRating = review.rating ?? 0;
-                        return Icon(
-                          index < starRating
-                              ? Icons.star_rounded
-                              : Icons.star_border_rounded,
-                          color: Colors.amber,
-                          size: 16,
-                        );
-                      }),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Row(
+                          children: List.generate(5, (index) {
+                            final starRating = review.rating ?? 0;
+                            return Icon(
+                              index < starRating
+                                  ? Icons.star_rounded
+                                  : Icons.star_border_rounded,
+                              color: Colors.amber,
+                              size: 16,
+                            );
+                          }),
+                        ),
+                        if (review.createdAt != null)
+                          Text(
+                            formatReviewRelativeTime(
+                              review.createdAt!,
+                              isAr ? 'ar' : 'fr',
+                            ),
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                            ),
+                          ),
+                      ],
                     ),
                   ],
                 ),

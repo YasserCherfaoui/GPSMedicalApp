@@ -11,12 +11,12 @@ part 'thread.g.dart';
 /// Thread
 ///
 /// Properties:
-/// * [id]
-/// * [patientId]
-/// * [doctorId]
-/// * [lastMessageAt]
-/// * [unreadCount]
-/// * [appointmentId]
+/// * [id] 
+/// * [patientId] 
+/// * [doctorId] 
+/// * [lastMessageAt] 
+/// * [unreadCount] 
+/// * [appointmentId] 
 @BuiltValue()
 abstract class Thread implements Built<Thread, ThreadBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -110,11 +110,7 @@ class _$ThreadSerializer implements PrimitiveSerializer<Thread> {
     Thread object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -130,54 +126,45 @@ class _$ThreadSerializer implements PrimitiveSerializer<Thread> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'patient_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.patientId = valueDes;
           break;
         case r'doctor_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.doctorId = valueDes;
           break;
         case r'last_message_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.lastMessageAt = valueDes;
           break;
         case r'unread_count':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.unreadCount = valueDes;
           break;
         case r'appointment_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(String),
-                  )
-                  as String?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
           if (valueDes == null) continue;
           result.appointmentId = valueDes;
           break;
@@ -209,3 +196,4 @@ class _$ThreadSerializer implements PrimitiveSerializer<Thread> {
     return result.build();
   }
 }
+

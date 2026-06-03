@@ -14,24 +14,24 @@ part 'doctor.g.dart';
 /// Doctor
 ///
 /// Properties:
-/// * [id]
-/// * [fullName]
-/// * [title]
-/// * [gender]
-/// * [photoUrl]
-/// * [bio]
-/// * [specialties]
-/// * [languages]
-/// * [consultationFeeDzd]
-/// * [acceptsCnas]
-/// * [acceptsCasnos]
-/// * [offersTelehealth]
-/// * [practiceAddress]
-/// * [ratingAverage]
-/// * [ratingCount]
-/// * [verified]
+/// * [id] 
+/// * [fullName] 
+/// * [title] 
+/// * [gender] 
+/// * [photoUrl] 
+/// * [bio] 
+/// * [specialties] 
+/// * [languages] 
+/// * [consultationFeeDzd] 
+/// * [acceptsCnas] 
+/// * [acceptsCasnos] 
+/// * [offersTelehealth] 
+/// * [practiceAddress] 
+/// * [ratingAverage] 
+/// * [ratingCount] 
+/// * [verified] 
 @BuiltValue(instantiable: false)
-abstract class Doctor {
+abstract class Doctor  {
   @BuiltValueField(wireName: r'id')
   String? get id;
 
@@ -151,9 +151,7 @@ class _$DoctorSerializer implements PrimitiveSerializer<Doctor> {
       yield r'languages';
       yield serializers.serialize(
         object.languages,
-        specifiedType: const FullType(BuiltList, [
-          FullType(DoctorLanguagesEnum),
-        ]),
+        specifiedType: const FullType(BuiltList, [FullType(DoctorLanguagesEnum)]),
       );
     }
     if (object.consultationFeeDzd != null) {
@@ -220,11 +218,7 @@ class _$DoctorSerializer implements PrimitiveSerializer<Doctor> {
     Doctor object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   @override
@@ -233,8 +227,7 @@ class _$DoctorSerializer implements PrimitiveSerializer<Doctor> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.deserialize(serialized, specifiedType: FullType($Doctor))
-        as $Doctor;
+    return serializers.deserialize(serialized, specifiedType: FullType($Doctor)) as $Doctor;
   }
 }
 
@@ -281,145 +274,115 @@ class _$$DoctorSerializer implements PrimitiveSerializer<$Doctor> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'full_name':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.fullName = valueDes;
           break;
         case r'title':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.title = valueDes;
           break;
         case r'gender':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DoctorGenderEnum),
-                  )
-                  as DoctorGenderEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DoctorGenderEnum),
+          ) as DoctorGenderEnum;
           result.gender = valueDes;
           break;
         case r'photo_url':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.photoUrl = valueDes;
           break;
         case r'bio':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.bio = valueDes;
           break;
         case r'specialties':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(Specialty),
-                    ]),
-                  )
-                  as BuiltList<Specialty>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(Specialty)]),
+          ) as BuiltList<Specialty>;
           result.specialties.replace(valueDes);
           break;
         case r'languages':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(DoctorLanguagesEnum),
-                    ]),
-                  )
-                  as BuiltList<DoctorLanguagesEnum>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(DoctorLanguagesEnum)]),
+          ) as BuiltList<DoctorLanguagesEnum>;
           result.languages.replace(valueDes);
           break;
         case r'consultation_fee_dzd':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.consultationFeeDzd = valueDes;
           break;
         case r'accepts_cnas':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(bool),
-                  )
-                  as bool;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.acceptsCnas = valueDes;
           break;
         case r'accepts_casnos':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(bool),
-                  )
-                  as bool;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.acceptsCasnos = valueDes;
           break;
         case r'offers_telehealth':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(bool),
-                  )
-                  as bool;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.offersTelehealth = valueDes;
           break;
         case r'practice_address':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(Address),
-                  )
-                  as Address;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Address),
+          ) as Address;
           result.practiceAddress.replace(valueDes);
           break;
         case r'rating_average':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double;
           result.ratingAverage = valueDes;
           break;
         case r'rating_count':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.ratingCount = valueDes;
           break;
         case r'verified':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(bool),
-                  )
-                  as bool;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.verified = valueDes;
           break;
         default:
@@ -452,22 +415,22 @@ class _$$DoctorSerializer implements PrimitiveSerializer<$Doctor> {
 }
 
 class DoctorGenderEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'male')
   static const DoctorGenderEnum male = _$doctorGenderEnum_male;
   @BuiltValueEnumConst(wireName: r'female')
   static const DoctorGenderEnum female = _$doctorGenderEnum_female;
 
-  static Serializer<DoctorGenderEnum> get serializer =>
-      _$doctorGenderEnumSerializer;
+  static Serializer<DoctorGenderEnum> get serializer => _$doctorGenderEnumSerializer;
 
-  const DoctorGenderEnum._(String name) : super(name);
+  const DoctorGenderEnum._(String name): super(name);
 
   static BuiltSet<DoctorGenderEnum> get values => _$doctorGenderEnumValues;
-  static DoctorGenderEnum valueOf(String name) =>
-      _$doctorGenderEnumValueOf(name);
+  static DoctorGenderEnum valueOf(String name) => _$doctorGenderEnumValueOf(name);
 }
 
 class DoctorLanguagesEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'ar')
   static const DoctorLanguagesEnum ar = _$doctorLanguagesEnum_ar;
   @BuiltValueEnumConst(wireName: r'fr')
@@ -477,13 +440,11 @@ class DoctorLanguagesEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'ber')
   static const DoctorLanguagesEnum ber = _$doctorLanguagesEnum_ber;
 
-  static Serializer<DoctorLanguagesEnum> get serializer =>
-      _$doctorLanguagesEnumSerializer;
+  static Serializer<DoctorLanguagesEnum> get serializer => _$doctorLanguagesEnumSerializer;
 
-  const DoctorLanguagesEnum._(String name) : super(name);
+  const DoctorLanguagesEnum._(String name): super(name);
 
-  static BuiltSet<DoctorLanguagesEnum> get values =>
-      _$doctorLanguagesEnumValues;
-  static DoctorLanguagesEnum valueOf(String name) =>
-      _$doctorLanguagesEnumValueOf(name);
+  static BuiltSet<DoctorLanguagesEnum> get values => _$doctorLanguagesEnumValues;
+  static DoctorLanguagesEnum valueOf(String name) => _$doctorLanguagesEnumValueOf(name);
 }
+

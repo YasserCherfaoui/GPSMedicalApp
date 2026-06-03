@@ -11,12 +11,11 @@ part 'appointment_update.g.dart';
 /// AppointmentUpdate
 ///
 /// Properties:
-/// * [startAt]
-/// * [reason]
+/// * [startAt] 
+/// * [reason] 
 /// * [notes] - Visible médecin uniquement
 @BuiltValue()
-abstract class AppointmentUpdate
-    implements Built<AppointmentUpdate, AppointmentUpdateBuilder> {
+abstract class AppointmentUpdate implements Built<AppointmentUpdate, AppointmentUpdateBuilder> {
   @BuiltValueField(wireName: r'start_at')
   DateTime? get startAt;
 
@@ -29,19 +28,16 @@ abstract class AppointmentUpdate
 
   AppointmentUpdate._();
 
-  factory AppointmentUpdate([void updates(AppointmentUpdateBuilder b)]) =
-      _$AppointmentUpdate;
+  factory AppointmentUpdate([void updates(AppointmentUpdateBuilder b)]) = _$AppointmentUpdate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(AppointmentUpdateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<AppointmentUpdate> get serializer =>
-      _$AppointmentUpdateSerializer();
+  static Serializer<AppointmentUpdate> get serializer => _$AppointmentUpdateSerializer();
 }
 
-class _$AppointmentUpdateSerializer
-    implements PrimitiveSerializer<AppointmentUpdate> {
+class _$AppointmentUpdateSerializer implements PrimitiveSerializer<AppointmentUpdate> {
   @override
   final Iterable<Type> types = const [AppointmentUpdate, _$AppointmentUpdate];
 
@@ -82,11 +78,7 @@ class _$AppointmentUpdateSerializer
     AppointmentUpdate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -102,30 +94,24 @@ class _$AppointmentUpdateSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'start_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.startAt = valueDes;
           break;
         case r'reason':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.reason = valueDes;
           break;
         case r'notes':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.notes = valueDes;
           break;
         default:
@@ -156,3 +142,4 @@ class _$AppointmentUpdateSerializer
     return result.build();
   }
 }
+

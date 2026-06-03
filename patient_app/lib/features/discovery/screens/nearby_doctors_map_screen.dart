@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../providers/nearby_doctors.provider.dart';
+import '../utils/map_marker_cluster.dart';
+import '../widgets/discovery_error_view.dart';
+import '../widgets/doctor_card_tile.dart';
 import '../widgets/specialties_picker.dart';
+import '../widgets/wilaya_commune_picker.dart';
 
 class NearbyDoctorsMapScreen extends ConsumerStatefulWidget {
   const NearbyDoctorsMapScreen({super.key});
@@ -19,6 +22,7 @@ class _NearbyDoctorsMapScreenState
     extends ConsumerState<NearbyDoctorsMapScreen> {
   GoogleMapController? _mapController;
   DoctorWithDistance? _selectedDoctor;
+  double _mapZoom = 13;
 
   // Custom retro-teal styling configuration for Google Maps (ADR 0009)
   static const String _mapStyleJson = '''
@@ -141,20 +145,34 @@ class _NearbyDoctorsMapScreenState
       ),
       body: geoStateAsync.when(
         data: (geoState) {
-          final Set<Marker> markers = geoState.doctors.map((doc) {
-            final lat = doc.practiceAddress?.latitude?.toDouble();
-            final lng = doc.practiceAddress?.longitude?.toDouble();
+          final clusters = clusterNearbyDoctors(
+            doctors: geoState.doctors,
+            zoom: _mapZoom,
+          );
 
-            // Default to slightly random coordinates near Alger if coordinates are not present
-            final position = LatLng(lat ?? geoState.lat, lng ?? geoState.lng);
+          final Set<Marker> markers = clusters.map((cluster) {
+            if (cluster.isCluster) {
+              return Marker(
+                markerId: MarkerId('cluster-${cluster.id}'),
+                position: cluster.position,
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                  BitmapDescriptor.hueAzure,
+                ),
+                infoWindow: InfoWindow(
+                  title: '${cluster.doctors.length} médecins',
+                ),
+                onTap: () {
+                  _mapController?.animateCamera(
+                    CameraUpdate.newLatLngZoom(cluster.position, 13),
+                  );
+                },
+              );
+            }
 
+            final doc = cluster.doctors.first;
             return Marker(
-              markerId: MarkerId(doc.id ?? ''),
-              position: position,
-              infoWindow: InfoWindow(
-                title: '${doc.title ?? "Dr."} ${doc.fullName ?? ""}',
-                snippet: doc.specialties?.firstOrNull?.nameFr,
-              ),
+              markerId: MarkerId(doc.id ?? cluster.id),
+              position: cluster.position,
               onTap: () {
                 setState(() {
                   _selectedDoctor = doc;
@@ -178,6 +196,12 @@ class _NearbyDoctorsMapScreenState
                 onMapCreated: (controller) {
                   _mapController = controller;
                   _mapController?.setMapStyle(_mapStyleJson);
+                },
+                onCameraMove: (position) {
+                  final zoom = position.zoom;
+                  if ((zoom - _mapZoom).abs() > 0.3) {
+                    setState(() => _mapZoom = zoom);
+                  }
                 },
                 onTap: (_) {
                   setState(() {
@@ -217,6 +241,15 @@ class _NearbyDoctorsMapScreenState
                                   .requestLocationPermission();
                             },
                             child: Text(isAr ? 'Autoriser' : 'Autoriser'),
+                          ),
+                          const SizedBox(height: GpsSpacing.xs),
+                          OutlinedButton(
+                            onPressed: _openWilayaFallback,
+                            child: Text(
+                              isAr
+                                  ? 'Choisir une wilaya'
+                                  : 'Choisir une wilaya',
+                            ),
                           ),
                         ],
                       ),
@@ -307,87 +340,15 @@ class _NearbyDoctorsMapScreenState
                   bottom: GpsSpacing.md,
                   left: GpsSpacing.md,
                   right: GpsSpacing.md,
-                  child: GestureDetector(
-                    onTap: () {
-                      context.push(
-                        GpsRoutes.doctorDetail(_selectedDoctor!.id ?? ''),
-                      );
-                    },
-                    child: Card(
-                      elevation: 8,
-                      child: Padding(
-                        padding: const EdgeInsets.all(GpsSpacing.sm),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 72,
-                              height: 72,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  GpsRadii.md,
-                                ),
-                                image: _selectedDoctor!.photoUrl != null
-                                    ? DecorationImage(
-                                        image: NetworkImage(
-                                          _selectedDoctor!.photoUrl!,
-                                        ),
-                                        fit: BoxFit.cover,
-                                      )
-                                    : null,
-                                color: colorScheme.surfaceContainerHighest,
-                              ),
-                              child: _selectedDoctor!.photoUrl == null
-                                  ? Icon(
-                                      Icons.person,
-                                      color: colorScheme.outline,
-                                    )
-                                  : null,
-                            ),
-                            const SizedBox(width: GpsSpacing.md),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '${_selectedDoctor!.title ?? "Dr."} ${_selectedDoctor!.fullName ?? ""}',
-                                    style: theme.textTheme.bodyMedium?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    _selectedDoctor!
-                                            .specialties
-                                            ?.firstOrNull
-                                            ?.nameFr ??
-                                        '',
-                                    style: theme.textTheme.labelSmall,
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        '${_selectedDoctor!.distanceKm?.toStringAsFixed(1)} km',
-                                        style: TextStyle(
-                                          color: colorScheme.primary,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        '${_selectedDoctor!.consultationFeeDzd} DZD',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                  child: Material(
+                    elevation: 8,
+                    borderRadius: BorderRadius.circular(GpsRadii.lg),
+                    child: buildDoctorCardTile(
+                      context: context,
+                      doc: _selectedDoctor!,
+                      isAr: isAr,
+                      userLat: geoState.lat,
+                      userLng: geoState.lng,
                     ),
                   ),
                 ),
@@ -398,14 +359,43 @@ class _NearbyDoctorsMapScreenState
         error: (err, stack) => Center(
           child: Padding(
             padding: const EdgeInsets.all(GpsSpacing.md),
-            child: ErrorState(
-              title: 'Erreur de chargement',
-              message: 'Une erreur s\'est produite sur la carte.',
+            child: DiscoveryErrorView(
+              error: err,
+              defaultTitle: 'Erreur de chargement',
+              defaultMessage: 'Une erreur s\'est produite sur la carte.',
               onRetry: () => ref.refresh(nearbyDoctorsProvider),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  void _openWilayaFallback() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return WilayaCommunePicker(
+          onLocationChanged: (wilaya, commune) {
+            if (wilaya?.code != null) {
+              ref
+                  .read(nearbyDoctorsProvider.notifier)
+                  .setWilayaCenter(wilaya!.code!);
+              _mapController?.animateCamera(
+                CameraUpdate.newLatLngZoom(
+                  LatLng(
+                    ref.read(nearbyDoctorsProvider).value?.lat ?? 36.7538,
+                    ref.read(nearbyDoctorsProvider).value?.lng ?? 3.0588,
+                  ),
+                  11,
+                ),
+              );
+            }
+            Navigator.of(context).pop();
+          },
+        );
+      },
     );
   }
 

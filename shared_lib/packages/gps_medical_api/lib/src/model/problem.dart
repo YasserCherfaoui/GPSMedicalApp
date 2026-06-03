@@ -11,14 +11,14 @@ part 'problem.g.dart';
 /// Problem
 ///
 /// Properties:
-/// * [type]
-/// * [title]
-/// * [status]
-/// * [detail]
-/// * [instance]
+/// * [type] 
+/// * [title] 
+/// * [status] 
+/// * [detail] 
+/// * [instance] 
 /// * [code] - Code applicatif (ex. SLOT_TAKEN)
 @BuiltValue(instantiable: false)
-abstract class Problem {
+abstract class Problem  {
   @BuiltValueField(wireName: r'type')
   String get type;
 
@@ -98,11 +98,7 @@ class _$ProblemSerializer implements PrimitiveSerializer<Problem> {
     Problem object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   @override
@@ -111,11 +107,7 @@ class _$ProblemSerializer implements PrimitiveSerializer<Problem> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.deserialize(
-          serialized,
-          specifiedType: FullType($Problem),
-        )
-        as $Problem;
+    return serializers.deserialize(serialized, specifiedType: FullType($Problem)) as $Problem;
   }
 }
 
@@ -162,54 +154,45 @@ class _$$ProblemSerializer implements PrimitiveSerializer<$Problem> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'type':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.type = valueDes;
           break;
         case r'title':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.title = valueDes;
           break;
         case r'status':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.status = valueDes;
           break;
         case r'detail':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.detail = valueDes;
           break;
         case r'instance':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.instance = valueDes;
           break;
         case r'code':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.code = valueDes;
           break;
         default:
@@ -240,3 +223,4 @@ class _$$ProblemSerializer implements PrimitiveSerializer<$Problem> {
     return result.build();
   }
 }
+

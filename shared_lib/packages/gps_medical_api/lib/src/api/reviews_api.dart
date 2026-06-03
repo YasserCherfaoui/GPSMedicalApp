@@ -17,6 +17,7 @@ import 'package:gps_medical_api/src/model/review_update.dart';
 import 'package:gps_medical_api/src/model/reviews_review_id_report_post_request.dart';
 
 class ReviewsApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -24,12 +25,12 @@ class ReviewsApi {
   const ReviewsApi(this._dio, this._serializers);
 
   /// Avis publics d&#39;un médecin
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [doctorId]
-  /// * [page]
-  /// * [pageSize]
+  /// * [doctorId] 
+  /// * [page] 
+  /// * [pageSize] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -39,7 +40,7 @@ class ReviewsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PaginatedReviews] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaginatedReviews>> doctorsDoctorIdReviewsGet({
+  Future<Response<PaginatedReviews>> doctorsDoctorIdReviewsGet({ 
     required String doctorId,
     int? page = 1,
     int? pageSize = 20,
@@ -50,32 +51,22 @@ class ReviewsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/doctors/{doctorId}/reviews'.replaceAll(
-      '{'
-      r'doctorId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        doctorId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/doctors/{doctorId}/reviews'.replaceAll('{' r'doctorId' '}', encodeQueryParameter(_serializers, doctorId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
     final _queryParameters = <String, dynamic>{
-      if (page != null)
-        r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (pageSize != null)
-        r'page_size': encodeQueryParameter(
-          _serializers,
-          pageSize,
-          const FullType(int),
-        ),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -91,13 +82,11 @@ class ReviewsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(PaginatedReviews),
-                )
-                as PaginatedReviews;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedReviews),
+      ) as PaginatedReviews;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -121,10 +110,10 @@ class ReviewsApi {
   }
 
   /// Publication d&#39;un avis (uniquement après RDV terminé)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [reviewCreate]
+  /// * [reviewCreate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -134,7 +123,7 @@ class ReviewsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Review] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Review>> reviewsPost({
+  Future<Response<Review>> reviewsPost({ 
     required ReviewCreate reviewCreate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -146,10 +135,16 @@ class ReviewsApi {
     final _path = r'/reviews';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -162,9 +157,13 @@ class ReviewsApi {
     try {
       const _type = FullType(ReviewCreate);
       _bodyData = _serializers.serialize(reviewCreate, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -184,13 +183,11 @@ class ReviewsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Review),
-                )
-                as Review;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Review),
+      ) as Review;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -214,10 +211,10 @@ class ReviewsApi {
   }
 
   /// Suppression d&#39;un avis (auteur)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [reviewId]
+  /// * [reviewId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -227,7 +224,7 @@ class ReviewsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> reviewsReviewIdDelete({
+  Future<Response<void>> reviewsReviewIdDelete({ 
     required String reviewId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -236,22 +233,19 @@ class ReviewsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/reviews/{reviewId}'.replaceAll(
-      '{'
-      r'reviewId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        reviewId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/reviews/{reviewId}'.replaceAll('{' r'reviewId' '}', encodeQueryParameter(_serializers, reviewId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -270,11 +264,11 @@ class ReviewsApi {
   }
 
   /// Modification d&#39;un avis (auteur uniquement, &lt; 7 jours)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [reviewId]
-  /// * [reviewUpdate]
+  /// * [reviewId] 
+  /// * [reviewUpdate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -284,7 +278,7 @@ class ReviewsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Review] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Review>> reviewsReviewIdPatch({
+  Future<Response<Review>> reviewsReviewIdPatch({ 
     required String reviewId,
     required ReviewUpdate reviewUpdate,
     CancelToken? cancelToken,
@@ -294,22 +288,19 @@ class ReviewsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/reviews/{reviewId}'.replaceAll(
-      '{'
-      r'reviewId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        reviewId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/reviews/{reviewId}'.replaceAll('{' r'reviewId' '}', encodeQueryParameter(_serializers, reviewId, const FullType(String)).toString());
     final _options = Options(
       method: r'PATCH',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -322,9 +313,13 @@ class ReviewsApi {
     try {
       const _type = FullType(ReviewUpdate);
       _bodyData = _serializers.serialize(reviewUpdate, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -344,13 +339,11 @@ class ReviewsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Review),
-                )
-                as Review;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Review),
+      ) as Review;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -374,11 +367,11 @@ class ReviewsApi {
   }
 
   /// Signalement d&#39;un avis abusif
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [reviewId]
-  /// * [reviewsReviewIdReportPostRequest]
+  /// * [reviewId] 
+  /// * [reviewsReviewIdReportPostRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -388,7 +381,7 @@ class ReviewsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> reviewsReviewIdReportPost({
+  Future<Response<void>> reviewsReviewIdReportPost({ 
     required String reviewId,
     required ReviewsReviewIdReportPostRequest reviewsReviewIdReportPostRequest,
     CancelToken? cancelToken,
@@ -398,22 +391,19 @@ class ReviewsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/reviews/{reviewId}/report'.replaceAll(
-      '{'
-      r'reviewId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        reviewId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/reviews/{reviewId}/report'.replaceAll('{' r'reviewId' '}', encodeQueryParameter(_serializers, reviewId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -425,13 +415,14 @@ class ReviewsApi {
 
     try {
       const _type = FullType(ReviewsReviewIdReportPostRequest);
-      _bodyData = _serializers.serialize(
-        reviewsReviewIdReportPostRequest,
-        specifiedType: _type,
-      );
-    } catch (error, stackTrace) {
+      _bodyData = _serializers.serialize(reviewsReviewIdReportPostRequest, specifiedType: _type);
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -449,4 +440,5 @@ class ReviewsApi {
 
     return _response;
   }
+
 }

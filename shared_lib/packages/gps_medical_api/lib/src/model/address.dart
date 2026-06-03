@@ -11,15 +11,15 @@ part 'address.g.dart';
 /// Address
 ///
 /// Properties:
-/// * [line1]
-/// * [line2]
-/// * [communeId]
-/// * [communeName]
-/// * [wilayaCode]
-/// * [wilayaName]
-/// * [postalCode]
-/// * [latitude]
-/// * [longitude]
+/// * [line1] 
+/// * [line2] 
+/// * [communeId] 
+/// * [communeName] 
+/// * [wilayaCode] 
+/// * [wilayaName] 
+/// * [postalCode] 
+/// * [latitude] 
+/// * [longitude] 
 @BuiltValue()
 abstract class Address implements Built<Address, AddressBuilder> {
   @BuiltValueField(wireName: r'line1')
@@ -143,11 +143,7 @@ class _$AddressSerializer implements PrimitiveSerializer<Address> {
     Address object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -163,84 +159,66 @@ class _$AddressSerializer implements PrimitiveSerializer<Address> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'line1':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.line1 = valueDes;
           break;
         case r'line2':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.line2 = valueDes;
           break;
         case r'commune_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.communeId = valueDes;
           break;
         case r'commune_name':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.communeName = valueDes;
           break;
         case r'wilaya_code':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.wilayaCode = valueDes;
           break;
         case r'wilaya_name':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.wilayaName = valueDes;
           break;
         case r'postal_code':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.postalCode = valueDes;
           break;
         case r'latitude':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double;
           result.latitude = valueDes;
           break;
         case r'longitude':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double;
           result.longitude = valueDes;
           break;
         default:
@@ -271,3 +249,4 @@ class _$AddressSerializer implements PrimitiveSerializer<Address> {
     return result.build();
   }
 }
+

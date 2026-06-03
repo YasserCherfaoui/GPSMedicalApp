@@ -14,34 +14,31 @@ part 'validation_problem.g.dart';
 /// ValidationProblem
 ///
 /// Properties:
-/// * [type]
-/// * [title]
-/// * [status]
-/// * [detail]
-/// * [instance]
+/// * [type] 
+/// * [title] 
+/// * [status] 
+/// * [detail] 
+/// * [instance] 
 /// * [code] - Code applicatif (ex. SLOT_TAKEN)
-/// * [errors]
+/// * [errors] 
 @BuiltValue()
-abstract class ValidationProblem
-    implements Problem, Built<ValidationProblem, ValidationProblemBuilder> {
+abstract class ValidationProblem implements Problem, Built<ValidationProblem, ValidationProblemBuilder> {
   @BuiltValueField(wireName: r'errors')
   BuiltList<ValidationProblemAllOfErrors>? get errors;
 
   ValidationProblem._();
 
-  factory ValidationProblem([void updates(ValidationProblemBuilder b)]) =
-      _$ValidationProblem;
+  factory ValidationProblem([void updates(ValidationProblemBuilder b)]) = _$ValidationProblem;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ValidationProblemBuilder b) => b..type = 'about:blank';
+  static void _defaults(ValidationProblemBuilder b) => b
+      ..type = 'about:blank';
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<ValidationProblem> get serializer =>
-      _$ValidationProblemSerializer();
+  static Serializer<ValidationProblem> get serializer => _$ValidationProblemSerializer();
 }
 
-class _$ValidationProblemSerializer
-    implements PrimitiveSerializer<ValidationProblem> {
+class _$ValidationProblemSerializer implements PrimitiveSerializer<ValidationProblem> {
   @override
   final Iterable<Type> types = const [ValidationProblem, _$ValidationProblem];
 
@@ -88,9 +85,7 @@ class _$ValidationProblemSerializer
       yield r'errors';
       yield serializers.serialize(
         object.errors,
-        specifiedType: const FullType(BuiltList, [
-          FullType(ValidationProblemAllOfErrors),
-        ]),
+        specifiedType: const FullType(BuiltList, [FullType(ValidationProblemAllOfErrors)]),
       );
     }
     yield r'status';
@@ -106,11 +101,7 @@ class _$ValidationProblemSerializer
     ValidationProblem object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -126,65 +117,52 @@ class _$ValidationProblemSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'instance':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.instance = valueDes;
           break;
         case r'code':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.code = valueDes;
           break;
         case r'detail':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.detail = valueDes;
           break;
         case r'type':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.type = valueDes;
           break;
         case r'title':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.title = valueDes;
           break;
         case r'errors':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(ValidationProblemAllOfErrors),
-                    ]),
-                  )
-                  as BuiltList<ValidationProblemAllOfErrors>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ValidationProblemAllOfErrors)]),
+          ) as BuiltList<ValidationProblemAllOfErrors>;
           result.errors.replace(valueDes);
           break;
         case r'status':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.status = valueDes;
           break;
         default:
@@ -215,3 +193,4 @@ class _$ValidationProblemSerializer
     return result.build();
   }
 }
+

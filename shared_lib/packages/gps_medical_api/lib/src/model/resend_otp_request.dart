@@ -13,27 +13,23 @@ part 'resend_otp_request.g.dart';
 /// Properties:
 /// * [phone] - Numéro algérien au format E.164
 @BuiltValue()
-abstract class ResendOtpRequest
-    implements Built<ResendOtpRequest, ResendOtpRequestBuilder> {
+abstract class ResendOtpRequest implements Built<ResendOtpRequest, ResendOtpRequestBuilder> {
   /// Numéro algérien au format E.164
   @BuiltValueField(wireName: r'phone')
   String get phone;
 
   ResendOtpRequest._();
 
-  factory ResendOtpRequest([void updates(ResendOtpRequestBuilder b)]) =
-      _$ResendOtpRequest;
+  factory ResendOtpRequest([void updates(ResendOtpRequestBuilder b)]) = _$ResendOtpRequest;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(ResendOtpRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<ResendOtpRequest> get serializer =>
-      _$ResendOtpRequestSerializer();
+  static Serializer<ResendOtpRequest> get serializer => _$ResendOtpRequestSerializer();
 }
 
-class _$ResendOtpRequestSerializer
-    implements PrimitiveSerializer<ResendOtpRequest> {
+class _$ResendOtpRequestSerializer implements PrimitiveSerializer<ResendOtpRequest> {
   @override
   final Iterable<Type> types = const [ResendOtpRequest, _$ResendOtpRequest];
 
@@ -58,11 +54,7 @@ class _$ResendOtpRequestSerializer
     ResendOtpRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -78,12 +70,10 @@ class _$ResendOtpRequestSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'phone':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.phone = valueDes;
           break;
         default:
@@ -114,3 +104,4 @@ class _$ResendOtpRequestSerializer
     return result.build();
   }
 }
+

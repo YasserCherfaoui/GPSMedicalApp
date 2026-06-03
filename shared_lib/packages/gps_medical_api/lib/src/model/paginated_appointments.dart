@@ -14,11 +14,10 @@ part 'paginated_appointments.g.dart';
 /// PaginatedAppointments
 ///
 /// Properties:
-/// * [data]
-/// * [meta]
+/// * [data] 
+/// * [meta] 
 @BuiltValue()
-abstract class PaginatedAppointments
-    implements Built<PaginatedAppointments, PaginatedAppointmentsBuilder> {
+abstract class PaginatedAppointments implements Built<PaginatedAppointments, PaginatedAppointmentsBuilder> {
   @BuiltValueField(wireName: r'data')
   BuiltList<Appointment>? get data;
 
@@ -27,25 +26,18 @@ abstract class PaginatedAppointments
 
   PaginatedAppointments._();
 
-  factory PaginatedAppointments([
-    void updates(PaginatedAppointmentsBuilder b),
-  ]) = _$PaginatedAppointments;
+  factory PaginatedAppointments([void updates(PaginatedAppointmentsBuilder b)]) = _$PaginatedAppointments;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaginatedAppointmentsBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaginatedAppointments> get serializer =>
-      _$PaginatedAppointmentsSerializer();
+  static Serializer<PaginatedAppointments> get serializer => _$PaginatedAppointmentsSerializer();
 }
 
-class _$PaginatedAppointmentsSerializer
-    implements PrimitiveSerializer<PaginatedAppointments> {
+class _$PaginatedAppointmentsSerializer implements PrimitiveSerializer<PaginatedAppointments> {
   @override
-  final Iterable<Type> types = const [
-    PaginatedAppointments,
-    _$PaginatedAppointments,
-  ];
+  final Iterable<Type> types = const [PaginatedAppointments, _$PaginatedAppointments];
 
   @override
   final String wireName = r'PaginatedAppointments';
@@ -77,11 +69,7 @@ class _$PaginatedAppointmentsSerializer
     PaginatedAppointments object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -97,23 +85,17 @@ class _$PaginatedAppointmentsSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'data':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(Appointment),
-                    ]),
-                  )
-                  as BuiltList<Appointment>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(Appointment)]),
+          ) as BuiltList<Appointment>;
           result.data.replace(valueDes);
           break;
         case r'meta':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PaginationMeta),
-                  )
-                  as PaginationMeta;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaginationMeta),
+          ) as PaginationMeta;
           result.meta.replace(valueDes);
           break;
         default:
@@ -144,3 +126,4 @@ class _$PaginatedAppointmentsSerializer
     return result.build();
   }
 }
+

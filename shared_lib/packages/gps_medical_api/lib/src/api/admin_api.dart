@@ -25,6 +25,7 @@ import 'package:gps_medical_api/src/model/user_admin.dart';
 import 'package:gps_medical_api/src/model/user_admin_update.dart';
 
 class AdminApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -32,15 +33,15 @@ class AdminApi {
   const AdminApi(this._dio, this._serializers);
 
   /// Journal d&#39;audit
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [actorId]
-  /// * [action]
-  /// * [from]
-  /// * [to]
-  /// * [page]
-  /// * [pageSize]
+  /// * [actorId] 
+  /// * [action] 
+  /// * [from] 
+  /// * [to] 
+  /// * [page] 
+  /// * [pageSize] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -50,7 +51,7 @@ class AdminApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PaginatedAuditEntries] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaginatedAuditEntries>> adminAuditLogGet({
+  Future<Response<PaginatedAuditEntries>> adminAuditLogGet({ 
     String? actorId,
     String? action,
     DateTime? from,
@@ -67,10 +68,16 @@ class AdminApi {
     final _path = r'/admin/audit-log';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -78,34 +85,12 @@ class AdminApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (actorId != null)
-        r'actor_id': encodeQueryParameter(
-          _serializers,
-          actorId,
-          const FullType(String),
-        ),
-      if (action != null)
-        r'action': encodeQueryParameter(
-          _serializers,
-          action,
-          const FullType(String),
-        ),
-      if (from != null)
-        r'from': encodeQueryParameter(
-          _serializers,
-          from,
-          const FullType(DateTime),
-        ),
-      if (to != null)
-        r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
-      if (page != null)
-        r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (pageSize != null)
-        r'page_size': encodeQueryParameter(
-          _serializers,
-          pageSize,
-          const FullType(int),
-        ),
+      if (actorId != null) r'actor_id': encodeQueryParameter(_serializers, actorId, const FullType(String)),
+      if (action != null) r'action': encodeQueryParameter(_serializers, action, const FullType(String)),
+      if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
+      if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -121,13 +106,11 @@ class AdminApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(PaginatedAuditEntries),
-                )
-                as PaginatedAuditEntries;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedAuditEntries),
+      ) as PaginatedAuditEntries;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -151,11 +134,11 @@ class AdminApi {
   }
 
   /// Validation d&#39;un dossier médecin
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [doctorId]
-  /// * [adminDoctorsDoctorIdVerifyPostRequest]
+  /// * [doctorId] 
+  /// * [adminDoctorsDoctorIdVerifyPostRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -165,10 +148,9 @@ class AdminApi {
   ///
   /// Returns a [Future] containing a [Response] with a [DoctorPrivate] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<DoctorPrivate>> adminDoctorsDoctorIdVerifyPost({
+  Future<Response<DoctorPrivate>> adminDoctorsDoctorIdVerifyPost({ 
     required String doctorId,
-    required AdminDoctorsDoctorIdVerifyPostRequest
-    adminDoctorsDoctorIdVerifyPostRequest,
+    required AdminDoctorsDoctorIdVerifyPostRequest adminDoctorsDoctorIdVerifyPostRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -176,22 +158,19 @@ class AdminApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/doctors/{doctorId}/verify'.replaceAll(
-      '{'
-      r'doctorId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        doctorId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/admin/doctors/{doctorId}/verify'.replaceAll('{' r'doctorId' '}', encodeQueryParameter(_serializers, doctorId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -203,13 +182,14 @@ class AdminApi {
 
     try {
       const _type = FullType(AdminDoctorsDoctorIdVerifyPostRequest);
-      _bodyData = _serializers.serialize(
-        adminDoctorsDoctorIdVerifyPostRequest,
-        specifiedType: _type,
-      );
-    } catch (error, stackTrace) {
+      _bodyData = _serializers.serialize(adminDoctorsDoctorIdVerifyPostRequest, specifiedType: _type);
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -229,13 +209,11 @@ class AdminApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(DoctorPrivate),
-                )
-                as DoctorPrivate;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(DoctorPrivate),
+      ) as DoctorPrivate;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -259,11 +237,11 @@ class AdminApi {
   }
 
   /// Médecins en attente de vérification
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [page]
-  /// * [pageSize]
+  /// * [page] 
+  /// * [pageSize] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -273,7 +251,7 @@ class AdminApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PaginatedDoctorsPrivate] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaginatedDoctorsPrivate>> adminDoctorsPendingGet({
+  Future<Response<PaginatedDoctorsPrivate>> adminDoctorsPendingGet({ 
     int? page = 1,
     int? pageSize = 20,
     CancelToken? cancelToken,
@@ -286,10 +264,16 @@ class AdminApi {
     final _path = r'/admin/doctors/pending';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -297,14 +281,8 @@ class AdminApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (page != null)
-        r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (pageSize != null)
-        r'page_size': encodeQueryParameter(
-          _serializers,
-          pageSize,
-          const FullType(int),
-        ),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -320,13 +298,11 @@ class AdminApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(PaginatedDoctorsPrivate),
-                )
-                as PaginatedDoctorsPrivate;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedDoctorsPrivate),
+      ) as PaginatedDoctorsPrivate;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -350,10 +326,10 @@ class AdminApi {
   }
 
   /// Export ANPDP — historique complet des consentements (Phase 1)
-  /// Réservé aux administrateurs. Retourne l&#39;historique brut des lignes &#x60;consent_grants&#x60; pour audit et conformité. Implémentation complète des exports signés / filtres en Phase 4.
+  /// Réservé aux administrateurs. Retourne l&#39;historique brut des lignes &#x60;consent_grants&#x60; pour audit et conformité. Implémentation complète des exports signés / filtres en Phase 4. 
   ///
   /// Parameters:
-  /// * [userId]
+  /// * [userId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -363,7 +339,7 @@ class AdminApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<ConsentGrant>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<ConsentGrant>>> adminExportUserConsents({
+  Future<Response<BuiltList<ConsentGrant>>> adminExportUserConsents({ 
     required String userId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -372,22 +348,19 @@ class AdminApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/users/{userId}/consents'.replaceAll(
-      '{'
-      r'userId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        userId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/admin/users/{userId}/consents'.replaceAll('{' r'userId' '}', encodeQueryParameter(_serializers, userId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -406,15 +379,11 @@ class AdminApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(BuiltList, [
-                    FullType(ConsentGrant),
-                  ]),
-                )
-                as BuiltList<ConsentGrant>;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ConsentGrant)]),
+      ) as BuiltList<ConsentGrant>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -438,11 +407,11 @@ class AdminApi {
   }
 
   /// File de modération des avis signalés
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [page]
-  /// * [pageSize]
+  /// * [page] 
+  /// * [pageSize] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -452,7 +421,7 @@ class AdminApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PaginatedReviews] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaginatedReviews>> adminReviewsQueueGet({
+  Future<Response<PaginatedReviews>> adminReviewsQueueGet({ 
     int? page = 1,
     int? pageSize = 20,
     CancelToken? cancelToken,
@@ -465,10 +434,16 @@ class AdminApi {
     final _path = r'/admin/reviews/queue';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -476,14 +451,8 @@ class AdminApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (page != null)
-        r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (pageSize != null)
-        r'page_size': encodeQueryParameter(
-          _serializers,
-          pageSize,
-          const FullType(int),
-        ),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -499,13 +468,11 @@ class AdminApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(PaginatedReviews),
-                )
-                as PaginatedReviews;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedReviews),
+      ) as PaginatedReviews;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -529,11 +496,11 @@ class AdminApi {
   }
 
   /// Décision de modération
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [reviewId]
-  /// * [adminReviewsReviewIdModeratePostRequest]
+  /// * [reviewId] 
+  /// * [adminReviewsReviewIdModeratePostRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -543,10 +510,9 @@ class AdminApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Review] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Review>> adminReviewsReviewIdModeratePost({
+  Future<Response<Review>> adminReviewsReviewIdModeratePost({ 
     required String reviewId,
-    required AdminReviewsReviewIdModeratePostRequest
-    adminReviewsReviewIdModeratePostRequest,
+    required AdminReviewsReviewIdModeratePostRequest adminReviewsReviewIdModeratePostRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -554,22 +520,19 @@ class AdminApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/reviews/{reviewId}/moderate'.replaceAll(
-      '{'
-      r'reviewId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        reviewId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/admin/reviews/{reviewId}/moderate'.replaceAll('{' r'reviewId' '}', encodeQueryParameter(_serializers, reviewId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -581,13 +544,14 @@ class AdminApi {
 
     try {
       const _type = FullType(AdminReviewsReviewIdModeratePostRequest);
-      _bodyData = _serializers.serialize(
-        adminReviewsReviewIdModeratePostRequest,
-        specifiedType: _type,
-      );
-    } catch (error, stackTrace) {
+      _bodyData = _serializers.serialize(adminReviewsReviewIdModeratePostRequest, specifiedType: _type);
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -607,13 +571,11 @@ class AdminApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Review),
-                )
-                as Review;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Review),
+      ) as Review;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -637,10 +599,10 @@ class AdminApi {
   }
 
   /// Création d&#39;une spécialité (référentiel)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [specialtyCreate]
+  /// * [specialtyCreate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -650,7 +612,7 @@ class AdminApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Specialty] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Specialty>> adminSpecialtiesPost({
+  Future<Response<Specialty>> adminSpecialtiesPost({ 
     required SpecialtyCreate specialtyCreate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -662,10 +624,16 @@ class AdminApi {
     final _path = r'/admin/specialties';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -678,9 +646,13 @@ class AdminApi {
     try {
       const _type = FullType(SpecialtyCreate);
       _bodyData = _serializers.serialize(specialtyCreate, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -700,13 +672,11 @@ class AdminApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Specialty),
-                )
-                as Specialty;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Specialty),
+      ) as Specialty;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -730,10 +700,10 @@ class AdminApi {
   }
 
   /// Détail d&#39;un utilisateur (vue admin)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [userId]
+  /// * [userId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -743,7 +713,7 @@ class AdminApi {
   ///
   /// Returns a [Future] containing a [Response] with a [UserAdmin] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<UserAdmin>> adminUsersUserIdGet({
+  Future<Response<UserAdmin>> adminUsersUserIdGet({ 
     required String userId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -752,22 +722,19 @@ class AdminApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/users/{userId}'.replaceAll(
-      '{'
-      r'userId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        userId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/admin/users/{userId}'.replaceAll('{' r'userId' '}', encodeQueryParameter(_serializers, userId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -786,13 +753,11 @@ class AdminApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(UserAdmin),
-                )
-                as UserAdmin;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(UserAdmin),
+      ) as UserAdmin;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -816,11 +781,11 @@ class AdminApi {
   }
 
   /// Suspension / réactivation / changement de rôle
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [userId]
-  /// * [userAdminUpdate]
+  /// * [userId] 
+  /// * [userAdminUpdate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -830,7 +795,7 @@ class AdminApi {
   ///
   /// Returns a [Future] containing a [Response] with a [UserAdmin] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<UserAdmin>> adminUsersUserIdPatch({
+  Future<Response<UserAdmin>> adminUsersUserIdPatch({ 
     required String userId,
     required UserAdminUpdate userAdminUpdate,
     CancelToken? cancelToken,
@@ -840,22 +805,19 @@ class AdminApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/admin/users/{userId}'.replaceAll(
-      '{'
-      r'userId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        userId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/admin/users/{userId}'.replaceAll('{' r'userId' '}', encodeQueryParameter(_serializers, userId, const FullType(String)).toString());
     final _options = Options(
       method: r'PATCH',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -868,9 +830,13 @@ class AdminApi {
     try {
       const _type = FullType(UserAdminUpdate);
       _bodyData = _serializers.serialize(userAdminUpdate, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -890,13 +856,11 @@ class AdminApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(UserAdmin),
-                )
-                as UserAdmin;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(UserAdmin),
+      ) as UserAdmin;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -918,4 +882,5 @@ class AdminApi {
       extra: _response.extra,
     );
   }
+
 }

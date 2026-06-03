@@ -12,17 +12,16 @@ part 'consent_grant.g.dart';
 /// ConsentGrant
 ///
 /// Properties:
-/// * [id]
-/// * [userId]
-/// * [consentType]
-/// * [version]
-/// * [grantedAt]
-/// * [revokedAt]
-/// * [ipAddress]
-/// * [userAgent]
+/// * [id] 
+/// * [userId] 
+/// * [consentType] 
+/// * [version] 
+/// * [grantedAt] 
+/// * [revokedAt] 
+/// * [ipAddress] 
+/// * [userAgent] 
 @BuiltValue()
-abstract class ConsentGrant
-    implements Built<ConsentGrant, ConsentGrantBuilder> {
+abstract class ConsentGrant implements Built<ConsentGrant, ConsentGrantBuilder> {
   @BuiltValueField(wireName: r'id')
   String get id;
 
@@ -125,11 +124,7 @@ class _$ConsentGrantSerializer implements PrimitiveSerializer<ConsentGrant> {
     ConsentGrant object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -145,77 +140,61 @@ class _$ConsentGrantSerializer implements PrimitiveSerializer<ConsentGrant> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'user_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.userId = valueDes;
           break;
         case r'consent_type':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(ConsentGrantConsentTypeEnum),
-                  )
-                  as ConsentGrantConsentTypeEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ConsentGrantConsentTypeEnum),
+          ) as ConsentGrantConsentTypeEnum;
           result.consentType = valueDes;
           break;
         case r'version':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.version = valueDes;
           break;
         case r'granted_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.grantedAt = valueDes;
           break;
         case r'revoked_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(DateTime),
-                  )
-                  as DateTime?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
           if (valueDes == null) continue;
           result.revokedAt = valueDes;
           break;
         case r'ip_address':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(String),
-                  )
-                  as String?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
           if (valueDes == null) continue;
           result.ipAddress = valueDes;
           break;
         case r'user_agent':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(String),
-                  )
-                  as String?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
           if (valueDes == null) continue;
           result.userAgent = valueDes;
           break;
@@ -249,26 +228,21 @@ class _$ConsentGrantSerializer implements PrimitiveSerializer<ConsentGrant> {
 }
 
 class ConsentGrantConsentTypeEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'data_processing')
-  static const ConsentGrantConsentTypeEnum dataProcessing =
-      _$consentGrantConsentTypeEnum_dataProcessing;
+  static const ConsentGrantConsentTypeEnum dataProcessing = _$consentGrantConsentTypeEnum_dataProcessing;
   @BuiltValueEnumConst(wireName: r'health_data')
-  static const ConsentGrantConsentTypeEnum healthData =
-      _$consentGrantConsentTypeEnum_healthData;
+  static const ConsentGrantConsentTypeEnum healthData = _$consentGrantConsentTypeEnum_healthData;
   @BuiltValueEnumConst(wireName: r'anpdp_terms')
-  static const ConsentGrantConsentTypeEnum anpdpTerms =
-      _$consentGrantConsentTypeEnum_anpdpTerms;
+  static const ConsentGrantConsentTypeEnum anpdpTerms = _$consentGrantConsentTypeEnum_anpdpTerms;
   @BuiltValueEnumConst(wireName: r'marketing')
-  static const ConsentGrantConsentTypeEnum marketing =
-      _$consentGrantConsentTypeEnum_marketing;
+  static const ConsentGrantConsentTypeEnum marketing = _$consentGrantConsentTypeEnum_marketing;
 
-  static Serializer<ConsentGrantConsentTypeEnum> get serializer =>
-      _$consentGrantConsentTypeEnumSerializer;
+  static Serializer<ConsentGrantConsentTypeEnum> get serializer => _$consentGrantConsentTypeEnumSerializer;
 
-  const ConsentGrantConsentTypeEnum._(String name) : super(name);
+  const ConsentGrantConsentTypeEnum._(String name): super(name);
 
-  static BuiltSet<ConsentGrantConsentTypeEnum> get values =>
-      _$consentGrantConsentTypeEnumValues;
-  static ConsentGrantConsentTypeEnum valueOf(String name) =>
-      _$consentGrantConsentTypeEnumValueOf(name);
+  static BuiltSet<ConsentGrantConsentTypeEnum> get values => _$consentGrantConsentTypeEnumValues;
+  static ConsentGrantConsentTypeEnum valueOf(String name) => _$consentGrantConsentTypeEnumValueOf(name);
 }
+

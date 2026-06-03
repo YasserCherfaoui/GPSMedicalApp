@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
+
 /// tests for AnalyticsApi
 void main() {
   final instance = GpsMedicalApi().getAnalyticsApi();
@@ -33,5 +34,6 @@ void main() {
     test('test analyticsDoctorTimeseriesGet', () async {
       // TODO
     });
+
   });
 }

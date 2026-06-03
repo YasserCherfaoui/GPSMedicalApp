@@ -12,10 +12,9 @@ part 'otp_verify_request.g.dart';
 ///
 /// Properties:
 /// * [phone] - Numéro algérien au format E.164
-/// * [code]
+/// * [code] 
 @BuiltValue()
-abstract class OtpVerifyRequest
-    implements Built<OtpVerifyRequest, OtpVerifyRequestBuilder> {
+abstract class OtpVerifyRequest implements Built<OtpVerifyRequest, OtpVerifyRequestBuilder> {
   /// Numéro algérien au format E.164
   @BuiltValueField(wireName: r'phone')
   String get phone;
@@ -25,19 +24,16 @@ abstract class OtpVerifyRequest
 
   OtpVerifyRequest._();
 
-  factory OtpVerifyRequest([void updates(OtpVerifyRequestBuilder b)]) =
-      _$OtpVerifyRequest;
+  factory OtpVerifyRequest([void updates(OtpVerifyRequestBuilder b)]) = _$OtpVerifyRequest;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(OtpVerifyRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<OtpVerifyRequest> get serializer =>
-      _$OtpVerifyRequestSerializer();
+  static Serializer<OtpVerifyRequest> get serializer => _$OtpVerifyRequestSerializer();
 }
 
-class _$OtpVerifyRequestSerializer
-    implements PrimitiveSerializer<OtpVerifyRequest> {
+class _$OtpVerifyRequestSerializer implements PrimitiveSerializer<OtpVerifyRequest> {
   @override
   final Iterable<Type> types = const [OtpVerifyRequest, _$OtpVerifyRequest];
 
@@ -67,11 +63,7 @@ class _$OtpVerifyRequestSerializer
     OtpVerifyRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -87,21 +79,17 @@ class _$OtpVerifyRequestSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'phone':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.phone = valueDes;
           break;
         case r'code':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.code = valueDes;
           break;
         default:
@@ -132,3 +120,4 @@ class _$OtpVerifyRequestSerializer
     return result.build();
   }
 }
+

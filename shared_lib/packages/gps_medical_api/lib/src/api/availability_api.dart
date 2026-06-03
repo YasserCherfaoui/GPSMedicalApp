@@ -18,6 +18,7 @@ import 'package:gps_medical_api/src/model/schedule_template.dart';
 import 'package:gps_medical_api/src/model/schedule_template_create.dart';
 
 class AvailabilityApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -25,13 +26,13 @@ class AvailabilityApi {
   const AvailabilityApi(this._dio, this._serializers);
 
   /// Créneaux disponibles d&#39;un médecin
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [doctorId]
-  /// * [from]
-  /// * [to]
-  /// * [mode]
+  /// * [doctorId] 
+  /// * [from] 
+  /// * [to] 
+  /// * [mode] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -41,7 +42,7 @@ class AvailabilityApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<AvailabilitySlot>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<AvailabilitySlot>>> doctorsDoctorIdAvailabilityGet({
+  Future<Response<BuiltList<AvailabilitySlot>>> doctorsDoctorIdAvailabilityGet({ 
     required String doctorId,
     required Date from,
     required Date to,
@@ -53,32 +54,23 @@ class AvailabilityApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/doctors/{doctorId}/availability'.replaceAll(
-      '{'
-      r'doctorId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        doctorId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/doctors/{doctorId}/availability'.replaceAll('{' r'doctorId' '}', encodeQueryParameter(_serializers, doctorId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
     final _queryParameters = <String, dynamic>{
       r'from': encodeQueryParameter(_serializers, from, const FullType(Date)),
       r'to': encodeQueryParameter(_serializers, to, const FullType(Date)),
-      if (mode != null)
-        r'mode': encodeQueryParameter(
-          _serializers,
-          mode,
-          const FullType(String),
-        ),
+      if (mode != null) r'mode': encodeQueryParameter(_serializers, mode, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -94,15 +86,11 @@ class AvailabilityApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(BuiltList, [
-                    FullType(AvailabilitySlot),
-                  ]),
-                )
-                as BuiltList<AvailabilitySlot>;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(AvailabilitySlot)]),
+      ) as BuiltList<AvailabilitySlot>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -126,7 +114,7 @@ class AvailabilityApi {
   }
 
   /// Congés et exceptions ponctuelles
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -138,8 +126,7 @@ class AvailabilityApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<ScheduleException>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<ScheduleException>>>
-  doctorsMeScheduleExceptionsGet({
+  Future<Response<BuiltList<ScheduleException>>> doctorsMeScheduleExceptionsGet({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -150,10 +137,16 @@ class AvailabilityApi {
     final _path = r'/doctors/me/schedule/exceptions';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -172,15 +165,11 @@ class AvailabilityApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(BuiltList, [
-                    FullType(ScheduleException),
-                  ]),
-                )
-                as BuiltList<ScheduleException>;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ScheduleException)]),
+      ) as BuiltList<ScheduleException>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -204,10 +193,10 @@ class AvailabilityApi {
   }
 
   /// Ajout d&#39;un congé / blocage de créneau
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [scheduleExceptionCreate]
+  /// * [scheduleExceptionCreate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -217,7 +206,7 @@ class AvailabilityApi {
   ///
   /// Returns a [Future] containing a [Response] with a [ScheduleException] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ScheduleException>> doctorsMeScheduleExceptionsPost({
+  Future<Response<ScheduleException>> doctorsMeScheduleExceptionsPost({ 
     required ScheduleExceptionCreate scheduleExceptionCreate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -229,10 +218,16 @@ class AvailabilityApi {
     final _path = r'/doctors/me/schedule/exceptions';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -244,13 +239,14 @@ class AvailabilityApi {
 
     try {
       const _type = FullType(ScheduleExceptionCreate);
-      _bodyData = _serializers.serialize(
-        scheduleExceptionCreate,
-        specifiedType: _type,
-      );
-    } catch (error, stackTrace) {
+      _bodyData = _serializers.serialize(scheduleExceptionCreate, specifiedType: _type);
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -270,13 +266,11 @@ class AvailabilityApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(ScheduleException),
-                )
-                as ScheduleException;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ScheduleException),
+      ) as ScheduleException;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -300,7 +294,7 @@ class AvailabilityApi {
   }
 
   /// Modèles d&#39;agenda hebdomadaires (récurrents)
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -312,7 +306,7 @@ class AvailabilityApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<ScheduleTemplate>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<ScheduleTemplate>>> doctorsMeScheduleTemplatesGet({
+  Future<Response<BuiltList<ScheduleTemplate>>> doctorsMeScheduleTemplatesGet({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -323,10 +317,16 @@ class AvailabilityApi {
     final _path = r'/doctors/me/schedule/templates';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -345,15 +345,11 @@ class AvailabilityApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(BuiltList, [
-                    FullType(ScheduleTemplate),
-                  ]),
-                )
-                as BuiltList<ScheduleTemplate>;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(ScheduleTemplate)]),
+      ) as BuiltList<ScheduleTemplate>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -377,10 +373,10 @@ class AvailabilityApi {
   }
 
   /// Création d&#39;un modèle hebdomadaire
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [scheduleTemplateCreate]
+  /// * [scheduleTemplateCreate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -390,7 +386,7 @@ class AvailabilityApi {
   ///
   /// Returns a [Future] containing a [Response] with a [ScheduleTemplate] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ScheduleTemplate>> doctorsMeScheduleTemplatesPost({
+  Future<Response<ScheduleTemplate>> doctorsMeScheduleTemplatesPost({ 
     required ScheduleTemplateCreate scheduleTemplateCreate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -402,10 +398,16 @@ class AvailabilityApi {
     final _path = r'/doctors/me/schedule/templates';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -417,13 +419,14 @@ class AvailabilityApi {
 
     try {
       const _type = FullType(ScheduleTemplateCreate);
-      _bodyData = _serializers.serialize(
-        scheduleTemplateCreate,
-        specifiedType: _type,
-      );
-    } catch (error, stackTrace) {
+      _bodyData = _serializers.serialize(scheduleTemplateCreate, specifiedType: _type);
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -443,13 +446,11 @@ class AvailabilityApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(ScheduleTemplate),
-                )
-                as ScheduleTemplate;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ScheduleTemplate),
+      ) as ScheduleTemplate;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -473,10 +474,10 @@ class AvailabilityApi {
   }
 
   /// Suppression d&#39;un modèle
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [templateId]
+  /// * [templateId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -486,7 +487,7 @@ class AvailabilityApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> doctorsMeScheduleTemplatesTemplateIdDelete({
+  Future<Response<void>> doctorsMeScheduleTemplatesTemplateIdDelete({ 
     required String templateId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -495,22 +496,19 @@ class AvailabilityApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/doctors/me/schedule/templates/{templateId}'.replaceAll(
-      '{'
-      r'templateId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        templateId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/doctors/me/schedule/templates/{templateId}'.replaceAll('{' r'templateId' '}', encodeQueryParameter(_serializers, templateId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -529,11 +527,11 @@ class AvailabilityApi {
   }
 
   /// Remplacement d&#39;un modèle
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [templateId]
-  /// * [scheduleTemplateCreate]
+  /// * [templateId] 
+  /// * [scheduleTemplateCreate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -543,7 +541,7 @@ class AvailabilityApi {
   ///
   /// Returns a [Future] containing a [Response] with a [ScheduleTemplate] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<ScheduleTemplate>> doctorsMeScheduleTemplatesTemplateIdPut({
+  Future<Response<ScheduleTemplate>> doctorsMeScheduleTemplatesTemplateIdPut({ 
     required String templateId,
     required ScheduleTemplateCreate scheduleTemplateCreate,
     CancelToken? cancelToken,
@@ -553,22 +551,19 @@ class AvailabilityApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/doctors/me/schedule/templates/{templateId}'.replaceAll(
-      '{'
-      r'templateId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        templateId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/doctors/me/schedule/templates/{templateId}'.replaceAll('{' r'templateId' '}', encodeQueryParameter(_serializers, templateId, const FullType(String)).toString());
     final _options = Options(
       method: r'PUT',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -580,13 +575,14 @@ class AvailabilityApi {
 
     try {
       const _type = FullType(ScheduleTemplateCreate);
-      _bodyData = _serializers.serialize(
-        scheduleTemplateCreate,
-        specifiedType: _type,
-      );
-    } catch (error, stackTrace) {
+      _bodyData = _serializers.serialize(scheduleTemplateCreate, specifiedType: _type);
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -606,13 +602,11 @@ class AvailabilityApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(ScheduleTemplate),
-                )
-                as ScheduleTemplate;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ScheduleTemplate),
+      ) as ScheduleTemplate;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -634,4 +628,5 @@ class AvailabilityApi {
       extra: _response.extra,
     );
   }
+
 }

@@ -137,7 +137,7 @@ class _$DoctorLanguagesEnumSerializer
   );
 }
 
-abstract class DoctorBuilder {
+abstract mixin class DoctorBuilder {
   void replace(Doctor other);
   void update(void Function(DoctorBuilder) updates);
   String? get id;

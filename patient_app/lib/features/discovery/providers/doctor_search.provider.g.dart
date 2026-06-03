@@ -6,7 +6,7 @@ part of 'doctor_search.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchSuggestionsHash() => r'0f32f532c9b8575eb1c48f7ee8da18feb675eb34';
+String _$searchSuggestionsHash() => r'16c803bb0579df9a8f8c9406bd108d6d6794332b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -155,7 +155,7 @@ class _SearchSuggestionsProviderElement
 }
 
 String _$searchFiltersNotifierHash() =>
-    r'457b0036766d27ebf7523387e10f54a02d68a96b';
+    r'c826de5d850455ecd2c76905cb6b529f9b134b94';
 
 /// See also [SearchFiltersNotifier].
 @ProviderFor(SearchFiltersNotifier)
@@ -171,7 +171,7 @@ final searchFiltersNotifierProvider =
     );
 
 typedef _$SearchFiltersNotifier = AutoDisposeNotifier<SearchFilters>;
-String _$doctorSearchHash() => r'3efc58459f390a1bebb2eb8ad87c54ed98ebee78';
+String _$doctorSearchHash() => r'340bb8c083131ddf8d2a81384eb317ec82d463c2';
 
 /// See also [DoctorSearch].
 @ProviderFor(DoctorSearch)

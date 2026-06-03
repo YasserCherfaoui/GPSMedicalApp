@@ -15,18 +15,17 @@ part 'prescription.g.dart';
 /// Prescription
 ///
 /// Properties:
-/// * [appointmentId]
-/// * [diagnosis]
-/// * [items]
-/// * [validUntil]
-/// * [id]
-/// * [doctorId]
-/// * [patientId]
-/// * [pdfDocumentId]
-/// * [issuedAt]
+/// * [appointmentId] 
+/// * [diagnosis] 
+/// * [items] 
+/// * [validUntil] 
+/// * [id] 
+/// * [doctorId] 
+/// * [patientId] 
+/// * [pdfDocumentId] 
+/// * [issuedAt] 
 @BuiltValue()
-abstract class Prescription
-    implements PrescriptionCreate, Built<Prescription, PrescriptionBuilder> {
+abstract class Prescription implements PrescriptionCreate, Built<Prescription, PrescriptionBuilder> {
   @BuiltValueField(wireName: r'doctor_id')
   String? get doctorId;
 
@@ -132,11 +131,7 @@ class _$PrescriptionSerializer implements PrimitiveSerializer<Prescription> {
     Prescription object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -152,86 +147,66 @@ class _$PrescriptionSerializer implements PrimitiveSerializer<Prescription> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'doctor_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.doctorId = valueDes;
           break;
         case r'patient_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.patientId = valueDes;
           break;
         case r'appointment_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.appointmentId = valueDes;
           break;
         case r'diagnosis':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.diagnosis = valueDes;
           break;
         case r'valid_until':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(Date),
-                  )
-                  as Date;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Date),
+          ) as Date;
           result.validUntil = valueDes;
           break;
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'issued_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.issuedAt = valueDes;
           break;
         case r'pdf_document_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.pdfDocumentId = valueDes;
           break;
         case r'items':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(PrescriptionItem),
-                    ]),
-                  )
-                  as BuiltList<PrescriptionItem>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(PrescriptionItem)]),
+          ) as BuiltList<PrescriptionItem>;
           result.items.replace(valueDes);
           break;
         default:
@@ -262,3 +237,4 @@ class _$PrescriptionSerializer implements PrimitiveSerializer<Prescription> {
     return result.build();
   }
 }
+

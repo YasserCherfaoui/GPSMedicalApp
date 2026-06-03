@@ -1,24 +1,22 @@
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'discovery_repositories.provider.dart';
+
 part 'location_filter.provider.g.dart';
 
 @Riverpod(keepAlive: true)
 class WilayasFetch extends _$WilayasFetch {
   @override
   Future<List<Wilaya>> build() async {
-    final client = ref.watch(gpsMedicalClientProvider);
-    final response = await client.geolocation.geoWilayasGet();
-    return response.data?.toList() ?? [];
+    return ref.watch(geoRepositoryProvider).fetchWilayas();
   }
 }
 
 @Riverpod(keepAlive: true)
 class CommunesFetch extends _$CommunesFetch {
   @override
-  Future<Map<String, List<Commune>>> build() async {
-    return {};
-  }
+  Future<Map<String, List<Commune>>> build() async => {};
 
   Future<List<Commune>> fetchForWilaya(String wilayaCode) async {
     final currentMap = state.value ?? {};
@@ -26,12 +24,7 @@ class CommunesFetch extends _$CommunesFetch {
       return currentMap[wilayaCode]!;
     }
 
-    final client = ref.read(gpsMedicalClientProvider);
-    final response = await client.geolocation.geoWilayasWilayaCodeCommunesGet(
-      wilayaCode: wilayaCode,
-    );
-    final list = response.data?.toList() ?? [];
-
+    final list = await ref.read(geoRepositoryProvider).fetchCommunes(wilayaCode);
     final updatedMap = Map<String, List<Commune>>.from(currentMap)
       ..[wilayaCode] = list;
     state = AsyncValue.data(updatedMap);
@@ -65,17 +58,15 @@ class LocationFilterState {
 @riverpod
 class LocationFilter extends _$LocationFilter {
   @override
-  LocationFilterState build() {
-    return const LocationFilterState();
-  }
+  LocationFilterState build() => const LocationFilterState();
 
   void selectWilaya(Wilaya? wilaya) {
     if (state.selectedWilaya?.code == wilaya?.code) return;
 
     state = state.copyWith(selectedWilaya: wilaya, clearCommune: true);
 
-    if (wilaya != null && wilaya.code != null) {
-      ref.read(communesFetchProvider.notifier).fetchForWilaya(wilaya.code!);
+    if (wilaya?.code != null) {
+      ref.read(communesFetchProvider.notifier).fetchForWilaya(wilaya!.code!);
     }
   }
 
@@ -83,7 +74,5 @@ class LocationFilter extends _$LocationFilter {
     state = state.copyWith(selectedCommune: commune);
   }
 
-  void clear() {
-    state = const LocationFilterState();
-  }
+  void clear() => state = const LocationFilterState();
 }

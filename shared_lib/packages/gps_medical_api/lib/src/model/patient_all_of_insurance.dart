@@ -12,11 +12,10 @@ part 'patient_all_of_insurance.g.dart';
 /// PatientAllOfInsurance
 ///
 /// Properties:
-/// * [provider]
-/// * [number]
+/// * [provider] 
+/// * [number] 
 @BuiltValue()
-abstract class PatientAllOfInsurance
-    implements Built<PatientAllOfInsurance, PatientAllOfInsuranceBuilder> {
+abstract class PatientAllOfInsurance implements Built<PatientAllOfInsurance, PatientAllOfInsuranceBuilder> {
   @BuiltValueField(wireName: r'provider')
   PatientAllOfInsuranceProviderEnum? get provider;
   // enum providerEnum {  cnas,  casnos,  none,  private,  };
@@ -26,25 +25,18 @@ abstract class PatientAllOfInsurance
 
   PatientAllOfInsurance._();
 
-  factory PatientAllOfInsurance([
-    void updates(PatientAllOfInsuranceBuilder b),
-  ]) = _$PatientAllOfInsurance;
+  factory PatientAllOfInsurance([void updates(PatientAllOfInsuranceBuilder b)]) = _$PatientAllOfInsurance;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PatientAllOfInsuranceBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PatientAllOfInsurance> get serializer =>
-      _$PatientAllOfInsuranceSerializer();
+  static Serializer<PatientAllOfInsurance> get serializer => _$PatientAllOfInsuranceSerializer();
 }
 
-class _$PatientAllOfInsuranceSerializer
-    implements PrimitiveSerializer<PatientAllOfInsurance> {
+class _$PatientAllOfInsuranceSerializer implements PrimitiveSerializer<PatientAllOfInsurance> {
   @override
-  final Iterable<Type> types = const [
-    PatientAllOfInsurance,
-    _$PatientAllOfInsurance,
-  ];
+  final Iterable<Type> types = const [PatientAllOfInsurance, _$PatientAllOfInsurance];
 
   @override
   final String wireName = r'PatientAllOfInsurance';
@@ -76,11 +68,7 @@ class _$PatientAllOfInsuranceSerializer
     PatientAllOfInsurance object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -96,23 +84,17 @@ class _$PatientAllOfInsuranceSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'provider':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      PatientAllOfInsuranceProviderEnum,
-                    ),
-                  )
-                  as PatientAllOfInsuranceProviderEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PatientAllOfInsuranceProviderEnum),
+          ) as PatientAllOfInsuranceProviderEnum;
           result.provider = valueDes;
           break;
         case r'number':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.number = valueDes;
           break;
         default:
@@ -145,26 +127,21 @@ class _$PatientAllOfInsuranceSerializer
 }
 
 class PatientAllOfInsuranceProviderEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'cnas')
-  static const PatientAllOfInsuranceProviderEnum cnas =
-      _$patientAllOfInsuranceProviderEnum_cnas;
+  static const PatientAllOfInsuranceProviderEnum cnas = _$patientAllOfInsuranceProviderEnum_cnas;
   @BuiltValueEnumConst(wireName: r'casnos')
-  static const PatientAllOfInsuranceProviderEnum casnos =
-      _$patientAllOfInsuranceProviderEnum_casnos;
+  static const PatientAllOfInsuranceProviderEnum casnos = _$patientAllOfInsuranceProviderEnum_casnos;
   @BuiltValueEnumConst(wireName: r'none')
-  static const PatientAllOfInsuranceProviderEnum none =
-      _$patientAllOfInsuranceProviderEnum_none;
+  static const PatientAllOfInsuranceProviderEnum none = _$patientAllOfInsuranceProviderEnum_none;
   @BuiltValueEnumConst(wireName: r'private')
-  static const PatientAllOfInsuranceProviderEnum private =
-      _$patientAllOfInsuranceProviderEnum_private;
+  static const PatientAllOfInsuranceProviderEnum private = _$patientAllOfInsuranceProviderEnum_private;
 
-  static Serializer<PatientAllOfInsuranceProviderEnum> get serializer =>
-      _$patientAllOfInsuranceProviderEnumSerializer;
+  static Serializer<PatientAllOfInsuranceProviderEnum> get serializer => _$patientAllOfInsuranceProviderEnumSerializer;
 
-  const PatientAllOfInsuranceProviderEnum._(String name) : super(name);
+  const PatientAllOfInsuranceProviderEnum._(String name): super(name);
 
-  static BuiltSet<PatientAllOfInsuranceProviderEnum> get values =>
-      _$patientAllOfInsuranceProviderEnumValues;
-  static PatientAllOfInsuranceProviderEnum valueOf(String name) =>
-      _$patientAllOfInsuranceProviderEnumValueOf(name);
+  static BuiltSet<PatientAllOfInsuranceProviderEnum> get values => _$patientAllOfInsuranceProviderEnumValues;
+  static PatientAllOfInsuranceProviderEnum valueOf(String name) => _$patientAllOfInsuranceProviderEnumValueOf(name);
 }
+

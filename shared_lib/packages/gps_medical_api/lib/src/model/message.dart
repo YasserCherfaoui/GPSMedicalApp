@@ -13,13 +13,13 @@ part 'message.g.dart';
 /// Message
 ///
 /// Properties:
-/// * [id]
-/// * [threadId]
-/// * [senderId]
-/// * [body]
-/// * [attachments]
-/// * [createdAt]
-/// * [readAt]
+/// * [id] 
+/// * [threadId] 
+/// * [senderId] 
+/// * [body] 
+/// * [attachments] 
+/// * [createdAt] 
+/// * [readAt] 
 @BuiltValue()
 abstract class Message implements Built<Message, MessageBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -98,9 +98,7 @@ class _$MessageSerializer implements PrimitiveSerializer<Message> {
       yield r'attachments';
       yield serializers.serialize(
         object.attachments,
-        specifiedType: const FullType(BuiltList, [
-          FullType(MessageAttachmentsInner),
-        ]),
+        specifiedType: const FullType(BuiltList, [FullType(MessageAttachmentsInner)]),
       );
     }
     if (object.createdAt != null) {
@@ -125,11 +123,7 @@ class _$MessageSerializer implements PrimitiveSerializer<Message> {
     Message object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -145,68 +139,52 @@ class _$MessageSerializer implements PrimitiveSerializer<Message> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'thread_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.threadId = valueDes;
           break;
         case r'sender_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.senderId = valueDes;
           break;
         case r'body':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.body = valueDes;
           break;
         case r'attachments':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(MessageAttachmentsInner),
-                    ]),
-                  )
-                  as BuiltList<MessageAttachmentsInner>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(MessageAttachmentsInner)]),
+          ) as BuiltList<MessageAttachmentsInner>;
           result.attachments.replace(valueDes);
           break;
         case r'created_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.createdAt = valueDes;
           break;
         case r'read_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(DateTime),
-                  )
-                  as DateTime?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
           if (valueDes == null) continue;
           result.readAt = valueDes;
           break;
@@ -238,3 +216,4 @@ class _$MessageSerializer implements PrimitiveSerializer<Message> {
     return result.build();
   }
 }
+

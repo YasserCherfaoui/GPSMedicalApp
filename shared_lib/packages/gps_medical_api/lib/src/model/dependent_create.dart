@@ -13,13 +13,12 @@ part 'dependent_create.g.dart';
 /// DependentCreate
 ///
 /// Properties:
-/// * [fullName]
-/// * [relation]
-/// * [birthDate]
-/// * [gender]
+/// * [fullName] 
+/// * [relation] 
+/// * [birthDate] 
+/// * [gender] 
 @BuiltValue()
-abstract class DependentCreate
-    implements Built<DependentCreate, DependentCreateBuilder> {
+abstract class DependentCreate implements Built<DependentCreate, DependentCreateBuilder> {
   @BuiltValueField(wireName: r'full_name')
   String get fullName;
 
@@ -36,19 +35,16 @@ abstract class DependentCreate
 
   DependentCreate._();
 
-  factory DependentCreate([void updates(DependentCreateBuilder b)]) =
-      _$DependentCreate;
+  factory DependentCreate([void updates(DependentCreateBuilder b)]) = _$DependentCreate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(DependentCreateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<DependentCreate> get serializer =>
-      _$DependentCreateSerializer();
+  static Serializer<DependentCreate> get serializer => _$DependentCreateSerializer();
 }
 
-class _$DependentCreateSerializer
-    implements PrimitiveSerializer<DependentCreate> {
+class _$DependentCreateSerializer implements PrimitiveSerializer<DependentCreate> {
   @override
   final Iterable<Type> types = const [DependentCreate, _$DependentCreate];
 
@@ -88,11 +84,7 @@ class _$DependentCreateSerializer
     DependentCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -108,39 +100,31 @@ class _$DependentCreateSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'full_name':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.fullName = valueDes;
           break;
         case r'relation':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DependentCreateRelationEnum),
-                  )
-                  as DependentCreateRelationEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DependentCreateRelationEnum),
+          ) as DependentCreateRelationEnum;
           result.relation = valueDes;
           break;
         case r'birth_date':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(Date),
-                  )
-                  as Date;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Date),
+          ) as Date;
           result.birthDate = valueDes;
           break;
         case r'gender':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DependentCreateGenderEnum),
-                  )
-                  as DependentCreateGenderEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DependentCreateGenderEnum),
+          ) as DependentCreateGenderEnum;
           result.gender = valueDes;
           break;
         default:
@@ -173,45 +157,36 @@ class _$DependentCreateSerializer
 }
 
 class DependentCreateRelationEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'child')
-  static const DependentCreateRelationEnum child =
-      _$dependentCreateRelationEnum_child;
+  static const DependentCreateRelationEnum child = _$dependentCreateRelationEnum_child;
   @BuiltValueEnumConst(wireName: r'spouse')
-  static const DependentCreateRelationEnum spouse =
-      _$dependentCreateRelationEnum_spouse;
+  static const DependentCreateRelationEnum spouse = _$dependentCreateRelationEnum_spouse;
   @BuiltValueEnumConst(wireName: r'parent')
-  static const DependentCreateRelationEnum parent =
-      _$dependentCreateRelationEnum_parent;
+  static const DependentCreateRelationEnum parent = _$dependentCreateRelationEnum_parent;
   @BuiltValueEnumConst(wireName: r'other')
-  static const DependentCreateRelationEnum other =
-      _$dependentCreateRelationEnum_other;
+  static const DependentCreateRelationEnum other = _$dependentCreateRelationEnum_other;
 
-  static Serializer<DependentCreateRelationEnum> get serializer =>
-      _$dependentCreateRelationEnumSerializer;
+  static Serializer<DependentCreateRelationEnum> get serializer => _$dependentCreateRelationEnumSerializer;
 
-  const DependentCreateRelationEnum._(String name) : super(name);
+  const DependentCreateRelationEnum._(String name): super(name);
 
-  static BuiltSet<DependentCreateRelationEnum> get values =>
-      _$dependentCreateRelationEnumValues;
-  static DependentCreateRelationEnum valueOf(String name) =>
-      _$dependentCreateRelationEnumValueOf(name);
+  static BuiltSet<DependentCreateRelationEnum> get values => _$dependentCreateRelationEnumValues;
+  static DependentCreateRelationEnum valueOf(String name) => _$dependentCreateRelationEnumValueOf(name);
 }
 
 class DependentCreateGenderEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'male')
-  static const DependentCreateGenderEnum male =
-      _$dependentCreateGenderEnum_male;
+  static const DependentCreateGenderEnum male = _$dependentCreateGenderEnum_male;
   @BuiltValueEnumConst(wireName: r'female')
-  static const DependentCreateGenderEnum female =
-      _$dependentCreateGenderEnum_female;
+  static const DependentCreateGenderEnum female = _$dependentCreateGenderEnum_female;
 
-  static Serializer<DependentCreateGenderEnum> get serializer =>
-      _$dependentCreateGenderEnumSerializer;
+  static Serializer<DependentCreateGenderEnum> get serializer => _$dependentCreateGenderEnumSerializer;
 
-  const DependentCreateGenderEnum._(String name) : super(name);
+  const DependentCreateGenderEnum._(String name): super(name);
 
-  static BuiltSet<DependentCreateGenderEnum> get values =>
-      _$dependentCreateGenderEnumValues;
-  static DependentCreateGenderEnum valueOf(String name) =>
-      _$dependentCreateGenderEnumValueOf(name);
+  static BuiltSet<DependentCreateGenderEnum> get values => _$dependentCreateGenderEnumValues;
+  static DependentCreateGenderEnum valueOf(String name) => _$dependentCreateGenderEnumValueOf(name);
 }
+

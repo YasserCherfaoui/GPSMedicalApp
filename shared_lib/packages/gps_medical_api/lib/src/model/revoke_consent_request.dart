@@ -12,34 +12,27 @@ part 'revoke_consent_request.g.dart';
 /// RevokeConsentRequest
 ///
 /// Properties:
-/// * [consentType]
+/// * [consentType] 
 @BuiltValue()
-abstract class RevokeConsentRequest
-    implements Built<RevokeConsentRequest, RevokeConsentRequestBuilder> {
+abstract class RevokeConsentRequest implements Built<RevokeConsentRequest, RevokeConsentRequestBuilder> {
   @BuiltValueField(wireName: r'consent_type')
   RevokeConsentRequestConsentTypeEnum get consentType;
   // enum consentTypeEnum {  data_processing,  health_data,  anpdp_terms,  marketing,  };
 
   RevokeConsentRequest._();
 
-  factory RevokeConsentRequest([void updates(RevokeConsentRequestBuilder b)]) =
-      _$RevokeConsentRequest;
+  factory RevokeConsentRequest([void updates(RevokeConsentRequestBuilder b)]) = _$RevokeConsentRequest;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(RevokeConsentRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<RevokeConsentRequest> get serializer =>
-      _$RevokeConsentRequestSerializer();
+  static Serializer<RevokeConsentRequest> get serializer => _$RevokeConsentRequestSerializer();
 }
 
-class _$RevokeConsentRequestSerializer
-    implements PrimitiveSerializer<RevokeConsentRequest> {
+class _$RevokeConsentRequestSerializer implements PrimitiveSerializer<RevokeConsentRequest> {
   @override
-  final Iterable<Type> types = const [
-    RevokeConsentRequest,
-    _$RevokeConsentRequest,
-  ];
+  final Iterable<Type> types = const [RevokeConsentRequest, _$RevokeConsentRequest];
 
   @override
   final String wireName = r'RevokeConsentRequest';
@@ -62,11 +55,7 @@ class _$RevokeConsentRequestSerializer
     RevokeConsentRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -82,14 +71,10 @@ class _$RevokeConsentRequestSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'consent_type':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      RevokeConsentRequestConsentTypeEnum,
-                    ),
-                  )
-                  as RevokeConsentRequestConsentTypeEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(RevokeConsentRequestConsentTypeEnum),
+          ) as RevokeConsentRequestConsentTypeEnum;
           result.consentType = valueDes;
           break;
         default:
@@ -122,26 +107,21 @@ class _$RevokeConsentRequestSerializer
 }
 
 class RevokeConsentRequestConsentTypeEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'data_processing')
-  static const RevokeConsentRequestConsentTypeEnum dataProcessing =
-      _$revokeConsentRequestConsentTypeEnum_dataProcessing;
+  static const RevokeConsentRequestConsentTypeEnum dataProcessing = _$revokeConsentRequestConsentTypeEnum_dataProcessing;
   @BuiltValueEnumConst(wireName: r'health_data')
-  static const RevokeConsentRequestConsentTypeEnum healthData =
-      _$revokeConsentRequestConsentTypeEnum_healthData;
+  static const RevokeConsentRequestConsentTypeEnum healthData = _$revokeConsentRequestConsentTypeEnum_healthData;
   @BuiltValueEnumConst(wireName: r'anpdp_terms')
-  static const RevokeConsentRequestConsentTypeEnum anpdpTerms =
-      _$revokeConsentRequestConsentTypeEnum_anpdpTerms;
+  static const RevokeConsentRequestConsentTypeEnum anpdpTerms = _$revokeConsentRequestConsentTypeEnum_anpdpTerms;
   @BuiltValueEnumConst(wireName: r'marketing')
-  static const RevokeConsentRequestConsentTypeEnum marketing =
-      _$revokeConsentRequestConsentTypeEnum_marketing;
+  static const RevokeConsentRequestConsentTypeEnum marketing = _$revokeConsentRequestConsentTypeEnum_marketing;
 
-  static Serializer<RevokeConsentRequestConsentTypeEnum> get serializer =>
-      _$revokeConsentRequestConsentTypeEnumSerializer;
+  static Serializer<RevokeConsentRequestConsentTypeEnum> get serializer => _$revokeConsentRequestConsentTypeEnumSerializer;
 
-  const RevokeConsentRequestConsentTypeEnum._(String name) : super(name);
+  const RevokeConsentRequestConsentTypeEnum._(String name): super(name);
 
-  static BuiltSet<RevokeConsentRequestConsentTypeEnum> get values =>
-      _$revokeConsentRequestConsentTypeEnumValues;
-  static RevokeConsentRequestConsentTypeEnum valueOf(String name) =>
-      _$revokeConsentRequestConsentTypeEnumValueOf(name);
+  static BuiltSet<RevokeConsentRequestConsentTypeEnum> get values => _$revokeConsentRequestConsentTypeEnumValues;
+  static RevokeConsentRequestConsentTypeEnum valueOf(String name) => _$revokeConsentRequestConsentTypeEnumValueOf(name);
 }
+

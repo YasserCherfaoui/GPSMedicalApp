@@ -6,7 +6,7 @@ part of 'prescription_create.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-abstract class PrescriptionCreateBuilder {
+abstract mixin class PrescriptionCreateBuilder {
   void replace(PrescriptionCreate other);
   void update(void Function(PrescriptionCreateBuilder) updates);
   String? get appointmentId;

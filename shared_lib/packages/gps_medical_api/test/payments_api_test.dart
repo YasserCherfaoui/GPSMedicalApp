@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
+
 /// tests for PaymentsApi
 void main() {
   final instance = GpsMedicalApi().getPaymentsApi();
@@ -42,5 +43,6 @@ void main() {
     test('test paymentsWebhooksProviderPost', () async {
       // TODO
     });
+
   });
 }

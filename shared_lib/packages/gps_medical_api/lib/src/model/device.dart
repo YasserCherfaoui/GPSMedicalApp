@@ -11,10 +11,10 @@ part 'device.g.dart';
 /// Device
 ///
 /// Properties:
-/// * [id]
-/// * [platform]
-/// * [deviceModel]
-/// * [lastSeenAt]
+/// * [id] 
+/// * [platform] 
+/// * [deviceModel] 
+/// * [lastSeenAt] 
 @BuiltValue()
 abstract class Device implements Built<Device, DeviceBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -88,11 +88,7 @@ class _$DeviceSerializer implements PrimitiveSerializer<Device> {
     Device object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -108,39 +104,31 @@ class _$DeviceSerializer implements PrimitiveSerializer<Device> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'platform':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.platform = valueDes;
           break;
         case r'device_model':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.deviceModel = valueDes;
           break;
         case r'last_seen_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.lastSeenAt = valueDes;
           break;
         default:
@@ -171,3 +159,4 @@ class _$DeviceSerializer implements PrimitiveSerializer<Device> {
     return result.build();
   }
 }
+

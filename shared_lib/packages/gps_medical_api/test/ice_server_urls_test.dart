@@ -6,5 +6,6 @@ void main() {
   final instance = IceServerUrlsBuilder();
   // TODO add properties to the builder and call build()
 
-  group(IceServerUrls, () {});
+  group(IceServerUrls, () {
+  });
 }

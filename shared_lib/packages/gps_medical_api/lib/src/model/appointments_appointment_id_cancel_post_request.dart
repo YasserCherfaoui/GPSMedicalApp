@@ -11,39 +11,26 @@ part 'appointments_appointment_id_cancel_post_request.g.dart';
 /// AppointmentsAppointmentIdCancelPostRequest
 ///
 /// Properties:
-/// * [reason]
+/// * [reason] 
 @BuiltValue()
-abstract class AppointmentsAppointmentIdCancelPostRequest
-    implements
-        Built<
-          AppointmentsAppointmentIdCancelPostRequest,
-          AppointmentsAppointmentIdCancelPostRequestBuilder
-        > {
+abstract class AppointmentsAppointmentIdCancelPostRequest implements Built<AppointmentsAppointmentIdCancelPostRequest, AppointmentsAppointmentIdCancelPostRequestBuilder> {
   @BuiltValueField(wireName: r'reason')
   String? get reason;
 
   AppointmentsAppointmentIdCancelPostRequest._();
 
-  factory AppointmentsAppointmentIdCancelPostRequest([
-    void updates(AppointmentsAppointmentIdCancelPostRequestBuilder b),
-  ]) = _$AppointmentsAppointmentIdCancelPostRequest;
+  factory AppointmentsAppointmentIdCancelPostRequest([void updates(AppointmentsAppointmentIdCancelPostRequestBuilder b)]) = _$AppointmentsAppointmentIdCancelPostRequest;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(AppointmentsAppointmentIdCancelPostRequestBuilder b) =>
-      b;
+  static void _defaults(AppointmentsAppointmentIdCancelPostRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<AppointmentsAppointmentIdCancelPostRequest>
-  get serializer => _$AppointmentsAppointmentIdCancelPostRequestSerializer();
+  static Serializer<AppointmentsAppointmentIdCancelPostRequest> get serializer => _$AppointmentsAppointmentIdCancelPostRequestSerializer();
 }
 
-class _$AppointmentsAppointmentIdCancelPostRequestSerializer
-    implements PrimitiveSerializer<AppointmentsAppointmentIdCancelPostRequest> {
+class _$AppointmentsAppointmentIdCancelPostRequestSerializer implements PrimitiveSerializer<AppointmentsAppointmentIdCancelPostRequest> {
   @override
-  final Iterable<Type> types = const [
-    AppointmentsAppointmentIdCancelPostRequest,
-    _$AppointmentsAppointmentIdCancelPostRequest,
-  ];
+  final Iterable<Type> types = const [AppointmentsAppointmentIdCancelPostRequest, _$AppointmentsAppointmentIdCancelPostRequest];
 
   @override
   final String wireName = r'AppointmentsAppointmentIdCancelPostRequest';
@@ -68,11 +55,7 @@ class _$AppointmentsAppointmentIdCancelPostRequestSerializer
     AppointmentsAppointmentIdCancelPostRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -88,12 +71,10 @@ class _$AppointmentsAppointmentIdCancelPostRequestSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'reason':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.reason = valueDes;
           break;
         default:
@@ -124,3 +105,4 @@ class _$AppointmentsAppointmentIdCancelPostRequestSerializer
     return result.build();
   }
 }
+

@@ -11,10 +11,10 @@ part 'commune.g.dart';
 /// Commune
 ///
 /// Properties:
-/// * [id]
-/// * [wilayaCode]
-/// * [nameFr]
-/// * [nameAr]
+/// * [id] 
+/// * [wilayaCode] 
+/// * [nameFr] 
+/// * [nameAr] 
 @BuiltValue()
 abstract class Commune implements Built<Commune, CommuneBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -88,11 +88,7 @@ class _$CommuneSerializer implements PrimitiveSerializer<Commune> {
     Commune object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -108,39 +104,31 @@ class _$CommuneSerializer implements PrimitiveSerializer<Commune> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'wilaya_code':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.wilayaCode = valueDes;
           break;
         case r'name_fr':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.nameFr = valueDes;
           break;
         case r'name_ar':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.nameAr = valueDes;
           break;
         default:
@@ -171,3 +159,4 @@ class _$CommuneSerializer implements PrimitiveSerializer<Commune> {
     return result.build();
   }
 }
+

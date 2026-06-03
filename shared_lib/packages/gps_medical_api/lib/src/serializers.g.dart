@@ -29,6 +29,8 @@ Serializers _$serializers =
           ..add(AuditEntry.serializer)
           ..add(AvailabilitySlot.serializer)
           ..add(AvailabilitySlotModeEnum.serializer)
+          ..add(CheckNinRequest.serializer)
+          ..add(CheckPhoneRequest.serializer)
           ..add(Commune.serializer)
           ..add(ConsentGrant.serializer)
           ..add(ConsentGrantConsentTypeEnum.serializer)

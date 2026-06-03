@@ -12,14 +12,14 @@ part 'review.g.dart';
 /// Review
 ///
 /// Properties:
-/// * [id]
-/// * [doctorId]
-/// * [patientId]
-/// * [appointmentId]
-/// * [rating]
-/// * [comment]
-/// * [status]
-/// * [createdAt]
+/// * [id] 
+/// * [doctorId] 
+/// * [patientId] 
+/// * [appointmentId] 
+/// * [rating] 
+/// * [comment] 
+/// * [status] 
+/// * [createdAt] 
 @BuiltValue()
 abstract class Review implements Built<Review, ReviewBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -134,11 +134,7 @@ class _$ReviewSerializer implements PrimitiveSerializer<Review> {
     Review object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -154,72 +150,59 @@ class _$ReviewSerializer implements PrimitiveSerializer<Review> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'doctor_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.doctorId = valueDes;
           break;
         case r'patient_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.patientId = valueDes;
           break;
         case r'appointment_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.appointmentId = valueDes;
           break;
         case r'rating':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.rating = valueDes;
           break;
         case r'comment':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.comment = valueDes;
           break;
         case r'status':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(ReviewStatusEnum),
-                  )
-                  as ReviewStatusEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ReviewStatusEnum),
+          ) as ReviewStatusEnum;
           result.status = valueDes;
           break;
         case r'created_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.createdAt = valueDes;
           break;
         default:
@@ -252,6 +235,7 @@ class _$ReviewSerializer implements PrimitiveSerializer<Review> {
 }
 
 class ReviewStatusEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'pending')
   static const ReviewStatusEnum pending = _$reviewStatusEnum_pending;
   @BuiltValueEnumConst(wireName: r'published')
@@ -261,12 +245,11 @@ class ReviewStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'deleted')
   static const ReviewStatusEnum deleted = _$reviewStatusEnum_deleted;
 
-  static Serializer<ReviewStatusEnum> get serializer =>
-      _$reviewStatusEnumSerializer;
+  static Serializer<ReviewStatusEnum> get serializer => _$reviewStatusEnumSerializer;
 
-  const ReviewStatusEnum._(String name) : super(name);
+  const ReviewStatusEnum._(String name): super(name);
 
   static BuiltSet<ReviewStatusEnum> get values => _$reviewStatusEnumValues;
-  static ReviewStatusEnum valueOf(String name) =>
-      _$reviewStatusEnumValueOf(name);
+  static ReviewStatusEnum valueOf(String name) => _$reviewStatusEnumValueOf(name);
 }
+

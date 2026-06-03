@@ -11,33 +11,26 @@ part 'refresh_tokens_request.g.dart';
 /// RefreshTokensRequest
 ///
 /// Properties:
-/// * [refreshToken]
+/// * [refreshToken] 
 @BuiltValue()
-abstract class RefreshTokensRequest
-    implements Built<RefreshTokensRequest, RefreshTokensRequestBuilder> {
+abstract class RefreshTokensRequest implements Built<RefreshTokensRequest, RefreshTokensRequestBuilder> {
   @BuiltValueField(wireName: r'refresh_token')
   String get refreshToken;
 
   RefreshTokensRequest._();
 
-  factory RefreshTokensRequest([void updates(RefreshTokensRequestBuilder b)]) =
-      _$RefreshTokensRequest;
+  factory RefreshTokensRequest([void updates(RefreshTokensRequestBuilder b)]) = _$RefreshTokensRequest;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(RefreshTokensRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<RefreshTokensRequest> get serializer =>
-      _$RefreshTokensRequestSerializer();
+  static Serializer<RefreshTokensRequest> get serializer => _$RefreshTokensRequestSerializer();
 }
 
-class _$RefreshTokensRequestSerializer
-    implements PrimitiveSerializer<RefreshTokensRequest> {
+class _$RefreshTokensRequestSerializer implements PrimitiveSerializer<RefreshTokensRequest> {
   @override
-  final Iterable<Type> types = const [
-    RefreshTokensRequest,
-    _$RefreshTokensRequest,
-  ];
+  final Iterable<Type> types = const [RefreshTokensRequest, _$RefreshTokensRequest];
 
   @override
   final String wireName = r'RefreshTokensRequest';
@@ -60,11 +53,7 @@ class _$RefreshTokensRequestSerializer
     RefreshTokensRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -80,12 +69,10 @@ class _$RefreshTokensRequestSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'refresh_token':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.refreshToken = valueDes;
           break;
         default:
@@ -116,3 +103,4 @@ class _$RefreshTokensRequestSerializer
     return result.build();
   }
 }
+

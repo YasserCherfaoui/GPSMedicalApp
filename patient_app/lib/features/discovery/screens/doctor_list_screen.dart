@@ -5,6 +5,10 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../providers/doctor_list.provider.dart';
 import '../providers/doctor_search.provider.dart';
 import '../providers/specialties.provider.dart';
+import '../providers/user_location.provider.dart';
+import '../widgets/discovery_error_view.dart';
+import '../widgets/doctor_card_tile.dart';
+import '../widgets/doctor_list_shimmer.dart';
 
 class DoctorListScreen extends ConsumerStatefulWidget {
   const DoctorListScreen({super.key});
@@ -46,6 +50,7 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
     final colorScheme = theme.colorScheme;
     final listStateAsync = ref.watch(doctorListProvider);
     final specialtiesAsync = ref.watch(specialtiesProvider);
+    final userLocation = ref.watch(userLocationProvider).valueOrNull;
     final isAr = Localizations.localeOf(context).languageCode == 'ar';
 
     return Scaffold(
@@ -184,7 +189,7 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                 },
                 loading: () => const SizedBox(
                   height: 52,
-                  child: Center(child: CircularProgressIndicator()),
+                  child: Center(child: LoadingSkeleton(height: 40)),
                 ),
                 error: (_, __) => const SizedBox.shrink(),
               ),
@@ -229,42 +234,28 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                       final doc = doctors[index];
                       return Padding(
                         padding: const EdgeInsets.only(bottom: GpsSpacing.md),
-                        child: DoctorCard(
-                          name: '${doc.title ?? "Dr."} ${doc.fullName ?? ""}',
-                          specialty: doc.specialties?.firstOrNull?.nameFr ?? '',
-                          rating: doc.ratingAverage ?? 0.0,
-                          reviewCount: doc.ratingCount ?? 0,
-                          city:
-                              doc.practiceAddress?.communeName ??
-                              doc.practiceAddress?.wilayaName ??
-                              '',
-                          fee: doc.consultationFeeDzd ?? 0,
-                          photoUrl: doc.photoUrl,
-                          isVerified: doc.verified ?? false,
-                          offersTelehealth: doc.offersTelehealth ?? false,
-                          onBookPressed: () {
-                            context.push(
-                              '${GpsRoutes.doctorDetail(doc.id ?? '')}?book=true',
-                            );
-                          },
-                          onFavoritePressed: () {},
+                        child: buildDoctorCardTile(
+                          context: context,
+                          doc: doc,
+                          isAr: isAr,
+                          userLat: userLocation?.lat,
+                          userLng: userLocation?.lng,
                         ),
                       );
                     }, childCount: doctors.length + (listState.hasMore ? 1 : 0)),
                   ),
                 );
               },
-              loading: () => const SliverFillRemaining(
-                child: Center(child: CircularProgressIndicator()),
-              ),
+              loading: () => const DoctorListShimmer(),
               error: (error, stack) => SliverFillRemaining(
                 hasScrollBody: false,
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(GpsSpacing.md),
-                    child: ErrorState(
-                      title: 'Erreur de connexion',
-                      message:
+                    child: DiscoveryErrorView(
+                      error: error,
+                      defaultTitle: 'Erreur de connexion',
+                      defaultMessage:
                           'Impossible de charger la liste des spécialistes.',
                       onRetry: () =>
                           ref.read(doctorListProvider.notifier).refresh(),

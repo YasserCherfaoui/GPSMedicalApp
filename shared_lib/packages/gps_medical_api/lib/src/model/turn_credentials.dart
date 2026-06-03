@@ -12,13 +12,12 @@ part 'turn_credentials.g.dart';
 /// TurnCredentials
 ///
 /// Properties:
-/// * [username]
-/// * [credential]
-/// * [ttlSeconds]
-/// * [urls]
+/// * [username] 
+/// * [credential] 
+/// * [ttlSeconds] 
+/// * [urls] 
 @BuiltValue()
-abstract class TurnCredentials
-    implements Built<TurnCredentials, TurnCredentialsBuilder> {
+abstract class TurnCredentials implements Built<TurnCredentials, TurnCredentialsBuilder> {
   @BuiltValueField(wireName: r'username')
   String? get username;
 
@@ -33,19 +32,16 @@ abstract class TurnCredentials
 
   TurnCredentials._();
 
-  factory TurnCredentials([void updates(TurnCredentialsBuilder b)]) =
-      _$TurnCredentials;
+  factory TurnCredentials([void updates(TurnCredentialsBuilder b)]) = _$TurnCredentials;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(TurnCredentialsBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<TurnCredentials> get serializer =>
-      _$TurnCredentialsSerializer();
+  static Serializer<TurnCredentials> get serializer => _$TurnCredentialsSerializer();
 }
 
-class _$TurnCredentialsSerializer
-    implements PrimitiveSerializer<TurnCredentials> {
+class _$TurnCredentialsSerializer implements PrimitiveSerializer<TurnCredentials> {
   @override
   final Iterable<Type> types = const [TurnCredentials, _$TurnCredentials];
 
@@ -93,11 +89,7 @@ class _$TurnCredentialsSerializer
     TurnCredentials object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -113,38 +105,31 @@ class _$TurnCredentialsSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'username':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.username = valueDes;
           break;
         case r'credential':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.credential = valueDes;
           break;
         case r'ttl_seconds':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.ttlSeconds = valueDes;
           break;
         case r'urls':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(String),
-                    ]),
-                  )
-                  as BuiltList<String>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
           result.urls.replace(valueDes);
           break;
         default:
@@ -175,3 +160,4 @@ class _$TurnCredentialsSerializer
     return result.build();
   }
 }
+

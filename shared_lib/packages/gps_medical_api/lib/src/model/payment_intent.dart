@@ -12,18 +12,17 @@ part 'payment_intent.g.dart';
 /// PaymentIntent
 ///
 /// Properties:
-/// * [id]
-/// * [purpose]
-/// * [appointmentId]
-/// * [amountDzd]
-/// * [provider]
-/// * [status]
+/// * [id] 
+/// * [purpose] 
+/// * [appointmentId] 
+/// * [amountDzd] 
+/// * [provider] 
+/// * [status] 
 /// * [clientSecret] - Secret transmis au SDK gateway
-/// * [redirectUrl]
-/// * [createdAt]
+/// * [redirectUrl] 
+/// * [createdAt] 
 @BuiltValue()
-abstract class PaymentIntent
-    implements Built<PaymentIntent, PaymentIntentBuilder> {
+abstract class PaymentIntent implements Built<PaymentIntent, PaymentIntentBuilder> {
   @BuiltValueField(wireName: r'id')
   String? get id;
 
@@ -55,15 +54,13 @@ abstract class PaymentIntent
 
   PaymentIntent._();
 
-  factory PaymentIntent([void updates(PaymentIntentBuilder b)]) =
-      _$PaymentIntent;
+  factory PaymentIntent([void updates(PaymentIntentBuilder b)]) = _$PaymentIntent;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaymentIntentBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaymentIntent> get serializer =>
-      _$PaymentIntentSerializer();
+  static Serializer<PaymentIntent> get serializer => _$PaymentIntentSerializer();
 }
 
 class _$PaymentIntentSerializer implements PrimitiveSerializer<PaymentIntent> {
@@ -149,11 +146,7 @@ class _$PaymentIntentSerializer implements PrimitiveSerializer<PaymentIntent> {
     PaymentIntent object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -169,82 +162,67 @@ class _$PaymentIntentSerializer implements PrimitiveSerializer<PaymentIntent> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'purpose':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.purpose = valueDes;
           break;
         case r'appointment_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.appointmentId = valueDes;
           break;
         case r'amount_dzd':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.amountDzd = valueDes;
           break;
         case r'provider':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.provider = valueDes;
           break;
         case r'status':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PaymentIntentStatusEnum),
-                  )
-                  as PaymentIntentStatusEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaymentIntentStatusEnum),
+          ) as PaymentIntentStatusEnum;
           result.status = valueDes;
           break;
         case r'client_secret':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.clientSecret = valueDes;
           break;
         case r'redirect_url':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(String),
-                  )
-                  as String?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
           if (valueDes == null) continue;
           result.redirectUrl = valueDes;
           break;
         case r'created_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.createdAt = valueDes;
           break;
         default:
@@ -277,32 +255,25 @@ class _$PaymentIntentSerializer implements PrimitiveSerializer<PaymentIntent> {
 }
 
 class PaymentIntentStatusEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'created')
-  static const PaymentIntentStatusEnum created =
-      _$paymentIntentStatusEnum_created;
+  static const PaymentIntentStatusEnum created = _$paymentIntentStatusEnum_created;
   @BuiltValueEnumConst(wireName: r'requires_action')
-  static const PaymentIntentStatusEnum requiresAction =
-      _$paymentIntentStatusEnum_requiresAction;
+  static const PaymentIntentStatusEnum requiresAction = _$paymentIntentStatusEnum_requiresAction;
   @BuiltValueEnumConst(wireName: r'processing')
-  static const PaymentIntentStatusEnum processing =
-      _$paymentIntentStatusEnum_processing;
+  static const PaymentIntentStatusEnum processing = _$paymentIntentStatusEnum_processing;
   @BuiltValueEnumConst(wireName: r'succeeded')
-  static const PaymentIntentStatusEnum succeeded =
-      _$paymentIntentStatusEnum_succeeded;
+  static const PaymentIntentStatusEnum succeeded = _$paymentIntentStatusEnum_succeeded;
   @BuiltValueEnumConst(wireName: r'failed')
-  static const PaymentIntentStatusEnum failed =
-      _$paymentIntentStatusEnum_failed;
+  static const PaymentIntentStatusEnum failed = _$paymentIntentStatusEnum_failed;
   @BuiltValueEnumConst(wireName: r'cancelled')
-  static const PaymentIntentStatusEnum cancelled =
-      _$paymentIntentStatusEnum_cancelled;
+  static const PaymentIntentStatusEnum cancelled = _$paymentIntentStatusEnum_cancelled;
 
-  static Serializer<PaymentIntentStatusEnum> get serializer =>
-      _$paymentIntentStatusEnumSerializer;
+  static Serializer<PaymentIntentStatusEnum> get serializer => _$paymentIntentStatusEnumSerializer;
 
-  const PaymentIntentStatusEnum._(String name) : super(name);
+  const PaymentIntentStatusEnum._(String name): super(name);
 
-  static BuiltSet<PaymentIntentStatusEnum> get values =>
-      _$paymentIntentStatusEnumValues;
-  static PaymentIntentStatusEnum valueOf(String name) =>
-      _$paymentIntentStatusEnumValueOf(name);
+  static BuiltSet<PaymentIntentStatusEnum> get values => _$paymentIntentStatusEnumValues;
+  static PaymentIntentStatusEnum valueOf(String name) => _$paymentIntentStatusEnumValueOf(name);
 }
+

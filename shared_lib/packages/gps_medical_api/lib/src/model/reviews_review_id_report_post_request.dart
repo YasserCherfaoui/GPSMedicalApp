@@ -12,15 +12,10 @@ part 'reviews_review_id_report_post_request.g.dart';
 /// ReviewsReviewIdReportPostRequest
 ///
 /// Properties:
-/// * [reason]
-/// * [comment]
+/// * [reason] 
+/// * [comment] 
 @BuiltValue()
-abstract class ReviewsReviewIdReportPostRequest
-    implements
-        Built<
-          ReviewsReviewIdReportPostRequest,
-          ReviewsReviewIdReportPostRequestBuilder
-        > {
+abstract class ReviewsReviewIdReportPostRequest implements Built<ReviewsReviewIdReportPostRequest, ReviewsReviewIdReportPostRequestBuilder> {
   @BuiltValueField(wireName: r'reason')
   ReviewsReviewIdReportPostRequestReasonEnum get reason;
   // enum reasonEnum {  spam,  insult,  defamation,  off_topic,  other,  };
@@ -30,25 +25,18 @@ abstract class ReviewsReviewIdReportPostRequest
 
   ReviewsReviewIdReportPostRequest._();
 
-  factory ReviewsReviewIdReportPostRequest([
-    void updates(ReviewsReviewIdReportPostRequestBuilder b),
-  ]) = _$ReviewsReviewIdReportPostRequest;
+  factory ReviewsReviewIdReportPostRequest([void updates(ReviewsReviewIdReportPostRequestBuilder b)]) = _$ReviewsReviewIdReportPostRequest;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(ReviewsReviewIdReportPostRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<ReviewsReviewIdReportPostRequest> get serializer =>
-      _$ReviewsReviewIdReportPostRequestSerializer();
+  static Serializer<ReviewsReviewIdReportPostRequest> get serializer => _$ReviewsReviewIdReportPostRequestSerializer();
 }
 
-class _$ReviewsReviewIdReportPostRequestSerializer
-    implements PrimitiveSerializer<ReviewsReviewIdReportPostRequest> {
+class _$ReviewsReviewIdReportPostRequestSerializer implements PrimitiveSerializer<ReviewsReviewIdReportPostRequest> {
   @override
-  final Iterable<Type> types = const [
-    ReviewsReviewIdReportPostRequest,
-    _$ReviewsReviewIdReportPostRequest,
-  ];
+  final Iterable<Type> types = const [ReviewsReviewIdReportPostRequest, _$ReviewsReviewIdReportPostRequest];
 
   @override
   final String wireName = r'ReviewsReviewIdReportPostRequest';
@@ -78,11 +66,7 @@ class _$ReviewsReviewIdReportPostRequestSerializer
     ReviewsReviewIdReportPostRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -98,23 +82,17 @@ class _$ReviewsReviewIdReportPostRequestSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'reason':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      ReviewsReviewIdReportPostRequestReasonEnum,
-                    ),
-                  )
-                  as ReviewsReviewIdReportPostRequestReasonEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ReviewsReviewIdReportPostRequestReasonEnum),
+          ) as ReviewsReviewIdReportPostRequestReasonEnum;
           result.reason = valueDes;
           break;
         case r'comment':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.comment = valueDes;
           break;
         default:
@@ -147,29 +125,23 @@ class _$ReviewsReviewIdReportPostRequestSerializer
 }
 
 class ReviewsReviewIdReportPostRequestReasonEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'spam')
-  static const ReviewsReviewIdReportPostRequestReasonEnum spam =
-      _$reviewsReviewIdReportPostRequestReasonEnum_spam;
+  static const ReviewsReviewIdReportPostRequestReasonEnum spam = _$reviewsReviewIdReportPostRequestReasonEnum_spam;
   @BuiltValueEnumConst(wireName: r'insult')
-  static const ReviewsReviewIdReportPostRequestReasonEnum insult =
-      _$reviewsReviewIdReportPostRequestReasonEnum_insult;
+  static const ReviewsReviewIdReportPostRequestReasonEnum insult = _$reviewsReviewIdReportPostRequestReasonEnum_insult;
   @BuiltValueEnumConst(wireName: r'defamation')
-  static const ReviewsReviewIdReportPostRequestReasonEnum defamation =
-      _$reviewsReviewIdReportPostRequestReasonEnum_defamation;
+  static const ReviewsReviewIdReportPostRequestReasonEnum defamation = _$reviewsReviewIdReportPostRequestReasonEnum_defamation;
   @BuiltValueEnumConst(wireName: r'off_topic')
-  static const ReviewsReviewIdReportPostRequestReasonEnum offTopic =
-      _$reviewsReviewIdReportPostRequestReasonEnum_offTopic;
+  static const ReviewsReviewIdReportPostRequestReasonEnum offTopic = _$reviewsReviewIdReportPostRequestReasonEnum_offTopic;
   @BuiltValueEnumConst(wireName: r'other')
-  static const ReviewsReviewIdReportPostRequestReasonEnum other =
-      _$reviewsReviewIdReportPostRequestReasonEnum_other;
+  static const ReviewsReviewIdReportPostRequestReasonEnum other = _$reviewsReviewIdReportPostRequestReasonEnum_other;
 
-  static Serializer<ReviewsReviewIdReportPostRequestReasonEnum>
-  get serializer => _$reviewsReviewIdReportPostRequestReasonEnumSerializer;
+  static Serializer<ReviewsReviewIdReportPostRequestReasonEnum> get serializer => _$reviewsReviewIdReportPostRequestReasonEnumSerializer;
 
-  const ReviewsReviewIdReportPostRequestReasonEnum._(String name) : super(name);
+  const ReviewsReviewIdReportPostRequestReasonEnum._(String name): super(name);
 
-  static BuiltSet<ReviewsReviewIdReportPostRequestReasonEnum> get values =>
-      _$reviewsReviewIdReportPostRequestReasonEnumValues;
-  static ReviewsReviewIdReportPostRequestReasonEnum valueOf(String name) =>
-      _$reviewsReviewIdReportPostRequestReasonEnumValueOf(name);
+  static BuiltSet<ReviewsReviewIdReportPostRequestReasonEnum> get values => _$reviewsReviewIdReportPostRequestReasonEnumValues;
+  static ReviewsReviewIdReportPostRequestReasonEnum valueOf(String name) => _$reviewsReviewIdReportPostRequestReasonEnumValueOf(name);
 }
+

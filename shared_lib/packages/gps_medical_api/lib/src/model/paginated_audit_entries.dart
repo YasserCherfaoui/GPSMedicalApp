@@ -14,11 +14,10 @@ part 'paginated_audit_entries.g.dart';
 /// PaginatedAuditEntries
 ///
 /// Properties:
-/// * [data]
-/// * [meta]
+/// * [data] 
+/// * [meta] 
 @BuiltValue()
-abstract class PaginatedAuditEntries
-    implements Built<PaginatedAuditEntries, PaginatedAuditEntriesBuilder> {
+abstract class PaginatedAuditEntries implements Built<PaginatedAuditEntries, PaginatedAuditEntriesBuilder> {
   @BuiltValueField(wireName: r'data')
   BuiltList<AuditEntry>? get data;
 
@@ -27,25 +26,18 @@ abstract class PaginatedAuditEntries
 
   PaginatedAuditEntries._();
 
-  factory PaginatedAuditEntries([
-    void updates(PaginatedAuditEntriesBuilder b),
-  ]) = _$PaginatedAuditEntries;
+  factory PaginatedAuditEntries([void updates(PaginatedAuditEntriesBuilder b)]) = _$PaginatedAuditEntries;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaginatedAuditEntriesBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaginatedAuditEntries> get serializer =>
-      _$PaginatedAuditEntriesSerializer();
+  static Serializer<PaginatedAuditEntries> get serializer => _$PaginatedAuditEntriesSerializer();
 }
 
-class _$PaginatedAuditEntriesSerializer
-    implements PrimitiveSerializer<PaginatedAuditEntries> {
+class _$PaginatedAuditEntriesSerializer implements PrimitiveSerializer<PaginatedAuditEntries> {
   @override
-  final Iterable<Type> types = const [
-    PaginatedAuditEntries,
-    _$PaginatedAuditEntries,
-  ];
+  final Iterable<Type> types = const [PaginatedAuditEntries, _$PaginatedAuditEntries];
 
   @override
   final String wireName = r'PaginatedAuditEntries';
@@ -77,11 +69,7 @@ class _$PaginatedAuditEntriesSerializer
     PaginatedAuditEntries object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -97,23 +85,17 @@ class _$PaginatedAuditEntriesSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'data':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(AuditEntry),
-                    ]),
-                  )
-                  as BuiltList<AuditEntry>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(AuditEntry)]),
+          ) as BuiltList<AuditEntry>;
           result.data.replace(valueDes);
           break;
         case r'meta':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PaginationMeta),
-                  )
-                  as PaginationMeta;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaginationMeta),
+          ) as PaginationMeta;
           result.meta.replace(valueDes);
           break;
         default:
@@ -144,3 +126,4 @@ class _$PaginatedAuditEntriesSerializer
     return result.build();
   }
 }
+

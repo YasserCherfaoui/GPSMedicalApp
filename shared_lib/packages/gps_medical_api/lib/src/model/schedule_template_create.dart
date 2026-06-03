@@ -12,14 +12,13 @@ part 'schedule_template_create.g.dart';
 /// ScheduleTemplateCreate
 ///
 /// Properties:
-/// * [weekday]
-/// * [startTime]
-/// * [endTime]
-/// * [slotDurationMinutes]
-/// * [mode]
+/// * [weekday] 
+/// * [startTime] 
+/// * [endTime] 
+/// * [slotDurationMinutes] 
+/// * [mode] 
 @BuiltValue()
-abstract class ScheduleTemplateCreate
-    implements Built<ScheduleTemplateCreate, ScheduleTemplateCreateBuilder> {
+abstract class ScheduleTemplateCreate implements Built<ScheduleTemplateCreate, ScheduleTemplateCreateBuilder> {
   @BuiltValueField(wireName: r'weekday')
   int get weekday;
 
@@ -39,25 +38,18 @@ abstract class ScheduleTemplateCreate
 
   ScheduleTemplateCreate._();
 
-  factory ScheduleTemplateCreate([
-    void updates(ScheduleTemplateCreateBuilder b),
-  ]) = _$ScheduleTemplateCreate;
+  factory ScheduleTemplateCreate([void updates(ScheduleTemplateCreateBuilder b)]) = _$ScheduleTemplateCreate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(ScheduleTemplateCreateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<ScheduleTemplateCreate> get serializer =>
-      _$ScheduleTemplateCreateSerializer();
+  static Serializer<ScheduleTemplateCreate> get serializer => _$ScheduleTemplateCreateSerializer();
 }
 
-class _$ScheduleTemplateCreateSerializer
-    implements PrimitiveSerializer<ScheduleTemplateCreate> {
+class _$ScheduleTemplateCreateSerializer implements PrimitiveSerializer<ScheduleTemplateCreate> {
   @override
-  final Iterable<Type> types = const [
-    ScheduleTemplateCreate,
-    _$ScheduleTemplateCreate,
-  ];
+  final Iterable<Type> types = const [ScheduleTemplateCreate, _$ScheduleTemplateCreate];
 
   @override
   final String wireName = r'ScheduleTemplateCreate';
@@ -85,9 +77,7 @@ class _$ScheduleTemplateCreateSerializer
     yield r'slot_duration_minutes';
     yield serializers.serialize(
       object.slotDurationMinutes,
-      specifiedType: const FullType(
-        ScheduleTemplateCreateSlotDurationMinutesEnum,
-      ),
+      specifiedType: const FullType(ScheduleTemplateCreateSlotDurationMinutesEnum),
     );
     yield r'mode';
     yield serializers.serialize(
@@ -102,11 +92,7 @@ class _$ScheduleTemplateCreateSerializer
     ScheduleTemplateCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -122,49 +108,38 @@ class _$ScheduleTemplateCreateSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'weekday':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.weekday = valueDes;
           break;
         case r'start_time':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.startTime = valueDes;
           break;
         case r'end_time':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.endTime = valueDes;
           break;
         case r'slot_duration_minutes':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      ScheduleTemplateCreateSlotDurationMinutesEnum,
-                    ),
-                  )
-                  as ScheduleTemplateCreateSlotDurationMinutesEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ScheduleTemplateCreateSlotDurationMinutesEnum),
+          ) as ScheduleTemplateCreateSlotDurationMinutesEnum;
           result.slotDurationMinutes = valueDes;
           break;
         case r'mode':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      ScheduleTemplateCreateModeEnum,
-                    ),
-                  )
-                  as ScheduleTemplateCreateModeEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ScheduleTemplateCreateModeEnum),
+          ) as ScheduleTemplateCreateModeEnum;
           result.mode = valueDes;
           break;
         default:
@@ -197,55 +172,42 @@ class _$ScheduleTemplateCreateSerializer
 }
 
 class ScheduleTemplateCreateSlotDurationMinutesEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireNumber: 10)
-  static const ScheduleTemplateCreateSlotDurationMinutesEnum number10 =
-      _$scheduleTemplateCreateSlotDurationMinutesEnum_number10;
+  static const ScheduleTemplateCreateSlotDurationMinutesEnum number10 = _$scheduleTemplateCreateSlotDurationMinutesEnum_number10;
   @BuiltValueEnumConst(wireNumber: 15)
-  static const ScheduleTemplateCreateSlotDurationMinutesEnum number15 =
-      _$scheduleTemplateCreateSlotDurationMinutesEnum_number15;
+  static const ScheduleTemplateCreateSlotDurationMinutesEnum number15 = _$scheduleTemplateCreateSlotDurationMinutesEnum_number15;
   @BuiltValueEnumConst(wireNumber: 20)
-  static const ScheduleTemplateCreateSlotDurationMinutesEnum number20 =
-      _$scheduleTemplateCreateSlotDurationMinutesEnum_number20;
+  static const ScheduleTemplateCreateSlotDurationMinutesEnum number20 = _$scheduleTemplateCreateSlotDurationMinutesEnum_number20;
   @BuiltValueEnumConst(wireNumber: 30)
-  static const ScheduleTemplateCreateSlotDurationMinutesEnum number30 =
-      _$scheduleTemplateCreateSlotDurationMinutesEnum_number30;
+  static const ScheduleTemplateCreateSlotDurationMinutesEnum number30 = _$scheduleTemplateCreateSlotDurationMinutesEnum_number30;
   @BuiltValueEnumConst(wireNumber: 45)
-  static const ScheduleTemplateCreateSlotDurationMinutesEnum number45 =
-      _$scheduleTemplateCreateSlotDurationMinutesEnum_number45;
+  static const ScheduleTemplateCreateSlotDurationMinutesEnum number45 = _$scheduleTemplateCreateSlotDurationMinutesEnum_number45;
   @BuiltValueEnumConst(wireNumber: 60)
-  static const ScheduleTemplateCreateSlotDurationMinutesEnum number60 =
-      _$scheduleTemplateCreateSlotDurationMinutesEnum_number60;
+  static const ScheduleTemplateCreateSlotDurationMinutesEnum number60 = _$scheduleTemplateCreateSlotDurationMinutesEnum_number60;
 
-  static Serializer<ScheduleTemplateCreateSlotDurationMinutesEnum>
-  get serializer => _$scheduleTemplateCreateSlotDurationMinutesEnumSerializer;
+  static Serializer<ScheduleTemplateCreateSlotDurationMinutesEnum> get serializer => _$scheduleTemplateCreateSlotDurationMinutesEnumSerializer;
 
-  const ScheduleTemplateCreateSlotDurationMinutesEnum._(String name)
-    : super(name);
+  const ScheduleTemplateCreateSlotDurationMinutesEnum._(String name): super(name);
 
-  static BuiltSet<ScheduleTemplateCreateSlotDurationMinutesEnum> get values =>
-      _$scheduleTemplateCreateSlotDurationMinutesEnumValues;
-  static ScheduleTemplateCreateSlotDurationMinutesEnum valueOf(String name) =>
-      _$scheduleTemplateCreateSlotDurationMinutesEnumValueOf(name);
+  static BuiltSet<ScheduleTemplateCreateSlotDurationMinutesEnum> get values => _$scheduleTemplateCreateSlotDurationMinutesEnumValues;
+  static ScheduleTemplateCreateSlotDurationMinutesEnum valueOf(String name) => _$scheduleTemplateCreateSlotDurationMinutesEnumValueOf(name);
 }
 
 class ScheduleTemplateCreateModeEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'in_person')
-  static const ScheduleTemplateCreateModeEnum inPerson =
-      _$scheduleTemplateCreateModeEnum_inPerson;
+  static const ScheduleTemplateCreateModeEnum inPerson = _$scheduleTemplateCreateModeEnum_inPerson;
   @BuiltValueEnumConst(wireName: r'telehealth')
-  static const ScheduleTemplateCreateModeEnum telehealth =
-      _$scheduleTemplateCreateModeEnum_telehealth;
+  static const ScheduleTemplateCreateModeEnum telehealth = _$scheduleTemplateCreateModeEnum_telehealth;
   @BuiltValueEnumConst(wireName: r'both')
-  static const ScheduleTemplateCreateModeEnum both =
-      _$scheduleTemplateCreateModeEnum_both;
+  static const ScheduleTemplateCreateModeEnum both = _$scheduleTemplateCreateModeEnum_both;
 
-  static Serializer<ScheduleTemplateCreateModeEnum> get serializer =>
-      _$scheduleTemplateCreateModeEnumSerializer;
+  static Serializer<ScheduleTemplateCreateModeEnum> get serializer => _$scheduleTemplateCreateModeEnumSerializer;
 
-  const ScheduleTemplateCreateModeEnum._(String name) : super(name);
+  const ScheduleTemplateCreateModeEnum._(String name): super(name);
 
-  static BuiltSet<ScheduleTemplateCreateModeEnum> get values =>
-      _$scheduleTemplateCreateModeEnumValues;
-  static ScheduleTemplateCreateModeEnum valueOf(String name) =>
-      _$scheduleTemplateCreateModeEnumValueOf(name);
+  static BuiltSet<ScheduleTemplateCreateModeEnum> get values => _$scheduleTemplateCreateModeEnumValues;
+  static ScheduleTemplateCreateModeEnum valueOf(String name) => _$scheduleTemplateCreateModeEnumValueOf(name);
 }
+

@@ -12,13 +12,12 @@ part 'device_registration.g.dart';
 /// DeviceRegistration
 ///
 /// Properties:
-/// * [fcmToken]
-/// * [platform]
-/// * [deviceModel]
-/// * [appVersion]
+/// * [fcmToken] 
+/// * [platform] 
+/// * [deviceModel] 
+/// * [appVersion] 
 @BuiltValue()
-abstract class DeviceRegistration
-    implements Built<DeviceRegistration, DeviceRegistrationBuilder> {
+abstract class DeviceRegistration implements Built<DeviceRegistration, DeviceRegistrationBuilder> {
   @BuiltValueField(wireName: r'fcm_token')
   String get fcmToken;
 
@@ -34,19 +33,16 @@ abstract class DeviceRegistration
 
   DeviceRegistration._();
 
-  factory DeviceRegistration([void updates(DeviceRegistrationBuilder b)]) =
-      _$DeviceRegistration;
+  factory DeviceRegistration([void updates(DeviceRegistrationBuilder b)]) = _$DeviceRegistration;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(DeviceRegistrationBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<DeviceRegistration> get serializer =>
-      _$DeviceRegistrationSerializer();
+  static Serializer<DeviceRegistration> get serializer => _$DeviceRegistrationSerializer();
 }
 
-class _$DeviceRegistrationSerializer
-    implements PrimitiveSerializer<DeviceRegistration> {
+class _$DeviceRegistrationSerializer implements PrimitiveSerializer<DeviceRegistration> {
   @override
   final Iterable<Type> types = const [DeviceRegistration, _$DeviceRegistration];
 
@@ -90,11 +86,7 @@ class _$DeviceRegistrationSerializer
     DeviceRegistration object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -110,41 +102,31 @@ class _$DeviceRegistrationSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'fcm_token':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.fcmToken = valueDes;
           break;
         case r'platform':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      DeviceRegistrationPlatformEnum,
-                    ),
-                  )
-                  as DeviceRegistrationPlatformEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DeviceRegistrationPlatformEnum),
+          ) as DeviceRegistrationPlatformEnum;
           result.platform = valueDes;
           break;
         case r'device_model':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.deviceModel = valueDes;
           break;
         case r'app_version':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.appVersion = valueDes;
           break;
         default:
@@ -177,23 +159,19 @@ class _$DeviceRegistrationSerializer
 }
 
 class DeviceRegistrationPlatformEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'ios')
-  static const DeviceRegistrationPlatformEnum ios =
-      _$deviceRegistrationPlatformEnum_ios;
+  static const DeviceRegistrationPlatformEnum ios = _$deviceRegistrationPlatformEnum_ios;
   @BuiltValueEnumConst(wireName: r'android')
-  static const DeviceRegistrationPlatformEnum android =
-      _$deviceRegistrationPlatformEnum_android;
+  static const DeviceRegistrationPlatformEnum android = _$deviceRegistrationPlatformEnum_android;
   @BuiltValueEnumConst(wireName: r'web')
-  static const DeviceRegistrationPlatformEnum web =
-      _$deviceRegistrationPlatformEnum_web;
+  static const DeviceRegistrationPlatformEnum web = _$deviceRegistrationPlatformEnum_web;
 
-  static Serializer<DeviceRegistrationPlatformEnum> get serializer =>
-      _$deviceRegistrationPlatformEnumSerializer;
+  static Serializer<DeviceRegistrationPlatformEnum> get serializer => _$deviceRegistrationPlatformEnumSerializer;
 
-  const DeviceRegistrationPlatformEnum._(String name) : super(name);
+  const DeviceRegistrationPlatformEnum._(String name): super(name);
 
-  static BuiltSet<DeviceRegistrationPlatformEnum> get values =>
-      _$deviceRegistrationPlatformEnumValues;
-  static DeviceRegistrationPlatformEnum valueOf(String name) =>
-      _$deviceRegistrationPlatformEnumValueOf(name);
+  static BuiltSet<DeviceRegistrationPlatformEnum> get values => _$deviceRegistrationPlatformEnumValues;
+  static DeviceRegistrationPlatformEnum valueOf(String name) => _$deviceRegistrationPlatformEnumValueOf(name);
 }
+

@@ -11,11 +11,10 @@ part 'review_update.g.dart';
 /// ReviewUpdate
 ///
 /// Properties:
-/// * [rating]
-/// * [comment]
+/// * [rating] 
+/// * [comment] 
 @BuiltValue()
-abstract class ReviewUpdate
-    implements Built<ReviewUpdate, ReviewUpdateBuilder> {
+abstract class ReviewUpdate implements Built<ReviewUpdate, ReviewUpdateBuilder> {
   @BuiltValueField(wireName: r'rating')
   int? get rating;
 
@@ -67,11 +66,7 @@ class _$ReviewUpdateSerializer implements PrimitiveSerializer<ReviewUpdate> {
     ReviewUpdate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -87,18 +82,17 @@ class _$ReviewUpdateSerializer implements PrimitiveSerializer<ReviewUpdate> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'rating':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.rating = valueDes;
           break;
         case r'comment':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.comment = valueDes;
           break;
         default:
@@ -129,3 +123,4 @@ class _$ReviewUpdateSerializer implements PrimitiveSerializer<ReviewUpdate> {
     return result.build();
   }
 }
+

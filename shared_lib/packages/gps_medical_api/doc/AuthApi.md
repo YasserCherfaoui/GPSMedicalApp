@@ -9,6 +9,8 @@ All URIs are relative to *https://api.gpsmedical.dz/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**checkRegisterNin**](AuthApi.md#checkregisternin) | **POST** /auth/register/check-nin | Vérifier le format et la disponibilité d&#39;un NIN avant inscription
+[**checkRegisterPhone**](AuthApi.md#checkregisterphone) | **POST** /auth/register/check-phone | Vérifier le format et la disponibilité d&#39;un numéro avant inscription
 [**forgotPassword**](AuthApi.md#forgotpassword) | **POST** /auth/password/forgot | Demande de réinitialisation du mot de passe
 [**getJWKS**](AuthApi.md#getjwks) | **GET** /.well-known/jwks.json | Clés publiques RSA pour vérifier les JWT (RS256)
 [**getMe**](AuthApi.md#getme) | **GET** /auth/me | Renvoie l&#39;utilisateur courant
@@ -22,6 +24,90 @@ Method | HTTP request | Description
 [**revokeMyConsent**](AuthApi.md#revokemyconsent) | **POST** /me/consents/revoke | Révoque un consentement actif
 [**verifyOtp**](AuthApi.md#verifyotp) | **POST** /auth/otp/verify | Vérification du code OTP reçu par SMS
 
+
+# **checkRegisterNin**
+> checkRegisterNin(checkNinRequest)
+
+Vérifier le format et la disponibilité d'un NIN avant inscription
+
+Valide le NIN (règles locales, voir `NINAlgerian`) et vérifie qu'aucun compte existant n'utilise déjà ce numéro. Appelé par les clients mobiles avant de poursuivre le parcours d'inscription. 
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAuthApi();
+final CheckNinRequest checkNinRequest = ; // CheckNinRequest | 
+
+try {
+    api.checkRegisterNin(checkNinRequest);
+} on DioException catch (e) {
+    print('Exception when calling AuthApi->checkRegisterNin: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **checkNinRequest** | [**CheckNinRequest**](CheckNinRequest.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **checkRegisterPhone**
+> checkRegisterPhone(checkPhoneRequest)
+
+Vérifier le format et la disponibilité d'un numéro avant inscription
+
+Valide le numéro algérien E.164 et vérifie qu'aucun compte existant n'utilise déjà ce téléphone. Appelé par les clients mobiles avant de poursuivre le parcours d'inscription. 
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAuthApi();
+final CheckPhoneRequest checkPhoneRequest = ; // CheckPhoneRequest | 
+
+try {
+    api.checkRegisterPhone(checkPhoneRequest);
+} on DioException catch (e) {
+    print('Exception when calling AuthApi->checkRegisterPhone: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **checkPhoneRequest** | [**CheckPhoneRequest**](CheckPhoneRequest.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **forgotPassword**
 > forgotPassword(resendOtpRequest)

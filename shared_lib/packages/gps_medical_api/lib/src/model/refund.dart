@@ -12,11 +12,11 @@ part 'refund.g.dart';
 /// Refund
 ///
 /// Properties:
-/// * [id]
-/// * [paymentIntentId]
-/// * [amountDzd]
-/// * [status]
-/// * [createdAt]
+/// * [id] 
+/// * [paymentIntentId] 
+/// * [amountDzd] 
+/// * [status] 
+/// * [createdAt] 
 @BuiltValue()
 abstract class Refund implements Built<Refund, RefundBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -101,11 +101,7 @@ class _$RefundSerializer implements PrimitiveSerializer<Refund> {
     Refund object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -121,45 +117,38 @@ class _$RefundSerializer implements PrimitiveSerializer<Refund> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'payment_intent_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.paymentIntentId = valueDes;
           break;
         case r'amount_dzd':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.amountDzd = valueDes;
           break;
         case r'status':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(RefundStatusEnum),
-                  )
-                  as RefundStatusEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(RefundStatusEnum),
+          ) as RefundStatusEnum;
           result.status = valueDes;
           break;
         case r'created_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.createdAt = valueDes;
           break;
         default:
@@ -192,6 +181,7 @@ class _$RefundSerializer implements PrimitiveSerializer<Refund> {
 }
 
 class RefundStatusEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'pending')
   static const RefundStatusEnum pending = _$refundStatusEnum_pending;
   @BuiltValueEnumConst(wireName: r'succeeded')
@@ -199,12 +189,11 @@ class RefundStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'failed')
   static const RefundStatusEnum failed = _$refundStatusEnum_failed;
 
-  static Serializer<RefundStatusEnum> get serializer =>
-      _$refundStatusEnumSerializer;
+  static Serializer<RefundStatusEnum> get serializer => _$refundStatusEnumSerializer;
 
-  const RefundStatusEnum._(String name) : super(name);
+  const RefundStatusEnum._(String name): super(name);
 
   static BuiltSet<RefundStatusEnum> get values => _$refundStatusEnumValues;
-  static RefundStatusEnum valueOf(String name) =>
-      _$refundStatusEnumValueOf(name);
+  static RefundStatusEnum valueOf(String name) => _$refundStatusEnumValueOf(name);
 }
+

@@ -11,9 +11,9 @@ part 'token_pair.g.dart';
 /// TokenPair
 ///
 /// Properties:
-/// * [accessToken]
-/// * [refreshToken]
-/// * [tokenType]
+/// * [accessToken] 
+/// * [refreshToken] 
+/// * [tokenType] 
 /// * [expiresIn] - Durée de vie du jeton d'accès en secondes
 @BuiltValue()
 abstract class TokenPair implements Built<TokenPair, TokenPairBuilder> {
@@ -35,7 +35,8 @@ abstract class TokenPair implements Built<TokenPair, TokenPairBuilder> {
   factory TokenPair([void updates(TokenPairBuilder b)]) = _$TokenPair;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(TokenPairBuilder b) => b..tokenType = 'Bearer';
+  static void _defaults(TokenPairBuilder b) => b
+      ..tokenType = 'Bearer';
 
   @BuiltValueSerializer(custom: true)
   static Serializer<TokenPair> get serializer => _$TokenPairSerializer();
@@ -89,11 +90,7 @@ class _$TokenPairSerializer implements PrimitiveSerializer<TokenPair> {
     TokenPair object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -109,36 +106,31 @@ class _$TokenPairSerializer implements PrimitiveSerializer<TokenPair> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'access_token':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.accessToken = valueDes;
           break;
         case r'refresh_token':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.refreshToken = valueDes;
           break;
         case r'token_type':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.tokenType = valueDes;
           break;
         case r'expires_in':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.expiresIn = valueDes;
           break;
         default:
@@ -169,3 +161,4 @@ class _$TokenPairSerializer implements PrimitiveSerializer<TokenPair> {
     return result.build();
   }
 }
+

@@ -16,6 +16,7 @@ import 'package:gps_medical_api/src/model/funnel.dart';
 import 'package:gps_medical_api/src/model/time_series.dart';
 
 class AnalyticsApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -23,11 +24,11 @@ class AnalyticsApi {
   const AnalyticsApi(this._dio, this._serializers);
 
   /// Entonnoir d&#39;acquisition (recherche → RDV → consultation)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [from]
-  /// * [to]
+  /// * [from] 
+  /// * [to] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -37,7 +38,7 @@ class AnalyticsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Funnel] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Funnel>> analyticsAdminFunnelGet({
+  Future<Response<Funnel>> analyticsAdminFunnelGet({ 
     Date? from,
     Date? to,
     CancelToken? cancelToken,
@@ -50,10 +51,16 @@ class AnalyticsApi {
     final _path = r'/analytics/admin/funnel';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -61,10 +68,8 @@ class AnalyticsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (from != null)
-        r'from': encodeQueryParameter(_serializers, from, const FullType(Date)),
-      if (to != null)
-        r'to': encodeQueryParameter(_serializers, to, const FullType(Date)),
+      if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(Date)),
+      if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(Date)),
     };
 
     final _response = await _dio.request<Object>(
@@ -80,13 +85,11 @@ class AnalyticsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Funnel),
-                )
-                as Funnel;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Funnel),
+      ) as Funnel;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -110,7 +113,7 @@ class AnalyticsApi {
   }
 
   /// Vue d&#39;ensemble plateforme (admin)
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -122,7 +125,7 @@ class AnalyticsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [AdminOverview] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AdminOverview>> analyticsAdminOverviewGet({
+  Future<Response<AdminOverview>> analyticsAdminOverviewGet({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -133,10 +136,16 @@ class AnalyticsApi {
     final _path = r'/analytics/admin/overview';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -155,13 +164,11 @@ class AnalyticsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(AdminOverview),
-                )
-                as AdminOverview;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AdminOverview),
+      ) as AdminOverview;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -185,11 +192,11 @@ class AnalyticsApi {
   }
 
   /// Vue d&#39;ensemble pour le médecin connecté
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [from]
-  /// * [to]
+  /// * [from] 
+  /// * [to] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -199,7 +206,7 @@ class AnalyticsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [DoctorOverview] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<DoctorOverview>> analyticsDoctorOverviewGet({
+  Future<Response<DoctorOverview>> analyticsDoctorOverviewGet({ 
     Date? from,
     Date? to,
     CancelToken? cancelToken,
@@ -212,10 +219,16 @@ class AnalyticsApi {
     final _path = r'/analytics/doctor/overview';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -223,10 +236,8 @@ class AnalyticsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (from != null)
-        r'from': encodeQueryParameter(_serializers, from, const FullType(Date)),
-      if (to != null)
-        r'to': encodeQueryParameter(_serializers, to, const FullType(Date)),
+      if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(Date)),
+      if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(Date)),
     };
 
     final _response = await _dio.request<Object>(
@@ -242,13 +253,11 @@ class AnalyticsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(DoctorOverview),
-                )
-                as DoctorOverview;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(DoctorOverview),
+      ) as DoctorOverview;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -272,13 +281,13 @@ class AnalyticsApi {
   }
 
   /// Séries temporelles (RDV, revenus, no-show)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [metric]
-  /// * [from]
-  /// * [to]
-  /// * [granularity]
+  /// * [metric] 
+  /// * [from] 
+  /// * [to] 
+  /// * [granularity] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -288,7 +297,7 @@ class AnalyticsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TimeSeries] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TimeSeries>> analyticsDoctorTimeseriesGet({
+  Future<Response<TimeSeries>> analyticsDoctorTimeseriesGet({ 
     required String metric,
     required Date from,
     required Date to,
@@ -303,10 +312,16 @@ class AnalyticsApi {
     final _path = r'/analytics/doctor/timeseries';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -314,17 +329,8 @@ class AnalyticsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      r'metric': encodeQueryParameter(
-        _serializers,
-        metric,
-        const FullType(String),
-      ),
-      if (granularity != null)
-        r'granularity': encodeQueryParameter(
-          _serializers,
-          granularity,
-          const FullType(String),
-        ),
+      r'metric': encodeQueryParameter(_serializers, metric, const FullType(String)),
+      if (granularity != null) r'granularity': encodeQueryParameter(_serializers, granularity, const FullType(String)),
       r'from': encodeQueryParameter(_serializers, from, const FullType(Date)),
       r'to': encodeQueryParameter(_serializers, to, const FullType(Date)),
     };
@@ -342,13 +348,11 @@ class AnalyticsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(TimeSeries),
-                )
-                as TimeSeries;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TimeSeries),
+      ) as TimeSeries;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -370,4 +374,5 @@ class AnalyticsApi {
       extra: _response.extra,
     );
   }
+
 }

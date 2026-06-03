@@ -13,9 +13,9 @@ part 'time_series.g.dart';
 /// TimeSeries
 ///
 /// Properties:
-/// * [metric]
-/// * [granularity]
-/// * [points]
+/// * [metric] 
+/// * [granularity] 
+/// * [points] 
 @BuiltValue()
 abstract class TimeSeries implements Built<TimeSeries, TimeSeriesBuilder> {
   @BuiltValueField(wireName: r'metric')
@@ -79,11 +79,7 @@ class _$TimeSeriesSerializer implements PrimitiveSerializer<TimeSeries> {
     TimeSeries object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -99,32 +95,24 @@ class _$TimeSeriesSerializer implements PrimitiveSerializer<TimeSeries> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'metric':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.metric = valueDes;
           break;
         case r'granularity':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.granularity = valueDes;
           break;
         case r'points':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(TimeSeriesPoint),
-                    ]),
-                  )
-                  as BuiltList<TimeSeriesPoint>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(TimeSeriesPoint)]),
+          ) as BuiltList<TimeSeriesPoint>;
           result.points.replace(valueDes);
           break;
         default:
@@ -155,3 +143,4 @@ class _$TimeSeriesSerializer implements PrimitiveSerializer<TimeSeries> {
     return result.build();
   }
 }
+

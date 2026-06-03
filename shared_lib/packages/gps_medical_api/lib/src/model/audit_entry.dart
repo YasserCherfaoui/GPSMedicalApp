@@ -13,16 +13,16 @@ part 'audit_entry.g.dart';
 /// AuditEntry
 ///
 /// Properties:
-/// * [id]
-/// * [actorId]
-/// * [actorRole]
-/// * [action]
-/// * [targetType]
-/// * [targetId]
-/// * [ipAddress]
-/// * [userAgent]
-/// * [metadata]
-/// * [createdAt]
+/// * [id] 
+/// * [actorId] 
+/// * [actorRole] 
+/// * [action] 
+/// * [targetType] 
+/// * [targetId] 
+/// * [ipAddress] 
+/// * [userAgent] 
+/// * [metadata] 
+/// * [createdAt] 
 @BuiltValue()
 abstract class AuditEntry implements Built<AuditEntry, AuditEntryBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -138,10 +138,7 @@ class _$AuditEntrySerializer implements PrimitiveSerializer<AuditEntry> {
       yield r'metadata';
       yield serializers.serialize(
         object.metadata,
-        specifiedType: const FullType(BuiltMap, [
-          FullType(String),
-          FullType.nullable(JsonObject),
-        ]),
+        specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
       );
     }
     if (object.createdAt != null) {
@@ -159,11 +156,7 @@ class _$AuditEntrySerializer implements PrimitiveSerializer<AuditEntry> {
     AuditEntry object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -179,96 +172,73 @@ class _$AuditEntrySerializer implements PrimitiveSerializer<AuditEntry> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'actor_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.actorId = valueDes;
           break;
         case r'actor_role':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.actorRole = valueDes;
           break;
         case r'action':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.action = valueDes;
           break;
         case r'target_type':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.targetType = valueDes;
           break;
         case r'target_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.targetId = valueDes;
           break;
         case r'ip_address':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.ipAddress = valueDes;
           break;
         case r'user_agent':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.userAgent = valueDes;
           break;
         case r'metadata':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltMap, [
-                      FullType(String),
-                      FullType.nullable(JsonObject),
-                    ]),
-                  )
-                  as BuiltMap<String, JsonObject?>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+          ) as BuiltMap<String, JsonObject?>;
           result.metadata.replace(valueDes);
           break;
         case r'created_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.createdAt = valueDes;
           break;
         default:
@@ -299,3 +269,4 @@ class _$AuditEntrySerializer implements PrimitiveSerializer<AuditEntry> {
     return result.build();
   }
 }
+

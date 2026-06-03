@@ -12,13 +12,12 @@ part 'availability_slot.g.dart';
 /// AvailabilitySlot
 ///
 /// Properties:
-/// * [startAt]
-/// * [endAt]
-/// * [mode]
+/// * [startAt] 
+/// * [endAt] 
+/// * [mode] 
 /// * [slotLockToken] - À transmettre lors de la création de RDV (TTL 5 min)
 @BuiltValue()
-abstract class AvailabilitySlot
-    implements Built<AvailabilitySlot, AvailabilitySlotBuilder> {
+abstract class AvailabilitySlot implements Built<AvailabilitySlot, AvailabilitySlotBuilder> {
   @BuiltValueField(wireName: r'start_at')
   DateTime? get startAt;
 
@@ -35,19 +34,16 @@ abstract class AvailabilitySlot
 
   AvailabilitySlot._();
 
-  factory AvailabilitySlot([void updates(AvailabilitySlotBuilder b)]) =
-      _$AvailabilitySlot;
+  factory AvailabilitySlot([void updates(AvailabilitySlotBuilder b)]) = _$AvailabilitySlot;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(AvailabilitySlotBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<AvailabilitySlot> get serializer =>
-      _$AvailabilitySlotSerializer();
+  static Serializer<AvailabilitySlot> get serializer => _$AvailabilitySlotSerializer();
 }
 
-class _$AvailabilitySlotSerializer
-    implements PrimitiveSerializer<AvailabilitySlot> {
+class _$AvailabilitySlotSerializer implements PrimitiveSerializer<AvailabilitySlot> {
   @override
   final Iterable<Type> types = const [AvailabilitySlot, _$AvailabilitySlot];
 
@@ -95,11 +91,7 @@ class _$AvailabilitySlotSerializer
     AvailabilitySlot object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -115,39 +107,31 @@ class _$AvailabilitySlotSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'start_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.startAt = valueDes;
           break;
         case r'end_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.endAt = valueDes;
           break;
         case r'mode':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(AvailabilitySlotModeEnum),
-                  )
-                  as AvailabilitySlotModeEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AvailabilitySlotModeEnum),
+          ) as AvailabilitySlotModeEnum;
           result.mode = valueDes;
           break;
         case r'slot_lock_token':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.slotLockToken = valueDes;
           break;
         default:
@@ -180,20 +164,17 @@ class _$AvailabilitySlotSerializer
 }
 
 class AvailabilitySlotModeEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'in_person')
-  static const AvailabilitySlotModeEnum inPerson =
-      _$availabilitySlotModeEnum_inPerson;
+  static const AvailabilitySlotModeEnum inPerson = _$availabilitySlotModeEnum_inPerson;
   @BuiltValueEnumConst(wireName: r'telehealth')
-  static const AvailabilitySlotModeEnum telehealth =
-      _$availabilitySlotModeEnum_telehealth;
+  static const AvailabilitySlotModeEnum telehealth = _$availabilitySlotModeEnum_telehealth;
 
-  static Serializer<AvailabilitySlotModeEnum> get serializer =>
-      _$availabilitySlotModeEnumSerializer;
+  static Serializer<AvailabilitySlotModeEnum> get serializer => _$availabilitySlotModeEnumSerializer;
 
-  const AvailabilitySlotModeEnum._(String name) : super(name);
+  const AvailabilitySlotModeEnum._(String name): super(name);
 
-  static BuiltSet<AvailabilitySlotModeEnum> get values =>
-      _$availabilitySlotModeEnumValues;
-  static AvailabilitySlotModeEnum valueOf(String name) =>
-      _$availabilitySlotModeEnumValueOf(name);
+  static BuiltSet<AvailabilitySlotModeEnum> get values => _$availabilitySlotModeEnumValues;
+  static AvailabilitySlotModeEnum valueOf(String name) => _$availabilitySlotModeEnumValueOf(name);
 }
+

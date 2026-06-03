@@ -6,7 +6,7 @@ part of 'problem.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-abstract class ProblemBuilder {
+abstract mixin class ProblemBuilder {
   void replace(Problem other);
   void update(void Function(ProblemBuilder) updates);
   String? get type;

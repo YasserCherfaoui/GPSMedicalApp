@@ -12,13 +12,12 @@ part 'user_admin_update.g.dart';
 /// UserAdminUpdate
 ///
 /// Properties:
-/// * [status]
-/// * [suspendedUntil]
-/// * [suspensionReason]
-/// * [role]
+/// * [status] 
+/// * [suspendedUntil] 
+/// * [suspensionReason] 
+/// * [role] 
 @BuiltValue()
-abstract class UserAdminUpdate
-    implements Built<UserAdminUpdate, UserAdminUpdateBuilder> {
+abstract class UserAdminUpdate implements Built<UserAdminUpdate, UserAdminUpdateBuilder> {
   @BuiltValueField(wireName: r'status')
   UserAdminUpdateStatusEnum? get status;
   // enum statusEnum {  active,  suspended,  };
@@ -35,19 +34,16 @@ abstract class UserAdminUpdate
 
   UserAdminUpdate._();
 
-  factory UserAdminUpdate([void updates(UserAdminUpdateBuilder b)]) =
-      _$UserAdminUpdate;
+  factory UserAdminUpdate([void updates(UserAdminUpdateBuilder b)]) = _$UserAdminUpdate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(UserAdminUpdateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<UserAdminUpdate> get serializer =>
-      _$UserAdminUpdateSerializer();
+  static Serializer<UserAdminUpdate> get serializer => _$UserAdminUpdateSerializer();
 }
 
-class _$UserAdminUpdateSerializer
-    implements PrimitiveSerializer<UserAdminUpdate> {
+class _$UserAdminUpdateSerializer implements PrimitiveSerializer<UserAdminUpdate> {
   @override
   final Iterable<Type> types = const [UserAdminUpdate, _$UserAdminUpdate];
 
@@ -95,11 +91,7 @@ class _$UserAdminUpdateSerializer
     UserAdminUpdate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -115,39 +107,31 @@ class _$UserAdminUpdateSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'status':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(UserAdminUpdateStatusEnum),
-                  )
-                  as UserAdminUpdateStatusEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(UserAdminUpdateStatusEnum),
+          ) as UserAdminUpdateStatusEnum;
           result.status = valueDes;
           break;
         case r'suspended_until':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.suspendedUntil = valueDes;
           break;
         case r'suspension_reason':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.suspensionReason = valueDes;
           break;
         case r'role':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(UserAdminUpdateRoleEnum),
-                  )
-                  as UserAdminUpdateRoleEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(UserAdminUpdateRoleEnum),
+          ) as UserAdminUpdateRoleEnum;
           result.role = valueDes;
           break;
         default:
@@ -180,47 +164,38 @@ class _$UserAdminUpdateSerializer
 }
 
 class UserAdminUpdateStatusEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'active')
-  static const UserAdminUpdateStatusEnum active =
-      _$userAdminUpdateStatusEnum_active;
+  static const UserAdminUpdateStatusEnum active = _$userAdminUpdateStatusEnum_active;
   @BuiltValueEnumConst(wireName: r'suspended')
-  static const UserAdminUpdateStatusEnum suspended =
-      _$userAdminUpdateStatusEnum_suspended;
+  static const UserAdminUpdateStatusEnum suspended = _$userAdminUpdateStatusEnum_suspended;
 
-  static Serializer<UserAdminUpdateStatusEnum> get serializer =>
-      _$userAdminUpdateStatusEnumSerializer;
+  static Serializer<UserAdminUpdateStatusEnum> get serializer => _$userAdminUpdateStatusEnumSerializer;
 
-  const UserAdminUpdateStatusEnum._(String name) : super(name);
+  const UserAdminUpdateStatusEnum._(String name): super(name);
 
-  static BuiltSet<UserAdminUpdateStatusEnum> get values =>
-      _$userAdminUpdateStatusEnumValues;
-  static UserAdminUpdateStatusEnum valueOf(String name) =>
-      _$userAdminUpdateStatusEnumValueOf(name);
+  static BuiltSet<UserAdminUpdateStatusEnum> get values => _$userAdminUpdateStatusEnumValues;
+  static UserAdminUpdateStatusEnum valueOf(String name) => _$userAdminUpdateStatusEnumValueOf(name);
 }
 
 class UserAdminUpdateRoleEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'patient')
-  static const UserAdminUpdateRoleEnum patient =
-      _$userAdminUpdateRoleEnum_patient;
+  static const UserAdminUpdateRoleEnum patient = _$userAdminUpdateRoleEnum_patient;
   @BuiltValueEnumConst(wireName: r'specialist')
-  static const UserAdminUpdateRoleEnum specialist =
-      _$userAdminUpdateRoleEnum_specialist;
+  static const UserAdminUpdateRoleEnum specialist = _$userAdminUpdateRoleEnum_specialist;
   @BuiltValueEnumConst(wireName: r'concierge')
-  static const UserAdminUpdateRoleEnum concierge =
-      _$userAdminUpdateRoleEnum_concierge;
+  static const UserAdminUpdateRoleEnum concierge = _$userAdminUpdateRoleEnum_concierge;
   @BuiltValueEnumConst(wireName: r'admin')
   static const UserAdminUpdateRoleEnum admin = _$userAdminUpdateRoleEnum_admin;
   @BuiltValueEnumConst(wireName: r'moderator')
-  static const UserAdminUpdateRoleEnum moderator =
-      _$userAdminUpdateRoleEnum_moderator;
+  static const UserAdminUpdateRoleEnum moderator = _$userAdminUpdateRoleEnum_moderator;
 
-  static Serializer<UserAdminUpdateRoleEnum> get serializer =>
-      _$userAdminUpdateRoleEnumSerializer;
+  static Serializer<UserAdminUpdateRoleEnum> get serializer => _$userAdminUpdateRoleEnumSerializer;
 
-  const UserAdminUpdateRoleEnum._(String name) : super(name);
+  const UserAdminUpdateRoleEnum._(String name): super(name);
 
-  static BuiltSet<UserAdminUpdateRoleEnum> get values =>
-      _$userAdminUpdateRoleEnumValues;
-  static UserAdminUpdateRoleEnum valueOf(String name) =>
-      _$userAdminUpdateRoleEnumValueOf(name);
+  static BuiltSet<UserAdminUpdateRoleEnum> get values => _$userAdminUpdateRoleEnumValues;
+  static UserAdminUpdateRoleEnum valueOf(String name) => _$userAdminUpdateRoleEnumValueOf(name);
 }
+

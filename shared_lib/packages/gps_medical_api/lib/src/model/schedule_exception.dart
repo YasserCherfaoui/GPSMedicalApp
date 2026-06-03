@@ -12,14 +12,13 @@ part 'schedule_exception.g.dart';
 /// ScheduleException
 ///
 /// Properties:
-/// * [id]
-/// * [startAt]
-/// * [endAt]
-/// * [kind]
-/// * [note]
+/// * [id] 
+/// * [startAt] 
+/// * [endAt] 
+/// * [kind] 
+/// * [note] 
 @BuiltValue()
-abstract class ScheduleException
-    implements Built<ScheduleException, ScheduleExceptionBuilder> {
+abstract class ScheduleException implements Built<ScheduleException, ScheduleExceptionBuilder> {
   @BuiltValueField(wireName: r'id')
   String? get id;
 
@@ -38,19 +37,16 @@ abstract class ScheduleException
 
   ScheduleException._();
 
-  factory ScheduleException([void updates(ScheduleExceptionBuilder b)]) =
-      _$ScheduleException;
+  factory ScheduleException([void updates(ScheduleExceptionBuilder b)]) = _$ScheduleException;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(ScheduleExceptionBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<ScheduleException> get serializer =>
-      _$ScheduleExceptionSerializer();
+  static Serializer<ScheduleException> get serializer => _$ScheduleExceptionSerializer();
 }
 
-class _$ScheduleExceptionSerializer
-    implements PrimitiveSerializer<ScheduleException> {
+class _$ScheduleExceptionSerializer implements PrimitiveSerializer<ScheduleException> {
   @override
   final Iterable<Type> types = const [ScheduleException, _$ScheduleException];
 
@@ -105,11 +101,7 @@ class _$ScheduleExceptionSerializer
     ScheduleException object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -125,48 +117,38 @@ class _$ScheduleExceptionSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'start_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.startAt = valueDes;
           break;
         case r'end_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.endAt = valueDes;
           break;
         case r'kind':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(ScheduleExceptionKindEnum),
-                  )
-                  as ScheduleExceptionKindEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ScheduleExceptionKindEnum),
+          ) as ScheduleExceptionKindEnum;
           result.kind = valueDes;
           break;
         case r'note':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.note = valueDes;
           break;
         default:
@@ -199,26 +181,21 @@ class _$ScheduleExceptionSerializer
 }
 
 class ScheduleExceptionKindEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'vacation')
-  static const ScheduleExceptionKindEnum vacation =
-      _$scheduleExceptionKindEnum_vacation;
+  static const ScheduleExceptionKindEnum vacation = _$scheduleExceptionKindEnum_vacation;
   @BuiltValueEnumConst(wireName: r'sick')
-  static const ScheduleExceptionKindEnum sick =
-      _$scheduleExceptionKindEnum_sick;
+  static const ScheduleExceptionKindEnum sick = _$scheduleExceptionKindEnum_sick;
   @BuiltValueEnumConst(wireName: r'blocked')
-  static const ScheduleExceptionKindEnum blocked =
-      _$scheduleExceptionKindEnum_blocked;
+  static const ScheduleExceptionKindEnum blocked = _$scheduleExceptionKindEnum_blocked;
   @BuiltValueEnumConst(wireName: r'extra')
-  static const ScheduleExceptionKindEnum extra =
-      _$scheduleExceptionKindEnum_extra;
+  static const ScheduleExceptionKindEnum extra = _$scheduleExceptionKindEnum_extra;
 
-  static Serializer<ScheduleExceptionKindEnum> get serializer =>
-      _$scheduleExceptionKindEnumSerializer;
+  static Serializer<ScheduleExceptionKindEnum> get serializer => _$scheduleExceptionKindEnumSerializer;
 
-  const ScheduleExceptionKindEnum._(String name) : super(name);
+  const ScheduleExceptionKindEnum._(String name): super(name);
 
-  static BuiltSet<ScheduleExceptionKindEnum> get values =>
-      _$scheduleExceptionKindEnumValues;
-  static ScheduleExceptionKindEnum valueOf(String name) =>
-      _$scheduleExceptionKindEnumValueOf(name);
+  static BuiltSet<ScheduleExceptionKindEnum> get values => _$scheduleExceptionKindEnumValues;
+  static ScheduleExceptionKindEnum valueOf(String name) => _$scheduleExceptionKindEnumValueOf(name);
 }
+

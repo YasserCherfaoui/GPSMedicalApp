@@ -152,7 +152,7 @@ class _$UserStatusEnumSerializer
   );
 }
 
-abstract class UserBuilder {
+abstract mixin class UserBuilder {
   void replace(User other);
   void update(void Function(UserBuilder) updates);
   String? get id;

@@ -19,6 +19,7 @@ import 'package:gps_medical_api/src/model/problem.dart';
 import 'package:gps_medical_api/src/model/validation_problem.dart';
 
 class MedicalRecordsApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -26,12 +27,12 @@ class MedicalRecordsApi {
   const MedicalRecordsApi(this._dio, this._serializers);
 
   /// Téléchargement du document déchiffré (lien signé)
-  /// Diffuse le fichier en clair après vérification du jeton HMAC (&#x60;exp&#x60;, &#x60;token&#x60;) renvoyé dans l&#39;URL de &#x60;GET /medical-records/{documentId}/download&#x60;. L&#39;objet stocké reste en ciphertext (ADR 0006).
+  /// Diffuse le fichier en clair après vérification du jeton HMAC (&#x60;exp&#x60;, &#x60;token&#x60;) renvoyé dans l&#39;URL de &#x60;GET /medical-records/{documentId}/download&#x60;. L&#39;objet stocké reste en ciphertext (ADR 0006). 
   ///
   /// Parameters:
-  /// * [documentId]
-  /// * [exp]
-  /// * [token]
+  /// * [documentId] 
+  /// * [exp] 
+  /// * [token] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -41,7 +42,7 @@ class MedicalRecordsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Uint8List] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Uint8List>> getMedicalDocumentFile({
+  Future<Response<Uint8List>> getMedicalDocumentFile({ 
     required String documentId,
     required int exp,
     required String token,
@@ -52,31 +53,23 @@ class MedicalRecordsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/medical-records/{documentId}/file'.replaceAll(
-      '{'
-      r'documentId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        documentId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/medical-records/{documentId}/file'.replaceAll('{' r'documentId' '}', encodeQueryParameter(_serializers, documentId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       responseType: ResponseType.bytes,
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
     final _queryParameters = <String, dynamic>{
       r'exp': encodeQueryParameter(_serializers, exp, const FullType(int)),
-      r'token': encodeQueryParameter(
-        _serializers,
-        token,
-        const FullType(String),
-      ),
+      r'token': encodeQueryParameter(_serializers, token, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -93,6 +86,7 @@ class MedicalRecordsApi {
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : rawResponse as Uint8List;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -116,10 +110,10 @@ class MedicalRecordsApi {
   }
 
   /// Suppression d&#39;un document (auteur uniquement)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [documentId]
+  /// * [documentId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -129,7 +123,7 @@ class MedicalRecordsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> medicalRecordsDocumentIdDelete({
+  Future<Response<void>> medicalRecordsDocumentIdDelete({ 
     required String documentId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -138,22 +132,19 @@ class MedicalRecordsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/medical-records/{documentId}'.replaceAll(
-      '{'
-      r'documentId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        documentId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/medical-records/{documentId}'.replaceAll('{' r'documentId' '}', encodeQueryParameter(_serializers, documentId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -172,10 +163,10 @@ class MedicalRecordsApi {
   }
 
   /// URL signée de téléchargement (expire 5 min)
-  /// Renvoie une URL API signée (TTL 5 minutes, query &#x60;exp&#x60; + &#x60;token&#x60;) vers &#x60;GET /v1/medical-records/{documentId}/file&#x60;, qui diffuse le fichier déchiffré. L&#39;objet dans le stockage reste en ciphertext (ADR 0006). Accès réservé au patient propriétaire ou à un médecin ayant un parrainage (&#x60;referrals&#x60;) avec ce patient.
+  /// Renvoie une URL API signée (TTL 5 minutes, query &#x60;exp&#x60; + &#x60;token&#x60;) vers &#x60;GET /v1/medical-records/{documentId}/file&#x60;, qui diffuse le fichier déchiffré. L&#39;objet dans le stockage reste en ciphertext (ADR 0006). Accès réservé au patient propriétaire ou à un médecin ayant un parrainage (&#x60;referrals&#x60;) avec ce patient. 
   ///
   /// Parameters:
-  /// * [documentId]
+  /// * [documentId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -185,8 +176,7 @@ class MedicalRecordsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [MedicalRecordsDocumentIdDownloadGet200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<MedicalRecordsDocumentIdDownloadGet200Response>>
-  medicalRecordsDocumentIdDownloadGet({
+  Future<Response<MedicalRecordsDocumentIdDownloadGet200Response>> medicalRecordsDocumentIdDownloadGet({ 
     required String documentId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -195,22 +185,19 @@ class MedicalRecordsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/medical-records/{documentId}/download'.replaceAll(
-      '{'
-      r'documentId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        documentId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/medical-records/{documentId}/download'.replaceAll('{' r'documentId' '}', encodeQueryParameter(_serializers, documentId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -229,15 +216,11 @@ class MedicalRecordsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(
-                    MedicalRecordsDocumentIdDownloadGet200Response,
-                  ),
-                )
-                as MedicalRecordsDocumentIdDownloadGet200Response;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(MedicalRecordsDocumentIdDownloadGet200Response),
+      ) as MedicalRecordsDocumentIdDownloadGet200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -261,10 +244,10 @@ class MedicalRecordsApi {
   }
 
   /// Métadonnées d&#39;un document
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [documentId]
+  /// * [documentId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -274,7 +257,7 @@ class MedicalRecordsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [MedicalDocument] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<MedicalDocument>> medicalRecordsDocumentIdGet({
+  Future<Response<MedicalDocument>> medicalRecordsDocumentIdGet({ 
     required String documentId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -283,22 +266,19 @@ class MedicalRecordsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/medical-records/{documentId}'.replaceAll(
-      '{'
-      r'documentId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        documentId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/medical-records/{documentId}'.replaceAll('{' r'documentId' '}', encodeQueryParameter(_serializers, documentId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -317,13 +297,11 @@ class MedicalRecordsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(MedicalDocument),
-                )
-                as MedicalDocument;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(MedicalDocument),
+      ) as MedicalDocument;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -347,13 +325,13 @@ class MedicalRecordsApi {
   }
 
   /// Documents accessibles à l&#39;utilisateur (patient ou médecin)
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [patientId] - Réservé aux médecins ayant traité ce patient
-  /// * [type]
-  /// * [page]
-  /// * [pageSize]
+  /// * [type] 
+  /// * [page] 
+  /// * [pageSize] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -363,7 +341,7 @@ class MedicalRecordsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PaginatedMedicalDocuments] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaginatedMedicalDocuments>> medicalRecordsGet({
+  Future<Response<PaginatedMedicalDocuments>> medicalRecordsGet({ 
     String? patientId,
     String? type,
     int? page = 1,
@@ -378,10 +356,16 @@ class MedicalRecordsApi {
     final _path = r'/medical-records';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -389,26 +373,10 @@ class MedicalRecordsApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (patientId != null)
-        r'patient_id': encodeQueryParameter(
-          _serializers,
-          patientId,
-          const FullType(String),
-        ),
-      if (type != null)
-        r'type': encodeQueryParameter(
-          _serializers,
-          type,
-          const FullType(String),
-        ),
-      if (page != null)
-        r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (pageSize != null)
-        r'page_size': encodeQueryParameter(
-          _serializers,
-          pageSize,
-          const FullType(int),
-        ),
+      if (patientId != null) r'patient_id': encodeQueryParameter(_serializers, patientId, const FullType(String)),
+      if (type != null) r'type': encodeQueryParameter(_serializers, type, const FullType(String)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -424,13 +392,11 @@ class MedicalRecordsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(PaginatedMedicalDocuments),
-                )
-                as PaginatedMedicalDocuments;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedMedicalDocuments),
+      ) as PaginatedMedicalDocuments;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -454,15 +420,15 @@ class MedicalRecordsApi {
   }
 
   /// Téléversement d&#39;un document (médecin ou patient)
-  /// &#x60;multipart/form-data&#x60; avec champ fichier &#x60;file&#x60; (PDF, JPEG ou PNG). Taille maximale **20 Mo** pour les patients et médecins autorisés. Le type MIME réel est vérifié (magic bytes) en plus du &#x60;Content-Type&#x60; déclaré.
+  /// &#x60;multipart/form-data&#x60; avec champ fichier &#x60;file&#x60; (PDF, JPEG ou PNG). Taille maximale **20 Mo** pour les patients et médecins autorisés. Le type MIME réel est vérifié (magic bytes) en plus du &#x60;Content-Type&#x60; déclaré. 
   ///
   /// Parameters:
-  /// * [file]
-  /// * [type]
-  /// * [appointmentId]
-  /// * [patientId]
-  /// * [title]
-  /// * [notes]
+  /// * [file] 
+  /// * [type] 
+  /// * [appointmentId] 
+  /// * [patientId] 
+  /// * [title] 
+  /// * [notes] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -472,7 +438,7 @@ class MedicalRecordsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [MedicalDocument] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<MedicalDocument>> medicalRecordsPost({
+  Future<Response<MedicalDocument>> medicalRecordsPost({ 
     required MultipartFile file,
     required String type,
     String? appointmentId,
@@ -489,10 +455,16 @@ class MedicalRecordsApi {
     final _path = r'/medical-records';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -505,39 +477,19 @@ class MedicalRecordsApi {
     try {
       _bodyData = FormData.fromMap(<String, dynamic>{
         r'file': file,
-        r'type': encodeFormParameter(
-          _serializers,
-          type,
-          const FullType(String),
-        ),
-        if (appointmentId != null)
-          r'appointment_id': encodeFormParameter(
-            _serializers,
-            appointmentId,
-            const FullType(String),
-          ),
-        if (patientId != null)
-          r'patient_id': encodeFormParameter(
-            _serializers,
-            patientId,
-            const FullType(String),
-          ),
-        if (title != null)
-          r'title': encodeFormParameter(
-            _serializers,
-            title,
-            const FullType(String),
-          ),
-        if (notes != null)
-          r'notes': encodeFormParameter(
-            _serializers,
-            notes,
-            const FullType(String),
-          ),
+        r'type': encodeFormParameter(_serializers, type, const FullType(String)),
+        if (appointmentId != null) r'appointment_id': encodeFormParameter(_serializers, appointmentId, const FullType(String)),
+        if (patientId != null) r'patient_id': encodeFormParameter(_serializers, patientId, const FullType(String)),
+        if (title != null) r'title': encodeFormParameter(_serializers, title, const FullType(String)),
+        if (notes != null) r'notes': encodeFormParameter(_serializers, notes, const FullType(String)),
       });
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -557,13 +509,11 @@ class MedicalRecordsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(MedicalDocument),
-                )
-                as MedicalDocument;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(MedicalDocument),
+      ) as MedicalDocument;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -587,10 +537,10 @@ class MedicalRecordsApi {
   }
 
   /// Création d&#39;une ordonnance numérique structurée
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [prescriptionCreate]
+  /// * [prescriptionCreate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -600,7 +550,7 @@ class MedicalRecordsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Prescription] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Prescription>> prescriptionsPost({
+  Future<Response<Prescription>> prescriptionsPost({ 
     required PrescriptionCreate prescriptionCreate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -612,10 +562,16 @@ class MedicalRecordsApi {
     final _path = r'/prescriptions';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -627,13 +583,14 @@ class MedicalRecordsApi {
 
     try {
       const _type = FullType(PrescriptionCreate);
-      _bodyData = _serializers.serialize(
-        prescriptionCreate,
-        specifiedType: _type,
-      );
-    } catch (error, stackTrace) {
+      _bodyData = _serializers.serialize(prescriptionCreate, specifiedType: _type);
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -653,13 +610,11 @@ class MedicalRecordsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Prescription),
-                )
-                as Prescription;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Prescription),
+      ) as Prescription;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -681,4 +636,5 @@ class MedicalRecordsApi {
       extra: _response.extra,
     );
   }
+
 }

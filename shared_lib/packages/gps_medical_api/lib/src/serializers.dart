@@ -24,6 +24,8 @@ import 'package:gps_medical_api/src/model/appointment_update.dart';
 import 'package:gps_medical_api/src/model/appointments_appointment_id_cancel_post_request.dart';
 import 'package:gps_medical_api/src/model/audit_entry.dart';
 import 'package:gps_medical_api/src/model/availability_slot.dart';
+import 'package:gps_medical_api/src/model/check_nin_request.dart';
+import 'package:gps_medical_api/src/model/check_phone_request.dart';
 import 'package:gps_medical_api/src/model/commune.dart';
 import 'package:gps_medical_api/src/model/consent_grant.dart';
 import 'package:gps_medical_api/src/model/credential.dart';
@@ -118,6 +120,8 @@ part 'serializers.g.dart';
   AppointmentsAppointmentIdCancelPostRequest,
   AuditEntry,
   AvailabilitySlot,
+  CheckNinRequest,
+  CheckPhoneRequest,
   Commune,
   ConsentGrant,
   Credential,
@@ -125,8 +129,7 @@ part 'serializers.g.dart';
   DependentCreate,
   Device,
   DeviceRegistration,
-  Doctor,
-  $Doctor,
+  Doctor,$Doctor,
   DoctorOverview,
   DoctorPrivate,
   DoctorUpdate,
@@ -164,11 +167,9 @@ part 'serializers.g.dart';
   PaymentIntentCreate,
   PaymentsIntentsIntentIdConfirmPostRequest,
   Prescription,
-  PrescriptionCreate,
-  $PrescriptionCreate,
+  PrescriptionCreate,$PrescriptionCreate,
   PrescriptionItem,
-  Problem,
-  $Problem,
+  Problem,$Problem,
   RefreshTokensRequest,
   Refund,
   RefundRequest,
@@ -195,72 +196,67 @@ part 'serializers.g.dart';
   TimeSeriesPoint,
   TokenPair,
   TurnCredentials,
-  User,
-  $User,
+  User,$User,
   UserAdmin,
   UserAdminUpdate,
   ValidationProblem,
   ValidationProblemAllOfErrors,
   Wilaya,
 ])
-Serializers serializers =
-    (_$serializers.toBuilder()
-          ..addBuilderFactory(
-            const FullType(BuiltList, [FullType(Message)]),
-            () => ListBuilder<Message>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, [FullType(ScheduleTemplate)]),
-            () => ListBuilder<ScheduleTemplate>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, [FullType(Commune)]),
-            () => ListBuilder<Commune>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, [FullType(ScheduleException)]),
-            () => ListBuilder<ScheduleException>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, [FullType(Wilaya)]),
-            () => ListBuilder<Wilaya>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, [FullType(Dependent)]),
-            () => ListBuilder<Dependent>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltMap, [
-              FullType(String),
-              FullType.nullable(JsonObject),
-            ]),
-            () => MapBuilder<String, JsonObject?>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, [FullType(AvailabilitySlot)]),
-            () => ListBuilder<AvailabilitySlot>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, [FullType(Specialty)]),
-            () => ListBuilder<Specialty>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, [FullType(String)]),
-            () => ListBuilder<String>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, [FullType(ConsentGrant)]),
-            () => ListBuilder<ConsentGrant>(),
-          )
-          ..add(Doctor.serializer)
-          ..add(PrescriptionCreate.serializer)
-          ..add(Problem.serializer)
-          ..add(User.serializer)
-          ..add(const OneOfSerializer())
-          ..add(const AnyOfSerializer())
-          ..add(const DateSerializer())
-          ..add(Iso8601DateTimeSerializer()))
-        .build();
+Serializers serializers = (_$serializers.toBuilder()
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Message)]),
+        () => ListBuilder<Message>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ScheduleTemplate)]),
+        () => ListBuilder<ScheduleTemplate>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Commune)]),
+        () => ListBuilder<Commune>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ScheduleException)]),
+        () => ListBuilder<ScheduleException>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Wilaya)]),
+        () => ListBuilder<Wilaya>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Dependent)]),
+        () => ListBuilder<Dependent>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+        () => MapBuilder<String, JsonObject?>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(AvailabilitySlot)]),
+        () => ListBuilder<AvailabilitySlot>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Specialty)]),
+        () => ListBuilder<Specialty>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(String)]),
+        () => ListBuilder<String>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(ConsentGrant)]),
+        () => ListBuilder<ConsentGrant>(),
+      )
+      ..add(Doctor.serializer)
+      ..add(PrescriptionCreate.serializer)
+      ..add(Problem.serializer)
+      ..add(User.serializer)
+      ..add(const OneOfSerializer())
+      ..add(const AnyOfSerializer())
+      ..add(const DateSerializer())
+      ..add(Iso8601DateTimeSerializer())
+    ).build();
 
 Serializers standardSerializers =
     (serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

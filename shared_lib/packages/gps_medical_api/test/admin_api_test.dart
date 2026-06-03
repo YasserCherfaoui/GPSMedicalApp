@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
+
 /// tests for AdminApi
 void main() {
   final instance = GpsMedicalApi().getAdminApi();
@@ -29,7 +30,7 @@ void main() {
 
     // Export ANPDP — historique complet des consentements (Phase 1)
     //
-    // Réservé aux administrateurs. Retourne l'historique brut des lignes `consent_grants` pour audit et conformité. Implémentation complète des exports signés / filtres en Phase 4.
+    // Réservé aux administrateurs. Retourne l'historique brut des lignes `consent_grants` pour audit et conformité. Implémentation complète des exports signés / filtres en Phase 4. 
     //
     //Future<BuiltList<ConsentGrant>> adminExportUserConsents(String userId) async
     test('test adminExportUserConsents', () async {
@@ -70,5 +71,6 @@ void main() {
     test('test adminUsersUserIdPatch', () async {
       // TODO
     });
+
   });
 }

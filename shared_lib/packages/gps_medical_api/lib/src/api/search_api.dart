@@ -14,6 +14,7 @@ import 'package:gps_medical_api/src/model/paginated_doctors.dart';
 import 'package:gps_medical_api/src/model/search_suggest_get200_response.dart';
 
 class SearchApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -21,23 +22,25 @@ class SearchApi {
   const SearchApi(this._dio, this._serializers);
 
   /// Recherche multicritères de médecins
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [q] - Mot-clé libre (nom, spécialité, cabinet)
-  /// * [specialtyId]
-  /// * [wilayaCode]
-  /// * [communeId]
-  /// * [gender]
+  /// * [specialtyId] 
+  /// * [wilayaCode] 
+  /// * [communeId] 
+  /// * [gender] 
   /// * [language] - Langue parlée (codes ISO 639-1)
   /// * [acceptsCnas] - Conventionné CNAS
   /// * [acceptsCasnos] - Conventionné CASNOS
-  /// * [maxFeeDzd]
+  /// * [maxFeeDzd] 
   /// * [telehealth] - Propose la téléconsultation
-  /// * [availableWithinDays]
-  /// * [sort]
-  /// * [page]
-  /// * [pageSize]
+  /// * [availableWithinDays] 
+  /// * [lat] - Latitude de l'utilisateur pour le tri par distance
+  /// * [lng] - Longitude de l'utilisateur pour le tri par distance
+  /// * [sort] 
+  /// * [page] 
+  /// * [pageSize] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -47,7 +50,7 @@ class SearchApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PaginatedDoctors] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaginatedDoctors>> searchDoctorsGet({
+  Future<Response<PaginatedDoctors>> searchDoctorsGet({ 
     String? q,
     String? specialtyId,
     String? wilayaCode,
@@ -59,6 +62,8 @@ class SearchApi {
     int? maxFeeDzd,
     bool? telehealth,
     int? availableWithinDays,
+    double? lat,
+    double? lng,
     String? sort = 'relevance',
     int? page = 1,
     int? pageSize = 20,
@@ -72,89 +77,33 @@ class SearchApi {
     final _path = r'/search/doctors';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
     final _queryParameters = <String, dynamic>{
-      if (q != null)
-        r'q': encodeQueryParameter(_serializers, q, const FullType(String)),
-      if (specialtyId != null)
-        r'specialty_id': encodeQueryParameter(
-          _serializers,
-          specialtyId,
-          const FullType(String),
-        ),
-      if (wilayaCode != null)
-        r'wilaya_code': encodeQueryParameter(
-          _serializers,
-          wilayaCode,
-          const FullType(String),
-        ),
-      if (communeId != null)
-        r'commune_id': encodeQueryParameter(
-          _serializers,
-          communeId,
-          const FullType(String),
-        ),
-      if (gender != null)
-        r'gender': encodeQueryParameter(
-          _serializers,
-          gender,
-          const FullType(String),
-        ),
-      if (language != null)
-        r'language': encodeCollectionQueryParameter<String>(
-          _serializers,
-          language,
-          const FullType(BuiltList, [FullType(String)]),
-          format: ListFormat.csv,
-        ),
-      if (acceptsCnas != null)
-        r'accepts_cnas': encodeQueryParameter(
-          _serializers,
-          acceptsCnas,
-          const FullType(bool),
-        ),
-      if (acceptsCasnos != null)
-        r'accepts_casnos': encodeQueryParameter(
-          _serializers,
-          acceptsCasnos,
-          const FullType(bool),
-        ),
-      if (maxFeeDzd != null)
-        r'max_fee_dzd': encodeQueryParameter(
-          _serializers,
-          maxFeeDzd,
-          const FullType(int),
-        ),
-      if (telehealth != null)
-        r'telehealth': encodeQueryParameter(
-          _serializers,
-          telehealth,
-          const FullType(bool),
-        ),
-      if (availableWithinDays != null)
-        r'available_within_days': encodeQueryParameter(
-          _serializers,
-          availableWithinDays,
-          const FullType(int),
-        ),
-      if (sort != null)
-        r'sort': encodeQueryParameter(
-          _serializers,
-          sort,
-          const FullType(String),
-        ),
-      if (page != null)
-        r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (pageSize != null)
-        r'page_size': encodeQueryParameter(
-          _serializers,
-          pageSize,
-          const FullType(int),
-        ),
+      if (q != null) r'q': encodeQueryParameter(_serializers, q, const FullType(String)),
+      if (specialtyId != null) r'specialty_id': encodeQueryParameter(_serializers, specialtyId, const FullType(String)),
+      if (wilayaCode != null) r'wilaya_code': encodeQueryParameter(_serializers, wilayaCode, const FullType(String)),
+      if (communeId != null) r'commune_id': encodeQueryParameter(_serializers, communeId, const FullType(String)),
+      if (gender != null) r'gender': encodeQueryParameter(_serializers, gender, const FullType(String)),
+      if (language != null) r'language': encodeCollectionQueryParameter<String>(_serializers, language, const FullType(BuiltList, [FullType(String)]), format: ListFormat.csv,),
+      if (acceptsCnas != null) r'accepts_cnas': encodeQueryParameter(_serializers, acceptsCnas, const FullType(bool)),
+      if (acceptsCasnos != null) r'accepts_casnos': encodeQueryParameter(_serializers, acceptsCasnos, const FullType(bool)),
+      if (maxFeeDzd != null) r'max_fee_dzd': encodeQueryParameter(_serializers, maxFeeDzd, const FullType(int)),
+      if (telehealth != null) r'telehealth': encodeQueryParameter(_serializers, telehealth, const FullType(bool)),
+      if (availableWithinDays != null) r'available_within_days': encodeQueryParameter(_serializers, availableWithinDays, const FullType(int)),
+      if (lat != null) r'lat': encodeQueryParameter(_serializers, lat, const FullType(double)),
+      if (lng != null) r'lng': encodeQueryParameter(_serializers, lng, const FullType(double)),
+      if (sort != null) r'sort': encodeQueryParameter(_serializers, sort, const FullType(String)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -170,13 +119,11 @@ class SearchApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(PaginatedDoctors),
-                )
-                as PaginatedDoctors;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedDoctors),
+      ) as PaginatedDoctors;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -200,10 +147,10 @@ class SearchApi {
   }
 
   /// Suggestions auto-complétion (médecins, spécialités, communes)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [q]
+  /// * [q] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -213,7 +160,7 @@ class SearchApi {
   ///
   /// Returns a [Future] containing a [Response] with a [SearchSuggestGet200Response] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<SearchSuggestGet200Response>> searchSuggestGet({
+  Future<Response<SearchSuggestGet200Response>> searchSuggestGet({ 
     required String q,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -225,8 +172,13 @@ class SearchApi {
     final _path = r'/search/suggest';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -247,13 +199,11 @@ class SearchApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(SearchSuggestGet200Response),
-                )
-                as SearchSuggestGet200Response;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(SearchSuggestGet200Response),
+      ) as SearchSuggestGet200Response;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -275,4 +225,5 @@ class SearchApi {
       extra: _response.extra,
     );
   }
+
 }

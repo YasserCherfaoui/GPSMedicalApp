@@ -11,11 +11,11 @@ part 'funnel.g.dart';
 /// Funnel
 ///
 /// Properties:
-/// * [searches]
-/// * [doctorViews]
-/// * [bookingStarted]
-/// * [bookingCompleted]
-/// * [consultationsCompleted]
+/// * [searches] 
+/// * [doctorViews] 
+/// * [bookingStarted] 
+/// * [bookingCompleted] 
+/// * [consultationsCompleted] 
 @BuiltValue()
 abstract class Funnel implements Built<Funnel, FunnelBuilder> {
   @BuiltValueField(wireName: r'searches')
@@ -99,11 +99,7 @@ class _$FunnelSerializer implements PrimitiveSerializer<Funnel> {
     Funnel object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -119,33 +115,38 @@ class _$FunnelSerializer implements PrimitiveSerializer<Funnel> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'searches':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.searches = valueDes;
           break;
         case r'doctor_views':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.doctorViews = valueDes;
           break;
         case r'booking_started':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.bookingStarted = valueDes;
           break;
         case r'booking_completed':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.bookingCompleted = valueDes;
           break;
         case r'consultations_completed':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.consultationsCompleted = valueDes;
           break;
         default:
@@ -176,3 +177,4 @@ class _$FunnelSerializer implements PrimitiveSerializer<Funnel> {
     return result.build();
   }
 }
+

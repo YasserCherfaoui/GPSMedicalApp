@@ -11,12 +11,11 @@ part 'message_attachments_inner.g.dart';
 /// MessageAttachmentsInner
 ///
 /// Properties:
-/// * [documentId]
-/// * [fileName]
-/// * [mimeType]
+/// * [documentId] 
+/// * [fileName] 
+/// * [mimeType] 
 @BuiltValue()
-abstract class MessageAttachmentsInner
-    implements Built<MessageAttachmentsInner, MessageAttachmentsInnerBuilder> {
+abstract class MessageAttachmentsInner implements Built<MessageAttachmentsInner, MessageAttachmentsInnerBuilder> {
   @BuiltValueField(wireName: r'document_id')
   String? get documentId;
 
@@ -28,25 +27,18 @@ abstract class MessageAttachmentsInner
 
   MessageAttachmentsInner._();
 
-  factory MessageAttachmentsInner([
-    void updates(MessageAttachmentsInnerBuilder b),
-  ]) = _$MessageAttachmentsInner;
+  factory MessageAttachmentsInner([void updates(MessageAttachmentsInnerBuilder b)]) = _$MessageAttachmentsInner;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(MessageAttachmentsInnerBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<MessageAttachmentsInner> get serializer =>
-      _$MessageAttachmentsInnerSerializer();
+  static Serializer<MessageAttachmentsInner> get serializer => _$MessageAttachmentsInnerSerializer();
 }
 
-class _$MessageAttachmentsInnerSerializer
-    implements PrimitiveSerializer<MessageAttachmentsInner> {
+class _$MessageAttachmentsInnerSerializer implements PrimitiveSerializer<MessageAttachmentsInner> {
   @override
-  final Iterable<Type> types = const [
-    MessageAttachmentsInner,
-    _$MessageAttachmentsInner,
-  ];
+  final Iterable<Type> types = const [MessageAttachmentsInner, _$MessageAttachmentsInner];
 
   @override
   final String wireName = r'MessageAttachmentsInner';
@@ -85,11 +77,7 @@ class _$MessageAttachmentsInnerSerializer
     MessageAttachmentsInner object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -105,30 +93,24 @@ class _$MessageAttachmentsInnerSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'document_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.documentId = valueDes;
           break;
         case r'file_name':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.fileName = valueDes;
           break;
         case r'mime_type':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.mimeType = valueDes;
           break;
         default:
@@ -159,3 +141,4 @@ class _$MessageAttachmentsInnerSerializer
     return result.build();
   }
 }
+

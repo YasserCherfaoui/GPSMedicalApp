@@ -189,6 +189,53 @@ class SearchFiltersSheet extends ConsumerWidget {
                   ),
                   const SizedBox(height: GpsSpacing.md),
 
+                  _buildSectionHeader(
+                    theme,
+                    isAr ? 'Disponibilité' : 'Disponibilité',
+                  ),
+                  Wrap(
+                    spacing: GpsSpacing.sm,
+                    runSpacing: GpsSpacing.xs,
+                    children: [
+                      _buildAvailabilityChip(
+                        ref,
+                        filters,
+                        searchFiltersNotifier,
+                        null,
+                        isAr ? 'Toutes' : 'Toutes',
+                      ),
+                      _buildAvailabilityChip(
+                        ref,
+                        filters,
+                        searchFiltersNotifier,
+                        0,
+                        isAr ? 'Aujourd\'hui' : 'Aujourd\'hui',
+                      ),
+                      _buildAvailabilityChip(
+                        ref,
+                        filters,
+                        searchFiltersNotifier,
+                        3,
+                        isAr ? '3 jours' : '3 jours',
+                      ),
+                      _buildAvailabilityChip(
+                        ref,
+                        filters,
+                        searchFiltersNotifier,
+                        7,
+                        isAr ? '1 semaine' : '1 semaine',
+                      ),
+                      _buildAvailabilityChip(
+                        ref,
+                        filters,
+                        searchFiltersNotifier,
+                        30,
+                        isAr ? '1 mois' : '1 mois',
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: GpsSpacing.md),
+
                   // Telehealth Toggle
                   SwitchListTile(
                     title: Text(
@@ -258,6 +305,12 @@ class SearchFiltersSheet extends ConsumerWidget {
                         value: 'fee_desc',
                         child: Text(
                           isAr ? 'Tarif décroissant' : 'Tarif décroissant',
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: 'distance_asc',
+                        child: Text(
+                          isAr ? 'Distance croissante' : 'Distance croissante',
                         ),
                       ),
                     ],
@@ -451,6 +504,28 @@ class SearchFiltersSheet extends ConsumerWidget {
       onSelected: (val) {
         if (val) {
           searchFiltersNotifier.selectGender(genderValue);
+        }
+      },
+    );
+  }
+
+  Widget _buildAvailabilityChip(
+    WidgetRef ref,
+    SearchFilters filters,
+    SearchFiltersNotifier searchFiltersNotifier,
+    int? days,
+    String label,
+  ) {
+    final isSelected = filters.availableWithinDays == days;
+    final colorScheme = Theme.of(ref.context).colorScheme;
+
+    return FilterChip(
+      label: Text(label),
+      selected: isSelected,
+      selectedColor: colorScheme.primaryContainer,
+      onSelected: (selected) {
+        if (selected) {
+          searchFiltersNotifier.selectAvailableWithinDays(days);
         }
       },
     );

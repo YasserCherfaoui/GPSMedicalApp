@@ -6,7 +6,7 @@ part of 'location_filter.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$wilayasFetchHash() => r'8ac6c9a9b5a4ea7faecffc027a7b79da0fb0b775';
+String _$wilayasFetchHash() => r'b52ee088b52c9bb27f4312e1c0c574129e2b1316';
 
 /// See also [WilayasFetch].
 @ProviderFor(WilayasFetch)
@@ -22,7 +22,7 @@ final wilayasFetchProvider =
     );
 
 typedef _$WilayasFetch = AsyncNotifier<List<Wilaya>>;
-String _$communesFetchHash() => r'aefec997466e5d5061ebfd1f722d483d732bb7ce';
+String _$communesFetchHash() => r'4b04aade5db5d9871b3ce1865d197344f174ea6e';
 
 /// See also [CommunesFetch].
 @ProviderFor(CommunesFetch)
@@ -38,7 +38,7 @@ final communesFetchProvider =
     );
 
 typedef _$CommunesFetch = AsyncNotifier<Map<String, List<Commune>>>;
-String _$locationFilterHash() => r'86086078555137e35e7f515fd990393291912a90';
+String _$locationFilterHash() => r'ce556592458b4933692291152c98e44eb24bd83d';
 
 /// See also [LocationFilter].
 @ProviderFor(LocationFilter)

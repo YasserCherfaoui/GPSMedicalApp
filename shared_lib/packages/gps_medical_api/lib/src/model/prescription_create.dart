@@ -14,12 +14,12 @@ part 'prescription_create.g.dart';
 /// PrescriptionCreate
 ///
 /// Properties:
-/// * [appointmentId]
-/// * [diagnosis]
-/// * [items]
-/// * [validUntil]
+/// * [appointmentId] 
+/// * [diagnosis] 
+/// * [items] 
+/// * [validUntil] 
 @BuiltValue(instantiable: false)
-abstract class PrescriptionCreate {
+abstract class PrescriptionCreate  {
   @BuiltValueField(wireName: r'appointment_id')
   String get appointmentId;
 
@@ -33,12 +33,10 @@ abstract class PrescriptionCreate {
   Date? get validUntil;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PrescriptionCreate> get serializer =>
-      _$PrescriptionCreateSerializer();
+  static Serializer<PrescriptionCreate> get serializer => _$PrescriptionCreateSerializer();
 }
 
-class _$PrescriptionCreateSerializer
-    implements PrimitiveSerializer<PrescriptionCreate> {
+class _$PrescriptionCreateSerializer implements PrimitiveSerializer<PrescriptionCreate> {
   @override
   final Iterable<Type> types = const [PrescriptionCreate];
 
@@ -82,11 +80,7 @@ class _$PrescriptionCreateSerializer
     PrescriptionCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   @override
@@ -95,41 +89,27 @@ class _$PrescriptionCreateSerializer
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.deserialize(
-          serialized,
-          specifiedType: FullType($PrescriptionCreate),
-        )
-        as $PrescriptionCreate;
+    return serializers.deserialize(serialized, specifiedType: FullType($PrescriptionCreate)) as $PrescriptionCreate;
   }
 }
 
 /// a concrete implementation of [PrescriptionCreate], since [PrescriptionCreate] is not instantiable
 @BuiltValue(instantiable: true)
-abstract class $PrescriptionCreate
-    implements
-        PrescriptionCreate,
-        Built<$PrescriptionCreate, $PrescriptionCreateBuilder> {
+abstract class $PrescriptionCreate implements PrescriptionCreate, Built<$PrescriptionCreate, $PrescriptionCreateBuilder> {
   $PrescriptionCreate._();
 
-  factory $PrescriptionCreate([
-    void Function($PrescriptionCreateBuilder)? updates,
-  ]) = _$$PrescriptionCreate;
+  factory $PrescriptionCreate([void Function($PrescriptionCreateBuilder)? updates]) = _$$PrescriptionCreate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults($PrescriptionCreateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<$PrescriptionCreate> get serializer =>
-      _$$PrescriptionCreateSerializer();
+  static Serializer<$PrescriptionCreate> get serializer => _$$PrescriptionCreateSerializer();
 }
 
-class _$$PrescriptionCreateSerializer
-    implements PrimitiveSerializer<$PrescriptionCreate> {
+class _$$PrescriptionCreateSerializer implements PrimitiveSerializer<$PrescriptionCreate> {
   @override
-  final Iterable<Type> types = const [
-    $PrescriptionCreate,
-    _$$PrescriptionCreate,
-  ];
+  final Iterable<Type> types = const [$PrescriptionCreate, _$$PrescriptionCreate];
 
   @override
   final String wireName = r'$PrescriptionCreate';
@@ -140,10 +120,7 @@ class _$$PrescriptionCreateSerializer
     $PrescriptionCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.serialize(
-      object,
-      specifiedType: FullType(PrescriptionCreate),
-    )!;
+    return serializers.serialize(object, specifiedType: FullType(PrescriptionCreate))!;
   }
 
   void _deserializeProperties(
@@ -159,41 +136,31 @@ class _$$PrescriptionCreateSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'appointment_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.appointmentId = valueDes;
           break;
         case r'diagnosis':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.diagnosis = valueDes;
           break;
         case r'items':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(PrescriptionItem),
-                    ]),
-                  )
-                  as BuiltList<PrescriptionItem>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(PrescriptionItem)]),
+          ) as BuiltList<PrescriptionItem>;
           result.items.replace(valueDes);
           break;
         case r'valid_until':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(Date),
-                  )
-                  as Date;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Date),
+          ) as Date;
           result.validUntil = valueDes;
           break;
         default:
@@ -224,3 +191,4 @@ class _$$PrescriptionCreateSerializer
     return result.build();
   }
 }
+

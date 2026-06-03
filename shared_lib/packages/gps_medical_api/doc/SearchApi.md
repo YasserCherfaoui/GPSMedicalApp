@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **searchDoctorsGet**
-> PaginatedDoctors searchDoctorsGet(q, specialtyId, wilayaCode, communeId, gender, language, acceptsCnas, acceptsCasnos, maxFeeDzd, telehealth, availableWithinDays, sort, page, pageSize)
+> PaginatedDoctors searchDoctorsGet(q, specialtyId, wilayaCode, communeId, gender, language, acceptsCnas, acceptsCasnos, maxFeeDzd, telehealth, availableWithinDays, lat, lng, sort, page, pageSize)
 
 Recherche multicritères de médecins
 
@@ -34,12 +34,14 @@ final bool acceptsCasnos = true; // bool | Conventionné CASNOS
 final int maxFeeDzd = 56; // int | 
 final bool telehealth = true; // bool | Propose la téléconsultation
 final int availableWithinDays = 56; // int | 
+final double lat = 1.2; // double | Latitude de l'utilisateur pour le tri par distance
+final double lng = 1.2; // double | Longitude de l'utilisateur pour le tri par distance
 final String sort = sort_example; // String | 
 final int page = 56; // int | 
 final int pageSize = 56; // int | 
 
 try {
-    final response = api.searchDoctorsGet(q, specialtyId, wilayaCode, communeId, gender, language, acceptsCnas, acceptsCasnos, maxFeeDzd, telehealth, availableWithinDays, sort, page, pageSize);
+    final response = api.searchDoctorsGet(q, specialtyId, wilayaCode, communeId, gender, language, acceptsCnas, acceptsCasnos, maxFeeDzd, telehealth, availableWithinDays, lat, lng, sort, page, pageSize);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling SearchApi->searchDoctorsGet: $e\n');
@@ -61,6 +63,8 @@ Name | Type | Description  | Notes
  **maxFeeDzd** | **int**|  | [optional] 
  **telehealth** | **bool**| Propose la téléconsultation | [optional] 
  **availableWithinDays** | **int**|  | [optional] 
+ **lat** | **double**| Latitude de l'utilisateur pour le tri par distance | [optional] 
+ **lng** | **double**| Longitude de l'utilisateur pour le tri par distance | [optional] 
  **sort** | **String**|  | [optional] [default to 'relevance']
  **page** | **int**|  | [optional] [default to 1]
  **pageSize** | **int**|  | [optional] [default to 20]

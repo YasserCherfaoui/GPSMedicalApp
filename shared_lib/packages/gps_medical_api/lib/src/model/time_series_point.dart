@@ -11,11 +11,10 @@ part 'time_series_point.g.dart';
 /// TimeSeriesPoint
 ///
 /// Properties:
-/// * [bucket]
-/// * [value]
+/// * [bucket] 
+/// * [value] 
 @BuiltValue()
-abstract class TimeSeriesPoint
-    implements Built<TimeSeriesPoint, TimeSeriesPointBuilder> {
+abstract class TimeSeriesPoint implements Built<TimeSeriesPoint, TimeSeriesPointBuilder> {
   @BuiltValueField(wireName: r'bucket')
   DateTime? get bucket;
 
@@ -24,19 +23,16 @@ abstract class TimeSeriesPoint
 
   TimeSeriesPoint._();
 
-  factory TimeSeriesPoint([void updates(TimeSeriesPointBuilder b)]) =
-      _$TimeSeriesPoint;
+  factory TimeSeriesPoint([void updates(TimeSeriesPointBuilder b)]) = _$TimeSeriesPoint;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(TimeSeriesPointBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<TimeSeriesPoint> get serializer =>
-      _$TimeSeriesPointSerializer();
+  static Serializer<TimeSeriesPoint> get serializer => _$TimeSeriesPointSerializer();
 }
 
-class _$TimeSeriesPointSerializer
-    implements PrimitiveSerializer<TimeSeriesPoint> {
+class _$TimeSeriesPointSerializer implements PrimitiveSerializer<TimeSeriesPoint> {
   @override
   final Iterable<Type> types = const [TimeSeriesPoint, _$TimeSeriesPoint];
 
@@ -70,11 +66,7 @@ class _$TimeSeriesPointSerializer
     TimeSeriesPoint object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -90,18 +82,17 @@ class _$TimeSeriesPointSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'bucket':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.bucket = valueDes;
           break;
         case r'value':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(num))
-                  as num;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(num),
+          ) as num;
           result.value = valueDes;
           break;
         default:
@@ -132,3 +123,4 @@ class _$TimeSeriesPointSerializer
     return result.build();
   }
 }
+

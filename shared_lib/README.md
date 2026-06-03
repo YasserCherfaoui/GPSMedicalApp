@@ -1,39 +1,38 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# gps_medical_shared
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+Shared Flutter library for the GPS Médical patient and specialist mobile apps: theme, auth, routing, API client, and the Phase 2 design system.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+## Design system widgets (Phase 2 — Doctor Discovery)
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+| Widget | Purpose | Example |
+|--------|---------|---------|
+| `DoctorCard` | List/map doctor summary with photo, chips, rating, fee, CTA | `DoctorCard(name: 'Dr. X', specialty: 'Cardio', ...)` |
+| `SpecialtyChip` | Compact specialty label | `SpecialtyChip(label: 'Pédiatrie')` |
+| `RatingDisplay` | Star rating + review count | `RatingDisplay(rating: 4.8, count: 12)` |
+| `EmptyState` | No-results placeholder with optional action | `EmptyState(title: 'Vide', message: '...', onAction: ...)` |
+| `ErrorState` | Recoverable error with retry | `ErrorState(title: 'Erreur', onRetry: ...)` |
+| `LoadingSkeleton` | Shimmer placeholder for lists | `LoadingSkeleton.card()` |
 
-## Features
+Import from the barrel:
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+```dart
+import 'package:gps_medical_shared/gps_medical_shared.dart';
+```
+
+Widget tests live in `test/widgets/design_system_widgets_test.dart`.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add a path dependency in your app `pubspec.yaml`:
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  gps_medical_shared:
+    path: ../shared_lib
 ```
 
-## Additional information
+Regenerate OpenAPI models from the repo root:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```bash
+make -C mobile gen-models
+```

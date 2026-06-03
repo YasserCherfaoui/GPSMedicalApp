@@ -15,6 +15,7 @@ import 'package:gps_medical_api/src/model/teleconsultations_appointment_id_end_p
 import 'package:gps_medical_api/src/model/turn_credentials.dart';
 
 class TeleconsultationApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -22,11 +23,11 @@ class TeleconsultationApi {
   const TeleconsultationApi(this._dio, this._serializers);
 
   /// Clôture explicite de la session (côté médecin)
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [appointmentId]
-  /// * [teleconsultationsAppointmentIdEndPostRequest]
+  /// * [appointmentId] 
+  /// * [teleconsultationsAppointmentIdEndPostRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -36,10 +37,9 @@ class TeleconsultationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TeleSession] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TeleSession>> teleconsultationsAppointmentIdEndPost({
+  Future<Response<TeleSession>> teleconsultationsAppointmentIdEndPost({ 
     required String appointmentId,
-    TeleconsultationsAppointmentIdEndPostRequest?
-    teleconsultationsAppointmentIdEndPostRequest,
+    TeleconsultationsAppointmentIdEndPostRequest? teleconsultationsAppointmentIdEndPostRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -47,22 +47,19 @@ class TeleconsultationApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/teleconsultations/{appointmentId}/end'.replaceAll(
-      '{'
-      r'appointmentId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        appointmentId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/teleconsultations/{appointmentId}/end'.replaceAll('{' r'appointmentId' '}', encodeQueryParameter(_serializers, appointmentId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -74,15 +71,14 @@ class TeleconsultationApi {
 
     try {
       const _type = FullType(TeleconsultationsAppointmentIdEndPostRequest);
-      _bodyData = teleconsultationsAppointmentIdEndPostRequest == null
-          ? null
-          : _serializers.serialize(
-              teleconsultationsAppointmentIdEndPostRequest,
-              specifiedType: _type,
-            );
-    } catch (error, stackTrace) {
+      _bodyData = teleconsultationsAppointmentIdEndPostRequest == null ? null : _serializers.serialize(teleconsultationsAppointmentIdEndPostRequest, specifiedType: _type);
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -102,13 +98,11 @@ class TeleconsultationApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(TeleSession),
-                )
-                as TeleSession;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TeleSession),
+      ) as TeleSession;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -132,10 +126,10 @@ class TeleconsultationApi {
   }
 
   /// Création / récupération de la session WebRTC liée à un RDV
-  /// Disponible 15 min avant l&#39;heure du RDV jusqu&#39;à &#x60;end_at + 30 min&#x60;. Renvoie un jeton ICE/TURN à durée limitée.
+  /// Disponible 15 min avant l&#39;heure du RDV jusqu&#39;à &#x60;end_at + 30 min&#x60;. Renvoie un jeton ICE/TURN à durée limitée. 
   ///
   /// Parameters:
-  /// * [appointmentId]
+  /// * [appointmentId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -145,7 +139,7 @@ class TeleconsultationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TeleSession] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TeleSession>> teleconsultationsAppointmentIdSessionPost({
+  Future<Response<TeleSession>> teleconsultationsAppointmentIdSessionPost({ 
     required String appointmentId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -154,22 +148,19 @@ class TeleconsultationApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/teleconsultations/{appointmentId}/session'.replaceAll(
-      '{'
-      r'appointmentId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        appointmentId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/teleconsultations/{appointmentId}/session'.replaceAll('{' r'appointmentId' '}', encodeQueryParameter(_serializers, appointmentId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -188,13 +179,11 @@ class TeleconsultationApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(TeleSession),
-                )
-                as TeleSession;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TeleSession),
+      ) as TeleSession;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -218,7 +207,7 @@ class TeleconsultationApi {
   }
 
   /// Identifiants TURN éphémères
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -230,7 +219,7 @@ class TeleconsultationApi {
   ///
   /// Returns a [Future] containing a [Response] with a [TurnCredentials] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<TurnCredentials>> teleconsultationsTurnCredentialsGet({
+  Future<Response<TurnCredentials>> teleconsultationsTurnCredentialsGet({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -241,10 +230,16 @@ class TeleconsultationApi {
     final _path = r'/teleconsultations/turn-credentials';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -263,13 +258,11 @@ class TeleconsultationApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(TurnCredentials),
-                )
-                as TurnCredentials;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(TurnCredentials),
+      ) as TurnCredentials;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -291,4 +284,5 @@ class TeleconsultationApi {
       extra: _response.extra,
     );
   }
+
 }

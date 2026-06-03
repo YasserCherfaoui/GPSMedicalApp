@@ -12,38 +12,34 @@ part 'register_response.g.dart';
 /// RegisterResponse
 ///
 /// Properties:
-/// * [userId]
-/// * [otpExpiresAt]
-/// * [ninVerificationStatus] - État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement).
+/// * [userId] 
+/// * [otpExpiresAt] 
+/// * [ninVerificationStatus] - État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
 @BuiltValue()
-abstract class RegisterResponse
-    implements Built<RegisterResponse, RegisterResponseBuilder> {
+abstract class RegisterResponse implements Built<RegisterResponse, RegisterResponseBuilder> {
   @BuiltValueField(wireName: r'user_id')
   String get userId;
 
   @BuiltValueField(wireName: r'otp_expires_at')
   DateTime get otpExpiresAt;
 
-  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement).
+  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
   @BuiltValueField(wireName: r'nin_verification_status')
   RegisterResponseNinVerificationStatusEnum get ninVerificationStatus;
   // enum ninVerificationStatusEnum {  pending,  verified,  failed,  not_required,  };
 
   RegisterResponse._();
 
-  factory RegisterResponse([void updates(RegisterResponseBuilder b)]) =
-      _$RegisterResponse;
+  factory RegisterResponse([void updates(RegisterResponseBuilder b)]) = _$RegisterResponse;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(RegisterResponseBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<RegisterResponse> get serializer =>
-      _$RegisterResponseSerializer();
+  static Serializer<RegisterResponse> get serializer => _$RegisterResponseSerializer();
 }
 
-class _$RegisterResponseSerializer
-    implements PrimitiveSerializer<RegisterResponse> {
+class _$RegisterResponseSerializer implements PrimitiveSerializer<RegisterResponse> {
   @override
   final Iterable<Type> types = const [RegisterResponse, _$RegisterResponse];
 
@@ -78,11 +74,7 @@ class _$RegisterResponseSerializer
     RegisterResponse object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -98,32 +90,24 @@ class _$RegisterResponseSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'user_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.userId = valueDes;
           break;
         case r'otp_expires_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.otpExpiresAt = valueDes;
           break;
         case r'nin_verification_status':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      RegisterResponseNinVerificationStatusEnum,
-                    ),
-                  )
-                  as RegisterResponseNinVerificationStatusEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(RegisterResponseNinVerificationStatusEnum),
+          ) as RegisterResponseNinVerificationStatusEnum;
           result.ninVerificationStatus = valueDes;
           break;
         default:
@@ -156,33 +140,25 @@ class _$RegisterResponseSerializer
 }
 
 class RegisterResponseNinVerificationStatusEnum extends EnumClass {
-  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement).
+
+  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
   @BuiltValueEnumConst(wireName: r'pending')
-  static const RegisterResponseNinVerificationStatusEnum pending =
-      _$registerResponseNinVerificationStatusEnum_pending;
-
-  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement).
+  static const RegisterResponseNinVerificationStatusEnum pending = _$registerResponseNinVerificationStatusEnum_pending;
+  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
   @BuiltValueEnumConst(wireName: r'verified')
-  static const RegisterResponseNinVerificationStatusEnum verified =
-      _$registerResponseNinVerificationStatusEnum_verified;
-
-  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement).
+  static const RegisterResponseNinVerificationStatusEnum verified = _$registerResponseNinVerificationStatusEnum_verified;
+  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
   @BuiltValueEnumConst(wireName: r'failed')
-  static const RegisterResponseNinVerificationStatusEnum failed =
-      _$registerResponseNinVerificationStatusEnum_failed;
-
-  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement).
+  static const RegisterResponseNinVerificationStatusEnum failed = _$registerResponseNinVerificationStatusEnum_failed;
+  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
   @BuiltValueEnumConst(wireName: r'not_required')
-  static const RegisterResponseNinVerificationStatusEnum notRequired =
-      _$registerResponseNinVerificationStatusEnum_notRequired;
+  static const RegisterResponseNinVerificationStatusEnum notRequired = _$registerResponseNinVerificationStatusEnum_notRequired;
 
-  static Serializer<RegisterResponseNinVerificationStatusEnum> get serializer =>
-      _$registerResponseNinVerificationStatusEnumSerializer;
+  static Serializer<RegisterResponseNinVerificationStatusEnum> get serializer => _$registerResponseNinVerificationStatusEnumSerializer;
 
-  const RegisterResponseNinVerificationStatusEnum._(String name) : super(name);
+  const RegisterResponseNinVerificationStatusEnum._(String name): super(name);
 
-  static BuiltSet<RegisterResponseNinVerificationStatusEnum> get values =>
-      _$registerResponseNinVerificationStatusEnumValues;
-  static RegisterResponseNinVerificationStatusEnum valueOf(String name) =>
-      _$registerResponseNinVerificationStatusEnumValueOf(name);
+  static BuiltSet<RegisterResponseNinVerificationStatusEnum> get values => _$registerResponseNinVerificationStatusEnumValues;
+  static RegisterResponseNinVerificationStatusEnum valueOf(String name) => _$registerResponseNinVerificationStatusEnumValueOf(name);
 }
+

@@ -3,6 +3,9 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../utils/wilaya_centroids.dart';
+import 'discovery_repositories.provider.dart';
+
 part 'nearby_doctors.provider.g.dart';
 
 class NearbyDoctorsState {
@@ -13,6 +16,7 @@ class NearbyDoctorsState {
     required this.radiusKm,
     this.permissionGranted = false,
     this.specialtyId,
+    this.manualWilayaCode,
   });
 
   final List<DoctorWithDistance> doctors;
@@ -21,6 +25,7 @@ class NearbyDoctorsState {
   final double radiusKm;
   final bool permissionGranted;
   final String? specialtyId;
+  final String? manualWilayaCode;
 
   NearbyDoctorsState copyWith({
     List<DoctorWithDistance>? doctors,
@@ -29,7 +34,9 @@ class NearbyDoctorsState {
     double? radiusKm,
     bool? permissionGranted,
     String? specialtyId,
+    String? manualWilayaCode,
     bool clearSpecialty = false,
+    bool clearManualWilaya = false,
   }) {
     return NearbyDoctorsState(
       doctors: doctors ?? this.doctors,
@@ -38,24 +45,25 @@ class NearbyDoctorsState {
       radiusKm: radiusKm ?? this.radiusKm,
       permissionGranted: permissionGranted ?? this.permissionGranted,
       specialtyId: clearSpecialty ? null : (specialtyId ?? this.specialtyId),
+      manualWilayaCode: clearManualWilaya
+          ? null
+          : (manualWilayaCode ?? this.manualWilayaCode),
     );
   }
 }
 
 @riverpod
 class NearbyDoctors extends _$NearbyDoctors {
-  // Default Alger coordinates
   static const double defaultLat = 36.7538;
   static const double defaultLng = 3.0588;
 
   @override
   Future<NearbyDoctorsState> build() async {
-    // Initial state check for permission and setup default coordinates
     final permission = await Permission.locationWhenInUse.status;
     final granted = permission.isGranted;
 
-    double lat = defaultLat;
-    double lng = defaultLng;
+    var lat = defaultLat;
+    var lng = defaultLng;
 
     if (granted) {
       try {
@@ -65,16 +73,14 @@ class NearbyDoctors extends _$NearbyDoctors {
         );
         lat = position.latitude;
         lng = position.longitude;
-      } catch (_) {
-        // Fallback to default Alger coordinates on timeout/error
-      }
+      } catch (_) {}
     }
 
     final stateObj = NearbyDoctorsState(
       doctors: [],
       lat: lat,
       lng: lng,
-      radiusKm: 5.0,
+      radiusKm: 5,
       permissionGranted: granted,
     );
 
@@ -85,51 +91,52 @@ class NearbyDoctors extends _$NearbyDoctors {
   Future<List<DoctorWithDistance>> _fetchNearby(
     NearbyDoctorsState current,
   ) async {
-    final client = ref.watch(gpsMedicalClientProvider);
-    final response = await client.v1.getGeolocationApi().geoDoctorsNearbyGet(
+    return ref.read(geoRepositoryProvider).fetchNearby(
       lat: current.lat,
       lng: current.lng,
       radiusKm: current.radiusKm,
       specialtyId: current.specialtyId,
     );
-    return response.data?.data?.toList() ?? [];
   }
 
   Future<void> requestLocationPermission() async {
     final status = await Permission.locationWhenInUse.request();
-    if (status.isGranted) {
-      try {
-        final position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high,
-          timeLimit: const Duration(seconds: 5),
+    if (!status.isGranted) return;
+
+    try {
+      final position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+        timeLimit: const Duration(seconds: 5),
+      );
+      state = const AsyncValue.loading();
+      state = await AsyncValue.guard(() async {
+        final updated = NearbyDoctorsState(
+          doctors: [],
+          lat: position.latitude,
+          lng: position.longitude,
+          radiusKm: state.value?.radiusKm ?? 5,
+          permissionGranted: true,
+          specialtyId: state.value?.specialtyId,
         );
-        state = const AsyncValue.loading();
-        state = await AsyncValue.guard(() async {
-          final updated = NearbyDoctorsState(
-            doctors: [],
-            lat: position.latitude,
-            lng: position.longitude,
-            radiusKm: state.value?.radiusKm ?? 5.0,
-            permissionGranted: true,
-            specialtyId: state.value?.specialtyId,
-          );
-          final docs = await _fetchNearby(updated);
-          return updated.copyWith(doctors: docs);
-        });
-      } catch (_) {
-        // Fallback to current state on GPS error
-      }
-    }
+        final docs = await _fetchNearby(updated);
+        return updated.copyWith(doctors: docs, clearManualWilaya: true);
+      });
+    } catch (_) {}
   }
 
-  Future<void> updateCenter(double lat, double lng) async {
+  Future<void> setWilayaCenter(String wilayaCode) async {
+    final (lat, lng) = wilayaCentroid(wilayaCode);
     final current = state.value;
     if (current == null) return;
-    if (current.lat == lat && current.lng == lng) return;
 
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      final updated = current.copyWith(lat: lat, lng: lng);
+      final updated = current.copyWith(
+        lat: lat,
+        lng: lng,
+        manualWilayaCode: wilayaCode,
+        permissionGranted: false,
+      );
       final docs = await _fetchNearby(updated);
       return updated.copyWith(doctors: docs);
     });
@@ -137,8 +144,7 @@ class NearbyDoctors extends _$NearbyDoctors {
 
   Future<void> updateRadius(double radiusKm) async {
     final current = state.value;
-    if (current == null) return;
-    if (current.radiusKm == radiusKm) return;
+    if (current == null || current.radiusKm == radiusKm) return;
 
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {

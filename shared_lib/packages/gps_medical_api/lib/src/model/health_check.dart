@@ -12,10 +12,10 @@ part 'health_check.g.dart';
 /// HealthCheck
 ///
 /// Properties:
-/// * [status]
+/// * [status] 
 /// * [db] - `ok` si PostgreSQL répond au ping, sinon `error`
-/// * [redis]
-/// * [storage] - `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde.
+/// * [redis] 
+/// * [storage] - `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
 @BuiltValue()
 abstract class HealthCheck implements Built<HealthCheck, HealthCheckBuilder> {
   @BuiltValueField(wireName: r'status')
@@ -31,7 +31,7 @@ abstract class HealthCheck implements Built<HealthCheck, HealthCheckBuilder> {
   HealthCheckRedisEnum get redis;
   // enum redisEnum {  ok,  error,  };
 
-  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde.
+  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
   @BuiltValueField(wireName: r'storage')
   HealthCheckStorageEnum get storage;
   // enum storageEnum {  ok,  error,  disabled,  };
@@ -87,11 +87,7 @@ class _$HealthCheckSerializer implements PrimitiveSerializer<HealthCheck> {
     HealthCheck object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -107,39 +103,31 @@ class _$HealthCheckSerializer implements PrimitiveSerializer<HealthCheck> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'status':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(HealthCheckStatusEnum),
-                  )
-                  as HealthCheckStatusEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(HealthCheckStatusEnum),
+          ) as HealthCheckStatusEnum;
           result.status = valueDes;
           break;
         case r'db':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(HealthCheckDbEnum),
-                  )
-                  as HealthCheckDbEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(HealthCheckDbEnum),
+          ) as HealthCheckDbEnum;
           result.db = valueDes;
           break;
         case r'redis':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(HealthCheckRedisEnum),
-                  )
-                  as HealthCheckRedisEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(HealthCheckRedisEnum),
+          ) as HealthCheckRedisEnum;
           result.redis = valueDes;
           break;
         case r'storage':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(HealthCheckStorageEnum),
-                  )
-                  as HealthCheckStorageEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(HealthCheckStorageEnum),
+          ) as HealthCheckStorageEnum;
           result.storage = valueDes;
           break;
         default:
@@ -172,80 +160,69 @@ class _$HealthCheckSerializer implements PrimitiveSerializer<HealthCheck> {
 }
 
 class HealthCheckStatusEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'ok')
   static const HealthCheckStatusEnum ok = _$healthCheckStatusEnum_ok;
   @BuiltValueEnumConst(wireName: r'degraded')
-  static const HealthCheckStatusEnum degraded =
-      _$healthCheckStatusEnum_degraded;
+  static const HealthCheckStatusEnum degraded = _$healthCheckStatusEnum_degraded;
 
-  static Serializer<HealthCheckStatusEnum> get serializer =>
-      _$healthCheckStatusEnumSerializer;
+  static Serializer<HealthCheckStatusEnum> get serializer => _$healthCheckStatusEnumSerializer;
 
-  const HealthCheckStatusEnum._(String name) : super(name);
+  const HealthCheckStatusEnum._(String name): super(name);
 
-  static BuiltSet<HealthCheckStatusEnum> get values =>
-      _$healthCheckStatusEnumValues;
-  static HealthCheckStatusEnum valueOf(String name) =>
-      _$healthCheckStatusEnumValueOf(name);
+  static BuiltSet<HealthCheckStatusEnum> get values => _$healthCheckStatusEnumValues;
+  static HealthCheckStatusEnum valueOf(String name) => _$healthCheckStatusEnumValueOf(name);
 }
 
 class HealthCheckDbEnum extends EnumClass {
+
   /// `ok` si PostgreSQL répond au ping, sinon `error`
   @BuiltValueEnumConst(wireName: r'ok')
   static const HealthCheckDbEnum ok = _$healthCheckDbEnum_ok;
-
   /// `ok` si PostgreSQL répond au ping, sinon `error`
   @BuiltValueEnumConst(wireName: r'error')
   static const HealthCheckDbEnum error = _$healthCheckDbEnum_error;
 
-  static Serializer<HealthCheckDbEnum> get serializer =>
-      _$healthCheckDbEnumSerializer;
+  static Serializer<HealthCheckDbEnum> get serializer => _$healthCheckDbEnumSerializer;
 
-  const HealthCheckDbEnum._(String name) : super(name);
+  const HealthCheckDbEnum._(String name): super(name);
 
   static BuiltSet<HealthCheckDbEnum> get values => _$healthCheckDbEnumValues;
-  static HealthCheckDbEnum valueOf(String name) =>
-      _$healthCheckDbEnumValueOf(name);
+  static HealthCheckDbEnum valueOf(String name) => _$healthCheckDbEnumValueOf(name);
 }
 
 class HealthCheckRedisEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'ok')
   static const HealthCheckRedisEnum ok = _$healthCheckRedisEnum_ok;
   @BuiltValueEnumConst(wireName: r'error')
   static const HealthCheckRedisEnum error = _$healthCheckRedisEnum_error;
 
-  static Serializer<HealthCheckRedisEnum> get serializer =>
-      _$healthCheckRedisEnumSerializer;
+  static Serializer<HealthCheckRedisEnum> get serializer => _$healthCheckRedisEnumSerializer;
 
-  const HealthCheckRedisEnum._(String name) : super(name);
+  const HealthCheckRedisEnum._(String name): super(name);
 
-  static BuiltSet<HealthCheckRedisEnum> get values =>
-      _$healthCheckRedisEnumValues;
-  static HealthCheckRedisEnum valueOf(String name) =>
-      _$healthCheckRedisEnumValueOf(name);
+  static BuiltSet<HealthCheckRedisEnum> get values => _$healthCheckRedisEnumValues;
+  static HealthCheckRedisEnum valueOf(String name) => _$healthCheckRedisEnumValueOf(name);
 }
 
 class HealthCheckStorageEnum extends EnumClass {
-  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde.
+
+  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
   @BuiltValueEnumConst(wireName: r'ok')
   static const HealthCheckStorageEnum ok = _$healthCheckStorageEnum_ok;
-
-  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde.
+  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
   @BuiltValueEnumConst(wireName: r'error')
   static const HealthCheckStorageEnum error = _$healthCheckStorageEnum_error;
-
-  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde.
+  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
   @BuiltValueEnumConst(wireName: r'disabled')
-  static const HealthCheckStorageEnum disabled =
-      _$healthCheckStorageEnum_disabled;
+  static const HealthCheckStorageEnum disabled = _$healthCheckStorageEnum_disabled;
 
-  static Serializer<HealthCheckStorageEnum> get serializer =>
-      _$healthCheckStorageEnumSerializer;
+  static Serializer<HealthCheckStorageEnum> get serializer => _$healthCheckStorageEnumSerializer;
 
-  const HealthCheckStorageEnum._(String name) : super(name);
+  const HealthCheckStorageEnum._(String name): super(name);
 
-  static BuiltSet<HealthCheckStorageEnum> get values =>
-      _$healthCheckStorageEnumValues;
-  static HealthCheckStorageEnum valueOf(String name) =>
-      _$healthCheckStorageEnumValueOf(name);
+  static BuiltSet<HealthCheckStorageEnum> get values => _$healthCheckStorageEnumValues;
+  static HealthCheckStorageEnum valueOf(String name) => _$healthCheckStorageEnumValueOf(name);
 }
+

@@ -14,11 +14,10 @@ part 'paginated_doctors.g.dart';
 /// PaginatedDoctors
 ///
 /// Properties:
-/// * [data]
-/// * [meta]
+/// * [data] 
+/// * [meta] 
 @BuiltValue()
-abstract class PaginatedDoctors
-    implements Built<PaginatedDoctors, PaginatedDoctorsBuilder> {
+abstract class PaginatedDoctors implements Built<PaginatedDoctors, PaginatedDoctorsBuilder> {
   @BuiltValueField(wireName: r'data')
   BuiltList<Doctor>? get data;
 
@@ -27,19 +26,16 @@ abstract class PaginatedDoctors
 
   PaginatedDoctors._();
 
-  factory PaginatedDoctors([void updates(PaginatedDoctorsBuilder b)]) =
-      _$PaginatedDoctors;
+  factory PaginatedDoctors([void updates(PaginatedDoctorsBuilder b)]) = _$PaginatedDoctors;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaginatedDoctorsBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaginatedDoctors> get serializer =>
-      _$PaginatedDoctorsSerializer();
+  static Serializer<PaginatedDoctors> get serializer => _$PaginatedDoctorsSerializer();
 }
 
-class _$PaginatedDoctorsSerializer
-    implements PrimitiveSerializer<PaginatedDoctors> {
+class _$PaginatedDoctorsSerializer implements PrimitiveSerializer<PaginatedDoctors> {
   @override
   final Iterable<Type> types = const [PaginatedDoctors, _$PaginatedDoctors];
 
@@ -73,11 +69,7 @@ class _$PaginatedDoctorsSerializer
     PaginatedDoctors object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -93,23 +85,17 @@ class _$PaginatedDoctorsSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'data':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(Doctor),
-                    ]),
-                  )
-                  as BuiltList<Doctor>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(Doctor)]),
+          ) as BuiltList<Doctor>;
           result.data.replace(valueDes);
           break;
         case r'meta':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PaginationMeta),
-                  )
-                  as PaginationMeta;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaginationMeta),
+          ) as PaginationMeta;
           result.meta.replace(valueDes);
           break;
         default:
@@ -140,3 +126,4 @@ class _$PaginatedDoctorsSerializer
     return result.build();
   }
 }
+

@@ -12,13 +12,12 @@ part 'refund_request.g.dart';
 /// RefundRequest
 ///
 /// Properties:
-/// * [paymentIntentId]
+/// * [paymentIntentId] 
 /// * [amountDzd] - Si absent, remboursement total
-/// * [reason]
-/// * [comment]
+/// * [reason] 
+/// * [comment] 
 @BuiltValue()
-abstract class RefundRequest
-    implements Built<RefundRequest, RefundRequestBuilder> {
+abstract class RefundRequest implements Built<RefundRequest, RefundRequestBuilder> {
   @BuiltValueField(wireName: r'payment_intent_id')
   String get paymentIntentId;
 
@@ -35,15 +34,13 @@ abstract class RefundRequest
 
   RefundRequest._();
 
-  factory RefundRequest([void updates(RefundRequestBuilder b)]) =
-      _$RefundRequest;
+  factory RefundRequest([void updates(RefundRequestBuilder b)]) = _$RefundRequest;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(RefundRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<RefundRequest> get serializer =>
-      _$RefundRequestSerializer();
+  static Serializer<RefundRequest> get serializer => _$RefundRequestSerializer();
 }
 
 class _$RefundRequestSerializer implements PrimitiveSerializer<RefundRequest> {
@@ -90,11 +87,7 @@ class _$RefundRequestSerializer implements PrimitiveSerializer<RefundRequest> {
     RefundRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -110,36 +103,31 @@ class _$RefundRequestSerializer implements PrimitiveSerializer<RefundRequest> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'payment_intent_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.paymentIntentId = valueDes;
           break;
         case r'amount_dzd':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.amountDzd = valueDes;
           break;
         case r'reason':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(RefundRequestReasonEnum),
-                  )
-                  as RefundRequestReasonEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(RefundRequestReasonEnum),
+          ) as RefundRequestReasonEnum;
           result.reason = valueDes;
           break;
         case r'comment':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.comment = valueDes;
           break;
         default:
@@ -172,25 +160,21 @@ class _$RefundRequestSerializer implements PrimitiveSerializer<RefundRequest> {
 }
 
 class RefundRequestReasonEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'appointment_cancelled')
-  static const RefundRequestReasonEnum appointmentCancelled =
-      _$refundRequestReasonEnum_appointmentCancelled;
+  static const RefundRequestReasonEnum appointmentCancelled = _$refundRequestReasonEnum_appointmentCancelled;
   @BuiltValueEnumConst(wireName: r'doctor_no_show')
-  static const RefundRequestReasonEnum doctorNoShow =
-      _$refundRequestReasonEnum_doctorNoShow;
+  static const RefundRequestReasonEnum doctorNoShow = _$refundRequestReasonEnum_doctorNoShow;
   @BuiltValueEnumConst(wireName: r'duplicate')
-  static const RefundRequestReasonEnum duplicate =
-      _$refundRequestReasonEnum_duplicate;
+  static const RefundRequestReasonEnum duplicate = _$refundRequestReasonEnum_duplicate;
   @BuiltValueEnumConst(wireName: r'other')
   static const RefundRequestReasonEnum other = _$refundRequestReasonEnum_other;
 
-  static Serializer<RefundRequestReasonEnum> get serializer =>
-      _$refundRequestReasonEnumSerializer;
+  static Serializer<RefundRequestReasonEnum> get serializer => _$refundRequestReasonEnumSerializer;
 
-  const RefundRequestReasonEnum._(String name) : super(name);
+  const RefundRequestReasonEnum._(String name): super(name);
 
-  static BuiltSet<RefundRequestReasonEnum> get values =>
-      _$refundRequestReasonEnumValues;
-  static RefundRequestReasonEnum valueOf(String name) =>
-      _$refundRequestReasonEnumValueOf(name);
+  static BuiltSet<RefundRequestReasonEnum> get values => _$refundRequestReasonEnumValues;
+  static RefundRequestReasonEnum valueOf(String name) => _$refundRequestReasonEnumValueOf(name);
 }
+

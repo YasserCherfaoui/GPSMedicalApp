@@ -12,9 +12,9 @@ part 'ice_server.g.dart';
 /// IceServer
 ///
 /// Properties:
-/// * [urls]
-/// * [username]
-/// * [credential]
+/// * [urls] 
+/// * [username] 
+/// * [credential] 
 @BuiltValue()
 abstract class IceServer implements Built<IceServer, IceServerBuilder> {
   @BuiltValueField(wireName: r'urls')
@@ -78,11 +78,7 @@ class _$IceServerSerializer implements PrimitiveSerializer<IceServer> {
     IceServer object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -98,30 +94,24 @@ class _$IceServerSerializer implements PrimitiveSerializer<IceServer> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'urls':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(IceServerUrls),
-                  )
-                  as IceServerUrls;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(IceServerUrls),
+          ) as IceServerUrls;
           result.urls.replace(valueDes);
           break;
         case r'username':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.username = valueDes;
           break;
         case r'credential':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.credential = valueDes;
           break;
         default:
@@ -152,3 +142,4 @@ class _$IceServerSerializer implements PrimitiveSerializer<IceServer> {
     return result.build();
   }
 }
+

@@ -11,16 +11,15 @@ part 'doctor_overview.g.dart';
 /// DoctorOverview
 ///
 /// Properties:
-/// * [appointmentsTotal]
-/// * [appointmentsCompleted]
-/// * [appointmentsCancelled]
-/// * [noShowRate]
-/// * [revenueDzd]
-/// * [newPatients]
-/// * [averageRating]
+/// * [appointmentsTotal] 
+/// * [appointmentsCompleted] 
+/// * [appointmentsCancelled] 
+/// * [noShowRate] 
+/// * [revenueDzd] 
+/// * [newPatients] 
+/// * [averageRating] 
 @BuiltValue()
-abstract class DoctorOverview
-    implements Built<DoctorOverview, DoctorOverviewBuilder> {
+abstract class DoctorOverview implements Built<DoctorOverview, DoctorOverviewBuilder> {
   @BuiltValueField(wireName: r'appointments_total')
   int? get appointmentsTotal;
 
@@ -44,19 +43,16 @@ abstract class DoctorOverview
 
   DoctorOverview._();
 
-  factory DoctorOverview([void updates(DoctorOverviewBuilder b)]) =
-      _$DoctorOverview;
+  factory DoctorOverview([void updates(DoctorOverviewBuilder b)]) = _$DoctorOverview;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(DoctorOverviewBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<DoctorOverview> get serializer =>
-      _$DoctorOverviewSerializer();
+  static Serializer<DoctorOverview> get serializer => _$DoctorOverviewSerializer();
 }
 
-class _$DoctorOverviewSerializer
-    implements PrimitiveSerializer<DoctorOverview> {
+class _$DoctorOverviewSerializer implements PrimitiveSerializer<DoctorOverview> {
   @override
   final Iterable<Type> types = const [DoctorOverview, _$DoctorOverview];
 
@@ -125,11 +121,7 @@ class _$DoctorOverviewSerializer
     DoctorOverview object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -145,51 +137,52 @@ class _$DoctorOverviewSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'appointments_total':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.appointmentsTotal = valueDes;
           break;
         case r'appointments_completed':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.appointmentsCompleted = valueDes;
           break;
         case r'appointments_cancelled':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.appointmentsCancelled = valueDes;
           break;
         case r'no_show_rate':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double;
           result.noShowRate = valueDes;
           break;
         case r'revenue_dzd':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.revenueDzd = valueDes;
           break;
         case r'new_patients':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.newPatients = valueDes;
           break;
         case r'average_rating':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(double),
+          ) as double;
           result.averageRating = valueDes;
           break;
         default:
@@ -220,3 +213,4 @@ class _$DoctorOverviewSerializer
     return result.build();
   }
 }
+

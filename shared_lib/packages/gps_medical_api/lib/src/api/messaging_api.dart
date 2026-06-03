@@ -16,6 +16,7 @@ import 'package:gps_medical_api/src/model/paginated_threads.dart';
 import 'package:gps_medical_api/src/model/thread.dart';
 
 class MessagingApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -23,10 +24,10 @@ class MessagingApi {
   const MessagingApi(this._dio, this._serializers);
 
   /// Marquer un message comme lu
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [messageId]
+  /// * [messageId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -36,7 +37,7 @@ class MessagingApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> messagingMessagesMessageIdReadPost({
+  Future<Response<void>> messagingMessagesMessageIdReadPost({ 
     required String messageId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -45,22 +46,19 @@ class MessagingApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/messaging/messages/{messageId}/read'.replaceAll(
-      '{'
-      r'messageId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        messageId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/messaging/messages/{messageId}/read'.replaceAll('{' r'messageId' '}', encodeQueryParameter(_serializers, messageId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -79,11 +77,11 @@ class MessagingApi {
   }
 
   /// Liste des conversations
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [page]
-  /// * [pageSize]
+  /// * [page] 
+  /// * [pageSize] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -93,7 +91,7 @@ class MessagingApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PaginatedThreads] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaginatedThreads>> messagingThreadsGet({
+  Future<Response<PaginatedThreads>> messagingThreadsGet({ 
     int? page = 1,
     int? pageSize = 20,
     CancelToken? cancelToken,
@@ -106,10 +104,16 @@ class MessagingApi {
     final _path = r'/messaging/threads';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -117,14 +121,8 @@ class MessagingApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (page != null)
-        r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (pageSize != null)
-        r'page_size': encodeQueryParameter(
-          _serializers,
-          pageSize,
-          const FullType(int),
-        ),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -140,13 +138,11 @@ class MessagingApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(PaginatedThreads),
-                )
-                as PaginatedThreads;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedThreads),
+      ) as PaginatedThreads;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -170,10 +166,10 @@ class MessagingApi {
   }
 
   /// Détail d&#39;une conversation
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [threadId]
+  /// * [threadId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -183,7 +179,7 @@ class MessagingApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Thread] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Thread>> messagingThreadsThreadIdGet({
+  Future<Response<Thread>> messagingThreadsThreadIdGet({ 
     required String threadId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -192,22 +188,19 @@ class MessagingApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/messaging/threads/{threadId}'.replaceAll(
-      '{'
-      r'threadId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        threadId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/messaging/threads/{threadId}'.replaceAll('{' r'threadId' '}', encodeQueryParameter(_serializers, threadId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -226,13 +219,11 @@ class MessagingApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Thread),
-                )
-                as Thread;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Thread),
+      ) as Thread;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -256,12 +247,12 @@ class MessagingApi {
   }
 
   /// Messages d&#39;une conversation
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [threadId]
-  /// * [before]
-  /// * [limit]
+  /// * [threadId] 
+  /// * [before] 
+  /// * [limit] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -271,7 +262,7 @@ class MessagingApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<Message>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<Message>>> messagingThreadsThreadIdMessagesGet({
+  Future<Response<BuiltList<Message>>> messagingThreadsThreadIdMessagesGet({ 
     required String threadId,
     DateTime? before,
     int? limit = 50,
@@ -282,22 +273,19 @@ class MessagingApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/messaging/threads/{threadId}/messages'.replaceAll(
-      '{'
-      r'threadId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        threadId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/messaging/threads/{threadId}/messages'.replaceAll('{' r'threadId' '}', encodeQueryParameter(_serializers, threadId, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -305,18 +293,8 @@ class MessagingApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (before != null)
-        r'before': encodeQueryParameter(
-          _serializers,
-          before,
-          const FullType(DateTime),
-        ),
-      if (limit != null)
-        r'limit': encodeQueryParameter(
-          _serializers,
-          limit,
-          const FullType(int),
-        ),
+      if (before != null) r'before': encodeQueryParameter(_serializers, before, const FullType(DateTime)),
+      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
     };
 
     final _response = await _dio.request<Object>(
@@ -332,13 +310,11 @@ class MessagingApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(BuiltList, [FullType(Message)]),
-                )
-                as BuiltList<Message>;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Message)]),
+      ) as BuiltList<Message>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -362,11 +338,11 @@ class MessagingApi {
   }
 
   /// Envoi d&#39;un message
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [threadId]
-  /// * [messageCreate]
+  /// * [threadId] 
+  /// * [messageCreate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -376,7 +352,7 @@ class MessagingApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Message] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Message>> messagingThreadsThreadIdMessagesPost({
+  Future<Response<Message>> messagingThreadsThreadIdMessagesPost({ 
     required String threadId,
     MessageCreate? messageCreate,
     CancelToken? cancelToken,
@@ -386,22 +362,19 @@ class MessagingApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/messaging/threads/{threadId}/messages'.replaceAll(
-      '{'
-      r'threadId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        threadId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/messaging/threads/{threadId}/messages'.replaceAll('{' r'threadId' '}', encodeQueryParameter(_serializers, threadId, const FullType(String)).toString());
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -414,9 +387,13 @@ class MessagingApi {
     try {
       const _type = FullType(MessageCreate);
       _bodyData = _serializers.serialize(messageCreate, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -436,13 +413,11 @@ class MessagingApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Message),
-                )
-                as Message;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Message),
+      ) as Message;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -464,4 +439,5 @@ class MessagingApi {
       extra: _response.extra,
     );
   }
+
 }

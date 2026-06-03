@@ -12,9 +12,9 @@ part 'suggest_item.g.dart';
 /// SuggestItem
 ///
 /// Properties:
-/// * [id]
-/// * [label]
-/// * [kind]
+/// * [id] 
+/// * [label] 
+/// * [kind] 
 @BuiltValue()
 abstract class SuggestItem implements Built<SuggestItem, SuggestItemBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -79,11 +79,7 @@ class _$SuggestItemSerializer implements PrimitiveSerializer<SuggestItem> {
     SuggestItem object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -99,30 +95,24 @@ class _$SuggestItemSerializer implements PrimitiveSerializer<SuggestItem> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'label':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.label = valueDes;
           break;
         case r'kind':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(SuggestItemKindEnum),
-                  )
-                  as SuggestItemKindEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(SuggestItemKindEnum),
+          ) as SuggestItemKindEnum;
           result.kind = valueDes;
           break;
         default:
@@ -155,6 +145,7 @@ class _$SuggestItemSerializer implements PrimitiveSerializer<SuggestItem> {
 }
 
 class SuggestItemKindEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'doctor')
   static const SuggestItemKindEnum doctor = _$suggestItemKindEnum_doctor;
   @BuiltValueEnumConst(wireName: r'specialty')
@@ -162,13 +153,11 @@ class SuggestItemKindEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'location')
   static const SuggestItemKindEnum location = _$suggestItemKindEnum_location;
 
-  static Serializer<SuggestItemKindEnum> get serializer =>
-      _$suggestItemKindEnumSerializer;
+  static Serializer<SuggestItemKindEnum> get serializer => _$suggestItemKindEnumSerializer;
 
-  const SuggestItemKindEnum._(String name) : super(name);
+  const SuggestItemKindEnum._(String name): super(name);
 
-  static BuiltSet<SuggestItemKindEnum> get values =>
-      _$suggestItemKindEnumValues;
-  static SuggestItemKindEnum valueOf(String name) =>
-      _$suggestItemKindEnumValueOf(name);
+  static BuiltSet<SuggestItemKindEnum> get values => _$suggestItemKindEnumValues;
+  static SuggestItemKindEnum valueOf(String name) => _$suggestItemKindEnumValueOf(name);
 }
+

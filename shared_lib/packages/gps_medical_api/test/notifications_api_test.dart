@@ -1,6 +1,7 @@
 import 'package:test/test.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
+
 /// tests for NotificationsApi
 void main() {
   final instance = GpsMedicalApi().getNotificationsApi();
@@ -54,5 +55,6 @@ void main() {
     test('test notificationsReadAllPost', () async {
       // TODO
     });
+
   });
 }

@@ -11,15 +11,10 @@ part 'medical_records_document_id_download_get200_response.g.dart';
 /// MedicalRecordsDocumentIdDownloadGet200Response
 ///
 /// Properties:
-/// * [url]
-/// * [expiresAt]
+/// * [url] 
+/// * [expiresAt] 
 @BuiltValue()
-abstract class MedicalRecordsDocumentIdDownloadGet200Response
-    implements
-        Built<
-          MedicalRecordsDocumentIdDownloadGet200Response,
-          MedicalRecordsDocumentIdDownloadGet200ResponseBuilder
-        > {
+abstract class MedicalRecordsDocumentIdDownloadGet200Response implements Built<MedicalRecordsDocumentIdDownloadGet200Response, MedicalRecordsDocumentIdDownloadGet200ResponseBuilder> {
   @BuiltValueField(wireName: r'url')
   String? get url;
 
@@ -28,29 +23,18 @@ abstract class MedicalRecordsDocumentIdDownloadGet200Response
 
   MedicalRecordsDocumentIdDownloadGet200Response._();
 
-  factory MedicalRecordsDocumentIdDownloadGet200Response([
-    void updates(MedicalRecordsDocumentIdDownloadGet200ResponseBuilder b),
-  ]) = _$MedicalRecordsDocumentIdDownloadGet200Response;
+  factory MedicalRecordsDocumentIdDownloadGet200Response([void updates(MedicalRecordsDocumentIdDownloadGet200ResponseBuilder b)]) = _$MedicalRecordsDocumentIdDownloadGet200Response;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(
-    MedicalRecordsDocumentIdDownloadGet200ResponseBuilder b,
-  ) => b;
+  static void _defaults(MedicalRecordsDocumentIdDownloadGet200ResponseBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<MedicalRecordsDocumentIdDownloadGet200Response>
-  get serializer =>
-      _$MedicalRecordsDocumentIdDownloadGet200ResponseSerializer();
+  static Serializer<MedicalRecordsDocumentIdDownloadGet200Response> get serializer => _$MedicalRecordsDocumentIdDownloadGet200ResponseSerializer();
 }
 
-class _$MedicalRecordsDocumentIdDownloadGet200ResponseSerializer
-    implements
-        PrimitiveSerializer<MedicalRecordsDocumentIdDownloadGet200Response> {
+class _$MedicalRecordsDocumentIdDownloadGet200ResponseSerializer implements PrimitiveSerializer<MedicalRecordsDocumentIdDownloadGet200Response> {
   @override
-  final Iterable<Type> types = const [
-    MedicalRecordsDocumentIdDownloadGet200Response,
-    _$MedicalRecordsDocumentIdDownloadGet200Response,
-  ];
+  final Iterable<Type> types = const [MedicalRecordsDocumentIdDownloadGet200Response, _$MedicalRecordsDocumentIdDownloadGet200Response];
 
   @override
   final String wireName = r'MedicalRecordsDocumentIdDownloadGet200Response';
@@ -82,11 +66,7 @@ class _$MedicalRecordsDocumentIdDownloadGet200ResponseSerializer
     MedicalRecordsDocumentIdDownloadGet200Response object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -102,21 +82,17 @@ class _$MedicalRecordsDocumentIdDownloadGet200ResponseSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'url':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.url = valueDes;
           break;
         case r'expires_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.expiresAt = valueDes;
           break;
         default:
@@ -147,3 +123,4 @@ class _$MedicalRecordsDocumentIdDownloadGet200ResponseSerializer
     return result.build();
   }
 }
+

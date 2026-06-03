@@ -11,15 +11,10 @@ part 'teleconsultations_appointment_id_end_post_request.g.dart';
 /// TeleconsultationsAppointmentIdEndPostRequest
 ///
 /// Properties:
-/// * [durationSeconds]
-/// * [qualityScore]
+/// * [durationSeconds] 
+/// * [qualityScore] 
 @BuiltValue()
-abstract class TeleconsultationsAppointmentIdEndPostRequest
-    implements
-        Built<
-          TeleconsultationsAppointmentIdEndPostRequest,
-          TeleconsultationsAppointmentIdEndPostRequestBuilder
-        > {
+abstract class TeleconsultationsAppointmentIdEndPostRequest implements Built<TeleconsultationsAppointmentIdEndPostRequest, TeleconsultationsAppointmentIdEndPostRequestBuilder> {
   @BuiltValueField(wireName: r'duration_seconds')
   int? get durationSeconds;
 
@@ -28,28 +23,18 @@ abstract class TeleconsultationsAppointmentIdEndPostRequest
 
   TeleconsultationsAppointmentIdEndPostRequest._();
 
-  factory TeleconsultationsAppointmentIdEndPostRequest([
-    void updates(TeleconsultationsAppointmentIdEndPostRequestBuilder b),
-  ]) = _$TeleconsultationsAppointmentIdEndPostRequest;
+  factory TeleconsultationsAppointmentIdEndPostRequest([void updates(TeleconsultationsAppointmentIdEndPostRequestBuilder b)]) = _$TeleconsultationsAppointmentIdEndPostRequest;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(
-    TeleconsultationsAppointmentIdEndPostRequestBuilder b,
-  ) => b;
+  static void _defaults(TeleconsultationsAppointmentIdEndPostRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<TeleconsultationsAppointmentIdEndPostRequest>
-  get serializer => _$TeleconsultationsAppointmentIdEndPostRequestSerializer();
+  static Serializer<TeleconsultationsAppointmentIdEndPostRequest> get serializer => _$TeleconsultationsAppointmentIdEndPostRequestSerializer();
 }
 
-class _$TeleconsultationsAppointmentIdEndPostRequestSerializer
-    implements
-        PrimitiveSerializer<TeleconsultationsAppointmentIdEndPostRequest> {
+class _$TeleconsultationsAppointmentIdEndPostRequestSerializer implements PrimitiveSerializer<TeleconsultationsAppointmentIdEndPostRequest> {
   @override
-  final Iterable<Type> types = const [
-    TeleconsultationsAppointmentIdEndPostRequest,
-    _$TeleconsultationsAppointmentIdEndPostRequest,
-  ];
+  final Iterable<Type> types = const [TeleconsultationsAppointmentIdEndPostRequest, _$TeleconsultationsAppointmentIdEndPostRequest];
 
   @override
   final String wireName = r'TeleconsultationsAppointmentIdEndPostRequest';
@@ -81,11 +66,7 @@ class _$TeleconsultationsAppointmentIdEndPostRequestSerializer
     TeleconsultationsAppointmentIdEndPostRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -101,15 +82,17 @@ class _$TeleconsultationsAppointmentIdEndPostRequestSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'duration_seconds':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.durationSeconds = valueDes;
           break;
         case r'quality_score':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.qualityScore = valueDes;
           break;
         default:
@@ -140,3 +123,4 @@ class _$TeleconsultationsAppointmentIdEndPostRequestSerializer
     return result.build();
   }
 }
+

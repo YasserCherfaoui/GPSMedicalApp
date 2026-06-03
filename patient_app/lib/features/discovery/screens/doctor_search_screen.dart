@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../providers/doctor_search.provider.dart';
+import '../providers/user_location.provider.dart';
+import '../widgets/discovery_error_view.dart';
+import '../widgets/doctor_card_tile.dart';
 import '../widgets/search_filters_sheet.dart';
 
 class DoctorSearchScreen extends ConsumerStatefulWidget {
@@ -78,10 +80,21 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(searchFiltersNotifierProvider, (previous, next) {
+      if (previous != next) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (_scrollController.hasClients) {
+            _scrollController.jumpTo(0);
+          }
+        });
+      }
+    });
+
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final filters = ref.watch(searchFiltersNotifierProvider);
     final searchResultAsync = ref.watch(doctorSearchProvider);
+    final userLocation = ref.watch(userLocationProvider).valueOrNull;
     final isAr = Localizations.localeOf(context).languageCode == 'ar';
 
     return Scaffold(
@@ -163,25 +176,12 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                   final doc = doctors[index];
                   return Padding(
                     padding: const EdgeInsets.only(bottom: GpsSpacing.md),
-                    child: DoctorCard(
-                      name: '${doc.title ?? "Dr."} ${doc.fullName ?? ""}',
-                      specialty: doc.specialties?.firstOrNull?.nameFr ?? '',
-                      rating: doc.ratingAverage ?? 0.0,
-                      reviewCount: doc.ratingCount ?? 0,
-                      city:
-                          doc.practiceAddress?.communeName ??
-                          doc.practiceAddress?.wilayaName ??
-                          '',
-                      fee: doc.consultationFeeDzd ?? 0,
-                      photoUrl: doc.photoUrl,
-                      isVerified: doc.verified ?? false,
-                      offersTelehealth: doc.offersTelehealth ?? false,
-                      onBookPressed: () {
-                        context.push(
-                          '${GpsRoutes.doctorDetail(doc.id ?? '')}?book=true',
-                        );
-                      },
-                      onFavoritePressed: () {},
+                    child: buildDoctorCardTile(
+                      context: context,
+                      doc: doc,
+                      isAr: isAr,
+                      userLat: userLocation?.lat,
+                      userLng: userLocation?.lng,
                     ),
                   );
                 },
@@ -191,13 +191,12 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
             error: (error, stack) => Center(
               child: Padding(
                 padding: const EdgeInsets.all(GpsSpacing.md),
-                child: ErrorState(
-                  title: 'Erreur',
-                  message: 'Une erreur s\'est produite lors de la recherche.',
-                  onRetry: () {
-                    // Re-trigger build
-                    ref.invalidate(doctorSearchProvider);
-                  },
+                child: DiscoveryErrorView(
+                  error: error,
+                  defaultTitle: 'Erreur',
+                  defaultMessage:
+                      'Une erreur s\'est produite lors de la recherche.',
+                  onRetry: () => ref.invalidate(doctorSearchProvider),
                 ),
               ),
             ),

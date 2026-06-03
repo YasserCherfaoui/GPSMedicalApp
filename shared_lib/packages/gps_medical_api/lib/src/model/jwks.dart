@@ -13,7 +13,7 @@ part 'jwks.g.dart';
 /// JWKS
 ///
 /// Properties:
-/// * [keys]
+/// * [keys] 
 @BuiltValue()
 abstract class JWKS implements Built<JWKS, JWKSBuilder> {
   @BuiltValueField(wireName: r'keys')
@@ -55,11 +55,7 @@ class _$JWKSSerializer implements PrimitiveSerializer<JWKS> {
     JWKS object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -75,14 +71,10 @@ class _$JWKSSerializer implements PrimitiveSerializer<JWKS> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'keys':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(JWKSKeysInner),
-                    ]),
-                  )
-                  as BuiltList<JWKSKeysInner>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(JWKSKeysInner)]),
+          ) as BuiltList<JWKSKeysInner>;
           result.keys.replace(valueDes);
           break;
         default:
@@ -113,3 +105,4 @@ class _$JWKSSerializer implements PrimitiveSerializer<JWKS> {
     return result.build();
   }
 }
+

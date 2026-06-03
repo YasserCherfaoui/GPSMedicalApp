@@ -14,11 +14,10 @@ part 'paginated_threads.g.dart';
 /// PaginatedThreads
 ///
 /// Properties:
-/// * [data]
-/// * [meta]
+/// * [data] 
+/// * [meta] 
 @BuiltValue()
-abstract class PaginatedThreads
-    implements Built<PaginatedThreads, PaginatedThreadsBuilder> {
+abstract class PaginatedThreads implements Built<PaginatedThreads, PaginatedThreadsBuilder> {
   @BuiltValueField(wireName: r'data')
   BuiltList<Thread>? get data;
 
@@ -27,19 +26,16 @@ abstract class PaginatedThreads
 
   PaginatedThreads._();
 
-  factory PaginatedThreads([void updates(PaginatedThreadsBuilder b)]) =
-      _$PaginatedThreads;
+  factory PaginatedThreads([void updates(PaginatedThreadsBuilder b)]) = _$PaginatedThreads;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaginatedThreadsBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaginatedThreads> get serializer =>
-      _$PaginatedThreadsSerializer();
+  static Serializer<PaginatedThreads> get serializer => _$PaginatedThreadsSerializer();
 }
 
-class _$PaginatedThreadsSerializer
-    implements PrimitiveSerializer<PaginatedThreads> {
+class _$PaginatedThreadsSerializer implements PrimitiveSerializer<PaginatedThreads> {
   @override
   final Iterable<Type> types = const [PaginatedThreads, _$PaginatedThreads];
 
@@ -73,11 +69,7 @@ class _$PaginatedThreadsSerializer
     PaginatedThreads object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -93,23 +85,17 @@ class _$PaginatedThreadsSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'data':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(Thread),
-                    ]),
-                  )
-                  as BuiltList<Thread>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(Thread)]),
+          ) as BuiltList<Thread>;
           result.data.replace(valueDes);
           break;
         case r'meta':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PaginationMeta),
-                  )
-                  as PaginationMeta;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaginationMeta),
+          ) as PaginationMeta;
           result.meta.replace(valueDes);
           break;
         default:
@@ -140,3 +126,4 @@ class _$PaginatedThreadsSerializer
     return result.build();
   }
 }
+

@@ -12,20 +12,19 @@ part 'medical_document.g.dart';
 /// MedicalDocument
 ///
 /// Properties:
-/// * [id]
-/// * [type]
-/// * [title]
-/// * [notes]
-/// * [appointmentId]
-/// * [patientId]
-/// * [authorId]
-/// * [authorRole]
-/// * [fileSize]
-/// * [mimeType]
-/// * [createdAt]
+/// * [id] 
+/// * [type] 
+/// * [title] 
+/// * [notes] 
+/// * [appointmentId] 
+/// * [patientId] 
+/// * [authorId] 
+/// * [authorRole] 
+/// * [fileSize] 
+/// * [mimeType] 
+/// * [createdAt] 
 @BuiltValue()
-abstract class MedicalDocument
-    implements Built<MedicalDocument, MedicalDocumentBuilder> {
+abstract class MedicalDocument implements Built<MedicalDocument, MedicalDocumentBuilder> {
   @BuiltValueField(wireName: r'id')
   String? get id;
 
@@ -63,19 +62,16 @@ abstract class MedicalDocument
 
   MedicalDocument._();
 
-  factory MedicalDocument([void updates(MedicalDocumentBuilder b)]) =
-      _$MedicalDocument;
+  factory MedicalDocument([void updates(MedicalDocumentBuilder b)]) = _$MedicalDocument;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(MedicalDocumentBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<MedicalDocument> get serializer =>
-      _$MedicalDocumentSerializer();
+  static Serializer<MedicalDocument> get serializer => _$MedicalDocumentSerializer();
 }
 
-class _$MedicalDocumentSerializer
-    implements PrimitiveSerializer<MedicalDocument> {
+class _$MedicalDocumentSerializer implements PrimitiveSerializer<MedicalDocument> {
   @override
   final Iterable<Type> types = const [MedicalDocument, _$MedicalDocument];
 
@@ -172,11 +168,7 @@ class _$MedicalDocumentSerializer
     MedicalDocument object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -192,102 +184,81 @@ class _$MedicalDocumentSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'type':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(MedicalDocumentTypeEnum),
-                  )
-                  as MedicalDocumentTypeEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(MedicalDocumentTypeEnum),
+          ) as MedicalDocumentTypeEnum;
           result.type = valueDes;
           break;
         case r'title':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.title = valueDes;
           break;
         case r'notes':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.notes = valueDes;
           break;
         case r'appointment_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(String),
-                  )
-                  as String?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
           if (valueDes == null) continue;
           result.appointmentId = valueDes;
           break;
         case r'patient_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.patientId = valueDes;
           break;
         case r'author_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.authorId = valueDes;
           break;
         case r'author_role':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      MedicalDocumentAuthorRoleEnum,
-                    ),
-                  )
-                  as MedicalDocumentAuthorRoleEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(MedicalDocumentAuthorRoleEnum),
+          ) as MedicalDocumentAuthorRoleEnum;
           result.authorRole = valueDes;
           break;
         case r'file_size':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.fileSize = valueDes;
           break;
         case r'mime_type':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.mimeType = valueDes;
           break;
         case r'created_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.createdAt = valueDes;
           break;
         default:
@@ -320,53 +291,42 @@ class _$MedicalDocumentSerializer
 }
 
 class MedicalDocumentTypeEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'prescription')
-  static const MedicalDocumentTypeEnum prescription =
-      _$medicalDocumentTypeEnum_prescription;
+  static const MedicalDocumentTypeEnum prescription = _$medicalDocumentTypeEnum_prescription;
   @BuiltValueEnumConst(wireName: r'report')
-  static const MedicalDocumentTypeEnum report =
-      _$medicalDocumentTypeEnum_report;
+  static const MedicalDocumentTypeEnum report = _$medicalDocumentTypeEnum_report;
   @BuiltValueEnumConst(wireName: r'lab_result')
-  static const MedicalDocumentTypeEnum labResult =
-      _$medicalDocumentTypeEnum_labResult;
+  static const MedicalDocumentTypeEnum labResult = _$medicalDocumentTypeEnum_labResult;
   @BuiltValueEnumConst(wireName: r'imaging')
-  static const MedicalDocumentTypeEnum imaging =
-      _$medicalDocumentTypeEnum_imaging;
+  static const MedicalDocumentTypeEnum imaging = _$medicalDocumentTypeEnum_imaging;
   @BuiltValueEnumConst(wireName: r'certificate')
-  static const MedicalDocumentTypeEnum certificate =
-      _$medicalDocumentTypeEnum_certificate;
+  static const MedicalDocumentTypeEnum certificate = _$medicalDocumentTypeEnum_certificate;
   @BuiltValueEnumConst(wireName: r'other')
   static const MedicalDocumentTypeEnum other = _$medicalDocumentTypeEnum_other;
 
-  static Serializer<MedicalDocumentTypeEnum> get serializer =>
-      _$medicalDocumentTypeEnumSerializer;
+  static Serializer<MedicalDocumentTypeEnum> get serializer => _$medicalDocumentTypeEnumSerializer;
 
-  const MedicalDocumentTypeEnum._(String name) : super(name);
+  const MedicalDocumentTypeEnum._(String name): super(name);
 
-  static BuiltSet<MedicalDocumentTypeEnum> get values =>
-      _$medicalDocumentTypeEnumValues;
-  static MedicalDocumentTypeEnum valueOf(String name) =>
-      _$medicalDocumentTypeEnumValueOf(name);
+  static BuiltSet<MedicalDocumentTypeEnum> get values => _$medicalDocumentTypeEnumValues;
+  static MedicalDocumentTypeEnum valueOf(String name) => _$medicalDocumentTypeEnumValueOf(name);
 }
 
 class MedicalDocumentAuthorRoleEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'patient')
-  static const MedicalDocumentAuthorRoleEnum patient =
-      _$medicalDocumentAuthorRoleEnum_patient;
+  static const MedicalDocumentAuthorRoleEnum patient = _$medicalDocumentAuthorRoleEnum_patient;
   @BuiltValueEnumConst(wireName: r'specialist')
-  static const MedicalDocumentAuthorRoleEnum specialist =
-      _$medicalDocumentAuthorRoleEnum_specialist;
+  static const MedicalDocumentAuthorRoleEnum specialist = _$medicalDocumentAuthorRoleEnum_specialist;
   @BuiltValueEnumConst(wireName: r'concierge')
-  static const MedicalDocumentAuthorRoleEnum concierge =
-      _$medicalDocumentAuthorRoleEnum_concierge;
+  static const MedicalDocumentAuthorRoleEnum concierge = _$medicalDocumentAuthorRoleEnum_concierge;
 
-  static Serializer<MedicalDocumentAuthorRoleEnum> get serializer =>
-      _$medicalDocumentAuthorRoleEnumSerializer;
+  static Serializer<MedicalDocumentAuthorRoleEnum> get serializer => _$medicalDocumentAuthorRoleEnumSerializer;
 
-  const MedicalDocumentAuthorRoleEnum._(String name) : super(name);
+  const MedicalDocumentAuthorRoleEnum._(String name): super(name);
 
-  static BuiltSet<MedicalDocumentAuthorRoleEnum> get values =>
-      _$medicalDocumentAuthorRoleEnumValues;
-  static MedicalDocumentAuthorRoleEnum valueOf(String name) =>
-      _$medicalDocumentAuthorRoleEnumValueOf(name);
+  static BuiltSet<MedicalDocumentAuthorRoleEnum> get values => _$medicalDocumentAuthorRoleEnumValues;
+  static MedicalDocumentAuthorRoleEnum valueOf(String name) => _$medicalDocumentAuthorRoleEnumValueOf(name);
 }
+

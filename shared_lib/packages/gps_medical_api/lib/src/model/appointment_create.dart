@@ -12,15 +12,14 @@ part 'appointment_create.g.dart';
 /// AppointmentCreate
 ///
 /// Properties:
-/// * [doctorId]
-/// * [dependentId]
-/// * [startAt]
-/// * [mode]
-/// * [reason]
+/// * [doctorId] 
+/// * [dependentId] 
+/// * [startAt] 
+/// * [mode] 
+/// * [reason] 
 /// * [slotLockToken] - Jeton de verrou optimiste obtenu via /availability
 @BuiltValue()
-abstract class AppointmentCreate
-    implements Built<AppointmentCreate, AppointmentCreateBuilder> {
+abstract class AppointmentCreate implements Built<AppointmentCreate, AppointmentCreateBuilder> {
   @BuiltValueField(wireName: r'doctor_id')
   String get doctorId;
 
@@ -43,19 +42,16 @@ abstract class AppointmentCreate
 
   AppointmentCreate._();
 
-  factory AppointmentCreate([void updates(AppointmentCreateBuilder b)]) =
-      _$AppointmentCreate;
+  factory AppointmentCreate([void updates(AppointmentCreateBuilder b)]) = _$AppointmentCreate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(AppointmentCreateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<AppointmentCreate> get serializer =>
-      _$AppointmentCreateSerializer();
+  static Serializer<AppointmentCreate> get serializer => _$AppointmentCreateSerializer();
 }
 
-class _$AppointmentCreateSerializer
-    implements PrimitiveSerializer<AppointmentCreate> {
+class _$AppointmentCreateSerializer implements PrimitiveSerializer<AppointmentCreate> {
   @override
   final Iterable<Type> types = const [AppointmentCreate, _$AppointmentCreate];
 
@@ -111,11 +107,7 @@ class _$AppointmentCreateSerializer
     AppointmentCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -131,58 +123,46 @@ class _$AppointmentCreateSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'doctor_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.doctorId = valueDes;
           break;
         case r'dependent_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(String),
-                  )
-                  as String?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
           if (valueDes == null) continue;
           result.dependentId = valueDes;
           break;
         case r'start_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.startAt = valueDes;
           break;
         case r'mode':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(AppointmentCreateModeEnum),
-                  )
-                  as AppointmentCreateModeEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AppointmentCreateModeEnum),
+          ) as AppointmentCreateModeEnum;
           result.mode = valueDes;
           break;
         case r'reason':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.reason = valueDes;
           break;
         case r'slot_lock_token':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.slotLockToken = valueDes;
           break;
         default:
@@ -215,20 +195,17 @@ class _$AppointmentCreateSerializer
 }
 
 class AppointmentCreateModeEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'in_person')
-  static const AppointmentCreateModeEnum inPerson =
-      _$appointmentCreateModeEnum_inPerson;
+  static const AppointmentCreateModeEnum inPerson = _$appointmentCreateModeEnum_inPerson;
   @BuiltValueEnumConst(wireName: r'telehealth')
-  static const AppointmentCreateModeEnum telehealth =
-      _$appointmentCreateModeEnum_telehealth;
+  static const AppointmentCreateModeEnum telehealth = _$appointmentCreateModeEnum_telehealth;
 
-  static Serializer<AppointmentCreateModeEnum> get serializer =>
-      _$appointmentCreateModeEnumSerializer;
+  static Serializer<AppointmentCreateModeEnum> get serializer => _$appointmentCreateModeEnumSerializer;
 
-  const AppointmentCreateModeEnum._(String name) : super(name);
+  const AppointmentCreateModeEnum._(String name): super(name);
 
-  static BuiltSet<AppointmentCreateModeEnum> get values =>
-      _$appointmentCreateModeEnumValues;
-  static AppointmentCreateModeEnum valueOf(String name) =>
-      _$appointmentCreateModeEnumValueOf(name);
+  static BuiltSet<AppointmentCreateModeEnum> get values => _$appointmentCreateModeEnumValues;
+  static AppointmentCreateModeEnum valueOf(String name) => _$appointmentCreateModeEnumValueOf(name);
 }
+

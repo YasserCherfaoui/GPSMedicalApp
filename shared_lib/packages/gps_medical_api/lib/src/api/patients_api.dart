@@ -17,6 +17,7 @@ import 'package:gps_medical_api/src/model/patient_update.dart';
 import 'package:gps_medical_api/src/model/validation_problem.dart';
 
 class PatientsApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -24,7 +25,7 @@ class PatientsApi {
   const PatientsApi(this._dio, this._serializers);
 
   /// Suppression du compte patient (RGPD — droit à l&#39;effacement)
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -36,7 +37,7 @@ class PatientsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> patientsMeDelete({
+  Future<Response<void>> patientsMeDelete({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -47,10 +48,16 @@ class PatientsApi {
     final _path = r'/patients/me';
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -69,10 +76,10 @@ class PatientsApi {
   }
 
   /// Suppression d&#39;un ayant droit
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [dependentId]
+  /// * [dependentId] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -82,7 +89,7 @@ class PatientsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> patientsMeDependentsDependentIdDelete({
+  Future<Response<void>> patientsMeDependentsDependentIdDelete({ 
     required String dependentId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -91,22 +98,19 @@ class PatientsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/patients/me/dependents/{dependentId}'.replaceAll(
-      '{'
-      r'dependentId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        dependentId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/patients/me/dependents/{dependentId}'.replaceAll('{' r'dependentId' '}', encodeQueryParameter(_serializers, dependentId, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -125,11 +129,11 @@ class PatientsApi {
   }
 
   /// Modification d&#39;un ayant droit
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [dependentId]
-  /// * [dependentCreate]
+  /// * [dependentId] 
+  /// * [dependentCreate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -139,7 +143,7 @@ class PatientsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Dependent] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Dependent>> patientsMeDependentsDependentIdPatch({
+  Future<Response<Dependent>> patientsMeDependentsDependentIdPatch({ 
     required String dependentId,
     required DependentCreate dependentCreate,
     CancelToken? cancelToken,
@@ -149,22 +153,19 @@ class PatientsApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/patients/me/dependents/{dependentId}'.replaceAll(
-      '{'
-      r'dependentId'
-      '}',
-      encodeQueryParameter(
-        _serializers,
-        dependentId,
-        const FullType(String),
-      ).toString(),
-    );
+    final _path = r'/patients/me/dependents/{dependentId}'.replaceAll('{' r'dependentId' '}', encodeQueryParameter(_serializers, dependentId, const FullType(String)).toString());
     final _options = Options(
       method: r'PATCH',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -177,9 +178,13 @@ class PatientsApi {
     try {
       const _type = FullType(DependentCreate);
       _bodyData = _serializers.serialize(dependentCreate, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -199,13 +204,11 @@ class PatientsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Dependent),
-                )
-                as Dependent;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Dependent),
+      ) as Dependent;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -229,7 +232,7 @@ class PatientsApi {
   }
 
   /// Liste des ayants droit (enfants, conjoint…)
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -241,7 +244,7 @@ class PatientsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<Dependent>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<Dependent>>> patientsMeDependentsGet({
+  Future<Response<BuiltList<Dependent>>> patientsMeDependentsGet({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -252,10 +255,16 @@ class PatientsApi {
     final _path = r'/patients/me/dependents';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -274,15 +283,11 @@ class PatientsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(BuiltList, [
-                    FullType(Dependent),
-                  ]),
-                )
-                as BuiltList<Dependent>;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(Dependent)]),
+      ) as BuiltList<Dependent>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -306,10 +311,10 @@ class PatientsApi {
   }
 
   /// Ajout d&#39;un ayant droit
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [dependentCreate]
+  /// * [dependentCreate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -319,7 +324,7 @@ class PatientsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Dependent] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Dependent>> patientsMeDependentsPost({
+  Future<Response<Dependent>> patientsMeDependentsPost({ 
     required DependentCreate dependentCreate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -331,10 +336,16 @@ class PatientsApi {
     final _path = r'/patients/me/dependents';
     final _options = Options(
       method: r'POST',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -347,9 +358,13 @@ class PatientsApi {
     try {
       const _type = FullType(DependentCreate);
       _bodyData = _serializers.serialize(dependentCreate, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -369,13 +384,11 @@ class PatientsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Dependent),
-                )
-                as Dependent;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Dependent),
+      ) as Dependent;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -399,7 +412,7 @@ class PatientsApi {
   }
 
   /// Profil du patient connecté
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -411,7 +424,7 @@ class PatientsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Patient] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Patient>> patientsMeGet({
+  Future<Response<Patient>> patientsMeGet({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -422,10 +435,16 @@ class PatientsApi {
     final _path = r'/patients/me';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -444,13 +463,11 @@ class PatientsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Patient),
-                )
-                as Patient;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Patient),
+      ) as Patient;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -474,10 +491,10 @@ class PatientsApi {
   }
 
   /// Mise à jour partielle du profil patient
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [patientUpdate]
+  /// * [patientUpdate] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -487,7 +504,7 @@ class PatientsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Patient] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Patient>> patientsMePatch({
+  Future<Response<Patient>> patientsMePatch({ 
     required PatientUpdate patientUpdate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -499,10 +516,16 @@ class PatientsApi {
     final _path = r'/patients/me';
     final _options = Options(
       method: r'PATCH',
-      headers: <String, dynamic>{...?headers},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
       extra: <String, dynamic>{
         'secure': <Map<String, String>>[
-          {'type': 'http', 'scheme': 'bearer', 'name': 'bearerAuth'},
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
         ],
         ...?extra,
       },
@@ -515,9 +538,13 @@ class PatientsApi {
     try {
       const _type = FullType(PatientUpdate);
       _bodyData = _serializers.serialize(patientUpdate, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(_dio.options, _path),
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
         type: DioExceptionType.unknown,
         error: error,
         stackTrace: stackTrace,
@@ -537,13 +564,11 @@ class PatientsApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(Patient),
-                )
-                as Patient;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Patient),
+      ) as Patient;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -565,4 +590,5 @@ class PatientsApi {
       extra: _response.extra,
     );
   }
+
 }

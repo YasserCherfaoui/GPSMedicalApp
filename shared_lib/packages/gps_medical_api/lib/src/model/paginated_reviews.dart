@@ -14,11 +14,10 @@ part 'paginated_reviews.g.dart';
 /// PaginatedReviews
 ///
 /// Properties:
-/// * [data]
-/// * [meta]
+/// * [data] 
+/// * [meta] 
 @BuiltValue()
-abstract class PaginatedReviews
-    implements Built<PaginatedReviews, PaginatedReviewsBuilder> {
+abstract class PaginatedReviews implements Built<PaginatedReviews, PaginatedReviewsBuilder> {
   @BuiltValueField(wireName: r'data')
   BuiltList<Review>? get data;
 
@@ -27,19 +26,16 @@ abstract class PaginatedReviews
 
   PaginatedReviews._();
 
-  factory PaginatedReviews([void updates(PaginatedReviewsBuilder b)]) =
-      _$PaginatedReviews;
+  factory PaginatedReviews([void updates(PaginatedReviewsBuilder b)]) = _$PaginatedReviews;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaginatedReviewsBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaginatedReviews> get serializer =>
-      _$PaginatedReviewsSerializer();
+  static Serializer<PaginatedReviews> get serializer => _$PaginatedReviewsSerializer();
 }
 
-class _$PaginatedReviewsSerializer
-    implements PrimitiveSerializer<PaginatedReviews> {
+class _$PaginatedReviewsSerializer implements PrimitiveSerializer<PaginatedReviews> {
   @override
   final Iterable<Type> types = const [PaginatedReviews, _$PaginatedReviews];
 
@@ -73,11 +69,7 @@ class _$PaginatedReviewsSerializer
     PaginatedReviews object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -93,23 +85,17 @@ class _$PaginatedReviewsSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'data':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(Review),
-                    ]),
-                  )
-                  as BuiltList<Review>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(Review)]),
+          ) as BuiltList<Review>;
           result.data.replace(valueDes);
           break;
         case r'meta':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PaginationMeta),
-                  )
-                  as PaginationMeta;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaginationMeta),
+          ) as PaginationMeta;
           result.meta.replace(valueDes);
           break;
         default:
@@ -140,3 +126,4 @@ class _$PaginatedReviewsSerializer
     return result.build();
   }
 }
+

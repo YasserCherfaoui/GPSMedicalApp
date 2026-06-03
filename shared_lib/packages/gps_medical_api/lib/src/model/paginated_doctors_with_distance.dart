@@ -14,15 +14,10 @@ part 'paginated_doctors_with_distance.g.dart';
 /// PaginatedDoctorsWithDistance
 ///
 /// Properties:
-/// * [data]
-/// * [meta]
+/// * [data] 
+/// * [meta] 
 @BuiltValue()
-abstract class PaginatedDoctorsWithDistance
-    implements
-        Built<
-          PaginatedDoctorsWithDistance,
-          PaginatedDoctorsWithDistanceBuilder
-        > {
+abstract class PaginatedDoctorsWithDistance implements Built<PaginatedDoctorsWithDistance, PaginatedDoctorsWithDistanceBuilder> {
   @BuiltValueField(wireName: r'data')
   BuiltList<DoctorWithDistance>? get data;
 
@@ -31,25 +26,18 @@ abstract class PaginatedDoctorsWithDistance
 
   PaginatedDoctorsWithDistance._();
 
-  factory PaginatedDoctorsWithDistance([
-    void updates(PaginatedDoctorsWithDistanceBuilder b),
-  ]) = _$PaginatedDoctorsWithDistance;
+  factory PaginatedDoctorsWithDistance([void updates(PaginatedDoctorsWithDistanceBuilder b)]) = _$PaginatedDoctorsWithDistance;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaginatedDoctorsWithDistanceBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaginatedDoctorsWithDistance> get serializer =>
-      _$PaginatedDoctorsWithDistanceSerializer();
+  static Serializer<PaginatedDoctorsWithDistance> get serializer => _$PaginatedDoctorsWithDistanceSerializer();
 }
 
-class _$PaginatedDoctorsWithDistanceSerializer
-    implements PrimitiveSerializer<PaginatedDoctorsWithDistance> {
+class _$PaginatedDoctorsWithDistanceSerializer implements PrimitiveSerializer<PaginatedDoctorsWithDistance> {
   @override
-  final Iterable<Type> types = const [
-    PaginatedDoctorsWithDistance,
-    _$PaginatedDoctorsWithDistance,
-  ];
+  final Iterable<Type> types = const [PaginatedDoctorsWithDistance, _$PaginatedDoctorsWithDistance];
 
   @override
   final String wireName = r'PaginatedDoctorsWithDistance';
@@ -63,9 +51,7 @@ class _$PaginatedDoctorsWithDistanceSerializer
       yield r'data';
       yield serializers.serialize(
         object.data,
-        specifiedType: const FullType(BuiltList, [
-          FullType(DoctorWithDistance),
-        ]),
+        specifiedType: const FullType(BuiltList, [FullType(DoctorWithDistance)]),
       );
     }
     if (object.meta != null) {
@@ -83,11 +69,7 @@ class _$PaginatedDoctorsWithDistanceSerializer
     PaginatedDoctorsWithDistance object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -103,23 +85,17 @@ class _$PaginatedDoctorsWithDistanceSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'data':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(DoctorWithDistance),
-                    ]),
-                  )
-                  as BuiltList<DoctorWithDistance>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(DoctorWithDistance)]),
+          ) as BuiltList<DoctorWithDistance>;
           result.data.replace(valueDes);
           break;
         case r'meta':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PaginationMeta),
-                  )
-                  as PaginationMeta;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaginationMeta),
+          ) as PaginationMeta;
           result.meta.replace(valueDes);
           break;
         default:
@@ -150,3 +126,4 @@ class _$PaginatedDoctorsWithDistanceSerializer
     return result.build();
   }
 }
+

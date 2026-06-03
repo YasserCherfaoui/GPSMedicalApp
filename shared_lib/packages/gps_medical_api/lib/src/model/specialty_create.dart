@@ -11,13 +11,12 @@ part 'specialty_create.g.dart';
 /// SpecialtyCreate
 ///
 /// Properties:
-/// * [code]
-/// * [nameFr]
-/// * [nameAr]
-/// * [parentId]
+/// * [code] 
+/// * [nameFr] 
+/// * [nameAr] 
+/// * [parentId] 
 @BuiltValue()
-abstract class SpecialtyCreate
-    implements Built<SpecialtyCreate, SpecialtyCreateBuilder> {
+abstract class SpecialtyCreate implements Built<SpecialtyCreate, SpecialtyCreateBuilder> {
   @BuiltValueField(wireName: r'code')
   String get code;
 
@@ -32,19 +31,16 @@ abstract class SpecialtyCreate
 
   SpecialtyCreate._();
 
-  factory SpecialtyCreate([void updates(SpecialtyCreateBuilder b)]) =
-      _$SpecialtyCreate;
+  factory SpecialtyCreate([void updates(SpecialtyCreateBuilder b)]) = _$SpecialtyCreate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(SpecialtyCreateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<SpecialtyCreate> get serializer =>
-      _$SpecialtyCreateSerializer();
+  static Serializer<SpecialtyCreate> get serializer => _$SpecialtyCreateSerializer();
 }
 
-class _$SpecialtyCreateSerializer
-    implements PrimitiveSerializer<SpecialtyCreate> {
+class _$SpecialtyCreateSerializer implements PrimitiveSerializer<SpecialtyCreate> {
   @override
   final Iterable<Type> types = const [SpecialtyCreate, _$SpecialtyCreate];
 
@@ -88,11 +84,7 @@ class _$SpecialtyCreateSerializer
     SpecialtyCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -108,39 +100,31 @@ class _$SpecialtyCreateSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'code':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.code = valueDes;
           break;
         case r'name_fr':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.nameFr = valueDes;
           break;
         case r'name_ar':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.nameAr = valueDes;
           break;
         case r'parent_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(String),
-                  )
-                  as String?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
           if (valueDes == null) continue;
           result.parentId = valueDes;
           break;
@@ -172,3 +156,4 @@ class _$SpecialtyCreateSerializer
     return result.build();
   }
 }
+

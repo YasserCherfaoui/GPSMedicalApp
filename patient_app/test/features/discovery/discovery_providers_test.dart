@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
+import 'package:patient_app/features/discovery/providers/doctor_detail.provider.dart';
 import 'package:patient_app/features/discovery/providers/doctor_list.provider.dart';
 import 'package:patient_app/features/discovery/providers/doctor_search.provider.dart';
 import 'package:patient_app/features/discovery/providers/specialties.provider.dart';
@@ -197,6 +198,37 @@ void main() {
       final searchState = await container.read(doctorSearchProvider.future);
       expect(searchState.doctors, hasLength(1));
       expect(searchState.doctors[0].id, 'doc-search-1');
+    });
+  });
+
+  group('DoctorDetail Provider', () {
+    test('loads profile when reviews endpoint returns 404', () async {
+      const doctorId = 'd1000000-0000-4000-8000-000000000001';
+
+      dioAdapter.onGet(
+        '/doctors/$doctorId',
+        (server) => server.reply(200, {
+          'id': doctorId,
+          'full_name': 'Dr. Test',
+          'verified': true,
+        }),
+      );
+      dioAdapter.onGet(
+        '/doctors/$doctorId/reviews',
+        (server) => server.reply(404, {
+          'title': 'Not Found',
+          'status': 404,
+        }),
+      );
+
+      final detail = await container.read(
+        doctorDetailProvider(doctorId).future,
+      );
+
+      expect(detail.doctor.id, doctorId);
+      expect(detail.doctor.fullName, 'Dr. Test');
+      expect(detail.reviews, isEmpty);
+      expect(detail.hasMoreReviews, isFalse);
     });
   });
 }

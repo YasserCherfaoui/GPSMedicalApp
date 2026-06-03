@@ -11,16 +11,11 @@ part 'validation_problem_all_of_errors.g.dart';
 /// ValidationProblemAllOfErrors
 ///
 /// Properties:
-/// * [field]
-/// * [message]
-/// * [code]
+/// * [field] 
+/// * [message] 
+/// * [code] 
 @BuiltValue()
-abstract class ValidationProblemAllOfErrors
-    implements
-        Built<
-          ValidationProblemAllOfErrors,
-          ValidationProblemAllOfErrorsBuilder
-        > {
+abstract class ValidationProblemAllOfErrors implements Built<ValidationProblemAllOfErrors, ValidationProblemAllOfErrorsBuilder> {
   @BuiltValueField(wireName: r'field')
   String? get field;
 
@@ -32,25 +27,18 @@ abstract class ValidationProblemAllOfErrors
 
   ValidationProblemAllOfErrors._();
 
-  factory ValidationProblemAllOfErrors([
-    void updates(ValidationProblemAllOfErrorsBuilder b),
-  ]) = _$ValidationProblemAllOfErrors;
+  factory ValidationProblemAllOfErrors([void updates(ValidationProblemAllOfErrorsBuilder b)]) = _$ValidationProblemAllOfErrors;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(ValidationProblemAllOfErrorsBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<ValidationProblemAllOfErrors> get serializer =>
-      _$ValidationProblemAllOfErrorsSerializer();
+  static Serializer<ValidationProblemAllOfErrors> get serializer => _$ValidationProblemAllOfErrorsSerializer();
 }
 
-class _$ValidationProblemAllOfErrorsSerializer
-    implements PrimitiveSerializer<ValidationProblemAllOfErrors> {
+class _$ValidationProblemAllOfErrorsSerializer implements PrimitiveSerializer<ValidationProblemAllOfErrors> {
   @override
-  final Iterable<Type> types = const [
-    ValidationProblemAllOfErrors,
-    _$ValidationProblemAllOfErrors,
-  ];
+  final Iterable<Type> types = const [ValidationProblemAllOfErrors, _$ValidationProblemAllOfErrors];
 
   @override
   final String wireName = r'ValidationProblemAllOfErrors';
@@ -89,11 +77,7 @@ class _$ValidationProblemAllOfErrorsSerializer
     ValidationProblemAllOfErrors object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -109,30 +93,24 @@ class _$ValidationProblemAllOfErrorsSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'field':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.field = valueDes;
           break;
         case r'message':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.message = valueDes;
           break;
         case r'code':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.code = valueDes;
           break;
         default:
@@ -163,3 +141,4 @@ class _$ValidationProblemAllOfErrorsSerializer
     return result.build();
   }
 }
+

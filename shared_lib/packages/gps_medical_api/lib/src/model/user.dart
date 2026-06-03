@@ -12,15 +12,15 @@ part 'user.g.dart';
 /// User
 ///
 /// Properties:
-/// * [id]
+/// * [id] 
 /// * [phone] - Numéro algérien au format E.164
-/// * [email]
-/// * [role]
-/// * [fullName]
-/// * [status]
-/// * [createdAt]
+/// * [email] 
+/// * [role] 
+/// * [fullName] 
+/// * [status] 
+/// * [createdAt] 
 @BuiltValue(instantiable: false)
-abstract class User {
+abstract class User  {
   @BuiltValueField(wireName: r'id')
   String? get id;
 
@@ -118,11 +118,7 @@ class _$UserSerializer implements PrimitiveSerializer<User> {
     User object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   @override
@@ -131,8 +127,7 @@ class _$UserSerializer implements PrimitiveSerializer<User> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return serializers.deserialize(serialized, specifiedType: FullType($User))
-        as $User;
+    return serializers.deserialize(serialized, specifiedType: FullType($User)) as $User;
   }
 }
 
@@ -179,66 +174,52 @@ class _$$UserSerializer implements PrimitiveSerializer<$User> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'phone':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.phone = valueDes;
           break;
         case r'email':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.email = valueDes;
           break;
         case r'role':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(UserRoleEnum),
-                  )
-                  as UserRoleEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(UserRoleEnum),
+          ) as UserRoleEnum;
           result.role = valueDes;
           break;
         case r'full_name':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.fullName = valueDes;
           break;
         case r'status':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(UserStatusEnum),
-                  )
-                  as UserStatusEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(UserStatusEnum),
+          ) as UserStatusEnum;
           result.status = valueDes;
           break;
         case r'created_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.createdAt = valueDes;
           break;
         default:
@@ -271,6 +252,7 @@ class _$$UserSerializer implements PrimitiveSerializer<$User> {
 }
 
 class UserRoleEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'patient')
   static const UserRoleEnum patient = _$userRoleEnum_patient;
   @BuiltValueEnumConst(wireName: r'specialist')
@@ -284,16 +266,16 @@ class UserRoleEnum extends EnumClass {
 
   static Serializer<UserRoleEnum> get serializer => _$userRoleEnumSerializer;
 
-  const UserRoleEnum._(String name) : super(name);
+  const UserRoleEnum._(String name): super(name);
 
   static BuiltSet<UserRoleEnum> get values => _$userRoleEnumValues;
   static UserRoleEnum valueOf(String name) => _$userRoleEnumValueOf(name);
 }
 
 class UserStatusEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'pending_verification')
-  static const UserStatusEnum pendingVerification =
-      _$userStatusEnum_pendingVerification;
+  static const UserStatusEnum pendingVerification = _$userStatusEnum_pendingVerification;
   @BuiltValueEnumConst(wireName: r'active')
   static const UserStatusEnum active = _$userStatusEnum_active;
   @BuiltValueEnumConst(wireName: r'suspended')
@@ -301,11 +283,11 @@ class UserStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'deleted')
   static const UserStatusEnum deleted = _$userStatusEnum_deleted;
 
-  static Serializer<UserStatusEnum> get serializer =>
-      _$userStatusEnumSerializer;
+  static Serializer<UserStatusEnum> get serializer => _$userStatusEnumSerializer;
 
-  const UserStatusEnum._(String name) : super(name);
+  const UserStatusEnum._(String name): super(name);
 
   static BuiltSet<UserStatusEnum> get values => _$userStatusEnumValues;
   static UserStatusEnum valueOf(String name) => _$userStatusEnumValueOf(name);
 }
+

@@ -12,11 +12,10 @@ part 'password_reset_request.g.dart';
 ///
 /// Properties:
 /// * [phone] - Numéro algérien au format E.164
-/// * [code]
-/// * [newPassword]
+/// * [code] 
+/// * [newPassword] 
 @BuiltValue()
-abstract class PasswordResetRequest
-    implements Built<PasswordResetRequest, PasswordResetRequestBuilder> {
+abstract class PasswordResetRequest implements Built<PasswordResetRequest, PasswordResetRequestBuilder> {
   /// Numéro algérien au format E.164
   @BuiltValueField(wireName: r'phone')
   String get phone;
@@ -29,24 +28,18 @@ abstract class PasswordResetRequest
 
   PasswordResetRequest._();
 
-  factory PasswordResetRequest([void updates(PasswordResetRequestBuilder b)]) =
-      _$PasswordResetRequest;
+  factory PasswordResetRequest([void updates(PasswordResetRequestBuilder b)]) = _$PasswordResetRequest;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PasswordResetRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PasswordResetRequest> get serializer =>
-      _$PasswordResetRequestSerializer();
+  static Serializer<PasswordResetRequest> get serializer => _$PasswordResetRequestSerializer();
 }
 
-class _$PasswordResetRequestSerializer
-    implements PrimitiveSerializer<PasswordResetRequest> {
+class _$PasswordResetRequestSerializer implements PrimitiveSerializer<PasswordResetRequest> {
   @override
-  final Iterable<Type> types = const [
-    PasswordResetRequest,
-    _$PasswordResetRequest,
-  ];
+  final Iterable<Type> types = const [PasswordResetRequest, _$PasswordResetRequest];
 
   @override
   final String wireName = r'PasswordResetRequest';
@@ -79,11 +72,7 @@ class _$PasswordResetRequestSerializer
     PasswordResetRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -99,30 +88,24 @@ class _$PasswordResetRequestSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'phone':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.phone = valueDes;
           break;
         case r'code':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.code = valueDes;
           break;
         case r'new_password':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.newPassword = valueDes;
           break;
         default:
@@ -153,3 +136,4 @@ class _$PasswordResetRequestSerializer
     return result.build();
   }
 }
+

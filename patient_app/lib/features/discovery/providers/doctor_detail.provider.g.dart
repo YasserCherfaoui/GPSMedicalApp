@@ -6,7 +6,7 @@ part of 'doctor_detail.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$doctorDetailHash() => r'2af5f6edcd72a43efd36dc12e458a39346ecb5b0';
+String _$doctorDetailHash() => r'73456a9fecac5c7e4c668e0995213e8bf9f988e5';
 
 /// Copied from Dart SDK
 class _SystemHash {

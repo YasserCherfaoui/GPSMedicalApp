@@ -12,11 +12,10 @@ part 'message_create.g.dart';
 /// MessageCreate
 ///
 /// Properties:
-/// * [body]
-/// * [attachmentDocumentIds]
+/// * [body] 
+/// * [attachmentDocumentIds] 
 @BuiltValue()
-abstract class MessageCreate
-    implements Built<MessageCreate, MessageCreateBuilder> {
+abstract class MessageCreate implements Built<MessageCreate, MessageCreateBuilder> {
   @BuiltValueField(wireName: r'body')
   String? get body;
 
@@ -25,15 +24,13 @@ abstract class MessageCreate
 
   MessageCreate._();
 
-  factory MessageCreate([void updates(MessageCreateBuilder b)]) =
-      _$MessageCreate;
+  factory MessageCreate([void updates(MessageCreateBuilder b)]) = _$MessageCreate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(MessageCreateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<MessageCreate> get serializer =>
-      _$MessageCreateSerializer();
+  static Serializer<MessageCreate> get serializer => _$MessageCreateSerializer();
 }
 
 class _$MessageCreateSerializer implements PrimitiveSerializer<MessageCreate> {
@@ -70,11 +67,7 @@ class _$MessageCreateSerializer implements PrimitiveSerializer<MessageCreate> {
     MessageCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -90,23 +83,17 @@ class _$MessageCreateSerializer implements PrimitiveSerializer<MessageCreate> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'body':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.body = valueDes;
           break;
         case r'attachment_document_ids':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(String),
-                    ]),
-                  )
-                  as BuiltList<String>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
           result.attachmentDocumentIds.replace(valueDes);
           break;
         default:
@@ -137,3 +124,4 @@ class _$MessageCreateSerializer implements PrimitiveSerializer<MessageCreate> {
     return result.build();
   }
 }
+

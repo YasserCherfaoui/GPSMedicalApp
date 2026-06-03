@@ -11,13 +11,12 @@ part 'pagination_meta.g.dart';
 /// PaginationMeta
 ///
 /// Properties:
-/// * [page]
-/// * [pageSize]
-/// * [total]
-/// * [totalPages]
+/// * [page] 
+/// * [pageSize] 
+/// * [total] 
+/// * [totalPages] 
 @BuiltValue()
-abstract class PaginationMeta
-    implements Built<PaginationMeta, PaginationMetaBuilder> {
+abstract class PaginationMeta implements Built<PaginationMeta, PaginationMetaBuilder> {
   @BuiltValueField(wireName: r'page')
   int? get page;
 
@@ -32,19 +31,16 @@ abstract class PaginationMeta
 
   PaginationMeta._();
 
-  factory PaginationMeta([void updates(PaginationMetaBuilder b)]) =
-      _$PaginationMeta;
+  factory PaginationMeta([void updates(PaginationMetaBuilder b)]) = _$PaginationMeta;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaginationMetaBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaginationMeta> get serializer =>
-      _$PaginationMetaSerializer();
+  static Serializer<PaginationMeta> get serializer => _$PaginationMetaSerializer();
 }
 
-class _$PaginationMetaSerializer
-    implements PrimitiveSerializer<PaginationMeta> {
+class _$PaginationMetaSerializer implements PrimitiveSerializer<PaginationMeta> {
   @override
   final Iterable<Type> types = const [PaginationMeta, _$PaginationMeta];
 
@@ -92,11 +88,7 @@ class _$PaginationMetaSerializer
     PaginationMeta object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -112,27 +104,31 @@ class _$PaginationMetaSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'page':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.page = valueDes;
           break;
         case r'page_size':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.pageSize = valueDes;
           break;
         case r'total':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.total = valueDes;
           break;
         case r'total_pages':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.totalPages = valueDes;
           break;
         default:
@@ -163,3 +159,4 @@ class _$PaginationMetaSerializer
     return result.build();
   }
 }
+

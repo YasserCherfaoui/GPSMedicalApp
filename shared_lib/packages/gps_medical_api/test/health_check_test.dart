@@ -23,10 +23,11 @@ void main() {
       // TODO
     });
 
-    // `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde.
+    // `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
     // String storage
     test('to test the property `storage`', () async {
       // TODO
     });
+
   });
 }

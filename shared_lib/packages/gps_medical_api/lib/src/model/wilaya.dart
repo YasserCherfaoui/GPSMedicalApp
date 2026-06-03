@@ -11,9 +11,9 @@ part 'wilaya.g.dart';
 /// Wilaya
 ///
 /// Properties:
-/// * [code]
-/// * [nameFr]
-/// * [nameAr]
+/// * [code] 
+/// * [nameFr] 
+/// * [nameAr] 
 @BuiltValue()
 abstract class Wilaya implements Built<Wilaya, WilayaBuilder> {
   @BuiltValueField(wireName: r'code')
@@ -77,11 +77,7 @@ class _$WilayaSerializer implements PrimitiveSerializer<Wilaya> {
     Wilaya object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -97,30 +93,24 @@ class _$WilayaSerializer implements PrimitiveSerializer<Wilaya> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'code':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.code = valueDes;
           break;
         case r'name_fr':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.nameFr = valueDes;
           break;
         case r'name_ar':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.nameAr = valueDes;
           break;
         default:
@@ -151,3 +141,4 @@ class _$WilayaSerializer implements PrimitiveSerializer<Wilaya> {
     return result.build();
   }
 }
+

@@ -13,13 +13,13 @@ part 'tele_session.g.dart';
 /// TeleSession
 ///
 /// Properties:
-/// * [appointmentId]
-/// * [roomId]
-/// * [status]
-/// * [startedAt]
-/// * [endedAt]
-/// * [durationSeconds]
-/// * [iceServers]
+/// * [appointmentId] 
+/// * [roomId] 
+/// * [status] 
+/// * [startedAt] 
+/// * [endedAt] 
+/// * [durationSeconds] 
+/// * [iceServers] 
 /// * [token] - Jeton court (TTL 5 min) pour rejoindre la salle
 @BuiltValue()
 abstract class TeleSession implements Built<TeleSession, TeleSessionBuilder> {
@@ -136,11 +136,7 @@ class _$TeleSessionSerializer implements PrimitiveSerializer<TeleSession> {
     TeleSession object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -156,80 +152,62 @@ class _$TeleSessionSerializer implements PrimitiveSerializer<TeleSession> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'appointment_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.appointmentId = valueDes;
           break;
         case r'room_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.roomId = valueDes;
           break;
         case r'status':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(TeleSessionStatusEnum),
-                  )
-                  as TeleSessionStatusEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(TeleSessionStatusEnum),
+          ) as TeleSessionStatusEnum;
           result.status = valueDes;
           break;
         case r'started_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(DateTime),
-                  )
-                  as DateTime?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
           if (valueDes == null) continue;
           result.startedAt = valueDes;
           break;
         case r'ended_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(DateTime),
-                  )
-                  as DateTime?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(DateTime),
+          ) as DateTime?;
           if (valueDes == null) continue;
           result.endedAt = valueDes;
           break;
         case r'duration_seconds':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(int),
-                  )
-                  as int?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
           if (valueDes == null) continue;
           result.durationSeconds = valueDes;
           break;
         case r'ice_servers':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(IceServer),
-                    ]),
-                  )
-                  as BuiltList<IceServer>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(IceServer)]),
+          ) as BuiltList<IceServer>;
           result.iceServers.replace(valueDes);
           break;
         case r'token':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.token = valueDes;
           break;
         default:
@@ -262,24 +240,21 @@ class _$TeleSessionSerializer implements PrimitiveSerializer<TeleSession> {
 }
 
 class TeleSessionStatusEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'scheduled')
-  static const TeleSessionStatusEnum scheduled =
-      _$teleSessionStatusEnum_scheduled;
+  static const TeleSessionStatusEnum scheduled = _$teleSessionStatusEnum_scheduled;
   @BuiltValueEnumConst(wireName: r'ready')
   static const TeleSessionStatusEnum ready = _$teleSessionStatusEnum_ready;
   @BuiltValueEnumConst(wireName: r'in_progress')
-  static const TeleSessionStatusEnum inProgress =
-      _$teleSessionStatusEnum_inProgress;
+  static const TeleSessionStatusEnum inProgress = _$teleSessionStatusEnum_inProgress;
   @BuiltValueEnumConst(wireName: r'ended')
   static const TeleSessionStatusEnum ended = _$teleSessionStatusEnum_ended;
 
-  static Serializer<TeleSessionStatusEnum> get serializer =>
-      _$teleSessionStatusEnumSerializer;
+  static Serializer<TeleSessionStatusEnum> get serializer => _$teleSessionStatusEnumSerializer;
 
-  const TeleSessionStatusEnum._(String name) : super(name);
+  const TeleSessionStatusEnum._(String name): super(name);
 
-  static BuiltSet<TeleSessionStatusEnum> get values =>
-      _$teleSessionStatusEnumValues;
-  static TeleSessionStatusEnum valueOf(String name) =>
-      _$teleSessionStatusEnumValueOf(name);
+  static BuiltSet<TeleSessionStatusEnum> get values => _$teleSessionStatusEnumValues;
+  static TeleSessionStatusEnum valueOf(String name) => _$teleSessionStatusEnumValueOf(name);
 }
+

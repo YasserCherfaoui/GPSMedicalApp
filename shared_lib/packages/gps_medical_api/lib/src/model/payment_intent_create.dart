@@ -12,14 +12,13 @@ part 'payment_intent_create.g.dart';
 /// PaymentIntentCreate
 ///
 /// Properties:
-/// * [purpose]
-/// * [appointmentId]
-/// * [amountDzd]
-/// * [provider]
-/// * [returnUrl]
+/// * [purpose] 
+/// * [appointmentId] 
+/// * [amountDzd] 
+/// * [provider] 
+/// * [returnUrl] 
 @BuiltValue()
-abstract class PaymentIntentCreate
-    implements Built<PaymentIntentCreate, PaymentIntentCreateBuilder> {
+abstract class PaymentIntentCreate implements Built<PaymentIntentCreate, PaymentIntentCreateBuilder> {
   @BuiltValueField(wireName: r'purpose')
   PaymentIntentCreatePurposeEnum get purpose;
   // enum purposeEnum {  appointment_deposit,  teleconsultation,  full_consultation,  };
@@ -39,24 +38,18 @@ abstract class PaymentIntentCreate
 
   PaymentIntentCreate._();
 
-  factory PaymentIntentCreate([void updates(PaymentIntentCreateBuilder b)]) =
-      _$PaymentIntentCreate;
+  factory PaymentIntentCreate([void updates(PaymentIntentCreateBuilder b)]) = _$PaymentIntentCreate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaymentIntentCreateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaymentIntentCreate> get serializer =>
-      _$PaymentIntentCreateSerializer();
+  static Serializer<PaymentIntentCreate> get serializer => _$PaymentIntentCreateSerializer();
 }
 
-class _$PaymentIntentCreateSerializer
-    implements PrimitiveSerializer<PaymentIntentCreate> {
+class _$PaymentIntentCreateSerializer implements PrimitiveSerializer<PaymentIntentCreate> {
   @override
-  final Iterable<Type> types = const [
-    PaymentIntentCreate,
-    _$PaymentIntentCreate,
-  ];
+  final Iterable<Type> types = const [PaymentIntentCreate, _$PaymentIntentCreate];
 
   @override
   final String wireName = r'PaymentIntentCreate';
@@ -103,11 +96,7 @@ class _$PaymentIntentCreateSerializer
     PaymentIntentCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -123,49 +112,38 @@ class _$PaymentIntentCreateSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'purpose':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      PaymentIntentCreatePurposeEnum,
-                    ),
-                  )
-                  as PaymentIntentCreatePurposeEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaymentIntentCreatePurposeEnum),
+          ) as PaymentIntentCreatePurposeEnum;
           result.purpose = valueDes;
           break;
         case r'appointment_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.appointmentId = valueDes;
           break;
         case r'amount_dzd':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.amountDzd = valueDes;
           break;
         case r'provider':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      PaymentIntentCreateProviderEnum,
-                    ),
-                  )
-                  as PaymentIntentCreateProviderEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaymentIntentCreateProviderEnum),
+          ) as PaymentIntentCreateProviderEnum;
           result.provider = valueDes;
           break;
         case r'return_url':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.returnUrl = valueDes;
           break;
         default:
@@ -198,45 +176,36 @@ class _$PaymentIntentCreateSerializer
 }
 
 class PaymentIntentCreatePurposeEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'appointment_deposit')
-  static const PaymentIntentCreatePurposeEnum appointmentDeposit =
-      _$paymentIntentCreatePurposeEnum_appointmentDeposit;
+  static const PaymentIntentCreatePurposeEnum appointmentDeposit = _$paymentIntentCreatePurposeEnum_appointmentDeposit;
   @BuiltValueEnumConst(wireName: r'teleconsultation')
-  static const PaymentIntentCreatePurposeEnum teleconsultation =
-      _$paymentIntentCreatePurposeEnum_teleconsultation;
+  static const PaymentIntentCreatePurposeEnum teleconsultation = _$paymentIntentCreatePurposeEnum_teleconsultation;
   @BuiltValueEnumConst(wireName: r'full_consultation')
-  static const PaymentIntentCreatePurposeEnum fullConsultation =
-      _$paymentIntentCreatePurposeEnum_fullConsultation;
+  static const PaymentIntentCreatePurposeEnum fullConsultation = _$paymentIntentCreatePurposeEnum_fullConsultation;
 
-  static Serializer<PaymentIntentCreatePurposeEnum> get serializer =>
-      _$paymentIntentCreatePurposeEnumSerializer;
+  static Serializer<PaymentIntentCreatePurposeEnum> get serializer => _$paymentIntentCreatePurposeEnumSerializer;
 
-  const PaymentIntentCreatePurposeEnum._(String name) : super(name);
+  const PaymentIntentCreatePurposeEnum._(String name): super(name);
 
-  static BuiltSet<PaymentIntentCreatePurposeEnum> get values =>
-      _$paymentIntentCreatePurposeEnumValues;
-  static PaymentIntentCreatePurposeEnum valueOf(String name) =>
-      _$paymentIntentCreatePurposeEnumValueOf(name);
+  static BuiltSet<PaymentIntentCreatePurposeEnum> get values => _$paymentIntentCreatePurposeEnumValues;
+  static PaymentIntentCreatePurposeEnum valueOf(String name) => _$paymentIntentCreatePurposeEnumValueOf(name);
 }
 
 class PaymentIntentCreateProviderEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'satim')
-  static const PaymentIntentCreateProviderEnum satim =
-      _$paymentIntentCreateProviderEnum_satim;
+  static const PaymentIntentCreateProviderEnum satim = _$paymentIntentCreateProviderEnum_satim;
   @BuiltValueEnumConst(wireName: r'edahabia')
-  static const PaymentIntentCreateProviderEnum edahabia =
-      _$paymentIntentCreateProviderEnum_edahabia;
+  static const PaymentIntentCreateProviderEnum edahabia = _$paymentIntentCreateProviderEnum_edahabia;
   @BuiltValueEnumConst(wireName: r'cib')
-  static const PaymentIntentCreateProviderEnum cib =
-      _$paymentIntentCreateProviderEnum_cib;
+  static const PaymentIntentCreateProviderEnum cib = _$paymentIntentCreateProviderEnum_cib;
 
-  static Serializer<PaymentIntentCreateProviderEnum> get serializer =>
-      _$paymentIntentCreateProviderEnumSerializer;
+  static Serializer<PaymentIntentCreateProviderEnum> get serializer => _$paymentIntentCreateProviderEnumSerializer;
 
-  const PaymentIntentCreateProviderEnum._(String name) : super(name);
+  const PaymentIntentCreateProviderEnum._(String name): super(name);
 
-  static BuiltSet<PaymentIntentCreateProviderEnum> get values =>
-      _$paymentIntentCreateProviderEnumValues;
-  static PaymentIntentCreateProviderEnum valueOf(String name) =>
-      _$paymentIntentCreateProviderEnumValueOf(name);
+  static BuiltSet<PaymentIntentCreateProviderEnum> get values => _$paymentIntentCreateProviderEnumValues;
+  static PaymentIntentCreateProviderEnum valueOf(String name) => _$paymentIntentCreateProviderEnumValueOf(name);
 }
+

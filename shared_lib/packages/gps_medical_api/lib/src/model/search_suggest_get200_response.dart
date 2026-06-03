@@ -13,13 +13,11 @@ part 'search_suggest_get200_response.g.dart';
 /// SearchSuggestGet200Response
 ///
 /// Properties:
-/// * [doctors]
-/// * [specialties]
-/// * [locations]
+/// * [doctors] 
+/// * [specialties] 
+/// * [locations] 
 @BuiltValue()
-abstract class SearchSuggestGet200Response
-    implements
-        Built<SearchSuggestGet200Response, SearchSuggestGet200ResponseBuilder> {
+abstract class SearchSuggestGet200Response implements Built<SearchSuggestGet200Response, SearchSuggestGet200ResponseBuilder> {
   @BuiltValueField(wireName: r'doctors')
   BuiltList<SuggestItem>? get doctors;
 
@@ -31,25 +29,18 @@ abstract class SearchSuggestGet200Response
 
   SearchSuggestGet200Response._();
 
-  factory SearchSuggestGet200Response([
-    void updates(SearchSuggestGet200ResponseBuilder b),
-  ]) = _$SearchSuggestGet200Response;
+  factory SearchSuggestGet200Response([void updates(SearchSuggestGet200ResponseBuilder b)]) = _$SearchSuggestGet200Response;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(SearchSuggestGet200ResponseBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<SearchSuggestGet200Response> get serializer =>
-      _$SearchSuggestGet200ResponseSerializer();
+  static Serializer<SearchSuggestGet200Response> get serializer => _$SearchSuggestGet200ResponseSerializer();
 }
 
-class _$SearchSuggestGet200ResponseSerializer
-    implements PrimitiveSerializer<SearchSuggestGet200Response> {
+class _$SearchSuggestGet200ResponseSerializer implements PrimitiveSerializer<SearchSuggestGet200Response> {
   @override
-  final Iterable<Type> types = const [
-    SearchSuggestGet200Response,
-    _$SearchSuggestGet200Response,
-  ];
+  final Iterable<Type> types = const [SearchSuggestGet200Response, _$SearchSuggestGet200Response];
 
   @override
   final String wireName = r'SearchSuggestGet200Response';
@@ -88,11 +79,7 @@ class _$SearchSuggestGet200ResponseSerializer
     SearchSuggestGet200Response object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -108,36 +95,24 @@ class _$SearchSuggestGet200ResponseSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'doctors':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(SuggestItem),
-                    ]),
-                  )
-                  as BuiltList<SuggestItem>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(SuggestItem)]),
+          ) as BuiltList<SuggestItem>;
           result.doctors.replace(valueDes);
           break;
         case r'specialties':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(SuggestItem),
-                    ]),
-                  )
-                  as BuiltList<SuggestItem>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(SuggestItem)]),
+          ) as BuiltList<SuggestItem>;
           result.specialties.replace(valueDes);
           break;
         case r'locations':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(SuggestItem),
-                    ]),
-                  )
-                  as BuiltList<SuggestItem>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(SuggestItem)]),
+          ) as BuiltList<SuggestItem>;
           result.locations.replace(valueDes);
           break;
         default:
@@ -168,3 +143,4 @@ class _$SearchSuggestGet200ResponseSerializer
     return result.build();
   }
 }
+

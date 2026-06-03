@@ -17,6 +17,8 @@ doc/AuditEntry.md
 doc/AuthApi.md
 doc/AvailabilityApi.md
 doc/AvailabilitySlot.md
+doc/CheckNinRequest.md
+doc/CheckPhoneRequest.md
 doc/Commune.md
 doc/ConsentGrant.md
 doc/Credential.md
@@ -143,6 +145,8 @@ lib/src/model/appointment_update.dart
 lib/src/model/appointments_appointment_id_cancel_post_request.dart
 lib/src/model/audit_entry.dart
 lib/src/model/availability_slot.dart
+lib/src/model/check_nin_request.dart
+lib/src/model/check_phone_request.dart
 lib/src/model/commune.dart
 lib/src/model/consent_grant.dart
 lib/src/model/credential.dart
@@ -241,6 +245,8 @@ test/audit_entry_test.dart
 test/auth_api_test.dart
 test/availability_api_test.dart
 test/availability_slot_test.dart
+test/check_nin_request_test.dart
+test/check_phone_request_test.dart
 test/commune_test.dart
 test/consent_grant_test.dart
 test/credential_test.dart

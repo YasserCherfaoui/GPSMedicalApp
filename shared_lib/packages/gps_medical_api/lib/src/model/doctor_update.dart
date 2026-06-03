@@ -13,20 +13,19 @@ part 'doctor_update.g.dart';
 /// DoctorUpdate
 ///
 /// Properties:
-/// * [bio]
-/// * [photoUrl]
-/// * [languages]
-/// * [consultationFeeDzd]
-/// * [acceptsCnas]
-/// * [acceptsCasnos]
-/// * [offersTelehealth]
-/// * [practiceAddress]
-/// * [confirmationPolicy]
-/// * [bookingWindowDays]
-/// * [specialtyIds]
+/// * [bio] 
+/// * [photoUrl] 
+/// * [languages] 
+/// * [consultationFeeDzd] 
+/// * [acceptsCnas] 
+/// * [acceptsCasnos] 
+/// * [offersTelehealth] 
+/// * [practiceAddress] 
+/// * [confirmationPolicy] 
+/// * [bookingWindowDays] 
+/// * [specialtyIds] 
 @BuiltValue()
-abstract class DoctorUpdate
-    implements Built<DoctorUpdate, DoctorUpdateBuilder> {
+abstract class DoctorUpdate implements Built<DoctorUpdate, DoctorUpdateBuilder> {
   @BuiltValueField(wireName: r'bio')
   String? get bio;
 
@@ -103,9 +102,7 @@ class _$DoctorUpdateSerializer implements PrimitiveSerializer<DoctorUpdate> {
       yield r'languages';
       yield serializers.serialize(
         object.languages,
-        specifiedType: const FullType(BuiltList, [
-          FullType(DoctorUpdateLanguagesEnum),
-        ]),
+        specifiedType: const FullType(BuiltList, [FullType(DoctorUpdateLanguagesEnum)]),
       );
     }
     if (object.consultationFeeDzd != null) {
@@ -172,11 +169,7 @@ class _$DoctorUpdateSerializer implements PrimitiveSerializer<DoctorUpdate> {
     DoctorUpdate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -192,102 +185,80 @@ class _$DoctorUpdateSerializer implements PrimitiveSerializer<DoctorUpdate> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'bio':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.bio = valueDes;
           break;
         case r'photo_url':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.photoUrl = valueDes;
           break;
         case r'languages':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(DoctorUpdateLanguagesEnum),
-                    ]),
-                  )
-                  as BuiltList<DoctorUpdateLanguagesEnum>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(DoctorUpdateLanguagesEnum)]),
+          ) as BuiltList<DoctorUpdateLanguagesEnum>;
           result.languages.replace(valueDes);
           break;
         case r'consultation_fee_dzd':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.consultationFeeDzd = valueDes;
           break;
         case r'accepts_cnas':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(bool),
-                  )
-                  as bool;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.acceptsCnas = valueDes;
           break;
         case r'accepts_casnos':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(bool),
-                  )
-                  as bool;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.acceptsCasnos = valueDes;
           break;
         case r'offers_telehealth':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(bool),
-                  )
-                  as bool;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
           result.offersTelehealth = valueDes;
           break;
         case r'practice_address':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(Address),
-                  )
-                  as Address;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Address),
+          ) as Address;
           result.practiceAddress.replace(valueDes);
           break;
         case r'confirmation_policy':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      DoctorUpdateConfirmationPolicyEnum,
-                    ),
-                  )
-                  as DoctorUpdateConfirmationPolicyEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DoctorUpdateConfirmationPolicyEnum),
+          ) as DoctorUpdateConfirmationPolicyEnum;
           result.confirmationPolicy = valueDes;
           break;
         case r'booking_window_days':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.bookingWindowDays = valueDes;
           break;
         case r'specialty_ids':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(String),
-                    ]),
-                  )
-                  as BuiltList<String>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>;
           result.specialtyIds.replace(valueDes);
           break;
         default:
@@ -320,6 +291,7 @@ class _$DoctorUpdateSerializer implements PrimitiveSerializer<DoctorUpdate> {
 }
 
 class DoctorUpdateLanguagesEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'ar')
   static const DoctorUpdateLanguagesEnum ar = _$doctorUpdateLanguagesEnum_ar;
   @BuiltValueEnumConst(wireName: r'fr')
@@ -329,32 +301,26 @@ class DoctorUpdateLanguagesEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'ber')
   static const DoctorUpdateLanguagesEnum ber = _$doctorUpdateLanguagesEnum_ber;
 
-  static Serializer<DoctorUpdateLanguagesEnum> get serializer =>
-      _$doctorUpdateLanguagesEnumSerializer;
+  static Serializer<DoctorUpdateLanguagesEnum> get serializer => _$doctorUpdateLanguagesEnumSerializer;
 
-  const DoctorUpdateLanguagesEnum._(String name) : super(name);
+  const DoctorUpdateLanguagesEnum._(String name): super(name);
 
-  static BuiltSet<DoctorUpdateLanguagesEnum> get values =>
-      _$doctorUpdateLanguagesEnumValues;
-  static DoctorUpdateLanguagesEnum valueOf(String name) =>
-      _$doctorUpdateLanguagesEnumValueOf(name);
+  static BuiltSet<DoctorUpdateLanguagesEnum> get values => _$doctorUpdateLanguagesEnumValues;
+  static DoctorUpdateLanguagesEnum valueOf(String name) => _$doctorUpdateLanguagesEnumValueOf(name);
 }
 
 class DoctorUpdateConfirmationPolicyEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'auto')
-  static const DoctorUpdateConfirmationPolicyEnum auto =
-      _$doctorUpdateConfirmationPolicyEnum_auto;
+  static const DoctorUpdateConfirmationPolicyEnum auto = _$doctorUpdateConfirmationPolicyEnum_auto;
   @BuiltValueEnumConst(wireName: r'manual')
-  static const DoctorUpdateConfirmationPolicyEnum manual =
-      _$doctorUpdateConfirmationPolicyEnum_manual;
+  static const DoctorUpdateConfirmationPolicyEnum manual = _$doctorUpdateConfirmationPolicyEnum_manual;
 
-  static Serializer<DoctorUpdateConfirmationPolicyEnum> get serializer =>
-      _$doctorUpdateConfirmationPolicyEnumSerializer;
+  static Serializer<DoctorUpdateConfirmationPolicyEnum> get serializer => _$doctorUpdateConfirmationPolicyEnumSerializer;
 
-  const DoctorUpdateConfirmationPolicyEnum._(String name) : super(name);
+  const DoctorUpdateConfirmationPolicyEnum._(String name): super(name);
 
-  static BuiltSet<DoctorUpdateConfirmationPolicyEnum> get values =>
-      _$doctorUpdateConfirmationPolicyEnumValues;
-  static DoctorUpdateConfirmationPolicyEnum valueOf(String name) =>
-      _$doctorUpdateConfirmationPolicyEnumValueOf(name);
+  static BuiltSet<DoctorUpdateConfirmationPolicyEnum> get values => _$doctorUpdateConfirmationPolicyEnumValues;
+  static DoctorUpdateConfirmationPolicyEnum valueOf(String name) => _$doctorUpdateConfirmationPolicyEnumValueOf(name);
 }
+

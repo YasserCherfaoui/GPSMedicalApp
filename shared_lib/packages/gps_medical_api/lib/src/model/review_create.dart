@@ -11,12 +11,11 @@ part 'review_create.g.dart';
 /// ReviewCreate
 ///
 /// Properties:
-/// * [appointmentId]
-/// * [rating]
-/// * [comment]
+/// * [appointmentId] 
+/// * [rating] 
+/// * [comment] 
 @BuiltValue()
-abstract class ReviewCreate
-    implements Built<ReviewCreate, ReviewCreateBuilder> {
+abstract class ReviewCreate implements Built<ReviewCreate, ReviewCreateBuilder> {
   @BuiltValueField(wireName: r'appointment_id')
   String get appointmentId;
 
@@ -74,11 +73,7 @@ class _$ReviewCreateSerializer implements PrimitiveSerializer<ReviewCreate> {
     ReviewCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -94,27 +89,24 @@ class _$ReviewCreateSerializer implements PrimitiveSerializer<ReviewCreate> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'appointment_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.appointmentId = valueDes;
           break;
         case r'rating':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.rating = valueDes;
           break;
         case r'comment':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.comment = valueDes;
           break;
         default:
@@ -145,3 +137,4 @@ class _$ReviewCreateSerializer implements PrimitiveSerializer<ReviewCreate> {
     return result.build();
   }
 }
+

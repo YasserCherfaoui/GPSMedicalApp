@@ -37,6 +37,8 @@ export 'package:gps_medical_api/src/model/appointment_update.dart';
 export 'package:gps_medical_api/src/model/appointments_appointment_id_cancel_post_request.dart';
 export 'package:gps_medical_api/src/model/audit_entry.dart';
 export 'package:gps_medical_api/src/model/availability_slot.dart';
+export 'package:gps_medical_api/src/model/check_nin_request.dart';
+export 'package:gps_medical_api/src/model/check_phone_request.dart';
 export 'package:gps_medical_api/src/model/commune.dart';
 export 'package:gps_medical_api/src/model/consent_grant.dart';
 export 'package:gps_medical_api/src/model/credential.dart';
@@ -117,3 +119,4 @@ export 'package:gps_medical_api/src/model/user_admin_update.dart';
 export 'package:gps_medical_api/src/model/validation_problem.dart';
 export 'package:gps_medical_api/src/model/validation_problem_all_of_errors.dart';
 export 'package:gps_medical_api/src/model/wilaya.dart';
+

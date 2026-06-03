@@ -14,11 +14,10 @@ part 'paginated_notifications.g.dart';
 /// PaginatedNotifications
 ///
 /// Properties:
-/// * [data]
-/// * [meta]
+/// * [data] 
+/// * [meta] 
 @BuiltValue()
-abstract class PaginatedNotifications
-    implements Built<PaginatedNotifications, PaginatedNotificationsBuilder> {
+abstract class PaginatedNotifications implements Built<PaginatedNotifications, PaginatedNotificationsBuilder> {
   @BuiltValueField(wireName: r'data')
   BuiltList<Notification>? get data;
 
@@ -27,25 +26,18 @@ abstract class PaginatedNotifications
 
   PaginatedNotifications._();
 
-  factory PaginatedNotifications([
-    void updates(PaginatedNotificationsBuilder b),
-  ]) = _$PaginatedNotifications;
+  factory PaginatedNotifications([void updates(PaginatedNotificationsBuilder b)]) = _$PaginatedNotifications;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaginatedNotificationsBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaginatedNotifications> get serializer =>
-      _$PaginatedNotificationsSerializer();
+  static Serializer<PaginatedNotifications> get serializer => _$PaginatedNotificationsSerializer();
 }
 
-class _$PaginatedNotificationsSerializer
-    implements PrimitiveSerializer<PaginatedNotifications> {
+class _$PaginatedNotificationsSerializer implements PrimitiveSerializer<PaginatedNotifications> {
   @override
-  final Iterable<Type> types = const [
-    PaginatedNotifications,
-    _$PaginatedNotifications,
-  ];
+  final Iterable<Type> types = const [PaginatedNotifications, _$PaginatedNotifications];
 
   @override
   final String wireName = r'PaginatedNotifications';
@@ -77,11 +69,7 @@ class _$PaginatedNotificationsSerializer
     PaginatedNotifications object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -97,23 +85,17 @@ class _$PaginatedNotificationsSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'data':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(Notification),
-                    ]),
-                  )
-                  as BuiltList<Notification>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(Notification)]),
+          ) as BuiltList<Notification>;
           result.data.replace(valueDes);
           break;
         case r'meta':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PaginationMeta),
-                  )
-                  as PaginationMeta;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaginationMeta),
+          ) as PaginationMeta;
           result.meta.replace(valueDes);
           break;
         default:
@@ -144,3 +126,4 @@ class _$PaginatedNotificationsSerializer
     return result.build();
   }
 }
+

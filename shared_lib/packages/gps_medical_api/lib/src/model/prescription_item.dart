@@ -11,15 +11,14 @@ part 'prescription_item.g.dart';
 /// PrescriptionItem
 ///
 /// Properties:
-/// * [drugName]
-/// * [activeIngredient]
-/// * [dosage]
-/// * [frequency]
-/// * [durationDays]
-/// * [instructions]
+/// * [drugName] 
+/// * [activeIngredient] 
+/// * [dosage] 
+/// * [frequency] 
+/// * [durationDays] 
+/// * [instructions] 
 @BuiltValue()
-abstract class PrescriptionItem
-    implements Built<PrescriptionItem, PrescriptionItemBuilder> {
+abstract class PrescriptionItem implements Built<PrescriptionItem, PrescriptionItemBuilder> {
   @BuiltValueField(wireName: r'drug_name')
   String get drugName;
 
@@ -40,19 +39,16 @@ abstract class PrescriptionItem
 
   PrescriptionItem._();
 
-  factory PrescriptionItem([void updates(PrescriptionItemBuilder b)]) =
-      _$PrescriptionItem;
+  factory PrescriptionItem([void updates(PrescriptionItemBuilder b)]) = _$PrescriptionItem;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PrescriptionItemBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PrescriptionItem> get serializer =>
-      _$PrescriptionItemSerializer();
+  static Serializer<PrescriptionItem> get serializer => _$PrescriptionItemSerializer();
 }
 
-class _$PrescriptionItemSerializer
-    implements PrimitiveSerializer<PrescriptionItem> {
+class _$PrescriptionItemSerializer implements PrimitiveSerializer<PrescriptionItem> {
   @override
   final Iterable<Type> types = const [PrescriptionItem, _$PrescriptionItem];
 
@@ -106,11 +102,7 @@ class _$PrescriptionItemSerializer
     PrescriptionItem object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -126,54 +118,45 @@ class _$PrescriptionItemSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'drug_name':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.drugName = valueDes;
           break;
         case r'active_ingredient':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.activeIngredient = valueDes;
           break;
         case r'dosage':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.dosage = valueDes;
           break;
         case r'frequency':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.frequency = valueDes;
           break;
         case r'duration_days':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.durationDays = valueDes;
           break;
         case r'instructions':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.instructions = valueDes;
           break;
         default:
@@ -204,3 +187,4 @@ class _$PrescriptionItemSerializer
     return result.build();
   }
 }
+

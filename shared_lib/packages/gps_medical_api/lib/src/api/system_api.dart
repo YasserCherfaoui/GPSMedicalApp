@@ -11,6 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:gps_medical_api/src/model/health_check.dart';
 
 class SystemApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -18,7 +19,7 @@ class SystemApi {
   const SystemApi(this._dio, this._serializers);
 
   /// Santé de l&#39;&#39;API — PostgreSQL et Redis
-  /// Vérifie la disponibilité de PostgreSQL (&#x60;db&#x60;), de Redis (&#x60;redis&#x60;) et, si configuré, du stockage objet (&#x60;storage&#x60;). &#x60;storage&#x3D;disabled&#x60; lorsque &#x60;STORAGE_PROVIDER&#x60; est vide (uploads désactivés) ; cela ne dégrade pas le statut global. Une réponse &#x60;200&#x60; indique une plateforme prête (&#x60;status&#x3D;ok&#x60;). Une réponse &#x60;503&#x60; indique une perte ou refus (&#x60;status&#x3D;degraded&#x60;). Une corrélation requête/réponse est toujours possible via **X-Request-ID** renvoyé dans l&#39;&#39;en-tête de réponse.
+  /// Vérifie la disponibilité de PostgreSQL (&#x60;db&#x60;), de Redis (&#x60;redis&#x60;) et, si configuré, du stockage objet (&#x60;storage&#x60;). &#x60;storage&#x3D;disabled&#x60; lorsque &#x60;STORAGE_PROVIDER&#x60; est vide (uploads désactivés) ; cela ne dégrade pas le statut global. Une réponse &#x60;200&#x60; indique une plateforme prête (&#x60;status&#x3D;ok&#x60;). Une réponse &#x60;503&#x60; indique une perte ou refus (&#x60;status&#x3D;degraded&#x60;). Une corrélation requête/réponse est toujours possible via **X-Request-ID** renvoyé dans l&#39;&#39;en-tête de réponse. 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -30,7 +31,7 @@ class SystemApi {
   ///
   /// Returns a [Future] containing a [Response] with a [HealthCheck] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<HealthCheck>> getHealth({
+  Future<Response<HealthCheck>> getHealth({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -41,8 +42,13 @@ class SystemApi {
     final _path = r'/health';
     final _options = Options(
       method: r'GET',
-      headers: <String, dynamic>{...?headers},
-      extra: <String, dynamic>{'secure': <Map<String, String>>[], ...?extra},
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
       validateStatus: validateStatus,
     );
 
@@ -58,13 +64,11 @@ class SystemApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-                  rawResponse,
-                  specifiedType: const FullType(HealthCheck),
-                )
-                as HealthCheck;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(HealthCheck),
+      ) as HealthCheck;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -86,4 +90,5 @@ class SystemApi {
       extra: _response.extra,
     );
   }
+
 }

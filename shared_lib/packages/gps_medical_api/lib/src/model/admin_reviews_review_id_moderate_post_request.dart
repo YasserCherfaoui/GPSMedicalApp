@@ -12,15 +12,10 @@ part 'admin_reviews_review_id_moderate_post_request.g.dart';
 /// AdminReviewsReviewIdModeratePostRequest
 ///
 /// Properties:
-/// * [decision]
-/// * [comment]
+/// * [decision] 
+/// * [comment] 
 @BuiltValue()
-abstract class AdminReviewsReviewIdModeratePostRequest
-    implements
-        Built<
-          AdminReviewsReviewIdModeratePostRequest,
-          AdminReviewsReviewIdModeratePostRequestBuilder
-        > {
+abstract class AdminReviewsReviewIdModeratePostRequest implements Built<AdminReviewsReviewIdModeratePostRequest, AdminReviewsReviewIdModeratePostRequestBuilder> {
   @BuiltValueField(wireName: r'decision')
   AdminReviewsReviewIdModeratePostRequestDecisionEnum get decision;
   // enum decisionEnum {  approve,  hide,  delete,  };
@@ -30,25 +25,18 @@ abstract class AdminReviewsReviewIdModeratePostRequest
 
   AdminReviewsReviewIdModeratePostRequest._();
 
-  factory AdminReviewsReviewIdModeratePostRequest([
-    void updates(AdminReviewsReviewIdModeratePostRequestBuilder b),
-  ]) = _$AdminReviewsReviewIdModeratePostRequest;
+  factory AdminReviewsReviewIdModeratePostRequest([void updates(AdminReviewsReviewIdModeratePostRequestBuilder b)]) = _$AdminReviewsReviewIdModeratePostRequest;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(AdminReviewsReviewIdModeratePostRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<AdminReviewsReviewIdModeratePostRequest> get serializer =>
-      _$AdminReviewsReviewIdModeratePostRequestSerializer();
+  static Serializer<AdminReviewsReviewIdModeratePostRequest> get serializer => _$AdminReviewsReviewIdModeratePostRequestSerializer();
 }
 
-class _$AdminReviewsReviewIdModeratePostRequestSerializer
-    implements PrimitiveSerializer<AdminReviewsReviewIdModeratePostRequest> {
+class _$AdminReviewsReviewIdModeratePostRequestSerializer implements PrimitiveSerializer<AdminReviewsReviewIdModeratePostRequest> {
   @override
-  final Iterable<Type> types = const [
-    AdminReviewsReviewIdModeratePostRequest,
-    _$AdminReviewsReviewIdModeratePostRequest,
-  ];
+  final Iterable<Type> types = const [AdminReviewsReviewIdModeratePostRequest, _$AdminReviewsReviewIdModeratePostRequest];
 
   @override
   final String wireName = r'AdminReviewsReviewIdModeratePostRequest';
@@ -61,9 +49,7 @@ class _$AdminReviewsReviewIdModeratePostRequestSerializer
     yield r'decision';
     yield serializers.serialize(
       object.decision,
-      specifiedType: const FullType(
-        AdminReviewsReviewIdModeratePostRequestDecisionEnum,
-      ),
+      specifiedType: const FullType(AdminReviewsReviewIdModeratePostRequestDecisionEnum),
     );
     if (object.comment != null) {
       yield r'comment';
@@ -80,11 +66,7 @@ class _$AdminReviewsReviewIdModeratePostRequestSerializer
     AdminReviewsReviewIdModeratePostRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -100,23 +82,17 @@ class _$AdminReviewsReviewIdModeratePostRequestSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'decision':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(
-                      AdminReviewsReviewIdModeratePostRequestDecisionEnum,
-                    ),
-                  )
-                  as AdminReviewsReviewIdModeratePostRequestDecisionEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AdminReviewsReviewIdModeratePostRequestDecisionEnum),
+          ) as AdminReviewsReviewIdModeratePostRequestDecisionEnum;
           result.decision = valueDes;
           break;
         case r'comment':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.comment = valueDes;
           break;
         default:
@@ -149,26 +125,19 @@ class _$AdminReviewsReviewIdModeratePostRequestSerializer
 }
 
 class AdminReviewsReviewIdModeratePostRequestDecisionEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'approve')
-  static const AdminReviewsReviewIdModeratePostRequestDecisionEnum approve =
-      _$adminReviewsReviewIdModeratePostRequestDecisionEnum_approve;
+  static const AdminReviewsReviewIdModeratePostRequestDecisionEnum approve = _$adminReviewsReviewIdModeratePostRequestDecisionEnum_approve;
   @BuiltValueEnumConst(wireName: r'hide')
-  static const AdminReviewsReviewIdModeratePostRequestDecisionEnum hide_ =
-      _$adminReviewsReviewIdModeratePostRequestDecisionEnum_hide_;
+  static const AdminReviewsReviewIdModeratePostRequestDecisionEnum hide_ = _$adminReviewsReviewIdModeratePostRequestDecisionEnum_hide_;
   @BuiltValueEnumConst(wireName: r'delete')
-  static const AdminReviewsReviewIdModeratePostRequestDecisionEnum delete =
-      _$adminReviewsReviewIdModeratePostRequestDecisionEnum_delete;
+  static const AdminReviewsReviewIdModeratePostRequestDecisionEnum delete = _$adminReviewsReviewIdModeratePostRequestDecisionEnum_delete;
 
-  static Serializer<AdminReviewsReviewIdModeratePostRequestDecisionEnum>
-  get serializer =>
-      _$adminReviewsReviewIdModeratePostRequestDecisionEnumSerializer;
+  static Serializer<AdminReviewsReviewIdModeratePostRequestDecisionEnum> get serializer => _$adminReviewsReviewIdModeratePostRequestDecisionEnumSerializer;
 
-  const AdminReviewsReviewIdModeratePostRequestDecisionEnum._(String name)
-    : super(name);
+  const AdminReviewsReviewIdModeratePostRequestDecisionEnum._(String name): super(name);
 
-  static BuiltSet<AdminReviewsReviewIdModeratePostRequestDecisionEnum>
-  get values => _$adminReviewsReviewIdModeratePostRequestDecisionEnumValues;
-  static AdminReviewsReviewIdModeratePostRequestDecisionEnum valueOf(
-    String name,
-  ) => _$adminReviewsReviewIdModeratePostRequestDecisionEnumValueOf(name);
+  static BuiltSet<AdminReviewsReviewIdModeratePostRequestDecisionEnum> get values => _$adminReviewsReviewIdModeratePostRequestDecisionEnumValues;
+  static AdminReviewsReviewIdModeratePostRequestDecisionEnum valueOf(String name) => _$adminReviewsReviewIdModeratePostRequestDecisionEnumValueOf(name);
 }
+

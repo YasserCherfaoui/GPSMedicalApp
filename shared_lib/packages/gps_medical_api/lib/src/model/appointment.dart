@@ -12,19 +12,19 @@ part 'appointment.g.dart';
 /// Appointment
 ///
 /// Properties:
-/// * [id]
-/// * [patientId]
-/// * [dependentId]
-/// * [doctorId]
-/// * [startAt]
-/// * [endAt]
-/// * [mode]
-/// * [status]
-/// * [reason]
-/// * [feeDzd]
-/// * [paymentStatus]
-/// * [createdAt]
-/// * [updatedAt]
+/// * [id] 
+/// * [patientId] 
+/// * [dependentId] 
+/// * [doctorId] 
+/// * [startAt] 
+/// * [endAt] 
+/// * [mode] 
+/// * [status] 
+/// * [reason] 
+/// * [feeDzd] 
+/// * [paymentStatus] 
+/// * [createdAt] 
+/// * [updatedAt] 
 @BuiltValue()
 abstract class Appointment implements Built<Appointment, AppointmentBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -191,11 +191,7 @@ class _$AppointmentSerializer implements PrimitiveSerializer<Appointment> {
     Appointment object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -211,118 +207,95 @@ class _$AppointmentSerializer implements PrimitiveSerializer<Appointment> {
       final value = serializedList[i + 1];
       switch (key) {
         case r'id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.id = valueDes;
           break;
         case r'patient_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.patientId = valueDes;
           break;
         case r'dependent_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType.nullable(String),
-                  )
-                  as String?;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
           if (valueDes == null) continue;
           result.dependentId = valueDes;
           break;
         case r'doctor_id':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.doctorId = valueDes;
           break;
         case r'start_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.startAt = valueDes;
           break;
         case r'end_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.endAt = valueDes;
           break;
         case r'mode':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(AppointmentModeEnum),
-                  )
-                  as AppointmentModeEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AppointmentModeEnum),
+          ) as AppointmentModeEnum;
           result.mode = valueDes;
           break;
         case r'status':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(AppointmentStatusEnum),
-                  )
-                  as AppointmentStatusEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AppointmentStatusEnum),
+          ) as AppointmentStatusEnum;
           result.status = valueDes;
           break;
         case r'reason':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
           result.reason = valueDes;
           break;
         case r'fee_dzd':
-          final valueDes =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
           result.feeDzd = valueDes;
           break;
         case r'payment_status':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(AppointmentPaymentStatusEnum),
-                  )
-                  as AppointmentPaymentStatusEnum;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AppointmentPaymentStatusEnum),
+          ) as AppointmentPaymentStatusEnum;
           result.paymentStatus = valueDes;
           break;
         case r'created_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.createdAt = valueDes;
           break;
         case r'updated_at':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(DateTime),
-                  )
-                  as DateTime;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DateTime),
+          ) as DateTime;
           result.updatedAt = valueDes;
           break;
         default:
@@ -355,70 +328,57 @@ class _$AppointmentSerializer implements PrimitiveSerializer<Appointment> {
 }
 
 class AppointmentModeEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'in_person')
   static const AppointmentModeEnum inPerson = _$appointmentModeEnum_inPerson;
   @BuiltValueEnumConst(wireName: r'telehealth')
-  static const AppointmentModeEnum telehealth =
-      _$appointmentModeEnum_telehealth;
+  static const AppointmentModeEnum telehealth = _$appointmentModeEnum_telehealth;
 
-  static Serializer<AppointmentModeEnum> get serializer =>
-      _$appointmentModeEnumSerializer;
+  static Serializer<AppointmentModeEnum> get serializer => _$appointmentModeEnumSerializer;
 
-  const AppointmentModeEnum._(String name) : super(name);
+  const AppointmentModeEnum._(String name): super(name);
 
-  static BuiltSet<AppointmentModeEnum> get values =>
-      _$appointmentModeEnumValues;
-  static AppointmentModeEnum valueOf(String name) =>
-      _$appointmentModeEnumValueOf(name);
+  static BuiltSet<AppointmentModeEnum> get values => _$appointmentModeEnumValues;
+  static AppointmentModeEnum valueOf(String name) => _$appointmentModeEnumValueOf(name);
 }
 
 class AppointmentStatusEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'pending')
   static const AppointmentStatusEnum pending = _$appointmentStatusEnum_pending;
   @BuiltValueEnumConst(wireName: r'confirmed')
-  static const AppointmentStatusEnum confirmed =
-      _$appointmentStatusEnum_confirmed;
+  static const AppointmentStatusEnum confirmed = _$appointmentStatusEnum_confirmed;
   @BuiltValueEnumConst(wireName: r'cancelled')
-  static const AppointmentStatusEnum cancelled =
-      _$appointmentStatusEnum_cancelled;
+  static const AppointmentStatusEnum cancelled = _$appointmentStatusEnum_cancelled;
   @BuiltValueEnumConst(wireName: r'completed')
-  static const AppointmentStatusEnum completed =
-      _$appointmentStatusEnum_completed;
+  static const AppointmentStatusEnum completed = _$appointmentStatusEnum_completed;
   @BuiltValueEnumConst(wireName: r'no_show')
   static const AppointmentStatusEnum noShow = _$appointmentStatusEnum_noShow;
 
-  static Serializer<AppointmentStatusEnum> get serializer =>
-      _$appointmentStatusEnumSerializer;
+  static Serializer<AppointmentStatusEnum> get serializer => _$appointmentStatusEnumSerializer;
 
-  const AppointmentStatusEnum._(String name) : super(name);
+  const AppointmentStatusEnum._(String name): super(name);
 
-  static BuiltSet<AppointmentStatusEnum> get values =>
-      _$appointmentStatusEnumValues;
-  static AppointmentStatusEnum valueOf(String name) =>
-      _$appointmentStatusEnumValueOf(name);
+  static BuiltSet<AppointmentStatusEnum> get values => _$appointmentStatusEnumValues;
+  static AppointmentStatusEnum valueOf(String name) => _$appointmentStatusEnumValueOf(name);
 }
 
 class AppointmentPaymentStatusEnum extends EnumClass {
+
   @BuiltValueEnumConst(wireName: r'unpaid')
-  static const AppointmentPaymentStatusEnum unpaid =
-      _$appointmentPaymentStatusEnum_unpaid;
+  static const AppointmentPaymentStatusEnum unpaid = _$appointmentPaymentStatusEnum_unpaid;
   @BuiltValueEnumConst(wireName: r'deposit_paid')
-  static const AppointmentPaymentStatusEnum depositPaid =
-      _$appointmentPaymentStatusEnum_depositPaid;
+  static const AppointmentPaymentStatusEnum depositPaid = _$appointmentPaymentStatusEnum_depositPaid;
   @BuiltValueEnumConst(wireName: r'paid')
-  static const AppointmentPaymentStatusEnum paid =
-      _$appointmentPaymentStatusEnum_paid;
+  static const AppointmentPaymentStatusEnum paid = _$appointmentPaymentStatusEnum_paid;
   @BuiltValueEnumConst(wireName: r'refunded')
-  static const AppointmentPaymentStatusEnum refunded =
-      _$appointmentPaymentStatusEnum_refunded;
+  static const AppointmentPaymentStatusEnum refunded = _$appointmentPaymentStatusEnum_refunded;
 
-  static Serializer<AppointmentPaymentStatusEnum> get serializer =>
-      _$appointmentPaymentStatusEnumSerializer;
+  static Serializer<AppointmentPaymentStatusEnum> get serializer => _$appointmentPaymentStatusEnumSerializer;
 
-  const AppointmentPaymentStatusEnum._(String name) : super(name);
+  const AppointmentPaymentStatusEnum._(String name): super(name);
 
-  static BuiltSet<AppointmentPaymentStatusEnum> get values =>
-      _$appointmentPaymentStatusEnumValues;
-  static AppointmentPaymentStatusEnum valueOf(String name) =>
-      _$appointmentPaymentStatusEnumValueOf(name);
+  static BuiltSet<AppointmentPaymentStatusEnum> get values => _$appointmentPaymentStatusEnumValues;
+  static AppointmentPaymentStatusEnum valueOf(String name) => _$appointmentPaymentStatusEnumValueOf(name);
 }
+

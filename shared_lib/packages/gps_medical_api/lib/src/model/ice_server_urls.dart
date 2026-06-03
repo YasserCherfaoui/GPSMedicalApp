@@ -13,22 +13,19 @@ part 'ice_server_urls.g.dart';
 
 /// IceServerUrls
 @BuiltValue()
-abstract class IceServerUrls
-    implements Built<IceServerUrls, IceServerUrlsBuilder> {
+abstract class IceServerUrls implements Built<IceServerUrls, IceServerUrlsBuilder> {
   /// One Of [BuiltList<String>], [String]
   OneOf get oneOf;
 
   IceServerUrls._();
 
-  factory IceServerUrls([void updates(IceServerUrlsBuilder b)]) =
-      _$IceServerUrls;
+  factory IceServerUrls([void updates(IceServerUrlsBuilder b)]) = _$IceServerUrls;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(IceServerUrlsBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<IceServerUrls> get serializer =>
-      _$IceServerUrlsSerializer();
+  static Serializer<IceServerUrls> get serializer => _$IceServerUrlsSerializer();
 }
 
 class _$IceServerUrlsSerializer implements PrimitiveSerializer<IceServerUrls> {
@@ -42,7 +39,8 @@ class _$IceServerUrlsSerializer implements PrimitiveSerializer<IceServerUrls> {
     Serializers serializers,
     IceServerUrls object, {
     FullType specifiedType = FullType.unspecified,
-  }) sync* {}
+  }) sync* {
+  }
 
   @override
   Object serialize(
@@ -51,10 +49,7 @@ class _$IceServerUrlsSerializer implements PrimitiveSerializer<IceServerUrls> {
     FullType specifiedType = FullType.unspecified,
   }) {
     final oneOf = object.oneOf;
-    return serializers.serialize(
-      oneOf.value,
-      specifiedType: FullType(oneOf.valueType),
-    )!;
+    return serializers.serialize(oneOf.value, specifiedType: FullType(oneOf.valueType))!;
   }
 
   @override
@@ -65,14 +60,10 @@ class _$IceServerUrlsSerializer implements PrimitiveSerializer<IceServerUrls> {
   }) {
     final result = IceServerUrlsBuilder();
     Object? oneOfDataSrc;
-    final targetType = const FullType(OneOf, [
-      FullType(String),
-      FullType(BuiltList, [FullType(String)]),
-    ]);
+    final targetType = const FullType(OneOf, [FullType(String), FullType(BuiltList, [FullType(String)]), ]);
     oneOfDataSrc = serialized;
-    result.oneOf =
-        serializers.deserialize(oneOfDataSrc, specifiedType: targetType)
-            as OneOf;
+    result.oneOf = serializers.deserialize(oneOfDataSrc, specifiedType: targetType) as OneOf;
     return result.build();
   }
 }
+

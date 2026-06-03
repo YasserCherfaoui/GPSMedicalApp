@@ -14,11 +14,10 @@ part 'paginated_doctors_private.g.dart';
 /// PaginatedDoctorsPrivate
 ///
 /// Properties:
-/// * [data]
-/// * [meta]
+/// * [data] 
+/// * [meta] 
 @BuiltValue()
-abstract class PaginatedDoctorsPrivate
-    implements Built<PaginatedDoctorsPrivate, PaginatedDoctorsPrivateBuilder> {
+abstract class PaginatedDoctorsPrivate implements Built<PaginatedDoctorsPrivate, PaginatedDoctorsPrivateBuilder> {
   @BuiltValueField(wireName: r'data')
   BuiltList<DoctorPrivate>? get data;
 
@@ -27,25 +26,18 @@ abstract class PaginatedDoctorsPrivate
 
   PaginatedDoctorsPrivate._();
 
-  factory PaginatedDoctorsPrivate([
-    void updates(PaginatedDoctorsPrivateBuilder b),
-  ]) = _$PaginatedDoctorsPrivate;
+  factory PaginatedDoctorsPrivate([void updates(PaginatedDoctorsPrivateBuilder b)]) = _$PaginatedDoctorsPrivate;
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PaginatedDoctorsPrivateBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaginatedDoctorsPrivate> get serializer =>
-      _$PaginatedDoctorsPrivateSerializer();
+  static Serializer<PaginatedDoctorsPrivate> get serializer => _$PaginatedDoctorsPrivateSerializer();
 }
 
-class _$PaginatedDoctorsPrivateSerializer
-    implements PrimitiveSerializer<PaginatedDoctorsPrivate> {
+class _$PaginatedDoctorsPrivateSerializer implements PrimitiveSerializer<PaginatedDoctorsPrivate> {
   @override
-  final Iterable<Type> types = const [
-    PaginatedDoctorsPrivate,
-    _$PaginatedDoctorsPrivate,
-  ];
+  final Iterable<Type> types = const [PaginatedDoctorsPrivate, _$PaginatedDoctorsPrivate];
 
   @override
   final String wireName = r'PaginatedDoctorsPrivate';
@@ -77,11 +69,7 @@ class _$PaginatedDoctorsPrivateSerializer
     PaginatedDoctorsPrivate object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(
-      serializers,
-      object,
-      specifiedType: specifiedType,
-    ).toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -97,23 +85,17 @@ class _$PaginatedDoctorsPrivateSerializer
       final value = serializedList[i + 1];
       switch (key) {
         case r'data':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(BuiltList, [
-                      FullType(DoctorPrivate),
-                    ]),
-                  )
-                  as BuiltList<DoctorPrivate>;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(DoctorPrivate)]),
+          ) as BuiltList<DoctorPrivate>;
           result.data.replace(valueDes);
           break;
         case r'meta':
-          final valueDes =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(PaginationMeta),
-                  )
-                  as PaginationMeta;
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PaginationMeta),
+          ) as PaginationMeta;
           result.meta.replace(valueDes);
           break;
         default:
@@ -144,3 +126,4 @@ class _$PaginatedDoctorsPrivateSerializer
     return result.build();
   }
 }
+
