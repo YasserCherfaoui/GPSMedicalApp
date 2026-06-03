@@ -487,17 +487,16 @@ class _NearbyDoctorsMapScreenState
       builder: (context) {
         return WilayaCommunePicker(
           onLocationChanged: (wilaya, commune) {
-            if (wilaya != null) {
-              ref.read(nearbyDoctorsProvider.notifier).setManualLocation(
-                    wilaya: wilaya,
-                    commune: commune,
-                  );
-              final updated = ref.read(nearbyDoctorsProvider).value;
-              final lat = updated?.lat ?? 36.7538;
-              final lng = updated?.lng ?? 3.0588;
-              final radius = updated?.radiusKm ?? 5;
-              _syncMapZoomToRadius(radius, lat, lng);
-            }
+            if (wilaya == null) return;
+            ref.read(nearbyDoctorsProvider.notifier).setManualLocation(
+                  wilaya: wilaya,
+                  commune: commune,
+                );
+            final updated = ref.read(nearbyDoctorsProvider).value;
+            final lat = updated?.lat ?? 36.7538;
+            final lng = updated?.lng ?? 3.0588;
+            final radius = updated?.radiusKm ?? 5;
+            _syncMapZoomToRadius(radius, lat, lng);
             Navigator.of(context).pop();
           },
         );

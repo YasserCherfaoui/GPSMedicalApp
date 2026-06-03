@@ -4,9 +4,17 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../providers/location_filter.provider.dart';
 
 class WilayaCommunePicker extends ConsumerStatefulWidget {
-  const WilayaCommunePicker({required this.onLocationChanged, super.key});
+  const WilayaCommunePicker({
+    required this.onLocationChanged,
+    this.closeOnWilayaPick = false,
+    super.key,
+  });
 
   final void Function(Wilaya? wilaya, Commune? commune) onLocationChanged;
+
+  /// When false (map screen), picking a wilaya only opens the commune list.
+  /// When true (e.g. search filters), each wilaya pick still notifies the parent.
+  final bool closeOnWilayaPick;
 
   @override
   ConsumerState<WilayaCommunePicker> createState() =>
@@ -155,6 +163,31 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
 
         const Divider(),
 
+        if (_showingCommunes && locationFilter.selectedWilaya != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: GpsSpacing.md,
+              vertical: GpsSpacing.xs,
+            ),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton.icon(
+                onPressed: () {
+                  widget.onLocationChanged(
+                    locationFilter.selectedWilaya,
+                    null,
+                  );
+                },
+                icon: const Icon(Icons.map_outlined, size: 18),
+                label: Text(
+                  isAr
+                      ? 'Utiliser le centre de la wilaya'
+                      : 'Utiliser le centre de la wilaya',
+                ),
+              ),
+            ),
+          ),
+
         // Selector lists
         Flexible(
           child: SizedBox(
@@ -204,7 +237,9 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
                   : const Icon(Icons.chevron_right),
               onTap: () {
                 ref.read(locationFilterProvider.notifier).selectWilaya(wilaya);
-                widget.onLocationChanged(wilaya, null);
+                if (widget.closeOnWilayaPick) {
+                  widget.onLocationChanged(wilaya, null);
+                }
                 setState(() {
                   _showingCommunes = true;
                   _searchController.clear();
