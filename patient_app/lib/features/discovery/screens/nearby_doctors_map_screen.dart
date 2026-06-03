@@ -174,7 +174,70 @@ class _NearbyDoctorsMapScreenState
           onTap: (_) => setState(() => _selectedDoctor = null),
         ),
 
-        if (!geoState.permissionGranted)
+        if (geoState.usesManualLocation)
+          Positioned(
+            top: GpsSpacing.md,
+            left: GpsSpacing.md,
+            right: GpsSpacing.md,
+            child: Card(
+              color: colorScheme.surface.withValues(alpha: 0.92),
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: GpsSpacing.md,
+                  vertical: GpsSpacing.sm,
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.location_city_outlined,
+                      color: colorScheme.primary,
+                      size: 20,
+                    ),
+                    const SizedBox(width: GpsSpacing.sm),
+                    Expanded(
+                      child: Text(
+                        isAr
+                            ? 'Recherche par wilaya (n° ${geoState.manualWilayaCode})'
+                            : 'Recherche par wilaya (n° ${geoState.manualWilayaCode})',
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: _openWilayaFallback,
+                      child: Text(isAr ? 'Modifier' : 'Modifier'),
+                    ),
+                    if (geoState.permissionGranted) ...[
+                      const SizedBox(width: GpsSpacing.xs),
+                      TextButton(
+                        onPressed: () async {
+                          await ref
+                              .read(nearbyDoctorsProvider.notifier)
+                              .useDeviceLocation();
+                          final updated =
+                              ref.read(nearbyDoctorsProvider).value;
+                          if (updated != null) {
+                            _syncMapZoomToRadius(
+                              updated.radiusKm,
+                              updated.lat,
+                              updated.lng,
+                            );
+                          }
+                        },
+                        child: Text(
+                          isAr ? 'Ma position' : 'Ma position',
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+        if (!geoState.permissionGranted && !geoState.usesManualLocation)
           Positioned(
             top: GpsSpacing.md,
             left: GpsSpacing.md,
@@ -236,25 +299,52 @@ class _NearbyDoctorsMapScreenState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              if (geoState.permissionGranted)
-                FloatingActionButton.small(
-                  backgroundColor: colorScheme.surface,
-                  foregroundColor: colorScheme.primary,
-                  onPressed: () async {
-                    await ref
-                        .read(nearbyDoctorsProvider.notifier)
-                        .requestLocationPermission();
-                    final updated = ref.read(nearbyDoctorsProvider).value;
-                    if (updated != null) {
-                      _syncMapZoomToRadius(
-                        updated.radiusKm,
-                        updated.lat,
-                        updated.lng,
-                      );
-                    }
-                  },
-                  child: const Icon(Icons.my_location),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FloatingActionButton.small(
+                    heroTag: 'map_wilaya',
+                    backgroundColor: colorScheme.surface,
+                    foregroundColor: colorScheme.primary,
+                    tooltip: isAr ? 'Choisir wilaya' : 'Choisir wilaya',
+                    onPressed: _openWilayaFallback,
+                    child: const Icon(Icons.location_city_outlined),
+                  ),
+                  if (geoState.permissionGranted) ...[
+                    const SizedBox(width: GpsSpacing.sm),
+                    FloatingActionButton.small(
+                      heroTag: 'map_gps',
+                      backgroundColor: colorScheme.surface,
+                      foregroundColor: colorScheme.primary,
+                      tooltip: isAr ? 'Ma position' : 'Ma position',
+                      onPressed: () async {
+                        if (geoState.usesManualLocation) {
+                          await ref
+                              .read(nearbyDoctorsProvider.notifier)
+                              .useDeviceLocation();
+                        } else {
+                          await ref
+                              .read(nearbyDoctorsProvider.notifier)
+                              .requestLocationPermission();
+                        }
+                        final updated = ref.read(nearbyDoctorsProvider).value;
+                        if (updated != null) {
+                          _syncMapZoomToRadius(
+                            updated.radiusKm,
+                            updated.lat,
+                            updated.lng,
+                          );
+                        }
+                      },
+                      child: Icon(
+                        geoState.usesManualLocation
+                            ? Icons.my_location
+                            : Icons.my_location_outlined,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
               const SizedBox(height: GpsSpacing.sm),
               Card(
                 child: Padding(

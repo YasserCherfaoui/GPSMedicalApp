@@ -27,6 +27,9 @@ class NearbyDoctorsState {
   final String? specialtyId;
   final String? manualWilayaCode;
 
+  /// Map/search center comes from wilaya (and commune step), not device GPS.
+  bool get usesManualLocation => manualWilayaCode != null;
+
   NearbyDoctorsState copyWith({
     List<DoctorWithDistance>? doctors,
     double? lat,
@@ -142,9 +145,34 @@ class NearbyDoctors extends _$NearbyDoctors {
         lat: lat,
         lng: lng,
         manualWilayaCode: wilayaCode,
-        permissionGranted: false,
       ),
     );
+  }
+
+  /// Recenters on device GPS and clears wilaya/commune selection.
+  Future<void> useDeviceLocation() async {
+    final current = state.value;
+    if (current == null) return;
+
+    if (!await isLocationWhenInUseGranted()) {
+      await requestLocationPermission();
+      return;
+    }
+
+    try {
+      final position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+        timeLimit: const Duration(seconds: 5),
+      );
+      await _refetch(
+        current.copyWith(
+          lat: position.latitude,
+          lng: position.longitude,
+          permissionGranted: true,
+          clearManualWilaya: true,
+        ),
+      );
+    } catch (_) {}
   }
 
   Future<void> updateRadius(double radiusKm) async {
