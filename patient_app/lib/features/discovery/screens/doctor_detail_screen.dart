@@ -293,7 +293,9 @@ class DoctorDetailScreen extends ConsumerWidget {
                                 ),
                               ),
                             ),
-                            onPressed: () => _showBookingComingSoon(context),
+                            onPressed: () => context.push(
+                              '${GpsRoutes.doctorBooking(doctorId)}?mode=telehealth',
+                            ),
                             icon: const Icon(Icons.videocam_outlined),
                             label: Text(
                               isAr ? 'Téléconsultation' : 'Téléconsultation',
@@ -305,7 +307,8 @@ class DoctorDetailScreen extends ConsumerWidget {
                       Expanded(
                         child: PrimaryButton(
                           label: isAr ? 'Réserver' : 'Prendre RDV',
-                          onPressed: () => _showBookingComingSoon(context),
+                          onPressed: () =>
+                              context.push(GpsRoutes.doctorBooking(doctorId)),
                         ),
                       ),
                     ],
@@ -343,16 +346,6 @@ class DoctorDetailScreen extends ConsumerWidget {
             ),
           );
         },
-      ),
-    );
-  }
-
-  void _showBookingComingSoon(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text(
-          'La prise de rendez-vous sera disponible dans la prochaine version.',
-        ),
       ),
     );
   }

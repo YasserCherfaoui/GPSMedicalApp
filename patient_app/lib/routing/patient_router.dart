@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../features/booking/screens/appointment_detail_screen.dart';
+import '../features/booking/screens/appointments_list_screen.dart';
+import '../features/booking/screens/availability_calendar_screen.dart';
+import '../features/booking/screens/booking_flow_screen.dart';
 import '../features/dashboard/screens/patient_dashboard_screen.dart';
 import '../features/discovery/screens/doctor_detail_screen.dart';
 import '../features/discovery/screens/doctor_list_screen.dart';
@@ -101,6 +104,30 @@ GoRouter createPatientRouter({
           return DoctorDetailScreen(doctorId: id);
         },
       ),
+      GoRoute(
+        path: '/doctors/:id/book',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final mode = state.uri.queryParameters['mode'] ?? 'both';
+          final rescheduleId = state.uri.queryParameters['reschedule'];
+          return AvailabilityCalendarScreen(
+            doctorId: id,
+            modeFilter: mode,
+            rescheduleAppointmentId: rescheduleId,
+          );
+        },
+      ),
+      GoRoute(
+        path: GpsRoutes.booking,
+        builder: (context, state) => const BookingFlowScreen(),
+      ),
+      GoRoute(
+        path: '/appointments/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return AppointmentDetailScreen(appointmentId: id);
+        },
+      ),
 
       // Dashboard shell route
       StatefulShellRoute.indexedStack(
@@ -128,9 +155,7 @@ GoRouter createPatientRouter({
             routes: [
               GoRoute(
                 path: GpsRoutes.appointments,
-                builder: (context, state) => const Scaffold(
-                  body: Center(child: Text('Consultations Placeholder')),
-                ),
+                builder: (context, state) => const AppointmentsListScreen(),
               ),
             ],
           ),

@@ -235,4 +235,204 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get errorPasswordRequired => 'Sider awal uffir.';
+
+  @override
+  String get bookingAvailabilityTitle => 'Fren asrag';
+
+  @override
+  String get bookingPreviousWeek => 'Ddurur yezrin';
+
+  @override
+  String get bookingNextWeek => 'Ddurur d-iteddun';
+
+  @override
+  String bookingSlotsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count n yisrag',
+      one: '1 n usrag',
+      zero: 'Ulac asrag',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get bookingReserve => 'Ḥbes';
+
+  @override
+  String bookingSlotDuration(int minutes) {
+    return 'Tanzagt: $minutes n tesdatin';
+  }
+
+  @override
+  String get bookingModeInPerson => 'S wudem udmawan';
+
+  @override
+  String get bookingModeTelehealth => 'Aselkim aḥric';
+
+  @override
+  String get bookingModeAll => 'Akken';
+
+  @override
+  String bookingWeekRange(String from, String to) {
+    return '$from – $to';
+  }
+
+  @override
+  String get bookingSelectMode => 'Fren askar n uselkim';
+
+  @override
+  String bookingLockExpires(String time) {
+    return 'Asrag yettwḥbes — ad yemmut deg $time';
+  }
+
+  @override
+  String get bookingLockExpired => 'Aḥbes n usrag yemmut.';
+
+  @override
+  String get bookingStepConfirm => 'Sentem asrag';
+
+  @override
+  String get bookingStepPatient => 'I man?';
+
+  @override
+  String get bookingStepReview => 'Agzul';
+
+  @override
+  String get bookingForMe => 'I wudem-iw';
+
+  @override
+  String get bookingReasonHint => 'Taɣuri n uselkim (yellan)';
+
+  @override
+  String get bookingSubmit => 'Sentem ameẓlu';
+
+  @override
+  String get bookingRescheduleSubmit => 'Ales awennez ameẓlu';
+
+  @override
+  String get bookingSlotTakenTitle => 'Asrag ur yelli ara';
+
+  @override
+  String get bookingSlotTakenMessage =>
+      'Asrag-a yettwḥbes tura. Fren asrag-nniḍen?';
+
+  @override
+  String get bookingChooseAnotherSlot => 'Fren asrag-nniḍen';
+
+  @override
+  String get bookingOfflineBanner => 'Ur tettuqq ara — aḥbes yesra tuqqna';
+
+  @override
+  String get bookingOfflineSubmit => 'Tuqqna tettwasra i usentem';
+
+  @override
+  String get bookingResumeDraftTitle => 'Kemmel aḥbes?';
+
+  @override
+  String get bookingResumeDraftMessage => 'Yella aḥbes yettwasekles.';
+
+  @override
+  String get bookingResume => 'Kemmel';
+
+  @override
+  String get bookingDiscard => 'Zgel';
+
+  @override
+  String get appointmentsTitle => 'Imeẓluyen';
+
+  @override
+  String get appointmentsUpcoming => 'I d-iteddun';
+
+  @override
+  String get appointmentsHistory => 'Amazray';
+
+  @override
+  String get appointmentsEmptyUpcoming => 'Ulac imeẓluyen i d-iteddun';
+
+  @override
+  String get appointmentsEmptyUpcomingCta => 'Af amussnaw';
+
+  @override
+  String get appointmentsEmptyHistory => 'Ulac imeẓluyen yezrin';
+
+  @override
+  String get appointmentDetailTitle => 'Talqayt n umeẓlu';
+
+  @override
+  String get appointmentCancel => 'Sefsex';
+
+  @override
+  String get appointmentReschedule => 'Ales awennez';
+
+  @override
+  String get appointmentCancelReasonHint => 'Taɣuri n usefsex (yellan)';
+
+  @override
+  String get appointmentConfirmCancel => 'Sentem usefsex';
+
+  @override
+  String get appointmentDirections => 'Abrid';
+
+  @override
+  String get appointmentJoinTelehealth => 'Kcem';
+
+  @override
+  String get appointmentJoinTelehealthHint =>
+      'Aselkim aḥric ad yili deg lqem d-iteddun.';
+
+  @override
+  String get appointmentLeaveReview => 'Eǧǧ tamawt';
+
+  @override
+  String get appointmentStatusPending => 'Yettṛaju';
+
+  @override
+  String get appointmentStatusConfirmed => 'Yettwasenqed';
+
+  @override
+  String get appointmentStatusCancelled => 'Yettwasefsex';
+
+  @override
+  String get appointmentStatusCompleted => 'Yemmed';
+
+  @override
+  String get appointmentStatusNoShow => 'Ur yelli ara';
+
+  @override
+  String get appointmentPaymentUnpaid => 'Ur yettwaf ara';
+
+  @override
+  String get appointmentPaymentDeposit => 'Asekcem yettwaf';
+
+  @override
+  String get appointmentPaymentPaid => 'Yettwaf';
+
+  @override
+  String get appointmentPaymentRefunded => 'Yettwaɣel';
+
+  @override
+  String get bookingLoadError => 'Ur izmir ara ad d-yekker usrag.';
+
+  @override
+  String get appointmentsLoadError => 'Ur izmir ara ad d-kker imeẓluyen.';
+
+  @override
+  String get appointmentDetailLoadError => 'Ur izmir ara ad d-yekker umeẓlu.';
+
+  @override
+  String get bookingFeeLabel => 'Tasfart';
+
+  @override
+  String get bookingSummaryDoctor => 'Amussnaw';
+
+  @override
+  String get bookingSummarySlot => 'Asrag';
+
+  @override
+  String get bookingSummaryPatient => 'Ameglay';
+
+  @override
+  String get bookingSummaryReason => 'Taɣuri';
 }

@@ -35,7 +35,10 @@ abstract final class GpsRoutes {
   static const map = '/map';
   static const search = '/search';
   static const appointments = '/appointments';
+  static const booking = '/booking';
   static String doctorDetail(String id) => '/doctors/$id';
+  static String doctorBooking(String id) => '/doctors/$id/book';
+  static String appointmentDetail(String id) => '/appointments/$id';
 
   /// Debug-only design system QA (see [createGpsRouter]).
   static const designSystemShowcase = '/dev/design-system';

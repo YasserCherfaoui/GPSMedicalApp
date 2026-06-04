@@ -17,6 +17,7 @@ export 'src/client/phase1_api.dart';
 export 'src/constants/api_constants.dart';
 export 'src/l10n/app_locale.dart';
 export 'src/l10n/auth_strings.dart';
+export 'src/l10n/generated/app_localizations.dart';
 export 'src/l10n/locale.provider.dart' hide AppLocale;
 export 'src/models/app_info.dart';
 export 'src/models/app_info.provider.dart';

@@ -525,6 +525,372 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Veuillez saisir votre mot de passe.'**
   String get errorPasswordRequired;
+
+  /// No description provided for @bookingAvailabilityTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir un créneau'**
+  String get bookingAvailabilityTitle;
+
+  /// No description provided for @bookingPreviousWeek.
+  ///
+  /// In fr, this message translates to:
+  /// **'Semaine précédente'**
+  String get bookingPreviousWeek;
+
+  /// No description provided for @bookingNextWeek.
+  ///
+  /// In fr, this message translates to:
+  /// **'Semaine suivante'**
+  String get bookingNextWeek;
+
+  /// No description provided for @bookingSlotsCount.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =0{Aucun créneau} =1{1 créneau} other{{count} créneaux}}'**
+  String bookingSlotsCount(int count);
+
+  /// No description provided for @bookingReserve.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réserver'**
+  String get bookingReserve;
+
+  /// No description provided for @bookingSlotDuration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée : {minutes} min'**
+  String bookingSlotDuration(int minutes);
+
+  /// No description provided for @bookingModeInPerson.
+  ///
+  /// In fr, this message translates to:
+  /// **'En présentiel'**
+  String get bookingModeInPerson;
+
+  /// No description provided for @bookingModeTelehealth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléconsultation'**
+  String get bookingModeTelehealth;
+
+  /// No description provided for @bookingModeAll.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous'**
+  String get bookingModeAll;
+
+  /// No description provided for @bookingWeekRange.
+  ///
+  /// In fr, this message translates to:
+  /// **'{from} – {to}'**
+  String bookingWeekRange(String from, String to);
+
+  /// No description provided for @bookingSelectMode.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir le mode de consultation'**
+  String get bookingSelectMode;
+
+  /// No description provided for @bookingLockExpires.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créneau réservé — expire dans {time}'**
+  String bookingLockExpires(String time);
+
+  /// No description provided for @bookingLockExpired.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre réservation de créneau a expiré.'**
+  String get bookingLockExpired;
+
+  /// No description provided for @bookingStepConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer le créneau'**
+  String get bookingStepConfirm;
+
+  /// No description provided for @bookingStepPatient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pour qui ?'**
+  String get bookingStepPatient;
+
+  /// No description provided for @bookingStepReview.
+  ///
+  /// In fr, this message translates to:
+  /// **'Récapitulatif'**
+  String get bookingStepReview;
+
+  /// No description provided for @bookingForMe.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pour moi'**
+  String get bookingForMe;
+
+  /// No description provided for @bookingReasonHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif de consultation (optionnel)'**
+  String get bookingReasonHint;
+
+  /// No description provided for @bookingSubmit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer le rendez-vous'**
+  String get bookingSubmit;
+
+  /// No description provided for @bookingRescheduleSubmit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reporter le rendez-vous'**
+  String get bookingRescheduleSubmit;
+
+  /// No description provided for @bookingSlotTakenTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créneau indisponible'**
+  String get bookingSlotTakenTitle;
+
+  /// No description provided for @bookingSlotTakenMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce créneau vient d\'être pris. Choisir un autre créneau ?'**
+  String get bookingSlotTakenMessage;
+
+  /// No description provided for @bookingChooseAnotherSlot.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir un autre créneau'**
+  String get bookingChooseAnotherSlot;
+
+  /// No description provided for @bookingOfflineBanner.
+  ///
+  /// In fr, this message translates to:
+  /// **'Hors ligne — la réservation nécessite une connexion'**
+  String get bookingOfflineBanner;
+
+  /// No description provided for @bookingOfflineSubmit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connexion requise pour confirmer le rendez-vous'**
+  String get bookingOfflineSubmit;
+
+  /// No description provided for @bookingResumeDraftTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reprendre votre réservation ?'**
+  String get bookingResumeDraftTitle;
+
+  /// No description provided for @bookingResumeDraftMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une réservation en cours a été enregistrée.'**
+  String get bookingResumeDraftMessage;
+
+  /// No description provided for @bookingResume.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reprendre'**
+  String get bookingResume;
+
+  /// No description provided for @bookingDiscard.
+  ///
+  /// In fr, this message translates to:
+  /// **'Abandonner'**
+  String get bookingDiscard;
+
+  /// No description provided for @appointmentsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendez-vous'**
+  String get appointmentsTitle;
+
+  /// No description provided for @appointmentsUpcoming.
+  ///
+  /// In fr, this message translates to:
+  /// **'À venir'**
+  String get appointmentsUpcoming;
+
+  /// No description provided for @appointmentsHistory.
+  ///
+  /// In fr, this message translates to:
+  /// **'Historique'**
+  String get appointmentsHistory;
+
+  /// No description provided for @appointmentsEmptyUpcoming.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun rendez-vous à venir'**
+  String get appointmentsEmptyUpcoming;
+
+  /// No description provided for @appointmentsEmptyUpcomingCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trouver un spécialiste'**
+  String get appointmentsEmptyUpcomingCta;
+
+  /// No description provided for @appointmentsEmptyHistory.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun rendez-vous passé'**
+  String get appointmentsEmptyHistory;
+
+  /// No description provided for @appointmentDetailTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Détail du rendez-vous'**
+  String get appointmentDetailTitle;
+
+  /// No description provided for @appointmentCancel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get appointmentCancel;
+
+  /// No description provided for @appointmentReschedule.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reporter'**
+  String get appointmentReschedule;
+
+  /// No description provided for @appointmentCancelReasonHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif d\'annulation (optionnel)'**
+  String get appointmentCancelReasonHint;
+
+  /// No description provided for @appointmentConfirmCancel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer l\'annulation'**
+  String get appointmentConfirmCancel;
+
+  /// No description provided for @appointmentDirections.
+  ///
+  /// In fr, this message translates to:
+  /// **'Itinéraire'**
+  String get appointmentDirections;
+
+  /// No description provided for @appointmentJoinTelehealth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoindre'**
+  String get appointmentJoinTelehealth;
+
+  /// No description provided for @appointmentJoinTelehealthHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'La téléconsultation sera disponible dans une prochaine version.'**
+  String get appointmentJoinTelehealthHint;
+
+  /// No description provided for @appointmentLeaveReview.
+  ///
+  /// In fr, this message translates to:
+  /// **'Laisser un avis'**
+  String get appointmentLeaveReview;
+
+  /// No description provided for @appointmentStatusPending.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente'**
+  String get appointmentStatusPending;
+
+  /// No description provided for @appointmentStatusConfirmed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmé'**
+  String get appointmentStatusConfirmed;
+
+  /// No description provided for @appointmentStatusCancelled.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annulé'**
+  String get appointmentStatusCancelled;
+
+  /// No description provided for @appointmentStatusCompleted.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminé'**
+  String get appointmentStatusCompleted;
+
+  /// No description provided for @appointmentStatusNoShow.
+  ///
+  /// In fr, this message translates to:
+  /// **'Absent'**
+  String get appointmentStatusNoShow;
+
+  /// No description provided for @appointmentPaymentUnpaid.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non payé'**
+  String get appointmentPaymentUnpaid;
+
+  /// No description provided for @appointmentPaymentDeposit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Acompte versé'**
+  String get appointmentPaymentDeposit;
+
+  /// No description provided for @appointmentPaymentPaid.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payé'**
+  String get appointmentPaymentPaid;
+
+  /// No description provided for @appointmentPaymentRefunded.
+  ///
+  /// In fr, this message translates to:
+  /// **'Remboursé'**
+  String get appointmentPaymentRefunded;
+
+  /// No description provided for @bookingLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les créneaux.'**
+  String get bookingLoadError;
+
+  /// No description provided for @appointmentsLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les rendez-vous.'**
+  String get appointmentsLoadError;
+
+  /// No description provided for @appointmentDetailLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger le rendez-vous.'**
+  String get appointmentDetailLoadError;
+
+  /// No description provided for @bookingFeeLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Honoraires'**
+  String get bookingFeeLabel;
+
+  /// No description provided for @bookingSummaryDoctor.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médecin'**
+  String get bookingSummaryDoctor;
+
+  /// No description provided for @bookingSummarySlot.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créneau'**
+  String get bookingSummarySlot;
+
+  /// No description provided for @bookingSummaryPatient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Patient'**
+  String get bookingSummaryPatient;
+
+  /// No description provided for @bookingSummaryReason.
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif'**
+  String get bookingSummaryReason;
 }
 
 class _AppLocalizationsDelegate

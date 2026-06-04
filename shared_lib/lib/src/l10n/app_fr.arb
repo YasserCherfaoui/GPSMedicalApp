@@ -84,5 +84,87 @@
   "errorInternalServer": "Erreur interne du serveur. Veuillez réessayer plus tard.",
   "errorNetworkTimeout": "Connexion expirée. Veuillez vérifier votre connexion Internet et réessayer.",
   "errorNetworkConnection": "Impossible de se connecter au serveur. Veuillez vérifier votre connexion Internet.",
-  "errorPasswordRequired": "Veuillez saisir votre mot de passe."
+  "errorPasswordRequired": "Veuillez saisir votre mot de passe.",
+  "bookingAvailabilityTitle": "Choisir un créneau",
+  "bookingPreviousWeek": "Semaine précédente",
+  "bookingNextWeek": "Semaine suivante",
+  "bookingSlotsCount": "{count, plural, =0{Aucun créneau} =1{1 créneau} other{{count} créneaux}}",
+  "@bookingSlotsCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "bookingReserve": "Réserver",
+  "bookingSlotDuration": "Durée : {minutes} min",
+  "@bookingSlotDuration": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
+  "bookingModeInPerson": "En présentiel",
+  "bookingModeTelehealth": "Téléconsultation",
+  "bookingModeAll": "Tous",
+  "bookingWeekRange": "{from} – {to}",
+  "@bookingWeekRange": {
+    "placeholders": {
+      "from": { "type": "String" },
+      "to": { "type": "String" }
+    }
+  },
+  "bookingSelectMode": "Choisir le mode de consultation",
+  "bookingLockExpires": "Créneau réservé — expire dans {time}",
+  "@bookingLockExpires": {
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+  "bookingLockExpired": "Votre réservation de créneau a expiré.",
+  "bookingStepConfirm": "Confirmer le créneau",
+  "bookingStepPatient": "Pour qui ?",
+  "bookingStepReview": "Récapitulatif",
+  "bookingForMe": "Pour moi",
+  "bookingReasonHint": "Motif de consultation (optionnel)",
+  "bookingSubmit": "Confirmer le rendez-vous",
+  "bookingRescheduleSubmit": "Reporter le rendez-vous",
+  "bookingSlotTakenTitle": "Créneau indisponible",
+  "bookingSlotTakenMessage": "Ce créneau vient d'être pris. Choisir un autre créneau ?",
+  "bookingChooseAnotherSlot": "Choisir un autre créneau",
+  "bookingOfflineBanner": "Hors ligne — la réservation nécessite une connexion",
+  "bookingOfflineSubmit": "Connexion requise pour confirmer le rendez-vous",
+  "bookingResumeDraftTitle": "Reprendre votre réservation ?",
+  "bookingResumeDraftMessage": "Une réservation en cours a été enregistrée.",
+  "bookingResume": "Reprendre",
+  "bookingDiscard": "Abandonner",
+  "appointmentsTitle": "Rendez-vous",
+  "appointmentsUpcoming": "À venir",
+  "appointmentsHistory": "Historique",
+  "appointmentsEmptyUpcoming": "Aucun rendez-vous à venir",
+  "appointmentsEmptyUpcomingCta": "Trouver un spécialiste",
+  "appointmentsEmptyHistory": "Aucun rendez-vous passé",
+  "appointmentDetailTitle": "Détail du rendez-vous",
+  "appointmentCancel": "Annuler",
+  "appointmentReschedule": "Reporter",
+  "appointmentCancelReasonHint": "Motif d'annulation (optionnel)",
+  "appointmentConfirmCancel": "Confirmer l'annulation",
+  "appointmentDirections": "Itinéraire",
+  "appointmentJoinTelehealth": "Rejoindre",
+  "appointmentJoinTelehealthHint": "La téléconsultation sera disponible dans une prochaine version.",
+  "appointmentLeaveReview": "Laisser un avis",
+  "appointmentStatusPending": "En attente",
+  "appointmentStatusConfirmed": "Confirmé",
+  "appointmentStatusCancelled": "Annulé",
+  "appointmentStatusCompleted": "Terminé",
+  "appointmentStatusNoShow": "Absent",
+  "appointmentPaymentUnpaid": "Non payé",
+  "appointmentPaymentDeposit": "Acompte versé",
+  "appointmentPaymentPaid": "Payé",
+  "appointmentPaymentRefunded": "Remboursé",
+  "bookingLoadError": "Impossible de charger les créneaux.",
+  "appointmentsLoadError": "Impossible de charger les rendez-vous.",
+  "appointmentDetailLoadError": "Impossible de charger le rendez-vous.",
+  "bookingFeeLabel": "Honoraires",
+  "bookingSummaryDoctor": "Médecin",
+  "bookingSummarySlot": "Créneau",
+  "bookingSummaryPatient": "Patient",
+  "bookingSummaryReason": "Motif"
 }

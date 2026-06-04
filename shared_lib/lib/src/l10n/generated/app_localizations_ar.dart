@@ -231,4 +231,204 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get errorPasswordRequired => 'يرجى إدخال كلمة المرور.';
+
+  @override
+  String get bookingAvailabilityTitle => 'اختر موعداً';
+
+  @override
+  String get bookingPreviousWeek => 'الأسبوع السابق';
+
+  @override
+  String get bookingNextWeek => 'الأسبوع التالي';
+
+  @override
+  String bookingSlotsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count مواعيد',
+      one: 'موعد واحد',
+      zero: 'لا توجد مواعيد',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get bookingReserve => 'حجز';
+
+  @override
+  String bookingSlotDuration(int minutes) {
+    return 'المدة: $minutes د';
+  }
+
+  @override
+  String get bookingModeInPerson => 'حضوري';
+
+  @override
+  String get bookingModeTelehealth => 'استشارة عن بُعد';
+
+  @override
+  String get bookingModeAll => 'الكل';
+
+  @override
+  String bookingWeekRange(String from, String to) {
+    return '$from – $to';
+  }
+
+  @override
+  String get bookingSelectMode => 'اختر نوع الاستشارة';
+
+  @override
+  String bookingLockExpires(String time) {
+    return 'الموعد محجوز — ينتهي خلال $time';
+  }
+
+  @override
+  String get bookingLockExpired => 'انتهت صلاحية حجز الموعد.';
+
+  @override
+  String get bookingStepConfirm => 'تأكيد الموعد';
+
+  @override
+  String get bookingStepPatient => 'لمن؟';
+
+  @override
+  String get bookingStepReview => 'الملخص';
+
+  @override
+  String get bookingForMe => 'لنفسي';
+
+  @override
+  String get bookingReasonHint => 'سبب الاستشارة (اختياري)';
+
+  @override
+  String get bookingSubmit => 'تأكيد الموعد';
+
+  @override
+  String get bookingRescheduleSubmit => 'إعادة جدولة الموعد';
+
+  @override
+  String get bookingSlotTakenTitle => 'الموعد غير متاح';
+
+  @override
+  String get bookingSlotTakenMessage =>
+      'تم حجز هذا الموعد للتو. اختر موعداً آخر؟';
+
+  @override
+  String get bookingChooseAnotherSlot => 'اختر موعداً آخر';
+
+  @override
+  String get bookingOfflineBanner => 'غير متصل — الحجز يتطلب اتصالاً';
+
+  @override
+  String get bookingOfflineSubmit => 'الاتصال مطلوب لتأكيد الموعد';
+
+  @override
+  String get bookingResumeDraftTitle => 'استئناف الحجز؟';
+
+  @override
+  String get bookingResumeDraftMessage => 'يوجد حجز قيد التقدم.';
+
+  @override
+  String get bookingResume => 'استئناف';
+
+  @override
+  String get bookingDiscard => 'تجاهل';
+
+  @override
+  String get appointmentsTitle => 'المواعيد';
+
+  @override
+  String get appointmentsUpcoming => 'القادمة';
+
+  @override
+  String get appointmentsHistory => 'السجل';
+
+  @override
+  String get appointmentsEmptyUpcoming => 'لا توجد مواعيد قادمة';
+
+  @override
+  String get appointmentsEmptyUpcomingCta => 'البحث عن اختصاصي';
+
+  @override
+  String get appointmentsEmptyHistory => 'لا توجد مواعيد سابقة';
+
+  @override
+  String get appointmentDetailTitle => 'تفاصيل الموعد';
+
+  @override
+  String get appointmentCancel => 'إلغاء';
+
+  @override
+  String get appointmentReschedule => 'إعادة الجدولة';
+
+  @override
+  String get appointmentCancelReasonHint => 'سبب الإلغاء (اختياري)';
+
+  @override
+  String get appointmentConfirmCancel => 'تأكيد الإلغاء';
+
+  @override
+  String get appointmentDirections => 'الاتجاهات';
+
+  @override
+  String get appointmentJoinTelehealth => 'انضمام';
+
+  @override
+  String get appointmentJoinTelehealthHint =>
+      'الاستشارة عن بُعد ستكون متاحة في إصدار لاحق.';
+
+  @override
+  String get appointmentLeaveReview => 'ترك تقييم';
+
+  @override
+  String get appointmentStatusPending => 'قيد الانتظار';
+
+  @override
+  String get appointmentStatusConfirmed => 'مؤكد';
+
+  @override
+  String get appointmentStatusCancelled => 'ملغى';
+
+  @override
+  String get appointmentStatusCompleted => 'مكتمل';
+
+  @override
+  String get appointmentStatusNoShow => 'غائب';
+
+  @override
+  String get appointmentPaymentUnpaid => 'غير مدفوع';
+
+  @override
+  String get appointmentPaymentDeposit => 'عربون مدفوع';
+
+  @override
+  String get appointmentPaymentPaid => 'مدفوع';
+
+  @override
+  String get appointmentPaymentRefunded => 'مسترد';
+
+  @override
+  String get bookingLoadError => 'تعذر تحميل المواعيد.';
+
+  @override
+  String get appointmentsLoadError => 'تعذر تحميل المواعيد.';
+
+  @override
+  String get appointmentDetailLoadError => 'تعذر تحميل تفاصيل الموعد.';
+
+  @override
+  String get bookingFeeLabel => 'الأتعاب';
+
+  @override
+  String get bookingSummaryDoctor => 'الطبيب';
+
+  @override
+  String get bookingSummarySlot => 'الموعد';
+
+  @override
+  String get bookingSummaryPatient => 'المريض';
+
+  @override
+  String get bookingSummaryReason => 'السبب';
 }
