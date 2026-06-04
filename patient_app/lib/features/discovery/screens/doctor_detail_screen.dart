@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../booking/providers/booking_draft.provider.dart';
 import '../providers/doctor_detail.provider.dart';
 import '../repositories/doctor_repository.dart';
 import '../utils/relative_time.dart';
@@ -293,9 +294,18 @@ class DoctorDetailScreen extends ConsumerWidget {
                                 ),
                               ),
                             ),
-                            onPressed: () => context.push(
-                              '${GpsRoutes.doctorBooking(doctorId)}?mode=telehealth',
-                            ),
+                            onPressed: () {
+                              ref
+                                  .read(bookingDraftProvider.notifier)
+                                  .startBooking(
+                                    doctorId: doctorId,
+                                    doctor: doc,
+                                    modeFilter: 'telehealth',
+                                  );
+                              context.push(
+                                '${GpsRoutes.doctorBooking(doctorId)}?mode=telehealth',
+                              );
+                            },
                             icon: const Icon(Icons.videocam_outlined),
                             label: Text(
                               isAr ? 'Téléconsultation' : 'Téléconsultation',
@@ -307,8 +317,13 @@ class DoctorDetailScreen extends ConsumerWidget {
                       Expanded(
                         child: PrimaryButton(
                           label: isAr ? 'Réserver' : 'Prendre RDV',
-                          onPressed: () =>
-                              context.push(GpsRoutes.doctorBooking(doctorId)),
+                          onPressed: () {
+                            ref.read(bookingDraftProvider.notifier).startBooking(
+                              doctorId: doctorId,
+                              doctor: doc,
+                            );
+                            context.push(GpsRoutes.doctorBooking(doctorId));
+                          },
                         ),
                       ),
                     ],

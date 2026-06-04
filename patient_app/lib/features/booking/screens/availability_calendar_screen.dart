@@ -38,10 +38,38 @@ class _AvailabilityCalendarScreenState
   void initState() {
     super.initState();
     _apiMode = widget.modeFilter == 'telehealth' ? 'telehealth' : widget.modeFilter;
+    WidgetsBinding.instance.addPostFrameCallback((_) => _syncDraftFromDetail());
+  }
+
+  void _syncDraftFromDetail() {
+    if (!mounted) return;
+    ref
+        .read(doctorDetailProvider(widget.doctorId))
+        .whenData((detail) => _ensureBookingDraft(detail.doctor));
   }
 
   bool get _showModeFilter =>
       widget.modeFilter != 'telehealth' && widget.modeFilter != 'in_person';
+
+  /// Ensures draft is set when entering via reschedule/deep link (not from profile CTA).
+  void _ensureBookingDraft(Doctor doctor) {
+    final draft = ref.read(bookingDraftProvider);
+    if (draft.doctorId == widget.doctorId && draft.doctor != null) return;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final current = ref.read(bookingDraftProvider);
+      if (current.doctorId == widget.doctorId && current.doctor != null) {
+        return;
+      }
+      ref.read(bookingDraftProvider.notifier).startBooking(
+        doctorId: widget.doctorId,
+        doctor: doctor,
+        modeFilter: _apiMode,
+        rescheduleAppointmentId: widget.rescheduleAppointmentId,
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +87,10 @@ class _AvailabilityCalendarScreenState
       formatShortDate(window.from, locale),
       formatShortDate(window.to, locale),
     );
+
+    ref.listen(doctorDetailProvider(widget.doctorId), (previous, next) {
+      next.whenData((detail) => _ensureBookingDraft(detail.doctor));
+    });
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -108,15 +140,6 @@ class _AvailabilityCalendarScreenState
             child: detailAsync.when(
               data: (detail) {
                 final doc = detail.doctor;
-                final draftNotifier = ref.read(bookingDraftProvider.notifier);
-                if (ref.read(bookingDraftProvider).doctorId != widget.doctorId) {
-                  draftNotifier.startBooking(
-                    doctorId: widget.doctorId,
-                    doctor: doc,
-                    modeFilter: _apiMode,
-                    rescheduleAppointmentId: widget.rescheduleAppointmentId,
-                  );
-                }
                 return slotsAsync.when(
                   data: (slots) {
                     if (slots.isEmpty) {
