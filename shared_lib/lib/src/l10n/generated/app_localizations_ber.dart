@@ -291,6 +291,9 @@ class AppLocalizationsBer extends AppLocalizations {
   String get bookingLockExpired => 'Aḥbes n usrag yemmut.';
 
   @override
+  String get bookingBack => 'Uɣal';
+
+  @override
   String get bookingStepConfirm => 'Sentem asrag';
 
   @override

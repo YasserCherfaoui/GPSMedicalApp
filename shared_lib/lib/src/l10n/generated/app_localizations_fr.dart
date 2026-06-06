@@ -294,6 +294,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get bookingLockExpired => 'Votre réservation de créneau a expiré.';
 
   @override
+  String get bookingBack => 'Retour';
+
+  @override
   String get bookingStepConfirm => 'Confirmer le créneau';
 
   @override

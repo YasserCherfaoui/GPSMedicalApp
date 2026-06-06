@@ -287,6 +287,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get bookingLockExpired => 'انتهت صلاحية حجز الموعد.';
 
   @override
+  String get bookingBack => 'رجوع';
+
+  @override
   String get bookingStepConfirm => 'تأكيد الموعد';
 
   @override

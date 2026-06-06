@@ -604,6 +604,12 @@ abstract class AppLocalizations {
   /// **'Votre réservation de créneau a expiré.'**
   String get bookingLockExpired;
 
+  /// No description provided for @bookingBack.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retour'**
+  String get bookingBack;
+
   /// No description provided for @bookingStepConfirm.
   ///
   /// In fr, this message translates to:

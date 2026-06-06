@@ -84,6 +84,7 @@
   "bookingSelectMode": "اختر نوع الاستشارة",
   "bookingLockExpires": "الموعد محجوز — ينتهي خلال {time}",
   "bookingLockExpired": "انتهت صلاحية حجز الموعد.",
+  "bookingBack": "رجوع",
   "bookingStepConfirm": "تأكيد الموعد",
   "bookingStepPatient": "لمن؟",
   "bookingStepReview": "الملخص",

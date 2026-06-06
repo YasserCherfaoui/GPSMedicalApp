@@ -151,7 +151,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
                           : () => ref
                                 .read(bookingDraftProvider.notifier)
                                 .setStep(draft.step - 1),
-                      child: Text(l10n.skip),
+                      child: Text(l10n.bookingBack),
                     ),
                   ),
                 if (draft.step > 1) const SizedBox(width: GpsSpacing.sm),
@@ -272,11 +272,26 @@ class _StepConfirm extends StatelessWidget {
           ),
           const SizedBox(height: GpsSpacing.md),
           Text(l10n.bookingSummarySlot),
-          if (start != null)
+          if (start != null) ...[
+            Text(
+              formatDaySectionTitle(
+                Date(start.year, start.month, start.day),
+                locale,
+              ),
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
             Text(
               formatSlotTime(start, locale),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
+            if (slot != null && slotDurationMinutes(slot) > 0) ...[
+              const SizedBox(height: GpsSpacing.xs),
+              Text(
+                l10n.bookingSlotDuration(slotDurationMinutes(slot)),
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ],
           if (slot?.mode != null) ...[
             const SizedBox(height: GpsSpacing.sm),
             ModeBadge(mode: slotModeWire(slot!.mode)),
@@ -336,7 +351,7 @@ class _StepPatient extends ConsumerWidget {
   }
 }
 
-class _StepReview extends StatelessWidget {
+class _StepReview extends ConsumerWidget {
   const _StepReview({
     required this.draft,
     required this.l10n,
@@ -352,7 +367,25 @@ class _StepReview extends StatelessWidget {
   final ValueChanged<String> onReasonChanged;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locale = Localizations.localeOf(context).languageCode;
+    final slot = draft.selectedSlot;
+    final start = slot?.startAt?.toLocal();
+    final dependentsAsync = ref.watch(dependentsListProvider);
+
+    final patientLabel = dependentsAsync.maybeWhen(
+      data: (dependents) {
+        if (draft.dependentId == null) return l10n.bookingForMe;
+        for (final d in dependents) {
+          if (d.id == draft.dependentId) {
+            return d.fullName ?? l10n.bookingForMe;
+          }
+        }
+        return l10n.bookingForMe;
+      },
+      orElse: () => l10n.bookingForMe,
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -377,11 +410,50 @@ class _StepReview extends StatelessWidget {
               ),
               const SizedBox(height: GpsSpacing.sm),
               Text(
-                '${draft.doctor?.fullName ?? ''}',
+                l10n.bookingSummaryDoctor,
+                style: Theme.of(context).textTheme.labelMedium,
               ),
+              Text(
+                '${draft.doctor?.title ?? 'Dr.'} ${draft.doctor?.fullName ?? ''}',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(height: GpsSpacing.sm),
+              Text(
+                l10n.bookingSummarySlot,
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+              if (start != null)
+                Text(
+                  '${formatDaySectionTitle(Date(start.year, start.month, start.day), locale)} · ${formatSlotTime(start, locale)}',
+                ),
+              if (slot?.mode != null) ...[
+                const SizedBox(height: GpsSpacing.xs),
+                ModeBadge(mode: slotModeWire(slot!.mode)),
+              ],
+              const SizedBox(height: GpsSpacing.sm),
+              Text(
+                l10n.bookingFeeLabel,
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+              Text(
+                '${draft.doctor?.consultationFeeDzd ?? '—'} DZD',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: GpsSpacing.sm),
+              Text(
+                l10n.bookingSummaryPatient,
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+              Text(patientLabel),
               if (draft.reason.isNotEmpty) ...[
                 const SizedBox(height: GpsSpacing.sm),
-                Text(l10n.bookingSummaryReason),
+                Text(
+                  l10n.bookingSummaryReason,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
                 Text(draft.reason),
               ],
             ],

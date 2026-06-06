@@ -84,6 +84,7 @@
   "bookingSelectMode": "Fren askar n uselkim",
   "bookingLockExpires": "Asrag yettwḥbes — ad yemmut deg {time}",
   "bookingLockExpired": "Aḥbes n usrag yemmut.",
+  "bookingBack": "Uɣal",
   "bookingStepConfirm": "Sentem asrag",
   "bookingStepPatient": "I man?",
   "bookingForMe": "I wudem-iw",

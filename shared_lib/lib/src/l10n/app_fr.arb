@@ -119,6 +119,7 @@
     }
   },
   "bookingLockExpired": "Votre réservation de créneau a expiré.",
+  "bookingBack": "Retour",
   "bookingStepConfirm": "Confirmer le créneau",
   "bookingStepPatient": "Pour qui ?",
   "bookingStepReview": "Récapitulatif",
