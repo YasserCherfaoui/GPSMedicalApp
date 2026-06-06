@@ -710,4 +710,77 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get doctorDetailLoadError => 'Ur izmir ara ad d-yekker amaɣnu.';
+
+  @override
+  String get mapNearbyTitle => 'Imsaɣyaden iqriben';
+
+  @override
+  String get mapNearbyLoadErrorTitle => 'Tuccḍa deg uɣer';
+
+  @override
+  String get mapNearbyLoadErrorMessage => 'Tella tuccḍa deg tkart.';
+
+  @override
+  String get mapNearbyPermissionBanner =>
+      'Sireg ad d-yekker wadig iwakken ad twaliḍ imsaɣyaden iqriben.';
+
+  @override
+  String get mapNearbyPermissionRationaleTitle => 'Anekcum ɣer wadig';
+
+  @override
+  String get mapNearbyPermissionRationaleBody =>
+      'MedNavigator iseqdec wadig-ik iwakken ad d-yesken imsaɣyaden iqriben. Tzemreḍ daɣen tferḥ wilaya s ufus.';
+
+  @override
+  String get mapNearbyPermissionRationaleContinue => 'Kemmel';
+
+  @override
+  String get mapNearbyPermissionRationaleCancel => 'Sefsex';
+
+  @override
+  String get mapNearbyPermissionAllow => 'Sireg';
+
+  @override
+  String get mapNearbyChooseWilaya => 'Fren wilaya';
+
+  @override
+  String get mapNearbyMyLocation => 'Wadig-iw';
+
+  @override
+  String get mapNearbyEdit => 'Beddel';
+
+  @override
+  String get mapNearbyWilayaSearch => 'Anadi s wilaya';
+
+  @override
+  String mapNearbyWilayaSearchNamed(String wilaya) {
+    return 'Anadi s wilaya ($wilaya)';
+  }
+
+  @override
+  String mapNearbyLocationComma(String commune, String wilaya) {
+    return '$commune, $wilaya';
+  }
+
+  @override
+  String get mapNearbyRadiusLabel => 'Amasa:';
+
+  @override
+  String mapNearbyRadiusValue(String radius) {
+    return '$radius km';
+  }
+
+  @override
+  String mapNearbyClusterCount(int count) {
+    return '$count imsaɣyad';
+  }
+
+  @override
+  String get mapNearbyChooseWilayaTooltip => 'Fren wilaya';
+
+  @override
+  String get mapNearbySpecialtyTitle => 'Fren taseɣt';
+
+  @override
+  String get mapNearbySpecialtyClear => 'Sfeḍ';
 }

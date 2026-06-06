@@ -720,4 +720,78 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get doctorDetailLoadError =>
       'Impossible de charger le profil de ce spécialiste.';
+
+  @override
+  String get mapNearbyTitle => 'Médecins à proximité';
+
+  @override
+  String get mapNearbyLoadErrorTitle => 'Erreur de chargement';
+
+  @override
+  String get mapNearbyLoadErrorMessage =>
+      'Une erreur s\'est produite sur la carte.';
+
+  @override
+  String get mapNearbyPermissionBanner =>
+      'Autoriser la localisation pour voir les médecins autour de vous.';
+
+  @override
+  String get mapNearbyPermissionRationaleTitle => 'Accès à la localisation';
+
+  @override
+  String get mapNearbyPermissionRationaleBody =>
+      'MedNavigator utilise votre position pour afficher les spécialistes à proximité. Vous pouvez aussi choisir une wilaya manuellement.';
+
+  @override
+  String get mapNearbyPermissionRationaleContinue => 'Continuer';
+
+  @override
+  String get mapNearbyPermissionRationaleCancel => 'Annuler';
+
+  @override
+  String get mapNearbyPermissionAllow => 'Autoriser';
+
+  @override
+  String get mapNearbyChooseWilaya => 'Choisir une wilaya';
+
+  @override
+  String get mapNearbyMyLocation => 'Ma position';
+
+  @override
+  String get mapNearbyEdit => 'Modifier';
+
+  @override
+  String get mapNearbyWilayaSearch => 'Recherche par wilaya';
+
+  @override
+  String mapNearbyWilayaSearchNamed(String wilaya) {
+    return 'Recherche par wilaya ($wilaya)';
+  }
+
+  @override
+  String mapNearbyLocationComma(String commune, String wilaya) {
+    return '$commune, $wilaya';
+  }
+
+  @override
+  String get mapNearbyRadiusLabel => 'Rayon :';
+
+  @override
+  String mapNearbyRadiusValue(String radius) {
+    return '$radius km';
+  }
+
+  @override
+  String mapNearbyClusterCount(int count) {
+    return '$count médecins';
+  }
+
+  @override
+  String get mapNearbyChooseWilayaTooltip => 'Choisir wilaya';
+
+  @override
+  String get mapNearbySpecialtyTitle => 'Sélectionner une spécialité';
+
+  @override
+  String get mapNearbySpecialtyClear => 'Effacer';
 }

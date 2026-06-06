@@ -704,4 +704,77 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get doctorDetailLoadError => 'تعذر تحميل ملف الأخصائي.';
+
+  @override
+  String get mapNearbyTitle => 'الأطباء القريبون';
+
+  @override
+  String get mapNearbyLoadErrorTitle => 'خطأ في التحميل';
+
+  @override
+  String get mapNearbyLoadErrorMessage => 'حدث خطأ أثناء تحميل الخريطة.';
+
+  @override
+  String get mapNearbyPermissionBanner =>
+      'اسمح بالوصول إلى موقعك لعرض الأطباء من حولك.';
+
+  @override
+  String get mapNearbyPermissionRationaleTitle => 'الوصول إلى الموقع';
+
+  @override
+  String get mapNearbyPermissionRationaleBody =>
+      'يستخدم MedNavigator موقعك لعرض الأخصائيين القريبين. يمكنك أيضاً اختيار ولاية يدوياً.';
+
+  @override
+  String get mapNearbyPermissionRationaleContinue => 'متابعة';
+
+  @override
+  String get mapNearbyPermissionRationaleCancel => 'إلغاء';
+
+  @override
+  String get mapNearbyPermissionAllow => 'السماح';
+
+  @override
+  String get mapNearbyChooseWilaya => 'اختيار ولاية';
+
+  @override
+  String get mapNearbyMyLocation => 'موقعي';
+
+  @override
+  String get mapNearbyEdit => 'تعديل';
+
+  @override
+  String get mapNearbyWilayaSearch => 'البحث حسب الولاية';
+
+  @override
+  String mapNearbyWilayaSearchNamed(String wilaya) {
+    return 'البحث حسب الولاية ($wilaya)';
+  }
+
+  @override
+  String mapNearbyLocationComma(String commune, String wilaya) {
+    return '$commune، $wilaya';
+  }
+
+  @override
+  String get mapNearbyRadiusLabel => 'نطاق البحث:';
+
+  @override
+  String mapNearbyRadiusValue(String radius) {
+    return '$radius كم';
+  }
+
+  @override
+  String mapNearbyClusterCount(int count) {
+    return '$count طبيب';
+  }
+
+  @override
+  String get mapNearbyChooseWilayaTooltip => 'اختيار ولاية';
+
+  @override
+  String get mapNearbySpecialtyTitle => 'اختيار تخصص';
+
+  @override
+  String get mapNearbySpecialtyClear => 'مسح';
 }

@@ -1419,6 +1419,132 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Impossible de charger le profil de ce spécialiste.'**
   String get doctorDetailLoadError;
+
+  /// No description provided for @mapNearbyTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médecins à proximité'**
+  String get mapNearbyTitle;
+
+  /// No description provided for @mapNearbyLoadErrorTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Erreur de chargement'**
+  String get mapNearbyLoadErrorTitle;
+
+  /// No description provided for @mapNearbyLoadErrorMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une erreur s\'est produite sur la carte.'**
+  String get mapNearbyLoadErrorMessage;
+
+  /// No description provided for @mapNearbyPermissionBanner.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autoriser la localisation pour voir les médecins autour de vous.'**
+  String get mapNearbyPermissionBanner;
+
+  /// No description provided for @mapNearbyPermissionRationaleTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accès à la localisation'**
+  String get mapNearbyPermissionRationaleTitle;
+
+  /// No description provided for @mapNearbyPermissionRationaleBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'MedNavigator utilise votre position pour afficher les spécialistes à proximité. Vous pouvez aussi choisir une wilaya manuellement.'**
+  String get mapNearbyPermissionRationaleBody;
+
+  /// No description provided for @mapNearbyPermissionRationaleContinue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer'**
+  String get mapNearbyPermissionRationaleContinue;
+
+  /// No description provided for @mapNearbyPermissionRationaleCancel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get mapNearbyPermissionRationaleCancel;
+
+  /// No description provided for @mapNearbyPermissionAllow.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autoriser'**
+  String get mapNearbyPermissionAllow;
+
+  /// No description provided for @mapNearbyChooseWilaya.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir une wilaya'**
+  String get mapNearbyChooseWilaya;
+
+  /// No description provided for @mapNearbyMyLocation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ma position'**
+  String get mapNearbyMyLocation;
+
+  /// No description provided for @mapNearbyEdit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier'**
+  String get mapNearbyEdit;
+
+  /// No description provided for @mapNearbyWilayaSearch.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recherche par wilaya'**
+  String get mapNearbyWilayaSearch;
+
+  /// No description provided for @mapNearbyWilayaSearchNamed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recherche par wilaya ({wilaya})'**
+  String mapNearbyWilayaSearchNamed(String wilaya);
+
+  /// No description provided for @mapNearbyLocationComma.
+  ///
+  /// In fr, this message translates to:
+  /// **'{commune}, {wilaya}'**
+  String mapNearbyLocationComma(String commune, String wilaya);
+
+  /// No description provided for @mapNearbyRadiusLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rayon :'**
+  String get mapNearbyRadiusLabel;
+
+  /// No description provided for @mapNearbyRadiusValue.
+  ///
+  /// In fr, this message translates to:
+  /// **'{radius} km'**
+  String mapNearbyRadiusValue(String radius);
+
+  /// No description provided for @mapNearbyClusterCount.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} médecins'**
+  String mapNearbyClusterCount(int count);
+
+  /// No description provided for @mapNearbyChooseWilayaTooltip.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir wilaya'**
+  String get mapNearbyChooseWilayaTooltip;
+
+  /// No description provided for @mapNearbySpecialtyTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sélectionner une spécialité'**
+  String get mapNearbySpecialtyTitle;
+
+  /// No description provided for @mapNearbySpecialtyClear.
+  ///
+  /// In fr, this message translates to:
+  /// **'Effacer'**
+  String get mapNearbySpecialtyClear;
 }
 
 class _AppLocalizationsDelegate

@@ -282,5 +282,57 @@
   "doctorDetailTelehealthCta": "Téléconsultation",
   "doctorDetailNotFoundTitle": "Médecin introuvable",
   "doctorDetailNotFoundMessage": "Le profil de ce spécialiste n'est pas disponible.",
-  "doctorDetailLoadError": "Impossible de charger le profil de ce spécialiste."
+  "doctorDetailLoadError": "Impossible de charger le profil de ce spécialiste.",
+  "mapNearbyTitle": "Médecins à proximité",
+  "mapNearbyLoadErrorTitle": "Erreur de chargement",
+  "mapNearbyLoadErrorMessage": "Une erreur s'est produite sur la carte.",
+  "mapNearbyPermissionBanner": "Autoriser la localisation pour voir les médecins autour de vous.",
+  "mapNearbyPermissionRationaleTitle": "Accès à la localisation",
+  "mapNearbyPermissionRationaleBody": "MedNavigator utilise votre position pour afficher les spécialistes à proximité. Vous pouvez aussi choisir une wilaya manuellement.",
+  "mapNearbyPermissionRationaleContinue": "Continuer",
+  "mapNearbyPermissionRationaleCancel": "Annuler",
+  "mapNearbyPermissionAllow": "Autoriser",
+  "mapNearbyChooseWilaya": "Choisir une wilaya",
+  "mapNearbyMyLocation": "Ma position",
+  "mapNearbyEdit": "Modifier",
+  "mapNearbyWilayaSearch": "Recherche par wilaya",
+  "mapNearbyWilayaSearchNamed": "Recherche par wilaya ({wilaya})",
+  "@mapNearbyWilayaSearchNamed": {
+    "placeholders": {
+      "wilaya": {
+        "type": "String"
+      }
+    }
+  },
+  "mapNearbyLocationComma": "{commune}, {wilaya}",
+  "@mapNearbyLocationComma": {
+    "placeholders": {
+      "commune": {
+        "type": "String"
+      },
+      "wilaya": {
+        "type": "String"
+      }
+    }
+  },
+  "mapNearbyRadiusLabel": "Rayon :",
+  "mapNearbyRadiusValue": "{radius} km",
+  "@mapNearbyRadiusValue": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "mapNearbyClusterCount": "{count} médecins",
+  "@mapNearbyClusterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mapNearbyChooseWilayaTooltip": "Choisir wilaya",
+  "mapNearbySpecialtyTitle": "Sélectionner une spécialité",
+  "mapNearbySpecialtyClear": "Effacer"
 }
