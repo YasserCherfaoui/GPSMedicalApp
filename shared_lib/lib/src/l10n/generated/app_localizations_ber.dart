@@ -645,4 +645,69 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get searchFilterSortDistance => 'Amasa s ugnin';
+
+  @override
+  String get doctorDetailTitle => 'Amaɣnu n umsaɣyad';
+
+  @override
+  String get doctorDetailBioTitle => 'Tameddit';
+
+  @override
+  String get doctorDetailBioEmpty => 'Ulac tameddit.';
+
+  @override
+  String get doctorDetailBioExpand => 'Ɣer s ugar';
+
+  @override
+  String get doctorDetailBioCollapse => 'Sken drus';
+
+  @override
+  String get doctorDetailFeeTitle => 'Tasfart n umsaɣ';
+
+  @override
+  String get doctorDetailFeeInPerson => 'Asarag deg uxxam';
+
+  @override
+  String doctorDetailFeeValue(int fee) {
+    return '$fee DZD';
+  }
+
+  @override
+  String get doctorDetailLanguagesTitle => 'Tutlayin';
+
+  @override
+  String get doctorDetailLanguagesEmpty => 'Ur yettwasen ara';
+
+  @override
+  String get doctorDetailAddressTitle => 'Adresse n uxxam';
+
+  @override
+  String get doctorDetailMapUnavailable => 'Takarḍa ur tettwaf ara';
+
+  @override
+  String get doctorDetailReviewsTitle => 'Iɣewwaṛen n yimeɣlanen';
+
+  @override
+  String get doctorDetailReviewsEmpty => 'Ulac iɣewwaṛen akka tura.';
+
+  @override
+  String get doctorDetailReviewsLoadMore => 'Wali ugar';
+
+  @override
+  String get doctorDetailVerifiedPatient => 'Ameglay yettwasen';
+
+  @override
+  String get doctorDetailBookCta => 'Awi-d ameẓlu';
+
+  @override
+  String get doctorDetailTelehealthCta => 'Asarag s tvidyu';
+
+  @override
+  String get doctorDetailNotFoundTitle => 'Ulac amussnaw';
+
+  @override
+  String get doctorDetailNotFoundMessage => 'Amaɣnu-a ur yelli ara.';
+
+  @override
+  String get doctorDetailLoadError => 'Ur izmir ara ad d-yekker amaɣnu.';
 }

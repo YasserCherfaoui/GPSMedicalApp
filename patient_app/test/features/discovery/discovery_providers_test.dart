@@ -417,5 +417,70 @@ void main() {
       expect(detail.reviews, isEmpty);
       expect(detail.hasMoreReviews, isFalse);
     });
+
+    test('loadMoreReviews appends next page', () async {
+      const doctorId = 'd1000000-0000-4000-8000-000000000002';
+
+      dioAdapter.onGet(
+        '/doctors/$doctorId',
+        (server) => server.reply(200, {
+          'id': doctorId,
+          'full_name': 'Dr. Test',
+          'verified': true,
+        }),
+      );
+      dioAdapter.onGet(
+        '/doctors/$doctorId/reviews',
+        (server) => server.reply(200, (RequestOptions options) {
+          final page = options.queryParameters['page']?.toString();
+          if (page == '2') {
+            return {
+              'data': [
+                {
+                  'id': 'rev-2',
+                  'rating': 4,
+                  'comment': 'Page 2',
+                  'created_at': '2026-02-01T10:00:00Z',
+                },
+              ],
+              'meta': {
+                'page': 2,
+                'page_size': 10,
+                'total': 11,
+                'total_pages': 2,
+              },
+            };
+          }
+          return {
+            'data': List.generate(
+              10,
+              (i) => {
+                'id': 'rev-$i',
+                'rating': 5,
+                'comment': 'Review $i',
+                'created_at': '2026-01-01T10:00:00Z',
+              },
+            ),
+            'meta': {
+              'page': 1,
+              'page_size': 10,
+              'total': 11,
+              'total_pages': 2,
+            },
+          };
+        }),
+      );
+
+      container.listen(doctorDetailProvider(doctorId), (_, __) {});
+
+      await container.read(doctorDetailProvider(doctorId).future);
+      await container
+          .read(doctorDetailProvider(doctorId).notifier)
+          .loadMoreReviews();
+
+      final detail = container.read(doctorDetailProvider(doctorId)).value!;
+      expect(detail.reviews, hasLength(11));
+      expect(detail.hasMoreReviews, isFalse);
+    });
   });
 }

@@ -639,4 +639,69 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get searchFilterSortDistance => 'المسافة تصاعدياً';
+
+  @override
+  String get doctorDetailTitle => 'ملف الأخصائي';
+
+  @override
+  String get doctorDetailBioTitle => 'السيرة الذاتية';
+
+  @override
+  String get doctorDetailBioEmpty => 'لا توجد سيرة ذاتية.';
+
+  @override
+  String get doctorDetailBioExpand => 'قراءة المزيد';
+
+  @override
+  String get doctorDetailBioCollapse => 'عرض أقل';
+
+  @override
+  String get doctorDetailFeeTitle => 'أتعاب الاستشارة';
+
+  @override
+  String get doctorDetailFeeInPerson => 'استشارة في العيادة';
+
+  @override
+  String doctorDetailFeeValue(int fee) {
+    return '$fee دج';
+  }
+
+  @override
+  String get doctorDetailLanguagesTitle => 'اللغات المتحدثة';
+
+  @override
+  String get doctorDetailLanguagesEmpty => 'غير محدد';
+
+  @override
+  String get doctorDetailAddressTitle => 'عنوان العيادة';
+
+  @override
+  String get doctorDetailMapUnavailable => 'الخريطة غير متاحة';
+
+  @override
+  String get doctorDetailReviewsTitle => 'آراء المرضى';
+
+  @override
+  String get doctorDetailReviewsEmpty => 'لا توجد آراء حالياً.';
+
+  @override
+  String get doctorDetailReviewsLoadMore => 'عرض المزيد';
+
+  @override
+  String get doctorDetailVerifiedPatient => 'مريض موثّق';
+
+  @override
+  String get doctorDetailBookCta => 'حجز';
+
+  @override
+  String get doctorDetailTelehealthCta => 'استشارة عن بُعد';
+
+  @override
+  String get doctorDetailNotFoundTitle => 'الطبيب غير موجود';
+
+  @override
+  String get doctorDetailNotFoundMessage => 'ملف هذا الأخصائي غير متاح.';
+
+  @override
+  String get doctorDetailLoadError => 'تعذر تحميل ملف الأخصائي.';
 }

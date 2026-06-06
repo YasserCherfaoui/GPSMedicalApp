@@ -101,7 +101,11 @@ GoRouter createPatientRouter({
         path: '/doctors/:id',
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
-          return DoctorDetailScreen(doctorId: id);
+          final openBooking = state.uri.queryParameters['book'] == 'true';
+          return DoctorDetailScreen(
+            doctorId: id,
+            openBooking: openBooking,
+          );
         },
       ),
       GoRoute(

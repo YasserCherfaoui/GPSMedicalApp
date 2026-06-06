@@ -653,4 +653,71 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get searchFilterSortDistance => 'Distance croissante';
+
+  @override
+  String get doctorDetailTitle => 'Profil du spécialiste';
+
+  @override
+  String get doctorDetailBioTitle => 'Biographie';
+
+  @override
+  String get doctorDetailBioEmpty => 'Aucune biographie disponible.';
+
+  @override
+  String get doctorDetailBioExpand => 'Lire la suite';
+
+  @override
+  String get doctorDetailBioCollapse => 'Voir moins';
+
+  @override
+  String get doctorDetailFeeTitle => 'Tarifs de consultation';
+
+  @override
+  String get doctorDetailFeeInPerson => 'Consultation en cabinet';
+
+  @override
+  String doctorDetailFeeValue(int fee) {
+    return '$fee DZD';
+  }
+
+  @override
+  String get doctorDetailLanguagesTitle => 'Langues parlées';
+
+  @override
+  String get doctorDetailLanguagesEmpty => 'Non renseigné';
+
+  @override
+  String get doctorDetailAddressTitle => 'Adresse de pratique';
+
+  @override
+  String get doctorDetailMapUnavailable => 'Carte indisponible';
+
+  @override
+  String get doctorDetailReviewsTitle => 'Avis des patients';
+
+  @override
+  String get doctorDetailReviewsEmpty => 'Aucun avis pour le moment.';
+
+  @override
+  String get doctorDetailReviewsLoadMore => 'Voir plus';
+
+  @override
+  String get doctorDetailVerifiedPatient => 'Patient vérifié';
+
+  @override
+  String get doctorDetailBookCta => 'Réserver';
+
+  @override
+  String get doctorDetailTelehealthCta => 'Téléconsultation';
+
+  @override
+  String get doctorDetailNotFoundTitle => 'Médecin introuvable';
+
+  @override
+  String get doctorDetailNotFoundMessage =>
+      'Le profil de ce spécialiste n\'est pas disponible.';
+
+  @override
+  String get doctorDetailLoadError =>
+      'Impossible de charger le profil de ce spécialiste.';
 }

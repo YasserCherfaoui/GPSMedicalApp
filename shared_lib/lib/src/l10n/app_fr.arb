@@ -254,5 +254,33 @@
   "searchFilterSortRating": "Note la plus haute",
   "searchFilterSortFeeAsc": "Tarif croissant",
   "searchFilterSortFeeDesc": "Tarif décroissant",
-  "searchFilterSortDistance": "Distance croissante"
+  "searchFilterSortDistance": "Distance croissante",
+  "doctorDetailTitle": "Profil du spécialiste",
+  "doctorDetailBioTitle": "Biographie",
+  "doctorDetailBioEmpty": "Aucune biographie disponible.",
+  "doctorDetailBioExpand": "Lire la suite",
+  "doctorDetailBioCollapse": "Voir moins",
+  "doctorDetailFeeTitle": "Tarifs de consultation",
+  "doctorDetailFeeInPerson": "Consultation en cabinet",
+  "doctorDetailFeeValue": "{fee} DZD",
+  "@doctorDetailFeeValue": {
+    "placeholders": {
+      "fee": {
+        "type": "int"
+      }
+    }
+  },
+  "doctorDetailLanguagesTitle": "Langues parlées",
+  "doctorDetailLanguagesEmpty": "Non renseigné",
+  "doctorDetailAddressTitle": "Adresse de pratique",
+  "doctorDetailMapUnavailable": "Carte indisponible",
+  "doctorDetailReviewsTitle": "Avis des patients",
+  "doctorDetailReviewsEmpty": "Aucun avis pour le moment.",
+  "doctorDetailReviewsLoadMore": "Voir plus",
+  "doctorDetailVerifiedPatient": "Patient vérifié",
+  "doctorDetailBookCta": "Réserver",
+  "doctorDetailTelehealthCta": "Téléconsultation",
+  "doctorDetailNotFoundTitle": "Médecin introuvable",
+  "doctorDetailNotFoundMessage": "Le profil de ce spécialiste n'est pas disponible.",
+  "doctorDetailLoadError": "Impossible de charger le profil de ce spécialiste."
 }

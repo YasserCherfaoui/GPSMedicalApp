@@ -1293,6 +1293,132 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Distance croissante'**
   String get searchFilterSortDistance;
+
+  /// No description provided for @doctorDetailTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Profil du spécialiste'**
+  String get doctorDetailTitle;
+
+  /// No description provided for @doctorDetailBioTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Biographie'**
+  String get doctorDetailBioTitle;
+
+  /// No description provided for @doctorDetailBioEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune biographie disponible.'**
+  String get doctorDetailBioEmpty;
+
+  /// No description provided for @doctorDetailBioExpand.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lire la suite'**
+  String get doctorDetailBioExpand;
+
+  /// No description provided for @doctorDetailBioCollapse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir moins'**
+  String get doctorDetailBioCollapse;
+
+  /// No description provided for @doctorDetailFeeTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarifs de consultation'**
+  String get doctorDetailFeeTitle;
+
+  /// No description provided for @doctorDetailFeeInPerson.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consultation en cabinet'**
+  String get doctorDetailFeeInPerson;
+
+  /// No description provided for @doctorDetailFeeValue.
+  ///
+  /// In fr, this message translates to:
+  /// **'{fee} DZD'**
+  String doctorDetailFeeValue(int fee);
+
+  /// No description provided for @doctorDetailLanguagesTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langues parlées'**
+  String get doctorDetailLanguagesTitle;
+
+  /// No description provided for @doctorDetailLanguagesEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non renseigné'**
+  String get doctorDetailLanguagesEmpty;
+
+  /// No description provided for @doctorDetailAddressTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse de pratique'**
+  String get doctorDetailAddressTitle;
+
+  /// No description provided for @doctorDetailMapUnavailable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Carte indisponible'**
+  String get doctorDetailMapUnavailable;
+
+  /// No description provided for @doctorDetailReviewsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avis des patients'**
+  String get doctorDetailReviewsTitle;
+
+  /// No description provided for @doctorDetailReviewsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun avis pour le moment.'**
+  String get doctorDetailReviewsEmpty;
+
+  /// No description provided for @doctorDetailReviewsLoadMore.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir plus'**
+  String get doctorDetailReviewsLoadMore;
+
+  /// No description provided for @doctorDetailVerifiedPatient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Patient vérifié'**
+  String get doctorDetailVerifiedPatient;
+
+  /// No description provided for @doctorDetailBookCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réserver'**
+  String get doctorDetailBookCta;
+
+  /// No description provided for @doctorDetailTelehealthCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléconsultation'**
+  String get doctorDetailTelehealthCta;
+
+  /// No description provided for @doctorDetailNotFoundTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médecin introuvable'**
+  String get doctorDetailNotFoundTitle;
+
+  /// No description provided for @doctorDetailNotFoundMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le profil de ce spécialiste n\'est pas disponible.'**
+  String get doctorDetailNotFoundMessage;
+
+  /// No description provided for @doctorDetailLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger le profil de ce spécialiste.'**
+  String get doctorDetailLoadError;
 }
 
 class _AppLocalizationsDelegate

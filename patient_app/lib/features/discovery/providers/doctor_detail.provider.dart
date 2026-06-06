@@ -12,16 +12,36 @@ class DoctorDetailState {
     required this.reviews,
     required this.reviewsPage,
     required this.hasMoreReviews,
+    this.isLoadingMoreReviews = false,
   });
 
   final Doctor doctor;
   final List<Review> reviews;
   final int reviewsPage;
   final bool hasMoreReviews;
+  final bool isLoadingMoreReviews;
+
+  DoctorDetailState copyWith({
+    Doctor? doctor,
+    List<Review>? reviews,
+    int? reviewsPage,
+    bool? hasMoreReviews,
+    bool? isLoadingMoreReviews,
+  }) {
+    return DoctorDetailState(
+      doctor: doctor ?? this.doctor,
+      reviews: reviews ?? this.reviews,
+      reviewsPage: reviewsPage ?? this.reviewsPage,
+      hasMoreReviews: hasMoreReviews ?? this.hasMoreReviews,
+      isLoadingMoreReviews: isLoadingMoreReviews ?? this.isLoadingMoreReviews,
+    );
+  }
 }
 
 @riverpod
 class DoctorDetail extends _$DoctorDetail {
+  static const _reviewsPageSize = 10;
+
   @override
   Future<DoctorDetailState> build(String doctorId) async {
     final repo = ref.watch(doctorRepositoryProvider);
@@ -30,11 +50,12 @@ class DoctorDetail extends _$DoctorDetail {
       final reviewsResult = await repo.fetchReviews(
         doctorId: doctorId,
         page: 1,
-        pageSize: 10,
+        pageSize: _reviewsPageSize,
       );
       final reviews = reviewsResult.reviews;
       final total = reviewsResult.total;
-      final hasMore = reviews.length == 10 && reviews.length < total;
+      final hasMore =
+          reviews.length == _reviewsPageSize && reviews.length < total;
 
       return DoctorDetailState(
         doctor: doctor,
@@ -49,25 +70,32 @@ class DoctorDetail extends _$DoctorDetail {
 
   Future<void> loadMoreReviews() async {
     final current = state.value;
-    if (current == null || !current.hasMoreReviews) return;
-    if (state.isLoading || state.isRefreshing) return;
+    if (current == null ||
+        !current.hasMoreReviews ||
+        current.isLoadingMoreReviews ||
+        state.isLoading ||
+        state.isRefreshing) {
+      return;
+    }
 
-    state = AsyncValue.data(current);
+    state = AsyncValue.data(current.copyWith(isLoadingMoreReviews: true));
+
     final nextPageData = await AsyncValue.guard(() async {
       final repo = ref.read(doctorRepositoryProvider);
       final nextPage = current.reviewsPage + 1;
       final reviewsResult = await repo.fetchReviews(
         doctorId: doctorId,
         page: nextPage,
-        pageSize: 10,
+        pageSize: _reviewsPageSize,
       );
       final reviews = reviewsResult.reviews;
       final total = reviewsResult.total;
-      final hasMore = (current.reviews.length + reviews.length) < total;
+      final combined = [...current.reviews, ...reviews];
+      final hasMore = combined.length < total;
 
       return DoctorDetailState(
         doctor: current.doctor,
-        reviews: [...current.reviews, ...reviews],
+        reviews: combined,
         reviewsPage: nextPage,
         hasMoreReviews: hasMore,
       );
