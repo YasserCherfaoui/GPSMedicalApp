@@ -11,6 +11,13 @@ class WilayasFetch extends _$WilayasFetch {
   Future<List<Wilaya>> build() async {
     return ref.watch(geoRepositoryProvider).fetchWilayas();
   }
+
+  Future<void> refresh() async {
+    state = const AsyncValue.loading();
+    final repo = ref.read(geoRepositoryProvider);
+    repo.clearWilayasCache();
+    state = await AsyncValue.guard(repo.fetchWilayas);
+  }
 }
 
 @Riverpod(keepAlive: true)
@@ -18,17 +25,32 @@ class CommunesFetch extends _$CommunesFetch {
   @override
   Future<Map<String, List<Commune>>> build() async => {};
 
-  Future<List<Commune>> fetchForWilaya(String wilayaCode) async {
+  Future<List<Commune>> fetchForWilaya(
+    String wilayaCode, {
+    bool forceRefresh = false,
+  }) async {
     final currentMap = state.value ?? {};
-    if (currentMap.containsKey(wilayaCode)) {
+    if (!forceRefresh && currentMap.containsKey(wilayaCode)) {
       return currentMap[wilayaCode]!;
     }
 
-    final list = await ref.read(geoRepositoryProvider).fetchCommunes(wilayaCode);
+    final repo = ref.read(geoRepositoryProvider);
+    if (forceRefresh) {
+      repo.clearCommunesCache(wilayaCode);
+    }
+
+    final list = await repo.fetchCommunes(
+      wilayaCode,
+      forceRefresh: forceRefresh,
+    );
     final updatedMap = Map<String, List<Commune>>.from(currentMap)
       ..[wilayaCode] = list;
     state = AsyncValue.data(updatedMap);
     return list;
+  }
+
+  Future<void> refreshWilaya(String wilayaCode) async {
+    await fetchForWilaya(wilayaCode, forceRefresh: true);
   }
 }
 

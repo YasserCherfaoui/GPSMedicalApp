@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
+
 import '../providers/location_filter.provider.dart';
+import '../utils/geo_display.dart';
+import '../utils/geo_name_search.dart';
+import 'wilaya_commune_picker_shimmer.dart';
 
 class WilayaCommunePicker extends ConsumerStatefulWidget {
   const WilayaCommunePicker({
@@ -45,48 +49,32 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
 
   void _onSearchChanged() {
     setState(() {
-      _searchQuery = _searchController.text.trim().toLowerCase();
+      _searchQuery = _searchController.text;
     });
   }
 
-  // Accent-insensitive and prefix match helper
   bool _matchesQuery(String? nameFr, String? nameAr) {
-    if (_searchQuery.isEmpty) return true;
-
-    // Normalize French name by removing accents
-    String normalize(String input) {
-      const withAccents =
-          'àáâãäåçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ';
-      const withoutAccents =
-          'aaaaaaceeeeiiiinooooouuuuyyAAAAAACEEEEIIIINOOOOOUUUUY';
-      var output = input.toLowerCase();
-      for (int i = 0; i < withAccents.length; i++) {
-        output = output.replaceAll(withAccents[i], withoutAccents[i]);
-      }
-      return output;
-    }
-
-    final normalizedFr = normalize(nameFr ?? '');
-    final nameArLower = (nameAr ?? '').toLowerCase();
-
-    return normalizedFr.startsWith(_searchQuery) ||
-        nameArLower.startsWith(_searchQuery);
+    return matchesGeoNameQuery(
+      query: _searchQuery,
+      nameFr: nameFr,
+      nameAr: nameAr,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final isAr = Localizations.localeOf(context).languageCode == 'ar';
+    final l10n = AppLocalizations.of(context)!;
+    final locale = Localizations.localeOf(context).languageCode;
     final locationFilter = ref.watch(locationFilterProvider);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // Navigation / Header row
         Padding(
-          padding: const EdgeInsets.symmetric(
+          padding: const EdgeInsetsDirectional.symmetric(
             horizontal: GpsSpacing.md,
             vertical: GpsSpacing.sm,
           ),
@@ -104,20 +92,17 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
                 ),
                 const SizedBox(width: GpsSpacing.xs),
               ],
-              Text(
-                _showingCommunes
-                    ? (isAr
-                          ? 'Sélectionner la Commune'
-                          : 'Sélectionner la commune')
-                    : (isAr
-                          ? 'Sélectionner la Wilaya'
-                          : 'Sélectionner la wilaya'),
-                style: theme.textTheme.headlineSmall?.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              Expanded(
+                child: Text(
+                  _showingCommunes
+                      ? l10n.geoCommunePickerTitle
+                      : l10n.geoWilayaPickerTitle,
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              const Spacer(),
               if (locationFilter.selectedWilaya != null)
                 TextButton(
                   onPressed: () {
@@ -128,15 +113,13 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
                       _searchController.clear();
                     });
                   },
-                  child: Text(isAr ? 'Effacer' : 'Effacer'),
+                  child: Text(l10n.geoClear),
                 ),
             ],
           ),
         ),
-
-        // Search text field
         Padding(
-          padding: const EdgeInsets.symmetric(
+          padding: const EdgeInsetsDirectional.symmetric(
             horizontal: GpsSpacing.md,
             vertical: GpsSpacing.sm,
           ),
@@ -144,12 +127,8 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
             controller: _searchController,
             decoration: InputDecoration(
               hintText: _showingCommunes
-                  ? (isAr
-                        ? 'Rechercher une commune...'
-                        : 'Rechercher une commune...')
-                  : (isAr
-                        ? 'Rechercher une wilaya...'
-                        : 'Rechercher une wilaya...'),
+                  ? l10n.geoSearchCommuneHint
+                  : l10n.geoSearchWilayaHint,
               prefixIcon: const Icon(Icons.search),
               suffixIcon: _searchController.text.isNotEmpty
                   ? IconButton(
@@ -160,17 +139,15 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
             ),
           ),
         ),
-
         const Divider(),
-
         if (_showingCommunes && locationFilter.selectedWilaya != null)
           Padding(
-            padding: const EdgeInsets.symmetric(
+            padding: const EdgeInsetsDirectional.symmetric(
               horizontal: GpsSpacing.md,
               vertical: GpsSpacing.xs,
             ),
             child: Align(
-              alignment: Alignment.centerLeft,
+              alignment: AlignmentDirectional.centerStart,
               child: TextButton.icon(
                 onPressed: () {
                   widget.onLocationChanged(
@@ -179,29 +156,27 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
                   );
                 },
                 icon: const Icon(Icons.map_outlined, size: 18),
-                label: Text(
-                  isAr
-                      ? 'Utiliser le centre de la wilaya'
-                      : 'Utiliser le centre de la wilaya',
-                ),
+                label: Text(l10n.geoUseWilayaCenter),
               ),
             ),
           ),
-
-        // Selector lists
         Flexible(
           child: SizedBox(
             height: 300,
             child: _showingCommunes
-                ? _buildCommunesList(locationFilter, isAr, colorScheme)
-                : _buildWilayasList(isAr, colorScheme),
+                ? _buildCommunesList(locationFilter, locale, colorScheme, l10n)
+                : _buildWilayasList(locale, colorScheme, l10n),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildWilayasList(bool isAr, ColorScheme colorScheme) {
+  Widget _buildWilayasList(
+    String locale,
+    ColorScheme colorScheme,
+    AppLocalizations l10n,
+  ) {
     final wilayasAsync = ref.watch(wilayasFetchProvider);
 
     return wilayasAsync.when(
@@ -211,16 +186,14 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
             .toList();
 
         if (filtered.isEmpty) {
-          return const Center(child: Text('Aucune wilaya trouvée.'));
+          return EmptyState(title: l10n.geoWilayaEmpty);
         }
 
         return ListView.builder(
           itemCount: filtered.length,
           itemBuilder: (context, index) {
             final wilaya = filtered[index];
-            final name = isAr
-                ? (wilaya.nameAr ?? wilaya.nameFr ?? '')
-                : (wilaya.nameFr ?? '');
+            final name = wilayaDisplayName(wilaya, locale);
             final isSelected =
                 ref.read(locationFilterProvider).selectedWilaya?.code ==
                 wilaya.code;
@@ -249,16 +222,21 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
           },
         );
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (err, stack) =>
-          const Center(child: Text('Erreur lors du chargement des wilayas.')),
+      loading: () => const WilayaCommunePickerShimmer(),
+      error: (err, stack) => ErrorState(
+        title: l10n.errorGenericTitle,
+        message: l10n.geoWilayasLoadError,
+        retryLabel: l10n.retry,
+        onRetry: () => ref.read(wilayasFetchProvider.notifier).refresh(),
+      ),
     );
   }
 
   Widget _buildCommunesList(
     LocationFilterState filter,
-    bool isAr,
+    String locale,
     ColorScheme colorScheme,
+    AppLocalizations l10n,
   ) {
     final wilayaCode = filter.selectedWilaya?.code;
     if (wilayaCode == null) return const SizedBox.shrink();
@@ -267,22 +245,24 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
 
     return communesAsync.when(
       data: (communesMap) {
+        if (!communesMap.containsKey(wilayaCode)) {
+          return const WilayaCommunePickerShimmer();
+        }
+
         final list = communesMap[wilayaCode] ?? [];
         final filtered = list
             .where((c) => _matchesQuery(c.nameFr, c.nameAr))
             .toList();
 
         if (filtered.isEmpty) {
-          return const Center(child: Text('Aucune commune trouvée.'));
+          return EmptyState(title: l10n.geoCommuneEmpty);
         }
 
         return ListView.builder(
           itemCount: filtered.length,
           itemBuilder: (context, index) {
             final commune = filtered[index];
-            final name = isAr
-                ? (commune.nameAr ?? commune.nameFr ?? '')
-                : (commune.nameFr ?? '');
+            final name = communeDisplayName(commune, locale);
             final isSelected = filter.selectedCommune?.id == commune.id;
 
             return ListTile(
@@ -303,9 +283,15 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
           },
         );
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (err, stack) =>
-          const Center(child: Text('Erreur lors du chargement des communes.')),
+      loading: () => const WilayaCommunePickerShimmer(),
+      error: (err, stack) => ErrorState(
+        title: l10n.errorGenericTitle,
+        message: l10n.geoCommunesLoadError,
+        retryLabel: l10n.retry,
+        onRetry: () => ref
+            .read(communesFetchProvider.notifier)
+            .refreshWilaya(wilayaCode),
+      ),
     );
   }
 }

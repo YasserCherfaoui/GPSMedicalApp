@@ -136,5 +136,15 @@
   "retry": "إعادة المحاولة",
   "specialtiesEmpty": "لم يتم العثور على أي تخصص.",
   "specialtiesLoadError": "تعذر تحميل التخصصات.",
-  "specialtiesPickerParentAll": "كل {name}"
+  "specialtiesPickerParentAll": "كل {name}",
+  "geoWilayaPickerTitle": "اختر الولاية",
+  "geoCommunePickerTitle": "اختر البلدية",
+  "geoClear": "مسح",
+  "geoSearchWilayaHint": "ابحث عن ولاية…",
+  "geoSearchCommuneHint": "ابحث عن بلدية…",
+  "geoWilayaEmpty": "لم يتم العثور على ولاية.",
+  "geoCommuneEmpty": "لم يتم العثور على بلدية.",
+  "geoWilayasLoadError": "تعذر تحميل الولايات.",
+  "geoCommunesLoadError": "تعذر تحميل البلديات.",
+  "geoUseWilayaCenter": "استخدام مركز الولاية"
 }

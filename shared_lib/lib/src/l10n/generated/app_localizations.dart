@@ -921,6 +921,66 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Toute la spécialité ({name})'**
   String specialtiesPickerParentAll(String name);
+
+  /// No description provided for @geoWilayaPickerTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sélectionner la wilaya'**
+  String get geoWilayaPickerTitle;
+
+  /// No description provided for @geoCommunePickerTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sélectionner la commune'**
+  String get geoCommunePickerTitle;
+
+  /// No description provided for @geoClear.
+  ///
+  /// In fr, this message translates to:
+  /// **'Effacer'**
+  String get geoClear;
+
+  /// No description provided for @geoSearchWilayaHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher une wilaya…'**
+  String get geoSearchWilayaHint;
+
+  /// No description provided for @geoSearchCommuneHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher une commune…'**
+  String get geoSearchCommuneHint;
+
+  /// No description provided for @geoWilayaEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune wilaya trouvée.'**
+  String get geoWilayaEmpty;
+
+  /// No description provided for @geoCommuneEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune commune trouvée.'**
+  String get geoCommuneEmpty;
+
+  /// No description provided for @geoWilayasLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les wilayas.'**
+  String get geoWilayasLoadError;
+
+  /// No description provided for @geoCommunesLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les communes.'**
+  String get geoCommunesLoadError;
+
+  /// No description provided for @geoUseWilayaCenter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Utiliser le centre de la wilaya'**
+  String get geoUseWilayaCenter;
 }
 
 class _AppLocalizationsDelegate

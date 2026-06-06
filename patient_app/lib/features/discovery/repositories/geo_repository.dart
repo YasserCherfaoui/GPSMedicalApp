@@ -4,17 +4,43 @@ class GeoRepository {
   GeoRepository(this._client);
 
   final GpsMedicalClient _client;
+  List<Wilaya>? _wilayasCache;
+  final Map<String, List<Commune>> _communesCache = {};
 
-  Future<List<Wilaya>> fetchWilayas() async {
+  Future<List<Wilaya>> fetchWilayas({bool forceRefresh = false}) async {
+    if (!forceRefresh && _wilayasCache != null) {
+      return _wilayasCache!;
+    }
+
     final response = await _client.geolocation.geoWilayasGet();
-    return response.data?.toList() ?? [];
+    _wilayasCache = response.data?.toList() ?? [];
+
+    return _wilayasCache!;
   }
 
-  Future<List<Commune>> fetchCommunes(String wilayaCode) async {
+  Future<List<Commune>> fetchCommunes(
+    String wilayaCode, {
+    bool forceRefresh = false,
+  }) async {
+    if (!forceRefresh && _communesCache.containsKey(wilayaCode)) {
+      return _communesCache[wilayaCode]!;
+    }
+
     final response = await _client.geolocation.geoWilayasWilayaCodeCommunesGet(
       wilayaCode: wilayaCode,
     );
-    return response.data?.toList() ?? [];
+    final list = response.data?.toList() ?? [];
+    _communesCache[wilayaCode] = list;
+
+    return list;
+  }
+
+  void clearWilayasCache() {
+    _wilayasCache = null;
+  }
+
+  void clearCommunesCache(String wilayaCode) {
+    _communesCache.remove(wilayaCode);
   }
 
   Future<List<DoctorWithDistance>> fetchNearby({

@@ -136,5 +136,15 @@
   "retry": "Ɛreḍ tikelt nniḍen",
   "specialtiesEmpty": "Ulac tamlilt.",
   "specialtiesLoadError": "Ur izmir ara ad d-kker timaliwin.",
-  "specialtiesPickerParentAll": "Akken ma yella ({name})"
+  "specialtiesPickerParentAll": "Akken ma yella ({name})",
+  "geoWilayaPickerTitle": "Fren tamnaḍt",
+  "geoCommunePickerTitle": "Fren tɣremt",
+  "geoClear": "Sfeḍ",
+  "geoSearchWilayaHint": "Nadi tamnaḍt…",
+  "geoSearchCommuneHint": "Nadi tɣremt…",
+  "geoWilayaEmpty": "Ulac tamnaḍt.",
+  "geoCommuneEmpty": "Ulac tɣremt.",
+  "geoWilayasLoadError": "Ur izmir ara ad d-kker timaliwin n tmnaḍin.",
+  "geoCommunesLoadError": "Ur izmir ara ad d-kker tɣremiwin.",
+  "geoUseWilayaCenter": "Seqdec alemmas n tmnaḍt"
 }

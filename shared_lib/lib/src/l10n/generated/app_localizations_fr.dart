@@ -459,4 +459,34 @@ class AppLocalizationsFr extends AppLocalizations {
   String specialtiesPickerParentAll(String name) {
     return 'Toute la spécialité ($name)';
   }
+
+  @override
+  String get geoWilayaPickerTitle => 'Sélectionner la wilaya';
+
+  @override
+  String get geoCommunePickerTitle => 'Sélectionner la commune';
+
+  @override
+  String get geoClear => 'Effacer';
+
+  @override
+  String get geoSearchWilayaHint => 'Rechercher une wilaya…';
+
+  @override
+  String get geoSearchCommuneHint => 'Rechercher une commune…';
+
+  @override
+  String get geoWilayaEmpty => 'Aucune wilaya trouvée.';
+
+  @override
+  String get geoCommuneEmpty => 'Aucune commune trouvée.';
+
+  @override
+  String get geoWilayasLoadError => 'Impossible de charger les wilayas.';
+
+  @override
+  String get geoCommunesLoadError => 'Impossible de charger les communes.';
+
+  @override
+  String get geoUseWilayaCenter => 'Utiliser le centre de la wilaya';
 }

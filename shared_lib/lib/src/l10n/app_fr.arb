@@ -178,5 +178,15 @@
         "type": "String"
       }
     }
-  }
+  },
+  "geoWilayaPickerTitle": "Sélectionner la wilaya",
+  "geoCommunePickerTitle": "Sélectionner la commune",
+  "geoClear": "Effacer",
+  "geoSearchWilayaHint": "Rechercher une wilaya…",
+  "geoSearchCommuneHint": "Rechercher une commune…",
+  "geoWilayaEmpty": "Aucune wilaya trouvée.",
+  "geoCommuneEmpty": "Aucune commune trouvée.",
+  "geoWilayasLoadError": "Impossible de charger les wilayas.",
+  "geoCommunesLoadError": "Impossible de charger les communes.",
+  "geoUseWilayaCenter": "Utiliser le centre de la wilaya"
 }

@@ -452,4 +452,35 @@ class AppLocalizationsBer extends AppLocalizations {
   String specialtiesPickerParentAll(String name) {
     return 'Akken ma yella ($name)';
   }
+
+  @override
+  String get geoWilayaPickerTitle => 'Fren tamnaḍt';
+
+  @override
+  String get geoCommunePickerTitle => 'Fren tɣremt';
+
+  @override
+  String get geoClear => 'Sfeḍ';
+
+  @override
+  String get geoSearchWilayaHint => 'Nadi tamnaḍt…';
+
+  @override
+  String get geoSearchCommuneHint => 'Nadi tɣremt…';
+
+  @override
+  String get geoWilayaEmpty => 'Ulac tamnaḍt.';
+
+  @override
+  String get geoCommuneEmpty => 'Ulac tɣremt.';
+
+  @override
+  String get geoWilayasLoadError =>
+      'Ur izmir ara ad d-kker timaliwin n tmnaḍin.';
+
+  @override
+  String get geoCommunesLoadError => 'Ur izmir ara ad d-kker tɣremiwin.';
+
+  @override
+  String get geoUseWilayaCenter => 'Seqdec alemmas n tmnaḍt';
 }

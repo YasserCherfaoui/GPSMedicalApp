@@ -448,4 +448,34 @@ class AppLocalizationsAr extends AppLocalizations {
   String specialtiesPickerParentAll(String name) {
     return 'كل $name';
   }
+
+  @override
+  String get geoWilayaPickerTitle => 'اختر الولاية';
+
+  @override
+  String get geoCommunePickerTitle => 'اختر البلدية';
+
+  @override
+  String get geoClear => 'مسح';
+
+  @override
+  String get geoSearchWilayaHint => 'ابحث عن ولاية…';
+
+  @override
+  String get geoSearchCommuneHint => 'ابحث عن بلدية…';
+
+  @override
+  String get geoWilayaEmpty => 'لم يتم العثور على ولاية.';
+
+  @override
+  String get geoCommuneEmpty => 'لم يتم العثور على بلدية.';
+
+  @override
+  String get geoWilayasLoadError => 'تعذر تحميل الولايات.';
+
+  @override
+  String get geoCommunesLoadError => 'تعذر تحميل البلديات.';
+
+  @override
+  String get geoUseWilayaCenter => 'استخدام مركز الولاية';
 }
