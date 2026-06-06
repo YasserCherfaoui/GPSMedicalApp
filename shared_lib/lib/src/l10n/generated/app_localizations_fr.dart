@@ -442,4 +442,21 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get bookingSummaryReason => 'Motif';
+
+  @override
+  String get errorGenericTitle => 'Erreur';
+
+  @override
+  String get retry => 'Réessayer';
+
+  @override
+  String get specialtiesEmpty => 'Aucune spécialité trouvée.';
+
+  @override
+  String get specialtiesLoadError => 'Impossible de charger les spécialités.';
+
+  @override
+  String specialtiesPickerParentAll(String name) {
+    return 'Toute la spécialité ($name)';
+  }
 }

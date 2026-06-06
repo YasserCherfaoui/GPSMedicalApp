@@ -67,6 +67,35 @@ void main() {
       // Call count should still be 1 (cached)
       expect(callCount, 1);
     });
+
+    test('refresh refetches from the API', () async {
+      var networkCalls = 0;
+      dio.interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (options, handler) {
+            if (options.path == '/specialties') {
+              networkCalls++;
+            }
+            handler.next(options);
+          },
+        ),
+      );
+      dioAdapter.onGet('/specialties', (server) {
+        return server.reply(200, [
+          {
+            'id': 'spec-1',
+            'code': 'CAR',
+            'name_fr': 'Cardiologie',
+          },
+        ]);
+      });
+
+      await container.read(specialtiesProvider.future);
+      expect(networkCalls, 1);
+
+      await container.read(specialtiesProvider.notifier).refresh();
+      expect(networkCalls, 2);
+    });
   });
 
   group('DoctorList Provider', () {

@@ -431,4 +431,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get bookingSummaryReason => 'السبب';
+
+  @override
+  String get errorGenericTitle => 'خطأ';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
+  String get specialtiesEmpty => 'لم يتم العثور على أي تخصص.';
+
+  @override
+  String get specialtiesLoadError => 'تعذر تحميل التخصصات.';
+
+  @override
+  String specialtiesPickerParentAll(String name) {
+    return 'كل $name';
+  }
 }

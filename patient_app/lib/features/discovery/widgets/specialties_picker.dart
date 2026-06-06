@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
+
 import '../providers/specialties.provider.dart';
+import '../utils/specialty_display.dart';
+import 'specialties_picker_shimmer.dart';
 
 class SpecialtiesPicker extends ConsumerWidget {
   const SpecialtiesPicker({
@@ -16,21 +19,15 @@ class SpecialtiesPicker extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final specialtiesAsync = ref.watch(specialtiesProvider);
+    final l10n = AppLocalizations.of(context)!;
     final locale = Localizations.localeOf(context).languageCode;
-    final isAr = locale == 'ar';
 
     return specialtiesAsync.when(
       data: (specialties) {
         if (specialties.isEmpty) {
-          return const Center(
-            child: Padding(
-              padding: EdgeInsets.all(GpsSpacing.md),
-              child: Text('Aucune spécialité trouvée.'),
-            ),
-          );
+          return EmptyState(title: l10n.specialtiesEmpty);
         }
 
-        // Separate roots and children
         final roots = specialties.where((s) => s.parentId == null).toList();
         final childrenMap = <String, List<Specialty>>{};
         for (final s in specialties) {
@@ -45,9 +42,7 @@ class SpecialtiesPicker extends ConsumerWidget {
           itemCount: roots.length,
           itemBuilder: (context, index) {
             final root = roots[index];
-            final rootName = isAr
-                ? (root.nameAr ?? root.nameFr ?? '')
-                : (root.nameFr ?? '');
+            final rootName = specialtyDisplayName(root, locale);
             final hasChildren = childrenMap.containsKey(root.id);
 
             if (!hasChildren) {
@@ -85,7 +80,7 @@ class SpecialtiesPicker extends ConsumerWidget {
               children: [
                 ListTile(
                   title: Text(
-                    isAr ? 'Tout $rootName' : 'Toute la spécialité ($rootName)',
+                    l10n.specialtiesPickerParentAll(rootName),
                     style: const TextStyle(fontStyle: FontStyle.italic),
                   ),
                   selected: root.id == selectedSpecialtyId,
@@ -99,9 +94,7 @@ class SpecialtiesPicker extends ConsumerWidget {
                   onTap: () => onSpecialtySelected(root),
                 ),
                 ...children.map((child) {
-                  final childName = isAr
-                      ? (child.nameAr ?? child.nameFr ?? '')
-                      : (child.nameFr ?? '');
+                  final childName = specialtyDisplayName(child, locale);
                   final isSelected = child.id == selectedSpecialtyId;
 
                   return Padding(
@@ -125,15 +118,13 @@ class SpecialtiesPicker extends ConsumerWidget {
           },
         );
       },
-      loading: () => const Padding(
-        padding: EdgeInsets.symmetric(vertical: GpsSpacing.xxl),
-        child: Center(child: CircularProgressIndicator()),
-      ),
+      loading: () => const SpecialtiesPickerShimmer(),
       error: (error, stack) => Padding(
         padding: const EdgeInsets.all(GpsSpacing.md),
         child: ErrorState(
-          title: 'Erreur',
-          message: 'Impossible de charger les spécialités.',
+          title: l10n.errorGenericTitle,
+          message: l10n.specialtiesLoadError,
+          retryLabel: l10n.retry,
           onRetry: () => ref.read(specialtiesProvider.notifier).refresh(),
         ),
       ),

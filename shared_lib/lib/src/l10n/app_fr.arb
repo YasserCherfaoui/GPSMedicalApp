@@ -166,5 +166,17 @@
   "bookingSummaryDoctor": "Médecin",
   "bookingSummarySlot": "Créneau",
   "bookingSummaryPatient": "Patient",
-  "bookingSummaryReason": "Motif"
+  "bookingSummaryReason": "Motif",
+  "errorGenericTitle": "Erreur",
+  "retry": "Réessayer",
+  "specialtiesEmpty": "Aucune spécialité trouvée.",
+  "specialtiesLoadError": "Impossible de charger les spécialités.",
+  "specialtiesPickerParentAll": "Toute la spécialité ({name})",
+  "@specialtiesPickerParentAll": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
 }

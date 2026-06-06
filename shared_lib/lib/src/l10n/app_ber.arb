@@ -131,5 +131,10 @@
   "bookingSummarySlot": "Asrag",
   "bookingSummaryPatient": "Ameglay",
   "bookingSummaryReason": "Taɣuri",
-  "bookingStepReview": "Agzul"
+  "bookingStepReview": "Agzul",
+  "errorGenericTitle": "Tuccḍa",
+  "retry": "Ɛreḍ tikelt nniḍen",
+  "specialtiesEmpty": "Ulac tamlilt.",
+  "specialtiesLoadError": "Ur izmir ara ad d-kker timaliwin.",
+  "specialtiesPickerParentAll": "Akken ma yella ({name})"
 }

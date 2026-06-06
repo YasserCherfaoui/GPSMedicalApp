@@ -14,8 +14,8 @@ class Specialties extends _$Specialties {
 
   Future<void> refresh() async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(
-      () => ref.read(specialtiesRepositoryProvider).fetchAll(),
-    );
+    final repo = ref.read(specialtiesRepositoryProvider);
+    repo.clearCache();
+    state = await AsyncValue.guard(repo.fetchAll);
   }
 }

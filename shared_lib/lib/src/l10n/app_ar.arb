@@ -131,5 +131,10 @@
   "bookingSummaryDoctor": "الطبيب",
   "bookingSummarySlot": "الموعد",
   "bookingSummaryPatient": "المريض",
-  "bookingSummaryReason": "السبب"
+  "bookingSummaryReason": "السبب",
+  "errorGenericTitle": "خطأ",
+  "retry": "إعادة المحاولة",
+  "specialtiesEmpty": "لم يتم العثور على أي تخصص.",
+  "specialtiesLoadError": "تعذر تحميل التخصصات.",
+  "specialtiesPickerParentAll": "كل {name}"
 }

@@ -435,4 +435,21 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get bookingSummaryReason => 'Taɣuri';
+
+  @override
+  String get errorGenericTitle => 'Tuccḍa';
+
+  @override
+  String get retry => 'Ɛreḍ tikelt nniḍen';
+
+  @override
+  String get specialtiesEmpty => 'Ulac tamlilt.';
+
+  @override
+  String get specialtiesLoadError => 'Ur izmir ara ad d-kker timaliwin.';
+
+  @override
+  String specialtiesPickerParentAll(String name) {
+    return 'Akken ma yella ($name)';
+  }
 }

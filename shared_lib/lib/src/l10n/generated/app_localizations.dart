@@ -891,6 +891,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Motif'**
   String get bookingSummaryReason;
+
+  /// No description provided for @errorGenericTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Erreur'**
+  String get errorGenericTitle;
+
+  /// No description provided for @retry.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réessayer'**
+  String get retry;
+
+  /// No description provided for @specialtiesEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune spécialité trouvée.'**
+  String get specialtiesEmpty;
+
+  /// No description provided for @specialtiesLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les spécialités.'**
+  String get specialtiesLoadError;
+
+  /// No description provided for @specialtiesPickerParentAll.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toute la spécialité ({name})'**
+  String specialtiesPickerParentAll(String name);
 }
 
 class _AppLocalizationsDelegate
