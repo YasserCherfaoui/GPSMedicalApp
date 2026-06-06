@@ -18,14 +18,24 @@ void main() async {
   await initPatientFirebase();
 
   const sentryDsn = String.fromEnvironment('SENTRY_DSN');
+  final bootstrap = await bootstrapGpsMedicalApp();
 
   final app = ProviderScope(
     overrides: [
       appInfoProvider.overrideWithValue(_appInfo),
+      tokenStoreProvider.overrideWithValue(bootstrap.tokenStore),
+      appLaunchPreferencesProvider.overrideWithValue(
+        bootstrap.launchPreferences,
+      ),
       gpsRouterProvider.overrideWith((ref) {
-        final auth = ref.watch(authSessionProvider);
+        final auth = ref.read(authSessionProvider);
         final appInfo = ref.watch(appInfoProvider);
-        return createPatientRouter(authListenable: auth, appInfo: appInfo);
+        final launchPreferences = ref.read(appLaunchPreferencesProvider);
+        return createPatientRouter(
+          authListenable: auth,
+          appInfo: appInfo,
+          launchPreferences: launchPreferences,
+        );
       }),
     ],
     child: const PatientApp(),
@@ -41,11 +51,24 @@ void main() async {
   }
 }
 
-class PatientApp extends ConsumerWidget {
+class PatientApp extends ConsumerStatefulWidget {
   const PatientApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PatientApp> createState() => _PatientAppState();
+}
+
+class _PatientAppState extends ConsumerState<PatientApp> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FlutterNativeSplash.remove();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final router = ref.watch(gpsRouterProvider);
 
     return GpsMedicalMaterialApp(

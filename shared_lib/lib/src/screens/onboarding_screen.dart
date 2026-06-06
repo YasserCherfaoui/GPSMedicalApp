@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../bootstrap/app_launch_preferences.provider.dart';
 import '../l10n/auth_strings.dart';
 import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
 import '../widgets/gps_blur_background.dart';
 import '../widgets/primary_button.dart';
 
-class OnboardingScreen extends StatelessWidget {
+class OnboardingScreen extends ConsumerWidget {
   const OnboardingScreen({required this.step, super.key});
 
   final int step;
 
+  Future<void> _completeOnboarding(WidgetRef ref) {
+    return ref
+        .read(appLaunchPreferencesProvider)
+        .setOnboardingCompleted(true);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final strings = AuthStrings.of(context);
     final clamped = step.clamp(1, 3);
     final colorScheme = Theme.of(context).colorScheme;
@@ -35,7 +43,12 @@ class OnboardingScreen extends StatelessWidget {
           actions: [
             if (clamped < 3)
               TextButton(
-                onPressed: () => context.go(GpsRoutes.authWelcome),
+                onPressed: () async {
+                  await _completeOnboarding(ref);
+                  if (context.mounted) {
+                    context.go(GpsRoutes.authWelcome);
+                  }
+                },
                 child: Text(strings.skip),
               ),
           ],
@@ -106,11 +119,14 @@ class OnboardingScreen extends StatelessWidget {
                       flex: 2,
                       child: PrimaryButton(
                         label: clamped < 3 ? strings.next : strings.start,
-                        onPressed: () {
+                        onPressed: () async {
                           if (clamped < 3) {
                             context.go(GpsRoutes.onboardingStep(clamped + 1));
                           } else {
-                            context.go(GpsRoutes.authWelcome);
+                            await _completeOnboarding(ref);
+                            if (context.mounted) {
+                              context.go(GpsRoutes.authWelcome);
+                            }
                           }
                         },
                       ),

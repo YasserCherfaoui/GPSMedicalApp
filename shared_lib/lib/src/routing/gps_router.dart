@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../auth/auth_session.dart';
 import '../auth/auth_session.notifier.dart';
+import '../bootstrap/app_launch_preferences.dart';
 import '../models/app_info.dart';
 import '../screens/auth_welcome_screen.dart';
 import '../screens/language_screen.dart';
@@ -19,6 +20,7 @@ import 'gps_routes.dart';
 GoRouter createGpsRouter({
   required AuthSessionNotifier authListenable,
   required GpsMedicalAppInfo appInfo,
+  required AppLaunchPreferences launchPreferences,
 }) {
   AuthSession sessionOf() => authListenable.session;
 
@@ -29,6 +31,7 @@ GoRouter createGpsRouter({
       return resolveGpsRedirect(
         session: sessionOf(),
         matchedLocation: state.matchedLocation,
+        onboardingCompleted: launchPreferences.onboardingCompleted,
       );
     },
     routes: [

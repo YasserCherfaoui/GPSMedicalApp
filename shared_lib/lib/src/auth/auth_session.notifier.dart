@@ -6,12 +6,25 @@ import 'token_store.dart';
 
 /// Mutable auth session; notifies listeners for [GoRouter] refresh.
 class AuthSessionNotifier extends ChangeNotifier {
-  AuthSessionNotifier(this._tokenStore);
+  AuthSessionNotifier(this._tokenStore) {
+    _restoreFromStore();
+  }
 
   final TokenStore _tokenStore;
   AuthSession _session = const AuthSession.unauthenticated();
 
   AuthSession get session => _session;
+
+  void _restoreFromStore() {
+    final access = _tokenStore.accessToken;
+    final refresh = _tokenStore.refreshToken;
+    if (access != null &&
+        access.isNotEmpty &&
+        refresh != null &&
+        refresh.isNotEmpty) {
+      _session = AuthSession.authenticated(accessToken: access);
+    }
+  }
 
   bool get isAuthenticated => _session.isAuthenticated;
 

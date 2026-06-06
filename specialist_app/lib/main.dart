@@ -14,9 +14,16 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   const sentryDsn = String.fromEnvironment('SENTRY_DSN');
+  final bootstrap = await bootstrapGpsMedicalApp();
 
   final app = ProviderScope(
-    overrides: [appInfoProvider.overrideWithValue(_appInfo)],
+    overrides: [
+      appInfoProvider.overrideWithValue(_appInfo),
+      tokenStoreProvider.overrideWithValue(bootstrap.tokenStore),
+      appLaunchPreferencesProvider.overrideWithValue(
+        bootstrap.launchPreferences,
+      ),
+    ],
     child: const SpecialistApp(),
   );
 
@@ -30,11 +37,24 @@ void main() async {
   }
 }
 
-class SpecialistApp extends ConsumerWidget {
+class SpecialistApp extends ConsumerStatefulWidget {
   const SpecialistApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SpecialistApp> createState() => _SpecialistAppState();
+}
+
+class _SpecialistAppState extends ConsumerState<SpecialistApp> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FlutterNativeSplash.remove();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final router = ref.watch(gpsRouterProvider);
 
     return GpsMedicalMaterialApp(

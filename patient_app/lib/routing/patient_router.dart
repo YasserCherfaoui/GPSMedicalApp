@@ -15,6 +15,7 @@ import '../features/discovery/screens/nearby_doctors_map_screen.dart';
 GoRouter createPatientRouter({
   required AuthSessionNotifier authListenable,
   required GpsMedicalAppInfo appInfo,
+  required AppLaunchPreferences launchPreferences,
 }) {
   AuthSession sessionOf() => authListenable.session;
 
@@ -25,6 +26,7 @@ GoRouter createPatientRouter({
       return resolveGpsRedirect(
         session: sessionOf(),
         matchedLocation: state.matchedLocation,
+        onboardingCompleted: launchPreferences.onboardingCompleted,
       );
     },
     routes: [

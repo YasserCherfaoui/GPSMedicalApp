@@ -16,7 +16,7 @@ void main() {
       );
     });
 
-    test('allows public onboarding paths', () {
+    test('allows public onboarding paths for first-time users', () {
       expect(
         resolveGpsRedirect(
           session: unauthenticated,
@@ -26,11 +26,53 @@ void main() {
       );
     });
 
+    test('routes splash to language for first-time users', () {
+      expect(
+        resolveGpsRedirect(
+          session: unauthenticated,
+          matchedLocation: GpsRoutes.splash,
+        ),
+        GpsRoutes.language,
+      );
+    });
+
+    test('routes splash to auth welcome after onboarding', () {
+      expect(
+        resolveGpsRedirect(
+          session: unauthenticated,
+          matchedLocation: GpsRoutes.splash,
+          onboardingCompleted: true,
+        ),
+        GpsRoutes.authWelcome,
+      );
+    });
+
+    test('keeps returning users out of onboarding', () {
+      expect(
+        resolveGpsRedirect(
+          session: unauthenticated,
+          matchedLocation: GpsRoutes.onboardingStep(2),
+          onboardingCompleted: true,
+        ),
+        GpsRoutes.authWelcome,
+      );
+    });
+
     test('sends authenticated users away from login', () {
       expect(
         resolveGpsRedirect(
           session: authenticated,
           matchedLocation: GpsRoutes.login,
+        ),
+        GpsRoutes.discover,
+      );
+    });
+
+    test('sends authenticated users away from onboarding', () {
+      expect(
+        resolveGpsRedirect(
+          session: authenticated,
+          matchedLocation: GpsRoutes.onboardingStep(1),
         ),
         GpsRoutes.discover,
       );

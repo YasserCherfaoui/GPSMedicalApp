@@ -1,12 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:go_router/go_router.dart';
 
 import '../l10n/auth_strings.dart';
 import '../models/app_info.dart';
-import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,27 +14,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  Timer? _navigateTimer;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      FlutterNativeSplash.remove();
-    });
-    _navigateTimer = Timer(const Duration(seconds: 2), () {
-      if (mounted) {
-        context.go(GpsRoutes.language);
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _navigateTimer?.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final strings = AuthStrings.of(context);
