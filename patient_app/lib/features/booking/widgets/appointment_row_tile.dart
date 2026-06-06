@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:intl/intl.dart';
 
+import '../../discovery/utils/specialty_display.dart';
 import '../utils/booking_enums.dart';
 import 'mode_badge.dart';
 import 'status_pill.dart';
@@ -22,14 +23,14 @@ class AppointmentRowTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final locale = Localizations.localeOf(context).toString();
+    final languageCode = Localizations.localeOf(context).languageCode;
     final start = appointment.startAt?.toLocal();
     final dateStr = start != null
-        ? DateFormat.yMMMd(locale).add_Hm().format(start)
+        ? DateFormat.yMMMd(languageCode).add_Hm().format(start)
         : '';
     final name = '${doctor.title ?? 'Dr.'} ${doctor.fullName ?? ''}';
     final specialty = doctor.specialties?.isNotEmpty == true
-        ? (doctor.specialties!.first.nameFr ?? '')
+        ? specialtyDisplayName(doctor.specialties!.first, languageCode)
         : '';
     final fee = appointment.feeDzd ?? doctor.consultationFeeDzd;
     final avatarImage =

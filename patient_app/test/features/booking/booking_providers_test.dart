@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/booking/providers/appointment_detail.provider.dart';
+import 'package:patient_app/features/booking/providers/appointments_history.provider.dart';
+import 'package:patient_app/features/booking/providers/appointments_upcoming.provider.dart';
 import 'package:patient_app/features/booking/providers/availability_window.provider.dart';
 import 'package:patient_app/features/booking/providers/booking_draft.provider.dart';
 import 'package:patient_app/features/booking/providers/dependents_list.provider.dart';
@@ -231,6 +233,129 @@ void main() {
           .read(appointmentDetailProvider(appointmentId).notifier)
           .cancel(reason: 'Change of plans');
       expect(updated.status, AppointmentStatusEnum.cancelled);
+    });
+  });
+
+  group('Appointments list providers', () {
+    test('upcoming merges pending and confirmed sorted by start_at', () async {
+      adapter.onGet(
+        '/appointments',
+        (server) => server.reply(200, (RequestOptions options) {
+          final status = options.queryParameters['status'];
+          if (status == 'pending') {
+            return {
+              'data': [
+                {
+                  'id': 'appt-p',
+                  'doctor_id': 'doc-1',
+                  'start_at': '2026-06-12T09:00:00Z',
+                  'end_at': '2026-06-12T09:30:00Z',
+                  'mode': 'in_person',
+                  'status': 'pending',
+                  'fee_dzd': 2000,
+                  'payment_status': 'unpaid',
+                  'created_at': '2026-06-01T00:00:00Z',
+                  'updated_at': '2026-06-01T00:00:00Z',
+                },
+              ],
+              'meta': {'page': 1, 'page_size': 20, 'total': 1, 'total_pages': 1},
+            };
+          }
+          return {
+            'data': [
+              {
+                'id': 'appt-c',
+                'doctor_id': 'doc-1',
+                'start_at': '2026-06-10T09:00:00Z',
+                'end_at': '2026-06-10T09:30:00Z',
+                'mode': 'telehealth',
+                'status': 'confirmed',
+                'fee_dzd': 2500,
+                'payment_status': 'unpaid',
+                'created_at': '2026-06-01T00:00:00Z',
+                'updated_at': '2026-06-01T00:00:00Z',
+              },
+            ],
+            'meta': {'page': 1, 'page_size': 20, 'total': 1, 'total_pages': 1},
+          };
+        }),
+      );
+
+      final state = await container.read(appointmentsUpcomingProvider.future);
+      expect(state.appointments, hasLength(2));
+      expect(state.appointments.first.id, 'appt-c');
+      expect(state.appointments.last.id, 'appt-p');
+    });
+
+    test('history loadMore advances page when API reports more data', () async {
+      container.listen(appointmentsHistoryProvider, (_, __) {});
+
+      adapter.onGet(
+        '/appointments',
+        (server) => server.reply(200, (RequestOptions options) {
+          final status = options.queryParameters['status']?.toString();
+          final rawPage = options.queryParameters['page'];
+          final p = rawPage is int
+              ? rawPage
+              : int.parse(rawPage?.toString() ?? '1');
+
+          if (p == 1 && status == 'completed') {
+            return {
+              'data': [
+                {
+                  'id': 'appt-h1',
+                  'doctor_id': 'doc-1',
+                  'start_at': '2026-05-10T09:00:00Z',
+                  'end_at': '2026-05-10T09:30:00Z',
+                  'mode': 'in_person',
+                  'status': 'completed',
+                  'fee_dzd': 2000,
+                  'payment_status': 'paid',
+                  'created_at': '2026-05-01T00:00:00Z',
+                  'updated_at': '2026-05-01T00:00:00Z',
+                },
+              ],
+              'meta': {'page': 1, 'page_size': 20, 'total': 2, 'total_pages': 2},
+            };
+          }
+          if (p == 2 && status == 'completed') {
+            return {
+              'data': [
+                {
+                  'id': 'appt-h2',
+                  'doctor_id': 'doc-1',
+                  'start_at': '2026-04-10T09:00:00Z',
+                  'end_at': '2026-04-10T09:30:00Z',
+                  'mode': 'in_person',
+                  'status': 'completed',
+                  'fee_dzd': 2000,
+                  'payment_status': 'paid',
+                  'created_at': '2026-04-01T00:00:00Z',
+                  'updated_at': '2026-04-01T00:00:00Z',
+                },
+              ],
+              'meta': {'page': 2, 'page_size': 20, 'total': 2, 'total_pages': 2},
+            };
+          }
+          return {
+            'data': [],
+            'meta': {'page': p, 'page_size': 20, 'total': 0, 'total_pages': 0},
+          };
+        }),
+      );
+
+      final initial = await container.read(appointmentsHistoryProvider.future);
+      expect(initial.page, 1);
+      expect(initial.appointments.single.id, 'appt-h1');
+
+      await container.read(appointmentsHistoryProvider.notifier).loadMore();
+
+      final state = container.read(appointmentsHistoryProvider).value!;
+      expect(state.page, 2);
+      expect(
+        state.appointments.map((a) => a.id),
+        containsAll(['appt-h1', 'appt-h2']),
+      );
     });
   });
 }

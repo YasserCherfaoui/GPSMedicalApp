@@ -71,21 +71,11 @@ class _UpcomingTab extends ConsumerWidget {
     return async.when(
       data: (state) {
         if (state.appointments.isEmpty) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(GpsSpacing.lg),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(l10n.appointmentsEmptyUpcoming),
-                  const SizedBox(height: GpsSpacing.lg),
-                  PrimaryButton(
-                    label: l10n.appointmentsEmptyUpcomingCta,
-                    onPressed: () => context.go(GpsRoutes.discover),
-                  ),
-                ],
-              ),
-            ),
+          return EmptyState(
+            title: l10n.appointmentsEmptyUpcoming,
+            icon: Icons.event_available_outlined,
+            actionLabel: l10n.appointmentsEmptyUpcomingCta,
+            onAction: () => context.push(GpsRoutes.search),
           );
         }
         return RefreshIndicator(
@@ -157,7 +147,10 @@ class _HistoryTabState extends ConsumerState<_HistoryTab> {
     return async.when(
       data: (state) {
         if (state.appointments.isEmpty) {
-          return Center(child: Text(widget.l10n.appointmentsEmptyHistory));
+          return EmptyState(
+            title: widget.l10n.appointmentsEmptyHistory,
+            icon: Icons.history,
+          );
         }
         return RefreshIndicator(
           onRefresh: () =>
@@ -216,11 +209,9 @@ class _AppointmentRow extends ConsumerWidget {
         doctor: doctor,
         onTap: onTap,
       ),
-      loading: () => const Card(
-        child: ListTile(
-          leading: CircularProgressIndicator(),
-          title: Text('...'),
-        ),
+      loading: () => const Padding(
+        padding: EdgeInsets.only(bottom: GpsSpacing.sm),
+        child: LoadingSkeleton(height: 88),
       ),
       error: (_, _) => const SizedBox.shrink(),
     );

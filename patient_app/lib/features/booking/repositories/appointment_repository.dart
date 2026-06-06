@@ -24,7 +24,10 @@ class AppointmentRepository {
       final total = meta?.total ?? items.length;
       final currentPage = meta?.page ?? page;
       final size = meta?.pageSize ?? pageSize;
-      final hasMore = currentPage * size < total;
+      final totalPages = meta?.totalPages;
+      final hasMore = totalPages != null
+          ? currentPage < totalPages
+          : currentPage * size < total;
       return (appointments: items, hasMore: hasMore);
     } catch (e) {
       rethrowBookingApiError(e);

@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:intl/intl.dart';
 
+import '../../discovery/utils/doctor_display.dart';
 import '../../discovery/utils/relative_time.dart';
+import '../../discovery/utils/specialty_display.dart';
 import '../providers/appointment_detail.provider.dart';
 import '../providers/booking_draft.provider.dart';
 import '../utils/address_launcher.dart';
@@ -75,6 +77,14 @@ class _DetailBody extends ConsumerWidget {
         canJoinTelehealth(start, statusWire);
     final relative =
         start != null ? formatReviewRelativeTime(start, locale) : '';
+    final specialty = doctor.specialties?.isNotEmpty == true
+        ? specialtyDisplayName(doctor.specialties!.first, locale)
+        : '';
+    final avatarImage =
+        doctor.photoUrl != null && doctor.photoUrl!.isNotEmpty
+        ? NetworkImage(doctor.photoUrl!)
+        : null;
+    final addressLine = formatPracticeAddress(doctor.practiceAddress);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(GpsSpacing.md),
@@ -91,9 +101,42 @@ class _DetailBody extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '${doctor.title ?? 'Dr.'} ${doctor.fullName ?? ''}',
-                  style: theme.textTheme.headlineSmall,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      radius: 32,
+                      backgroundImage: avatarImage,
+                      backgroundColor: theme.colorScheme.surfaceContainerHigh,
+                      child: avatarImage == null
+                          ? Icon(
+                              Icons.person,
+                              color: theme.colorScheme.onSurfaceVariant,
+                            )
+                          : null,
+                    ),
+                    const SizedBox(width: GpsSpacing.md),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${doctor.title ?? 'Dr.'} ${doctor.fullName ?? ''}',
+                            style: theme.textTheme.headlineSmall,
+                          ),
+                          if (specialty.isNotEmpty) ...[
+                            const SizedBox(height: GpsSpacing.xs),
+                            Text(
+                              specialty,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 if (start != null) ...[
                   const SizedBox(height: GpsSpacing.sm),
@@ -137,10 +180,27 @@ class _DetailBody extends ConsumerWidget {
           if (appointment.mode == AppointmentModeEnum.inPerson &&
               doctor.practiceAddress != null) ...[
             const SizedBox(height: GpsSpacing.md),
-            OutlinedButton.icon(
-              onPressed: () => openDirections(address: doctor.practiceAddress),
-              icon: const Icon(Icons.directions_outlined),
-              label: Text(l10n.appointmentDirections),
+            GpsCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (addressLine.isNotEmpty) ...[
+                    Text(
+                      l10n.doctorDetailAddressTitle,
+                      style: theme.textTheme.titleSmall,
+                    ),
+                    const SizedBox(height: GpsSpacing.xs),
+                    Text(addressLine),
+                    const SizedBox(height: GpsSpacing.md),
+                  ],
+                  OutlinedButton.icon(
+                    onPressed: () =>
+                        openDirections(address: doctor.practiceAddress),
+                    icon: const Icon(Icons.directions_outlined),
+                    label: Text(l10n.appointmentDirections),
+                  ),
+                ],
+              ),
             ),
           ],
           if (showJoin) ...[
