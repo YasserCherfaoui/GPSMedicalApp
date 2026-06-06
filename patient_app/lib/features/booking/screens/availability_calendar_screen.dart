@@ -104,6 +104,9 @@ class _AvailabilityCalendarScreenState
           SlotLockBanner(
             onExpired: () {
               ref.read(bookingDraftProvider.notifier).clearSlotLock();
+              ref.invalidate(
+                availabilitySlotsProvider(widget.doctorId, _apiMode),
+              );
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(l10n.bookingLockExpired)),
               );

@@ -2,7 +2,6 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../utils/booking_dates.dart';
-import 'availability_slots.provider.dart';
 
 part 'availability_window.provider.g.dart';
 
@@ -32,7 +31,6 @@ class AvailabilityWindowNotifier extends _$AvailabilityWindowNotifier {
     }
     if (newTo.compareTo(newFrom) < 0) return;
     state = AvailabilityWindow(from: newFrom, to: newTo);
-    ref.invalidate(availabilitySlotsProvider(doctorId, mode));
   }
 
   void previousWeek(String mode) {
@@ -46,6 +44,5 @@ class AvailabilityWindowNotifier extends _$AvailabilityWindowNotifier {
       newTo = addDays(newFrom, kAvailabilityDefaultRangeDays);
     }
     state = AvailabilityWindow(from: newFrom, to: newTo);
-    ref.invalidate(availabilitySlotsProvider(doctorId, mode));
   }
 }

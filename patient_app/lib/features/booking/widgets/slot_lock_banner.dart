@@ -20,14 +20,21 @@ class SlotLockBanner extends ConsumerStatefulWidget {
 
 class _SlotLockBannerState extends ConsumerState<SlotLockBanner> {
   Timer? _timer;
+  bool _expiryHandled = false;
 
   @override
   void initState() {
     super.initState();
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      if (mounted) setState(() {});
+      if (!mounted) return;
+      setState(() {});
       final draft = ref.read(bookingDraftProvider);
-      if (!draft.hasActiveLock && draft.selectedSlot != null) {
+      if (draft.hasActiveLock) {
+        _expiryHandled = false;
+        return;
+      }
+      if (draft.selectedSlot != null && !_expiryHandled) {
+        _expiryHandled = true;
         widget.onExpired();
       }
     });

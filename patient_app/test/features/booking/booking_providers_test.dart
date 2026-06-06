@@ -5,9 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/booking/providers/appointment_detail.provider.dart';
+import 'package:patient_app/features/booking/providers/availability_window.provider.dart';
 import 'package:patient_app/features/booking/providers/booking_draft.provider.dart';
 import 'package:patient_app/features/booking/providers/dependents_list.provider.dart';
 import 'package:patient_app/features/booking/utils/booking_api_error.dart';
+import 'package:patient_app/features/booking/utils/booking_dates.dart';
 
 void main() {
   late Dio dio;
@@ -29,6 +31,77 @@ void main() {
 
   tearDown(() {
     container.dispose();
+  });
+
+  group('Availability window', () {
+    test('default range is today through today+14', () {
+      container.listen(availabilityWindowNotifierProvider('doc-1'), (_, __) {});
+      final window = container.read(availabilityWindowNotifierProvider('doc-1'));
+      final today = todayDate();
+      expect(window.from, today);
+      expect(window.to, addDays(today, kAvailabilityDefaultRangeDays));
+    });
+
+    test('nextWeek advances from/to by seven days within cap', () {
+      const doctorId = 'doc-avail';
+      container.listen(availabilityWindowNotifierProvider(doctorId), (_, __) {});
+
+      final before = container.read(availabilityWindowNotifierProvider(doctorId));
+      container
+          .read(availabilityWindowNotifierProvider(doctorId).notifier)
+          .nextWeek('both');
+      final after = container.read(availabilityWindowNotifierProvider(doctorId));
+
+      expect(after.from, addDays(before.from, 7));
+      expect(after.to, addDays(before.to, 7));
+    });
+  });
+
+  group('Booking draft slot lock', () {
+    test('selectSlot stores token and 5-minute expiry', () {
+      const doctorId = 'doc-1';
+      final draft = container.read(bookingDraftProvider.notifier);
+      draft.startBooking(
+        doctorId: doctorId,
+        doctor: $Doctor(
+          (b) => b
+            ..id = doctorId
+            ..fullName = 'Karim Benali',
+        ),
+      );
+      draft.selectSlot(
+        AvailabilitySlot(
+          (b) => b
+            ..startAt = DateTime.utc(2026, 6, 10, 9)
+            ..endAt = DateTime.utc(2026, 6, 10, 9, 30)
+            ..mode = AvailabilitySlotModeEnum.inPerson
+            ..slotLockToken = 'lock-abc',
+        ),
+      );
+
+      final state = container.read(bookingDraftProvider);
+      expect(state.selectedSlot?.slotLockToken, 'lock-abc');
+      expect(state.hasActiveLock, isTrue);
+      expect(state.lockRemaining!.inMinutes, lessThanOrEqualTo(5));
+    });
+
+    test('clearSlotLock removes slot and expiry', () {
+      final draft = container.read(bookingDraftProvider.notifier);
+      draft.selectSlot(
+        AvailabilitySlot(
+          (b) => b
+            ..startAt = DateTime.utc(2026, 6, 10, 9)
+            ..endAt = DateTime.utc(2026, 6, 10, 9, 30)
+            ..mode = AvailabilitySlotModeEnum.inPerson
+            ..slotLockToken = 'lock-abc',
+        ),
+      );
+      draft.clearSlotLock();
+
+      final state = container.read(bookingDraftProvider);
+      expect(state.selectedSlot, isNull);
+      expect(state.hasActiveLock, isFalse);
+    });
   });
 
   group('Dependents list', () {
