@@ -7,30 +7,30 @@ class DiscoveryErrorView extends StatelessWidget {
   const DiscoveryErrorView({
     required this.error,
     required this.onRetry,
-    this.defaultTitle = 'Erreur de connexion',
-    this.defaultMessage = 'Impossible de charger les données.',
+    this.defaultTitle,
+    this.defaultMessage,
     super.key,
   });
 
   final Object error;
   final VoidCallback onRetry;
-  final String defaultTitle;
-  final String defaultMessage;
+  final String? defaultTitle;
+  final String? defaultMessage;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final retryAfter = parseRetryAfterSeconds(error);
     if (retryAfter != null) {
       return ErrorState(
-        title: 'Trop de requêtes',
-        message:
-            'Veuillez patienter $retryAfter seconde${retryAfter > 1 ? 's' : ''} avant de réessayer.',
+        title: l10n.discoveryRateLimitTitle,
+        message: l10n.discoveryRateLimitMessage(retryAfter),
         onRetry: onRetry,
       );
     }
     return ErrorState(
-      title: defaultTitle,
-      message: defaultMessage,
+      title: defaultTitle ?? l10n.errorGenericTitle,
+      message: defaultMessage ?? l10n.discoveryDoctorsLoadError,
       onRetry: onRetry,
     );
   }

@@ -2,60 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
+
 import '../providers/doctor_list.provider.dart';
 import '../providers/doctor_search.provider.dart';
 import '../providers/specialties.provider.dart';
 import '../providers/user_location.provider.dart';
+import '../utils/specialty_display.dart';
 import '../widgets/discovery_error_view.dart';
 import '../widgets/doctor_card_tile.dart';
 import '../widgets/doctor_list_shimmer.dart';
 
-class DoctorListScreen extends ConsumerStatefulWidget {
+class DoctorListScreen extends ConsumerWidget {
   const DoctorListScreen({super.key});
 
-  @override
-  ConsumerState<DoctorListScreen> createState() => _DoctorListScreenState();
-}
+  void _maybeLoadNextPage(
+    WidgetRef ref, {
+    required int index,
+    required int doctorCount,
+    required bool hasMore,
+    required bool isLoadingMore,
+  }) {
+    if (!hasMore || isLoadingMore) return;
+    if (index < doctorCount - 3) return;
 
-class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_onScroll);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_onScroll);
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _onScroll() {
-    if (!_scrollController.hasClients) return;
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.position.pixels;
-
-    // Fetch next page when last visible card is within 3 of the end (approx 3 * 200px = 600px)
-    if (maxScroll - currentScroll <= 600) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(doctorListProvider.notifier).loadNextPage();
-    }
+    });
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = AppLocalizations.of(context)!;
+    final languageCode = Localizations.localeOf(context).languageCode;
     final listStateAsync = ref.watch(doctorListProvider);
     final specialtiesAsync = ref.watch(specialtiesProvider);
     final userLocation = ref.watch(userLocationProvider).valueOrNull;
-    final isAr = Localizations.localeOf(context).languageCode == 'ar';
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MedNavigator'),
+        title: Text(l10n.discoveryAppBarTitle),
         centerTitle: false,
         actions: [
           IconButton(
@@ -69,9 +56,7 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
       body: RefreshIndicator(
         onRefresh: () => ref.read(doctorListProvider.notifier).refresh(),
         child: CustomScrollView(
-          controller: _scrollController,
           slivers: [
-            // Page Header
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(GpsSpacing.md),
@@ -79,17 +64,13 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isAr
-                          ? 'Spécialistes recommandés'
-                          : 'Spécialistes recommandés',
+                      l10n.discoveryRecommendedTitle,
                       style: theme.textTheme.displayMedium?.copyWith(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: GpsSpacing.md),
-
-                    // Segmented Control (List / Map)
                     Container(
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
@@ -114,8 +95,8 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                                 vertical: GpsSpacing.sm,
                               ),
                             ),
-                            onPressed: () {}, // Already on list
-                            child: Text(isAr ? 'Liste' : 'Liste'),
+                            onPressed: () {},
+                            child: Text(l10n.discoveryViewList),
                           ),
                           const SizedBox(width: 4),
                           TextButton(
@@ -127,11 +108,10 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                               ),
                             ),
                             onPressed: () {
-                              // Switch to Map tab (branch index 1)
                               final shell = StatefulNavigationShell.of(context);
                               shell.goBranch(1);
                             },
-                            child: Text(isAr ? 'Carte' : 'Carte'),
+                            child: Text(l10n.discoveryViewMap),
                           ),
                         ],
                       ),
@@ -140,8 +120,6 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                 ),
               ),
             ),
-
-            // Horizontal Filter Chips Row
             SliverToBoxAdapter(
               child: specialtiesAsync.when(
                 data: (specialties) {
@@ -161,9 +139,10 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                       itemCount: parentSpecialties.length,
                       itemBuilder: (context, index) {
                         final specialty = parentSpecialties[index];
-                        final name = isAr
-                            ? (specialty.nameAr ?? specialty.nameFr ?? '')
-                            : (specialty.nameFr ?? '');
+                        final name = specialtyDisplayName(
+                          specialty,
+                          languageCode,
+                        );
 
                         return Padding(
                           padding: const EdgeInsetsDirectional.only(
@@ -172,7 +151,6 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                           child: ActionChip(
                             label: Text(name),
                             onPressed: () {
-                              // Reset filters and select this specialty, then push to Search screen
                               ref
                                   .read(searchFiltersNotifierProvider.notifier)
                                   .reset();
@@ -194,11 +172,7 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                 error: (_, __) => const SizedBox.shrink(),
               ),
             ),
-
-            // Spacing
             const SliverToBoxAdapter(child: SizedBox(height: GpsSpacing.md)),
-
-            // Doctor List Content
             listStateAsync.when(
               data: (listState) {
                 final doctors = listState.doctors;
@@ -207,11 +181,9 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                     hasScrollBody: false,
                     child: Center(
                       child: EmptyState(
-                        title: isAr ? 'Aucun médecin' : 'Aucun médecin trouvé',
-                        message: isAr
-                            ? 'Aucun spécialiste ne correspond pour le moment.'
-                            : 'Aucun spécialiste ne correspond pour le moment.',
-                        actionLabel: isAr ? 'Rechercher' : 'Rechercher',
+                        title: l10n.discoveryDoctorsEmptyTitle,
+                        message: l10n.discoveryDoctorsEmptyMessage,
+                        actionLabel: l10n.discoverySearchAction,
                         onAction: () => context.push(GpsRoutes.search),
                       ),
                     ),
@@ -226,10 +198,18 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                     delegate: SliverChildBuilderDelegate((context, index) {
                       if (index == doctors.length) {
                         return const Padding(
-                          padding: EdgeInsets.all(GpsSpacing.md),
-                          child: Center(child: CircularProgressIndicator()),
+                          padding: EdgeInsets.only(bottom: GpsSpacing.md),
+                          child: LoadingSkeleton.card(),
                         );
                       }
+
+                      _maybeLoadNextPage(
+                        ref,
+                        index: index,
+                        doctorCount: doctors.length,
+                        hasMore: listState.hasMore,
+                        isLoadingMore: listState.isLoadingMore,
+                      );
 
                       final doc = doctors[index];
                       return Padding(
@@ -237,7 +217,7 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                         child: buildDoctorCardTile(
                           context: context,
                           doc: doc,
-                          isAr: isAr,
+                          languageCode: languageCode,
                           userLat: userLocation?.lat,
                           userLng: userLocation?.lng,
                         ),
@@ -254,9 +234,8 @@ class _DoctorListScreenState extends ConsumerState<DoctorListScreen> {
                     padding: const EdgeInsets.all(GpsSpacing.md),
                     child: DiscoveryErrorView(
                       error: error,
-                      defaultTitle: 'Erreur de connexion',
-                      defaultMessage:
-                          'Impossible de charger la liste des spécialistes.',
+                      defaultTitle: l10n.errorGenericTitle,
+                      defaultMessage: l10n.discoveryDoctorsLoadError,
                       onRetry: () =>
                           ref.read(doctorListProvider.notifier).refresh(),
                     ),

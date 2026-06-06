@@ -95,7 +95,8 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
     final filters = ref.watch(searchFiltersNotifierProvider);
     final searchResultAsync = ref.watch(doctorSearchProvider);
     final userLocation = ref.watch(userLocationProvider).valueOrNull;
-    final isAr = Localizations.localeOf(context).languageCode == 'ar';
+    final languageCode = Localizations.localeOf(context).languageCode;
+    final isAr = languageCode == 'ar';
 
     return Scaffold(
       appBar: AppBar(
@@ -179,7 +180,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                     child: buildDoctorCardTile(
                       context: context,
                       doc: doc,
-                      isAr: isAr,
+                      languageCode: languageCode,
                       userLat: userLocation?.lat,
                       userLng: userLocation?.lng,
                     ),

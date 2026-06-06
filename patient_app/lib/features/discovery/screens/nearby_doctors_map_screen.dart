@@ -47,7 +47,8 @@ class _NearbyDoctorsMapScreenState
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final geoStateAsync = ref.watch(nearbyDoctorsProvider);
-    final isAr = Localizations.localeOf(context).languageCode == 'ar';
+    final languageCode = Localizations.localeOf(context).languageCode;
+    final isAr = languageCode == 'ar';
 
     return Scaffold(
       appBar: AppBar(
@@ -410,7 +411,7 @@ class _NearbyDoctorsMapScreenState
               child: buildDoctorCardTile(
                 context: context,
                 doc: _selectedDoctor!,
-                isAr: isAr,
+                languageCode: Localizations.localeOf(context).languageCode,
                 userLat: geoState.lat,
                 userLng: geoState.lng,
               ),

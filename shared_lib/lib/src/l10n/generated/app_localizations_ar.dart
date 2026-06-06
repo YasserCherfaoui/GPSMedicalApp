@@ -478,4 +478,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get geoUseWilayaCenter => 'استخدام مركز الولاية';
+
+  @override
+  String get discoveryAppBarTitle => 'MedNavigator';
+
+  @override
+  String get discoveryRecommendedTitle => 'أخصائيون موصى بهم';
+
+  @override
+  String get discoveryViewList => 'قائمة';
+
+  @override
+  String get discoveryViewMap => 'خريطة';
+
+  @override
+  String get discoveryDoctorsEmptyTitle => 'لم يتم العثور على طبيب';
+
+  @override
+  String get discoveryDoctorsEmptyMessage =>
+      'لا يوجد أخصائي مطابق في الوقت الحالي.';
+
+  @override
+  String get discoverySearchAction => 'بحث';
+
+  @override
+  String get discoveryDoctorsLoadError => 'تعذر تحميل قائمة الأخصائيين.';
+
+  @override
+  String get discoveryRateLimitTitle => 'طلبات كثيرة جداً';
+
+  @override
+  String discoveryRateLimitMessage(int seconds) {
+    return 'يرجى الانتظار $seconds ثانية قبل إعادة المحاولة.';
+  }
+
+  @override
+  String get doctorCardBookCta => 'حجز موعد';
+
+  @override
+  String get doctorCardTelehealth => 'استشارة عن بُعد';
 }

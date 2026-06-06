@@ -146,5 +146,17 @@
   "geoCommuneEmpty": "لم يتم العثور على بلدية.",
   "geoWilayasLoadError": "تعذر تحميل الولايات.",
   "geoCommunesLoadError": "تعذر تحميل البلديات.",
-  "geoUseWilayaCenter": "استخدام مركز الولاية"
+  "geoUseWilayaCenter": "استخدام مركز الولاية",
+  "discoveryAppBarTitle": "MedNavigator",
+  "discoveryRecommendedTitle": "أخصائيون موصى بهم",
+  "discoveryViewList": "قائمة",
+  "discoveryViewMap": "خريطة",
+  "discoveryDoctorsEmptyTitle": "لم يتم العثور على طبيب",
+  "discoveryDoctorsEmptyMessage": "لا يوجد أخصائي مطابق في الوقت الحالي.",
+  "discoverySearchAction": "بحث",
+  "discoveryDoctorsLoadError": "تعذر تحميل قائمة الأخصائيين.",
+  "discoveryRateLimitTitle": "طلبات كثيرة جداً",
+  "discoveryRateLimitMessage": "يرجى الانتظار {seconds} ثانية قبل إعادة المحاولة.",
+  "doctorCardBookCta": "حجز موعد",
+  "doctorCardTelehealth": "استشارة عن بُعد"
 }

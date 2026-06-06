@@ -168,6 +168,114 @@ void main() {
       expect(listState.doctors, hasLength(21));
       expect(listState.currentPage, 2);
       expect(listState.hasMore, isFalse);
+      expect(listState.isLoadingMore, isFalse);
+    });
+
+    test('refresh reloads page 1 and clears pagination', () async {
+      container.listen(doctorListProvider, (_, __) {});
+
+      dioAdapter.onGet(
+        '/doctors',
+        (server) => server.reply(200, (RequestOptions options) {
+          final page = options.queryParameters['page']?.toString();
+          if (page == '2') {
+            return {
+              'data': [
+                {'id': 'doc-20', 'full_name': 'Doctor 20', 'verified': true},
+              ],
+              'meta': {
+                'page': 2,
+                'page_size': 20,
+                'total': 21,
+                'total_pages': 2,
+              },
+            };
+          }
+          return {
+            'data': List.generate(
+              20,
+              (i) => {
+                'id': 'doc-$i',
+                'full_name': 'Doctor $i',
+                'verified': true,
+              },
+            ),
+            'meta': {
+              'page': 1,
+              'page_size': 20,
+              'total': 21,
+              'total_pages': 2,
+            },
+          };
+        }),
+      );
+
+      await container.read(doctorListProvider.future);
+      await container.read(doctorListProvider.notifier).loadNextPage();
+      expect(container.read(doctorListProvider).value!.doctors, hasLength(21));
+
+      await container.read(doctorListProvider.notifier).refresh();
+      final refreshed = await container.read(doctorListProvider.future);
+
+      expect(refreshed.doctors, hasLength(20));
+      expect(refreshed.currentPage, 1);
+      expect(refreshed.hasMore, isTrue);
+    });
+
+    test('loadNextPage ignores concurrent requests while loading more', () async {
+      container.listen(doctorListProvider, (_, __) {});
+
+      var pageTwoCalls = 0;
+      dioAdapter.onGet(
+        '/doctors',
+        (server) => server.reply(200, (RequestOptions options) {
+          final page = options.queryParameters['page']?.toString();
+          if (page == '2') {
+            pageTwoCalls++;
+            return {
+              'data': [
+                {'id': 'doc-20', 'full_name': 'Doctor 20', 'verified': true},
+              ],
+              'meta': {
+                'page': 2,
+                'page_size': 20,
+                'total': 21,
+                'total_pages': 2,
+              },
+            };
+          }
+          return {
+            'data': List.generate(
+              20,
+              (i) => {
+                'id': 'doc-$i',
+                'full_name': 'Doctor $i',
+                'verified': true,
+              },
+            ),
+            'meta': {
+              'page': 1,
+              'page_size': 20,
+              'total': 21,
+              'total_pages': 2,
+            },
+          };
+        }),
+      );
+
+      await container.read(doctorListProvider.future);
+
+      final notifier = container.read(doctorListProvider.notifier);
+      final first = notifier.loadNextPage();
+      expect(
+        container.read(doctorListProvider).value?.isLoadingMore,
+        isTrue,
+      );
+      final second = notifier.loadNextPage();
+      await Future.wait([first, second]);
+
+      expect(pageTwoCalls, 1);
+      expect(container.read(doctorListProvider).value!.doctors, hasLength(21));
     });
   });
 

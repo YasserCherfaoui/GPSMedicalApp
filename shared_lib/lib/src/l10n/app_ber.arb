@@ -146,5 +146,17 @@
   "geoCommuneEmpty": "Ulac tɣremt.",
   "geoWilayasLoadError": "Ur izmir ara ad d-kker timaliwin n tmnaḍin.",
   "geoCommunesLoadError": "Ur izmir ara ad d-kker tɣremiwin.",
-  "geoUseWilayaCenter": "Seqdec alemmas n tmnaḍt"
+  "geoUseWilayaCenter": "Seqdec alemmas n tmnaḍt",
+  "discoveryAppBarTitle": "MedNavigator",
+  "discoveryRecommendedTitle": "Iseɣyaden yettwassen",
+  "discoveryViewList": "Tabdart",
+  "discoveryViewMap": "Takarḍa",
+  "discoveryDoctorsEmptyTitle": "Ulac amussnaw",
+  "discoveryDoctorsEmptyMessage": "Ulac aseɣyad i d-yemṣadan akka tura.",
+  "discoverySearchAction": "Nadi",
+  "discoveryDoctorsLoadError": "Ur izmir ara ad d-yekker tabdart n yiseɣyaden.",
+  "discoveryRateLimitTitle": "Aṭas n tuttriwin",
+  "discoveryRateLimitMessage": "Rǧu {seconds} n tasinin uqbel ad tɛreḍ tikelt nniḍen.",
+  "doctorCardBookCta": "Awi-d ameẓlu",
+  "doctorCardTelehealth": "Asarag s tvidyu"
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/generated/app_localizations.dart';
 import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 import 'rating_display.dart';
@@ -46,6 +47,7 @@ class DoctorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final isRtl = Directionality.of(context) == TextDirection.rtl;
@@ -210,7 +212,7 @@ class DoctorCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 2),
                     Text(
-                      'Téléconsultation',
+                      l10n.doctorCardTelehealth,
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: colorScheme.primary,
                         fontWeight: FontWeight.bold,
@@ -234,7 +236,7 @@ class DoctorCard extends StatelessWidget {
                       ),
                     ),
                     onPressed: onBookPressed,
-                    child: const Text('Prendre RDV'),
+                    child: Text(l10n.doctorCardBookCta),
                   ),
                 ),
               ),

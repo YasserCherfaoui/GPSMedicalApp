@@ -3,12 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../utils/distance_utils.dart';
+import '../utils/specialty_display.dart';
 
-List<String> doctorSpecialtyLabels(Doctor doc, bool isAr) {
+List<String> doctorSpecialtyLabels(Doctor doc, String languageCode) {
   return doc.specialties
-          ?.map(
-            (s) => isAr ? (s.nameAr ?? s.nameFr ?? '') : (s.nameFr ?? ''),
-          )
+          ?.map((s) => specialtyDisplayName(s, languageCode))
           .where((n) => n.isNotEmpty)
           .toList() ??
       [];
@@ -17,12 +16,12 @@ List<String> doctorSpecialtyLabels(Doctor doc, bool isAr) {
 Widget buildDoctorCardTile({
   required BuildContext context,
   required Doctor doc,
-  required bool isAr,
+  required String languageCode,
   double? userLat,
   double? userLng,
   VoidCallback? onBookPressed,
 }) {
-  final labels = doctorSpecialtyLabels(doc, isAr);
+  final labels = doctorSpecialtyLabels(doc, languageCode);
   final distanceKm = doc is DoctorWithDistance && doc.distanceKm != null
       ? doc.distanceKm
       : (userLat != null && userLng != null

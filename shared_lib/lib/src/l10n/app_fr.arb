@@ -188,5 +188,24 @@
   "geoCommuneEmpty": "Aucune commune trouvée.",
   "geoWilayasLoadError": "Impossible de charger les wilayas.",
   "geoCommunesLoadError": "Impossible de charger les communes.",
-  "geoUseWilayaCenter": "Utiliser le centre de la wilaya"
+  "geoUseWilayaCenter": "Utiliser le centre de la wilaya",
+  "discoveryAppBarTitle": "MedNavigator",
+  "discoveryRecommendedTitle": "Spécialistes recommandés",
+  "discoveryViewList": "Liste",
+  "discoveryViewMap": "Carte",
+  "discoveryDoctorsEmptyTitle": "Aucun médecin trouvé",
+  "discoveryDoctorsEmptyMessage": "Aucun spécialiste ne correspond pour le moment.",
+  "discoverySearchAction": "Rechercher",
+  "discoveryDoctorsLoadError": "Impossible de charger la liste des spécialistes.",
+  "discoveryRateLimitTitle": "Trop de requêtes",
+  "discoveryRateLimitMessage": "Veuillez patienter {seconds} seconde(s) avant de réessayer.",
+  "@discoveryRateLimitMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "doctorCardBookCta": "Prendre RDV",
+  "doctorCardTelehealth": "Téléconsultation"
 }

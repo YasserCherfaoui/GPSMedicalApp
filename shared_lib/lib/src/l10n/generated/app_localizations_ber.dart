@@ -483,4 +483,44 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get geoUseWilayaCenter => 'Seqdec alemmas n tmnaḍt';
+
+  @override
+  String get discoveryAppBarTitle => 'MedNavigator';
+
+  @override
+  String get discoveryRecommendedTitle => 'Iseɣyaden yettwassen';
+
+  @override
+  String get discoveryViewList => 'Tabdart';
+
+  @override
+  String get discoveryViewMap => 'Takarḍa';
+
+  @override
+  String get discoveryDoctorsEmptyTitle => 'Ulac amussnaw';
+
+  @override
+  String get discoveryDoctorsEmptyMessage =>
+      'Ulac aseɣyad i d-yemṣadan akka tura.';
+
+  @override
+  String get discoverySearchAction => 'Nadi';
+
+  @override
+  String get discoveryDoctorsLoadError =>
+      'Ur izmir ara ad d-yekker tabdart n yiseɣyaden.';
+
+  @override
+  String get discoveryRateLimitTitle => 'Aṭas n tuttriwin';
+
+  @override
+  String discoveryRateLimitMessage(int seconds) {
+    return 'Rǧu $seconds n tasinin uqbel ad tɛreḍ tikelt nniḍen.';
+  }
+
+  @override
+  String get doctorCardBookCta => 'Awi-d ameẓlu';
+
+  @override
+  String get doctorCardTelehealth => 'Asarag s tvidyu';
 }

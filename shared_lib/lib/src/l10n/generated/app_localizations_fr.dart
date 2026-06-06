@@ -489,4 +489,44 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get geoUseWilayaCenter => 'Utiliser le centre de la wilaya';
+
+  @override
+  String get discoveryAppBarTitle => 'MedNavigator';
+
+  @override
+  String get discoveryRecommendedTitle => 'Spécialistes recommandés';
+
+  @override
+  String get discoveryViewList => 'Liste';
+
+  @override
+  String get discoveryViewMap => 'Carte';
+
+  @override
+  String get discoveryDoctorsEmptyTitle => 'Aucun médecin trouvé';
+
+  @override
+  String get discoveryDoctorsEmptyMessage =>
+      'Aucun spécialiste ne correspond pour le moment.';
+
+  @override
+  String get discoverySearchAction => 'Rechercher';
+
+  @override
+  String get discoveryDoctorsLoadError =>
+      'Impossible de charger la liste des spécialistes.';
+
+  @override
+  String get discoveryRateLimitTitle => 'Trop de requêtes';
+
+  @override
+  String discoveryRateLimitMessage(int seconds) {
+    return 'Veuillez patienter $seconds seconde(s) avant de réessayer.';
+  }
+
+  @override
+  String get doctorCardBookCta => 'Prendre RDV';
+
+  @override
+  String get doctorCardTelehealth => 'Téléconsultation';
 }

@@ -11,12 +11,30 @@ class DoctorListState {
     required this.currentPage,
     required this.hasMore,
     this.total = 0,
+    this.isLoadingMore = false,
   });
 
   final List<Doctor> doctors;
   final int currentPage;
   final bool hasMore;
   final int total;
+  final bool isLoadingMore;
+
+  DoctorListState copyWith({
+    List<Doctor>? doctors,
+    int? currentPage,
+    bool? hasMore,
+    int? total,
+    bool? isLoadingMore,
+  }) {
+    return DoctorListState(
+      doctors: doctors ?? this.doctors,
+      currentPage: currentPage ?? this.currentPage,
+      hasMore: hasMore ?? this.hasMore,
+      total: total ?? this.total,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
+    );
+  }
 }
 
 @riverpod
@@ -45,10 +63,15 @@ class DoctorList extends _$DoctorList {
 
   Future<void> loadNextPage() async {
     final current = state.value;
-    if (current == null || !current.hasMore) return;
-    if (state.isLoading || state.isRefreshing || state.hasError) return;
+    if (current == null ||
+        !current.hasMore ||
+        current.isLoadingMore ||
+        state.isLoading ||
+        state.isRefreshing) {
+      return;
+    }
 
-    state = AsyncValue.data(current);
+    state = AsyncValue.data(current.copyWith(isLoadingMore: true));
 
     final nextPageData = await AsyncValue.guard(() async {
       final nextPage = current.currentPage + 1;

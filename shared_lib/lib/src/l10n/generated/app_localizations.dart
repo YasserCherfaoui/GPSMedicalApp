@@ -981,6 +981,78 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Utiliser le centre de la wilaya'**
   String get geoUseWilayaCenter;
+
+  /// No description provided for @discoveryAppBarTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'MedNavigator'**
+  String get discoveryAppBarTitle;
+
+  /// No description provided for @discoveryRecommendedTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Spécialistes recommandés'**
+  String get discoveryRecommendedTitle;
+
+  /// No description provided for @discoveryViewList.
+  ///
+  /// In fr, this message translates to:
+  /// **'Liste'**
+  String get discoveryViewList;
+
+  /// No description provided for @discoveryViewMap.
+  ///
+  /// In fr, this message translates to:
+  /// **'Carte'**
+  String get discoveryViewMap;
+
+  /// No description provided for @discoveryDoctorsEmptyTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun médecin trouvé'**
+  String get discoveryDoctorsEmptyTitle;
+
+  /// No description provided for @discoveryDoctorsEmptyMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun spécialiste ne correspond pour le moment.'**
+  String get discoveryDoctorsEmptyMessage;
+
+  /// No description provided for @discoverySearchAction.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher'**
+  String get discoverySearchAction;
+
+  /// No description provided for @discoveryDoctorsLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger la liste des spécialistes.'**
+  String get discoveryDoctorsLoadError;
+
+  /// No description provided for @discoveryRateLimitTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trop de requêtes'**
+  String get discoveryRateLimitTitle;
+
+  /// No description provided for @discoveryRateLimitMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Veuillez patienter {seconds} seconde(s) avant de réessayer.'**
+  String discoveryRateLimitMessage(int seconds);
+
+  /// No description provided for @doctorCardBookCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prendre RDV'**
+  String get doctorCardBookCta;
+
+  /// No description provided for @doctorCardTelehealth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléconsultation'**
+  String get doctorCardTelehealth;
 }
 
 class _AppLocalizationsDelegate
