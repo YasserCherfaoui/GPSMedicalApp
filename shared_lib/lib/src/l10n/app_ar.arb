@@ -159,6 +159,8 @@
   "discoveryRateLimitMessage": "يرجى الانتظار {seconds} ثانية قبل إعادة المحاولة.",
   "doctorCardBookCta": "حجز موعد",
   "doctorCardTelehealth": "استشارة عن بُعد",
+  "doctorCardVerifiedBadge": "معتمد",
+  "doctorCardMatchPercent": "{percent}% توافق",
   "searchHint": "ابحث عن طبيب أو تخصص…",
   "searchEmptyTitle": "لا يوجد طبيب مطابق",
   "searchEmptyMessage": "هل تريد توسيع المنطقة أو تعديل الفلاتر؟",

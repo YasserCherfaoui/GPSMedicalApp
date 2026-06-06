@@ -208,6 +208,15 @@
   },
   "doctorCardBookCta": "Prendre RDV",
   "doctorCardTelehealth": "Téléconsultation",
+  "doctorCardVerifiedBadge": "Agréé",
+  "doctorCardMatchPercent": "{percent}% de compatibilité",
+  "@doctorCardMatchPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
   "searchHint": "Rechercher un médecin, spécialité…",
   "searchEmptyTitle": "Aucun médecin ne correspond",
   "searchEmptyMessage": "Élargir la zone ou modifier vos filtres ?",

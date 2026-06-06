@@ -159,6 +159,8 @@
   "discoveryRateLimitMessage": "Rǧu {seconds} n tasinin uqbel ad tɛreḍ tikelt nniḍen.",
   "doctorCardBookCta": "Awi-d ameẓlu",
   "doctorCardTelehealth": "Asarag s tvidyu",
+  "doctorCardVerifiedBadge": "Yettwasen",
+  "doctorCardMatchPercent": "{percent}% umsaɣ",
   "searchHint": "Nadi amussnaw neɣ tamlilt…",
   "searchEmptyTitle": "Ulac amussnaw i d-yemṣadan",
   "searchEmptyMessage": "Ssemɣer tamnaḍt neɣ beddel imyafra?",

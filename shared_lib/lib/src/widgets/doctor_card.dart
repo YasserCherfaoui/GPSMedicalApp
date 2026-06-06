@@ -6,6 +6,15 @@ import '../theme/gps_spacing.dart';
 import 'rating_display.dart';
 import 'specialty_chip.dart';
 
+/// Layout density for [DoctorCard].
+enum DoctorCardVariant {
+  /// Full list row with fee, telehealth, and optional favorite action.
+  list,
+
+  /// Compact horizontal card for map bottom sheets.
+  map,
+}
+
 /// Renders a premium card summarizing a doctor's credentials, rating, and distance.
 class DoctorCard extends StatelessWidget {
   const DoctorCard({
@@ -25,6 +34,7 @@ class DoctorCard extends StatelessWidget {
     this.onFavoritePressed,
     this.onTap,
     this.specialtyChips,
+    this.variant = DoctorCardVariant.list,
     super.key,
   });
 
@@ -44,9 +54,181 @@ class DoctorCard extends StatelessWidget {
   final VoidCallback? onFavoritePressed;
   final VoidCallback? onTap;
   final List<String>? specialtyChips;
+  final DoctorCardVariant variant;
 
   @override
   Widget build(BuildContext context) {
+    if (variant == DoctorCardVariant.map) {
+      return _buildMapCard(context);
+    }
+    return _buildListCard(context);
+  }
+
+  Widget _buildMapCard(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
+    final photoSize = 80.0;
+
+    final avatarImage = photoUrl != null && photoUrl!.isNotEmpty
+        ? NetworkImage(photoUrl!) as ImageProvider
+        : const AssetImage('assets/images/default_avatar.png');
+
+    final specialtyLine = _specialtyDistanceLine();
+
+    final photoBlock = Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          width: photoSize,
+          height: photoSize,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(GpsRadii.lg),
+            image: DecorationImage(
+              image: avatarImage,
+              fit: BoxFit.cover,
+              onError: (exception, stackTrace) {},
+            ),
+            color: colorScheme.surfaceContainerHigh,
+          ),
+        ),
+        if (isVerified)
+          PositionedDirectional(
+            bottom: -4,
+            end: -4,
+            child: Container(
+              padding: const EdgeInsets.all(2),
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.verified,
+                color: colorScheme.primary,
+                size: 16,
+              ),
+            ),
+          ),
+      ],
+    );
+
+    final infoBlock = Expanded(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              if (isVerified) ...[
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: GpsSpacing.sm,
+                    vertical: 2,
+                  ),
+                  decoration: BoxDecoration(
+                    color: colorScheme.secondaryContainer,
+                    borderRadius: BorderRadius.circular(GpsRadii.sm),
+                  ),
+                  child: Text(
+                    l10n.doctorCardVerifiedBadge,
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: colorScheme.onSecondaryContainer,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: GpsSpacing.sm),
+              ],
+              RatingDisplay(rating: rating, count: reviewCount),
+            ],
+          ),
+          const SizedBox(height: GpsSpacing.xs),
+          Text(
+            name,
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          if (specialtyLine.isNotEmpty) ...[
+            const SizedBox(height: 2),
+            Text(
+              specialtyLine,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+          const SizedBox(height: GpsSpacing.sm),
+          Row(
+            children: [
+              if (matchPercentage != null) ...[
+                Text(
+                  l10n.doctorCardMatchPercent(matchPercentage!),
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Spacer(),
+              ] else
+                const Spacer(),
+              FilledButton(
+                style: FilledButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: GpsSpacing.md,
+                    vertical: GpsSpacing.xs,
+                  ),
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(GpsRadii.full),
+                  ),
+                ),
+                onPressed: onBookPressed,
+                child: Text(l10n.doctorCardBookCta),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+
+    final rowChildren = isRtl
+        ? [infoBlock, const SizedBox(width: GpsSpacing.md), photoBlock]
+        : [photoBlock, const SizedBox(width: GpsSpacing.md), infoBlock];
+
+    final card = Card(
+      child: Padding(
+        padding: const EdgeInsets.all(GpsSpacing.md),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: rowChildren,
+        ),
+      ),
+    );
+
+    if (onTap == null) return card;
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(GpsRadii.lg),
+      child: card,
+    );
+  }
+
+  Widget _buildListCard(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -152,7 +334,7 @@ class DoctorCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(GpsRadii.full),
                   ),
                   child: Text(
-                    'Match $matchPercentage%',
+                    l10n.doctorCardMatchPercent(matchPercentage!),
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: colorScheme.onSecondaryContainer,
                       fontWeight: FontWeight.bold,
@@ -289,5 +471,16 @@ class DoctorCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(GpsRadii.lg),
       child: card,
     );
+  }
+
+  String _specialtyDistanceLine() {
+    final parts = <String>[];
+    if (specialty.isNotEmpty) parts.add(specialty);
+    if (distanceKm != null) {
+      parts.add('${distanceKm!.toStringAsFixed(1)} km');
+    } else if (city.isNotEmpty) {
+      parts.add(city);
+    }
+    return parts.join(' • ');
   }
 }

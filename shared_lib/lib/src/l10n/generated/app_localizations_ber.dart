@@ -525,6 +525,14 @@ class AppLocalizationsBer extends AppLocalizations {
   String get doctorCardTelehealth => 'Asarag s tvidyu';
 
   @override
+  String get doctorCardVerifiedBadge => 'Yettwasen';
+
+  @override
+  String doctorCardMatchPercent(int percent) {
+    return '$percent% umsaɣ';
+  }
+
+  @override
   String get searchHint => 'Nadi amussnaw neɣ tamlilt…';
 
   @override

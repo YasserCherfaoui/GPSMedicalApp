@@ -531,6 +531,14 @@ class AppLocalizationsFr extends AppLocalizations {
   String get doctorCardTelehealth => 'Téléconsultation';
 
   @override
+  String get doctorCardVerifiedBadge => 'Agréé';
+
+  @override
+  String doctorCardMatchPercent(int percent) {
+    return '$percent% de compatibilité';
+  }
+
+  @override
   String get searchHint => 'Rechercher un médecin, spécialité…';
 
   @override

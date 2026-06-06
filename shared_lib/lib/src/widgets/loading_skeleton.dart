@@ -4,6 +4,8 @@ import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 
 /// Shimmer-style loading placeholder for lists and cards.
+///
+/// Also exported as [LoadingShimmer] (Phase 2 task naming).
 class LoadingSkeleton extends StatefulWidget {
   const LoadingSkeleton({
     super.key,
@@ -70,3 +72,6 @@ class _LoadingSkeletonState extends State<LoadingSkeleton>
     );
   }
 }
+
+/// Alias for [LoadingSkeleton] used in Phase 2 discovery screens.
+typedef LoadingShimmer = LoadingSkeleton;

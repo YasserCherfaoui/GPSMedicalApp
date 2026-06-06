@@ -1054,6 +1054,18 @@ abstract class AppLocalizations {
   /// **'Téléconsultation'**
   String get doctorCardTelehealth;
 
+  /// No description provided for @doctorCardVerifiedBadge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Agréé'**
+  String get doctorCardVerifiedBadge;
+
+  /// No description provided for @doctorCardMatchPercent.
+  ///
+  /// In fr, this message translates to:
+  /// **'{percent}% de compatibilité'**
+  String doctorCardMatchPercent(int percent);
+
   /// No description provided for @searchHint.
   ///
   /// In fr, this message translates to:

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
-Widget _wrap(Widget child, {ThemeData? theme}) {
+Widget _wrap(Widget child, {ThemeData? theme, Locale locale = const Locale('fr')}) {
   return MaterialApp(
     theme: theme ?? GpsTheme.light(),
+    localizationsDelegates: AppLocalizations.localizationsDelegates,
+    supportedLocales: AppLocalizations.supportedLocales,
+    locale: locale,
     home: Scaffold(body: SingleChildScrollView(child: child)),
   );
 }
@@ -60,6 +63,9 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: GpsTheme.light(),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: const Locale('fr'),
           home: Builder(
             builder: (context) => Scaffold(
               body: ElevatedButton(
@@ -98,6 +104,13 @@ void main() {
   group('LoadingSkeleton', () {
     testWidgets('renders placeholder box', (tester) async {
       await tester.pumpWidget(_wrap(const LoadingSkeleton(height: 40)));
+      expect(find.byType(LoadingSkeleton), findsOneWidget);
+    });
+  });
+
+  group('LoadingShimmer', () {
+    testWidgets('is an alias for LoadingSkeleton', (tester) async {
+      await tester.pumpWidget(_wrap(const LoadingShimmer.card()));
       expect(find.byType(LoadingSkeleton), findsOneWidget);
     });
   });
@@ -150,9 +163,7 @@ void main() {
   group('RatingDisplay', () {
     testWidgets('renders rating average and count', (tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: RatingDisplay(rating: 4.8, count: 12)),
-        ),
+        _wrap(const RatingDisplay(rating: 4.8, count: 12)),
       );
       expect(find.text('4.8'), findsOneWidget);
       expect(find.text('(12)'), findsOneWidget);
@@ -160,32 +171,32 @@ void main() {
   });
 
   group('DoctorCard', () {
-    testWidgets('renders doctor details and handles actions', (tester) async {
+    testWidgets('list variant renders doctor details and handles actions', (
+      tester,
+    ) async {
       var booked = false;
       var favorited = false;
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: DoctorCard(
-              name: 'Dr. Karim Benali',
-              specialty: 'Cardiologie',
-              rating: 4.9,
-              reviewCount: 42,
-              city: 'Alger',
-              fee: 2500,
-              isVerified: true,
-              offersTelehealth: true,
-              matchPercentage: 95,
-              onBookPressed: () => booked = true,
-              onFavoritePressed: () => favorited = true,
-            ),
+        _wrap(
+          DoctorCard(
+            name: 'Dr. Karim Benali',
+            specialty: 'Cardiologie',
+            rating: 4.9,
+            reviewCount: 42,
+            city: 'Alger',
+            fee: 2500,
+            isVerified: true,
+            offersTelehealth: true,
+            matchPercentage: 95,
+            onBookPressed: () => booked = true,
+            onFavoritePressed: () => favorited = true,
           ),
         ),
       );
 
       expect(find.text('Dr. Karim Benali'), findsOneWidget);
       expect(find.text('Cardiologie'), findsOneWidget);
-      expect(find.text('Match 95%'), findsOneWidget);
+      expect(find.text('95% de compatibilité'), findsOneWidget);
       expect(find.text('2500 DZD'), findsOneWidget);
       expect(find.text('Téléconsultation'), findsOneWidget);
       expect(find.byIcon(Icons.verified), findsOneWidget);
@@ -195,6 +206,56 @@ void main() {
 
       await tester.tap(find.byIcon(Icons.favorite_border));
       expect(favorited, isTrue);
+    });
+
+    testWidgets('list variant renders specialty chips', (tester) async {
+      await tester.pumpWidget(
+        _wrap(
+          DoctorCard(
+            name: 'Dr. A',
+            specialty: 'Cardiologie',
+            specialtyChips: const ['Cardiologie', 'Médecine interne'],
+            rating: 4.0,
+            reviewCount: 1,
+            city: 'Alger',
+            fee: 2000,
+            onBookPressed: () {},
+          ),
+        ),
+      );
+
+      expect(find.text('Cardiologie'), findsOneWidget);
+      expect(find.text('Médecine interne'), findsOneWidget);
+    });
+
+    testWidgets('map variant renders compact card without favorite', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        _wrap(
+          DoctorCard(
+            variant: DoctorCardVariant.map,
+            name: 'Dr. Amira S.',
+            specialty: 'Cardiologie',
+            rating: 4.9,
+            reviewCount: 12,
+            city: 'Alger',
+            fee: 2500,
+            distanceKm: 2.1,
+            isVerified: true,
+            matchPercentage: 96,
+            onBookPressed: () {},
+            onTap: () {},
+          ),
+        ),
+      );
+
+      expect(find.text('Dr. Amira S.'), findsOneWidget);
+      expect(find.text('Agréé'), findsOneWidget);
+      expect(find.textContaining('Cardiologie • 2.1 km'), findsOneWidget);
+      expect(find.text('96% de compatibilité'), findsOneWidget);
+      expect(find.text('2500 DZD'), findsNothing);
+      expect(find.byIcon(Icons.favorite_border), findsNothing);
     });
   });
 }

@@ -421,6 +421,7 @@ class _NearbyDoctorsMapScreenState
                 languageCode: languageCode,
                 userLat: geoState.lat,
                 userLng: geoState.lng,
+                variant: DoctorCardVariant.map,
               ),
             ),
           ),

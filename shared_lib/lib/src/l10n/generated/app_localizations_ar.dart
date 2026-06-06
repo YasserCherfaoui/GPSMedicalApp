@@ -519,6 +519,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get doctorCardTelehealth => 'استشارة عن بُعد';
 
   @override
+  String get doctorCardVerifiedBadge => 'معتمد';
+
+  @override
+  String doctorCardMatchPercent(int percent) {
+    return '$percent% توافق';
+  }
+
+  @override
   String get searchHint => 'ابحث عن طبيب أو تخصص…';
 
   @override

@@ -20,6 +20,7 @@ Widget buildDoctorCardTile({
   double? userLat,
   double? userLng,
   VoidCallback? onBookPressed,
+  DoctorCardVariant variant = DoctorCardVariant.list,
 }) {
   final labels = doctorSpecialtyLabels(doc, languageCode);
   final distanceKm = doc is DoctorWithDistance && doc.distanceKm != null
@@ -33,6 +34,7 @@ Widget buildDoctorCardTile({
             : null);
 
   return DoctorCard(
+    variant: variant,
     name: '${doc.title ?? 'Dr.'} ${doc.fullName ?? ''}',
     specialty: labels.firstOrNull ?? '',
     specialtyChips: labels.length > 1 ? labels : null,
@@ -51,6 +53,7 @@ Widget buildDoctorCardTile({
     onBookPressed:
         onBookPressed ??
         () => context.push('${GpsRoutes.doctorDetail(doc.id ?? '')}?book=true'),
-    onFavoritePressed: () {},
+    onFavoritePressed:
+        variant == DoctorCardVariant.list ? () {} : null,
   );
 }
