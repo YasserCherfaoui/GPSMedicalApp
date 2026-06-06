@@ -89,4 +89,30 @@ void main() {
 
     expect(networkCalls, 2);
   });
+
+  test('findCommuneById resolves commune using wilaya hint from suggest label', () async {
+    const communeId = '5fcffb1c-ad63-4de0-b594-9f3a8c8f1a2b';
+
+    dioAdapter.onGet('/geo/wilayas', (server) {
+      return server.reply(200, [wilayaJson()]);
+    });
+    dioAdapter.onGet('/geo/wilayas/16/communes', (server) {
+      return server.reply(200, [
+        communeJson(
+          id: communeId,
+          nameFr: 'Hydra',
+          nameAr: 'حيدرة',
+        ),
+      ]);
+    });
+
+    final found = await repository.findCommuneById(
+      communeId,
+      wilayaNameHint: 'Alger',
+    );
+
+    expect(found?.id, communeId);
+    expect(found?.wilayaCode, '16');
+    expect(found?.nameFr, 'Hydra');
+  });
 }

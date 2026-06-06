@@ -207,5 +207,52 @@
     }
   },
   "doctorCardBookCta": "Prendre RDV",
-  "doctorCardTelehealth": "Téléconsultation"
+  "doctorCardTelehealth": "Téléconsultation",
+  "searchHint": "Rechercher un médecin, spécialité…",
+  "searchEmptyTitle": "Aucun médecin ne correspond",
+  "searchEmptyMessage": "Élargir la zone ou modifier vos filtres ?",
+  "searchClearFilters": "Effacer les filtres",
+  "searchLoadError": "Une erreur s'est produite lors de la recherche.",
+  "searchSuggestionsEmpty": "Aucune suggestion.",
+  "searchSuggestionsLoadError": "Erreur lors du chargement des suggestions.",
+  "searchSuggestionsSpecialties": "Spécialités",
+  "searchSuggestionsDoctors": "Médecins",
+  "searchSuggestionsLocations": "Localisations",
+  "searchFiltersTitle": "Filtres de recherche",
+  "searchFiltersReset": "Réinitialiser",
+  "searchFiltersApply": "Appliquer les filtres",
+  "searchFilterSpecialty": "Spécialité",
+  "searchFilterSpecialtyAll": "Toutes les spécialités",
+  "searchFilterLocation": "Localisation (Wilaya / Commune)",
+  "searchFilterLocationAll": "Toute l'Algérie",
+  "searchFilterGender": "Genre",
+  "searchFilterGenderAny": "Tous",
+  "searchFilterGenderMale": "Homme",
+  "searchFilterGenderFemale": "Femme",
+  "searchFilterLanguages": "Langues parlées",
+  "searchFilterMaxFee": "Tarif maximum",
+  "searchFilterMaxFeeValue": "{fee} DZD",
+  "@searchFilterMaxFeeValue": {
+    "placeholders": {
+      "fee": {
+        "type": "int"
+      }
+    }
+  },
+  "searchFilterAvailability": "Disponibilité",
+  "searchFilterAvailabilityAll": "Toutes",
+  "searchFilterAvailabilityToday": "Aujourd'hui",
+  "searchFilterAvailability3Days": "3 jours",
+  "searchFilterAvailability1Week": "1 semaine",
+  "searchFilterAvailability1Month": "1 mois",
+  "searchFilterTelehealth": "Téléconsultation disponible",
+  "searchFilterInsurance": "Assurances acceptées",
+  "searchFilterInsuranceCnas": "Conventionné CNAS",
+  "searchFilterInsuranceCasnos": "Conventionné CASNOS",
+  "searchFilterSort": "Trier par",
+  "searchFilterSortRelevance": "Pertinence",
+  "searchFilterSortRating": "Note la plus haute",
+  "searchFilterSortFeeAsc": "Tarif croissant",
+  "searchFilterSortFeeDesc": "Tarif décroissant",
+  "searchFilterSortDistance": "Distance croissante"
 }

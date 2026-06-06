@@ -280,6 +280,56 @@ void main() {
   });
 
   group('DoctorSearch Provider and Filters', () {
+    test('paginates search results incrementally', () async {
+      container.listen(doctorSearchProvider, (_, __) {});
+
+      dioAdapter.onGet(
+        '/search/doctors',
+        (server) => server.reply(200, (RequestOptions options) {
+          final page = options.queryParameters['page']?.toString();
+          if (page == '2') {
+            return {
+              'data': [
+                {'id': 'doc-20', 'full_name': 'Doctor 20', 'verified': true},
+              ],
+              'meta': {
+                'page': 2,
+                'page_size': 20,
+                'total': 21,
+                'total_pages': 2,
+              },
+            };
+          }
+          return {
+            'data': List.generate(
+              20,
+              (i) => {
+                'id': 'doc-$i',
+                'full_name': 'Doctor $i',
+                'verified': true,
+              },
+            ),
+            'meta': {
+              'page': 1,
+              'page_size': 20,
+              'total': 21,
+              'total_pages': 2,
+            },
+          };
+        }),
+      );
+
+      var state = await container.read(doctorSearchProvider.future);
+      expect(state.doctors, hasLength(20));
+      expect(state.hasMore, isTrue);
+
+      await container.read(doctorSearchProvider.notifier).loadNextPage();
+      state = container.read(doctorSearchProvider).value!;
+      expect(state.doctors, hasLength(21));
+      expect(state.currentPage, 2);
+      expect(state.isLoadingMore, isFalse);
+    });
+
     test('serializes search filters correctly', () async {
       // Listen to the provider to keep it alive (prevent auto-dispose)
       container.listen(doctorSearchProvider, (_, __) {});

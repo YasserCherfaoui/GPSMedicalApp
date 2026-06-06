@@ -523,4 +523,126 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get doctorCardTelehealth => 'Asarag s tvidyu';
+
+  @override
+  String get searchHint => 'Nadi amussnaw neɣ tamlilt…';
+
+  @override
+  String get searchEmptyTitle => 'Ulac amussnaw i d-yemṣadan';
+
+  @override
+  String get searchEmptyMessage => 'Ssemɣer tamnaḍt neɣ beddel imyafra?';
+
+  @override
+  String get searchClearFilters => 'Sfeḍ imyafra';
+
+  @override
+  String get searchLoadError => 'Tuccḍa deg unadi.';
+
+  @override
+  String get searchSuggestionsEmpty => 'Ulac isumar.';
+
+  @override
+  String get searchSuggestionsLoadError => 'Ur izmir ara ad d-kker isumar.';
+
+  @override
+  String get searchSuggestionsSpecialties => 'Timaliwin';
+
+  @override
+  String get searchSuggestionsDoctors => 'Imussnawen';
+
+  @override
+  String get searchSuggestionsLocations => 'Idiganen';
+
+  @override
+  String get searchFiltersTitle => 'Imyafra n unadi';
+
+  @override
+  String get searchFiltersReset => 'Ales asenker';
+
+  @override
+  String get searchFiltersApply => 'Snes imyafra';
+
+  @override
+  String get searchFilterSpecialty => 'Tamlilt';
+
+  @override
+  String get searchFilterSpecialtyAll => 'Akken ma yella timaliwin';
+
+  @override
+  String get searchFilterLocation => 'Adig (Tamnaḍt / Tɣremt)';
+
+  @override
+  String get searchFilterLocationAll => 'Akken ma yella Lezzayer';
+
+  @override
+  String get searchFilterGender => 'Taswit';
+
+  @override
+  String get searchFilterGenderAny => 'Akken ma yella';
+
+  @override
+  String get searchFilterGenderMale => 'Amarg';
+
+  @override
+  String get searchFilterGenderFemale => 'Unti';
+
+  @override
+  String get searchFilterLanguages => 'Tutlayin';
+
+  @override
+  String get searchFilterMaxFee => 'Tasfart tafellayt';
+
+  @override
+  String searchFilterMaxFeeValue(int fee) {
+    return '$fee DZD';
+  }
+
+  @override
+  String get searchFilterAvailability => 'Tili';
+
+  @override
+  String get searchFilterAvailabilityAll => 'Akken ma yella';
+
+  @override
+  String get searchFilterAvailabilityToday => 'Ass-a';
+
+  @override
+  String get searchFilterAvailability3Days => '3 wussan';
+
+  @override
+  String get searchFilterAvailability1Week => '1 dduṛt';
+
+  @override
+  String get searchFilterAvailability1Month => '1 ayyur';
+
+  @override
+  String get searchFilterTelehealth => 'Asarag s tvidyu yella';
+
+  @override
+  String get searchFilterInsurance => 'Tasekla yettwafen';
+
+  @override
+  String get searchFilterInsuranceCnas => 'CNAS yettwaf';
+
+  @override
+  String get searchFilterInsuranceCasnos => 'CASNOS yettwaf';
+
+  @override
+  String get searchFilterSort => 'Smizzwer s';
+
+  @override
+  String get searchFilterSortRelevance => 'Aɣbalu';
+
+  @override
+  String get searchFilterSortRating => 'Tazmert tameqqrant';
+
+  @override
+  String get searchFilterSortFeeAsc => 'Tasfart s ugnin';
+
+  @override
+  String get searchFilterSortFeeDesc => 'Tasfart s uznin';
+
+  @override
+  String get searchFilterSortDistance => 'Amasa s ugnin';
 }

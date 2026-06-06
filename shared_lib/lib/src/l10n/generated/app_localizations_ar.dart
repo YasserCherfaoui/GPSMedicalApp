@@ -517,4 +517,126 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get doctorCardTelehealth => 'استشارة عن بُعد';
+
+  @override
+  String get searchHint => 'ابحث عن طبيب أو تخصص…';
+
+  @override
+  String get searchEmptyTitle => 'لا يوجد طبيب مطابق';
+
+  @override
+  String get searchEmptyMessage => 'هل تريد توسيع المنطقة أو تعديل الفلاتر؟';
+
+  @override
+  String get searchClearFilters => 'مسح الفلاتر';
+
+  @override
+  String get searchLoadError => 'حدث خطأ أثناء البحث.';
+
+  @override
+  String get searchSuggestionsEmpty => 'لا توجد اقتراحات.';
+
+  @override
+  String get searchSuggestionsLoadError => 'تعذر تحميل الاقتراحات.';
+
+  @override
+  String get searchSuggestionsSpecialties => 'التخصصات';
+
+  @override
+  String get searchSuggestionsDoctors => 'الأطباء';
+
+  @override
+  String get searchSuggestionsLocations => 'المواقع';
+
+  @override
+  String get searchFiltersTitle => 'فلاتر البحث';
+
+  @override
+  String get searchFiltersReset => 'إعادة الضبط';
+
+  @override
+  String get searchFiltersApply => 'تطبيق الفلاتر';
+
+  @override
+  String get searchFilterSpecialty => 'التخصص';
+
+  @override
+  String get searchFilterSpecialtyAll => 'كل التخصصات';
+
+  @override
+  String get searchFilterLocation => 'الموقع (ولاية / بلدية)';
+
+  @override
+  String get searchFilterLocationAll => 'كل الجزائر';
+
+  @override
+  String get searchFilterGender => 'الجنس';
+
+  @override
+  String get searchFilterGenderAny => 'الكل';
+
+  @override
+  String get searchFilterGenderMale => 'ذكر';
+
+  @override
+  String get searchFilterGenderFemale => 'أنثى';
+
+  @override
+  String get searchFilterLanguages => 'اللغات المتحدثة';
+
+  @override
+  String get searchFilterMaxFee => 'الحد الأقصى للأتعاب';
+
+  @override
+  String searchFilterMaxFeeValue(int fee) {
+    return '$fee دج';
+  }
+
+  @override
+  String get searchFilterAvailability => 'التوفر';
+
+  @override
+  String get searchFilterAvailabilityAll => 'الكل';
+
+  @override
+  String get searchFilterAvailabilityToday => 'اليوم';
+
+  @override
+  String get searchFilterAvailability3Days => '3 أيام';
+
+  @override
+  String get searchFilterAvailability1Week => 'أسبوع';
+
+  @override
+  String get searchFilterAvailability1Month => 'شهر';
+
+  @override
+  String get searchFilterTelehealth => 'استشارة عن بُعد متاحة';
+
+  @override
+  String get searchFilterInsurance => 'التأمينات المقبولة';
+
+  @override
+  String get searchFilterInsuranceCnas => 'مقبول CNAS';
+
+  @override
+  String get searchFilterInsuranceCasnos => 'مقبول CASNOS';
+
+  @override
+  String get searchFilterSort => 'ترتيب حسب';
+
+  @override
+  String get searchFilterSortRelevance => 'الأكثر صلة';
+
+  @override
+  String get searchFilterSortRating => 'أعلى تقييم';
+
+  @override
+  String get searchFilterSortFeeAsc => 'أتعاب تصاعدية';
+
+  @override
+  String get searchFilterSortFeeDesc => 'أتعاب تنازلية';
+
+  @override
+  String get searchFilterSortDistance => 'المسافة تصاعدياً';
 }

@@ -43,6 +43,72 @@ class GeoRepository {
     _communesCache.remove(wilayaCode);
   }
 
+  Commune? findCommuneInCache(String communeId) {
+    for (final communes in _communesCache.values) {
+      final found = communes.where((c) => c.id == communeId).firstOrNull;
+      if (found != null) return found;
+    }
+    return null;
+  }
+
+  /// Resolves a commune by id, optionally narrowing the search via [wilayaNameHint]
+  /// from autosuggest labels such as `Hydra (Alger)`.
+  Future<Commune?> findCommuneById(
+    String communeId, {
+    String? wilayaNameHint,
+  }) async {
+    final cached = findCommuneInCache(communeId);
+    if (cached != null) return cached;
+
+    final wilayas = await fetchWilayas();
+    final candidates = wilayaNameHint == null
+        ? wilayas
+        : wilayas
+              .where(
+                (w) => _wilayaMatchesHint(
+                  w,
+                  wilayaNameHint,
+                ),
+              )
+              .toList();
+
+    for (final wilaya in candidates) {
+      final code = wilaya.code;
+      if (code == null || code.isEmpty) continue;
+
+      final communes = await fetchCommunes(code);
+      final found = communes.where((c) => c.id == communeId).firstOrNull;
+      if (found != null) return found;
+    }
+
+    return null;
+  }
+
+  bool _wilayaMatchesHint(Wilaya wilaya, String hint) {
+    final normalizedHint = _normalizeGeoName(hint);
+    if (normalizedHint.isEmpty) return false;
+
+    final fr = _normalizeGeoName(wilaya.nameFr ?? '');
+    final ar = (wilaya.nameAr ?? '').trim().toLowerCase();
+    final code = (wilaya.code ?? '').trim();
+
+    return fr == normalizedHint ||
+        ar == hint.trim().toLowerCase() ||
+        code == hint.trim();
+  }
+
+  String _normalizeGeoName(String input) {
+    const withAccents =
+        'àáâãäåçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ';
+    const withoutAccents =
+        'aaaaaaceeeeiiiinooooouuuuyyAAAAAACEEEEIIIINOOOOOUUUUY';
+    var output = input.trim().toLowerCase();
+    for (var i = 0; i < withAccents.length; i++) {
+      output = output.replaceAll(withAccents[i], withoutAccents[i]);
+    }
+    return output;
+  }
+
   Future<List<DoctorWithDistance>> fetchNearby({
     required double lat,
     required double lng,

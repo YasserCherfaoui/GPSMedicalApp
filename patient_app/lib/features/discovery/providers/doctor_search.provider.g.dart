@@ -155,12 +155,12 @@ class _SearchSuggestionsProviderElement
 }
 
 String _$searchFiltersNotifierHash() =>
-    r'c826de5d850455ecd2c76905cb6b529f9b134b94';
+    r'b842cbf341c7cea8241d251e1e5d7bd6d3bf32f9';
 
 /// See also [SearchFiltersNotifier].
 @ProviderFor(SearchFiltersNotifier)
 final searchFiltersNotifierProvider =
-    AutoDisposeNotifierProvider<SearchFiltersNotifier, SearchFilters>.internal(
+    NotifierProvider<SearchFiltersNotifier, SearchFilters>.internal(
       SearchFiltersNotifier.new,
       name: r'searchFiltersNotifierProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -170,8 +170,8 @@ final searchFiltersNotifierProvider =
       allTransitiveDependencies: null,
     );
 
-typedef _$SearchFiltersNotifier = AutoDisposeNotifier<SearchFilters>;
-String _$doctorSearchHash() => r'340bb8c083131ddf8d2a81384eb317ec82d463c2';
+typedef _$SearchFiltersNotifier = Notifier<SearchFilters>;
+String _$doctorSearchHash() => r'265e3552c970a4a25a72014573c69133f329fa3c';
 
 /// See also [DoctorSearch].
 @ProviderFor(DoctorSearch)

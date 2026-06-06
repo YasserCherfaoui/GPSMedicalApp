@@ -529,4 +529,128 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get doctorCardTelehealth => 'Téléconsultation';
+
+  @override
+  String get searchHint => 'Rechercher un médecin, spécialité…';
+
+  @override
+  String get searchEmptyTitle => 'Aucun médecin ne correspond';
+
+  @override
+  String get searchEmptyMessage => 'Élargir la zone ou modifier vos filtres ?';
+
+  @override
+  String get searchClearFilters => 'Effacer les filtres';
+
+  @override
+  String get searchLoadError =>
+      'Une erreur s\'est produite lors de la recherche.';
+
+  @override
+  String get searchSuggestionsEmpty => 'Aucune suggestion.';
+
+  @override
+  String get searchSuggestionsLoadError =>
+      'Erreur lors du chargement des suggestions.';
+
+  @override
+  String get searchSuggestionsSpecialties => 'Spécialités';
+
+  @override
+  String get searchSuggestionsDoctors => 'Médecins';
+
+  @override
+  String get searchSuggestionsLocations => 'Localisations';
+
+  @override
+  String get searchFiltersTitle => 'Filtres de recherche';
+
+  @override
+  String get searchFiltersReset => 'Réinitialiser';
+
+  @override
+  String get searchFiltersApply => 'Appliquer les filtres';
+
+  @override
+  String get searchFilterSpecialty => 'Spécialité';
+
+  @override
+  String get searchFilterSpecialtyAll => 'Toutes les spécialités';
+
+  @override
+  String get searchFilterLocation => 'Localisation (Wilaya / Commune)';
+
+  @override
+  String get searchFilterLocationAll => 'Toute l\'Algérie';
+
+  @override
+  String get searchFilterGender => 'Genre';
+
+  @override
+  String get searchFilterGenderAny => 'Tous';
+
+  @override
+  String get searchFilterGenderMale => 'Homme';
+
+  @override
+  String get searchFilterGenderFemale => 'Femme';
+
+  @override
+  String get searchFilterLanguages => 'Langues parlées';
+
+  @override
+  String get searchFilterMaxFee => 'Tarif maximum';
+
+  @override
+  String searchFilterMaxFeeValue(int fee) {
+    return '$fee DZD';
+  }
+
+  @override
+  String get searchFilterAvailability => 'Disponibilité';
+
+  @override
+  String get searchFilterAvailabilityAll => 'Toutes';
+
+  @override
+  String get searchFilterAvailabilityToday => 'Aujourd\'hui';
+
+  @override
+  String get searchFilterAvailability3Days => '3 jours';
+
+  @override
+  String get searchFilterAvailability1Week => '1 semaine';
+
+  @override
+  String get searchFilterAvailability1Month => '1 mois';
+
+  @override
+  String get searchFilterTelehealth => 'Téléconsultation disponible';
+
+  @override
+  String get searchFilterInsurance => 'Assurances acceptées';
+
+  @override
+  String get searchFilterInsuranceCnas => 'Conventionné CNAS';
+
+  @override
+  String get searchFilterInsuranceCasnos => 'Conventionné CASNOS';
+
+  @override
+  String get searchFilterSort => 'Trier par';
+
+  @override
+  String get searchFilterSortRelevance => 'Pertinence';
+
+  @override
+  String get searchFilterSortRating => 'Note la plus haute';
+
+  @override
+  String get searchFilterSortFeeAsc => 'Tarif croissant';
+
+  @override
+  String get searchFilterSortFeeDesc => 'Tarif décroissant';
+
+  @override
+  String get searchFilterSortDistance => 'Distance croissante';
 }

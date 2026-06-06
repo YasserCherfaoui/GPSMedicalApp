@@ -1053,6 +1053,246 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Téléconsultation'**
   String get doctorCardTelehealth;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher un médecin, spécialité…'**
+  String get searchHint;
+
+  /// No description provided for @searchEmptyTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun médecin ne correspond'**
+  String get searchEmptyTitle;
+
+  /// No description provided for @searchEmptyMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Élargir la zone ou modifier vos filtres ?'**
+  String get searchEmptyMessage;
+
+  /// No description provided for @searchClearFilters.
+  ///
+  /// In fr, this message translates to:
+  /// **'Effacer les filtres'**
+  String get searchClearFilters;
+
+  /// No description provided for @searchLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une erreur s\'est produite lors de la recherche.'**
+  String get searchLoadError;
+
+  /// No description provided for @searchSuggestionsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune suggestion.'**
+  String get searchSuggestionsEmpty;
+
+  /// No description provided for @searchSuggestionsLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Erreur lors du chargement des suggestions.'**
+  String get searchSuggestionsLoadError;
+
+  /// No description provided for @searchSuggestionsSpecialties.
+  ///
+  /// In fr, this message translates to:
+  /// **'Spécialités'**
+  String get searchSuggestionsSpecialties;
+
+  /// No description provided for @searchSuggestionsDoctors.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médecins'**
+  String get searchSuggestionsDoctors;
+
+  /// No description provided for @searchSuggestionsLocations.
+  ///
+  /// In fr, this message translates to:
+  /// **'Localisations'**
+  String get searchSuggestionsLocations;
+
+  /// No description provided for @searchFiltersTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Filtres de recherche'**
+  String get searchFiltersTitle;
+
+  /// No description provided for @searchFiltersReset.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réinitialiser'**
+  String get searchFiltersReset;
+
+  /// No description provided for @searchFiltersApply.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appliquer les filtres'**
+  String get searchFiltersApply;
+
+  /// No description provided for @searchFilterSpecialty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Spécialité'**
+  String get searchFilterSpecialty;
+
+  /// No description provided for @searchFilterSpecialtyAll.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toutes les spécialités'**
+  String get searchFilterSpecialtyAll;
+
+  /// No description provided for @searchFilterLocation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Localisation (Wilaya / Commune)'**
+  String get searchFilterLocation;
+
+  /// No description provided for @searchFilterLocationAll.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toute l\'Algérie'**
+  String get searchFilterLocationAll;
+
+  /// No description provided for @searchFilterGender.
+  ///
+  /// In fr, this message translates to:
+  /// **'Genre'**
+  String get searchFilterGender;
+
+  /// No description provided for @searchFilterGenderAny.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous'**
+  String get searchFilterGenderAny;
+
+  /// No description provided for @searchFilterGenderMale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Homme'**
+  String get searchFilterGenderMale;
+
+  /// No description provided for @searchFilterGenderFemale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Femme'**
+  String get searchFilterGenderFemale;
+
+  /// No description provided for @searchFilterLanguages.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langues parlées'**
+  String get searchFilterLanguages;
+
+  /// No description provided for @searchFilterMaxFee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarif maximum'**
+  String get searchFilterMaxFee;
+
+  /// No description provided for @searchFilterMaxFeeValue.
+  ///
+  /// In fr, this message translates to:
+  /// **'{fee} DZD'**
+  String searchFilterMaxFeeValue(int fee);
+
+  /// No description provided for @searchFilterAvailability.
+  ///
+  /// In fr, this message translates to:
+  /// **'Disponibilité'**
+  String get searchFilterAvailability;
+
+  /// No description provided for @searchFilterAvailabilityAll.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toutes'**
+  String get searchFilterAvailabilityAll;
+
+  /// No description provided for @searchFilterAvailabilityToday.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aujourd\'hui'**
+  String get searchFilterAvailabilityToday;
+
+  /// No description provided for @searchFilterAvailability3Days.
+  ///
+  /// In fr, this message translates to:
+  /// **'3 jours'**
+  String get searchFilterAvailability3Days;
+
+  /// No description provided for @searchFilterAvailability1Week.
+  ///
+  /// In fr, this message translates to:
+  /// **'1 semaine'**
+  String get searchFilterAvailability1Week;
+
+  /// No description provided for @searchFilterAvailability1Month.
+  ///
+  /// In fr, this message translates to:
+  /// **'1 mois'**
+  String get searchFilterAvailability1Month;
+
+  /// No description provided for @searchFilterTelehealth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléconsultation disponible'**
+  String get searchFilterTelehealth;
+
+  /// No description provided for @searchFilterInsurance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Assurances acceptées'**
+  String get searchFilterInsurance;
+
+  /// No description provided for @searchFilterInsuranceCnas.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conventionné CNAS'**
+  String get searchFilterInsuranceCnas;
+
+  /// No description provided for @searchFilterInsuranceCasnos.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conventionné CASNOS'**
+  String get searchFilterInsuranceCasnos;
+
+  /// No description provided for @searchFilterSort.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trier par'**
+  String get searchFilterSort;
+
+  /// No description provided for @searchFilterSortRelevance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pertinence'**
+  String get searchFilterSortRelevance;
+
+  /// No description provided for @searchFilterSortRating.
+  ///
+  /// In fr, this message translates to:
+  /// **'Note la plus haute'**
+  String get searchFilterSortRating;
+
+  /// No description provided for @searchFilterSortFeeAsc.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarif croissant'**
+  String get searchFilterSortFeeAsc;
+
+  /// No description provided for @searchFilterSortFeeDesc.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarif décroissant'**
+  String get searchFilterSortFeeDesc;
+
+  /// No description provided for @searchFilterSortDistance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Distance croissante'**
+  String get searchFilterSortDistance;
 }
 
 class _AppLocalizationsDelegate

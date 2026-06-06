@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
+
 import '../providers/doctor_search.provider.dart';
 import '../providers/user_location.provider.dart';
 import '../widgets/discovery_error_view.dart';
 import '../widgets/doctor_card_tile.dart';
+import '../widgets/doctor_list_shimmer.dart';
 import '../widgets/search_filters_sheet.dart';
 
 class DoctorSearchScreen extends ConsumerStatefulWidget {
@@ -26,7 +28,6 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
     final currentQuery = ref.read(searchFiltersNotifierProvider).query;
     _searchController.text = currentQuery;
     _searchController.addListener(_onSearchChanged);
-    _scrollController.addListener(_onScroll);
     _focusNode.addListener(_onFocusChanged);
   }
 
@@ -34,7 +35,6 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
   void dispose() {
     _searchController.removeListener(_onSearchChanged);
     _searchController.dispose();
-    _scrollController.removeListener(_onScroll);
     _scrollController.dispose();
     _focusNode.removeListener(_onFocusChanged);
     _focusNode.dispose();
@@ -49,15 +49,6 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
     });
   }
 
-  void _onScroll() {
-    if (!_scrollController.hasClients) return;
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.position.pixels;
-    if (maxScroll - currentScroll <= 600) {
-      ref.read(doctorSearchProvider.notifier).loadNextPage();
-    }
-  }
-
   void _onFocusChanged() {
     setState(() {
       _isSuggestionsVisible =
@@ -65,8 +56,27 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
     });
   }
 
-  void _openFiltersSheet() {
+  void _hideSuggestions() {
+    setState(() => _isSuggestionsVisible = false);
     _focusNode.unfocus();
+  }
+
+  void _maybeLoadNextPage({
+    required int index,
+    required int doctorCount,
+    required bool hasMore,
+    required bool isLoadingMore,
+  }) {
+    if (!hasMore || isLoadingMore) return;
+    if (index < doctorCount - 3) return;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(doctorSearchProvider.notifier).loadNextPage();
+    });
+  }
+
+  void _openFiltersSheet() {
+    _hideSuggestions();
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -92,11 +102,11 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
 
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final l10n = AppLocalizations.of(context)!;
+    final languageCode = Localizations.localeOf(context).languageCode;
     final filters = ref.watch(searchFiltersNotifierProvider);
     final searchResultAsync = ref.watch(doctorSearchProvider);
     final userLocation = ref.watch(userLocationProvider).valueOrNull;
-    final languageCode = Localizations.localeOf(context).languageCode;
-    final isAr = languageCode == 'ar';
 
     return Scaffold(
       appBar: AppBar(
@@ -108,9 +118,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
             focusNode: _focusNode,
             autofocus: true,
             decoration: InputDecoration(
-              hintText: isAr
-                  ? 'Rechercher un médecin, spécialité...'
-                  : 'Rechercher un médecin, spécialité...',
+              hintText: l10n.searchHint,
               prefixIcon: const Icon(Icons.search),
               suffixIcon: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -138,22 +146,15 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
       ),
       body: Stack(
         children: [
-          // Primary search results list
           searchResultAsync.when(
             data: (searchResult) {
               final doctors = searchResult.doctors;
               if (doctors.isEmpty) {
                 return Center(
                   child: EmptyState(
-                    title: isAr
-                        ? 'Aucun résultat'
-                        : 'Aucun médecin ne correspond',
-                    message: isAr
-                        ? 'Essayez d\'élargir vos filtres ou de modifier votre recherche.'
-                        : 'Essayez d\'élargir vos filtres ou de modifier votre recherche.',
-                    actionLabel: isAr
-                        ? 'Effacer les filtres'
-                        : 'Effacer les filtres',
+                    title: l10n.searchEmptyTitle,
+                    message: l10n.searchEmptyMessage,
+                    actionLabel: l10n.searchClearFilters,
                     onAction: () {
                       _searchController.clear();
                       ref.read(searchFiltersNotifierProvider.notifier).reset();
@@ -169,10 +170,17 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                 itemBuilder: (context, index) {
                   if (index == doctors.length) {
                     return const Padding(
-                      padding: EdgeInsets.all(GpsSpacing.md),
-                      child: Center(child: CircularProgressIndicator()),
+                      padding: EdgeInsets.only(bottom: GpsSpacing.md),
+                      child: LoadingSkeleton.card(),
                     );
                   }
+
+                  _maybeLoadNextPage(
+                    index: index,
+                    doctorCount: doctors.length,
+                    hasMore: searchResult.hasMore,
+                    isLoadingMore: searchResult.isLoadingMore,
+                  );
 
                   final doc = doctors[index];
                   return Padding(
@@ -188,22 +196,21 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                 },
               );
             },
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const CustomScrollView(
+              slivers: [DoctorListShimmer()],
+            ),
             error: (error, stack) => Center(
               child: Padding(
                 padding: const EdgeInsets.all(GpsSpacing.md),
                 child: DiscoveryErrorView(
                   error: error,
-                  defaultTitle: 'Erreur',
-                  defaultMessage:
-                      'Une erreur s\'est produite lors de la recherche.',
+                  defaultTitle: l10n.errorGenericTitle,
+                  defaultMessage: l10n.searchLoadError,
                   onRetry: () => ref.invalidate(doctorSearchProvider),
                 ),
               ),
             ),
           ),
-
-          // Debounced suggestions overlay
           if (_isSuggestionsVisible)
             Positioned.fill(
               child: Container(
@@ -228,10 +235,14 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                         if (listDoctors.isEmpty &&
                             listSpecialties.isEmpty &&
                             listLocations.isEmpty) {
-                          return const Center(
-                            child: Text('Aucune suggestion.'),
+                          return Center(
+                            child: Text(l10n.searchSuggestionsEmpty),
                           );
                         }
+
+                        final filtersNotifier = ref.read(
+                          searchFiltersNotifierProvider.notifier,
+                        );
 
                         return ListView(
                           padding: const EdgeInsets.all(GpsSpacing.md),
@@ -239,21 +250,16 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                             if (listSpecialties.isNotEmpty) ...[
                               _buildSuggestionHeader(
                                 theme,
-                                isAr ? 'Spécialités' : 'Spécialités',
+                                l10n.searchSuggestionsSpecialties,
                               ),
                               ...listSpecialties.map(
                                 (item) => _buildSuggestionTile(
                                   item,
                                   Icons.medical_services_outlined,
                                   () {
-                                    ref
-                                        .read(
-                                          searchFiltersNotifierProvider
-                                              .notifier,
-                                        )
-                                        .selectSpecialty(item.id);
+                                    filtersNotifier.selectSpecialty(item.id);
                                     _searchController.clear();
-                                    _focusNode.unfocus();
+                                    _hideSuggestions();
                                   },
                                 ),
                               ),
@@ -261,7 +267,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                             if (listDoctors.isNotEmpty) ...[
                               _buildSuggestionHeader(
                                 theme,
-                                isAr ? 'Médecins' : 'Médecins',
+                                l10n.searchSuggestionsDoctors,
                               ),
                               ...listDoctors.map(
                                 (item) => _buildSuggestionTile(
@@ -269,7 +275,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                                   Icons.person_search_outlined,
                                   () {
                                     _searchController.text = item.label ?? '';
-                                    _focusNode.unfocus();
+                                    _hideSuggestions();
                                   },
                                 ),
                               ),
@@ -277,22 +283,17 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                             if (listLocations.isNotEmpty) ...[
                               _buildSuggestionHeader(
                                 theme,
-                                isAr ? 'Localisations' : 'Localisations',
+                                l10n.searchSuggestionsLocations,
                               ),
                               ...listLocations.map(
                                 (item) => _buildSuggestionTile(
                                   item,
                                   Icons.location_on_outlined,
-                                  () {
-                                    // Filter by location (e.g. wilaya or commune depending on the id)
-                                    ref
-                                        .read(
-                                          searchFiltersNotifierProvider
-                                              .notifier,
-                                        )
-                                        .selectWilaya(item.id);
+                                  () async {
+                                    await filtersNotifier
+                                        .applyLocationSuggestion(item);
                                     _searchController.clear();
-                                    _focusNode.unfocus();
+                                    _hideSuggestions();
                                   },
                                 ),
                               ),
@@ -301,11 +302,9 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                         );
                       },
                       loading: () =>
-                          const Center(child: CircularProgressIndicator()),
-                      error: (err, stack) => const Center(
-                        child: Text(
-                          'Erreur lors du chargement des suggestions.',
-                        ),
+                          const Center(child: LoadingSkeleton(height: 40)),
+                      error: (err, stack) => Center(
+                        child: Text(l10n.searchSuggestionsLoadError),
                       ),
                     );
                   },

@@ -2,7 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../utils/search_suggestion_utils.dart';
 import 'discovery_repositories.provider.dart';
+import 'location_filter.provider.dart';
 import 'user_location.provider.dart';
 
 part 'doctor_search.provider.g.dart';
@@ -21,12 +23,14 @@ class SearchFilters {
     this.offersTelehealth = false,
     this.availableWithinDays,
     this.sort = 'relevance',
+    this.locationDisplayLabel,
   });
 
   final String query;
   final String? specialtyId;
   final String? wilayaCode;
   final String? communeCode;
+  final String? locationDisplayLabel;
   final String? gender;
   final List<String> languages;
   final bool acceptsCnas;
@@ -65,17 +69,22 @@ class SearchFilters {
     bool? offersTelehealth,
     int? availableWithinDays,
     String? sort,
+    String? locationDisplayLabel,
     bool clearSpecialty = false,
     bool clearWilaya = false,
     bool clearCommune = false,
     bool clearGender = false,
     bool clearAvailableWithinDays = false,
+    bool clearLocationDisplayLabel = false,
   }) {
     return SearchFilters(
       query: query ?? this.query,
       specialtyId: clearSpecialty ? null : (specialtyId ?? this.specialtyId),
       wilayaCode: clearWilaya ? null : (wilayaCode ?? this.wilayaCode),
       communeCode: clearCommune ? null : (communeCode ?? this.communeCode),
+      locationDisplayLabel: clearLocationDisplayLabel
+          ? null
+          : (locationDisplayLabel ?? this.locationDisplayLabel),
       gender: clearGender ? null : (gender ?? this.gender),
       languages: languages ?? this.languages,
       acceptsCnas: acceptsCnas ?? this.acceptsCnas,
@@ -90,7 +99,7 @@ class SearchFilters {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class SearchFiltersNotifier extends _$SearchFiltersNotifier {
   @override
   SearchFilters build() => const SearchFilters();
@@ -105,14 +114,55 @@ class SearchFiltersNotifier extends _$SearchFiltersNotifier {
 
   void selectWilaya(String? wilayaCode) {
     state = wilayaCode == null
-        ? state.copyWith(clearWilaya: true, clearCommune: true)
-        : state.copyWith(wilayaCode: wilayaCode, clearCommune: true);
+        ? state.copyWith(
+            clearWilaya: true,
+            clearCommune: true,
+            clearLocationDisplayLabel: true,
+          )
+        : state.copyWith(
+            wilayaCode: wilayaCode,
+            clearCommune: true,
+            clearLocationDisplayLabel: true,
+          );
   }
 
-  void selectCommune(String? communeCode) {
+  void selectCommune(String? communeCode, {String? displayLabel}) {
     state = communeCode == null
-        ? state.copyWith(clearCommune: true)
-        : state.copyWith(communeCode: communeCode);
+        ? state.copyWith(clearCommune: true, clearLocationDisplayLabel: true)
+        : state.copyWith(
+            communeCode: communeCode,
+            locationDisplayLabel: displayLabel,
+          );
+  }
+
+  /// Applies a location autosuggest row and resolves the parent wilaya for communes.
+  Future<void> applyLocationSuggestion(SuggestItem item) async {
+    final id = item.id ?? '';
+    if (id.isEmpty) return;
+
+    if (isWilayaCode(id)) {
+      selectWilaya(id);
+      return;
+    }
+
+    selectCommune(id, displayLabel: item.label);
+
+    final commune = await ref.read(geoRepositoryProvider).findCommuneById(
+      id,
+      wilayaNameHint: parseWilayaNameFromSuggestLabel(item.label),
+    );
+
+    if (commune == null) return;
+
+    state = state.copyWith(
+      wilayaCode: commune.wilayaCode,
+      communeCode: commune.id,
+      clearLocationDisplayLabel: true,
+    );
+
+    await ref
+        .read(communesFetchProvider.notifier)
+        .fetchForWilaya(commune.wilayaCode);
   }
 
   void selectGender(String? gender) {
@@ -157,12 +207,30 @@ class SearchResultState {
     required this.currentPage,
     required this.hasMore,
     this.total = 0,
+    this.isLoadingMore = false,
   });
 
   final List<Doctor> doctors;
   final int currentPage;
   final bool hasMore;
   final int total;
+  final bool isLoadingMore;
+
+  SearchResultState copyWith({
+    List<Doctor>? doctors,
+    int? currentPage,
+    bool? hasMore,
+    int? total,
+    bool? isLoadingMore,
+  }) {
+    return SearchResultState(
+      doctors: doctors ?? this.doctors,
+      currentPage: currentPage ?? this.currentPage,
+      hasMore: hasMore ?? this.hasMore,
+      total: total ?? this.total,
+      isLoadingMore: isLoadingMore ?? this.isLoadingMore,
+    );
+  }
 }
 
 @riverpod
@@ -196,10 +264,15 @@ class DoctorSearch extends _$DoctorSearch {
 
   Future<void> loadNextPage() async {
     final current = state.value;
-    if (current == null || !current.hasMore) return;
-    if (state.isLoading || state.isRefreshing || state.hasError) return;
+    if (current == null ||
+        !current.hasMore ||
+        current.isLoadingMore ||
+        state.isLoading ||
+        state.isRefreshing) {
+      return;
+    }
 
-    state = AsyncValue.data(current);
+    state = AsyncValue.data(current.copyWith(isLoadingMore: true));
 
     final nextPageData = await AsyncValue.guard(() async {
       final filters = ref.read(searchFiltersNotifierProvider);
