@@ -180,6 +180,8 @@ void main() {
 
   group('Dependents list', () {
     test('fetches dependents for booking step 2', () async {
+      container.listen(dependentsListProvider, (_, __) {});
+
       adapter.onGet('/patients/me/dependents', (server) {
         return server.reply(200, [
           {

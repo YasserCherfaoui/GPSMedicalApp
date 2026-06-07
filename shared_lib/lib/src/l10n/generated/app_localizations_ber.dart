@@ -993,4 +993,61 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get consentRevokedLandingAction => 'Uɣal ɣer wazal';
+
+  @override
+  String get dependentsTitle => 'Ilmawen';
+
+  @override
+  String get dependentsAdd => 'Rnu amdan';
+
+  @override
+  String get dependentsEdit => 'Beddel amdan';
+
+  @override
+  String get dependentsEmpty => 'Ulac ilmawen yettwaseklen';
+
+  @override
+  String get dependentsDeleteTitle => 'Kkes amdan-a?';
+
+  @override
+  String get dependentsDeleteMessage =>
+      'Aya d tukksa taggara. Imeẓluyen yezrin qqimen yeqqnen ɣer udmawan-a.';
+
+  @override
+  String get dependentsDeleteConfirm => 'Kkes';
+
+  @override
+  String get dependentFullName => 'Isem ummid';
+
+  @override
+  String get dependentRelation => 'Akessam';
+
+  @override
+  String get dependentBirthDate => 'Azemz n tlalit';
+
+  @override
+  String get dependentGender => 'Taswit';
+
+  @override
+  String get dependentRelationChild => 'Aqcic';
+
+  @override
+  String get dependentRelationSpouse => 'Tamusni';
+
+  @override
+  String get dependentRelationParent => 'Amac';
+
+  @override
+  String get dependentRelationOther => 'Wayeḍ';
+
+  @override
+  String dependentAgeYears(int age) {
+    return '$age iseggasen';
+  }
+
+  @override
+  String get dependentSaveError => 'Asekles ur yeddi ara';
+
+  @override
+  String get dependentDeleteError => 'Tukksa ur teddi ara';
 }

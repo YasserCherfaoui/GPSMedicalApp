@@ -427,5 +427,30 @@
   "consentRevokeError": "Impossible de révoquer le consentement",
   "consentRevokedLandingTitle": "Compte suspendu",
   "consentRevokedLandingMessage": "Vous avez retiré un consentement essentiel. Votre compte est suspendu conformément à la réglementation ANPDP.",
-  "consentRevokedLandingAction": "Retour à l'accueil"
+  "consentRevokedLandingAction": "Retour à l'accueil",
+  "dependentsTitle": "Ayants droit",
+  "dependentsAdd": "Ajouter un ayant droit",
+  "dependentsEdit": "Modifier l'ayant droit",
+  "dependentsEmpty": "Aucun ayant droit enregistré",
+  "dependentsDeleteTitle": "Supprimer cet ayant droit ?",
+  "dependentsDeleteMessage": "Cette action est définitive. Les rendez-vous passés restent liés à cette personne.",
+  "dependentsDeleteConfirm": "Supprimer",
+  "dependentFullName": "Nom complet",
+  "dependentRelation": "Lien de parenté",
+  "dependentBirthDate": "Date de naissance",
+  "dependentGender": "Genre",
+  "dependentRelationChild": "Enfant",
+  "dependentRelationSpouse": "Conjoint(e)",
+  "dependentRelationParent": "Parent",
+  "dependentRelationOther": "Autre",
+  "dependentAgeYears": "{age} ans",
+  "@dependentAgeYears": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "dependentSaveError": "Enregistrement impossible",
+  "dependentDeleteError": "Suppression impossible"
 }

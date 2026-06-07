@@ -987,4 +987,61 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get consentRevokedLandingAction => 'العودة إلى الصفحة الرئيسية';
+
+  @override
+  String get dependentsTitle => 'المعالون';
+
+  @override
+  String get dependentsAdd => 'إضافة معال';
+
+  @override
+  String get dependentsEdit => 'تعديل المعال';
+
+  @override
+  String get dependentsEmpty => 'لا يوجد معالون مسجلون';
+
+  @override
+  String get dependentsDeleteTitle => 'حذف هذا المعال؟';
+
+  @override
+  String get dependentsDeleteMessage =>
+      'هذا الإجراء نهائي. المواعيد السابقة تبقى مرتبطة بهذا الشخص.';
+
+  @override
+  String get dependentsDeleteConfirm => 'حذف';
+
+  @override
+  String get dependentFullName => 'الاسم الكامل';
+
+  @override
+  String get dependentRelation => 'صلة القرابة';
+
+  @override
+  String get dependentBirthDate => 'تاريخ الميلاد';
+
+  @override
+  String get dependentGender => 'الجنس';
+
+  @override
+  String get dependentRelationChild => 'طفل';
+
+  @override
+  String get dependentRelationSpouse => 'زوج/ة';
+
+  @override
+  String get dependentRelationParent => 'والد/ة';
+
+  @override
+  String get dependentRelationOther => 'آخر';
+
+  @override
+  String dependentAgeYears(int age) {
+    return '$age سنة';
+  }
+
+  @override
+  String get dependentSaveError => 'تعذر الحفظ';
+
+  @override
+  String get dependentDeleteError => 'تعذر الحذف';
 }

@@ -10,6 +10,8 @@ import '../features/dashboard/screens/patient_dashboard_screen.dart';
 import '../features/profile/screens/patient_profile_screen.dart';
 import '../features/profile/screens/patient_profile_edit_screen.dart';
 import '../features/profile/screens/consent_management_screen.dart';
+import '../features/profile/screens/dependent_form_screen.dart';
+import '../features/profile/screens/dependents_list_screen.dart';
 import '../features/profile/screens/consent_revoked_screen.dart';
 import '../features/profile/screens/profile_account_screen.dart';
 import '../features/discovery/screens/doctor_detail_screen.dart';
@@ -152,6 +154,21 @@ GoRouter createPatientRouter({
       GoRoute(
         path: GpsRoutes.consentRevoked,
         builder: (context, state) => const ConsentRevokedScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.profileDependents,
+        builder: (context, state) => const DependentsListScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.profileDependentNew,
+        builder: (context, state) => const DependentFormScreen(),
+      ),
+      GoRoute(
+        path: '/profile/dependents/:id/edit',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return DependentFormScreen(dependentId: id);
+        },
       ),
       GoRoute(
         path: '/appointments/:id',

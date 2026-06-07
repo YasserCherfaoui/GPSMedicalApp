@@ -1935,6 +1935,114 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Retour à l\'accueil'**
   String get consentRevokedLandingAction;
+
+  /// No description provided for @dependentsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ayants droit'**
+  String get dependentsTitle;
+
+  /// No description provided for @dependentsAdd.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un ayant droit'**
+  String get dependentsAdd;
+
+  /// No description provided for @dependentsEdit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier l\'ayant droit'**
+  String get dependentsEdit;
+
+  /// No description provided for @dependentsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun ayant droit enregistré'**
+  String get dependentsEmpty;
+
+  /// No description provided for @dependentsDeleteTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer cet ayant droit ?'**
+  String get dependentsDeleteTitle;
+
+  /// No description provided for @dependentsDeleteMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette action est définitive. Les rendez-vous passés restent liés à cette personne.'**
+  String get dependentsDeleteMessage;
+
+  /// No description provided for @dependentsDeleteConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer'**
+  String get dependentsDeleteConfirm;
+
+  /// No description provided for @dependentFullName.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom complet'**
+  String get dependentFullName;
+
+  /// No description provided for @dependentRelation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lien de parenté'**
+  String get dependentRelation;
+
+  /// No description provided for @dependentBirthDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date de naissance'**
+  String get dependentBirthDate;
+
+  /// No description provided for @dependentGender.
+  ///
+  /// In fr, this message translates to:
+  /// **'Genre'**
+  String get dependentGender;
+
+  /// No description provided for @dependentRelationChild.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enfant'**
+  String get dependentRelationChild;
+
+  /// No description provided for @dependentRelationSpouse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conjoint(e)'**
+  String get dependentRelationSpouse;
+
+  /// No description provided for @dependentRelationParent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parent'**
+  String get dependentRelationParent;
+
+  /// No description provided for @dependentRelationOther.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autre'**
+  String get dependentRelationOther;
+
+  /// No description provided for @dependentAgeYears.
+  ///
+  /// In fr, this message translates to:
+  /// **'{age} ans'**
+  String dependentAgeYears(int age);
+
+  /// No description provided for @dependentSaveError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrement impossible'**
+  String get dependentSaveError;
+
+  /// No description provided for @dependentDeleteError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suppression impossible'**
+  String get dependentDeleteError;
 }
 
 class _AppLocalizationsDelegate

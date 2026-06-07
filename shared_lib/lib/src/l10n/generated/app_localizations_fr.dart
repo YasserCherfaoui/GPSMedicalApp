@@ -1005,4 +1005,61 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get consentRevokedLandingAction => 'Retour à l\'accueil';
+
+  @override
+  String get dependentsTitle => 'Ayants droit';
+
+  @override
+  String get dependentsAdd => 'Ajouter un ayant droit';
+
+  @override
+  String get dependentsEdit => 'Modifier l\'ayant droit';
+
+  @override
+  String get dependentsEmpty => 'Aucun ayant droit enregistré';
+
+  @override
+  String get dependentsDeleteTitle => 'Supprimer cet ayant droit ?';
+
+  @override
+  String get dependentsDeleteMessage =>
+      'Cette action est définitive. Les rendez-vous passés restent liés à cette personne.';
+
+  @override
+  String get dependentsDeleteConfirm => 'Supprimer';
+
+  @override
+  String get dependentFullName => 'Nom complet';
+
+  @override
+  String get dependentRelation => 'Lien de parenté';
+
+  @override
+  String get dependentBirthDate => 'Date de naissance';
+
+  @override
+  String get dependentGender => 'Genre';
+
+  @override
+  String get dependentRelationChild => 'Enfant';
+
+  @override
+  String get dependentRelationSpouse => 'Conjoint(e)';
+
+  @override
+  String get dependentRelationParent => 'Parent';
+
+  @override
+  String get dependentRelationOther => 'Autre';
+
+  @override
+  String dependentAgeYears(int age) {
+    return '$age ans';
+  }
+
+  @override
+  String get dependentSaveError => 'Enregistrement impossible';
+
+  @override
+  String get dependentDeleteError => 'Suppression impossible';
 }
