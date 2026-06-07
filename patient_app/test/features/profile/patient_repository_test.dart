@@ -79,6 +79,52 @@ void main() {
     );
   });
 
+  test('patchProfile maps blood_type 422 field error', () async {
+    adapter.onPatch('/patients/me', (server) {
+      return server.reply(422, {
+        'errors': [
+          {
+            'field': 'blood_type',
+            'message': 'Groupe sanguin invalide.',
+          },
+        ],
+      });
+    });
+
+    try {
+      await repo.patchProfile(PatientUpdate((b) => b..fullName = 'Amina'));
+      fail('expected ProfileValidationException');
+    } on ProfileValidationException catch (e) {
+      expect(e.fieldErrors['blood_type'], 'Groupe sanguin invalide.');
+    }
+  });
+
+  test('patchProfile maps address.line1 422 field error', () async {
+    adapter.onPatch('/patients/me', (server) {
+      return server.reply(422, {
+        'errors': [
+          {
+            'field': 'address.line1',
+            'message': 'La rue est obligatoire.',
+          },
+        ],
+      });
+    });
+
+    try {
+      await repo.patchProfile(
+        PatientUpdate(
+          (b) => b.address.replace(
+            Address((a) => a..line1 = ''),
+          ),
+        ),
+      );
+      fail('expected ProfileValidationException');
+    } on ProfileValidationException catch (e) {
+      expect(e.fieldErrors['address.line1'], 'La rue est obligatoire.');
+    }
+  });
+
   test('deleteProfile succeeds on 204', () async {
     adapter.onDelete('/patients/me', (server) => server.reply(204, null));
 

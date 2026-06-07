@@ -316,7 +316,10 @@ class _PatientProfileEditScreenState
               const SizedBox(height: GpsSpacing.md),
               DropdownButtonFormField<PatientUpdateBloodTypeEnum>(
                 value: _bloodType,
-                decoration: InputDecoration(labelText: l10n.profileBloodType),
+                decoration: InputDecoration(
+                  labelText: l10n.profileBloodType,
+                  errorText: _fieldErrors['blood_type'],
+                ),
                 items: [
                   for (final value in profileBloodTypeOptions())
                     DropdownMenuItem(

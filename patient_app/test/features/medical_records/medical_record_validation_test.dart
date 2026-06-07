@@ -54,6 +54,14 @@ void main() {
     );
   });
 
+  test('validateMedicalRecordFileBytes accepts valid PDF bytes', () {
+    final bytes = Uint8List.fromList([0x25, 0x50, 0x44, 0x46, 0x2D]);
+    expect(
+      validateMedicalRecordFileBytes(bytes: bytes, l10n: l10n),
+      isNull,
+    );
+  });
+
   test('validateMedicalRecordUploadForm requires type and files', () {
     final errors = validateMedicalRecordUploadForm(
       type: null,

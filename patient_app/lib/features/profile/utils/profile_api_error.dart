@@ -22,12 +22,12 @@ Never rethrowProfileApiError(Object error) {
       if (errors is List) {
         final fieldErrors = <String, String>{};
         for (final item in errors) {
-          if (item is Map<String, dynamic>) {
-            final field = item['field'] as String?;
-            final message = item['message'] as String?;
-            if (field != null && message != null) {
-              fieldErrors[field] = message;
-            }
+          final entry = _asJsonMap(item);
+          if (entry == null) continue;
+          final field = entry['field'] as String?;
+          final message = entry['message'] as String?;
+          if (field != null && message != null) {
+            fieldErrors[field] = message;
           }
         }
         if (fieldErrors.isNotEmpty) {

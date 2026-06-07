@@ -27,6 +27,18 @@ void main() {
       l10n: l10n,
     );
 
-    expect(errors['birth_date'], isNotNull);
+    expect(errors['birth_date'], l10n.profileInvalidBirthDate);
+  });
+
+  test('accepts valid profile form input', () {
+    final l10n = lookupAppLocalizations(const Locale('fr'));
+    final errors = validateProfileForm(
+      fullName: 'Amina Benali',
+      email: 'amina@example.dz',
+      birthDate: Date(1990, 5, 12),
+      l10n: l10n,
+    );
+
+    expect(errors, isEmpty);
   });
 }
