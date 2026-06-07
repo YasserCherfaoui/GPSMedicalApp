@@ -809,4 +809,146 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get mapNearbySpecialtyClear => 'Effacer';
+
+  @override
+  String get profileTitle => 'Mon profil';
+
+  @override
+  String get profileEdit => 'Modifier';
+
+  @override
+  String get profileSave => 'Enregistrer';
+
+  @override
+  String get profileAccount => 'Compte';
+
+  @override
+  String get profileSignOut => 'Se déconnecter';
+
+  @override
+  String get profileFullName => 'Nom complet';
+
+  @override
+  String get profilePhone => 'Téléphone';
+
+  @override
+  String get profileEmail => 'E-mail';
+
+  @override
+  String get profileBirthDate => 'Date de naissance';
+
+  @override
+  String get profileGender => 'Genre';
+
+  @override
+  String get profileBloodType => 'Groupe sanguin';
+
+  @override
+  String get profileAddress => 'Adresse';
+
+  @override
+  String get profileAddressLine1 => 'Rue et numéro';
+
+  @override
+  String get profileAddressLine2 => 'Complément d\'adresse';
+
+  @override
+  String get profilePostalCode => 'Code postal';
+
+  @override
+  String get profileAllergies => 'Allergies';
+
+  @override
+  String get profileChronicConditions => 'Maladies chroniques';
+
+  @override
+  String get profileInsurance => 'Assurance';
+
+  @override
+  String get profileInsuranceProvider => 'Organisme';
+
+  @override
+  String get profileInsuranceNumber => 'Numéro d\'assuré';
+
+  @override
+  String get profileNotSet => 'Non renseigné';
+
+  @override
+  String get profileReadOnlyField => 'Non modifiable';
+
+  @override
+  String get profileGenderMale => 'Homme';
+
+  @override
+  String get profileGenderFemale => 'Femme';
+
+  @override
+  String get profileGenderOther => 'Autre';
+
+  @override
+  String get profileInsuranceCnas => 'CNAS';
+
+  @override
+  String get profileInsuranceCasnos => 'CASNOS';
+
+  @override
+  String get profileInsuranceNone => 'Aucune';
+
+  @override
+  String get profileInsurancePrivate => 'Privée';
+
+  @override
+  String get profilePickBirthDate => 'Choisir une date';
+
+  @override
+  String get profilePickAddress => 'Choisir wilaya et commune';
+
+  @override
+  String get profileTagHint => 'Saisir puis Entrée';
+
+  @override
+  String get profileAddTag => 'Ajouter';
+
+  @override
+  String get profileInvalidEmail => 'Adresse e-mail invalide';
+
+  @override
+  String get profileInvalidBirthDate =>
+      'La date de naissance ne peut pas être dans le futur';
+
+  @override
+  String get profileLoadError => 'Impossible de charger le profil';
+
+  @override
+  String get profileSaveError => 'Enregistrement impossible';
+
+  @override
+  String get profileDeleteAccount => 'Supprimer mon compte';
+
+  @override
+  String get profileDeleteTitle => 'Supprimer votre compte ?';
+
+  @override
+  String get profileDeleteWarning =>
+      'Cette action programme la suppression définitive de votre compte et de vos données personnelles.';
+
+  @override
+  String get profileDeleteGracePeriod =>
+      'Vous disposez d\'un délai de 30 jours pour annuler la suppression en vous reconnectant.';
+
+  @override
+  String get profileDeleteConfirm => 'Oui, supprimer mon compte';
+
+  @override
+  String get profileDeleteFinalTitle => 'Confirmation finale';
+
+  @override
+  String get profileDeleteFinalMessage =>
+      'Êtes-vous absolument certain ? Votre compte sera programmé pour suppression.';
+
+  @override
+  String get profileDeleteSuccess => 'Compte programmé pour suppression';
+
+  @override
+  String get profileDeleteError => 'Suppression impossible';
 }

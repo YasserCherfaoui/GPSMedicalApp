@@ -798,4 +798,146 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get mapNearbySpecialtyClear => 'Sfeḍ';
+
+  @override
+  String get profileTitle => 'Amaɣnu-iw';
+
+  @override
+  String get profileEdit => 'Beddel';
+
+  @override
+  String get profileSave => 'Sekles';
+
+  @override
+  String get profileAccount => 'Amiḍan';
+
+  @override
+  String get profileSignOut => 'Ffeɣ';
+
+  @override
+  String get profileFullName => 'Isem ummid';
+
+  @override
+  String get profilePhone => 'Tiliɣri';
+
+  @override
+  String get profileEmail => 'Imayl';
+
+  @override
+  String get profileBirthDate => 'Azemz n tlalit';
+
+  @override
+  String get profileGender => 'Taswit';
+
+  @override
+  String get profileBloodType => 'Anaw n idammen';
+
+  @override
+  String get profileAddress => 'Tansa';
+
+  @override
+  String get profileAddressLine1 => 'Abrid d uṭṭun';
+
+  @override
+  String get profileAddressLine2 => 'Talɣut nniḍen';
+
+  @override
+  String get profilePostalCode => 'Tangalt n lpusṭa';
+
+  @override
+  String get profileAllergies => 'Tigriwin';
+
+  @override
+  String get profileChronicConditions => 'Tamdidin iḥerfan';
+
+  @override
+  String get profileInsurance => 'Asekles';
+
+  @override
+  String get profileInsuranceProvider => 'Amasluy';
+
+  @override
+  String get profileInsuranceNumber => 'Uṭṭun n usekles';
+
+  @override
+  String get profileNotSet => 'Ur yettwasekles ara';
+
+  @override
+  String get profileReadOnlyField => 'Ur izmir ara ad yettwabeddel';
+
+  @override
+  String get profileGenderMale => 'Argaz';
+
+  @override
+  String get profileGenderFemale => 'Tamtut';
+
+  @override
+  String get profileGenderOther => 'Wayeḍ';
+
+  @override
+  String get profileInsuranceCnas => 'CNAS';
+
+  @override
+  String get profileInsuranceCasnos => 'CASNOS';
+
+  @override
+  String get profileInsuranceNone => 'Ulac';
+
+  @override
+  String get profileInsurancePrivate => 'Uslig';
+
+  @override
+  String get profilePickBirthDate => 'Fren azemz';
+
+  @override
+  String get profilePickAddress => 'Fren wilaya d tgemmart';
+
+  @override
+  String get profileTagHint => 'Aru sakin Enter';
+
+  @override
+  String get profileAddTag => 'Rnu';
+
+  @override
+  String get profileInvalidEmail => 'Imayl ur ilaq ara';
+
+  @override
+  String get profileInvalidBirthDate =>
+      'Azemz n tlalit ur izmir ara ad yili deg usass';
+
+  @override
+  String get profileLoadError => 'Ur izmir ara ad d-yali amaɣnu';
+
+  @override
+  String get profileSaveError => 'Asekles ur yeddi ara';
+
+  @override
+  String get profileDeleteAccount => 'Kkes amiḍan-iw';
+
+  @override
+  String get profileDeleteTitle => 'Kkes amiḍan-ik?';
+
+  @override
+  String get profileDeleteWarning =>
+      'Aya ad iseɣmu tukksa n amiḍan-ik d yisefka-ik udmawanen.';
+
+  @override
+  String get profileDeleteGracePeriod =>
+      'Aɣawas n 30 n wussan i usefsex s tuqqna.';
+
+  @override
+  String get profileDeleteConfirm => 'Ih, kkes amiḍan-iw';
+
+  @override
+  String get profileDeleteFinalTitle => 'Asentem aneggaru';
+
+  @override
+  String get profileDeleteFinalMessage =>
+      'Tebɣiḍ s tidet? Amiḍan-ik ad yettwaseɣmu i tukksa.';
+
+  @override
+  String get profileDeleteSuccess => 'Amiḍan yettwaseɣmu i tukksa';
+
+  @override
+  String get profileDeleteError => 'Tukksa ur teddi ara';
 }

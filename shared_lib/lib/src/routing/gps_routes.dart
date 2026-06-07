@@ -27,6 +27,8 @@ abstract final class GpsRoutes {
 
   // Post-auth (placeholders until task 1.16+)
   static const profile = '/profile';
+  static const profileEdit = '/profile/edit';
+  static const profileAccount = '/profile/account';
   static const biometricSetup = '/setup/biometric';
   static const registrationSuccess = '/setup/success';
 

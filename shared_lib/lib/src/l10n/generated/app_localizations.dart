@@ -1569,6 +1569,282 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Effacer'**
   String get mapNearbySpecialtyClear;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon profil'**
+  String get profileTitle;
+
+  /// No description provided for @profileEdit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier'**
+  String get profileEdit;
+
+  /// No description provided for @profileSave.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get profileSave;
+
+  /// No description provided for @profileAccount.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compte'**
+  String get profileAccount;
+
+  /// No description provided for @profileSignOut.
+  ///
+  /// In fr, this message translates to:
+  /// **'Se déconnecter'**
+  String get profileSignOut;
+
+  /// No description provided for @profileFullName.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom complet'**
+  String get profileFullName;
+
+  /// No description provided for @profilePhone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléphone'**
+  String get profilePhone;
+
+  /// No description provided for @profileEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'E-mail'**
+  String get profileEmail;
+
+  /// No description provided for @profileBirthDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date de naissance'**
+  String get profileBirthDate;
+
+  /// No description provided for @profileGender.
+  ///
+  /// In fr, this message translates to:
+  /// **'Genre'**
+  String get profileGender;
+
+  /// No description provided for @profileBloodType.
+  ///
+  /// In fr, this message translates to:
+  /// **'Groupe sanguin'**
+  String get profileBloodType;
+
+  /// No description provided for @profileAddress.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse'**
+  String get profileAddress;
+
+  /// No description provided for @profileAddressLine1.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rue et numéro'**
+  String get profileAddressLine1;
+
+  /// No description provided for @profileAddressLine2.
+  ///
+  /// In fr, this message translates to:
+  /// **'Complément d\'adresse'**
+  String get profileAddressLine2;
+
+  /// No description provided for @profilePostalCode.
+  ///
+  /// In fr, this message translates to:
+  /// **'Code postal'**
+  String get profilePostalCode;
+
+  /// No description provided for @profileAllergies.
+  ///
+  /// In fr, this message translates to:
+  /// **'Allergies'**
+  String get profileAllergies;
+
+  /// No description provided for @profileChronicConditions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Maladies chroniques'**
+  String get profileChronicConditions;
+
+  /// No description provided for @profileInsurance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Assurance'**
+  String get profileInsurance;
+
+  /// No description provided for @profileInsuranceProvider.
+  ///
+  /// In fr, this message translates to:
+  /// **'Organisme'**
+  String get profileInsuranceProvider;
+
+  /// No description provided for @profileInsuranceNumber.
+  ///
+  /// In fr, this message translates to:
+  /// **'Numéro d\'assuré'**
+  String get profileInsuranceNumber;
+
+  /// No description provided for @profileNotSet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non renseigné'**
+  String get profileNotSet;
+
+  /// No description provided for @profileReadOnlyField.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non modifiable'**
+  String get profileReadOnlyField;
+
+  /// No description provided for @profileGenderMale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Homme'**
+  String get profileGenderMale;
+
+  /// No description provided for @profileGenderFemale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Femme'**
+  String get profileGenderFemale;
+
+  /// No description provided for @profileGenderOther.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autre'**
+  String get profileGenderOther;
+
+  /// No description provided for @profileInsuranceCnas.
+  ///
+  /// In fr, this message translates to:
+  /// **'CNAS'**
+  String get profileInsuranceCnas;
+
+  /// No description provided for @profileInsuranceCasnos.
+  ///
+  /// In fr, this message translates to:
+  /// **'CASNOS'**
+  String get profileInsuranceCasnos;
+
+  /// No description provided for @profileInsuranceNone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune'**
+  String get profileInsuranceNone;
+
+  /// No description provided for @profileInsurancePrivate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Privée'**
+  String get profileInsurancePrivate;
+
+  /// No description provided for @profilePickBirthDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir une date'**
+  String get profilePickBirthDate;
+
+  /// No description provided for @profilePickAddress.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir wilaya et commune'**
+  String get profilePickAddress;
+
+  /// No description provided for @profileTagHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisir puis Entrée'**
+  String get profileTagHint;
+
+  /// No description provided for @profileAddTag.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter'**
+  String get profileAddTag;
+
+  /// No description provided for @profileInvalidEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse e-mail invalide'**
+  String get profileInvalidEmail;
+
+  /// No description provided for @profileInvalidBirthDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'La date de naissance ne peut pas être dans le futur'**
+  String get profileInvalidBirthDate;
+
+  /// No description provided for @profileLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger le profil'**
+  String get profileLoadError;
+
+  /// No description provided for @profileSaveError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrement impossible'**
+  String get profileSaveError;
+
+  /// No description provided for @profileDeleteAccount.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer mon compte'**
+  String get profileDeleteAccount;
+
+  /// No description provided for @profileDeleteTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer votre compte ?'**
+  String get profileDeleteTitle;
+
+  /// No description provided for @profileDeleteWarning.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette action programme la suppression définitive de votre compte et de vos données personnelles.'**
+  String get profileDeleteWarning;
+
+  /// No description provided for @profileDeleteGracePeriod.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous disposez d\'un délai de 30 jours pour annuler la suppression en vous reconnectant.'**
+  String get profileDeleteGracePeriod;
+
+  /// No description provided for @profileDeleteConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Oui, supprimer mon compte'**
+  String get profileDeleteConfirm;
+
+  /// No description provided for @profileDeleteFinalTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmation finale'**
+  String get profileDeleteFinalTitle;
+
+  /// No description provided for @profileDeleteFinalMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Êtes-vous absolument certain ? Votre compte sera programmé pour suppression.'**
+  String get profileDeleteFinalMessage;
+
+  /// No description provided for @profileDeleteSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compte programmé pour suppression'**
+  String get profileDeleteSuccess;
+
+  /// No description provided for @profileDeleteError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suppression impossible'**
+  String get profileDeleteError;
 }
 
 class _AppLocalizationsDelegate

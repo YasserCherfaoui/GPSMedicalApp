@@ -7,6 +7,9 @@ import '../features/booking/screens/appointments_list_screen.dart';
 import '../features/booking/screens/availability_calendar_screen.dart';
 import '../features/booking/screens/booking_flow_screen.dart';
 import '../features/dashboard/screens/patient_dashboard_screen.dart';
+import '../features/profile/screens/patient_profile_screen.dart';
+import '../features/profile/screens/patient_profile_edit_screen.dart';
+import '../features/profile/screens/profile_account_screen.dart';
 import '../features/discovery/screens/doctor_detail_screen.dart';
 import '../features/discovery/screens/doctor_list_screen.dart';
 import '../features/discovery/screens/doctor_search_screen.dart';
@@ -133,6 +136,14 @@ GoRouter createPatientRouter({
         builder: (context, state) => const BookingFlowScreen(),
       ),
       GoRoute(
+        path: GpsRoutes.profileEdit,
+        builder: (context, state) => const PatientProfileEditScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.profileAccount,
+        builder: (context, state) => const ProfileAccountScreen(),
+      ),
+      GoRoute(
         path: '/appointments/:id',
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
@@ -174,8 +185,7 @@ GoRouter createPatientRouter({
             routes: [
               GoRoute(
                 path: GpsRoutes.profile,
-                builder: (context, state) =>
-                    ProfilePlaceholderScreen(appInfo: appInfo),
+                builder: (context, state) => const PatientProfileScreen(),
               ),
             ],
           ),

@@ -7,7 +7,7 @@ part of 'availability_window.provider.dart';
 // **************************************************************************
 
 String _$availabilityWindowNotifierHash() =>
-    r'2b5993e059ddee231b7540199468cf8272c649ac';
+    r'2aa2fc2684557e7b914864fcaea45d9169e7ec9c';
 
 /// Copied from Dart SDK
 class _SystemHash {

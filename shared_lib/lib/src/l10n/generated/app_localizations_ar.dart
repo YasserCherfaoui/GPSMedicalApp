@@ -792,4 +792,146 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get mapNearbySpecialtyClear => 'مسح';
+
+  @override
+  String get profileTitle => 'ملفي الشخصي';
+
+  @override
+  String get profileEdit => 'تعديل';
+
+  @override
+  String get profileSave => 'حفظ';
+
+  @override
+  String get profileAccount => 'الحساب';
+
+  @override
+  String get profileSignOut => 'تسجيل الخروج';
+
+  @override
+  String get profileFullName => 'الاسم الكامل';
+
+  @override
+  String get profilePhone => 'الهاتف';
+
+  @override
+  String get profileEmail => 'البريد الإلكتروني';
+
+  @override
+  String get profileBirthDate => 'تاريخ الميلاد';
+
+  @override
+  String get profileGender => 'الجنس';
+
+  @override
+  String get profileBloodType => 'فصيلة الدم';
+
+  @override
+  String get profileAddress => 'العنوان';
+
+  @override
+  String get profileAddressLine1 => 'الشارع والرقم';
+
+  @override
+  String get profileAddressLine2 => 'تفاصيل إضافية';
+
+  @override
+  String get profilePostalCode => 'الرمز البريدي';
+
+  @override
+  String get profileAllergies => 'الحساسية';
+
+  @override
+  String get profileChronicConditions => 'الأمراض المزمنة';
+
+  @override
+  String get profileInsurance => 'التأمين';
+
+  @override
+  String get profileInsuranceProvider => 'الجهة';
+
+  @override
+  String get profileInsuranceNumber => 'رقم التأمين';
+
+  @override
+  String get profileNotSet => 'غير محدد';
+
+  @override
+  String get profileReadOnlyField => 'غير قابل للتعديل';
+
+  @override
+  String get profileGenderMale => 'ذكر';
+
+  @override
+  String get profileGenderFemale => 'أنثى';
+
+  @override
+  String get profileGenderOther => 'آخر';
+
+  @override
+  String get profileInsuranceCnas => 'CNAS';
+
+  @override
+  String get profileInsuranceCasnos => 'CASNOS';
+
+  @override
+  String get profileInsuranceNone => 'لا يوجد';
+
+  @override
+  String get profileInsurancePrivate => 'خاص';
+
+  @override
+  String get profilePickBirthDate => 'اختر تاريخاً';
+
+  @override
+  String get profilePickAddress => 'اختر الولاية والبلدية';
+
+  @override
+  String get profileTagHint => 'اكتب ثم Enter';
+
+  @override
+  String get profileAddTag => 'إضافة';
+
+  @override
+  String get profileInvalidEmail => 'بريد إلكتروني غير صالح';
+
+  @override
+  String get profileInvalidBirthDate =>
+      'لا يمكن أن يكون تاريخ الميلاد في المستقبل';
+
+  @override
+  String get profileLoadError => 'تعذر تحميل الملف الشخصي';
+
+  @override
+  String get profileSaveError => 'تعذر الحفظ';
+
+  @override
+  String get profileDeleteAccount => 'حذف حسابي';
+
+  @override
+  String get profileDeleteTitle => 'حذف حسابك؟';
+
+  @override
+  String get profileDeleteWarning =>
+      'سيؤدي هذا إلى جدولة الحذف النهائي لحسابك وبياناتك الشخصية.';
+
+  @override
+  String get profileDeleteGracePeriod =>
+      'لديك 30 يوماً لإلغاء الحذف بتسجيل الدخول مجدداً.';
+
+  @override
+  String get profileDeleteConfirm => 'نعم، احذف حسابي';
+
+  @override
+  String get profileDeleteFinalTitle => 'تأكيد نهائي';
+
+  @override
+  String get profileDeleteFinalMessage =>
+      'هل أنت متأكد تماماً؟ سيتم جدولة حذف حسابك.';
+
+  @override
+  String get profileDeleteSuccess => 'تم جدولة حذف الحساب';
+
+  @override
+  String get profileDeleteError => 'تعذر الحذف';
 }
