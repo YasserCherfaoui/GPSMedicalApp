@@ -52,6 +52,10 @@ void main() {
     expect(find.text('Patient concerné'), findsOneWidget);
     expect(find.text('Pour moi'), findsOneWidget);
     expect(find.text('Yacine Benali'), findsOneWidget);
+
+    await tester.drag(find.byType(ListView), const Offset(0, -400));
+    await tester.pumpAndSettle();
+
     expect(find.text('Appareil photo'), findsOneWidget);
     expect(find.text('Galerie'), findsOneWidget);
     expect(find.text('Fichiers PDF'), findsOneWidget);
