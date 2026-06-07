@@ -31,8 +31,10 @@ void main() {
     );
   });
 
-  tearDown(() {
+  tearDown(() async {
     container.dispose();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('booking_draft_v1');
   });
 
   group('Availability window', () {
@@ -85,6 +87,76 @@ void main() {
       expect(state.selectedSlot?.slotLockToken, 'lock-abc');
       expect(state.hasActiveLock, isTrue);
       expect(state.lockRemaining!.inMinutes, lessThanOrEqualTo(5));
+    });
+
+    test('persisted draft omits lock token and restores doctor snapshot', () async {
+      const doctorId = 'doc-persist';
+      final draft = container.read(bookingDraftProvider.notifier);
+      draft.startBooking(
+        doctorId: doctorId,
+        doctor: $Doctor(
+          (b) => b
+            ..id = doctorId
+            ..title = 'Dr.'
+            ..fullName = 'Karim Benali'
+            ..consultationFeeDzd = 2800,
+        ),
+      );
+      draft.selectSlot(
+        AvailabilitySlot(
+          (b) => b
+            ..startAt = DateTime.utc(2026, 6, 10, 9)
+            ..endAt = DateTime.utc(2026, 6, 10, 9, 30)
+            ..mode = AvailabilitySlotModeEnum.inPerson
+            ..slotLockToken = 'lock-persist',
+        ),
+      );
+      draft.setStep(3);
+      draft.setReason('Contrôle annuel');
+      await Future<void>.delayed(Duration.zero);
+
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString('booking_draft_v1');
+      expect(raw, isNotNull);
+      expect(raw, isNot(contains('slotLockToken')));
+      expect(raw, isNot(contains('slotLockExpiresAt')));
+      expect(raw, contains('Karim Benali'));
+
+      container.dispose();
+      final reloaded = ProviderContainer(
+        overrides: [gpsMedicalClientProvider.overrideWithValue(client)],
+      );
+      reloaded.listen(bookingDraftProvider, (_, __) {});
+      await Future<void>.delayed(const Duration(milliseconds: 50));
+
+      final state = reloaded.read(bookingDraftProvider);
+      expect(state.pendingResumePrompt, isTrue);
+      expect(state.step, 3);
+      expect(state.reason, 'Contrôle annuel');
+      expect(state.doctor?.fullName, 'Karim Benali');
+      expect(state.hasActiveLock, isFalse);
+      reloaded.dispose();
+    });
+
+    test('selectSlotDraftOnly saves slot without active lock', () {
+      final draft = container.read(bookingDraftProvider.notifier);
+      draft.startBooking(
+        doctorId: 'doc-offline',
+        doctor: $Doctor((b) => b..id = 'doc-offline'..fullName = 'Test'),
+      );
+      draft.selectSlotDraftOnly(
+        AvailabilitySlot(
+          (b) => b
+            ..startAt = DateTime.utc(2026, 6, 10, 9)
+            ..endAt = DateTime.utc(2026, 6, 10, 9, 30)
+            ..mode = AvailabilitySlotModeEnum.inPerson
+            ..slotLockToken = 'should-not-persist',
+        ),
+      );
+
+      final state = container.read(bookingDraftProvider);
+      expect(state.selectedSlot?.slotLockToken, isNull);
+      expect(state.hasActiveLock, isFalse);
     });
 
     test('clearSlotLock removes slot and expiry', () {
@@ -182,6 +254,55 @@ void main() {
       expect(appointment.id, 'appt-1');
     });
 
+    test('submitCreate refreshes lock token when session lock expired', () async {
+      const doctorId = 'doc-1';
+      const startAt = '2026-06-10T09:00:00Z';
+
+      adapter.onGet(
+        '/doctors/$doctorId/availability',
+        (server) => server.reply(200, [
+          {
+            'start_at': startAt,
+            'end_at': '2026-06-10T09:30:00Z',
+            'mode': 'in_person',
+            'slot_lock_token': 'fresh-lock-token',
+          },
+        ]),
+      );
+
+      adapter.onPost('/appointments', (server) {
+        return server.reply(201, {
+          'id': 'appt-fresh',
+          'patient_id': 'pat-1',
+          'doctor_id': doctorId,
+          'start_at': startAt,
+          'end_at': '2026-06-10T09:30:00Z',
+          'mode': 'in_person',
+          'status': 'confirmed',
+          'fee_dzd': 3000,
+          'payment_status': 'unpaid',
+          'created_at': startAt,
+          'updated_at': startAt,
+        });
+      });
+
+      final draft = container.read(bookingDraftProvider.notifier);
+      draft.startBooking(
+        doctorId: doctorId,
+        doctor: $Doctor((b) => b..id = doctorId..fullName = 'Karim Benali'),
+      );
+      draft.selectSlotDraftOnly(
+        AvailabilitySlot(
+          (b) => b
+            ..startAt = DateTime.parse(startAt)
+            ..endAt = DateTime.parse('2026-06-10T09:30:00Z')
+            ..mode = AvailabilitySlotModeEnum.inPerson,
+        ),
+      );
+
+      final appointment = await draft.submitCreate();
+      expect(appointment.id, 'appt-fresh');
+    });
   });
 
   group('Appointment cancel', () {

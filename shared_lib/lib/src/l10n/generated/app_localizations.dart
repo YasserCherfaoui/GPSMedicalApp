@@ -691,8 +691,14 @@ abstract class AppLocalizations {
   /// No description provided for @bookingResumeDraftMessage.
   ///
   /// In fr, this message translates to:
-  /// **'Une réservation en cours a été enregistrée.'**
+  /// **'Une réservation en cours a été enregistrée. La connexion est nécessaire pour confirmer le créneau.'**
   String get bookingResumeDraftMessage;
+
+  /// No description provided for @bookingOnlineRestored.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connexion rétablie — vous pouvez confirmer le rendez-vous'**
+  String get bookingOnlineRestored;
 
   /// No description provided for @bookingResume.
   ///

@@ -25,6 +25,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
   final _reasonController = TextEditingController();
   Map<String, String> _fieldErrors = {};
   bool _submitting = false;
+  bool _resumeDialogShown = false;
 
   @override
   void initState() {
@@ -39,8 +40,10 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
   }
 
   void _maybeShowResumePrompt() {
+    if (_resumeDialogShown) return;
     final draft = ref.read(bookingDraftProvider);
     if (!draft.pendingResumePrompt) return;
+    _resumeDialogShown = true;
     final l10n = AppLocalizations.of(context)!;
     showDialog<void>(
       context: context,
@@ -75,6 +78,23 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
     final l10n = AppLocalizations.of(context)!;
     final online = ref.watch(isOnlineProvider).value ?? true;
 
+    ref.listen(bookingDraftProvider, (prev, next) {
+      if (next.pendingResumePrompt && prev?.pendingResumePrompt != true) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) _maybeShowResumePrompt();
+        });
+      }
+    });
+
+    ref.listen<AsyncValue<bool>>(isOnlineProvider, (prev, next) {
+      if (next.value != true || prev?.value != false || !mounted) return;
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(content: Text(l10n.bookingOnlineRestored)),
+        );
+    });
+
     if (draft.doctorId == null || draft.selectedSlot == null) {
       return Scaffold(
         appBar: AppBar(),
@@ -101,8 +121,9 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(l10n.bookingLockExpired)),
               );
-              if (draft.doctorId != null) {
-                context.go(GpsRoutes.doctorBooking(draft.doctorId!));
+              final doctorId = draft.doctorId;
+              if (doctorId != null && GoRouter.maybeOf(context) != null) {
+                context.go(GpsRoutes.doctorBooking(doctorId));
               }
             },
           ),
@@ -236,7 +257,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
             onPressed: () {
               Navigator.pop(ctx);
               ref.read(bookingDraftProvider.notifier).clearSlotLock();
-              if (doctorId != null) {
+              if (doctorId != null && GoRouter.maybeOf(ctx) != null) {
                 context.go(GpsRoutes.doctorBooking(doctorId));
               }
             },

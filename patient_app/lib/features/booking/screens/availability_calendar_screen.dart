@@ -7,6 +7,7 @@ import '../../discovery/providers/doctor_detail.provider.dart';
 import '../providers/availability_slots.provider.dart';
 import '../providers/availability_window.provider.dart';
 import '../providers/booking_draft.provider.dart';
+import '../providers/connectivity.provider.dart';
 import '../utils/booking_dates.dart';
 import '../widgets/availability_slot_widgets.dart';
 import '../widgets/booking_error_view.dart';
@@ -227,7 +228,13 @@ class _AvailabilityCalendarScreenState
       doctorName: doctorName,
       onConfirm: () {
         Navigator.pop(context);
-        ref.read(bookingDraftProvider.notifier).selectSlot(slot);
+        final online = ref.read(isOnlineProvider).value ?? true;
+        final draft = ref.read(bookingDraftProvider.notifier);
+        if (online) {
+          draft.selectSlot(slot);
+        } else {
+          draft.selectSlotDraftOnly(slot);
+        }
         context.push(GpsRoutes.booking);
       },
     );

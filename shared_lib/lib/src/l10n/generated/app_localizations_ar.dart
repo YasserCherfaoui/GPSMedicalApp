@@ -330,7 +330,11 @@ class AppLocalizationsAr extends AppLocalizations {
   String get bookingResumeDraftTitle => 'استئناف الحجز؟';
 
   @override
-  String get bookingResumeDraftMessage => 'يوجد حجز قيد التقدم.';
+  String get bookingResumeDraftMessage =>
+      'يوجد حجز قيد التقدم. الاتصال مطلوب لتأكيد الموعد.';
+
+  @override
+  String get bookingOnlineRestored => 'تم استعادة الاتصال — يمكنك تأكيد الموعد';
 
   @override
   String get bookingResume => 'استئناف';

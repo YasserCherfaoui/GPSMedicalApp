@@ -340,7 +340,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get bookingResumeDraftMessage =>
-      'Une réservation en cours a été enregistrée.';
+      'Une réservation en cours a été enregistrée. La connexion est nécessaire pour confirmer le créneau.';
+
+  @override
+  String get bookingOnlineRestored =>
+      'Connexion rétablie — vous pouvez confirmer le rendez-vous';
 
   @override
   String get bookingResume => 'Reprendre';

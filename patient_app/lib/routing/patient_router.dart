@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
@@ -11,6 +12,9 @@ import '../features/discovery/screens/doctor_list_screen.dart';
 import '../features/discovery/screens/doctor_search_screen.dart';
 import '../features/discovery/screens/nearby_doctors_map_screen.dart';
 
+/// Root navigator for app-wide overlays (e.g. offline draft resume snackbar).
+final patientRootNavigatorKey = GlobalKey<NavigatorState>();
+
 /// Configures GoRouter for the Patient Application, embedding Shell and Discovery routes.
 GoRouter createPatientRouter({
   required AuthSessionNotifier authListenable,
@@ -20,6 +24,7 @@ GoRouter createPatientRouter({
   AuthSession sessionOf() => authListenable.session;
 
   return GoRouter(
+    navigatorKey: patientRootNavigatorKey,
     initialLocation: GpsRoutes.splash,
     refreshListenable: authListenable,
     redirect: (context, state) {

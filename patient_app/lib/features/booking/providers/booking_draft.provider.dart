@@ -45,6 +45,9 @@ class BookingDraftState {
 
   bool get isReschedule => rescheduleAppointmentId != null;
 
+  bool get hasRestorableDraft =>
+      doctorId != null && selectedSlot?.startAt != null;
+
   Duration? get lockRemaining {
     if (slotLockExpiresAt == null) return null;
     final diff = slotLockExpiresAt!.difference(DateTime.now());
@@ -86,21 +89,24 @@ class BookingDraftState {
     );
   }
 
-  Map<String, dynamic> toJson() => {
+  /// Persisted draft JSON — slot lock tokens and expiry are session-only.
+  Map<String, dynamic> toPersistJson() => {
     'doctorId': doctorId,
     'modeFilter': modeFilter,
     'step': step,
     'dependentId': dependentId,
     'reason': reason,
     'rescheduleAppointmentId': rescheduleAppointmentId,
+    if (doctor != null) ...{
+      'doctorTitle': doctor!.title,
+      'doctorFullName': doctor!.fullName,
+      'doctorConsultationFeeDzd': doctor!.consultationFeeDzd,
+    },
     if (selectedSlot != null) ...{
       'slotStartAt': selectedSlot!.startAt?.toUtc().toIso8601String(),
       'slotEndAt': selectedSlot!.endAt?.toUtc().toIso8601String(),
       'slotMode': slotModeWire(selectedSlot!.mode),
-      'slotLockToken': selectedSlot!.slotLockToken,
     },
-    if (slotLockExpiresAt != null)
-      'slotLockExpiresAt': slotLockExpiresAt!.toUtc().toIso8601String(),
   };
 }
 
@@ -129,20 +135,25 @@ class BookingDraft extends _$BookingDraft {
             ..endAt = map['slotEndAt'] != null
                 ? DateTime.parse(map['slotEndAt'] as String)
                 : null
-            ..mode = parseSlotMode(map['slotMode'] as String?)
-            ..slotLockToken = map['slotLockToken'] as String?,
+            ..mode = parseSlotMode(map['slotMode'] as String?),
         );
       }
-      DateTime? expires;
-      final expStr = map['slotLockExpiresAt'] as String?;
-      if (expStr != null) {
-        expires = DateTime.parse(expStr);
+      final doctorFullName = map['doctorFullName'] as String?;
+      Doctor? doctor;
+      if (doctorFullName != null) {
+        doctor = $Doctor(
+          (b) => b
+            ..id = doctorId
+            ..title = map['doctorTitle'] as String?
+            ..fullName = doctorFullName
+            ..consultationFeeDzd = map['doctorConsultationFeeDzd'] as int?,
+        );
       }
       state = BookingDraftState(
         doctorId: doctorId,
+        doctor: doctor,
         modeFilter: map['modeFilter'] as String? ?? 'both',
         selectedSlot: slot,
-        slotLockExpiresAt: expires,
         step: map['step'] as int? ?? 1,
         dependentId: map['dependentId'] as String?,
         reason: map['reason'] as String? ?? '',
@@ -160,7 +171,7 @@ class BookingDraft extends _$BookingDraft {
       await prefs.remove(_draftPrefsKey);
       return;
     }
-    await prefs.setString(_draftPrefsKey, jsonEncode(state.toJson()));
+    await prefs.setString(_draftPrefsKey, jsonEncode(state.toPersistJson()));
   }
 
   void startBooking({
@@ -183,6 +194,22 @@ class BookingDraft extends _$BookingDraft {
     state = state.copyWith(
       selectedSlot: slot,
       slotLockExpiresAt: DateTime.now().add(kSlotLockDuration),
+      step: 1,
+    );
+    _persist();
+  }
+
+  /// Saves slot choice without a server lock (offline or draft-only).
+  void selectSlotDraftOnly(AvailabilitySlot slot) {
+    final draftSlot = AvailabilitySlot(
+      (b) => b
+        ..startAt = slot.startAt
+        ..endAt = slot.endAt
+        ..mode = slot.mode,
+    );
+    state = state.copyWith(
+      selectedSlot: draftSlot,
+      slotLockExpiresAt: null,
       step: 1,
     );
     _persist();
@@ -213,6 +240,11 @@ class BookingDraft extends _$BookingDraft {
 
   void dismissResumePrompt() {
     state = state.copyWith(pendingResumePrompt: false);
+  }
+
+  void requestResumePrompt() {
+    if (!state.hasRestorableDraft) return;
+    state = state.copyWith(pendingResumePrompt: true);
   }
 
   Future<void> clearDraft() async {

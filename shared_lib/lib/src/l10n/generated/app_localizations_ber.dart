@@ -334,7 +334,11 @@ class AppLocalizationsBer extends AppLocalizations {
   String get bookingResumeDraftTitle => 'Kemmel aḥbes?';
 
   @override
-  String get bookingResumeDraftMessage => 'Yella aḥbes yettwasekles.';
+  String get bookingResumeDraftMessage =>
+      'Yella aḥbes yettwasekles. Tuqqna tettwasra i usentem.';
+
+  @override
+  String get bookingOnlineRestored => 'Tuqqna tetteddu — tzemreḍ ad sentmeḍ';
 
   @override
   String get bookingResume => 'Kemmel';
