@@ -2043,6 +2043,108 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Suppression impossible'**
   String get dependentDeleteError;
+
+  /// No description provided for @medicalRecordsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dossier médical'**
+  String get medicalRecordsTitle;
+
+  /// No description provided for @medicalRecordsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun document'**
+  String get medicalRecordsEmpty;
+
+  /// No description provided for @medicalRecordsLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les documents'**
+  String get medicalRecordsLoadError;
+
+  /// No description provided for @medicalRecordsFilterAll.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous'**
+  String get medicalRecordsFilterAll;
+
+  /// No description provided for @medicalRecordTypePrescription.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ordonnance'**
+  String get medicalRecordTypePrescription;
+
+  /// No description provided for @medicalRecordTypeReport.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compte-rendu'**
+  String get medicalRecordTypeReport;
+
+  /// No description provided for @medicalRecordTypeLabResult.
+  ///
+  /// In fr, this message translates to:
+  /// **'Analyse'**
+  String get medicalRecordTypeLabResult;
+
+  /// No description provided for @medicalRecordTypeImaging.
+  ///
+  /// In fr, this message translates to:
+  /// **'Imagerie'**
+  String get medicalRecordTypeImaging;
+
+  /// No description provided for @medicalRecordTypeCertificate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Certificat'**
+  String get medicalRecordTypeCertificate;
+
+  /// No description provided for @medicalRecordTypeOther.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autre'**
+  String get medicalRecordTypeOther;
+
+  /// No description provided for @medicalRecordAuthorPatient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Patient'**
+  String get medicalRecordAuthorPatient;
+
+  /// No description provided for @medicalRecordAuthorSpecialist.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médecin'**
+  String get medicalRecordAuthorSpecialist;
+
+  /// No description provided for @medicalRecordAuthorConcierge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Concierge'**
+  String get medicalRecordAuthorConcierge;
+
+  /// No description provided for @medicalRecordViewerPlaceholder.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'aperçu du document sera disponible prochainement.'**
+  String get medicalRecordViewerPlaceholder;
+
+  /// No description provided for @medicalRecordFileSizeBytes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{size} o'**
+  String medicalRecordFileSizeBytes(int size);
+
+  /// No description provided for @medicalRecordFileSizeKb.
+  ///
+  /// In fr, this message translates to:
+  /// **'{size} Ko'**
+  String medicalRecordFileSizeKb(String size);
+
+  /// No description provided for @medicalRecordFileSizeMb.
+  ///
+  /// In fr, this message translates to:
+  /// **'{size} Mo'**
+  String medicalRecordFileSizeMb(String size);
 }
 
 class _AppLocalizationsDelegate

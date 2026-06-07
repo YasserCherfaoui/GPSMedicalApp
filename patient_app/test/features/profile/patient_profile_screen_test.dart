@@ -64,9 +64,10 @@ void main() {
     expect(find.text('+21355001111'), findsOneWidget);
     expect(find.byIcon(Icons.edit_outlined), findsOneWidget);
 
-    await tester.drag(find.byType(ListView), const Offset(0, -600));
+    await tester.drag(find.byType(ListView), const Offset(0, -800));
     await tester.pumpAndSettle();
 
+    expect(find.text('Dossier médical'), findsOneWidget);
     expect(find.text('Compte'), findsOneWidget);
   });
 }

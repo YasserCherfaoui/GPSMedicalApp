@@ -33,6 +33,8 @@ abstract final class GpsRoutes {
   static const profileDependents = '/profile/dependents';
   static String profileDependentEdit(String id) => '/profile/dependents/$id/edit';
   static const profileDependentNew = '/profile/dependents/new';
+  static const medicalRecords = '/medical-records';
+  static String medicalRecordDetail(String id) => '/medical-records/$id';
   static const consentRevoked = '/auth/consent-revoked';
   static const biometricSetup = '/setup/biometric';
   static const registrationSuccess = '/setup/success';

@@ -14,6 +14,8 @@ import '../features/profile/screens/dependent_form_screen.dart';
 import '../features/profile/screens/dependents_list_screen.dart';
 import '../features/profile/screens/consent_revoked_screen.dart';
 import '../features/profile/screens/profile_account_screen.dart';
+import '../features/medical_records/screens/medical_record_viewer_screen.dart';
+import '../features/medical_records/screens/medical_records_list_screen.dart';
 import '../features/discovery/screens/doctor_detail_screen.dart';
 import '../features/discovery/screens/doctor_list_screen.dart';
 import '../features/discovery/screens/doctor_search_screen.dart';
@@ -168,6 +170,21 @@ GoRouter createPatientRouter({
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
           return DependentFormScreen(dependentId: id);
+        },
+      ),
+      GoRoute(
+        path: GpsRoutes.medicalRecords,
+        builder: (context, state) => const MedicalRecordsListScreen(),
+      ),
+      GoRoute(
+        path: '/medical-records/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final title = state.uri.queryParameters['title'];
+          return MedicalRecordViewerScreen(
+            documentId: id,
+            title: title,
+          );
         },
       ),
       GoRoute(

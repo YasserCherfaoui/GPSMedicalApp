@@ -452,5 +452,37 @@
     }
   },
   "dependentSaveError": "Enregistrement impossible",
-  "dependentDeleteError": "Suppression impossible"
+  "dependentDeleteError": "Suppression impossible",
+  "medicalRecordsTitle": "Dossier médical",
+  "medicalRecordsEmpty": "Aucun document",
+  "medicalRecordsLoadError": "Impossible de charger les documents",
+  "medicalRecordsFilterAll": "Tous",
+  "medicalRecordTypePrescription": "Ordonnance",
+  "medicalRecordTypeReport": "Compte-rendu",
+  "medicalRecordTypeLabResult": "Analyse",
+  "medicalRecordTypeImaging": "Imagerie",
+  "medicalRecordTypeCertificate": "Certificat",
+  "medicalRecordTypeOther": "Autre",
+  "medicalRecordAuthorPatient": "Patient",
+  "medicalRecordAuthorSpecialist": "Médecin",
+  "medicalRecordAuthorConcierge": "Concierge",
+  "medicalRecordViewerPlaceholder": "L'aperçu du document sera disponible prochainement.",
+  "medicalRecordFileSizeBytes": "{size} o",
+  "@medicalRecordFileSizeBytes": {
+    "placeholders": {
+      "size": { "type": "int" }
+    }
+  },
+  "medicalRecordFileSizeKb": "{size} Ko",
+  "@medicalRecordFileSizeKb": {
+    "placeholders": {
+      "size": { "type": "String" }
+    }
+  },
+  "medicalRecordFileSizeMb": "{size} Mo",
+  "@medicalRecordFileSizeMb": {
+    "placeholders": {
+      "size": { "type": "String" }
+    }
+  }
 }

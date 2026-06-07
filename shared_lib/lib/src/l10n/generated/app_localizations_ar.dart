@@ -1044,4 +1044,61 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dependentDeleteError => 'تعذر الحذف';
+
+  @override
+  String get medicalRecordsTitle => 'السجل الطبي';
+
+  @override
+  String get medicalRecordsEmpty => 'لا توجد وثائق';
+
+  @override
+  String get medicalRecordsLoadError => 'تعذر تحميل الوثائق';
+
+  @override
+  String get medicalRecordsFilterAll => 'الكل';
+
+  @override
+  String get medicalRecordTypePrescription => 'وصفة طبية';
+
+  @override
+  String get medicalRecordTypeReport => 'تقرير';
+
+  @override
+  String get medicalRecordTypeLabResult => 'تحليل';
+
+  @override
+  String get medicalRecordTypeImaging => 'تصوير';
+
+  @override
+  String get medicalRecordTypeCertificate => 'شهادة';
+
+  @override
+  String get medicalRecordTypeOther => 'أخرى';
+
+  @override
+  String get medicalRecordAuthorPatient => 'مريض';
+
+  @override
+  String get medicalRecordAuthorSpecialist => 'طبيب';
+
+  @override
+  String get medicalRecordAuthorConcierge => 'كونسيرج';
+
+  @override
+  String get medicalRecordViewerPlaceholder => 'ستتوفر معاينة الوثيقة قريباً.';
+
+  @override
+  String medicalRecordFileSizeBytes(int size) {
+    return '$size بايت';
+  }
+
+  @override
+  String medicalRecordFileSizeKb(String size) {
+    return '$size ك.ب';
+  }
+
+  @override
+  String medicalRecordFileSizeMb(String size) {
+    return '$size م.ب';
+  }
 }

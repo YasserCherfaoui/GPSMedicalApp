@@ -1050,4 +1050,62 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get dependentDeleteError => 'Tukksa ur teddi ara';
+
+  @override
+  String get medicalRecordsTitle => 'Asebter aṭṭawi';
+
+  @override
+  String get medicalRecordsEmpty => 'Ulac isemliyen';
+
+  @override
+  String get medicalRecordsLoadError => 'Ur izmir ara ad yessali isemliyen';
+
+  @override
+  String get medicalRecordsFilterAll => 'Akk';
+
+  @override
+  String get medicalRecordTypePrescription => 'Tawsit';
+
+  @override
+  String get medicalRecordTypeReport => 'Aneqqis';
+
+  @override
+  String get medicalRecordTypeLabResult => 'Aselmed';
+
+  @override
+  String get medicalRecordTypeImaging => 'Tawlaft';
+
+  @override
+  String get medicalRecordTypeCertificate => 'Aselkan';
+
+  @override
+  String get medicalRecordTypeOther => 'Wayeḍ';
+
+  @override
+  String get medicalRecordAuthorPatient => 'Amusiw';
+
+  @override
+  String get medicalRecordAuthorSpecialist => 'Aṭbib';
+
+  @override
+  String get medicalRecordAuthorConcierge => 'Aqeddac';
+
+  @override
+  String get medicalRecordViewerPlaceholder =>
+      'Timeẓli n usemli ad tili yakan.';
+
+  @override
+  String medicalRecordFileSizeBytes(int size) {
+    return '$size ibiten';
+  }
+
+  @override
+  String medicalRecordFileSizeKb(String size) {
+    return '$size Ko';
+  }
+
+  @override
+  String medicalRecordFileSizeMb(String size) {
+    return '$size Mo';
+  }
 }

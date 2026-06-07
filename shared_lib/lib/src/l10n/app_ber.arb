@@ -323,5 +323,22 @@
   "dependentRelationOther": "Wayeḍ",
   "dependentAgeYears": "{age} iseggasen",
   "dependentSaveError": "Asekles ur yeddi ara",
-  "dependentDeleteError": "Tukksa ur teddi ara"
+  "dependentDeleteError": "Tukksa ur teddi ara",
+  "medicalRecordsTitle": "Asebter aṭṭawi",
+  "medicalRecordsEmpty": "Ulac isemliyen",
+  "medicalRecordsLoadError": "Ur izmir ara ad yessali isemliyen",
+  "medicalRecordsFilterAll": "Akk",
+  "medicalRecordTypePrescription": "Tawsit",
+  "medicalRecordTypeReport": "Aneqqis",
+  "medicalRecordTypeLabResult": "Aselmed",
+  "medicalRecordTypeImaging": "Tawlaft",
+  "medicalRecordTypeCertificate": "Aselkan",
+  "medicalRecordTypeOther": "Wayeḍ",
+  "medicalRecordAuthorPatient": "Amusiw",
+  "medicalRecordAuthorSpecialist": "Aṭbib",
+  "medicalRecordAuthorConcierge": "Aqeddac",
+  "medicalRecordViewerPlaceholder": "Timeẓli n usemli ad tili yakan.",
+  "medicalRecordFileSizeBytes": "{size} ibiten",
+  "medicalRecordFileSizeKb": "{size} Ko",
+  "medicalRecordFileSizeMb": "{size} Mo"
 }

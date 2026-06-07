@@ -153,6 +153,12 @@ class PatientProfileScreen extends ConsumerWidget {
               ),
               const SizedBox(height: GpsSpacing.lg),
               ListTile(
+                leading: const Icon(Icons.folder_copy_outlined),
+                title: Text(l10n.medicalRecordsTitle),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.push(GpsRoutes.medicalRecords),
+              ),
+              ListTile(
                 leading: const Icon(Icons.family_restroom_outlined),
                 title: Text(l10n.dependentsTitle),
                 trailing: const Icon(Icons.chevron_right),

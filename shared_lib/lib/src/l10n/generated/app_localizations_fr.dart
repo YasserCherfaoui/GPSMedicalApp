@@ -1062,4 +1062,62 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get dependentDeleteError => 'Suppression impossible';
+
+  @override
+  String get medicalRecordsTitle => 'Dossier médical';
+
+  @override
+  String get medicalRecordsEmpty => 'Aucun document';
+
+  @override
+  String get medicalRecordsLoadError => 'Impossible de charger les documents';
+
+  @override
+  String get medicalRecordsFilterAll => 'Tous';
+
+  @override
+  String get medicalRecordTypePrescription => 'Ordonnance';
+
+  @override
+  String get medicalRecordTypeReport => 'Compte-rendu';
+
+  @override
+  String get medicalRecordTypeLabResult => 'Analyse';
+
+  @override
+  String get medicalRecordTypeImaging => 'Imagerie';
+
+  @override
+  String get medicalRecordTypeCertificate => 'Certificat';
+
+  @override
+  String get medicalRecordTypeOther => 'Autre';
+
+  @override
+  String get medicalRecordAuthorPatient => 'Patient';
+
+  @override
+  String get medicalRecordAuthorSpecialist => 'Médecin';
+
+  @override
+  String get medicalRecordAuthorConcierge => 'Concierge';
+
+  @override
+  String get medicalRecordViewerPlaceholder =>
+      'L\'aperçu du document sera disponible prochainement.';
+
+  @override
+  String medicalRecordFileSizeBytes(int size) {
+    return '$size o';
+  }
+
+  @override
+  String medicalRecordFileSizeKb(String size) {
+    return '$size Ko';
+  }
+
+  @override
+  String medicalRecordFileSizeMb(String size) {
+    return '$size Mo';
+  }
 }

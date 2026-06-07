@@ -323,5 +323,22 @@
   "dependentRelationOther": "آخر",
   "dependentAgeYears": "{age} سنة",
   "dependentSaveError": "تعذر الحفظ",
-  "dependentDeleteError": "تعذر الحذف"
+  "dependentDeleteError": "تعذر الحذف",
+  "medicalRecordsTitle": "السجل الطبي",
+  "medicalRecordsEmpty": "لا توجد وثائق",
+  "medicalRecordsLoadError": "تعذر تحميل الوثائق",
+  "medicalRecordsFilterAll": "الكل",
+  "medicalRecordTypePrescription": "وصفة طبية",
+  "medicalRecordTypeReport": "تقرير",
+  "medicalRecordTypeLabResult": "تحليل",
+  "medicalRecordTypeImaging": "تصوير",
+  "medicalRecordTypeCertificate": "شهادة",
+  "medicalRecordTypeOther": "أخرى",
+  "medicalRecordAuthorPatient": "مريض",
+  "medicalRecordAuthorSpecialist": "طبيب",
+  "medicalRecordAuthorConcierge": "كونسيرج",
+  "medicalRecordViewerPlaceholder": "ستتوفر معاينة الوثيقة قريباً.",
+  "medicalRecordFileSizeBytes": "{size} بايت",
+  "medicalRecordFileSizeKb": "{size} ك.ب",
+  "medicalRecordFileSizeMb": "{size} م.ب"
 }
