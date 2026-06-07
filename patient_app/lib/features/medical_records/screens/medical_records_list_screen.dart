@@ -48,6 +48,11 @@ class _MedicalRecordsListScreenState
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.medicalRecordsTitle)),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => context.push(GpsRoutes.medicalRecordsUpload),
+        icon: const Icon(Icons.upload_file_outlined),
+        label: Text(l10n.medicalRecordsUpload),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

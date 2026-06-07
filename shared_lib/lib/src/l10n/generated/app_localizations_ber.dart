@@ -1108,4 +1108,62 @@ class AppLocalizationsBer extends AppLocalizations {
   String medicalRecordFileSizeMb(String size) {
     return '$size Mo';
   }
+
+  @override
+  String get medicalRecordsUpload => 'Rnu asmeli';
+
+  @override
+  String get medicalRecordsUploadAddCamera => 'Takamera';
+
+  @override
+  String get medicalRecordsUploadAddGallery => 'Taɣzut';
+
+  @override
+  String get medicalRecordsUploadAddFiles => 'Isemliyen PDF';
+
+  @override
+  String get medicalRecordUploadType => 'Anaw n usmeli';
+
+  @override
+  String get medicalRecordUploadTitle => 'Azwel (d afrayan)';
+
+  @override
+  String get medicalRecordUploadNotes => 'Tizmilin (d afrayan)';
+
+  @override
+  String get medicalRecordUploadPatient => 'Amusiw yettwafen';
+
+  @override
+  String get medicalRecordUploadSubmit => 'Sali';
+
+  @override
+  String medicalRecordUploadMaxFiles(int count) {
+    return 'Afellay $count n isemliyen i uzzen';
+  }
+
+  @override
+  String get medicalRecordUploadFileTooLarge =>
+      'Yal afaylu ilaq ad yili 20 Mo neɣ drus.';
+
+  @override
+  String get medicalRecordUploadInvalidMime => 'Igan: PDF, JPEG neɣ PNG kan.';
+
+  @override
+  String get medicalRecordUploadTypeRequired => 'Fren anaw n usmeli.';
+
+  @override
+  String get medicalRecordUploadNoFiles => 'Rnu afellay yiwen n ufaylu.';
+
+  @override
+  String get medicalRecordUploadStorageUnavailable =>
+      'Ameẓlu n yifuyla ur yelli ara akka tura. Ɛreḍ ticki.';
+
+  @override
+  String get medicalRecordUploadCancel => 'Sefsex';
+
+  @override
+  String get medicalRecordUploadSuccess => 'Asmeli yettwarna';
+
+  @override
+  String get medicalRecordUploadFailed => 'Asali ur yeddi ara';
 }

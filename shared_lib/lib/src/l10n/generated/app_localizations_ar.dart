@@ -1101,4 +1101,63 @@ class AppLocalizationsAr extends AppLocalizations {
   String medicalRecordFileSizeMb(String size) {
     return '$size م.ب';
   }
+
+  @override
+  String get medicalRecordsUpload => 'إضافة وثيقة';
+
+  @override
+  String get medicalRecordsUploadAddCamera => 'الكاميرا';
+
+  @override
+  String get medicalRecordsUploadAddGallery => 'المعرض';
+
+  @override
+  String get medicalRecordsUploadAddFiles => 'ملفات PDF';
+
+  @override
+  String get medicalRecordUploadType => 'نوع الوثيقة';
+
+  @override
+  String get medicalRecordUploadTitle => 'العنوان (اختياري)';
+
+  @override
+  String get medicalRecordUploadNotes => 'ملاحظات (اختياري)';
+
+  @override
+  String get medicalRecordUploadPatient => 'المريض المعني';
+
+  @override
+  String get medicalRecordUploadSubmit => 'رفع';
+
+  @override
+  String medicalRecordUploadMaxFiles(int count) {
+    return 'بحد أقصى $count ملفات لكل رفع';
+  }
+
+  @override
+  String get medicalRecordUploadFileTooLarge =>
+      'يجب ألا يتجاوز حجم كل ملف 20 ميغابايت.';
+
+  @override
+  String get medicalRecordUploadInvalidMime =>
+      'الصيغ المقبولة: PDF أو JPEG أو PNG فقط.';
+
+  @override
+  String get medicalRecordUploadTypeRequired => 'اختر نوع الوثيقة.';
+
+  @override
+  String get medicalRecordUploadNoFiles => 'أضف ملفاً واحداً على الأقل.';
+
+  @override
+  String get medicalRecordUploadStorageUnavailable =>
+      'خدمة الملفات غير متاحة مؤقتاً. حاول لاحقاً.';
+
+  @override
+  String get medicalRecordUploadCancel => 'إلغاء';
+
+  @override
+  String get medicalRecordUploadSuccess => 'تمت إضافة الوثيقة';
+
+  @override
+  String get medicalRecordUploadFailed => 'فشل الرفع';
 }

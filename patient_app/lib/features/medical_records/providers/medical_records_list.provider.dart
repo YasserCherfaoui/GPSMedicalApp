@@ -78,4 +78,14 @@ class MedicalRecordsList extends _$MedicalRecordsList {
     );
     state = AsyncData(next);
   }
+
+  void prependDocument(MedicalDocument document) {
+    final current = state.value;
+    if (current == null) return;
+    final typeFilter = ref.read(medicalRecordsTypeFilterProvider);
+    if (typeFilter != null && document.type != typeFilter) return;
+    state = AsyncData(
+      current.copyWith(documents: [document, ...current.documents]),
+    );
+  }
 }

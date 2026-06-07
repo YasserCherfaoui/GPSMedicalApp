@@ -1120,4 +1120,64 @@ class AppLocalizationsFr extends AppLocalizations {
   String medicalRecordFileSizeMb(String size) {
     return '$size Mo';
   }
+
+  @override
+  String get medicalRecordsUpload => 'Ajouter un document';
+
+  @override
+  String get medicalRecordsUploadAddCamera => 'Appareil photo';
+
+  @override
+  String get medicalRecordsUploadAddGallery => 'Galerie';
+
+  @override
+  String get medicalRecordsUploadAddFiles => 'Fichiers PDF';
+
+  @override
+  String get medicalRecordUploadType => 'Type de document';
+
+  @override
+  String get medicalRecordUploadTitle => 'Titre (optionnel)';
+
+  @override
+  String get medicalRecordUploadNotes => 'Notes (optionnel)';
+
+  @override
+  String get medicalRecordUploadPatient => 'Patient concerné';
+
+  @override
+  String get medicalRecordUploadSubmit => 'Téléverser';
+
+  @override
+  String medicalRecordUploadMaxFiles(int count) {
+    return 'Maximum $count fichiers par envoi';
+  }
+
+  @override
+  String get medicalRecordUploadFileTooLarge =>
+      'Chaque fichier doit faire 20 Mo ou moins.';
+
+  @override
+  String get medicalRecordUploadInvalidMime =>
+      'Formats acceptés : PDF, JPEG ou PNG uniquement.';
+
+  @override
+  String get medicalRecordUploadTypeRequired =>
+      'Sélectionnez un type de document.';
+
+  @override
+  String get medicalRecordUploadNoFiles => 'Ajoutez au moins un fichier.';
+
+  @override
+  String get medicalRecordUploadStorageUnavailable =>
+      'Le service de fichiers est temporairement indisponible. Réessayer plus tard.';
+
+  @override
+  String get medicalRecordUploadCancel => 'Annuler';
+
+  @override
+  String get medicalRecordUploadSuccess => 'Document ajouté';
+
+  @override
+  String get medicalRecordUploadFailed => 'Échec du téléversement';
 }

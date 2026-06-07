@@ -34,6 +34,7 @@ abstract final class GpsRoutes {
   static String profileDependentEdit(String id) => '/profile/dependents/$id/edit';
   static const profileDependentNew = '/profile/dependents/new';
   static const medicalRecords = '/medical-records';
+  static const medicalRecordsUpload = '/medical-records/upload';
   static String medicalRecordDetail(String id) => '/medical-records/$id';
   static const consentRevoked = '/auth/consent-revoked';
   static const biometricSetup = '/setup/biometric';

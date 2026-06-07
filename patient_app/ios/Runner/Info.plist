@@ -59,6 +59,10 @@
 		<string>Allow Flutter tools to connect to the app for debugging.</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>GPS Médical utilise votre position pour afficher les médecins à proximité sur la carte.</string>
+		<key>NSCameraUsageDescription</key>
+		<string>GPS Médical a besoin de la caméra pour photographier vos documents médicaux.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>GPS Médical a besoin d'accéder à vos photos pour joindre des documents médicaux.</string>
 	</dict>
 </plist>
 

@@ -484,5 +484,28 @@
     "placeholders": {
       "size": { "type": "String" }
     }
-  }
+  },
+  "medicalRecordsUpload": "Ajouter un document",
+  "medicalRecordsUploadAddCamera": "Appareil photo",
+  "medicalRecordsUploadAddGallery": "Galerie",
+  "medicalRecordsUploadAddFiles": "Fichiers PDF",
+  "medicalRecordUploadType": "Type de document",
+  "medicalRecordUploadTitle": "Titre (optionnel)",
+  "medicalRecordUploadNotes": "Notes (optionnel)",
+  "medicalRecordUploadPatient": "Patient concerné",
+  "medicalRecordUploadSubmit": "Téléverser",
+  "medicalRecordUploadMaxFiles": "Maximum {count} fichiers par envoi",
+  "@medicalRecordUploadMaxFiles": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "medicalRecordUploadFileTooLarge": "Chaque fichier doit faire 20 Mo ou moins.",
+  "medicalRecordUploadInvalidMime": "Formats acceptés : PDF, JPEG ou PNG uniquement.",
+  "medicalRecordUploadTypeRequired": "Sélectionnez un type de document.",
+  "medicalRecordUploadNoFiles": "Ajoutez au moins un fichier.",
+  "medicalRecordUploadStorageUnavailable": "Le service de fichiers est temporairement indisponible. Réessayer plus tard.",
+  "medicalRecordUploadCancel": "Annuler",
+  "medicalRecordUploadSuccess": "Document ajouté",
+  "medicalRecordUploadFailed": "Échec du téléversement"
 }

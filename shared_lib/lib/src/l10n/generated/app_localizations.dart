@@ -2145,6 +2145,114 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{size} Mo'**
   String medicalRecordFileSizeMb(String size);
+
+  /// No description provided for @medicalRecordsUpload.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un document'**
+  String get medicalRecordsUpload;
+
+  /// No description provided for @medicalRecordsUploadAddCamera.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appareil photo'**
+  String get medicalRecordsUploadAddCamera;
+
+  /// No description provided for @medicalRecordsUploadAddGallery.
+  ///
+  /// In fr, this message translates to:
+  /// **'Galerie'**
+  String get medicalRecordsUploadAddGallery;
+
+  /// No description provided for @medicalRecordsUploadAddFiles.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichiers PDF'**
+  String get medicalRecordsUploadAddFiles;
+
+  /// No description provided for @medicalRecordUploadType.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type de document'**
+  String get medicalRecordUploadType;
+
+  /// No description provided for @medicalRecordUploadTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre (optionnel)'**
+  String get medicalRecordUploadTitle;
+
+  /// No description provided for @medicalRecordUploadNotes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notes (optionnel)'**
+  String get medicalRecordUploadNotes;
+
+  /// No description provided for @medicalRecordUploadPatient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Patient concerné'**
+  String get medicalRecordUploadPatient;
+
+  /// No description provided for @medicalRecordUploadSubmit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléverser'**
+  String get medicalRecordUploadSubmit;
+
+  /// No description provided for @medicalRecordUploadMaxFiles.
+  ///
+  /// In fr, this message translates to:
+  /// **'Maximum {count} fichiers par envoi'**
+  String medicalRecordUploadMaxFiles(int count);
+
+  /// No description provided for @medicalRecordUploadFileTooLarge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chaque fichier doit faire 20 Mo ou moins.'**
+  String get medicalRecordUploadFileTooLarge;
+
+  /// No description provided for @medicalRecordUploadInvalidMime.
+  ///
+  /// In fr, this message translates to:
+  /// **'Formats acceptés : PDF, JPEG ou PNG uniquement.'**
+  String get medicalRecordUploadInvalidMime;
+
+  /// No description provided for @medicalRecordUploadTypeRequired.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sélectionnez un type de document.'**
+  String get medicalRecordUploadTypeRequired;
+
+  /// No description provided for @medicalRecordUploadNoFiles.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoutez au moins un fichier.'**
+  String get medicalRecordUploadNoFiles;
+
+  /// No description provided for @medicalRecordUploadStorageUnavailable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le service de fichiers est temporairement indisponible. Réessayer plus tard.'**
+  String get medicalRecordUploadStorageUnavailable;
+
+  /// No description provided for @medicalRecordUploadCancel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get medicalRecordUploadCancel;
+
+  /// No description provided for @medicalRecordUploadSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Document ajouté'**
+  String get medicalRecordUploadSuccess;
+
+  /// No description provided for @medicalRecordUploadFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Échec du téléversement'**
+  String get medicalRecordUploadFailed;
 }
 
 class _AppLocalizationsDelegate
