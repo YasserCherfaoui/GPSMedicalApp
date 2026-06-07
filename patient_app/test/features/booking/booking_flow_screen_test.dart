@@ -74,6 +74,13 @@ void main() {
     );
   }
 
+  /// Bounded pumps for screens with [SlotLockBanner] (avoid pumpAndSettle).
+  Future<void> pumpBooking(WidgetTester tester) async {
+    await tester.pump();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+  }
+
   void mockDependents() {
     adapter.onGet('/patients/me/dependents', (server) {
       return server.reply(200, [
@@ -90,11 +97,11 @@ void main() {
     mockDependents();
 
     await tester.pumpWidget(wrap(const _BookingFlowHarness()));
-    await tester.pump();
-    await tester.pumpAndSettle();
+    await pumpBooking(tester);
 
     expect(find.text('Confirmer le créneau'), findsWidgets);
     expect(find.text('Dr. Karim Benali'), findsOneWidget);
+    expect(find.textContaining('expire dans'), findsOneWidget);
     expect(find.text('Honoraires'), findsOneWidget);
     expect(find.text('2500 DZD'), findsOneWidget);
     expect(find.text('En présentiel'), findsOneWidget);
@@ -104,11 +111,10 @@ void main() {
     mockDependents();
 
     await tester.pumpWidget(wrap(const _BookingFlowHarness()));
-    await tester.pump();
-    await tester.pumpAndSettle();
+    await pumpBooking(tester);
 
     await tester.tap(find.text('Suivant'));
-    await tester.pumpAndSettle();
+    await pumpBooking(tester);
 
     expect(find.text('Pour moi'), findsWidgets);
     expect(find.text('Amina Benali'), findsOneWidget);
@@ -118,17 +124,18 @@ void main() {
     mockDependents();
 
     await tester.pumpWidget(wrap(const _BookingFlowHarness()));
-    await tester.pump();
-    await tester.pumpAndSettle();
+    await pumpBooking(tester);
 
-    await tester.tap(find.text('Suivant'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Suivant'));
-    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(PrimaryButton, 'Suivant'));
+    await pumpBooking(tester);
+    await tester.tap(find.widgetWithText(PrimaryButton, 'Suivant'));
+    await pumpBooking(tester);
 
-    expect(find.text('Récapitulatif'), findsWidgets);
+    expect(
+      find.widgetWithText(PrimaryButton, 'Confirmer le rendez-vous'),
+      findsOneWidget,
+    );
     expect(find.text('Motif de consultation (optionnel)'), findsOneWidget);
     expect(find.text('Patient'), findsOneWidget);
-    expect(find.text('Confirmer le rendez-vous'), findsOneWidget);
   });
 }

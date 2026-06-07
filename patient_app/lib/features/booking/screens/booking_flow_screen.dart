@@ -98,6 +98,9 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
           SlotLockBanner(
             onExpired: () {
               ref.read(bookingDraftProvider.notifier).clearSlotLock();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(l10n.bookingLockExpired)),
+              );
               if (draft.doctorId != null) {
                 context.go(GpsRoutes.doctorBooking(draft.doctorId!));
               }

@@ -1,6 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
@@ -18,43 +17,70 @@ class SlotLockBanner extends ConsumerStatefulWidget {
   ConsumerState<SlotLockBanner> createState() => _SlotLockBannerState();
 }
 
-class _SlotLockBannerState extends ConsumerState<SlotLockBanner> {
-  Timer? _timer;
+class _SlotLockBannerState extends ConsumerState<SlotLockBanner>
+    with SingleTickerProviderStateMixin {
+  Ticker? _ticker;
   bool _expiryHandled = false;
+  int _lastRenderedSecond = -1;
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      if (!mounted) return;
-      setState(() {});
-      final draft = ref.read(bookingDraftProvider);
-      if (draft.hasActiveLock) {
-        _expiryHandled = false;
-        return;
+    _ticker = createTicker(_onTick);
+    _ticker!.start();
+  }
+
+  void _onTick(Duration elapsed) {
+    if (!mounted) return;
+
+    final draft = ref.read(bookingDraftProvider);
+    if (draft.selectedSlot == null) {
+      _ticker?.stop();
+      return;
+    }
+
+    if (draft.hasActiveLock) {
+      _expiryHandled = false;
+      final second = elapsed.inSeconds;
+      if (second != _lastRenderedSecond) {
+        _lastRenderedSecond = second;
+        setState(() {});
       }
-      if (draft.selectedSlot != null && !_expiryHandled) {
-        _expiryHandled = true;
-        widget.onExpired();
-      }
-    });
+      return;
+    }
+
+    if (!_expiryHandled) {
+      _expiryHandled = true;
+      _ticker?.stop();
+      widget.onExpired();
+    }
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    _ticker?.dispose();
     super.dispose();
+  }
+
+  void _syncTicker(BookingDraftState draft) {
+    final needsTicker = draft.selectedSlot != null &&
+        (draft.hasActiveLock || !_expiryHandled);
+    if (needsTicker) {
+      if (!(_ticker?.isActive ?? false)) {
+        _ticker?.start();
+      }
+    } else {
+      _ticker?.stop();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final draft = ref.watch(bookingDraftProvider);
-    if (draft.selectedSlot == null) return const SizedBox.shrink();
+    _syncTicker(draft);
+    if (!draft.hasActiveLock) return const SizedBox.shrink();
 
     final remaining = draft.lockRemaining ?? Duration.zero;
-    if (remaining <= Duration.zero) {
-      return const SizedBox.shrink();
-    }
 
     final l10n = AppLocalizations.of(context)!;
     final minutes = remaining.inMinutes.remainder(60).toString().padLeft(2, '0');
