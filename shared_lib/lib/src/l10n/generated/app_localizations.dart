@@ -1845,6 +1845,96 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Suppression impossible'**
   String get profileDeleteError;
+
+  /// No description provided for @profileConsents.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consentements ANPDP'**
+  String get profileConsents;
+
+  /// No description provided for @consentManagementTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes consentements'**
+  String get consentManagementTitle;
+
+  /// No description provided for @consentVersionLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Version {version}'**
+  String consentVersionLabel(String version);
+
+  /// No description provided for @consentGrantedAtLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accordé le {date}'**
+  String consentGrantedAtLabel(String date);
+
+  /// No description provided for @consentRevokedAtLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Révoqué le {date}'**
+  String consentRevokedAtLabel(String date);
+
+  /// No description provided for @consentActive.
+  ///
+  /// In fr, this message translates to:
+  /// **'Actif'**
+  String get consentActive;
+
+  /// No description provided for @consentRevoked.
+  ///
+  /// In fr, this message translates to:
+  /// **'Révoqué'**
+  String get consentRevoked;
+
+  /// No description provided for @consentRevokeEssential.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer mon consentement'**
+  String get consentRevokeEssential;
+
+  /// No description provided for @consentRevokeEssentialTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer un consentement essentiel ?'**
+  String get consentRevokeEssentialTitle;
+
+  /// No description provided for @consentRevokeEssentialMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le retrait d\'un consentement essentiel suspendra votre compte. Vous ne pourrez plus utiliser l\'application tant que le compte n\'est pas réactivé.'**
+  String get consentRevokeEssentialMessage;
+
+  /// No description provided for @consentRevokeEssentialConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer et suspendre'**
+  String get consentRevokeEssentialConfirm;
+
+  /// No description provided for @consentRevokeError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de révoquer le consentement'**
+  String get consentRevokeError;
+
+  /// No description provided for @consentRevokedLandingTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compte suspendu'**
+  String get consentRevokedLandingTitle;
+
+  /// No description provided for @consentRevokedLandingMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous avez retiré un consentement essentiel. Votre compte est suspendu conformément à la réglementation ANPDP.'**
+  String get consentRevokedLandingMessage;
+
+  /// No description provided for @consentRevokedLandingAction.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retour à l\'accueil'**
+  String get consentRevokedLandingAction;
 }
 
 class _AppLocalizationsDelegate

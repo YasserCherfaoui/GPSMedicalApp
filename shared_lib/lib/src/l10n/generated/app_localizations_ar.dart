@@ -934,4 +934,57 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profileDeleteError => 'تعذر الحذف';
+
+  @override
+  String get profileConsents => 'موافقات ANPDP';
+
+  @override
+  String get consentManagementTitle => 'موافقاتي';
+
+  @override
+  String consentVersionLabel(String version) {
+    return 'الإصدار $version';
+  }
+
+  @override
+  String consentGrantedAtLabel(String date) {
+    return 'تمت الموافقة في $date';
+  }
+
+  @override
+  String consentRevokedAtLabel(String date) {
+    return 'تم السحب في $date';
+  }
+
+  @override
+  String get consentActive => 'نشط';
+
+  @override
+  String get consentRevoked => 'مسحوب';
+
+  @override
+  String get consentRevokeEssential => 'سحب موافقتي';
+
+  @override
+  String get consentRevokeEssentialTitle => 'سحب موافقة أساسية؟';
+
+  @override
+  String get consentRevokeEssentialMessage =>
+      'سحب موافقة أساسية سيؤدي إلى تعليق حسابك. لن تتمكن من استخدام التطبيق حتى إعادة تفعيل الحساب.';
+
+  @override
+  String get consentRevokeEssentialConfirm => 'سحب وتعليق';
+
+  @override
+  String get consentRevokeError => 'تعذر سحب الموافقة';
+
+  @override
+  String get consentRevokedLandingTitle => 'الحساب معلّق';
+
+  @override
+  String get consentRevokedLandingMessage =>
+      'لقد سحبت موافقة أساسية. تم تعليق حسابك وفقاً لقوانين ANPDP.';
+
+  @override
+  String get consentRevokedLandingAction => 'العودة إلى الصفحة الرئيسية';
 }

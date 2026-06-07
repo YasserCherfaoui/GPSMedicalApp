@@ -951,4 +951,58 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get profileDeleteError => 'Suppression impossible';
+
+  @override
+  String get profileConsents => 'Consentements ANPDP';
+
+  @override
+  String get consentManagementTitle => 'Mes consentements';
+
+  @override
+  String consentVersionLabel(String version) {
+    return 'Version $version';
+  }
+
+  @override
+  String consentGrantedAtLabel(String date) {
+    return 'Accordé le $date';
+  }
+
+  @override
+  String consentRevokedAtLabel(String date) {
+    return 'Révoqué le $date';
+  }
+
+  @override
+  String get consentActive => 'Actif';
+
+  @override
+  String get consentRevoked => 'Révoqué';
+
+  @override
+  String get consentRevokeEssential => 'Retirer mon consentement';
+
+  @override
+  String get consentRevokeEssentialTitle =>
+      'Retirer un consentement essentiel ?';
+
+  @override
+  String get consentRevokeEssentialMessage =>
+      'Le retrait d\'un consentement essentiel suspendra votre compte. Vous ne pourrez plus utiliser l\'application tant que le compte n\'est pas réactivé.';
+
+  @override
+  String get consentRevokeEssentialConfirm => 'Retirer et suspendre';
+
+  @override
+  String get consentRevokeError => 'Impossible de révoquer le consentement';
+
+  @override
+  String get consentRevokedLandingTitle => 'Compte suspendu';
+
+  @override
+  String get consentRevokedLandingMessage =>
+      'Vous avez retiré un consentement essentiel. Votre compte est suspendu conformément à la réglementation ANPDP.';
+
+  @override
+  String get consentRevokedLandingAction => 'Retour à l\'accueil';
 }

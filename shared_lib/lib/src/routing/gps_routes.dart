@@ -29,6 +29,8 @@ abstract final class GpsRoutes {
   static const profile = '/profile';
   static const profileEdit = '/profile/edit';
   static const profileAccount = '/profile/account';
+  static const profileConsents = '/profile/consents';
+  static const consentRevoked = '/auth/consent-revoked';
   static const biometricSetup = '/setup/biometric';
   static const registrationSuccess = '/setup/success';
 
@@ -60,6 +62,7 @@ abstract final class GpsRoutes {
     registerConsent,
     forgotPassword,
     resetPassword,
+    consentRevoked,
     designSystemShowcase,
   };
 

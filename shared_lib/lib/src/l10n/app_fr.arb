@@ -391,5 +391,41 @@
   "profileDeleteFinalTitle": "Confirmation finale",
   "profileDeleteFinalMessage": "Êtes-vous absolument certain ? Votre compte sera programmé pour suppression.",
   "profileDeleteSuccess": "Compte programmé pour suppression",
-  "profileDeleteError": "Suppression impossible"
+  "profileDeleteError": "Suppression impossible",
+  "profileConsents": "Consentements ANPDP",
+  "consentManagementTitle": "Mes consentements",
+  "consentVersionLabel": "Version {version}",
+  "@consentVersionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "consentGrantedAtLabel": "Accordé le {date}",
+  "@consentGrantedAtLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "consentRevokedAtLabel": "Révoqué le {date}",
+  "@consentRevokedAtLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "consentActive": "Actif",
+  "consentRevoked": "Révoqué",
+  "consentRevokeEssential": "Retirer mon consentement",
+  "consentRevokeEssentialTitle": "Retirer un consentement essentiel ?",
+  "consentRevokeEssentialMessage": "Le retrait d'un consentement essentiel suspendra votre compte. Vous ne pourrez plus utiliser l'application tant que le compte n'est pas réactivé.",
+  "consentRevokeEssentialConfirm": "Retirer et suspendre",
+  "consentRevokeError": "Impossible de révoquer le consentement",
+  "consentRevokedLandingTitle": "Compte suspendu",
+  "consentRevokedLandingMessage": "Vous avez retiré un consentement essentiel. Votre compte est suspendu conformément à la réglementation ANPDP.",
+  "consentRevokedLandingAction": "Retour à l'accueil"
 }

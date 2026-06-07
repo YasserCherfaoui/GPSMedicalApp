@@ -9,6 +9,8 @@ import '../features/booking/screens/booking_flow_screen.dart';
 import '../features/dashboard/screens/patient_dashboard_screen.dart';
 import '../features/profile/screens/patient_profile_screen.dart';
 import '../features/profile/screens/patient_profile_edit_screen.dart';
+import '../features/profile/screens/consent_management_screen.dart';
+import '../features/profile/screens/consent_revoked_screen.dart';
 import '../features/profile/screens/profile_account_screen.dart';
 import '../features/discovery/screens/doctor_detail_screen.dart';
 import '../features/discovery/screens/doctor_list_screen.dart';
@@ -142,6 +144,14 @@ GoRouter createPatientRouter({
       GoRoute(
         path: GpsRoutes.profileAccount,
         builder: (context, state) => const ProfileAccountScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.profileConsents,
+        builder: (context, state) => const ConsentManagementScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.consentRevoked,
+        builder: (context, state) => const ConsentRevokedScreen(),
       ),
       GoRoute(
         path: '/appointments/:id',

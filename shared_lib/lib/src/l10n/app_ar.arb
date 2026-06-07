@@ -290,5 +290,20 @@
   "profileDeleteFinalTitle": "تأكيد نهائي",
   "profileDeleteFinalMessage": "هل أنت متأكد تماماً؟ سيتم جدولة حذف حسابك.",
   "profileDeleteSuccess": "تم جدولة حذف الحساب",
-  "profileDeleteError": "تعذر الحذف"
+  "profileDeleteError": "تعذر الحذف",
+  "profileConsents": "موافقات ANPDP",
+  "consentManagementTitle": "موافقاتي",
+  "consentVersionLabel": "الإصدار {version}",
+  "consentGrantedAtLabel": "تمت الموافقة في {date}",
+  "consentRevokedAtLabel": "تم السحب في {date}",
+  "consentActive": "نشط",
+  "consentRevoked": "مسحوب",
+  "consentRevokeEssential": "سحب موافقتي",
+  "consentRevokeEssentialTitle": "سحب موافقة أساسية؟",
+  "consentRevokeEssentialMessage": "سحب موافقة أساسية سيؤدي إلى تعليق حسابك. لن تتمكن من استخدام التطبيق حتى إعادة تفعيل الحساب.",
+  "consentRevokeEssentialConfirm": "سحب وتعليق",
+  "consentRevokeError": "تعذر سحب الموافقة",
+  "consentRevokedLandingTitle": "الحساب معلّق",
+  "consentRevokedLandingMessage": "لقد سحبت موافقة أساسية. تم تعليق حسابك وفقاً لقوانين ANPDP.",
+  "consentRevokedLandingAction": "العودة إلى الصفحة الرئيسية"
 }

@@ -290,5 +290,20 @@
   "profileDeleteFinalTitle": "Asentem aneggaru",
   "profileDeleteFinalMessage": "Tebɣiḍ s tidet? Amiḍan-ik ad yettwaseɣmu i tukksa.",
   "profileDeleteSuccess": "Amiḍan yettwaseɣmu i tukksa",
-  "profileDeleteError": "Tukksa ur teddi ara"
+  "profileDeleteError": "Tukksa ur teddi ara",
+  "profileConsents": "Asenqed ANPDP",
+  "consentManagementTitle": "Asenqed-iw",
+  "consentVersionLabel": "Lqem {version}",
+  "consentGrantedAtLabel": "Yettwasenqed {date}",
+  "consentRevokedAtLabel": "Yettwakkes {date}",
+  "consentActive": "Urmid",
+  "consentRevoked": "Yettwakkes",
+  "consentRevokeEssential": "Kkes asenqed-iw",
+  "consentRevokeEssentialTitle": "Kkes asenqed ameqqran?",
+  "consentRevokeEssentialMessage": "Kkes asenqed ameqqran ad yesεeggem amiḍan-ik. Ur tzemreḍ ad tesqedceḍ asnas armi ad yettwarmad amiḍan.",
+  "consentRevokeEssentialConfirm": "Kkes s usεeggem",
+  "consentRevokeError": "Ur izmir ara ad yettwakkes asenqed",
+  "consentRevokedLandingTitle": "Amiḍan yettwasεeggem",
+  "consentRevokedLandingMessage": "Tekkseḍ asenqed ameqqran. Amiḍan-ik yettwasεeggem s lmend n ANPDP.",
+  "consentRevokedLandingAction": "Uɣal ɣer wazal"
 }

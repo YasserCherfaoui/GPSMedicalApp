@@ -940,4 +940,57 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get profileDeleteError => 'Tukksa ur teddi ara';
+
+  @override
+  String get profileConsents => 'Asenqed ANPDP';
+
+  @override
+  String get consentManagementTitle => 'Asenqed-iw';
+
+  @override
+  String consentVersionLabel(String version) {
+    return 'Lqem $version';
+  }
+
+  @override
+  String consentGrantedAtLabel(String date) {
+    return 'Yettwasenqed $date';
+  }
+
+  @override
+  String consentRevokedAtLabel(String date) {
+    return 'Yettwakkes $date';
+  }
+
+  @override
+  String get consentActive => 'Urmid';
+
+  @override
+  String get consentRevoked => 'Yettwakkes';
+
+  @override
+  String get consentRevokeEssential => 'Kkes asenqed-iw';
+
+  @override
+  String get consentRevokeEssentialTitle => 'Kkes asenqed ameqqran?';
+
+  @override
+  String get consentRevokeEssentialMessage =>
+      'Kkes asenqed ameqqran ad yesεeggem amiḍan-ik. Ur tzemreḍ ad tesqedceḍ asnas armi ad yettwarmad amiḍan.';
+
+  @override
+  String get consentRevokeEssentialConfirm => 'Kkes s usεeggem';
+
+  @override
+  String get consentRevokeError => 'Ur izmir ara ad yettwakkes asenqed';
+
+  @override
+  String get consentRevokedLandingTitle => 'Amiḍan yettwasεeggem';
+
+  @override
+  String get consentRevokedLandingMessage =>
+      'Tekkseḍ asenqed ameqqran. Amiḍan-ik yettwasεeggem s lmend n ANPDP.';
+
+  @override
+  String get consentRevokedLandingAction => 'Uɣal ɣer wazal';
 }
