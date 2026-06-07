@@ -59,8 +59,15 @@ format-check:
 test: pub-get
 	@for d in $(PACKAGES); do \
 		echo "==> $$d: flutter test"; \
-		(cd $$d && flutter test) || exit 1; \
+		if [ "$$d" = "patient_app" ]; then \
+			(cd $$d && flutter test --exclude-tags staging) || exit 1; \
+		else \
+			(cd $$d && flutter test) || exit 1; \
+		fi; \
 	done
+
+test-booking-staging:
+	cd patient_app && STAGING_INTEGRATION=1 flutter test test/features/booking/staging --tags staging --concurrency=1
 
 ci: format-check analyze test
 
