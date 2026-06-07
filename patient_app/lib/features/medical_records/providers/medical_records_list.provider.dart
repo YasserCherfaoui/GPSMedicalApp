@@ -88,4 +88,15 @@ class MedicalRecordsList extends _$MedicalRecordsList {
       current.copyWith(documents: [document, ...current.documents]),
     );
   }
+
+  void removeDocument(String documentId) {
+    final current = state.value;
+    if (current == null) return;
+    state = AsyncData(
+      current.copyWith(
+        documents:
+            current.documents.where((doc) => doc.id != documentId).toList(),
+      ),
+    );
+  }
 }

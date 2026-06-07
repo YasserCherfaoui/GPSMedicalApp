@@ -2253,6 +2253,54 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Échec du téléversement'**
   String get medicalRecordUploadFailed;
+
+  /// No description provided for @medicalRecordDownload.
+  ///
+  /// In fr, this message translates to:
+  /// **'Télécharger'**
+  String get medicalRecordDownload;
+
+  /// No description provided for @medicalRecordShare.
+  ///
+  /// In fr, this message translates to:
+  /// **'Partager'**
+  String get medicalRecordShare;
+
+  /// No description provided for @medicalRecordDownloadSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichier enregistré dans Téléchargements'**
+  String get medicalRecordDownloadSuccess;
+
+  /// No description provided for @medicalRecordViewerLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible d\'ouvrir le document'**
+  String get medicalRecordViewerLoadError;
+
+  /// No description provided for @medicalRecordDeleteTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer ce document ?'**
+  String get medicalRecordDeleteTitle;
+
+  /// No description provided for @medicalRecordDeleteMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette action est définitive. Le fichier sera retiré de votre dossier.'**
+  String get medicalRecordDeleteMessage;
+
+  /// No description provided for @medicalRecordDeleteConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer'**
+  String get medicalRecordDeleteConfirm;
+
+  /// No description provided for @medicalRecordDeleteError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Suppression impossible'**
+  String get medicalRecordDeleteError;
 }
 
 class _AppLocalizationsDelegate

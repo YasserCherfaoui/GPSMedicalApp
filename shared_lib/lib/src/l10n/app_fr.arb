@@ -507,5 +507,13 @@
   "medicalRecordUploadStorageUnavailable": "Le service de fichiers est temporairement indisponible. Réessayer plus tard.",
   "medicalRecordUploadCancel": "Annuler",
   "medicalRecordUploadSuccess": "Document ajouté",
-  "medicalRecordUploadFailed": "Échec du téléversement"
+  "medicalRecordUploadFailed": "Échec du téléversement",
+  "medicalRecordDownload": "Télécharger",
+  "medicalRecordShare": "Partager",
+  "medicalRecordDownloadSuccess": "Fichier enregistré dans Téléchargements",
+  "medicalRecordViewerLoadError": "Impossible d'ouvrir le document",
+  "medicalRecordDeleteTitle": "Supprimer ce document ?",
+  "medicalRecordDeleteMessage": "Cette action est définitive. Le fichier sera retiré de votre dossier.",
+  "medicalRecordDeleteConfirm": "Supprimer",
+  "medicalRecordDeleteError": "Suppression impossible"
 }

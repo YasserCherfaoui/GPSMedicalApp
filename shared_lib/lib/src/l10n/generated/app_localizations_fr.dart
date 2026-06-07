@@ -1180,4 +1180,30 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get medicalRecordUploadFailed => 'Échec du téléversement';
+
+  @override
+  String get medicalRecordDownload => 'Télécharger';
+
+  @override
+  String get medicalRecordShare => 'Partager';
+
+  @override
+  String get medicalRecordDownloadSuccess =>
+      'Fichier enregistré dans Téléchargements';
+
+  @override
+  String get medicalRecordViewerLoadError => 'Impossible d\'ouvrir le document';
+
+  @override
+  String get medicalRecordDeleteTitle => 'Supprimer ce document ?';
+
+  @override
+  String get medicalRecordDeleteMessage =>
+      'Cette action est définitive. Le fichier sera retiré de votre dossier.';
+
+  @override
+  String get medicalRecordDeleteConfirm => 'Supprimer';
+
+  @override
+  String get medicalRecordDeleteError => 'Suppression impossible';
 }

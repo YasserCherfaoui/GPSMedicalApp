@@ -358,5 +358,13 @@
   "medicalRecordUploadStorageUnavailable": "خدمة الملفات غير متاحة مؤقتاً. حاول لاحقاً.",
   "medicalRecordUploadCancel": "إلغاء",
   "medicalRecordUploadSuccess": "تمت إضافة الوثيقة",
-  "medicalRecordUploadFailed": "فشل الرفع"
+  "medicalRecordUploadFailed": "فشل الرفع",
+  "medicalRecordDownload": "تنزيل",
+  "medicalRecordShare": "مشاركة",
+  "medicalRecordDownloadSuccess": "تم حفظ الملف في التنزيلات",
+  "medicalRecordViewerLoadError": "تعذر فتح الوثيقة",
+  "medicalRecordDeleteTitle": "حذف هذه الوثيقة؟",
+  "medicalRecordDeleteMessage": "هذا الإجراء نهائي. سيتم إزالة الملف من سجلك.",
+  "medicalRecordDeleteConfirm": "حذف",
+  "medicalRecordDeleteError": "تعذر الحذف"
 }

@@ -1160,4 +1160,29 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get medicalRecordUploadFailed => 'فشل الرفع';
+
+  @override
+  String get medicalRecordDownload => 'تنزيل';
+
+  @override
+  String get medicalRecordShare => 'مشاركة';
+
+  @override
+  String get medicalRecordDownloadSuccess => 'تم حفظ الملف في التنزيلات';
+
+  @override
+  String get medicalRecordViewerLoadError => 'تعذر فتح الوثيقة';
+
+  @override
+  String get medicalRecordDeleteTitle => 'حذف هذه الوثيقة؟';
+
+  @override
+  String get medicalRecordDeleteMessage =>
+      'هذا الإجراء نهائي. سيتم إزالة الملف من سجلك.';
+
+  @override
+  String get medicalRecordDeleteConfirm => 'حذف';
+
+  @override
+  String get medicalRecordDeleteError => 'تعذر الحذف';
 }

@@ -1166,4 +1166,29 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get medicalRecordUploadFailed => 'Asali ur yeddi ara';
+
+  @override
+  String get medicalRecordDownload => 'Sader';
+
+  @override
+  String get medicalRecordShare => 'Bḍu';
+
+  @override
+  String get medicalRecordDownloadSuccess => 'Afaylu yettwasekles deg usader';
+
+  @override
+  String get medicalRecordViewerLoadError => 'Ur izmir ara ad yeldi asmeli';
+
+  @override
+  String get medicalRecordDeleteTitle => 'Kkes asmeli-a?';
+
+  @override
+  String get medicalRecordDeleteMessage =>
+      'Aya d tukksa taggara. Afaylu ad yettwakkes seg umuɣ.';
+
+  @override
+  String get medicalRecordDeleteConfirm => 'Kkes';
+
+  @override
+  String get medicalRecordDeleteError => 'Tukksa ur teddi ara';
 }

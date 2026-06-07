@@ -358,5 +358,13 @@
   "medicalRecordUploadStorageUnavailable": "Ameẓlu n yifuyla ur yelli ara akka tura. Ɛreḍ ticki.",
   "medicalRecordUploadCancel": "Sefsex",
   "medicalRecordUploadSuccess": "Asmeli yettwarna",
-  "medicalRecordUploadFailed": "Asali ur yeddi ara"
+  "medicalRecordUploadFailed": "Asali ur yeddi ara",
+  "medicalRecordDownload": "Sader",
+  "medicalRecordShare": "Bḍu",
+  "medicalRecordDownloadSuccess": "Afaylu yettwasekles deg usader",
+  "medicalRecordViewerLoadError": "Ur izmir ara ad yeldi asmeli",
+  "medicalRecordDeleteTitle": "Kkes asmeli-a?",
+  "medicalRecordDeleteMessage": "Aya d tukksa taggara. Afaylu ad yettwakkes seg umuɣ.",
+  "medicalRecordDeleteConfirm": "Kkes",
+  "medicalRecordDeleteError": "Tukksa ur teddi ara"
 }
