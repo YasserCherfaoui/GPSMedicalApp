@@ -1206,4 +1206,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get medicalRecordDeleteError => 'Suppression impossible';
+
+  @override
+  String get messagingTitle => 'Messagerie';
+
+  @override
+  String get messagingEmpty => 'Aucune conversation pour le moment';
+
+  @override
+  String get messagingLoadError => 'Impossible de charger les conversations';
+
+  @override
+  String get messagingAttachmentPreview => 'Pièce jointe';
+
+  @override
+  String get messagingThreadPlaceholder =>
+      'Conversation — détail disponible prochainement';
 }

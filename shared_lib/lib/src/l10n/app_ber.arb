@@ -366,5 +366,10 @@
   "medicalRecordDeleteTitle": "Kkes asmeli-a?",
   "medicalRecordDeleteMessage": "Aya d tukksa taggara. Afaylu ad yettwakkes seg umuɣ.",
   "medicalRecordDeleteConfirm": "Kkes",
-  "medicalRecordDeleteError": "Tukksa ur teddi ara"
+  "medicalRecordDeleteError": "Tukksa ur teddi ara",
+  "messagingTitle": "Tuzinin",
+  "messagingEmpty": "Ulac adiwenni akka tura",
+  "messagingLoadError": "Ur izmir ara ad yali idiwenniyen",
+  "messagingAttachmentPreview": "Amedday",
+  "messagingThreadPlaceholder": "Adiwenni — talqayt ad tili ticki"
 }

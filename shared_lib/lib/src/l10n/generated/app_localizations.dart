@@ -2301,6 +2301,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Suppression impossible'**
   String get medicalRecordDeleteError;
+
+  /// No description provided for @messagingTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Messagerie'**
+  String get messagingTitle;
+
+  /// No description provided for @messagingEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune conversation pour le moment'**
+  String get messagingEmpty;
+
+  /// No description provided for @messagingLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les conversations'**
+  String get messagingLoadError;
+
+  /// No description provided for @messagingAttachmentPreview.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pièce jointe'**
+  String get messagingAttachmentPreview;
+
+  /// No description provided for @messagingThreadPlaceholder.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conversation — détail disponible prochainement'**
+  String get messagingThreadPlaceholder;
 }
 
 class _AppLocalizationsDelegate

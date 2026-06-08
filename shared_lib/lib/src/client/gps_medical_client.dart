@@ -104,6 +104,8 @@ class GpsMedicalClient {
 
   AppointmentsApi get appointments => _v1.getAppointmentsApi();
 
+  MessagingApi get messaging => _v1.getMessagingApi();
+
   /// Sets the bearer token on the generated client's interceptor map.
   void applyBearerToken(String accessToken) {
     _v1.setBearerAuth(kBearerAuthSchemeName, accessToken);

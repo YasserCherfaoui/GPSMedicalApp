@@ -36,6 +36,8 @@ abstract final class GpsRoutes {
   static const medicalRecords = '/medical-records';
   static const medicalRecordsUpload = '/medical-records/upload';
   static String medicalRecordDetail(String id) => '/medical-records/$id';
+  static const messagingThreads = '/messages';
+  static String messagingThreadDetail(String id) => '/messages/$id';
   static const consentRevoked = '/auth/consent-revoked';
   static const biometricSetup = '/setup/biometric';
   static const registrationSuccess = '/setup/success';

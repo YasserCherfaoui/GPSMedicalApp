@@ -1191,4 +1191,19 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get medicalRecordDeleteError => 'Tukksa ur teddi ara';
+
+  @override
+  String get messagingTitle => 'Tuzinin';
+
+  @override
+  String get messagingEmpty => 'Ulac adiwenni akka tura';
+
+  @override
+  String get messagingLoadError => 'Ur izmir ara ad yali idiwenniyen';
+
+  @override
+  String get messagingAttachmentPreview => 'Amedday';
+
+  @override
+  String get messagingThreadPlaceholder => 'Adiwenni — talqayt ad tili ticki';
 }

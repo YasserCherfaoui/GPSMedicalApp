@@ -1185,4 +1185,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get medicalRecordDeleteError => 'تعذر الحذف';
+
+  @override
+  String get messagingTitle => 'المراسلة';
+
+  @override
+  String get messagingEmpty => 'لا توجد محادثات حالياً';
+
+  @override
+  String get messagingLoadError => 'تعذر تحميل المحادثات';
+
+  @override
+  String get messagingAttachmentPreview => 'مرفق';
+
+  @override
+  String get messagingThreadPlaceholder => 'المحادثة — التفاصيل قريباً';
 }

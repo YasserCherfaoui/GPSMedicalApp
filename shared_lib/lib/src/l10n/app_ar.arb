@@ -366,5 +366,10 @@
   "medicalRecordDeleteTitle": "حذف هذه الوثيقة؟",
   "medicalRecordDeleteMessage": "هذا الإجراء نهائي. سيتم إزالة الملف من سجلك.",
   "medicalRecordDeleteConfirm": "حذف",
-  "medicalRecordDeleteError": "تعذر الحذف"
+  "medicalRecordDeleteError": "تعذر الحذف",
+  "messagingTitle": "المراسلة",
+  "messagingEmpty": "لا توجد محادثات حالياً",
+  "messagingLoadError": "تعذر تحميل المحادثات",
+  "messagingAttachmentPreview": "مرفق",
+  "messagingThreadPlaceholder": "المحادثة — التفاصيل قريباً"
 }

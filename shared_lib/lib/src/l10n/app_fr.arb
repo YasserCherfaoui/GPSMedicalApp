@@ -515,5 +515,10 @@
   "medicalRecordDeleteTitle": "Supprimer ce document ?",
   "medicalRecordDeleteMessage": "Cette action est définitive. Le fichier sera retiré de votre dossier.",
   "medicalRecordDeleteConfirm": "Supprimer",
-  "medicalRecordDeleteError": "Suppression impossible"
+  "medicalRecordDeleteError": "Suppression impossible",
+  "messagingTitle": "Messagerie",
+  "messagingEmpty": "Aucune conversation pour le moment",
+  "messagingLoadError": "Impossible de charger les conversations",
+  "messagingAttachmentPreview": "Pièce jointe",
+  "messagingThreadPlaceholder": "Conversation — détail disponible prochainement"
 }
