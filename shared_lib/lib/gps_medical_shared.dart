@@ -14,6 +14,7 @@ export 'src/auth/token_store.dart';
 export 'src/auth/secure_token_store.dart';
 export 'src/auth/preferences_token_store.dart';
 export 'src/bootstrap/app_bootstrap.dart';
+export 'src/performance/image_cache_config.dart';
 export 'src/bootstrap/app_launch_preferences.dart';
 export 'src/bootstrap/app_launch_preferences.provider.dart';
 export 'src/client/auth_refresh_interceptor.dart';

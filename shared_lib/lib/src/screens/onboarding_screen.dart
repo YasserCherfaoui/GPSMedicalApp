@@ -7,6 +7,7 @@ import '../l10n/auth_strings.dart';
 import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
 import '../widgets/gps_blur_background.dart';
+import '../widgets/gps_cached_network_image.dart';
 import '../widgets/primary_button.dart';
 
 class OnboardingScreen extends ConsumerWidget {
@@ -167,9 +168,12 @@ class OnboardingScreen extends ConsumerWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.network(
-                  'https://lh3.googleusercontent.com/aida-public/AB6AXuByP-imNm4Utk0dUHuql4NcpRujn9neAuw6yrnrgi6yCv7bh8Bv68umCoiv1ID7zutCh44LMzClDIEE_liA05GvH1X9SbEY9LVPdB-dgrHL7YSDQs2cTsz7f6vZX7PfonI9H2yVmf07IC4u7fE7FcuWJQsIhf-0QsUsLgw3THn1NTRNIIvh2V1AZi4HFRmy1DFZLIiIYipvKZiopZ051FXIV3uqR0mCAVCQeDwecE3e_aN4XFoeYsg4e3_xIZKsxIe_Zwq8xf41qEg',
+                child: const GpsCachedNetworkImage(
+                  imageUrl:
+                      'https://lh3.googleusercontent.com/aida-public/AB6AXuByP-imNm4Utk0dUHuql4NcpRujn9neAuw6yrnrgi6yCv7bh8Bv68umCoiv1ID7zutCh44LMzClDIEE_liA05GvH1X9SbEY9LVPdB-dgrHL7YSDQs2cTsz7f6vZX7PfonI9H2yVmf07IC4u7fE7FcuWJQsIhf-0QsUsLgw3THn1NTRNIIvh2V1AZi4HFRmy1DFZLIiIYipvKZiopZ051FXIV3uqR0mCAVCQeDwecE3e_aN4XFoeYsg4e3_xIZKsxIe_Zwq8xf41qEg',
                   fit: BoxFit.cover,
+                  memCacheWidth: 720,
+                  memCacheHeight: 480,
                 ),
               ),
             ),
@@ -486,9 +490,12 @@ class OnboardingScreen extends ConsumerWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              'https://lh3.googleusercontent.com/aida-public/AB6AXuDsEVjOGTDTRAVINDckDNgTV1H5miuVrMmSLFOvPw69N0mMVPSn17amGPzZcuAz1JZ74DyJDAylF_wgJmV0GUGdAXI4ovBFKeLdGN7Fk2_n9nXJ4XODtj7PsVEhaR5AAlxmXocnEEJlieVlzoWhgw0h4Rz3XQS5n0vykjp0I-JF2OTHZvPVBmXVvCSqmSG5hYUe6BEkesLfOfs6qpswom5MN0pPJaE5bEsK0pS0_LpnIDVdw91d1RZ9HtxdQNlVarcCxNLkgpqDMzo',
+            child: const GpsCachedNetworkImage(
+              imageUrl:
+                  'https://lh3.googleusercontent.com/aida-public/AB6AXuDsEVjOGTDTRAVINDckDNgTV1H5miuVrMmSLFOvPw69N0mMVPSn17amGPzZcuAz1JZ74DyJDAylF_wgJmV0GUGdAXI4ovBFKeLdGN7Fk2_n9nXJ4XODtj7PsVEhaR5AAlxmXocnEEJlieVlzoWhgw0h4Rz3XQS5n0vykjp0I-JF2OTHZvPVBmXVvCSqmSG5hYUe6BEkesLfOfs6qpswom5MN0pPJaE5bEsK0pS0_LpnIDVdw91d1RZ9HtxdQNlVarcCxNLkgpqDMzo',
               fit: BoxFit.cover,
+              memCacheWidth: 720,
+              memCacheHeight: 480,
             ),
           ),
         ),

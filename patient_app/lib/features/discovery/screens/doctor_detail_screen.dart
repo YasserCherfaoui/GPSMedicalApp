@@ -146,26 +146,10 @@ class _DoctorDetailBody extends StatelessWidget {
     final languages = formatDoctorLanguages(doc.languages, l10n);
     final address = formatPracticeAddress(doc.practiceAddress);
 
-    final avatarImage = doc.photoUrl != null && doc.photoUrl!.isNotEmpty
-        ? NetworkImage(doc.photoUrl!) as ImageProvider
-        : const AssetImage('assets/images/default_avatar.png');
-
     final photoBlock = Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(GpsRadii.lg),
-            image: DecorationImage(
-              image: avatarImage,
-              fit: BoxFit.cover,
-              onError: (exception, stackTrace) {},
-            ),
-            color: colorScheme.surfaceContainerHigh,
-          ),
-        ),
+        GpsDoctorPhoto(size: 80, imageUrl: doc.photoUrl),
         if (doc.verified == true)
           PositionedDirectional(
             bottom: -2,

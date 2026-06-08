@@ -26,11 +26,6 @@ class ThreadRowTile extends StatelessWidget {
     final unread = thread.unreadCount ?? 0;
     final preview = messagePreviewLabel(item.lastMessagePreview, l10n);
     final timestamp = formatThreadTimestamp(thread.lastMessageAt, languageCode);
-    final avatarImage =
-        doctor.photoUrl != null && doctor.photoUrl!.isNotEmpty
-        ? NetworkImage(doctor.photoUrl!)
-        : null;
-
     return Card(
       margin: const EdgeInsets.only(bottom: GpsSpacing.sm),
       child: InkWell(
@@ -41,13 +36,10 @@ class ThreadRowTile extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                radius: 28,
-                backgroundImage: avatarImage,
-                backgroundColor: colorScheme.surfaceContainerHigh,
-                child: avatarImage == null
-                    ? Icon(Icons.person, color: colorScheme.onSurfaceVariant)
-                    : null,
+              GpsDoctorPhoto(
+                size: 56,
+                imageUrl: doctor.photoUrl,
+                shape: GpsDoctorPhotoShape.circle,
               ),
               const SizedBox(width: GpsSpacing.md),
               Expanded(

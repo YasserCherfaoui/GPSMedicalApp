@@ -2,6 +2,8 @@ export 'algerian_phone_field.dart';
 export 'auth_flow_scaffold.dart';
 export 'design_system_showcase.dart';
 export 'doctor_card.dart';
+export 'gps_cached_network_image.dart';
+export 'gps_doctor_photo.dart';
 export 'empty_state.dart';
 export 'error_state.dart';
 export 'gps_badge.dart';

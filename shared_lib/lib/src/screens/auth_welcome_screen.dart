@@ -6,6 +6,7 @@ import '../routing/gps_routes.dart';
 import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 import '../widgets/gps_blur_background.dart';
+import '../widgets/gps_cached_network_image.dart';
 import '../widgets/primary_button.dart';
 
 class AuthWelcomeScreen extends StatelessWidget {
@@ -28,12 +29,15 @@ class AuthWelcomeScreen extends StatelessWidget {
                 const SizedBox(height: GpsSpacing.xl),
                 // Brand Logo Header
                 Center(
-                  child: Image.network(
-                    'https://lh3.googleusercontent.com/aida/ADBb0ujRFC5v-qRH6PU68IC_R7TjFH-yZO98-Z1UrfHZBiKplICw0me1ADujiZMpkSMQsmZhDzV_PzNS95xADxelwgVy334vTBOxXVKfKdOIv8dwqPf3IMZxr2ueX_sAtM3k28hb7K-MilIDqZFA44ve3eBWbnKzWK-axvcx6oDeV5eD5msc_Ho2FDOPNiTsYrPkNMM_GEE-d_R02K6tCOzWpTa1Z50VLwXV_ERlKJu77-52cNWZTDqkrriftpc',
+                  child: GpsCachedNetworkImage(
+                    imageUrl:
+                        'https://lh3.googleusercontent.com/aida/ADBb0ujRFC5v-qRH6PU68IC_R7TjFH-yZO98-Z1UrfHZBiKplICw0me1ADujiZMpkSMQsmZhDzV_PzNS95xADxelwgVy334vTBOxXVKfKdOIv8dwqPf3IMZxr2ueX_sAtM3k28hb7K-MilIDqZFA44ve3eBWbnKzWK-axvcx6oDeV5eD5msc_Ho2FDOPNiTsYrPkNMM_GEE-d_R02K6tCOzWpTa1Z50VLwXV_ERlKJu77-52cNWZTDqkrriftpc',
                     width: 80,
                     height: 80,
                     fit: BoxFit.contain,
-                    errorBuilder: (_, __, ___) => Icon(
+                    memCacheWidth: 160,
+                    memCacheHeight: 160,
+                    error: Icon(
                       Icons.health_and_safety_outlined,
                       size: 80,
                       color: colorScheme.primary,

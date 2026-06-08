@@ -263,16 +263,10 @@ class _DoctorAvailabilityHeader extends StatelessWidget {
         showAccentBorder: true,
         child: Row(
           children: [
-            CircleAvatar(
-              radius: 28,
-              backgroundColor: colorScheme.surfaceContainerHigh,
-              backgroundImage:
-                  doctor.photoUrl != null && doctor.photoUrl!.isNotEmpty
-                  ? NetworkImage(doctor.photoUrl!)
-                  : null,
-              child: doctor.photoUrl == null || doctor.photoUrl!.isEmpty
-                  ? Icon(Icons.person, color: colorScheme.onSurfaceVariant)
-                  : null,
+            GpsDoctorPhoto(
+              size: 56,
+              imageUrl: doctor.photoUrl,
+              shape: GpsDoctorPhotoShape.circle,
             ),
             const SizedBox(width: GpsSpacing.md),
             Expanded(

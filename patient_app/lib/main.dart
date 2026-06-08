@@ -16,11 +16,14 @@ const _appInfo = GpsMedicalAppInfo(
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
-  await initPatientFirebase();
+  configureGpsImageCache();
 
   const sentryDsn = String.fromEnvironment('SENTRY_DSN');
-  final bootstrap = await bootstrapGpsMedicalApp();
+  final results = await Future.wait([
+    initPatientFirebase(),
+    bootstrapGpsMedicalApp(),
+  ]);
+  final bootstrap = results[1] as AppBootstrapData;
 
   final app = ProviderScope(
     overrides: [

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../l10n/generated/app_localizations.dart';
 import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
+import 'gps_doctor_photo.dart';
 import 'rating_display.dart';
 import 'specialty_chip.dart';
 
@@ -71,28 +72,12 @@ class DoctorCard extends StatelessWidget {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
     final photoSize = 80.0;
 
-    final avatarImage = photoUrl != null && photoUrl!.isNotEmpty
-        ? NetworkImage(photoUrl!) as ImageProvider
-        : const AssetImage('assets/images/default_avatar.png');
-
     final specialtyLine = _specialtyDistanceLine();
 
     final photoBlock = Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
-          width: photoSize,
-          height: photoSize,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(GpsRadii.lg),
-            image: DecorationImage(
-              image: avatarImage,
-              fit: BoxFit.cover,
-              onError: (exception, stackTrace) {},
-            ),
-            color: colorScheme.surfaceContainerHigh,
-          ),
-        ),
+        GpsDoctorPhoto(size: photoSize, imageUrl: photoUrl),
         if (isVerified)
           PositionedDirectional(
             bottom: -4,
@@ -234,26 +219,10 @@ class DoctorCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final isRtl = Directionality.of(context) == TextDirection.rtl;
 
-    final avatarImage = photoUrl != null && photoUrl!.isNotEmpty
-        ? NetworkImage(photoUrl!) as ImageProvider
-        : const AssetImage('assets/images/default_avatar.png');
-
     final photoBlock = Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
-          width: 96,
-          height: 96,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(GpsRadii.lg),
-            image: DecorationImage(
-              image: avatarImage,
-              fit: BoxFit.cover,
-              onError: (exception, stackTrace) {},
-            ),
-            color: colorScheme.surfaceContainerHigh,
-          ),
-        ),
+        GpsDoctorPhoto(size: 96, imageUrl: photoUrl),
         if (isVerified)
           PositionedDirectional(
             bottom: -4,

@@ -83,10 +83,6 @@ class _DetailBody extends ConsumerWidget {
     final specialty = doctor.specialties?.isNotEmpty == true
         ? specialtyDisplayName(doctor.specialties!.first, locale)
         : '';
-    final avatarImage =
-        doctor.photoUrl != null && doctor.photoUrl!.isNotEmpty
-        ? NetworkImage(doctor.photoUrl!)
-        : null;
     final addressLine = formatPracticeAddress(doctor.practiceAddress);
 
     return SingleChildScrollView(
@@ -107,16 +103,10 @@ class _DetailBody extends ConsumerWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      radius: 32,
-                      backgroundImage: avatarImage,
-                      backgroundColor: theme.colorScheme.surfaceContainerHigh,
-                      child: avatarImage == null
-                          ? Icon(
-                              Icons.person,
-                              color: theme.colorScheme.onSurfaceVariant,
-                            )
-                          : null,
+                    GpsDoctorPhoto(
+                      size: 64,
+                      imageUrl: doctor.photoUrl,
+                      shape: GpsDoctorPhotoShape.circle,
                     ),
                     const SizedBox(width: GpsSpacing.md),
                     Expanded(

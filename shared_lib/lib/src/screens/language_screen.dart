@@ -8,6 +8,7 @@ import '../l10n/locale.provider.dart' hide AppLocale;
 import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
 import '../widgets/gps_blur_background.dart';
+import '../widgets/gps_cached_network_image.dart';
 import '../widgets/primary_button.dart';
 
 class LanguageScreen extends ConsumerWidget {
@@ -29,13 +30,15 @@ class LanguageScreen extends ConsumerWidget {
       case AppLocale.arabic:
         return ClipRRect(
           borderRadius: BorderRadius.circular(4),
-          child: Image.network(
-            'https://lh3.googleusercontent.com/aida-public/AB6AXuAGsLuKS4Wny8uKdaDarc_tPrzoJcMzwaiUKqvuBGR40wtvUkm7EQvN8-tH3ZUEUQO06CHtcrewlzMzoP4HSeP4UlwlzSTGR-ZQc32SbEVksRKCSDUJy-ORoEDmMB6qC_1MN2OPypFTPdRiot_AUPmFl3I9muVuc2ztaNkXMsn8ay8rWQZeXYRCGXpSwkHEMJ_wEAWGl-YPWXwQSMZG3sIJ2SHfMnCJyPTn2OE6rTR8Kl00aiY6priEfTTZJS07RXVUSoe9zKeJ1z8',
+          child: GpsCachedNetworkImage(
+            imageUrl:
+                'https://lh3.googleusercontent.com/aida-public/AB6AXuAGsLuKS4Wny8uKdaDarc_tPrzoJcMzwaiUKqvuBGR40wtvUkm7EQvN8-tH3ZUEUQO06CHtcrewlzMzoP4HSeP4UlwlzSTGR-ZQc32SbEVksRKCSDUJy-ORoEDmMB6qC_1MN2OPypFTPdRiot_AUPmFl3I9muVuc2ztaNkXMsn8ay8rWQZeXYRCGXpSwkHEMJ_wEAWGl-YPWXwQSMZG3sIJ2SHfMnCJyPTn2OE6rTR8Kl00aiY6priEfTTZJS07RXVUSoe9zKeJ1z8',
             width: 32,
             height: 22,
             fit: BoxFit.cover,
-            errorBuilder: (_, __, ___) =>
-                const Text('🇩🇿', style: TextStyle(fontSize: 20)),
+            memCacheWidth: 64,
+            memCacheHeight: 44,
+            error: const Text('🇩🇿', style: TextStyle(fontSize: 20)),
           ),
         );
       case AppLocale.french:

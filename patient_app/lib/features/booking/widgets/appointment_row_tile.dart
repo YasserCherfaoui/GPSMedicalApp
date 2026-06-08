@@ -33,10 +33,6 @@ class AppointmentRowTile extends StatelessWidget {
         ? specialtyDisplayName(doctor.specialties!.first, languageCode)
         : '';
     final fee = appointment.feeDzd ?? doctor.consultationFeeDzd;
-    final avatarImage =
-        doctor.photoUrl != null && doctor.photoUrl!.isNotEmpty
-        ? NetworkImage(doctor.photoUrl!)
-        : null;
 
     return Card(
       margin: const EdgeInsets.only(bottom: GpsSpacing.sm),
@@ -48,13 +44,10 @@ class AppointmentRowTile extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(
-                radius: 28,
-                backgroundImage: avatarImage,
-                backgroundColor: colorScheme.surfaceContainerHigh,
-                child: avatarImage == null
-                    ? Icon(Icons.person, color: colorScheme.onSurfaceVariant)
-                    : null,
+              GpsDoctorPhoto(
+                size: 56,
+                imageUrl: doctor.photoUrl,
+                shape: GpsDoctorPhotoShape.circle,
               ),
               const SizedBox(width: GpsSpacing.md),
               Expanded(
