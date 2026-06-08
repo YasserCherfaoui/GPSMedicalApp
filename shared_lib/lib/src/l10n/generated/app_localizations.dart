@@ -2601,6 +2601,60 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{count, plural, =1{1 étoile} other{{count} étoiles}}'**
   String reviewStarsLabel(int count);
+
+  /// No description provided for @paymentDepositTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payer l\'acompte'**
+  String get paymentDepositTitle;
+
+  /// No description provided for @paymentDepositBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un acompte de {amount} DZD est requis pour confirmer ce rendez-vous.'**
+  String paymentDepositBody(int amount);
+
+  /// No description provided for @paymentDepositCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payer l\'acompte'**
+  String get paymentDepositCta;
+
+  /// No description provided for @paymentDepositAmountLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'{amount} DZD'**
+  String paymentDepositAmountLabel(int amount);
+
+  /// No description provided for @paymentDepositProviderStripeTest.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mode test (sandbox)'**
+  String get paymentDepositProviderStripeTest;
+
+  /// No description provided for @paymentDepositSandboxHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le paiement est simulé en environnement de test.'**
+  String get paymentDepositSandboxHint;
+
+  /// No description provided for @paymentDepositSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement réussi. Votre rendez-vous est à jour.'**
+  String get paymentDepositSuccess;
+
+  /// No description provided for @paymentDepositFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le paiement a échoué.'**
+  String get paymentDepositFailed;
+
+  /// No description provided for @paymentDepositNotEligible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce rendez-vous n\'est pas éligible au paiement.'**
+  String get paymentDepositNotEligible;
 }
 
 class _AppLocalizationsDelegate

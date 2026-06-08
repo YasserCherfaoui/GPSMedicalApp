@@ -431,5 +431,24 @@
     "placeholders": {
       "count": { "type": "int" }
     }
-  }
+  },
+  "paymentDepositTitle": "دفع العربون",
+  "paymentDepositBody": "مطلوب عربون بقيمة {amount} دج لتأكيد هذا الموعد.",
+  "@paymentDepositBody": {
+    "placeholders": {
+      "amount": { "type": "int" }
+    }
+  },
+  "paymentDepositCta": "دفع العربون",
+  "paymentDepositAmountLabel": "{amount} دج",
+  "@paymentDepositAmountLabel": {
+    "placeholders": {
+      "amount": { "type": "int" }
+    }
+  },
+  "paymentDepositProviderStripeTest": "وضع الاختبار (sandbox)",
+  "paymentDepositSandboxHint": "يتم محاكاة الدفع في بيئة الاختبار.",
+  "paymentDepositSuccess": "تم الدفع بنجاح. تم تحديث موعدك.",
+  "paymentDepositFailed": "فشل الدفع.",
+  "paymentDepositNotEligible": "هذا الموعد غير مؤهل للدفع."
 }

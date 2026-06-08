@@ -431,5 +431,24 @@
     "placeholders": {
       "count": { "type": "int" }
     }
-  }
+  },
+  "paymentDepositTitle": "Xelleṣ asekcem",
+  "paymentDepositBody": "Yesra asekcem n {amount} DZD akken ad yettwasentem amarur-a.",
+  "@paymentDepositBody": {
+    "placeholders": {
+      "amount": { "type": "int" }
+    }
+  },
+  "paymentDepositCta": "Xelleṣ asekcem",
+  "paymentDepositAmountLabel": "{amount} DZD",
+  "@paymentDepositAmountLabel": {
+    "placeholders": {
+      "amount": { "type": "int" }
+    }
+  },
+  "paymentDepositProviderStripeTest": "Askar n usekker (sandbox)",
+  "paymentDepositSandboxHint": "Axelleṣ yettwasenfel deg usenqed n usekker.",
+  "paymentDepositSuccess": "Axelleṣ yedda. Amaruṛ yettwaleqqem.",
+  "paymentDepositFailed": "Axelleṣ ur yeddi ara.",
+  "paymentDepositNotEligible": "Amarur-a ur yettak ara ad yettwaxelleṣ."
 }

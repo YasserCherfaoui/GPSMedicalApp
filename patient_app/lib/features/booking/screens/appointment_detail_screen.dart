@@ -12,9 +12,11 @@ import '../providers/booking_draft.provider.dart';
 import '../utils/address_launcher.dart';
 import '../utils/booking_dates.dart';
 import '../utils/booking_enums.dart';
+import '../../payments/utils/deposit_eligibility.dart';
 import '../widgets/booking_error_view.dart';
 import '../widgets/mode_badge.dart';
 import '../widgets/status_pill.dart';
+import '../../payments/widgets/appointment_payment_section.dart';
 import '../../reviews/widgets/appointment_review_section.dart';
 
 class AppointmentDetailScreen extends ConsumerWidget {
@@ -213,6 +215,14 @@ class _DetailBody extends ConsumerWidget {
                 icon: const Icon(Icons.videocam_outlined),
                 label: Text(l10n.appointmentJoinTelehealth),
               ),
+            ),
+          ],
+          if (canPayAppointmentDeposit(appointment)) ...[
+            const SizedBox(height: GpsSpacing.md),
+            AppointmentPaymentSection(
+              appointment: appointment,
+              doctor: doctor,
+              appointmentId: appointmentId,
             ),
           ],
           if (status == AppointmentStatusEnum.completed) ...[

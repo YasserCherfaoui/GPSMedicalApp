@@ -48,6 +48,9 @@ _$paymentIntentCreateProviderEnum_edahabia =
     const PaymentIntentCreateProviderEnum._('edahabia');
 const PaymentIntentCreateProviderEnum _$paymentIntentCreateProviderEnum_cib =
     const PaymentIntentCreateProviderEnum._('cib');
+const PaymentIntentCreateProviderEnum
+_$paymentIntentCreateProviderEnum_stripeTest =
+    const PaymentIntentCreateProviderEnum._('stripeTest');
 
 PaymentIntentCreateProviderEnum _$paymentIntentCreateProviderEnumValueOf(
   String name,
@@ -59,6 +62,8 @@ PaymentIntentCreateProviderEnum _$paymentIntentCreateProviderEnumValueOf(
       return _$paymentIntentCreateProviderEnum_edahabia;
     case 'cib':
       return _$paymentIntentCreateProviderEnum_cib;
+    case 'stripeTest':
+      return _$paymentIntentCreateProviderEnum_stripeTest;
     default:
       throw ArgumentError(name);
   }
@@ -71,6 +76,7 @@ _$paymentIntentCreateProviderEnumValues =
         _$paymentIntentCreateProviderEnum_satim,
         _$paymentIntentCreateProviderEnum_edahabia,
         _$paymentIntentCreateProviderEnum_cib,
+        _$paymentIntentCreateProviderEnum_stripeTest,
       ],
     );
 
@@ -122,11 +128,13 @@ class _$PaymentIntentCreateProviderEnumSerializer
     'satim': 'satim',
     'edahabia': 'edahabia',
     'cib': 'cib',
+    'stripeTest': 'stripe_test',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'satim': 'satim',
     'edahabia': 'edahabia',
     'cib': 'cib',
+    'stripe_test': 'stripeTest',
   };
 
   @override

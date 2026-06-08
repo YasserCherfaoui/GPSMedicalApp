@@ -149,6 +149,25 @@ void main() {
     expect(find.text('Reporter'), findsNothing);
   });
 
+  testWidgets('confirmed unpaid appointment shows pay deposit CTA', (
+    tester,
+  ) async {
+    mockDetail(
+      status: 'confirmed',
+      mode: 'in_person',
+      startAt: '2027-06-10T09:00:00Z',
+      paymentStatus: 'unpaid',
+    );
+
+    await tester.pumpWidget(
+      wrap(const AppointmentDetailScreen(appointmentId: appointmentId)),
+    );
+    await tester.pump();
+    await tester.pumpAndSettle();
+
+    expect(find.text('Payer l\'acompte'), findsWidgets);
+  });
+
   testWidgets('completed appointment shows enabled leave review CTA', (
     tester,
   ) async {

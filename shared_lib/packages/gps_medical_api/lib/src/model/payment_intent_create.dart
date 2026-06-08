@@ -200,6 +200,9 @@ class PaymentIntentCreateProviderEnum extends EnumClass {
   static const PaymentIntentCreateProviderEnum edahabia = _$paymentIntentCreateProviderEnum_edahabia;
   @BuiltValueEnumConst(wireName: r'cib')
   static const PaymentIntentCreateProviderEnum cib = _$paymentIntentCreateProviderEnum_cib;
+  @BuiltValueEnumConst(wireName: r'stripe_test')
+  static const PaymentIntentCreateProviderEnum stripeTest =
+      _$paymentIntentCreateProviderEnum_stripeTest;
 
   static Serializer<PaymentIntentCreateProviderEnum> get serializer => _$paymentIntentCreateProviderEnumSerializer;
 

@@ -1374,4 +1374,38 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get paymentDepositTitle => 'Payer l\'acompte';
+
+  @override
+  String paymentDepositBody(int amount) {
+    return 'Un acompte de $amount DZD est requis pour confirmer ce rendez-vous.';
+  }
+
+  @override
+  String get paymentDepositCta => 'Payer l\'acompte';
+
+  @override
+  String paymentDepositAmountLabel(int amount) {
+    return '$amount DZD';
+  }
+
+  @override
+  String get paymentDepositProviderStripeTest => 'Mode test (sandbox)';
+
+  @override
+  String get paymentDepositSandboxHint =>
+      'Le paiement est simulé en environnement de test.';
+
+  @override
+  String get paymentDepositSuccess =>
+      'Paiement réussi. Votre rendez-vous est à jour.';
+
+  @override
+  String get paymentDepositFailed => 'Le paiement a échoué.';
+
+  @override
+  String get paymentDepositNotEligible =>
+      'Ce rendez-vous n\'est pas éligible au paiement.';
 }

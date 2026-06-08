@@ -1355,4 +1355,37 @@ class AppLocalizationsBer extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get paymentDepositTitle => 'Xelleṣ asekcem';
+
+  @override
+  String paymentDepositBody(int amount) {
+    return 'Yesra asekcem n $amount DZD akken ad yettwasentem amarur-a.';
+  }
+
+  @override
+  String get paymentDepositCta => 'Xelleṣ asekcem';
+
+  @override
+  String paymentDepositAmountLabel(int amount) {
+    return '$amount DZD';
+  }
+
+  @override
+  String get paymentDepositProviderStripeTest => 'Askar n usekker (sandbox)';
+
+  @override
+  String get paymentDepositSandboxHint =>
+      'Axelleṣ yettwasenfel deg usenqed n usekker.';
+
+  @override
+  String get paymentDepositSuccess => 'Axelleṣ yedda. Amaruṛ yettwaleqqem.';
+
+  @override
+  String get paymentDepositFailed => 'Axelleṣ ur yeddi ara.';
+
+  @override
+  String get paymentDepositNotEligible =>
+      'Amarur-a ur yettak ara ad yettwaxelleṣ.';
 }

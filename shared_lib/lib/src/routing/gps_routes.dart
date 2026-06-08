@@ -57,6 +57,8 @@ abstract final class GpsRoutes {
       '/appointments/$appointmentId/review';
   static String reviewConfirmation(String appointmentId) =>
       '/appointments/$appointmentId/review/confirmation';
+  static String appointmentPaymentDeposit(String appointmentId) =>
+      '/appointments/$appointmentId/payment-deposit';
 
   /// Debug-only design system QA (see [createGpsRouter]).
   static const designSystemShowcase = '/dev/design-system';

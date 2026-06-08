@@ -580,5 +580,24 @@
     "placeholders": {
       "count": { "type": "int" }
     }
-  }
+  },
+  "paymentDepositTitle": "Payer l'acompte",
+  "paymentDepositBody": "Un acompte de {amount} DZD est requis pour confirmer ce rendez-vous.",
+  "@paymentDepositBody": {
+    "placeholders": {
+      "amount": { "type": "int" }
+    }
+  },
+  "paymentDepositCta": "Payer l'acompte",
+  "paymentDepositAmountLabel": "{amount} DZD",
+  "@paymentDepositAmountLabel": {
+    "placeholders": {
+      "amount": { "type": "int" }
+    }
+  },
+  "paymentDepositProviderStripeTest": "Mode test (sandbox)",
+  "paymentDepositSandboxHint": "Le paiement est simulé en environnement de test.",
+  "paymentDepositSuccess": "Paiement réussi. Votre rendez-vous est à jour.",
+  "paymentDepositFailed": "Le paiement a échoué.",
+  "paymentDepositNotEligible": "Ce rendez-vous n'est pas éligible au paiement."
 }

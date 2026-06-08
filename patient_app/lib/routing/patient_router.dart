@@ -21,6 +21,7 @@ import '../features/messaging/screens/messaging_thread_screen.dart';
 import '../features/messaging/screens/messaging_threads_list_screen.dart';
 import '../features/notifications/screens/notification_preferences_screen.dart';
 import '../features/notifications/screens/notifications_list_screen.dart';
+import '../features/payments/screens/payment_deposit_screen.dart';
 import '../features/reviews/screens/create_review_screen.dart';
 import '../features/reviews/screens/review_confirmation_screen.dart';
 import '../features/discovery/screens/doctor_detail_screen.dart';
@@ -216,6 +217,13 @@ GoRouter createPatientRouter({
       GoRoute(
         path: GpsRoutes.notificationPreferences,
         builder: (context, state) => const NotificationPreferencesScreen(),
+      ),
+      GoRoute(
+        path: '/appointments/:id/payment-deposit',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return PaymentDepositScreen(appointmentId: id);
+        },
       ),
       GoRoute(
         path: '/appointments/:id/review/confirmation',

@@ -1348,4 +1348,35 @@ class AppLocalizationsAr extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get paymentDepositTitle => 'دفع العربون';
+
+  @override
+  String paymentDepositBody(int amount) {
+    return 'مطلوب عربون بقيمة $amount دج لتأكيد هذا الموعد.';
+  }
+
+  @override
+  String get paymentDepositCta => 'دفع العربون';
+
+  @override
+  String paymentDepositAmountLabel(int amount) {
+    return '$amount دج';
+  }
+
+  @override
+  String get paymentDepositProviderStripeTest => 'وضع الاختبار (sandbox)';
+
+  @override
+  String get paymentDepositSandboxHint => 'يتم محاكاة الدفع في بيئة الاختبار.';
+
+  @override
+  String get paymentDepositSuccess => 'تم الدفع بنجاح. تم تحديث موعدك.';
+
+  @override
+  String get paymentDepositFailed => 'فشل الدفع.';
+
+  @override
+  String get paymentDepositNotEligible => 'هذا الموعد غير مؤهل للدفع.';
 }
