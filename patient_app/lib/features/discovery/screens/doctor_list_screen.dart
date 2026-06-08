@@ -11,6 +11,7 @@ import '../utils/specialty_display.dart';
 import '../widgets/discovery_error_view.dart';
 import '../widgets/doctor_card_tile.dart';
 import '../widgets/doctor_list_shimmer.dart';
+import '../../notifications/widgets/notifications_bell_button.dart';
 
 class DoctorListScreen extends ConsumerWidget {
   const DoctorListScreen({super.key});
@@ -45,6 +46,7 @@ class DoctorListScreen extends ConsumerWidget {
         title: Text(l10n.discoveryAppBarTitle),
         centerTitle: false,
         actions: [
+          const NotificationsBellButton(),
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {

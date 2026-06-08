@@ -371,5 +371,34 @@
   "messagingEmpty": "لا توجد محادثات حالياً",
   "messagingLoadError": "تعذر تحميل المحادثات",
   "messagingAttachmentPreview": "مرفق",
-  "messagingThreadPlaceholder": "المحادثة — التفاصيل قريباً"
+  "messagingThreadPlaceholder": "المحادثة — التفاصيل قريباً",
+  "messagingComposerHint": "اكتب رسالة…",
+  "messagingSend": "إرسال",
+  "messagingAttach": "إرفاق وثيقة",
+  "messagingPickAttachments": "اختر الوثائق",
+  "messagingAttachConfirm": "إرفاق المحدد",
+  "messagingMessagePending": "جارٍ الإرسال…",
+  "messagingMessageSent": "مُرسل",
+  "messagingMessageRead": "مقروء",
+  "messagingSendError": "فشل الإرسال",
+  "messagingLoadMessagesError": "تعذر تحميل الرسائل",
+  "notificationsTitle": "الإشعارات",
+  "notificationsEmpty": "لا توجد إشعارات",
+  "notificationsLoadError": "تعذر تحميل الإشعارات",
+  "notificationsMarkAllRead": "تعليم الكل كمقروء",
+  "notificationsPreferences": "التفضيلات",
+  "notificationsPreferencesTitle": "تفضيلات الإشعارات",
+  "notificationsPrefPush": "إشعارات الدفع",
+  "notificationsPrefSms": "رسائل SMS",
+  "notificationsPrefEmail": "البريد الإلكتروني",
+  "notificationsPrefAppointmentReminders": "تذكيرات المواعيد",
+  "notificationsPrefMarketing": "العروض والأخبار",
+  "notificationsPrefReminderHours": "التذكير قبل الموعد",
+  "notificationsPrefReminderHoursValue": "قبل {hours} ساعة",
+  "@notificationsPrefReminderHoursValue": {
+    "placeholders": {
+      "hours": { "type": "int" }
+    }
+  },
+  "notificationsPrefSaveError": "تعذر الحفظ"
 }

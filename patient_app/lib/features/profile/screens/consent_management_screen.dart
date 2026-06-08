@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../notifications/services/push_notification_service.dart';
 import '../providers/consents_list.provider.dart';
 import '../utils/consent_display.dart';
 
@@ -65,6 +66,7 @@ class _ConsentManagementScreenState
       await ref.read(consentsListProvider.notifier).revoke(
         RevokeConsentRequestConsentTypeEnum.dataProcessing,
       );
+      await ref.read(pushNotificationServiceProvider).unregisterDevice();
       await ref.read(authSessionProvider).signOut();
       if (!mounted) return;
       context.go(GpsRoutes.consentRevoked);

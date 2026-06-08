@@ -6,6 +6,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../providers/patient_profile.provider.dart';
 import '../utils/profile_display.dart';
 import '../widgets/profile_field_row.dart';
+import '../../notifications/widgets/notifications_bell_button.dart';
 
 class PatientProfileScreen extends ConsumerWidget {
   const PatientProfileScreen({super.key});
@@ -20,6 +21,7 @@ class PatientProfileScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(l10n.profileTitle),
         actions: [
+          const NotificationsBellButton(),
           IconButton(
             icon: const Icon(Icons.edit_outlined),
             tooltip: l10n.profileEdit,

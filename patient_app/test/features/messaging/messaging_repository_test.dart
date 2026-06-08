@@ -64,4 +64,22 @@ void main() {
     );
     expect(result.hasMore, isFalse);
   });
+
+  test('sendMessage posts body and returns message', () async {
+    adapter.onPost('/messaging/threads/thread-1/messages', (server) {
+      return server.reply(201, {
+        'id': 'msg-new',
+        'thread_id': 'thread-1',
+        'sender_id': 'user-1',
+        'body': 'Merci',
+        'attachments': [],
+        'created_at': '2026-06-01T11:00:00Z',
+        'read_at': null,
+      });
+    });
+
+    final sent = await repo.sendMessage('thread-1', body: 'Merci');
+    expect(sent.id, 'msg-new');
+    expect(sent.body, 'Merci');
+  });
 }

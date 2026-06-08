@@ -1222,4 +1222,79 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get messagingThreadPlaceholder =>
       'Conversation — détail disponible prochainement';
+
+  @override
+  String get messagingComposerHint => 'Écrire un message…';
+
+  @override
+  String get messagingSend => 'Envoyer';
+
+  @override
+  String get messagingAttach => 'Joindre un document';
+
+  @override
+  String get messagingPickAttachments => 'Choisir des documents';
+
+  @override
+  String get messagingAttachConfirm => 'Joindre la sélection';
+
+  @override
+  String get messagingMessagePending => 'Envoi…';
+
+  @override
+  String get messagingMessageSent => 'Envoyé';
+
+  @override
+  String get messagingMessageRead => 'Lu';
+
+  @override
+  String get messagingSendError => 'Échec de l\'envoi';
+
+  @override
+  String get messagingLoadMessagesError => 'Impossible de charger les messages';
+
+  @override
+  String get notificationsTitle => 'Notifications';
+
+  @override
+  String get notificationsEmpty => 'Aucune notification';
+
+  @override
+  String get notificationsLoadError =>
+      'Impossible de charger les notifications';
+
+  @override
+  String get notificationsMarkAllRead => 'Tout marquer lu';
+
+  @override
+  String get notificationsPreferences => 'Préférences';
+
+  @override
+  String get notificationsPreferencesTitle => 'Préférences de notification';
+
+  @override
+  String get notificationsPrefPush => 'Notifications push';
+
+  @override
+  String get notificationsPrefSms => 'SMS';
+
+  @override
+  String get notificationsPrefEmail => 'E-mail';
+
+  @override
+  String get notificationsPrefAppointmentReminders => 'Rappels de rendez-vous';
+
+  @override
+  String get notificationsPrefMarketing => 'Offres et actualités';
+
+  @override
+  String get notificationsPrefReminderHours => 'Rappel avant le rendez-vous';
+
+  @override
+  String notificationsPrefReminderHoursValue(int hours) {
+    return '$hours h avant';
+  }
+
+  @override
+  String get notificationsPrefSaveError => 'Enregistrement impossible';
 }

@@ -8,6 +8,7 @@ import '../providers/appointments_upcoming.provider.dart';
 import '../providers/doctor_cache.provider.dart';
 import '../widgets/appointment_row_tile.dart';
 import '../widgets/booking_error_view.dart';
+import '../../notifications/widgets/notifications_bell_button.dart';
 
 class AppointmentsListScreen extends ConsumerStatefulWidget {
   const AppointmentsListScreen({super.key});
@@ -40,6 +41,7 @@ class _AppointmentsListScreenState extends ConsumerState<AppointmentsListScreen>
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.appointmentsTitle),
+        actions: const [NotificationsBellButton()],
         bottom: TabBar(
           controller: _tabController,
           tabs: [

@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 class MessagingThreadItem {
@@ -76,6 +77,65 @@ class MessagingRepository {
     } catch (_) {
       return null;
     }
+  }
+
+  Future<Thread> getThread(String threadId) async {
+    final response = await _client.messaging.messagingThreadsThreadIdGet(
+      threadId: threadId,
+    );
+    final thread = response.data;
+    if (thread == null) {
+      throw StateError('Thread not found');
+    }
+    return thread;
+  }
+
+  Future<List<Message>> listMessages(
+    String threadId, {
+    DateTime? before,
+    int limit = 50,
+  }) async {
+    final response =
+        await _client.messaging.messagingThreadsThreadIdMessagesGet(
+          threadId: threadId,
+          before: before,
+          limit: limit,
+        );
+    return response.data?.toList() ?? [];
+  }
+
+  Future<Message> sendMessage(
+    String threadId, {
+    String? body,
+    List<String>? attachmentDocumentIds,
+  }) async {
+    final response =
+        await _client.messaging.messagingThreadsThreadIdMessagesPost(
+          threadId: threadId,
+          messageCreate: MessageCreate((b) {
+            final trimmed = body?.trim();
+            if (trimmed != null && trimmed.isNotEmpty) {
+              b.body = trimmed;
+            }
+            if (attachmentDocumentIds != null &&
+                attachmentDocumentIds.isNotEmpty) {
+              b.attachmentDocumentIds.replace(
+                BuiltList<String>(attachmentDocumentIds),
+              );
+            }
+          }),
+        );
+    final message = response.data;
+    if (message == null) {
+      throw StateError('Empty message response');
+    }
+    return message;
+  }
+
+  Future<void> markMessageRead(String messageId) async {
+    await _client.messaging.messagingMessagesMessageIdReadPost(
+      messageId: messageId,
+    );
   }
 
   String? _rawPreviewFromMessage(Message message) {

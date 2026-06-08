@@ -1200,4 +1200,78 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get messagingThreadPlaceholder => 'المحادثة — التفاصيل قريباً';
+
+  @override
+  String get messagingComposerHint => 'اكتب رسالة…';
+
+  @override
+  String get messagingSend => 'إرسال';
+
+  @override
+  String get messagingAttach => 'إرفاق وثيقة';
+
+  @override
+  String get messagingPickAttachments => 'اختر الوثائق';
+
+  @override
+  String get messagingAttachConfirm => 'إرفاق المحدد';
+
+  @override
+  String get messagingMessagePending => 'جارٍ الإرسال…';
+
+  @override
+  String get messagingMessageSent => 'مُرسل';
+
+  @override
+  String get messagingMessageRead => 'مقروء';
+
+  @override
+  String get messagingSendError => 'فشل الإرسال';
+
+  @override
+  String get messagingLoadMessagesError => 'تعذر تحميل الرسائل';
+
+  @override
+  String get notificationsTitle => 'الإشعارات';
+
+  @override
+  String get notificationsEmpty => 'لا توجد إشعارات';
+
+  @override
+  String get notificationsLoadError => 'تعذر تحميل الإشعارات';
+
+  @override
+  String get notificationsMarkAllRead => 'تعليم الكل كمقروء';
+
+  @override
+  String get notificationsPreferences => 'التفضيلات';
+
+  @override
+  String get notificationsPreferencesTitle => 'تفضيلات الإشعارات';
+
+  @override
+  String get notificationsPrefPush => 'إشعارات الدفع';
+
+  @override
+  String get notificationsPrefSms => 'رسائل SMS';
+
+  @override
+  String get notificationsPrefEmail => 'البريد الإلكتروني';
+
+  @override
+  String get notificationsPrefAppointmentReminders => 'تذكيرات المواعيد';
+
+  @override
+  String get notificationsPrefMarketing => 'العروض والأخبار';
+
+  @override
+  String get notificationsPrefReminderHours => 'التذكير قبل الموعد';
+
+  @override
+  String notificationsPrefReminderHoursValue(int hours) {
+    return 'قبل $hours ساعة';
+  }
+
+  @override
+  String get notificationsPrefSaveError => 'تعذر الحفظ';
 }

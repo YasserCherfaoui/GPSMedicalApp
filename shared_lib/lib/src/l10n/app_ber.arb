@@ -371,5 +371,34 @@
   "messagingEmpty": "Ulac adiwenni akka tura",
   "messagingLoadError": "Ur izmir ara ad yali idiwenniyen",
   "messagingAttachmentPreview": "Amedday",
-  "messagingThreadPlaceholder": "Adiwenni — talqayt ad tili ticki"
+  "messagingThreadPlaceholder": "Adiwenni — talqayt ad tili ticki",
+  "messagingComposerHint": "Aru izen…",
+  "messagingSend": "Azen",
+  "messagingAttach": "Rnu asmeli",
+  "messagingPickAttachments": "Fren isemliyen",
+  "messagingAttachConfirm": "Rnu ayen yettwafernen",
+  "messagingMessagePending": "Azzen…",
+  "messagingMessageSent": "Yettwazen",
+  "messagingMessageRead": "Yettaɣra",
+  "messagingSendError": "Azzen ur yeddi ara",
+  "messagingLoadMessagesError": "Ur izmir ara ad yali iznan",
+  "notificationsTitle": "Ilɣa",
+  "notificationsEmpty": "Ulac ilɣa",
+  "notificationsLoadError": "Ur izmir ara ad yali ilɣa",
+  "notificationsMarkAllRead": "Creḍ akk yettwaɣra",
+  "notificationsPreferences": "Ismenyifen",
+  "notificationsPreferencesTitle": "Ismenyifen n ilɣa",
+  "notificationsPrefPush": "Ilɣa push",
+  "notificationsPrefSms": "SMS",
+  "notificationsPrefEmail": "Imayl",
+  "notificationsPrefAppointmentReminders": "Asmekti n umarur",
+  "notificationsPrefMarketing": "Ixfawen d yisallen",
+  "notificationsPrefReminderHours": "Asmekti send amarur",
+  "notificationsPrefReminderHoursValue": "{hours} n usrag send",
+  "@notificationsPrefReminderHoursValue": {
+    "placeholders": {
+      "hours": { "type": "int" }
+    }
+  },
+  "notificationsPrefSaveError": "Asekles ur yeddi ara"
 }

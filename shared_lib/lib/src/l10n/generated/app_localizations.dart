@@ -2331,6 +2331,150 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Conversation — détail disponible prochainement'**
   String get messagingThreadPlaceholder;
+
+  /// No description provided for @messagingComposerHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Écrire un message…'**
+  String get messagingComposerHint;
+
+  /// No description provided for @messagingSend.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer'**
+  String get messagingSend;
+
+  /// No description provided for @messagingAttach.
+  ///
+  /// In fr, this message translates to:
+  /// **'Joindre un document'**
+  String get messagingAttach;
+
+  /// No description provided for @messagingPickAttachments.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir des documents'**
+  String get messagingPickAttachments;
+
+  /// No description provided for @messagingAttachConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Joindre la sélection'**
+  String get messagingAttachConfirm;
+
+  /// No description provided for @messagingMessagePending.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoi…'**
+  String get messagingMessagePending;
+
+  /// No description provided for @messagingMessageSent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyé'**
+  String get messagingMessageSent;
+
+  /// No description provided for @messagingMessageRead.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lu'**
+  String get messagingMessageRead;
+
+  /// No description provided for @messagingSendError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Échec de l\'envoi'**
+  String get messagingSendError;
+
+  /// No description provided for @messagingLoadMessagesError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les messages'**
+  String get messagingLoadMessagesError;
+
+  /// No description provided for @notificationsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notifications'**
+  String get notificationsTitle;
+
+  /// No description provided for @notificationsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune notification'**
+  String get notificationsEmpty;
+
+  /// No description provided for @notificationsLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les notifications'**
+  String get notificationsLoadError;
+
+  /// No description provided for @notificationsMarkAllRead.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tout marquer lu'**
+  String get notificationsMarkAllRead;
+
+  /// No description provided for @notificationsPreferences.
+  ///
+  /// In fr, this message translates to:
+  /// **'Préférences'**
+  String get notificationsPreferences;
+
+  /// No description provided for @notificationsPreferencesTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Préférences de notification'**
+  String get notificationsPreferencesTitle;
+
+  /// No description provided for @notificationsPrefPush.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notifications push'**
+  String get notificationsPrefPush;
+
+  /// No description provided for @notificationsPrefSms.
+  ///
+  /// In fr, this message translates to:
+  /// **'SMS'**
+  String get notificationsPrefSms;
+
+  /// No description provided for @notificationsPrefEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'E-mail'**
+  String get notificationsPrefEmail;
+
+  /// No description provided for @notificationsPrefAppointmentReminders.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rappels de rendez-vous'**
+  String get notificationsPrefAppointmentReminders;
+
+  /// No description provided for @notificationsPrefMarketing.
+  ///
+  /// In fr, this message translates to:
+  /// **'Offres et actualités'**
+  String get notificationsPrefMarketing;
+
+  /// No description provided for @notificationsPrefReminderHours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rappel avant le rendez-vous'**
+  String get notificationsPrefReminderHours;
+
+  /// No description provided for @notificationsPrefReminderHoursValue.
+  ///
+  /// In fr, this message translates to:
+  /// **'{hours} h avant'**
+  String notificationsPrefReminderHoursValue(int hours);
+
+  /// No description provided for @notificationsPrefSaveError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrement impossible'**
+  String get notificationsPrefSaveError;
 }
 
 class _AppLocalizationsDelegate

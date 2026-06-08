@@ -11,6 +11,7 @@ import '../widgets/discovery_error_view.dart';
 import '../widgets/doctor_card_tile.dart';
 import '../widgets/specialties_picker.dart';
 import '../widgets/wilaya_commune_picker.dart';
+import '../../notifications/widgets/notifications_bell_button.dart';
 
 class NearbyDoctorsMapScreen extends ConsumerStatefulWidget {
   const NearbyDoctorsMapScreen({super.key});
@@ -55,6 +56,7 @@ class _NearbyDoctorsMapScreenState
       appBar: AppBar(
         title: Text(l10n.mapNearbyTitle),
         actions: [
+          const NotificationsBellButton(),
           IconButton(
             icon: const Icon(Icons.filter_alt_outlined),
             onPressed: _openSpecialtyFilter,

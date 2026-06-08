@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../notifications/utils/patient_sign_out.dart';
 import '../providers/patient_profile.provider.dart';
 
 class ProfileAccountScreen extends ConsumerStatefulWidget {
@@ -72,7 +73,7 @@ class _ProfileAccountScreenState extends ConsumerState<ProfileAccountScreen> {
     setState(() => _deleting = true);
     try {
       await ref.read(patientProfileProvider.notifier).deleteAccount();
-      await ref.read(authSessionProvider).signOut();
+      await signOutPatient(ref);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(l10n.profileDeleteSuccess)),
@@ -108,12 +109,7 @@ class _ProfileAccountScreenState extends ConsumerState<ProfileAccountScreen> {
                 const SizedBox(height: GpsSpacing.md),
                 SecondaryButton(
                   label: l10n.profileSignOut,
-                  onPressed: () async {
-                    await ref.read(authSessionProvider).signOut();
-                    if (context.mounted) {
-                      context.go(GpsRoutes.login);
-                    }
-                  },
+                  onPressed: () => signOutPatient(ref, context: context),
                 ),
               ],
             ),

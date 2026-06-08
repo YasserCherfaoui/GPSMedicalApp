@@ -520,5 +520,34 @@
   "messagingEmpty": "Aucune conversation pour le moment",
   "messagingLoadError": "Impossible de charger les conversations",
   "messagingAttachmentPreview": "Pièce jointe",
-  "messagingThreadPlaceholder": "Conversation — détail disponible prochainement"
+  "messagingThreadPlaceholder": "Conversation — détail disponible prochainement",
+  "messagingComposerHint": "Écrire un message…",
+  "messagingSend": "Envoyer",
+  "messagingAttach": "Joindre un document",
+  "messagingPickAttachments": "Choisir des documents",
+  "messagingAttachConfirm": "Joindre la sélection",
+  "messagingMessagePending": "Envoi…",
+  "messagingMessageSent": "Envoyé",
+  "messagingMessageRead": "Lu",
+  "messagingSendError": "Échec de l'envoi",
+  "messagingLoadMessagesError": "Impossible de charger les messages",
+  "notificationsTitle": "Notifications",
+  "notificationsEmpty": "Aucune notification",
+  "notificationsLoadError": "Impossible de charger les notifications",
+  "notificationsMarkAllRead": "Tout marquer lu",
+  "notificationsPreferences": "Préférences",
+  "notificationsPreferencesTitle": "Préférences de notification",
+  "notificationsPrefPush": "Notifications push",
+  "notificationsPrefSms": "SMS",
+  "notificationsPrefEmail": "E-mail",
+  "notificationsPrefAppointmentReminders": "Rappels de rendez-vous",
+  "notificationsPrefMarketing": "Offres et actualités",
+  "notificationsPrefReminderHours": "Rappel avant le rendez-vous",
+  "notificationsPrefReminderHoursValue": "{hours} h avant",
+  "@notificationsPrefReminderHoursValue": {
+    "placeholders": {
+      "hours": { "type": "int" }
+    }
+  },
+  "notificationsPrefSaveError": "Enregistrement impossible"
 }

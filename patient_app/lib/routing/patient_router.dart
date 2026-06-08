@@ -19,6 +19,8 @@ import '../features/medical_records/screens/medical_record_viewer_screen.dart';
 import '../features/medical_records/screens/medical_records_list_screen.dart';
 import '../features/messaging/screens/messaging_thread_screen.dart';
 import '../features/messaging/screens/messaging_threads_list_screen.dart';
+import '../features/notifications/screens/notification_preferences_screen.dart';
+import '../features/notifications/screens/notifications_list_screen.dart';
 import '../features/discovery/screens/doctor_detail_screen.dart';
 import '../features/discovery/screens/doctor_list_screen.dart';
 import '../features/discovery/screens/doctor_search_screen.dart';
@@ -204,6 +206,14 @@ GoRouter createPatientRouter({
           final id = state.pathParameters['id'] ?? '';
           return MessagingThreadScreen(threadId: id);
         },
+      ),
+      GoRoute(
+        path: GpsRoutes.notifications,
+        builder: (context, state) => const NotificationsListScreen(),
+      ),
+      GoRoute(
+        path: GpsRoutes.notificationPreferences,
+        builder: (context, state) => const NotificationPreferencesScreen(),
       ),
       GoRoute(
         path: '/appointments/:id',

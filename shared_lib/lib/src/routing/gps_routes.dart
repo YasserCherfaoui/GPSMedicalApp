@@ -38,6 +38,8 @@ abstract final class GpsRoutes {
   static String medicalRecordDetail(String id) => '/medical-records/$id';
   static const messagingThreads = '/messages';
   static String messagingThreadDetail(String id) => '/messages/$id';
+  static const notifications = '/notifications';
+  static const notificationPreferences = '/notifications/preferences';
   static const consentRevoked = '/auth/consent-revoked';
   static const biometricSetup = '/setup/biometric';
   static const registrationSuccess = '/setup/success';

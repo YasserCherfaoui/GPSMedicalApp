@@ -1206,4 +1206,78 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get messagingThreadPlaceholder => 'Adiwenni — talqayt ad tili ticki';
+
+  @override
+  String get messagingComposerHint => 'Aru izen…';
+
+  @override
+  String get messagingSend => 'Azen';
+
+  @override
+  String get messagingAttach => 'Rnu asmeli';
+
+  @override
+  String get messagingPickAttachments => 'Fren isemliyen';
+
+  @override
+  String get messagingAttachConfirm => 'Rnu ayen yettwafernen';
+
+  @override
+  String get messagingMessagePending => 'Azzen…';
+
+  @override
+  String get messagingMessageSent => 'Yettwazen';
+
+  @override
+  String get messagingMessageRead => 'Yettaɣra';
+
+  @override
+  String get messagingSendError => 'Azzen ur yeddi ara';
+
+  @override
+  String get messagingLoadMessagesError => 'Ur izmir ara ad yali iznan';
+
+  @override
+  String get notificationsTitle => 'Ilɣa';
+
+  @override
+  String get notificationsEmpty => 'Ulac ilɣa';
+
+  @override
+  String get notificationsLoadError => 'Ur izmir ara ad yali ilɣa';
+
+  @override
+  String get notificationsMarkAllRead => 'Creḍ akk yettwaɣra';
+
+  @override
+  String get notificationsPreferences => 'Ismenyifen';
+
+  @override
+  String get notificationsPreferencesTitle => 'Ismenyifen n ilɣa';
+
+  @override
+  String get notificationsPrefPush => 'Ilɣa push';
+
+  @override
+  String get notificationsPrefSms => 'SMS';
+
+  @override
+  String get notificationsPrefEmail => 'Imayl';
+
+  @override
+  String get notificationsPrefAppointmentReminders => 'Asmekti n umarur';
+
+  @override
+  String get notificationsPrefMarketing => 'Ixfawen d yisallen';
+
+  @override
+  String get notificationsPrefReminderHours => 'Asmekti send amarur';
+
+  @override
+  String notificationsPrefReminderHoursValue(int hours) {
+    return '$hours n usrag send';
+  }
+
+  @override
+  String get notificationsPrefSaveError => 'Asekles ur yeddi ara';
 }
