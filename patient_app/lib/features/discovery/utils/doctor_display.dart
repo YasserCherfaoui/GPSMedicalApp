@@ -25,25 +25,35 @@ List<String> doctorSpecialtyLabels(Doctor doctor, String languageCode) {
       [];
 }
 
+/// Localised doctor display name (`title` + `full_name`).
+String formatDoctorDisplayName(Doctor doctor, AppLocalizations l10n) {
+  final title = doctor.title?.trim();
+  final prefix = (title == null || title.isEmpty)
+      ? l10n.doctorTitleDefault
+      : title;
+  final name = doctor.fullName?.trim() ?? '';
+  return '$prefix $name'.trim();
+}
+
 /// Localised comma-separated language list for a doctor profile.
 String formatDoctorLanguages(
   Iterable<DoctorLanguagesEnum>? languages,
-  String languageCode,
+  AppLocalizations l10n,
 ) {
   if (languages == null || languages.isEmpty) return '';
 
   return languages
-      .map((lang) => _languageLabel(lang, languageCode))
+      .map((lang) => doctorLanguageLabel(lang, l10n))
       .where((label) => label.isNotEmpty)
       .join(', ');
 }
 
-String _languageLabel(DoctorLanguagesEnum lang, String languageCode) {
-  if (lang == DoctorLanguagesEnum.ar) {
-    return languageCode == 'ar' ? 'العربية' : 'Arabe';
-  }
-  if (lang == DoctorLanguagesEnum.fr) return 'Français';
-  if (lang == DoctorLanguagesEnum.en) return 'English';
-  if (lang == DoctorLanguagesEnum.ber) return 'Tamazight';
-  return lang.name;
+String doctorLanguageLabel(DoctorLanguagesEnum lang, AppLocalizations l10n) {
+  return switch (lang) {
+    DoctorLanguagesEnum.ar => l10n.doctorLanguageArabic,
+    DoctorLanguagesEnum.fr => l10n.doctorLanguageFrench,
+    DoctorLanguagesEnum.en => l10n.doctorLanguageEnglish,
+    DoctorLanguagesEnum.ber => l10n.doctorLanguageTamazight,
+    _ => lang.name,
+  };
 }

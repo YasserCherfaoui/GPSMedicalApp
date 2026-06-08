@@ -143,7 +143,7 @@ class _DoctorDetailBody extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final doc = detail.doctor;
     final specialtyLabels = doctorSpecialtyLabels(doc, languageCode);
-    final languages = formatDoctorLanguages(doc.languages, languageCode);
+    final languages = formatDoctorLanguages(doc.languages, l10n);
     final address = formatPracticeAddress(doc.practiceAddress);
 
     final avatarImage = doc.photoUrl != null && doc.photoUrl!.isNotEmpty

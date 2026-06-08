@@ -158,7 +158,17 @@
   "discoverySearchAction": "بحث",
   "discoveryDoctorsLoadError": "تعذر تحميل قائمة الأخصائيين.",
   "discoveryRateLimitTitle": "طلبات كثيرة جداً",
-  "discoveryRateLimitMessage": "يرجى الانتظار {seconds} ثانية قبل إعادة المحاولة.",
+  "discoveryRateLimitMessage": "{seconds, plural, =1{يرجى الانتظار ثانية واحدة قبل إعادة المحاولة.} other{يرجى الانتظار # ثوانٍ قبل إعادة المحاولة.}}",
+  "@discoveryRateLimitMessage": {
+    "placeholders": {
+      "seconds": { "type": "int" }
+    }
+  },
+  "doctorTitleDefault": "د.",
+  "doctorLanguageArabic": "العربية",
+  "doctorLanguageFrench": "الفرنسية",
+  "doctorLanguageEnglish": "الإنجليزية",
+  "doctorLanguageTamazight": "الأمازيغية",
   "doctorCardBookCta": "حجز موعد",
   "doctorCardTelehealth": "استشارة عن بُعد",
   "doctorCardVerifiedBadge": "معتمد",
@@ -350,7 +360,7 @@
   "medicalRecordUploadNotes": "ملاحظات (اختياري)",
   "medicalRecordUploadPatient": "المريض المعني",
   "medicalRecordUploadSubmit": "رفع",
-  "medicalRecordUploadMaxFiles": "بحد أقصى {count} ملفات لكل رفع",
+  "medicalRecordUploadMaxFiles": "{count, plural, =1{بحد أقصى ملف واحد لكل رفع} other{بحد أقصى # ملفات لكل رفع}}",
   "medicalRecordUploadFileTooLarge": "يجب ألا يتجاوز حجم كل ملف 20 ميغابايت.",
   "medicalRecordUploadInvalidMime": "الصيغ المقبولة: PDF أو JPEG أو PNG فقط.",
   "medicalRecordUploadTypeRequired": "اختر نوع الوثيقة.",

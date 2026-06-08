@@ -1051,8 +1051,38 @@ abstract class AppLocalizations {
   /// No description provided for @discoveryRateLimitMessage.
   ///
   /// In fr, this message translates to:
-  /// **'Veuillez patienter {seconds} seconde(s) avant de réessayer.'**
+  /// **'{seconds, plural, =1{Veuillez patienter # seconde avant de réessayer.} other{Veuillez patienter # secondes avant de réessayer.}}'**
   String discoveryRateLimitMessage(int seconds);
+
+  /// No description provided for @doctorTitleDefault.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dr.'**
+  String get doctorTitleDefault;
+
+  /// No description provided for @doctorLanguageArabic.
+  ///
+  /// In fr, this message translates to:
+  /// **'Arabe'**
+  String get doctorLanguageArabic;
+
+  /// No description provided for @doctorLanguageFrench.
+  ///
+  /// In fr, this message translates to:
+  /// **'Français'**
+  String get doctorLanguageFrench;
+
+  /// No description provided for @doctorLanguageEnglish.
+  ///
+  /// In fr, this message translates to:
+  /// **'Anglais'**
+  String get doctorLanguageEnglish;
+
+  /// No description provided for @doctorLanguageTamazight.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tamazight'**
+  String get doctorLanguageTamazight;
 
   /// No description provided for @doctorCardBookCta.
   ///
@@ -2203,7 +2233,7 @@ abstract class AppLocalizations {
   /// No description provided for @medicalRecordUploadMaxFiles.
   ///
   /// In fr, this message translates to:
-  /// **'Maximum {count} fichiers par envoi'**
+  /// **'{count, plural, =1{Maximum # fichier par envoi} other{Maximum # fichiers par envoi}}'**
   String medicalRecordUploadMaxFiles(int count);
 
   /// No description provided for @medicalRecordUploadFileTooLarge.

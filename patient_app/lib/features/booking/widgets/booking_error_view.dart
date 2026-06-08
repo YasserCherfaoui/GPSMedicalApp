@@ -17,15 +17,19 @@ class BookingErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final retryAfter = parseRetryAfterSeconds(error);
     if (retryAfter != null) {
       return ErrorState(
-        title: 'Trop de requêtes',
-        message:
-            'Veuillez patienter $retryAfter seconde${retryAfter > 1 ? 's' : ''} avant de réessayer.',
+        title: l10n.discoveryRateLimitTitle,
+        message: l10n.discoveryRateLimitMessage(retryAfter),
         onRetry: onRetry,
       );
     }
-    return ErrorState(title: 'Erreur', message: message, onRetry: onRetry);
+    return ErrorState(
+      title: l10n.errorGenericTitle,
+      message: message,
+      onRetry: onRetry,
+    );
   }
 }

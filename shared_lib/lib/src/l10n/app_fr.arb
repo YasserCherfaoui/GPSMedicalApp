@@ -200,7 +200,7 @@
   "discoverySearchAction": "Rechercher",
   "discoveryDoctorsLoadError": "Impossible de charger la liste des spécialistes.",
   "discoveryRateLimitTitle": "Trop de requêtes",
-  "discoveryRateLimitMessage": "Veuillez patienter {seconds} seconde(s) avant de réessayer.",
+  "discoveryRateLimitMessage": "{seconds, plural, =1{Veuillez patienter # seconde avant de réessayer.} other{Veuillez patienter # secondes avant de réessayer.}}",
   "@discoveryRateLimitMessage": {
     "placeholders": {
       "seconds": {
@@ -208,6 +208,11 @@
       }
     }
   },
+  "doctorTitleDefault": "Dr.",
+  "doctorLanguageArabic": "Arabe",
+  "doctorLanguageFrench": "Français",
+  "doctorLanguageEnglish": "Anglais",
+  "doctorLanguageTamazight": "Tamazight",
   "doctorCardBookCta": "Prendre RDV",
   "doctorCardTelehealth": "Téléconsultation",
   "doctorCardVerifiedBadge": "Agréé",
@@ -494,7 +499,7 @@
   "medicalRecordUploadNotes": "Notes (optionnel)",
   "medicalRecordUploadPatient": "Patient concerné",
   "medicalRecordUploadSubmit": "Téléverser",
-  "medicalRecordUploadMaxFiles": "Maximum {count} fichiers par envoi",
+  "medicalRecordUploadMaxFiles": "{count, plural, =1{Maximum # fichier par envoi} other{Maximum # fichiers par envoi}}",
   "@medicalRecordUploadMaxFiles": {
     "placeholders": {
       "count": { "type": "int" }

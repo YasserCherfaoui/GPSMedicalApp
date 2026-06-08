@@ -516,8 +516,29 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String discoveryRateLimitMessage(int seconds) {
-    return 'يرجى الانتظار $seconds ثانية قبل إعادة المحاولة.';
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'يرجى الانتظار # ثوانٍ قبل إعادة المحاولة.',
+      one: 'يرجى الانتظار ثانية واحدة قبل إعادة المحاولة.',
+    );
+    return '$_temp0';
   }
+
+  @override
+  String get doctorTitleDefault => 'د.';
+
+  @override
+  String get doctorLanguageArabic => 'العربية';
+
+  @override
+  String get doctorLanguageFrench => 'الفرنسية';
+
+  @override
+  String get doctorLanguageEnglish => 'الإنجليزية';
+
+  @override
+  String get doctorLanguageTamazight => 'الأمازيغية';
 
   @override
   String get doctorCardBookCta => 'حجز موعد';
@@ -1131,7 +1152,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String medicalRecordUploadMaxFiles(int count) {
-    return 'بحد أقصى $count ملفات لكل رفع';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'بحد أقصى # ملفات لكل رفع',
+      one: 'بحد أقصى ملف واحد لكل رفع',
+    );
+    return '$_temp0';
   }
 
   @override

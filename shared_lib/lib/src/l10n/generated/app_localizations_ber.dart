@@ -522,8 +522,29 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String discoveryRateLimitMessage(int seconds) {
-    return 'Rǧu $seconds n tasinin uqbel ad tɛreḍ tikelt nniḍen.';
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Rǧu $seconds n tasinin uqbel ad tɛreḍ tikelt nniḍen.',
+      one: 'Rǧu tasint uqbel ad tɛreḍ tikelt nniḍen.',
+    );
+    return '$_temp0';
   }
+
+  @override
+  String get doctorTitleDefault => 'Dr.';
+
+  @override
+  String get doctorLanguageArabic => 'Taɛrabt';
+
+  @override
+  String get doctorLanguageFrench => 'Tafṛansist';
+
+  @override
+  String get doctorLanguageEnglish => 'Taglizit';
+
+  @override
+  String get doctorLanguageTamazight => 'Tamaziɣt';
 
   @override
   String get doctorCardBookCta => 'Awi-d ameẓlu';
@@ -1138,7 +1159,13 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String medicalRecordUploadMaxFiles(int count) {
-    return 'Afellay $count n isemliyen i uzzen';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Afellay $count n isemliyen i uzzen',
+      one: 'Afellay 1 n usamḍan i uzzen',
+    );
+    return '$_temp0';
   }
 
   @override
