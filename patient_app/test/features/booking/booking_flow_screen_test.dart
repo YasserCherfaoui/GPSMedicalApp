@@ -11,6 +11,7 @@ import 'package:patient_app/features/booking/providers/booking_draft.provider.da
 import 'package:patient_app/features/booking/providers/connectivity.provider.dart';
 import 'package:patient_app/features/booking/screens/booking_flow_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../test_api_constants.dart';
 
 class _BookingFlowHarness extends ConsumerStatefulWidget {
   const _BookingFlowHarness();
@@ -60,7 +61,7 @@ void main() {
   setUp(() {
     TestWidgetsFlutterBinding.ensureInitialized();
     SharedPreferences.setMockInitialValues({});
-    dio = Dio(BaseOptions(baseUrl: 'https://api.gpsmedical.dz/v1'));
+    dio = Dio(BaseOptions(baseUrl: kTestApiV1BaseUrl));
     adapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
     dio.httpClientAdapter = adapter;
     client = GpsMedicalClient(tokenStore: InMemoryTokenStore(), v1Dio: dio);

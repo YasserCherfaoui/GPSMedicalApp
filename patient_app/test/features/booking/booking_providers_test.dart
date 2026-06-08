@@ -12,6 +12,7 @@ import 'package:patient_app/features/booking/providers/booking_draft.provider.da
 import 'package:patient_app/features/booking/providers/dependents_list.provider.dart';
 import 'package:patient_app/features/booking/utils/booking_api_error.dart';
 import 'package:patient_app/features/booking/utils/booking_dates.dart';
+import '../../test_api_constants.dart';
 
 void main() {
   late Dio dio;
@@ -22,7 +23,7 @@ void main() {
   setUp(() {
     TestWidgetsFlutterBinding.ensureInitialized();
     SharedPreferences.setMockInitialValues({});
-    dio = Dio(BaseOptions(baseUrl: 'https://api.gpsmedical.dz/v1'));
+    dio = Dio(BaseOptions(baseUrl: kTestApiV1BaseUrl));
     adapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
     dio.httpClientAdapter = adapter;
     client = GpsMedicalClient(tokenStore: InMemoryTokenStore(), v1Dio: dio);

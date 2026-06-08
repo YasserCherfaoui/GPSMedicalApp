@@ -7,6 +7,7 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/discovery/screens/doctor_list_screen.dart';
 import 'package:patient_app/features/discovery/utils/discovery_api_error.dart';
 import 'package:patient_app/features/discovery/widgets/discovery_error_view.dart';
+import '../../test_api_constants.dart';
 
 void main() {
   late Dio dio;
@@ -14,7 +15,7 @@ void main() {
   late GpsMedicalClient client;
 
   setUp(() {
-    dio = Dio(BaseOptions(baseUrl: 'https://api.gpsmedical.dz/v1'));
+    dio = Dio(BaseOptions(baseUrl: kTestApiV1BaseUrl));
     dioAdapter = DioAdapter(dio: dio);
     dio.httpClientAdapter = dioAdapter;
 

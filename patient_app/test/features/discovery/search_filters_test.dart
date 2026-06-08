@@ -6,6 +6,7 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/discovery/providers/doctor_search.provider.dart';
 
 import 'geo_test_fixtures.dart';
+import '../../test_api_constants.dart';
 
 void main() {
   group('SearchFilters.activeFiltersCount', () {
@@ -61,7 +62,7 @@ void main() {
     test('applyLocationSuggestion resolves wilaya for commune picks', () async {
       const communeId = '5fcffb1c-ad63-4de0-b594-9f3a8c8f1a2b';
 
-      final dio = Dio(BaseOptions(baseUrl: 'https://api.gpsmedical.dz/v1'));
+      final dio = Dio(BaseOptions(baseUrl: kTestApiV1BaseUrl));
       final dioAdapter = DioAdapter(dio: dio);
       dio.httpClientAdapter = dioAdapter;
       final client = GpsMedicalClient(

@@ -21,6 +21,8 @@ import '../features/messaging/screens/messaging_thread_screen.dart';
 import '../features/messaging/screens/messaging_threads_list_screen.dart';
 import '../features/notifications/screens/notification_preferences_screen.dart';
 import '../features/notifications/screens/notifications_list_screen.dart';
+import '../features/reviews/screens/create_review_screen.dart';
+import '../features/reviews/screens/review_confirmation_screen.dart';
 import '../features/discovery/screens/doctor_detail_screen.dart';
 import '../features/discovery/screens/doctor_list_screen.dart';
 import '../features/discovery/screens/doctor_search_screen.dart';
@@ -214,6 +216,24 @@ GoRouter createPatientRouter({
       GoRoute(
         path: GpsRoutes.notificationPreferences,
         builder: (context, state) => const NotificationPreferencesScreen(),
+      ),
+      GoRoute(
+        path: '/appointments/:id/review/confirmation',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final review = state.extra is Review ? state.extra as Review : null;
+          return ReviewConfirmationScreen(
+            appointmentId: id,
+            review: review,
+          );
+        },
+      ),
+      GoRoute(
+        path: '/appointments/:id/review',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return CreateReviewScreen(appointmentId: id);
+        },
       ),
       GoRoute(
         path: '/appointments/:id',

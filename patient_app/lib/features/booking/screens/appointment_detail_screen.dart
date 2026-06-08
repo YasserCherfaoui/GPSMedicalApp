@@ -15,6 +15,7 @@ import '../utils/booking_enums.dart';
 import '../widgets/booking_error_view.dart';
 import '../widgets/mode_badge.dart';
 import '../widgets/status_pill.dart';
+import '../../reviews/widgets/appointment_review_section.dart';
 
 class AppointmentDetailScreen extends ConsumerWidget {
   const AppointmentDetailScreen({required this.appointmentId, super.key});
@@ -216,10 +217,7 @@ class _DetailBody extends ConsumerWidget {
           ],
           if (status == AppointmentStatusEnum.completed) ...[
             const SizedBox(height: GpsSpacing.md),
-            OutlinedButton(
-              onPressed: null,
-              child: Text(l10n.appointmentLeaveReview),
-            ),
+            AppointmentReviewSection(appointmentId: appointmentId),
           ],
           if (canModify) ...[
             const SizedBox(height: GpsSpacing.lg),

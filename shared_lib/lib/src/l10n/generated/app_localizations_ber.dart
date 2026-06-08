@@ -1280,4 +1280,79 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get notificationsPrefSaveError => 'Asekles ur yeddi ara';
+
+  @override
+  String get reviewCreateTitle => 'Eǧǧ tamawt';
+
+  @override
+  String get reviewRatingLabel => 'Tazmert';
+
+  @override
+  String get reviewCommentLabel => 'Awal (ifessasen)';
+
+  @override
+  String get reviewCommentHint => 'Bḍu tarmit-ik·im…';
+
+  @override
+  String get reviewSubmit => 'Azen';
+
+  @override
+  String get reviewSubmitError => 'Ur yezmir ara ad yettwazen uceggu.';
+
+  @override
+  String get reviewRatingRequired => 'Ma ulac aɣilif, fren tazmert.';
+
+  @override
+  String reviewCommentTooLong(int max) {
+    return 'Awal ur ilaq ad iεeddi $max n isekkilen.';
+  }
+
+  @override
+  String get reviewConfirmationTitle => 'Tanemmirt ɣef tamawt-ik·im';
+
+  @override
+  String get reviewConfirmationBody =>
+      'Tamawt-ik·im teǧǧa deg usenqed. Ad tettwasekles seld asenqed n terbaɛt-nneɣ, s wudem amezwar deg 48 n usrag.';
+
+  @override
+  String get reviewConfirmationStatusPending => 'Deg usenqed';
+
+  @override
+  String get reviewAlreadySubmitted => 'Tǧǧiḍ yakan tamawt';
+
+  @override
+  String get reviewDelete => 'Kkes tamawt-inu';
+
+  @override
+  String get reviewDeleteConfirm => 'Kkes tamawt-a?';
+
+  @override
+  String get reviewDeleteSuccess => 'Tamawt tettwakkes.';
+
+  @override
+  String get reviewDeleteError => 'Ur yezmir ara ad yettwakkes uceggu.';
+
+  @override
+  String get reviewDeleteExpired => 'Akkew ur yezmir ara seld 7 n wussan.';
+
+  @override
+  String get reviewAlreadyExistsError => 'Yella yakan uceggu i umarur-a.';
+
+  @override
+  String get reviewNotEligibleError =>
+      'Amarur-a ur yettak ara ad d-teǧǧeḍ tamawt.';
+
+  @override
+  String get reviewBackToAppointment => 'Uɣal ɣer umarur';
+
+  @override
+  String reviewStarsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count n yitran',
+      one: '1 n yitri',
+    );
+    return '$_temp0';
+  }
 }

@@ -5,6 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/booking/screens/appointment_detail_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../test_api_constants.dart';
 
 void main() {
   late Dio dio;
@@ -15,7 +17,8 @@ void main() {
   const doctorId = 'doc-detail-1';
 
   setUp(() {
-    dio = Dio(BaseOptions(baseUrl: 'https://api.gpsmedical.dz/v1'));
+    SharedPreferences.setMockInitialValues({});
+    dio = Dio(BaseOptions(baseUrl: kTestApiV1BaseUrl));
     adapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
     dio.httpClientAdapter = adapter;
     client = GpsMedicalClient(tokenStore: InMemoryTokenStore(), v1Dio: dio);
@@ -146,7 +149,7 @@ void main() {
     expect(find.text('Reporter'), findsNothing);
   });
 
-  testWidgets('completed appointment shows disabled leave review CTA', (
+  testWidgets('completed appointment shows enabled leave review CTA', (
     tester,
   ) async {
     mockDetail(
@@ -163,6 +166,28 @@ void main() {
 
     final reviewButton = find.widgetWithText(OutlinedButton, 'Laisser un avis');
     expect(reviewButton, findsOneWidget);
-    expect(tester.widget<OutlinedButton>(reviewButton).onPressed, isNull);
+    expect(tester.widget<OutlinedButton>(reviewButton).onPressed, isNotNull);
+  });
+
+  testWidgets('completed appointment shows already reviewed tile when cached', (
+    tester,
+  ) async {
+    SharedPreferences.setMockInitialValues({
+      'gps_appointment_reviews': '{"$appointmentId":{"appointment_id":"$appointmentId","review_id":"rev-1","rating":5,"created_at":"2026-06-01T10:00:00Z","status":"pending"}}',
+    });
+    mockDetail(
+      status: 'completed',
+      mode: 'in_person',
+      startAt: '2026-01-10T09:00:00Z',
+    );
+
+    await tester.pumpWidget(
+      wrap(const AppointmentDetailScreen(appointmentId: appointmentId)),
+    );
+    await tester.pump();
+    await tester.pumpAndSettle();
+
+    expect(find.text('Vous avez déjà laissé un avis'), findsOneWidget);
+    expect(find.text('Laisser un avis'), findsNothing);
   });
 }

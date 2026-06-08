@@ -2475,6 +2475,132 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Enregistrement impossible'**
   String get notificationsPrefSaveError;
+
+  /// No description provided for @reviewCreateTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Laisser un avis'**
+  String get reviewCreateTitle;
+
+  /// No description provided for @reviewRatingLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Note'**
+  String get reviewRatingLabel;
+
+  /// No description provided for @reviewCommentLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commentaire (optionnel)'**
+  String get reviewCommentLabel;
+
+  /// No description provided for @reviewCommentHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Partagez votre expérience…'**
+  String get reviewCommentHint;
+
+  /// No description provided for @reviewSubmit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer'**
+  String get reviewSubmit;
+
+  /// No description provided for @reviewSubmitError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible d\'envoyer l\'avis.'**
+  String get reviewSubmitError;
+
+  /// No description provided for @reviewRatingRequired.
+  ///
+  /// In fr, this message translates to:
+  /// **'Veuillez sélectionner une note.'**
+  String get reviewRatingRequired;
+
+  /// No description provided for @reviewCommentTooLong.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le commentaire ne doit pas dépasser {max} caractères.'**
+  String reviewCommentTooLong(int max);
+
+  /// No description provided for @reviewConfirmationTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Merci pour votre avis'**
+  String get reviewConfirmationTitle;
+
+  /// No description provided for @reviewConfirmationBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre avis est en attente de modération. Il sera publié après validation par notre équipe, généralement sous 48 heures.'**
+  String get reviewConfirmationBody;
+
+  /// No description provided for @reviewConfirmationStatusPending.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente de modération'**
+  String get reviewConfirmationStatusPending;
+
+  /// No description provided for @reviewAlreadySubmitted.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous avez déjà laissé un avis'**
+  String get reviewAlreadySubmitted;
+
+  /// No description provided for @reviewDelete.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer mon avis'**
+  String get reviewDelete;
+
+  /// No description provided for @reviewDeleteConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer cet avis ?'**
+  String get reviewDeleteConfirm;
+
+  /// No description provided for @reviewDeleteSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avis supprimé.'**
+  String get reviewDeleteSuccess;
+
+  /// No description provided for @reviewDeleteError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de supprimer l\'avis.'**
+  String get reviewDeleteError;
+
+  /// No description provided for @reviewDeleteExpired.
+  ///
+  /// In fr, this message translates to:
+  /// **'La suppression n\'est plus possible après 7 jours.'**
+  String get reviewDeleteExpired;
+
+  /// No description provided for @reviewAlreadyExistsError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un avis existe déjà pour ce rendez-vous.'**
+  String get reviewAlreadyExistsError;
+
+  /// No description provided for @reviewNotEligibleError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce rendez-vous ne permet pas de publier un avis.'**
+  String get reviewNotEligibleError;
+
+  /// No description provided for @reviewBackToAppointment.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retour au rendez-vous'**
+  String get reviewBackToAppointment;
+
+  /// No description provided for @reviewStarsLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 étoile} other{{count} étoiles}}'**
+  String reviewStarsLabel(int count);
 }
 
 class _AppLocalizationsDelegate

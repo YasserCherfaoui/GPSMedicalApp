@@ -400,5 +400,36 @@
       "hours": { "type": "int" }
     }
   },
-  "notificationsPrefSaveError": "Asekles ur yeddi ara"
+  "notificationsPrefSaveError": "Asekles ur yeddi ara",
+  "reviewCreateTitle": "Eǧǧ tamawt",
+  "reviewRatingLabel": "Tazmert",
+  "reviewCommentLabel": "Awal (ifessasen)",
+  "reviewCommentHint": "Bḍu tarmit-ik·im…",
+  "reviewSubmit": "Azen",
+  "reviewSubmitError": "Ur yezmir ara ad yettwazen uceggu.",
+  "reviewRatingRequired": "Ma ulac aɣilif, fren tazmert.",
+  "reviewCommentTooLong": "Awal ur ilaq ad iεeddi {max} n isekkilen.",
+  "@reviewCommentTooLong": {
+    "placeholders": {
+      "max": { "type": "int" }
+    }
+  },
+  "reviewConfirmationTitle": "Tanemmirt ɣef tamawt-ik·im",
+  "reviewConfirmationBody": "Tamawt-ik·im teǧǧa deg usenqed. Ad tettwasekles seld asenqed n terbaɛt-nneɣ, s wudem amezwar deg 48 n usrag.",
+  "reviewConfirmationStatusPending": "Deg usenqed",
+  "reviewAlreadySubmitted": "Tǧǧiḍ yakan tamawt",
+  "reviewDelete": "Kkes tamawt-inu",
+  "reviewDeleteConfirm": "Kkes tamawt-a?",
+  "reviewDeleteSuccess": "Tamawt tettwakkes.",
+  "reviewDeleteError": "Ur yezmir ara ad yettwakkes uceggu.",
+  "reviewDeleteExpired": "Akkew ur yezmir ara seld 7 n wussan.",
+  "reviewAlreadyExistsError": "Yella yakan uceggu i umarur-a.",
+  "reviewNotEligibleError": "Amarur-a ur yettak ara ad d-teǧǧeḍ tamawt.",
+  "reviewBackToAppointment": "Uɣal ɣer umarur",
+  "reviewStarsLabel": "{count, plural, =1{1 n yitri} other{{count} n yitran}}",
+  "@reviewStarsLabel": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  }
 }

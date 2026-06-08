@@ -9,6 +9,7 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/discovery/widgets/wilaya_commune_picker.dart';
 
 import 'geo_test_fixtures.dart';
+import '../../test_api_constants.dart';
 
 void main() {
   late Dio dio;
@@ -16,7 +17,7 @@ void main() {
   late GpsMedicalClient client;
 
   setUp(() {
-    dio = Dio(BaseOptions(baseUrl: 'https://api.gpsmedical.dz/v1'));
+    dio = Dio(BaseOptions(baseUrl: kTestApiV1BaseUrl));
     dioAdapter = DioAdapter(dio: dio);
     dio.httpClientAdapter = dioAdapter;
 

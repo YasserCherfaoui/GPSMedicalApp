@@ -53,6 +53,10 @@ abstract final class GpsRoutes {
   static String doctorDetail(String id) => '/doctors/$id';
   static String doctorBooking(String id) => '/doctors/$id/book';
   static String appointmentDetail(String id) => '/appointments/$id';
+  static String appointmentReview(String appointmentId) =>
+      '/appointments/$appointmentId/review';
+  static String reviewConfirmation(String appointmentId) =>
+      '/appointments/$appointmentId/review/confirmation';
 
   /// Debug-only design system QA (see [createGpsRouter]).
   static const designSystemShowcase = '/dev/design-system';

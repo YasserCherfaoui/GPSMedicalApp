@@ -1297,4 +1297,81 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get notificationsPrefSaveError => 'Enregistrement impossible';
+
+  @override
+  String get reviewCreateTitle => 'Laisser un avis';
+
+  @override
+  String get reviewRatingLabel => 'Note';
+
+  @override
+  String get reviewCommentLabel => 'Commentaire (optionnel)';
+
+  @override
+  String get reviewCommentHint => 'Partagez votre expérience…';
+
+  @override
+  String get reviewSubmit => 'Envoyer';
+
+  @override
+  String get reviewSubmitError => 'Impossible d\'envoyer l\'avis.';
+
+  @override
+  String get reviewRatingRequired => 'Veuillez sélectionner une note.';
+
+  @override
+  String reviewCommentTooLong(int max) {
+    return 'Le commentaire ne doit pas dépasser $max caractères.';
+  }
+
+  @override
+  String get reviewConfirmationTitle => 'Merci pour votre avis';
+
+  @override
+  String get reviewConfirmationBody =>
+      'Votre avis est en attente de modération. Il sera publié après validation par notre équipe, généralement sous 48 heures.';
+
+  @override
+  String get reviewConfirmationStatusPending => 'En attente de modération';
+
+  @override
+  String get reviewAlreadySubmitted => 'Vous avez déjà laissé un avis';
+
+  @override
+  String get reviewDelete => 'Supprimer mon avis';
+
+  @override
+  String get reviewDeleteConfirm => 'Supprimer cet avis ?';
+
+  @override
+  String get reviewDeleteSuccess => 'Avis supprimé.';
+
+  @override
+  String get reviewDeleteError => 'Impossible de supprimer l\'avis.';
+
+  @override
+  String get reviewDeleteExpired =>
+      'La suppression n\'est plus possible après 7 jours.';
+
+  @override
+  String get reviewAlreadyExistsError =>
+      'Un avis existe déjà pour ce rendez-vous.';
+
+  @override
+  String get reviewNotEligibleError =>
+      'Ce rendez-vous ne permet pas de publier un avis.';
+
+  @override
+  String get reviewBackToAppointment => 'Retour au rendez-vous';
+
+  @override
+  String reviewStarsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count étoiles',
+      one: '1 étoile',
+    );
+    return '$_temp0';
+  }
 }

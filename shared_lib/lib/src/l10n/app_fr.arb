@@ -549,5 +549,36 @@
       "hours": { "type": "int" }
     }
   },
-  "notificationsPrefSaveError": "Enregistrement impossible"
+  "notificationsPrefSaveError": "Enregistrement impossible",
+  "reviewCreateTitle": "Laisser un avis",
+  "reviewRatingLabel": "Note",
+  "reviewCommentLabel": "Commentaire (optionnel)",
+  "reviewCommentHint": "Partagez votre expérience…",
+  "reviewSubmit": "Envoyer",
+  "reviewSubmitError": "Impossible d'envoyer l'avis.",
+  "reviewRatingRequired": "Veuillez sélectionner une note.",
+  "reviewCommentTooLong": "Le commentaire ne doit pas dépasser {max} caractères.",
+  "@reviewCommentTooLong": {
+    "placeholders": {
+      "max": { "type": "int" }
+    }
+  },
+  "reviewConfirmationTitle": "Merci pour votre avis",
+  "reviewConfirmationBody": "Votre avis est en attente de modération. Il sera publié après validation par notre équipe, généralement sous 48 heures.",
+  "reviewConfirmationStatusPending": "En attente de modération",
+  "reviewAlreadySubmitted": "Vous avez déjà laissé un avis",
+  "reviewDelete": "Supprimer mon avis",
+  "reviewDeleteConfirm": "Supprimer cet avis ?",
+  "reviewDeleteSuccess": "Avis supprimé.",
+  "reviewDeleteError": "Impossible de supprimer l'avis.",
+  "reviewDeleteExpired": "La suppression n'est plus possible après 7 jours.",
+  "reviewAlreadyExistsError": "Un avis existe déjà pour ce rendez-vous.",
+  "reviewNotEligibleError": "Ce rendez-vous ne permet pas de publier un avis.",
+  "reviewBackToAppointment": "Retour au rendez-vous",
+  "reviewStarsLabel": "{count, plural, =1{1 étoile} other{{count} étoiles}}",
+  "@reviewStarsLabel": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  }
 }

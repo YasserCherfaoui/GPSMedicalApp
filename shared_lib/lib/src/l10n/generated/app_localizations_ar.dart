@@ -1274,4 +1274,78 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notificationsPrefSaveError => 'تعذر الحفظ';
+
+  @override
+  String get reviewCreateTitle => 'ترك تقييم';
+
+  @override
+  String get reviewRatingLabel => 'التقييم';
+
+  @override
+  String get reviewCommentLabel => 'تعليق (اختياري)';
+
+  @override
+  String get reviewCommentHint => 'شارك تجربتك…';
+
+  @override
+  String get reviewSubmit => 'إرسال';
+
+  @override
+  String get reviewSubmitError => 'تعذر إرسال التقييم.';
+
+  @override
+  String get reviewRatingRequired => 'يرجى اختيار تقييم.';
+
+  @override
+  String reviewCommentTooLong(int max) {
+    return 'يجب ألا يتجاوز التعليق $max حرفًا.';
+  }
+
+  @override
+  String get reviewConfirmationTitle => 'شكرًا على تقييمك';
+
+  @override
+  String get reviewConfirmationBody =>
+      'تقييمك قيد المراجعة. سيتم نشره بعد التحقق من فريقنا، عادةً خلال 48 ساعة.';
+
+  @override
+  String get reviewConfirmationStatusPending => 'قيد المراجعة';
+
+  @override
+  String get reviewAlreadySubmitted => 'لقد تركت تقييمًا بالفعل';
+
+  @override
+  String get reviewDelete => 'حذف تقييمي';
+
+  @override
+  String get reviewDeleteConfirm => 'حذف هذا التقييم؟';
+
+  @override
+  String get reviewDeleteSuccess => 'تم حذف التقييم.';
+
+  @override
+  String get reviewDeleteError => 'تعذر حذف التقييم.';
+
+  @override
+  String get reviewDeleteExpired => 'لا يمكن الحذف بعد 7 أيام.';
+
+  @override
+  String get reviewAlreadyExistsError => 'يوجد تقييم بالفعل لهذا الموعد.';
+
+  @override
+  String get reviewNotEligibleError => 'لا يمكن نشر تقييم لهذا الموعد.';
+
+  @override
+  String get reviewBackToAppointment => 'العودة إلى الموعد';
+
+  @override
+  String reviewStarsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count نجوم',
+      one: 'نجمة واحدة',
+    );
+    return '$_temp0';
+  }
 }
