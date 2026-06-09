@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
-import 'package:patient_app/firebase/init_firebase.dart';
 import 'package:patient_app/features/booking/widgets/booking_draft_resume_listener.dart';
 import 'package:patient_app/features/notifications/widgets/push_notifications_bootstrap.dart';
+import 'package:patient_app/firebase/init_firebase.dart';
 import 'package:patient_app/routing/patient_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
