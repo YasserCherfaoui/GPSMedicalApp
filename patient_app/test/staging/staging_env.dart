@@ -6,7 +6,7 @@ class StagingEnv {
 
   static const defaultApiRoot =
       'https://gpsmedicalgo-production.up.railway.app';
-  static const defaultPhone = '+21355009999';
+  static const defaultPhone = '+213550099999';
   static const defaultPassword = 'StagingSeed2026!';
   static const defaultWilayaCode = '16';
 
