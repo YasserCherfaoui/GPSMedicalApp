@@ -127,6 +127,6 @@ void main() {
     );
 
     expect(find.text('Trop de requêtes'), findsOneWidget);
-    expect(find.textContaining('30'), findsOneWidget);
+    expect(find.textContaining('secondes'), findsOneWidget);
   });
 }

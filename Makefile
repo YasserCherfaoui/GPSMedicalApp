@@ -72,7 +72,10 @@ test-booking-staging:
 test-phase2-staging:
 	cd patient_app && STAGING_INTEGRATION=1 flutter test test/staging test/features/booking/staging --tags staging --concurrency=1
 
-ci: format-check analyze test
+test-cover-features:
+	bash patient_app/scripts/check_features_coverage.sh
+
+ci: format-check analyze test test-cover-features
 
 build-apk: pub-get
 	@for d in patient_app specialist_app; do \

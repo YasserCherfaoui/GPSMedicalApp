@@ -12,6 +12,8 @@ Shared Flutter library for the GPS Médical patient and specialist mobile apps: 
 | `EmptyState` | No-results placeholder with optional action | `EmptyState(title: 'Vide', message: '...', onAction: ...)` |
 | `ErrorState` | Recoverable error with retry | `ErrorState(title: 'Erreur', onRetry: ...)` |
 | `LoadingSkeleton` / `LoadingShimmer` | Shimmer placeholder for lists | `LoadingShimmer.card()` |
+| `GpsCachedNetworkImage` | Memory- and disk-cached network image with decode size caps | See below |
+| `GpsDoctorPhoto` | Doctor portrait (circle or rounded square) built on `GpsCachedNetworkImage` | See below |
 
 Import from the barrel:
 
@@ -62,7 +64,27 @@ DoctorCard(
 
 Discovery screens use `buildDoctorCardTile()` in `patient_app` to map API `Doctor` models to `DoctorCard`; pass `variant: DoctorCardVariant.map` on the nearby-doctors map screen.
 
-Widget tests live in `test/widgets/design_system_widgets_test.dart`.
+### Image widgets (Phase 2 — performance)
+
+Call `configureGpsImageCache()` once at app startup (see `patient_app/lib/main.dart`).
+
+```dart
+GpsCachedNetworkImage(
+  imageUrl: doctor.photoUrl!,
+  width: 72,
+  height: 72,
+  memCacheWidth: gpsMemCachePixels(context, 72),
+  borderRadius: BorderRadius.circular(GpsRadii.md),
+)
+
+GpsDoctorPhoto(
+  size: 56,
+  imageUrl: doctor.photoUrl,
+  shape: GpsDoctorPhotoShape.circle,
+)
+```
+
+Widget tests: `test/widgets/design_system_widgets_test.dart`, `patient_app/test/features/discovery/doctor_display_test.dart`.
 
 ## Getting started
 
