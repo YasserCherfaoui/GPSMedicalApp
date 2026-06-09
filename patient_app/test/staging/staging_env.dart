@@ -1,6 +1,6 @@
 import 'dart:io';
 
-/// Environment for booking tests against the staging API (task 7.6).
+/// Environment for Phase 2 staging API integration tests (tasks 7.6, 9.8).
 class StagingEnv {
   StagingEnv._();
 
@@ -18,7 +18,8 @@ class StagingEnv {
   static String get apiRoot =>
       Platform.environment['STAGING_API_ROOT_URL'] ?? defaultApiRoot;
 
-  static String get patientPhone => _nonEmptyEnv('STAGING_PATIENT_PHONE') ?? defaultPhone;
+  static String get patientPhone =>
+      _nonEmptyEnv('STAGING_PATIENT_PHONE') ?? defaultPhone;
 
   static String get patientPassword =>
       _nonEmptyEnv('STAGING_PATIENT_PASSWORD') ?? defaultPassword;

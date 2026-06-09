@@ -6,8 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:patient_app/features/booking/providers/appointments_upcoming.provider.dart';
 
-import 'staging_env.dart';
-import 'staging_harness.dart';
+import '../../../staging/staging_env.dart';
+import '../../../staging/staging_harness.dart';
 
 void main() {
   final runStaging = StagingEnv.enabled;

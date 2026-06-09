@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:patient_app/features/booking/repositories/appointment_repository.dart';
 import 'package:patient_app/features/booking/repositories/availability_repository.dart';
@@ -5,7 +7,9 @@ import 'package:patient_app/features/booking/utils/booking_enums.dart';
 import 'package:patient_app/features/discovery/providers/doctor_search.provider.dart';
 import 'package:patient_app/features/discovery/repositories/doctor_repository.dart';
 import 'package:patient_app/features/discovery/repositories/search_repository.dart';
-
+import 'package:patient_app/features/medical_records/repositories/medical_records_repository.dart';
+import 'package:patient_app/features/messaging/repositories/messaging_repository.dart';
+import 'package:patient_app/features/reviews/repositories/reviews_repository.dart';
 import 'staging_env.dart';
 
 class StagingSession {
@@ -24,6 +28,13 @@ class StagingSession {
   DoctorRepository get doctors => DoctorRepository(client);
 
   SearchRepository get search => SearchRepository(client);
+
+  MedicalRecordsRepository get medicalRecords =>
+      MedicalRecordsRepository(client);
+
+  MessagingRepository get messaging => MessagingRepository(client);
+
+  ReviewsRepository get reviews => ReviewsRepository(client);
 }
 
 class StagingBookableSlot {
@@ -37,6 +48,77 @@ class StagingBookableSlot {
   final Doctor doctor;
   final AvailabilitySlot slot;
 }
+
+/// Minimal 1×1 PNG (magic bytes valid for staging upload MIME checks).
+final Uint8List kStagingMinimalPng = Uint8List.fromList([
+  0x89,
+  0x50,
+  0x4E,
+  0x47,
+  0x0D,
+  0x0A,
+  0x1A,
+  0x0A,
+  0x00,
+  0x00,
+  0x00,
+  0x0D,
+  0x49,
+  0x48,
+  0x44,
+  0x52,
+  0x00,
+  0x00,
+  0x00,
+  0x01,
+  0x00,
+  0x00,
+  0x00,
+  0x01,
+  0x08,
+  0x06,
+  0x00,
+  0x00,
+  0x00,
+  0x1F,
+  0x15,
+  0xC4,
+  0x89,
+  0x00,
+  0x00,
+  0x00,
+  0x0A,
+  0x49,
+  0x44,
+  0x41,
+  0x54,
+  0x78,
+  0x9C,
+  0x63,
+  0x00,
+  0x01,
+  0x00,
+  0x00,
+  0x05,
+  0x00,
+  0x01,
+  0x0D,
+  0x0A,
+  0x2D,
+  0xB4,
+  0x00,
+  0x00,
+  0x00,
+  0x00,
+  0x49,
+  0x45,
+  0x4E,
+  0x44,
+  0xAE,
+  0x42,
+  0x60,
+  0x82,
+]);
 
 class StagingHarness {
   static Future<StagingSession> login() async {
@@ -77,7 +159,11 @@ class StagingHarness {
         doctorId: doctorId,
         minLeadTime: minLeadTime,
       );
-      return StagingBookableSlot(doctorId: doctorId, doctor: doctor, slot: slot);
+      return StagingBookableSlot(
+        doctorId: doctorId,
+        doctor: doctor,
+        slot: slot,
+      );
     }
 
     final searchResult = await session.search.searchDoctors(
@@ -188,5 +274,87 @@ class StagingHarness {
       throw StateError('Failed to create staging dependent');
     }
     return created;
+  }
+
+  static Future<MedicalDocument> uploadMedicalRecord(
+    StagingSession session, {
+    String? appointmentId,
+  }) async {
+    final stamp = DateTime.now().millisecondsSinceEpoch;
+    return session.medicalRecords.upload(
+      bytes: Uint8List.fromList(kStagingMinimalPng),
+      fileName: 'staging-e2e-$stamp.png',
+      mimeType: 'image/png',
+      type: MedicalDocumentTypeEnum.other,
+      appointmentId: appointmentId,
+      title: 'Staging E2E upload',
+      notes: 'Created by phase 2 integration test',
+    );
+  }
+
+  static Future<void> deleteMedicalRecord(
+    StagingSession session,
+    String documentId,
+  ) async {
+    try {
+      await session.client.medicalRecords.medicalRecordsDocumentIdDelete(
+        documentId: documentId,
+      );
+    } catch (_) {
+      // Best-effort cleanup for shared staging.
+    }
+  }
+
+  static Future<Message> sendDoctorMessage(
+    StagingSession session, {
+    required String doctorId,
+    required String body,
+  }) async {
+    return session.messaging.sendMessage(
+      doctorId,
+      body: body,
+    );
+  }
+
+  /// Returns a completed appointment from the staging patient's history.
+  static Future<Appointment> findCompletedAppointment(
+    StagingSession session,
+  ) async {
+    final result = await session.appointments.list(
+      status: 'completed',
+      page: 1,
+      pageSize: 50,
+    );
+    for (final appointment in result.appointments) {
+      final id = appointment.id;
+      if (id != null && id.isNotEmpty) {
+        return appointment;
+      }
+    }
+    throw StateError('No completed staging appointment found');
+  }
+
+  static Future<Review> createReview(
+    StagingSession session, {
+    required String appointmentId,
+    int rating = 5,
+    String? comment,
+  }) {
+    return session.reviews.create(
+      appointmentId: appointmentId,
+      rating: rating,
+      comment: comment,
+    );
+  }
+
+  static Future<void> deleteReview(
+    StagingSession session,
+    String reviewId,
+  ) async {
+    try {
+      await session.reviews.delete(reviewId);
+    } catch (_) {
+      // Best-effort cleanup for shared staging.
+    }
   }
 }

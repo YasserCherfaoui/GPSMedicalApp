@@ -69,6 +69,9 @@ test: pub-get
 test-booking-staging:
 	cd patient_app && STAGING_INTEGRATION=1 flutter test test/features/booking/staging --tags staging --concurrency=1
 
+test-phase2-staging:
+	cd patient_app && STAGING_INTEGRATION=1 flutter test test/staging test/features/booking/staging --tags staging --concurrency=1
+
 ci: format-check analyze test
 
 build-apk: pub-get
