@@ -4,10 +4,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../profile/providers/patient_profile.provider.dart';
 import '../providers/messaging_thread.provider.dart';
-import '../utils/messaging_display.dart';
 import '../widgets/medical_record_picker_sheet.dart';
-import '../widgets/message_bubble.dart';
-import '../widgets/message_composer.dart';
 
 class MessagingThreadScreen extends ConsumerStatefulWidget {
   const MessagingThreadScreen({required this.threadId, super.key});
@@ -41,9 +38,7 @@ class _MessagingThreadScreenState extends ConsumerState<MessagingThreadScreen> {
     if (!_scrollController.hasClients) return;
     final position = _scrollController.position;
     if (position.pixels >= position.maxScrollExtent - 120) {
-      ref
-          .read(messagingThreadProvider(widget.threadId).notifier)
-          .loadOlder();
+      ref.read(messagingThreadProvider(widget.threadId).notifier).loadOlder();
     }
   }
 
@@ -53,10 +48,9 @@ class _MessagingThreadScreenState extends ConsumerState<MessagingThreadScreen> {
     if (body.trim().isEmpty && attachments.isEmpty) return;
 
     try {
-      await ref.read(messagingThreadProvider(widget.threadId).notifier).send(
-        body: body,
-        attachmentDocumentIds: attachments,
-      );
+      await ref
+          .read(messagingThreadProvider(widget.threadId).notifier)
+          .send(body: body, attachmentDocumentIds: attachments);
       if (!mounted) return;
       _composerController.clear();
       setState(_selectedAttachments.clear);
@@ -64,7 +58,9 @@ class _MessagingThreadScreenState extends ConsumerState<MessagingThreadScreen> {
     } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.messagingSendError)),
+        SnackBar(
+          content: Text(AppLocalizations.of(context)!.messagingSendError),
+        ),
       );
     }
   }
@@ -120,9 +116,8 @@ class _MessagingThreadScreenState extends ConsumerState<MessagingThreadScreen> {
               Text(l10n.messagingLoadMessagesError),
               const SizedBox(height: GpsSpacing.md),
               FilledButton(
-                onPressed: () => ref.invalidate(
-                  messagingThreadProvider(widget.threadId),
-                ),
+                onPressed: () =>
+                    ref.invalidate(messagingThreadProvider(widget.threadId)),
                 child: Text(l10n.retry),
               ),
             ],

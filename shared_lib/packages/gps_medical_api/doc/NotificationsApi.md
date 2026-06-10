@@ -9,17 +9,17 @@ All URIs are relative to *https://api.gpsmedical.dz/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**notificationsDevicesDeviceIdDelete**](NotificationsApi.md#notificationsdevicesdeviceiddelete) | **DELETE** /notifications/devices/{deviceId} | Désinscription d&#39;un device
-[**notificationsDevicesPost**](NotificationsApi.md#notificationsdevicespost) | **POST** /notifications/devices | Enregistrement d&#39;un device pour les push (FCM)
-[**notificationsGet**](NotificationsApi.md#notificationsget) | **GET** /notifications | Liste des notifications de l&#39;utilisateur
-[**notificationsNotificationIdReadPost**](NotificationsApi.md#notificationsnotificationidreadpost) | **POST** /notifications/{notificationId}/read | Marquer comme lu
-[**notificationsPreferencesGet**](NotificationsApi.md#notificationspreferencesget) | **GET** /notifications/preferences | Préférences de notification
-[**notificationsPreferencesPut**](NotificationsApi.md#notificationspreferencesput) | **PUT** /notifications/preferences | Mise à jour des préférences
-[**notificationsReadAllPost**](NotificationsApi.md#notificationsreadallpost) | **POST** /notifications/read-all | Marquer toutes les notifications comme lues
+[**deleteNotificationDevice**](NotificationsApi.md#deletenotificationdevice) | **DELETE** /notifications/devices/{deviceId} | Désinscription d&#39;un device
+[**getNotificationPreferences**](NotificationsApi.md#getnotificationpreferences) | **GET** /notifications/preferences | Préférences de notification
+[**listNotifications**](NotificationsApi.md#listnotifications) | **GET** /notifications | Liste des notifications de l&#39;utilisateur
+[**markAllNotificationsRead**](NotificationsApi.md#markallnotificationsread) | **POST** /notifications/read-all | Marquer toutes les notifications comme lues
+[**markNotificationRead**](NotificationsApi.md#marknotificationread) | **POST** /notifications/{notificationId}/read | Marquer comme lu
+[**registerNotificationDevice**](NotificationsApi.md#registernotificationdevice) | **POST** /notifications/devices | Enregistrement d&#39;un device pour les push (FCM)
+[**updateNotificationPreferences**](NotificationsApi.md#updatenotificationpreferences) | **PUT** /notifications/preferences | Mise à jour des préférences
 
 
-# **notificationsDevicesDeviceIdDelete**
-> notificationsDevicesDeviceIdDelete(deviceId)
+# **deleteNotificationDevice**
+> deleteNotificationDevice(deviceId)
 
 Désinscription d'un device
 
@@ -31,9 +31,9 @@ final api = GpsMedicalApi().getNotificationsApi();
 final String deviceId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 
 try {
-    api.notificationsDevicesDeviceIdDelete(deviceId);
+    api.deleteNotificationDevice(deviceId);
 } on DioException catch (e) {
-    print('Exception when calling NotificationsApi->notificationsDevicesDeviceIdDelete: $e\n');
+    print('Exception when calling NotificationsApi->deleteNotificationDevice: $e\n');
 }
 ```
 
@@ -58,35 +58,31 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **notificationsDevicesPost**
-> Device notificationsDevicesPost(deviceRegistration)
+# **getNotificationPreferences**
+> NotificationPreferences getNotificationPreferences()
 
-Enregistrement d'un device pour les push (FCM)
+Préférences de notification
 
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
 
 final api = GpsMedicalApi().getNotificationsApi();
-final DeviceRegistration deviceRegistration = ; // DeviceRegistration | 
 
 try {
-    final response = api.notificationsDevicesPost(deviceRegistration);
+    final response = api.getNotificationPreferences();
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling NotificationsApi->notificationsDevicesPost: $e\n');
+    print('Exception when calling NotificationsApi->getNotificationPreferences: $e\n');
 }
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **deviceRegistration** | [**DeviceRegistration**](DeviceRegistration.md)|  | 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**Device**](Device.md)
+[**NotificationPreferences**](NotificationPreferences.md)
 
 ### Authorization
 
@@ -94,13 +90,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **notificationsGet**
-> PaginatedNotifications notificationsGet(unreadOnly, page, pageSize)
+# **listNotifications**
+> PaginatedNotifications listNotifications(unreadOnly, page, pageSize)
 
 Liste des notifications de l'utilisateur
 
@@ -114,10 +110,10 @@ final int page = 56; // int |
 final int pageSize = 56; // int | 
 
 try {
-    final response = api.notificationsGet(unreadOnly, page, pageSize);
+    final response = api.listNotifications(unreadOnly, page, pageSize);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling NotificationsApi->notificationsGet: $e\n');
+    print('Exception when calling NotificationsApi->listNotifications: $e\n');
 }
 ```
 
@@ -144,8 +140,44 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **notificationsNotificationIdReadPost**
-> notificationsNotificationIdReadPost(notificationId)
+# **markAllNotificationsRead**
+> markAllNotificationsRead()
+
+Marquer toutes les notifications comme lues
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getNotificationsApi();
+
+try {
+    api.markAllNotificationsRead();
+} on DioException catch (e) {
+    print('Exception when calling NotificationsApi->markAllNotificationsRead: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **markNotificationRead**
+> markNotificationRead(notificationId)
 
 Marquer comme lu
 
@@ -157,9 +189,9 @@ final api = GpsMedicalApi().getNotificationsApi();
 final String notificationId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 
 try {
-    api.notificationsNotificationIdReadPost(notificationId);
+    api.markNotificationRead(notificationId);
 } on DioException catch (e) {
-    print('Exception when calling NotificationsApi->notificationsNotificationIdReadPost: $e\n');
+    print('Exception when calling NotificationsApi->markNotificationRead: $e\n');
 }
 ```
 
@@ -184,31 +216,35 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **notificationsPreferencesGet**
-> NotificationPreferences notificationsPreferencesGet()
+# **registerNotificationDevice**
+> Device registerNotificationDevice(deviceRegistration)
 
-Préférences de notification
+Enregistrement d'un device pour les push (FCM)
 
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
 
 final api = GpsMedicalApi().getNotificationsApi();
+final DeviceRegistration deviceRegistration = ; // DeviceRegistration | 
 
 try {
-    final response = api.notificationsPreferencesGet();
+    final response = api.registerNotificationDevice(deviceRegistration);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling NotificationsApi->notificationsPreferencesGet: $e\n');
+    print('Exception when calling NotificationsApi->registerNotificationDevice: $e\n');
 }
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deviceRegistration** | [**DeviceRegistration**](DeviceRegistration.md)|  | 
 
 ### Return type
 
-[**NotificationPreferences**](NotificationPreferences.md)
+[**Device**](Device.md)
 
 ### Authorization
 
@@ -216,13 +252,13 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **notificationsPreferencesPut**
-> NotificationPreferences notificationsPreferencesPut(notificationPreferences)
+# **updateNotificationPreferences**
+> NotificationPreferences updateNotificationPreferences(notificationPreferences)
 
 Mise à jour des préférences
 
@@ -234,10 +270,10 @@ final api = GpsMedicalApi().getNotificationsApi();
 final NotificationPreferences notificationPreferences = ; // NotificationPreferences | 
 
 try {
-    final response = api.notificationsPreferencesPut(notificationPreferences);
+    final response = api.updateNotificationPreferences(notificationPreferences);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling NotificationsApi->notificationsPreferencesPut: $e\n');
+    print('Exception when calling NotificationsApi->updateNotificationPreferences: $e\n');
 }
 ```
 
@@ -259,42 +295,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **notificationsReadAllPost**
-> notificationsReadAllPost()
-
-Marquer toutes les notifications comme lues
-
-### Example
-```dart
-import 'package:gps_medical_api/api.dart';
-
-final api = GpsMedicalApi().getNotificationsApi();
-
-try {
-    api.notificationsReadAllPost();
-} on DioException catch (e) {
-    print('Exception when calling NotificationsApi->notificationsReadAllPost: $e\n');
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

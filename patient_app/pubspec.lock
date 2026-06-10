@@ -130,7 +130,7 @@ packages:
     source: hosted
     version: "5.1.1"
   built_value:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: built_value
       sha256: "34e4067d30ce212937df995f03b69992eea683539ceeac7f679a1f1eba055b56"
@@ -710,7 +710,7 @@ packages:
     source: hosted
     version: "2.16.0"
   google_maps_flutter_platform_interface:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: google_maps_flutter_platform_interface
       sha256: e8b1232419fcdd35c1fdafff96843f5a40238480365599d8ca661dde96d283dd
@@ -780,7 +780,7 @@ packages:
     source: hosted
     version: "3.2.2"
   http_parser:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http_parser
       sha256: "178d74305e7866013777bab2c3d8726205dc5a4dd935297175b19a23a2e66571"
@@ -1457,7 +1457,7 @@ packages:
     source: hosted
     version: "2.1.4"
   stream_transform:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: stream_transform
       sha256: ad47125e588cfd37a9a7f86c7d6356dde8dfe89d071d293f80ca9e9273a33871

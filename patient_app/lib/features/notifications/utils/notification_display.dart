@@ -4,12 +4,7 @@ import 'package:flutter/material.dart' hide Notification;
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
-import '../../discovery/utils/relative_time.dart';
-
-String? notificationDataField(
-  BuiltMap<String, JsonObject?>? data,
-  String key,
-) {
+String? notificationDataField(BuiltMap<String, JsonObject?>? data, String key) {
   final value = data?[key];
   if (value == null) return null;
   if (value.isString) {
@@ -25,13 +20,11 @@ IconData notificationTypeIcon(NotificationTypeEnum? type) {
     NotificationTypeEnum.appointmentConfirmed ||
     NotificationTypeEnum.appointmentReminder ||
     NotificationTypeEnum.appointmentCancelled ||
-    NotificationTypeEnum.appointmentRescheduled =>
-      Icons.event_outlined,
+    NotificationTypeEnum.appointmentRescheduled => Icons.event_outlined,
     NotificationTypeEnum.newMessage => Icons.chat_bubble_outline,
     NotificationTypeEnum.prescriptionIssued => Icons.medication_outlined,
     NotificationTypeEnum.paymentSucceeded ||
-    NotificationTypeEnum.paymentFailed =>
-      Icons.payments_outlined,
+    NotificationTypeEnum.paymentFailed => Icons.payments_outlined,
     NotificationTypeEnum.reviewRequest => Icons.star_outline,
     NotificationTypeEnum.adminAnnouncement => Icons.campaign_outlined,
     _ => Icons.notifications_outlined,

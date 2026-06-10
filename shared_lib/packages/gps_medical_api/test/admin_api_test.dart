@@ -37,6 +37,15 @@ void main() {
       // TODO
     });
 
+    // Liste paginée des utilisateurs (vue admin)
+    //
+    // Réservé aux administrateurs (`admin` uniquement). Filtre par rôle et statut ; recherche texte (`q`) sur nom affiché et e-mail uniquement (pas de NIN/téléphone). Chaque appel est audité (`admin.users.list`). Voir addendum-week-10.md. 
+    //
+    //Future<PaginatedUserAdmin> adminListUsers({ String role, String status, String q, int page, int pageSize }) async
+    test('test adminListUsers', () async {
+      // TODO
+    });
+
     // File de modération des avis signalés
     //
     //Future<PaginatedReviews> adminReviewsQueueGet({ int page, int pageSize }) async

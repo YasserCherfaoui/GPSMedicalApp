@@ -101,12 +101,14 @@ class NearbyDoctors extends _$NearbyDoctors {
   Future<List<DoctorWithDistance>> _fetchNearby(
     NearbyDoctorsState current,
   ) async {
-    return ref.read(geoRepositoryProvider).fetchNearby(
-      lat: current.lat,
-      lng: current.lng,
-      radiusKm: current.radiusKm,
-      specialtyId: current.specialtyId,
-    );
+    return ref
+        .read(geoRepositoryProvider)
+        .fetchNearby(
+          lat: current.lat,
+          lng: current.lng,
+          radiusKm: current.radiusKm,
+          specialtyId: current.specialtyId,
+        );
   }
 
   /// Refetches doctors while keeping the map mounted (no [AsyncLoading] flash).

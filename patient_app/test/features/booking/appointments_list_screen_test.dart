@@ -36,7 +36,7 @@ void main() {
     adapter.onGet(
       '/appointments',
       (server) => server.reply(200, {
-        'data': [],
+        'data': <Map<String, dynamic>>[],
         'meta': {'page': 1, 'page_size': 20, 'total': 0, 'total_pages': 0},
       }),
     );
@@ -50,7 +50,7 @@ void main() {
         final status = options.queryParameters['status'];
         if (status == 'confirmed') {
           return {
-            'data': [],
+            'data': <Map<String, dynamic>>[],
             'meta': {'page': 1, 'page_size': 20, 'total': 0, 'total_pages': 0},
           };
         }

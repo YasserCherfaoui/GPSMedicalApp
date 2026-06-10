@@ -44,7 +44,7 @@ void main() {
     dio.httpClientAdapter = adapter;
     adapter.onGet('/notifications', (server) {
       return server.reply(200, {
-        'data': [],
+        'data': <Map<String, dynamic>>[],
         'meta': {'page': 1, 'page_size': 1, 'total': 0, 'total_pages': 0},
       });
     });
@@ -73,7 +73,7 @@ void main() {
     tester,
   ) async {
     const state = NearbyDoctorsState(
-      doctors: [],
+      doctors: <DoctorWithDistance>[],
       lat: 36.7538,
       lng: 3.0588,
       radiusKm: 5,
@@ -103,7 +103,7 @@ void main() {
     tester,
   ) async {
     final state = NearbyDoctorsState(
-      doctors: [],
+      doctors: <DoctorWithDistance>[],
       lat: 36.7449,
       lng: 3.0238,
       radiusKm: 5,
@@ -128,7 +128,7 @@ void main() {
     tester,
   ) async {
     const state = NearbyDoctorsState(
-      doctors: [],
+      doctors: <DoctorWithDistance>[],
       lat: 36.7538,
       lng: 3.0588,
       radiusKm: 5,

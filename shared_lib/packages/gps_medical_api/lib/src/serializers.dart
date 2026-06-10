@@ -27,6 +27,7 @@ import 'package:gps_medical_api/src/model/availability_slot.dart';
 import 'package:gps_medical_api/src/model/check_nin_request.dart';
 import 'package:gps_medical_api/src/model/check_phone_request.dart';
 import 'package:gps_medical_api/src/model/commune.dart';
+import 'package:gps_medical_api/src/model/confirm_payment_intent_request.dart';
 import 'package:gps_medical_api/src/model/consent_grant.dart';
 import 'package:gps_medical_api/src/model/credential.dart';
 import 'package:gps_medical_api/src/model/dependent.dart';
@@ -62,6 +63,7 @@ import 'package:gps_medical_api/src/model/paginated_medical_documents.dart';
 import 'package:gps_medical_api/src/model/paginated_notifications.dart';
 import 'package:gps_medical_api/src/model/paginated_reviews.dart';
 import 'package:gps_medical_api/src/model/paginated_threads.dart';
+import 'package:gps_medical_api/src/model/paginated_user_admin.dart';
 import 'package:gps_medical_api/src/model/pagination_meta.dart';
 import 'package:gps_medical_api/src/model/password_reset_request.dart';
 import 'package:gps_medical_api/src/model/patient.dart';
@@ -69,7 +71,6 @@ import 'package:gps_medical_api/src/model/patient_all_of_insurance.dart';
 import 'package:gps_medical_api/src/model/patient_update.dart';
 import 'package:gps_medical_api/src/model/payment_intent.dart';
 import 'package:gps_medical_api/src/model/payment_intent_create.dart';
-import 'package:gps_medical_api/src/model/payments_intents_intent_id_confirm_post_request.dart';
 import 'package:gps_medical_api/src/model/prescription.dart';
 import 'package:gps_medical_api/src/model/prescription_create.dart';
 import 'package:gps_medical_api/src/model/prescription_item.dart';
@@ -79,11 +80,11 @@ import 'package:gps_medical_api/src/model/refund.dart';
 import 'package:gps_medical_api/src/model/refund_request.dart';
 import 'package:gps_medical_api/src/model/register_request.dart';
 import 'package:gps_medical_api/src/model/register_response.dart';
+import 'package:gps_medical_api/src/model/report_review_request.dart';
 import 'package:gps_medical_api/src/model/resend_otp_request.dart';
 import 'package:gps_medical_api/src/model/review.dart';
 import 'package:gps_medical_api/src/model/review_create.dart';
 import 'package:gps_medical_api/src/model/review_update.dart';
-import 'package:gps_medical_api/src/model/reviews_review_id_report_post_request.dart';
 import 'package:gps_medical_api/src/model/revoke_consent_request.dart';
 import 'package:gps_medical_api/src/model/schedule_exception.dart';
 import 'package:gps_medical_api/src/model/schedule_exception_create.dart';
@@ -123,6 +124,7 @@ part 'serializers.g.dart';
   CheckNinRequest,
   CheckPhoneRequest,
   Commune,
+  ConfirmPaymentIntentRequest,
   ConsentGrant,
   Credential,
   Dependent,
@@ -158,6 +160,7 @@ part 'serializers.g.dart';
   PaginatedNotifications,
   PaginatedReviews,
   PaginatedThreads,
+  PaginatedUserAdmin,
   PaginationMeta,
   PasswordResetRequest,
   Patient,
@@ -165,7 +168,6 @@ part 'serializers.g.dart';
   PatientUpdate,
   PaymentIntent,
   PaymentIntentCreate,
-  PaymentsIntentsIntentIdConfirmPostRequest,
   Prescription,
   PrescriptionCreate,$PrescriptionCreate,
   PrescriptionItem,
@@ -175,11 +177,11 @@ part 'serializers.g.dart';
   RefundRequest,
   RegisterRequest,
   RegisterResponse,
+  ReportReviewRequest,
   ResendOtpRequest,
   Review,
   ReviewCreate,
   ReviewUpdate,
-  ReviewsReviewIdReportPostRequest,
   RevokeConsentRequest,
   ScheduleException,
   ScheduleExceptionCreate,

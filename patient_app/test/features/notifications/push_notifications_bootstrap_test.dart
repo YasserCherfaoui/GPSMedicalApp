@@ -41,7 +41,7 @@ void main() {
 
     adapter.onGet('/notifications', (server) {
       return server.reply(200, {
-        'data': [],
+        'data': <Map<String, dynamic>>[],
         'meta': {'page': 1, 'page_size': 1, 'total': 0, 'total_pages': 0},
       });
     });
@@ -107,13 +107,15 @@ void main() {
     final container = ProviderScope.containerOf(
       tester.element(find.text('App')),
     );
-    await container.read(authSessionProvider).signIn(
-      TokenPair(
-        (b) => b
-          ..accessToken = 'access-after-login'
-          ..refreshToken = 'refresh-after-login',
-      ),
-    );
+    await container
+        .read(authSessionProvider)
+        .signIn(
+          TokenPair(
+            (b) => b
+              ..accessToken = 'access-after-login'
+              ..refreshToken = 'refresh-after-login',
+          ),
+        );
     await tester.pump();
     await tester.pumpAndSettle();
 

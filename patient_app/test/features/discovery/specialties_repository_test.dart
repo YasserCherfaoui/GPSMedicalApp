@@ -58,11 +58,7 @@ void main() {
     );
     dioAdapter.onGet('/specialties', (server) {
       return server.reply(200, [
-        {
-          'id': 'spec-1',
-          'code': 'CAR',
-          'name_fr': 'Cardiologie',
-        },
+        {'id': 'spec-1', 'code': 'CAR', 'name_fr': 'Cardiologie'},
       ]);
     });
 
@@ -85,7 +81,7 @@ void main() {
       ),
     );
     dioAdapter.onGet('/specialties', (server) {
-      return server.reply(200, []);
+      return server.reply(200, <Map<String, dynamic>>[]);
     });
 
     await repository.fetchAll();

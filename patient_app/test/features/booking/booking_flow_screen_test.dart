@@ -17,7 +17,8 @@ class _BookingFlowHarness extends ConsumerStatefulWidget {
   const _BookingFlowHarness();
 
   @override
-  ConsumerState<_BookingFlowHarness> createState() => _BookingFlowHarnessState();
+  ConsumerState<_BookingFlowHarness> createState() =>
+      _BookingFlowHarnessState();
 }
 
 class _BookingFlowHarnessState extends ConsumerState<_BookingFlowHarness> {
@@ -25,25 +26,29 @@ class _BookingFlowHarnessState extends ConsumerState<_BookingFlowHarness> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(bookingDraftProvider.notifier).startBooking(
-        doctorId: 'doc-flow-1',
-        doctor: $Doctor(
-          (b) => b
-            ..id = 'doc-flow-1'
-            ..title = 'Dr.'
-            ..fullName = 'Karim Benali'
-            ..consultationFeeDzd = 2500,
-        ),
-      );
-      ref.read(bookingDraftProvider.notifier).selectSlot(
-        AvailabilitySlot(
-          (b) => b
-            ..startAt = DateTime.utc(2026, 6, 10, 9)
-            ..endAt = DateTime.utc(2026, 6, 10, 9, 30)
-            ..mode = AvailabilitySlotModeEnum.inPerson
-            ..slotLockToken = 'lock-flow',
-        ),
-      );
+      ref
+          .read(bookingDraftProvider.notifier)
+          .startBooking(
+            doctorId: 'doc-flow-1',
+            doctor: $Doctor(
+              (b) => b
+                ..id = 'doc-flow-1'
+                ..title = 'Dr.'
+                ..fullName = 'Karim Benali'
+                ..consultationFeeDzd = 2500,
+            ),
+          );
+      ref
+          .read(bookingDraftProvider.notifier)
+          .selectSlot(
+            AvailabilitySlot(
+              (b) => b
+                ..startAt = DateTime.utc(2026, 6, 10, 9)
+                ..endAt = DateTime.utc(2026, 6, 10, 9, 30)
+                ..mode = AvailabilitySlotModeEnum.inPerson
+                ..slotLockToken = 'lock-flow',
+            ),
+          );
     });
   }
 
@@ -115,11 +120,7 @@ void main() {
   void mockDependents() {
     adapter.onGet('/patients/me/dependents', (server) {
       return server.reply(200, [
-        {
-          'id': 'dep-1',
-          'full_name': 'Amina Benali',
-          'relation': 'child',
-        },
+        {'id': 'dep-1', 'full_name': 'Amina Benali', 'relation': 'child'},
       ]);
     });
   }
@@ -205,18 +206,15 @@ void main() {
     await tester.pump(const Duration(milliseconds: 50));
 
     expect(find.text('Reprendre votre réservation ?'), findsOneWidget);
-    expect(
-      find.textContaining('connexion est nécessaire'),
-      findsOneWidget,
-    );
+    expect(find.textContaining('connexion est nécessaire'), findsOneWidget);
   });
 
-  testWidgets('blocks submit with offline snackbar on review step', (tester) async {
+  testWidgets('blocks submit with offline snackbar on review step', (
+    tester,
+  ) async {
     mockDependents();
 
-    await tester.pumpWidget(
-      wrap(const BookingFlowScreen(), online: false),
-    );
+    await tester.pumpWidget(wrap(const BookingFlowScreen(), online: false));
 
     final container = ProviderScope.containerOf(
       tester.element(find.byType(BookingFlowScreen)),

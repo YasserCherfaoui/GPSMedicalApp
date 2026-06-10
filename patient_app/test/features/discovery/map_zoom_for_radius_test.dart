@@ -17,9 +17,6 @@ void main() {
   });
 
   test('zoom decreases as radius increases', () {
-    expect(
-      zoomLevelForRadiusKm(1),
-      greaterThan(zoomLevelForRadiusKm(50)),
-    );
+    expect(zoomLevelForRadiusKm(1), greaterThan(zoomLevelForRadiusKm(50)));
   });
 }

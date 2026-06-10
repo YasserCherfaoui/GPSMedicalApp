@@ -1415,4 +1415,29 @@ class AppLocalizationsBer extends AppLocalizations {
   @override
   String get paymentDepositNotEligible =>
       'Amarur-a ur yettak ara ad yettwaxelleṣ.';
+
+  @override
+  String get specialistVerificationPendingTitle => 'Aseɣwen yettwaseɣreg';
+
+  @override
+  String get specialistVerificationPendingBody =>
+      'Aseɣwen-ik yettwaseɣreg sɣur teɣribt-nneɣ. Ad teṭṭfeḍ ilɣa mi ara d-yettwafken umala.';
+
+  @override
+  String get specialistTabInbox => 'Isuter';
+
+  @override
+  String get specialistTabCalendar => 'Awitay';
+
+  @override
+  String get specialistTabMessages => 'Iznan';
+
+  @override
+  String get specialistTabProfile => 'Amaɣnu';
+
+  @override
+  String get specialistTabStats => 'Tiddin';
+
+  @override
+  String get specialistShellPlaceholder => 'Yettwalien';
 }

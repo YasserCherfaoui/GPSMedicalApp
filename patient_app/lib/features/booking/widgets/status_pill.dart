@@ -20,7 +20,10 @@ class StatusPill extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final (bg, fg) = switch (status) {
       'confirmed' => (colorScheme.primaryContainer, colorScheme.primary),
-      'pending' => (colorScheme.tertiaryContainer, colorScheme.onTertiaryContainer),
+      'pending' => (
+        colorScheme.tertiaryContainer,
+        colorScheme.onTertiaryContainer,
+      ),
       'cancelled' => (colorScheme.errorContainer, colorScheme.error),
       'completed' => (colorScheme.surfaceContainerHigh, colorScheme.onSurface),
       _ => (colorScheme.surfaceContainer, colorScheme.onSurfaceVariant),

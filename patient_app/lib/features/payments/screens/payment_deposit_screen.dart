@@ -56,23 +56,21 @@ class _PaymentDepositScreenState extends ConsumerState<PaymentDepositScreen> {
 
       if (finalIntent.status == PaymentIntentStatusEnum.succeeded) {
         ref.invalidate(appointmentDetailProvider(widget.appointmentId));
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.paymentDepositSuccess)),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.paymentDepositSuccess)));
         context.pop();
         return;
       }
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.paymentDepositFailed)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.paymentDepositFailed)));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-            paymentErrorMessage(e, l10n.paymentDepositFailed),
-          ),
+          content: Text(paymentErrorMessage(e, l10n.paymentDepositFailed)),
         ),
       );
     } finally {
@@ -150,9 +148,8 @@ class _PaymentDepositScreenState extends ConsumerState<PaymentDepositScreen> {
         error: (e, _) => BookingErrorView(
           error: e,
           message: l10n.appointmentDetailLoadError,
-          onRetry: () => ref.invalidate(
-            appointmentDetailProvider(widget.appointmentId),
-          ),
+          onRetry: () =>
+              ref.invalidate(appointmentDetailProvider(widget.appointmentId)),
         ),
       ),
     );

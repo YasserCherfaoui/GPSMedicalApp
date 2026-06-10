@@ -56,10 +56,7 @@ class _TagListInputState extends State<TagListInput> {
             runSpacing: GpsSpacing.xs,
             children: [
               for (final tag in widget.tags)
-                InputChip(
-                  label: Text(tag),
-                  onDeleted: () => _removeTag(tag),
-                ),
+                InputChip(label: Text(tag), onDeleted: () => _removeTag(tag)),
             ],
           ),
         if (widget.tags.isNotEmpty) const SizedBox(height: GpsSpacing.sm),

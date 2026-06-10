@@ -1435,4 +1435,29 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get paymentDepositNotEligible =>
       'Ce rendez-vous n\'est pas éligible au paiement.';
+
+  @override
+  String get specialistVerificationPendingTitle => 'Dossier en cours d\'examen';
+
+  @override
+  String get specialistVerificationPendingBody =>
+      'Votre dossier est en cours de vérification par notre équipe. Vous recevrez une notification dès qu\'une décision sera prise.';
+
+  @override
+  String get specialistTabInbox => 'Demandes';
+
+  @override
+  String get specialistTabCalendar => 'Agenda';
+
+  @override
+  String get specialistTabMessages => 'Messages';
+
+  @override
+  String get specialistTabProfile => 'Profil';
+
+  @override
+  String get specialistTabStats => 'Statistiques';
+
+  @override
+  String get specialistShellPlaceholder => 'Bientôt disponible';
 }

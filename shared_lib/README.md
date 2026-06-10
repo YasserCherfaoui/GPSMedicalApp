@@ -15,6 +15,21 @@ Shared Flutter library for the GPS Médical patient and specialist mobile apps: 
 | `GpsCachedNetworkImage` | Memory- and disk-cached network image with decode size caps | See below |
 | `GpsDoctorPhoto` | Doctor portrait (circle or rounded square) built on `GpsCachedNetworkImage` | See below |
 
+## Messaging widgets (Phase 2 → shared for Phase 3)
+
+Reusable across patient and specialist apps:
+
+| Widget / type | Purpose |
+|---------------|---------|
+| `MessagingRepository` | Threads, messages, send, read receipts |
+| `messagingRepositoryProvider` | Riverpod wiring to `gpsMedicalClientProvider` |
+| `MessageComposer` | Chat input + attachment chips |
+| `MessageBubble` | RTL-aware message bubble with delivery state |
+| `ThreadRowTile` | Thread list row with doctor photo + preview |
+| `ThreadDisplayMessage` | View-model for optimistic/pending sends |
+
+Import via `package:gps_medical_shared/gps_medical_shared.dart`.
+
 Import from the barrel:
 
 ```dart

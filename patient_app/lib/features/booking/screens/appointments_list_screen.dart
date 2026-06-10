@@ -3,12 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../notifications/widgets/notifications_bell_button.dart';
 import '../providers/appointments_history.provider.dart';
 import '../providers/appointments_upcoming.provider.dart';
 import '../providers/doctor_cache.provider.dart';
 import '../widgets/appointment_row_tile.dart';
 import '../widgets/booking_error_view.dart';
-import '../../notifications/widgets/notifications_bell_button.dart';
 
 class AppointmentsListScreen extends ConsumerStatefulWidget {
   const AppointmentsListScreen({super.key});

@@ -15,7 +15,7 @@ part 'health_check.g.dart';
 /// * [status] 
 /// * [db] - `ok` si PostgreSQL répond au ping, sinon `error`
 /// * [redis] 
-/// * [storage] - `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
+/// * [storage] - `disabled` si le stockage objet n'est pas configuré (`STORAGE_PROVIDER` vide ou `disabled`) ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
 @BuiltValue()
 abstract class HealthCheck implements Built<HealthCheck, HealthCheckBuilder> {
   @BuiltValueField(wireName: r'status')
@@ -31,7 +31,7 @@ abstract class HealthCheck implements Built<HealthCheck, HealthCheckBuilder> {
   HealthCheckRedisEnum get redis;
   // enum redisEnum {  ok,  error,  };
 
-  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
+  /// `disabled` si le stockage objet n'est pas configuré (`STORAGE_PROVIDER` vide ou `disabled`) ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
   @BuiltValueField(wireName: r'storage')
   HealthCheckStorageEnum get storage;
   // enum storageEnum {  ok,  error,  disabled,  };
@@ -208,13 +208,13 @@ class HealthCheckRedisEnum extends EnumClass {
 
 class HealthCheckStorageEnum extends EnumClass {
 
-  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
+  /// `disabled` si le stockage objet n'est pas configuré (`STORAGE_PROVIDER` vide ou `disabled`) ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
   @BuiltValueEnumConst(wireName: r'ok')
   static const HealthCheckStorageEnum ok = _$healthCheckStorageEnum_ok;
-  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
+  /// `disabled` si le stockage objet n'est pas configuré (`STORAGE_PROVIDER` vide ou `disabled`) ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
   @BuiltValueEnumConst(wireName: r'error')
   static const HealthCheckStorageEnum error = _$healthCheckStorageEnum_error;
-  /// `disabled` si le stockage objet n'est pas configuré ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
+  /// `disabled` si le stockage objet n'est pas configuré (`STORAGE_PROVIDER` vide ou `disabled`) ; `ok` si le bucket répond ; `error` en cas d'échec de sonde. 
   @BuiltValueEnumConst(wireName: r'disabled')
   static const HealthCheckStorageEnum disabled = _$healthCheckStorageEnum_disabled;
 

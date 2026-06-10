@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 Téléchargement du document déchiffré (lien signé)
 
-Diffuse le fichier en clair après vérification du jeton HMAC (`exp`, `token`) renvoyé dans l'URL de `GET /medical-records/{documentId}/download`. L'objet stocké reste en ciphertext (ADR 0006). 
+Diffuse le fichier en clair après vérification du jeton HMAC (`exp`, `token`) renvoyé dans l'URL de `GET /medical-records/{documentId}/download`. L'objet stocké reste en ciphertext (ADR 0006). Accès journalisé (`medical_record.download`). 
 
 ### Example
 ```dart
@@ -70,6 +70,8 @@ No authorization required
 
 Suppression d'un document (auteur uniquement)
 
+Suppression logique (`deleted_at`). Seul `author_id` (JWT `sub`) peut supprimer. Le blob chiffré est supprimé du stockage objet en arrière-plan (retries). Journalisation `medical_record.delete` puis `medical_record.blob_purged`. 
+
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
@@ -101,7 +103,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -153,6 +155,8 @@ Name | Type | Description  | Notes
 
 Métadonnées d'un document
 
+Même projection que la liste, sans `storage_key` ni champs de chiffrement. RBAC identique à `GET /medical-records` ; `404` si absent ou supprimé. 
+
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
@@ -185,7 +189,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/problem+json, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -193,6 +197,8 @@ Name | Type | Description  | Notes
 > PaginatedMedicalDocuments medicalRecordsGet(patientId, type, page, pageSize)
 
 Documents accessibles à l'utilisateur (patient ou médecin)
+
+Métadonnées uniquement (pas de fichier). Pagination `page` (défaut 1), `page_size` (défaut 20, max 100). Sans `patient_id` : dossier du patient connecté ou uploads du médecin (auteur). Avec `patient_id` : patient (soi-même), médecin (parrainage), admin (tout patient). Documents supprimés (`deleted_at`) exclus. Tri `created_at DESC`, `id DESC`. 
 
 ### Example
 ```dart
@@ -241,7 +247,7 @@ Name | Type | Description  | Notes
 
 Téléversement d'un document (médecin ou patient)
 
-`multipart/form-data` avec champ fichier `file` (PDF, JPEG ou PNG). Taille maximale **20 Mo** pour les patients et médecins autorisés. Le type MIME réel est vérifié (magic bytes) en plus du `Content-Type` déclaré. 
+`multipart/form-data` avec champ fichier `file` (PDF, JPEG ou PNG). Fichier maximal **20 Mo** ; enveloppe multipart serveur **25 Mo** (métadonnées incluses). Le type MIME réel est vérifié (magic bytes) en plus du `Content-Type` déclaré. Ciphertext stocké sous `{patient_id}/{document_id}.enc` (ADR 0006). 
 
 ### Example
 ```dart
@@ -293,6 +299,8 @@ Name | Type | Description  | Notes
 > Prescription prescriptionsPost(prescriptionCreate)
 
 Création d'une ordonnance numérique structurée
+
+Réservé aux **médecins** (JWT specialist) pour un rendez-vous dont ils sont le praticien. Génère un PDF (gofpdf, corps en français, libellés d'en-tête FR/AR), le chiffre et le stocke comme `medical.documents` (`type=prescription`), puis crée une ligne `medical.prescriptions` avec `pdf_document_id`. 
 
 ### Example
 ```dart

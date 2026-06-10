@@ -8,15 +8,11 @@ import 'package:patient_app/features/discovery/providers/doctor_search.provider.
 import 'package:patient_app/features/discovery/repositories/doctor_repository.dart';
 import 'package:patient_app/features/discovery/repositories/search_repository.dart';
 import 'package:patient_app/features/medical_records/repositories/medical_records_repository.dart';
-import 'package:patient_app/features/messaging/repositories/messaging_repository.dart';
 import 'package:patient_app/features/reviews/repositories/reviews_repository.dart';
 import 'staging_env.dart';
 
 class StagingSession {
-  StagingSession({
-    required this.client,
-    required this.tokenStore,
-  });
+  StagingSession({required this.client, required this.tokenStore});
 
   final GpsMedicalClient client;
   final InMemoryTokenStore tokenStore;
@@ -310,10 +306,7 @@ class StagingHarness {
     required String doctorId,
     required String body,
   }) async {
-    return session.messaging.sendMessage(
-      doctorId,
-      body: body,
-    );
+    return session.messaging.sendMessage(doctorId, body: body);
   }
 
   /// Returns a completed appointment from the staging patient's history.

@@ -59,9 +59,8 @@ String formatShortDate(Date day, String locale) {
 }
 
 /// Groups slots that share the same start instant (e.g. in-person + telehealth).
-List<({DateTime startAt, List<AvailabilitySlot> variants})> groupSlotsByStartTime(
-  List<AvailabilitySlot> slots,
-) {
+List<({DateTime startAt, List<AvailabilitySlot> variants})>
+groupSlotsByStartTime(List<AvailabilitySlot> slots) {
   final map = <DateTime, List<AvailabilitySlot>>{};
   for (final slot in slots) {
     final start = slot.startAt?.toLocal();
@@ -78,11 +77,15 @@ List<({DateTime startAt, List<AvailabilitySlot> variants})> groupSlotsByStartTim
   final keys = map.keys.toList()..sort();
   return [
     for (final k in keys)
-      (startAt: k, variants: map[k]!..sort((a, b) {
-        final ma = a.mode?.name ?? '';
-        final mb = b.mode?.name ?? '';
-        return ma.compareTo(mb);
-      })),
+      (
+        startAt: k,
+        variants: map[k]!
+          ..sort((a, b) {
+            final ma = a.mode?.name ?? '';
+            final mb = b.mode?.name ?? '';
+            return ma.compareTo(mb);
+          }),
+      ),
   ];
 }
 
@@ -101,5 +104,6 @@ bool canJoinTelehealth(DateTime startAt, String statusWire) {
   if (statusWire != 'confirmed') return false;
   final now = DateTime.now();
   final windowStart = startAt.subtract(const Duration(minutes: 15));
-  return !now.isBefore(windowStart) && now.isBefore(startAt.add(const Duration(hours: 2)));
+  return !now.isBefore(windowStart) &&
+      now.isBefore(startAt.add(const Duration(hours: 2)));
 }

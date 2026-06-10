@@ -48,17 +48,13 @@ void main() {
         'verified': true,
         'consultation_fee_dzd': 2500,
         'specialties': [
-          {
-            'id': 'spec-1',
-            'code': 'CAR',
-            'name_fr': 'Cardiologie',
-          },
+          {'id': 'spec-1', 'code': 'CAR', 'name_fr': 'Cardiologie'},
         ],
       });
     });
     adapter.onGet('/doctors/$doctorId/reviews', (server) {
       return server.reply(200, {
-        'data': [],
+        'data': <Map<String, dynamic>>[],
         'meta': {'page': 1, 'page_size': 10, 'total': 0, 'total_pages': 0},
       });
     });
@@ -99,9 +95,7 @@ void main() {
     mockDoctor(doctorId);
     mockAvailability(doctorId);
 
-    await tester.pumpWidget(
-      wrap(doctorId: doctorId, modeFilter: 'telehealth'),
-    );
+    await tester.pumpWidget(wrap(doctorId: doctorId, modeFilter: 'telehealth'));
     await tester.pump();
     await tester.pumpAndSettle();
 

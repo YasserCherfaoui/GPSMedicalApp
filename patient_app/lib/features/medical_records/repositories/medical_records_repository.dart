@@ -96,10 +96,8 @@ class MedicalRecordsRepository {
     String documentId,
   ) async {
     try {
-      final response =
-          await _client.medicalRecords.medicalRecordsDocumentIdDownloadGet(
-            documentId: documentId,
-          );
+      final response = await _client.medicalRecords
+          .medicalRecordsDocumentIdDownloadGet(documentId: documentId);
       final link = response.data;
       if (link == null) {
         throw StateError('Empty download link response');

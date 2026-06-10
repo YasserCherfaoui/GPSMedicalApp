@@ -53,7 +53,6 @@ Widget buildDoctorCardTile({
     onBookPressed:
         onBookPressed ??
         () => context.push('${GpsRoutes.doctorDetail(doc.id ?? '')}?book=true'),
-    onFavoritePressed:
-        variant == DoctorCardVariant.list ? () {} : null,
+    onFavoritePressed: variant == DoctorCardVariant.list ? () {} : null,
   );
 }

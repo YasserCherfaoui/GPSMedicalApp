@@ -17,6 +17,7 @@ import 'package:gps_medical_api/src/model/doctor_private.dart';
 import 'package:gps_medical_api/src/model/paginated_audit_entries.dart';
 import 'package:gps_medical_api/src/model/paginated_doctors_private.dart';
 import 'package:gps_medical_api/src/model/paginated_reviews.dart';
+import 'package:gps_medical_api/src/model/paginated_user_admin.dart';
 import 'package:gps_medical_api/src/model/problem.dart';
 import 'package:gps_medical_api/src/model/review.dart';
 import 'package:gps_medical_api/src/model/specialty.dart';
@@ -395,6 +396,104 @@ class AdminApi {
     }
 
     return Response<BuiltList<ConsentGrant>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Liste paginée des utilisateurs (vue admin)
+  /// Réservé aux administrateurs (&#x60;admin&#x60; uniquement). Filtre par rôle et statut ; recherche texte (&#x60;q&#x60;) sur nom affiché et e-mail uniquement (pas de NIN/téléphone). Chaque appel est audité (&#x60;admin.users.list&#x60;). Voir addendum-week-10.md. 
+  ///
+  /// Parameters:
+  /// * [role] 
+  /// * [status] 
+  /// * [q] 
+  /// * [page] 
+  /// * [pageSize] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [PaginatedUserAdmin] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<PaginatedUserAdmin>> adminListUsers({ 
+    String? role,
+    String? status,
+    String? q,
+    int? page = 1,
+    int? pageSize = 20,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/users';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (role != null) r'role': encodeQueryParameter(_serializers, role, const FullType(String)),
+      if (status != null) r'status': encodeQueryParameter(_serializers, status, const FullType(String)),
+      if (q != null) r'q': encodeQueryParameter(_serializers, q, const FullType(String)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    PaginatedUserAdmin? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedUserAdmin),
+      ) as PaginatedUserAdmin;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PaginatedUserAdmin>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

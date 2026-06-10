@@ -251,7 +251,9 @@ class _SlotTimeRow extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(GpsRadii.md),
-        border: Border.all(color: colorScheme.outlineVariant.withValues(alpha: 0.5)),
+        border: Border.all(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.5),
+        ),
       ),
       padding: const EdgeInsets.all(GpsSpacing.sm),
       child: Column(

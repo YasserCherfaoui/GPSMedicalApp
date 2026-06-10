@@ -1,4 +1,4 @@
-# gps_medical_api.model.ReviewsReviewIdReportPostRequest
+# gps_medical_api.model.ConfirmPaymentIntentRequest
 
 ## Load the model package
 ```dart
@@ -8,8 +8,7 @@ import 'package:gps_medical_api/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**reason** | **String** |  | 
-**comment** | **String** |  | [optional] 
+**gatewayToken** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

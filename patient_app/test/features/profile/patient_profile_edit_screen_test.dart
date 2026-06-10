@@ -72,7 +72,9 @@ void main() {
     await tester.pump();
   }
 
-  testWidgets('shows server blood_type validation error on save', (tester) async {
+  testWidgets('shows server blood_type validation error on save', (
+    tester,
+  ) async {
     var patchCalled = false;
     adapter.onPatch('/patients/me', (server) {
       patchCalled = true;
@@ -100,7 +102,9 @@ void main() {
     expect(find.text('Groupe sanguin invalide.'), findsOneWidget);
   });
 
-  testWidgets('shows server address.line1 validation error on save', (tester) async {
+  testWidgets('shows server address.line1 validation error on save', (
+    tester,
+  ) async {
     var patchCalled = false;
     adapter.onPatch('/patients/me', (server) {
       patchCalled = true;

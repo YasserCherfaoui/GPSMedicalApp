@@ -41,9 +41,9 @@ class DependentsListScreen extends ConsumerWidget {
       await ref.read(dependentsListProvider.notifier).delete(dependent.id!);
     } catch (_) {
       if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.dependentDeleteError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.dependentDeleteError)));
     }
   }
 
@@ -81,7 +81,8 @@ class DependentsListScreen extends ConsumerWidget {
           }
 
           return RefreshIndicator(
-            onRefresh: () => ref.read(dependentsListProvider.notifier).refresh(),
+            onRefresh: () =>
+                ref.read(dependentsListProvider.notifier).refresh(),
             child: ListView.separated(
               padding: const EdgeInsets.fromLTRB(
                 GpsSpacing.md,
@@ -90,7 +91,8 @@ class DependentsListScreen extends ConsumerWidget {
                 GpsSpacing.xxl * 2,
               ),
               itemCount: dependents.length,
-              separatorBuilder: (_, __) => const SizedBox(height: GpsSpacing.sm),
+              separatorBuilder: (_, __) =>
+                  const SizedBox(height: GpsSpacing.sm),
               itemBuilder: (context, index) {
                 final dependent = dependents[index];
                 final age = dependentAgeYears(dependent.birthDate);

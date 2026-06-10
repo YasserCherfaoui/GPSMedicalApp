@@ -36,7 +36,7 @@ void main() {
         'gender': 'female',
         'blood_type': 'O+',
         'allergies': ['Pollen'],
-        'chronic_conditions': [],
+        'chronic_conditions': <String>[],
         'insurance': {'provider': 'cnas', 'number': '12345'},
       });
     });
@@ -84,10 +84,7 @@ void main() {
     adapter.onPatch('/patients/me', (server) {
       return server.reply(422, {
         'errors': [
-          {
-            'field': 'blood_type',
-            'message': 'Groupe sanguin invalide.',
-          },
+          {'field': 'blood_type', 'message': 'Groupe sanguin invalide.'},
         ],
       });
     });
@@ -104,21 +101,14 @@ void main() {
     adapter.onPatch('/patients/me', (server) {
       return server.reply(422, {
         'errors': [
-          {
-            'field': 'address.line1',
-            'message': 'La rue est obligatoire.',
-          },
+          {'field': 'address.line1', 'message': 'La rue est obligatoire.'},
         ],
       });
     });
 
     try {
       await repo.patchProfile(
-        PatientUpdate(
-          (b) => b.address.replace(
-            Address((a) => a..line1 = ''),
-          ),
-        ),
+        PatientUpdate((b) => b.address.replace(Address((a) => a..line1 = ''))),
       );
       fail('expected ProfileValidationException');
     } on ProfileValidationException catch (e) {

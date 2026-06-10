@@ -9,15 +9,15 @@ All URIs are relative to *https://api.gpsmedical.dz/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**paymentsIntentsIntentIdConfirmPost**](PaymentsApi.md#paymentsintentsintentidconfirmpost) | **POST** /payments/intents/{intentId}/confirm | Confirmation côté client (token gateway)
-[**paymentsIntentsIntentIdGet**](PaymentsApi.md#paymentsintentsintentidget) | **GET** /payments/intents/{intentId} | État d&#39;une intention
-[**paymentsIntentsPost**](PaymentsApi.md#paymentsintentspost) | **POST** /payments/intents | Création d&#39;une intention de paiement (acompte ou téléconsultation)
-[**paymentsRefundsPost**](PaymentsApi.md#paymentsrefundspost) | **POST** /payments/refunds | Demande de remboursement
-[**paymentsWebhooksProviderPost**](PaymentsApi.md#paymentswebhooksproviderpost) | **POST** /payments/webhooks/{provider} | Webhook entrant des prestataires de paiement
+[**confirmPaymentIntent**](PaymentsApi.md#confirmpaymentintent) | **POST** /payments/intents/{intentId}/confirm | Confirmation côté client (token gateway)
+[**createPaymentIntent**](PaymentsApi.md#createpaymentintent) | **POST** /payments/intents | Création d&#39;une intention de paiement (acompte ou téléconsultation)
+[**createRefund**](PaymentsApi.md#createrefund) | **POST** /payments/refunds | Demande de remboursement
+[**getPaymentIntent**](PaymentsApi.md#getpaymentintent) | **GET** /payments/intents/{intentId} | État d&#39;une intention
+[**paymentWebhook**](PaymentsApi.md#paymentwebhook) | **POST** /payments/webhooks/{provider} | Webhook entrant des prestataires de paiement
 
 
-# **paymentsIntentsIntentIdConfirmPost**
-> PaymentIntent paymentsIntentsIntentIdConfirmPost(intentId, paymentsIntentsIntentIdConfirmPostRequest)
+# **confirmPaymentIntent**
+> confirmPaymentIntent(intentId, confirmPaymentIntentRequest)
 
 Confirmation côté client (token gateway)
 
@@ -27,13 +27,12 @@ import 'package:gps_medical_api/api.dart';
 
 final api = GpsMedicalApi().getPaymentsApi();
 final String intentId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final PaymentsIntentsIntentIdConfirmPostRequest paymentsIntentsIntentIdConfirmPostRequest = ; // PaymentsIntentsIntentIdConfirmPostRequest | 
+final ConfirmPaymentIntentRequest confirmPaymentIntentRequest = ; // ConfirmPaymentIntentRequest | 
 
 try {
-    final response = api.paymentsIntentsIntentIdConfirmPost(intentId, paymentsIntentsIntentIdConfirmPostRequest);
-    print(response);
+    api.confirmPaymentIntent(intentId, confirmPaymentIntentRequest);
 } on DioException catch (e) {
-    print('Exception when calling PaymentsApi->paymentsIntentsIntentIdConfirmPost: $e\n');
+    print('Exception when calling PaymentsApi->confirmPaymentIntent: $e\n');
 }
 ```
 
@@ -42,11 +41,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **intentId** | **String**|  | 
- **paymentsIntentsIntentIdConfirmPostRequest** | [**PaymentsIntentsIntentIdConfirmPostRequest**](PaymentsIntentsIntentIdConfirmPostRequest.md)|  | 
+ **confirmPaymentIntentRequest** | [**ConfirmPaymentIntentRequest**](ConfirmPaymentIntentRequest.md)|  | 
 
 ### Return type
 
-[**PaymentIntent**](PaymentIntent.md)
+void (empty response body)
 
 ### Authorization
 
@@ -55,53 +54,12 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **paymentsIntentsIntentIdGet**
-> PaymentIntent paymentsIntentsIntentIdGet(intentId)
-
-État d'une intention
-
-### Example
-```dart
-import 'package:gps_medical_api/api.dart';
-
-final api = GpsMedicalApi().getPaymentsApi();
-final String intentId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-
-try {
-    final response = api.paymentsIntentsIntentIdGet(intentId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling PaymentsApi->paymentsIntentsIntentIdGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **intentId** | **String**|  | 
-
-### Return type
-
-[**PaymentIntent**](PaymentIntent.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **paymentsIntentsPost**
-> PaymentIntent paymentsIntentsPost(paymentIntentCreate)
+# **createPaymentIntent**
+> PaymentIntent createPaymentIntent(paymentIntentCreate)
 
 Création d'une intention de paiement (acompte ou téléconsultation)
 
@@ -113,10 +71,10 @@ final api = GpsMedicalApi().getPaymentsApi();
 final PaymentIntentCreate paymentIntentCreate = ; // PaymentIntentCreate | 
 
 try {
-    final response = api.paymentsIntentsPost(paymentIntentCreate);
+    final response = api.createPaymentIntent(paymentIntentCreate);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling PaymentsApi->paymentsIntentsPost: $e\n');
+    print('Exception when calling PaymentsApi->createPaymentIntent: $e\n');
 }
 ```
 
@@ -141,8 +99,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **paymentsRefundsPost**
-> Refund paymentsRefundsPost(refundRequest)
+# **createRefund**
+> Refund createRefund(refundRequest)
 
 Demande de remboursement
 
@@ -154,10 +112,10 @@ final api = GpsMedicalApi().getPaymentsApi();
 final RefundRequest refundRequest = ; // RefundRequest | 
 
 try {
-    final response = api.paymentsRefundsPost(refundRequest);
+    final response = api.createRefund(refundRequest);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling PaymentsApi->paymentsRefundsPost: $e\n');
+    print('Exception when calling PaymentsApi->createRefund: $e\n');
 }
 ```
 
@@ -182,12 +140,53 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **paymentsWebhooksProviderPost**
-> paymentsWebhooksProviderPost(provider, requestBody)
+# **getPaymentIntent**
+> PaymentIntent getPaymentIntent(intentId)
+
+État d'une intention
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getPaymentsApi();
+final String intentId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.getPaymentIntent(intentId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PaymentsApi->getPaymentIntent: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **intentId** | **String**|  | 
+
+### Return type
+
+[**PaymentIntent**](PaymentIntent.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **paymentWebhook**
+> paymentWebhook(provider, requestBody)
 
 Webhook entrant des prestataires de paiement
 
-Validation HMAC du payload selon `provider`.
+Validation HMAC du payload selon `provider` (en-tête `X-GPS-Signature`, préfixe `sha256=`).
 
 ### Example
 ```dart
@@ -198,9 +197,9 @@ final String provider = provider_example; // String |
 final BuiltMap<String, JsonObject> requestBody = Object; // BuiltMap<String, JsonObject> | 
 
 try {
-    api.paymentsWebhooksProviderPost(provider, requestBody);
+    api.paymentWebhook(provider, requestBody);
 } on DioException catch (e) {
-    print('Exception when calling PaymentsApi->paymentsWebhooksProviderPost: $e\n');
+    print('Exception when calling PaymentsApi->paymentWebhook: $e\n');
 }
 ```
 

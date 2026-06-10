@@ -52,25 +52,28 @@ void main() {
     expect(document.title, 'Analyse sanguine');
   });
 
-  test('upload maps 503 to MedicalRecordsStorageUnavailableException', () async {
-    adapter.onPost('/medical-records', (server) {
-      return server.reply(503, {
-        'type': 'about:blank',
-        'title': 'Service indisponible',
-        'status': 503,
+  test(
+    'upload maps 503 to MedicalRecordsStorageUnavailableException',
+    () async {
+      adapter.onPost('/medical-records', (server) {
+        return server.reply(503, {
+          'type': 'about:blank',
+          'title': 'Service indisponible',
+          'status': 503,
+        });
       });
-    });
 
-    expect(
-      () => repository.upload(
-        bytes: Uint8List.fromList([0x25, 0x50, 0x44, 0x46]),
-        fileName: 'doc.pdf',
-        mimeType: 'application/pdf',
-        type: MedicalDocumentTypeEnum.other,
-      ),
-      throwsA(isA<MedicalRecordsStorageUnavailableException>()),
-    );
-  });
+      expect(
+        () => repository.upload(
+          bytes: Uint8List.fromList([0x25, 0x50, 0x44, 0x46]),
+          fileName: 'doc.pdf',
+          mimeType: 'application/pdf',
+          type: MedicalDocumentTypeEnum.other,
+        ),
+        throwsA(isA<MedicalRecordsStorageUnavailableException>()),
+      );
+    },
+  );
 
   test('upload maps 422 to MedicalRecordsValidationException', () async {
     adapter.onPost('/medical-records', (server) {

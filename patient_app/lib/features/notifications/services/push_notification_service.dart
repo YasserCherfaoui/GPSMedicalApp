@@ -18,7 +18,9 @@ final registeredDeviceStoreProvider = Provider<RegisteredDeviceStore>(
   (ref) => RegisteredDeviceStore(),
 );
 
-final pushNotificationServiceProvider = Provider<PushNotificationService>((ref) {
+final pushNotificationServiceProvider = Provider<PushNotificationService>((
+  ref,
+) {
   return PushNotificationService(ref);
 });
 
@@ -114,21 +116,19 @@ class PushNotificationService {
       message.hashCode,
       title,
       body,
-      NotificationDetails(
+      const NotificationDetails(
         android: AndroidNotificationDetails(
           'gps_medical_default',
           'GPS Médical',
           icon: '@mipmap/ic_launcher',
-          largeIcon: const DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
+          largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
         ),
-        iOS: const DarwinNotificationDetails(),
+        iOS: DarwinNotificationDetails(),
       ),
       payload: _encodePayload(message.data),
     );
 
-    unawaited(
-      _ref.read(notificationsUnreadCountProvider.notifier).refresh(),
-    );
+    unawaited(_ref.read(notificationsUnreadCountProvider.notifier).refresh());
   }
 
   void _handleRemoteMessage(RemoteMessage message) {
@@ -140,9 +140,7 @@ class PushNotificationService {
     final context = patientRootNavigatorKey.currentContext;
     if (context == null) return;
     navigateFromNotificationData(context, data);
-    unawaited(
-      _ref.read(notificationsUnreadCountProvider.notifier).refresh(),
-    );
+    unawaited(_ref.read(notificationsUnreadCountProvider.notifier).refresh());
   }
 
   String _encodePayload(Map<String, dynamic> data) {

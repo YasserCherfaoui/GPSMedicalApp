@@ -27,7 +27,7 @@ abstract class Notification implements Built<Notification, NotificationBuilder> 
 
   @BuiltValueField(wireName: r'type')
   NotificationTypeEnum? get type;
-  // enum typeEnum {  appointment_confirmed,  appointment_reminder,  appointment_cancelled,  appointment_rescheduled,  new_message,  prescription_issued,  payment_succeeded,  payment_failed,  review_request,  admin_announcement,  };
+  // enum typeEnum {  appointment_created,  appointment_confirmed,  appointment_reminder,  appointment_cancelled,  appointment_rescheduled,  new_message,  prescription_issued,  payment_succeeded,  payment_failed,  review_request,  admin_announcement,  };
 
   @BuiltValueField(wireName: r'title')
   String? get title;
@@ -220,6 +220,8 @@ class _$NotificationSerializer implements PrimitiveSerializer<Notification> {
 
 class NotificationTypeEnum extends EnumClass {
 
+  @BuiltValueEnumConst(wireName: r'appointment_created')
+  static const NotificationTypeEnum appointmentCreated = _$notificationTypeEnum_appointmentCreated;
   @BuiltValueEnumConst(wireName: r'appointment_confirmed')
   static const NotificationTypeEnum appointmentConfirmed = _$notificationTypeEnum_appointmentConfirmed;
   @BuiltValueEnumConst(wireName: r'appointment_reminder')

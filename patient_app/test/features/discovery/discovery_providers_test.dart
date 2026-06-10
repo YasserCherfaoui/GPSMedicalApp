@@ -83,11 +83,7 @@ void main() {
       );
       dioAdapter.onGet('/specialties', (server) {
         return server.reply(200, [
-          {
-            'id': 'spec-1',
-            'code': 'CAR',
-            'name_fr': 'Cardiologie',
-          },
+          {'id': 'spec-1', 'code': 'CAR', 'name_fr': 'Cardiologie'},
         ]);
       });
 
@@ -201,12 +197,7 @@ void main() {
                 'verified': true,
               },
             ),
-            'meta': {
-              'page': 1,
-              'page_size': 20,
-              'total': 21,
-              'total_pages': 2,
-            },
+            'meta': {'page': 1, 'page_size': 20, 'total': 21, 'total_pages': 2},
           };
         }),
       );
@@ -223,61 +214,64 @@ void main() {
       expect(refreshed.hasMore, isTrue);
     });
 
-    test('loadNextPage ignores concurrent requests while loading more', () async {
-      container.listen(doctorListProvider, (_, __) {});
+    test(
+      'loadNextPage ignores concurrent requests while loading more',
+      () async {
+        container.listen(doctorListProvider, (_, __) {});
 
-      var pageTwoCalls = 0;
-      dioAdapter.onGet(
-        '/doctors',
-        (server) => server.reply(200, (RequestOptions options) {
-          final page = options.queryParameters['page']?.toString();
-          if (page == '2') {
-            pageTwoCalls++;
+        var pageTwoCalls = 0;
+        dioAdapter.onGet(
+          '/doctors',
+          (server) => server.reply(200, (RequestOptions options) {
+            final page = options.queryParameters['page']?.toString();
+            if (page == '2') {
+              pageTwoCalls++;
+              return {
+                'data': [
+                  {'id': 'doc-20', 'full_name': 'Doctor 20', 'verified': true},
+                ],
+                'meta': {
+                  'page': 2,
+                  'page_size': 20,
+                  'total': 21,
+                  'total_pages': 2,
+                },
+              };
+            }
             return {
-              'data': [
-                {'id': 'doc-20', 'full_name': 'Doctor 20', 'verified': true},
-              ],
+              'data': List.generate(
+                20,
+                (i) => {
+                  'id': 'doc-$i',
+                  'full_name': 'Doctor $i',
+                  'verified': true,
+                },
+              ),
               'meta': {
-                'page': 2,
+                'page': 1,
                 'page_size': 20,
                 'total': 21,
                 'total_pages': 2,
               },
             };
-          }
-          return {
-            'data': List.generate(
-              20,
-              (i) => {
-                'id': 'doc-$i',
-                'full_name': 'Doctor $i',
-                'verified': true,
-              },
-            ),
-            'meta': {
-              'page': 1,
-              'page_size': 20,
-              'total': 21,
-              'total_pages': 2,
-            },
-          };
-        }),
-      );
+          }),
+        );
 
-      await container.read(doctorListProvider.future);
+        await container.read(doctorListProvider.future);
 
-      final notifier = container.read(doctorListProvider.notifier);
-      final first = notifier.loadNextPage();
-      expect(
-        container.read(doctorListProvider).value?.isLoadingMore,
-        isTrue,
-      );
-      final second = notifier.loadNextPage();
-      await Future.wait([first, second]);
+        final notifier = container.read(doctorListProvider.notifier);
+        final first = notifier.loadNextPage();
+        expect(container.read(doctorListProvider).value?.isLoadingMore, isTrue);
+        final second = notifier.loadNextPage();
+        await Future.wait([first, second]);
 
-      expect(pageTwoCalls, 1);
-      expect(container.read(doctorListProvider).value!.doctors, hasLength(21));
-    });
+        expect(pageTwoCalls, 1);
+        expect(
+          container.read(doctorListProvider).value!.doctors,
+          hasLength(21),
+        );
+      },
+    );
   });
 
   group('DoctorSearch Provider and Filters', () {
@@ -310,12 +304,7 @@ void main() {
                 'verified': true,
               },
             ),
-            'meta': {
-              'page': 1,
-              'page_size': 20,
-              'total': 21,
-              'total_pages': 2,
-            },
+            'meta': {'page': 1, 'page_size': 20, 'total': 21, 'total_pages': 2},
           };
         }),
       );
@@ -403,10 +392,7 @@ void main() {
       );
       dioAdapter.onGet(
         '/doctors/$doctorId/reviews',
-        (server) => server.reply(404, {
-          'title': 'Not Found',
-          'status': 404,
-        }),
+        (server) => server.reply(404, {'title': 'Not Found', 'status': 404}),
       );
 
       final detail = await container.read(
@@ -462,12 +448,7 @@ void main() {
                 'created_at': '2026-01-01T10:00:00Z',
               },
             ),
-            'meta': {
-              'page': 1,
-              'page_size': 10,
-              'total': 11,
-              'total_pages': 2,
-            },
+            'meta': {'page': 1, 'page_size': 10, 'total': 11, 'total_pages': 2},
           };
         }),
       );

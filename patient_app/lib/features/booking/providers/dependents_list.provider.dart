@@ -20,9 +20,9 @@ class DependentsList extends _$DependentsList {
   }
 
   Future<Dependent> create(DependentCreate create) async {
-    final created = await ref.read(dependentsRepositoryProvider).createDependent(
-      create,
-    );
+    final created = await ref
+        .read(dependentsRepositoryProvider)
+        .createDependent(create);
     await refresh();
     return created;
   }
@@ -31,10 +31,9 @@ class DependentsList extends _$DependentsList {
     required String dependentId,
     required DependentCreate payload,
   }) async {
-    final updated = await ref.read(dependentsRepositoryProvider).updateDependent(
-      dependentId: dependentId,
-      update: payload,
-    );
+    final updated = await ref
+        .read(dependentsRepositoryProvider)
+        .updateDependent(dependentId: dependentId, update: payload);
     await refresh();
     return updated;
   }

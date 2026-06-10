@@ -15,7 +15,8 @@ class DependentFormScreen extends ConsumerStatefulWidget {
   bool get isEdit => dependentId != null;
 
   @override
-  ConsumerState<DependentFormScreen> createState() => _DependentFormScreenState();
+  ConsumerState<DependentFormScreen> createState() =>
+      _DependentFormScreenState();
 }
 
 class _DependentFormScreenState extends ConsumerState<DependentFormScreen> {
@@ -107,9 +108,9 @@ class _DependentFormScreenState extends ConsumerState<DependentFormScreen> {
       setState(() => _fieldErrors = e.fieldErrors);
     } catch (_) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.dependentSaveError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.dependentSaveError)));
     } finally {
       if (mounted) setState(() => _saving = false);
     }
@@ -131,9 +132,7 @@ class _DependentFormScreenState extends ConsumerState<DependentFormScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.isEdit ? l10n.dependentsEdit : l10n.dependentsAdd,
-        ),
+        title: Text(widget.isEdit ? l10n.dependentsEdit : l10n.dependentsAdd),
         actions: [
           TextButton(
             onPressed: _saving ? null : () => _save(l10n),
@@ -157,8 +156,9 @@ class _DependentFormScreenState extends ConsumerState<DependentFormScreen> {
                   label: l10n.dependentFullName,
                   errorText: _fieldErrors['full_name'],
                   onChanged: (_) => setState(
-                    () => _fieldErrors = Map.from(_fieldErrors)
-                      ..remove('full_name'),
+                    () =>
+                        _fieldErrors = Map.from(_fieldErrors)
+                          ..remove('full_name'),
                   ),
                 ),
                 const SizedBox(height: GpsSpacing.md),

@@ -9,50 +9,50 @@ void main() {
   group(NotificationsApi, () {
     // Désinscription d'un device
     //
-    //Future notificationsDevicesDeviceIdDelete(String deviceId) async
-    test('test notificationsDevicesDeviceIdDelete', () async {
-      // TODO
-    });
-
-    // Enregistrement d'un device pour les push (FCM)
-    //
-    //Future<Device> notificationsDevicesPost(DeviceRegistration deviceRegistration) async
-    test('test notificationsDevicesPost', () async {
-      // TODO
-    });
-
-    // Liste des notifications de l'utilisateur
-    //
-    //Future<PaginatedNotifications> notificationsGet({ bool unreadOnly, int page, int pageSize }) async
-    test('test notificationsGet', () async {
-      // TODO
-    });
-
-    // Marquer comme lu
-    //
-    //Future notificationsNotificationIdReadPost(String notificationId) async
-    test('test notificationsNotificationIdReadPost', () async {
+    //Future deleteNotificationDevice(String deviceId) async
+    test('test deleteNotificationDevice', () async {
       // TODO
     });
 
     // Préférences de notification
     //
-    //Future<NotificationPreferences> notificationsPreferencesGet() async
-    test('test notificationsPreferencesGet', () async {
+    //Future<NotificationPreferences> getNotificationPreferences() async
+    test('test getNotificationPreferences', () async {
       // TODO
     });
 
-    // Mise à jour des préférences
+    // Liste des notifications de l'utilisateur
     //
-    //Future<NotificationPreferences> notificationsPreferencesPut(NotificationPreferences notificationPreferences) async
-    test('test notificationsPreferencesPut', () async {
+    //Future<PaginatedNotifications> listNotifications({ bool unreadOnly, int page, int pageSize }) async
+    test('test listNotifications', () async {
       // TODO
     });
 
     // Marquer toutes les notifications comme lues
     //
-    //Future notificationsReadAllPost() async
-    test('test notificationsReadAllPost', () async {
+    //Future markAllNotificationsRead() async
+    test('test markAllNotificationsRead', () async {
+      // TODO
+    });
+
+    // Marquer comme lu
+    //
+    //Future markNotificationRead(String notificationId) async
+    test('test markNotificationRead', () async {
+      // TODO
+    });
+
+    // Enregistrement d'un device pour les push (FCM)
+    //
+    //Future<Device> registerNotificationDevice(DeviceRegistration deviceRegistration) async
+    test('test registerNotificationDevice', () async {
+      // TODO
+    });
+
+    // Mise à jour des préférences
+    //
+    //Future<NotificationPreferences> updateNotificationPreferences(NotificationPreferences notificationPreferences) async
+    test('test updateNotificationPreferences', () async {
       // TODO
     });
 

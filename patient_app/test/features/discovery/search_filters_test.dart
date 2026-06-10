@@ -5,8 +5,8 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/discovery/providers/doctor_search.provider.dart';
 
-import 'geo_test_fixtures.dart';
 import '../../test_api_constants.dart';
+import 'geo_test_fixtures.dart';
 
 void main() {
   group('SearchFilters.activeFiltersCount', () {
@@ -74,9 +74,7 @@ void main() {
         return server.reply(200, [wilayaJson()]);
       });
       dioAdapter.onGet('/geo/wilayas/16/communes', (server) {
-        return server.reply(200, [
-          communeJson(id: communeId, nameFr: 'Hydra'),
-        ]);
+        return server.reply(200, [communeJson(id: communeId, nameFr: 'Hydra')]);
       });
 
       final container = ProviderContainer(

@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Santé de l''API — PostgreSQL et Redis
 
-Vérifie la disponibilité de PostgreSQL (`db`), de Redis (`redis`) et, si configuré, du stockage objet (`storage`). `storage=disabled` lorsque `STORAGE_PROVIDER` est vide (uploads désactivés) ; cela ne dégrade pas le statut global. Une réponse `200` indique une plateforme prête (`status=ok`). Une réponse `503` indique une perte ou refus (`status=degraded`). Une corrélation requête/réponse est toujours possible via **X-Request-ID** renvoyé dans l''en-tête de réponse. 
+Vérifie la disponibilité de PostgreSQL (`db`), de Redis (`redis`) et, si configuré, du stockage objet (`storage`). `storage=disabled` lorsque `STORAGE_PROVIDER` est vide ou `disabled` (uploads désactivés) ; cela ne dégrade pas le statut global. Une réponse `200` indique une plateforme prête (`status=ok`). Une réponse `503` indique une perte ou refus (`status=degraded`). Une corrélation requête/réponse est toujours possible via **X-Request-ID** renvoyé dans l''en-tête de réponse. 
 
 ### Example
 ```dart

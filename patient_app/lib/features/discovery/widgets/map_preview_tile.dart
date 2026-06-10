@@ -36,10 +36,7 @@ class MapPreviewTile extends StatelessWidget {
         child: GoogleMap(
           initialCameraPosition: CameraPosition(target: position, zoom: 14),
           markers: {
-            Marker(
-              markerId: const MarkerId('practice'),
-              position: position,
-            ),
+            Marker(markerId: const MarkerId('practice'), position: position),
           },
           scrollGesturesEnabled: false,
           zoomGesturesEnabled: false,

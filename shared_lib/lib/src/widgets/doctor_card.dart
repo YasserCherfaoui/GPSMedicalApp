@@ -70,7 +70,7 @@ class DoctorCard extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final isRtl = Directionality.of(context) == TextDirection.rtl;
-    final photoSize = 80.0;
+    const photoSize = 80.0;
 
     final specialtyLine = _specialtyDistanceLine();
 
@@ -95,11 +95,7 @@ class DoctorCard extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Icon(
-                Icons.verified,
-                color: colorScheme.primary,
-                size: 16,
-              ),
+              child: Icon(Icons.verified, color: colorScheme.primary, size: 16),
             ),
           ),
       ],
@@ -240,11 +236,7 @@ class DoctorCard extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Icon(
-                Icons.verified,
-                color: colorScheme.primary,
-                size: 20,
-              ),
+              child: Icon(Icons.verified, color: colorScheme.primary, size: 20),
             ),
           ),
       ],

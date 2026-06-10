@@ -7,38 +7,38 @@ void main() {
   final instance = GpsMedicalApi().getMessagingApi();
 
   group(MessagingApi, () {
-    // Marquer un message comme lu
+    // Envoi d'un message
     //
-    //Future messagingMessagesMessageIdReadPost(String messageId) async
-    test('test messagingMessagesMessageIdReadPost', () async {
-      // TODO
-    });
-
-    // Liste des conversations
-    //
-    //Future<PaginatedThreads> messagingThreadsGet({ int page, int pageSize }) async
-    test('test messagingThreadsGet', () async {
+    //Future<Message> createMessagingThreadMessage(String threadId, MessageCreate messageCreate) async
+    test('test createMessagingThreadMessage', () async {
       // TODO
     });
 
     // Détail d'une conversation
     //
-    //Future<Thread> messagingThreadsThreadIdGet(String threadId) async
-    test('test messagingThreadsThreadIdGet', () async {
+    //Future<Thread> getMessagingThread(String threadId) async
+    test('test getMessagingThread', () async {
       // TODO
     });
 
     // Messages d'une conversation
     //
-    //Future<BuiltList<Message>> messagingThreadsThreadIdMessagesGet(String threadId, { DateTime before, int limit }) async
-    test('test messagingThreadsThreadIdMessagesGet', () async {
+    //Future<BuiltList<Message>> listMessagingThreadMessages(String threadId, { DateTime before, int limit }) async
+    test('test listMessagingThreadMessages', () async {
       // TODO
     });
 
-    // Envoi d'un message
+    // Liste des conversations
     //
-    //Future<Message> messagingThreadsThreadIdMessagesPost(String threadId, MessageCreate messageCreate) async
-    test('test messagingThreadsThreadIdMessagesPost', () async {
+    //Future<PaginatedThreads> listMessagingThreads({ int page, int pageSize }) async
+    test('test listMessagingThreads', () async {
+      // TODO
+    });
+
+    // Marquer un message comme lu
+    //
+    //Future markMessagingMessageRead(String messageId) async
+    test('test markMessagingMessageRead', () async {
       // TODO
     });
 

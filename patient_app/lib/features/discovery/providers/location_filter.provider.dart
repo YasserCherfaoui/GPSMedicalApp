@@ -87,8 +87,9 @@ class LocationFilter extends _$LocationFilter {
 
     state = state.copyWith(selectedWilaya: wilaya, clearCommune: true);
 
-    if (wilaya?.code != null) {
-      ref.read(communesFetchProvider.notifier).fetchForWilaya(wilaya!.code!);
+    final code = wilaya?.code;
+    if (code != null) {
+      ref.read(communesFetchProvider.notifier).fetchForWilaya(code);
     }
   }
 

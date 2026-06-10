@@ -19,7 +19,7 @@ void main() {
     client = GpsMedicalClient(tokenStore: InMemoryTokenStore(), v1Dio: dio);
 
     adapter.onGet('/patients/me/dependents', (server) {
-      return server.reply(200, []);
+      return server.reply(200, <Map<String, dynamic>>[]);
     });
   });
 
@@ -36,7 +36,9 @@ void main() {
     );
   }
 
-  testWidgets('create dependent happy path submits POST and pops', (tester) async {
+  testWidgets('create dependent happy path submits POST and pops', (
+    tester,
+  ) async {
     var postCalled = false;
 
     adapter.onPost('/patients/me/dependents', (server) {

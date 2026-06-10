@@ -460,5 +460,13 @@
   "paymentDepositSandboxHint": "Axelleṣ yettwasenfel deg usenqed n usekker.",
   "paymentDepositSuccess": "Axelleṣ yedda. Amaruṛ yettwaleqqem.",
   "paymentDepositFailed": "Axelleṣ ur yeddi ara.",
-  "paymentDepositNotEligible": "Amarur-a ur yettak ara ad yettwaxelleṣ."
+  "paymentDepositNotEligible": "Amarur-a ur yettak ara ad yettwaxelleṣ.",
+  "specialistVerificationPendingTitle": "Aseɣwen yettwaseɣreg",
+  "specialistVerificationPendingBody": "Aseɣwen-ik yettwaseɣreg sɣur teɣribt-nneɣ. Ad teṭṭfeḍ ilɣa mi ara d-yettwafken umala.",
+  "specialistTabInbox": "Isuter",
+  "specialistTabCalendar": "Awitay",
+  "specialistTabMessages": "Iznan",
+  "specialistTabProfile": "Amaɣnu",
+  "specialistTabStats": "Tiddin",
+  "specialistShellPlaceholder": "Yettwalien"
 }

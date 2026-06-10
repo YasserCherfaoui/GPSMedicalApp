@@ -460,5 +460,13 @@
   "paymentDepositSandboxHint": "يتم محاكاة الدفع في بيئة الاختبار.",
   "paymentDepositSuccess": "تم الدفع بنجاح. تم تحديث موعدك.",
   "paymentDepositFailed": "فشل الدفع.",
-  "paymentDepositNotEligible": "هذا الموعد غير مؤهل للدفع."
+  "paymentDepositNotEligible": "هذا الموعد غير مؤهل للدفع.",
+  "specialistVerificationPendingTitle": "الملف قيد المراجعة",
+  "specialistVerificationPendingBody": "ملفك قيد التحقق من قبل فريقنا. ستتلقى إشعارًا عند اتخاذ القرار.",
+  "specialistTabInbox": "الطلبات",
+  "specialistTabCalendar": "الأجندة",
+  "specialistTabMessages": "الرسائل",
+  "specialistTabProfile": "الملف",
+  "specialistTabStats": "الإحصائيات",
+  "specialistShellPlaceholder": "قريبًا"
 }

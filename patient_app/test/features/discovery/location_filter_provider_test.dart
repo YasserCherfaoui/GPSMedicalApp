@@ -5,8 +5,8 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/discovery/providers/location_filter.provider.dart';
 
-import 'geo_test_fixtures.dart';
 import '../../test_api_constants.dart';
+import 'geo_test_fixtures.dart';
 
 void main() {
   late Dio dio;
@@ -18,7 +18,10 @@ void main() {
     dioAdapter = DioAdapter(dio: dio);
     dio.httpClientAdapter = dioAdapter;
 
-    final client = GpsMedicalClient(tokenStore: InMemoryTokenStore(), v1Dio: dio);
+    final client = GpsMedicalClient(
+      tokenStore: InMemoryTokenStore(),
+      v1Dio: dio,
+    );
 
     container = ProviderContainer(
       overrides: [gpsMedicalClientProvider.overrideWithValue(client)],
@@ -49,7 +52,9 @@ void main() {
 
     expect(communeCalls, 1);
 
-    container.read(locationFilterProvider.notifier).selectWilaya(sampleWilaya());
+    container
+        .read(locationFilterProvider.notifier)
+        .selectWilaya(sampleWilaya());
     expect(container.read(locationFilterProvider).selectedWilaya?.code, '16');
   });
 

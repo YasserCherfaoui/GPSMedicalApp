@@ -57,10 +57,7 @@ void main() {
     });
 
     expect(
-      () => repo.confirm(
-        intentId: 'pi-1',
-        gatewayToken: 'ZmFpbA==',
-      ),
+      () => repo.confirm(intentId: 'pi-1', gatewayToken: 'ZmFpbA=='),
       throwsA(isA<PaymentFailedException>()),
     );
   });

@@ -20,7 +20,7 @@ class ReviewsRepository {
           ..rating = rating
           ..comment = comment?.trim().isEmpty == true ? null : comment?.trim(),
       );
-      final response = await _client.reviews.reviewsPost(reviewCreate: body);
+      final response = await _client.reviews.createReview(reviewCreate: body);
       final review = response.data;
       if (review == null) {
         throw StateError('Empty review create response');
@@ -33,7 +33,7 @@ class ReviewsRepository {
 
   Future<void> delete(String reviewId) async {
     try {
-      await _client.reviews.reviewsReviewIdDelete(reviewId: reviewId);
+      await _client.reviews.deleteReview(reviewId: reviewId);
     } on DioException catch (e) {
       rethrowReviewsApiError(e);
     }

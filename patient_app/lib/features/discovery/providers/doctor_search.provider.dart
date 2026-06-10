@@ -147,10 +147,12 @@ class SearchFiltersNotifier extends _$SearchFiltersNotifier {
 
     selectCommune(id, displayLabel: item.label);
 
-    final commune = await ref.read(geoRepositoryProvider).findCommuneById(
-      id,
-      wilayaNameHint: parseWilayaNameFromSuggestLabel(item.label),
-    );
+    final commune = await ref
+        .read(geoRepositoryProvider)
+        .findCommuneById(
+          id,
+          wilayaNameHint: parseWilayaNameFromSuggestLabel(item.label),
+        );
 
     if (commune == null) return;
 
@@ -243,13 +245,15 @@ class DoctorSearch extends _$DoctorSearch {
 
   Future<SearchResultState> _fetchPage(SearchFilters filters, int page) async {
     final location = ref.read(userLocationProvider).valueOrNull;
-    final result = await ref.read(searchRepositoryProvider).searchDoctors(
-      filters: filters,
-      page: page,
-      pageSize: 20,
-      userLat: location?.lat,
-      userLng: location?.lng,
-    );
+    final result = await ref
+        .read(searchRepositoryProvider)
+        .searchDoctors(
+          filters: filters,
+          page: page,
+          pageSize: 20,
+          userLat: location?.lat,
+          userLng: location?.lng,
+        );
     final doctors = result.doctors;
     final total = result.total;
     final hasMore = doctors.length == 20 && (page * 20) < total;

@@ -84,8 +84,7 @@ class BookingDraftState {
       rescheduleAppointmentId: clearReschedule
           ? null
           : (rescheduleAppointmentId ?? this.rescheduleAppointmentId),
-      pendingResumePrompt:
-          pendingResumePrompt ?? this.pendingResumePrompt,
+      pendingResumePrompt: pendingResumePrompt ?? this.pendingResumePrompt,
     );
   }
 

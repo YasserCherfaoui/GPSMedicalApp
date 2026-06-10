@@ -10,23 +10,14 @@ void main() {
     });
 
     test('rejects commune UUIDs', () {
-      expect(
-        isWilayaCode('5fcffb1c-ad63-4de0-b594-9f3a8c8f1a2b'),
-        isFalse,
-      );
+      expect(isWilayaCode('5fcffb1c-ad63-4de0-b594-9f3a8c8f1a2b'), isFalse);
     });
   });
 
   group('parseWilayaNameFromSuggestLabel', () {
     test('extracts wilaya name from backend label format', () {
-      expect(
-        parseWilayaNameFromSuggestLabel('Hydra (Alger)'),
-        'Alger',
-      );
-      expect(
-        parseWilayaNameFromSuggestLabel('Oran (Oran)'),
-        'Oran',
-      );
+      expect(parseWilayaNameFromSuggestLabel('Hydra (Alger)'), 'Alger');
+      expect(parseWilayaNameFromSuggestLabel('Oran (Oran)'), 'Oran');
     });
 
     test('returns null when parentheses are missing', () {

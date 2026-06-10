@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../notifications/widgets/notifications_bell_button.dart';
 import '../providers/doctor_list.provider.dart';
 import '../providers/doctor_search.provider.dart';
 import '../providers/specialties.provider.dart';
@@ -11,7 +12,6 @@ import '../utils/specialty_display.dart';
 import '../widgets/discovery_error_view.dart';
 import '../widgets/doctor_card_tile.dart';
 import '../widgets/doctor_list_shimmer.dart';
-import '../../notifications/widgets/notifications_bell_button.dart';
 
 class DoctorListScreen extends ConsumerWidget {
   const DoctorListScreen({super.key});
@@ -197,34 +197,37 @@ class DoctorListScreen extends ConsumerWidget {
                     horizontal: GpsSpacing.md,
                   ),
                   sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                      if (index == doctors.length) {
-                        return const Padding(
-                          padding: EdgeInsets.only(bottom: GpsSpacing.md),
-                          child: LoadingSkeleton.card(),
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        if (index == doctors.length) {
+                          return const Padding(
+                            padding: EdgeInsets.only(bottom: GpsSpacing.md),
+                            child: LoadingSkeleton.card(),
+                          );
+                        }
+
+                        _maybeLoadNextPage(
+                          ref,
+                          index: index,
+                          doctorCount: doctors.length,
+                          hasMore: listState.hasMore,
+                          isLoadingMore: listState.isLoadingMore,
                         );
-                      }
 
-                      _maybeLoadNextPage(
-                        ref,
-                        index: index,
-                        doctorCount: doctors.length,
-                        hasMore: listState.hasMore,
-                        isLoadingMore: listState.isLoadingMore,
-                      );
-
-                      final doc = doctors[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: GpsSpacing.md),
-                        child: buildDoctorCardTile(
-                          context: context,
-                          doc: doc,
-                          languageCode: languageCode,
-                          userLat: userLocation?.lat,
-                          userLng: userLocation?.lng,
-                        ),
-                      );
-                    }, childCount: doctors.length + (listState.hasMore ? 1 : 0)),
+                        final doc = doctors[index];
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: GpsSpacing.md),
+                          child: buildDoctorCardTile(
+                            context: context,
+                            doc: doc,
+                            languageCode: languageCode,
+                            userLat: userLocation?.lat,
+                            userLng: userLocation?.lng,
+                          ),
+                        );
+                      },
+                      childCount: doctors.length + (listState.hasMore ? 1 : 0),
+                    ),
                   ),
                 );
               },

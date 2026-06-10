@@ -190,7 +190,7 @@ class DoctorsApi {
   }
 
   /// Téléversement d&#39;un diplôme ou justificatif (PDF/image)
-  /// &#x60;multipart/form-data&#x60; : champs &#x60;file&#x60; et &#x60;type&#x60;. Taille maximale **10 Mo**. PDF, JPEG ou PNG uniquement ; le contenu est contrôlé par magic bytes. 
+  /// &#x60;multipart/form-data&#x60; : champs &#x60;file&#x60; et &#x60;type&#x60;. Fichier maximal **10 Mo** ; enveloppe multipart serveur **15 Mo**. PDF, JPEG ou PNG uniquement ; le contenu est contrôlé par magic bytes. 
   ///
   /// Parameters:
   /// * [file] 

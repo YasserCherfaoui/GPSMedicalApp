@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../notifications/widgets/notifications_bell_button.dart';
 import '../providers/nearby_doctors.provider.dart';
 import '../utils/geo_display.dart';
 import '../utils/map_marker_cluster.dart';
@@ -11,7 +12,6 @@ import '../widgets/discovery_error_view.dart';
 import '../widgets/doctor_card_tile.dart';
 import '../widgets/specialties_picker.dart';
 import '../widgets/wilaya_commune_picker.dart';
-import '../../notifications/widgets/notifications_bell_button.dart';
 
 class NearbyDoctorsMapScreen extends ConsumerStatefulWidget {
   const NearbyDoctorsMapScreen({super.key});
@@ -226,8 +226,7 @@ class _NearbyDoctorsMapScreenState
                           await ref
                               .read(nearbyDoctorsProvider.notifier)
                               .useDeviceLocation();
-                          final updated =
-                              ref.read(nearbyDoctorsProvider).value;
+                          final updated = ref.read(nearbyDoctorsProvider).value;
                           if (updated != null) {
                             _syncMapZoomToRadius(
                               updated.radiusKm,
@@ -393,7 +392,11 @@ class _NearbyDoctorsMapScreenState
                                 },
                           onChangeEnd: (val) {
                             setState(() => _sliderRadiusKm = null);
-                            _syncMapZoomToRadius(val, geoState.lat, geoState.lng);
+                            _syncMapZoomToRadius(
+                              val,
+                              geoState.lat,
+                              geoState.lng,
+                            );
                             ref
                                 .read(nearbyDoctorsProvider.notifier)
                                 .updateRadius(val);
@@ -529,10 +532,9 @@ class _NearbyDoctorsMapScreenState
         return WilayaCommunePicker(
           onLocationChanged: (wilaya, commune) {
             if (wilaya == null) return;
-            ref.read(nearbyDoctorsProvider.notifier).setManualLocation(
-                  wilaya: wilaya,
-                  commune: commune,
-                );
+            ref
+                .read(nearbyDoctorsProvider.notifier)
+                .setManualLocation(wilaya: wilaya, commune: commune);
             final updated = ref.read(nearbyDoctorsProvider).value;
             final lat = updated?.lat ?? 36.7538;
             final lng = updated?.lng ?? 3.0588;

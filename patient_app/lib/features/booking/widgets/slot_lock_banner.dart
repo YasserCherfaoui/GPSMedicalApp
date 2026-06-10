@@ -6,10 +6,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../providers/booking_draft.provider.dart';
 
 class SlotLockBanner extends ConsumerStatefulWidget {
-  const SlotLockBanner({
-    required this.onExpired,
-    super.key,
-  });
+  const SlotLockBanner({required this.onExpired, super.key});
 
   final VoidCallback onExpired;
 
@@ -63,8 +60,8 @@ class _SlotLockBannerState extends ConsumerState<SlotLockBanner>
   }
 
   void _syncTicker(BookingDraftState draft) {
-    final needsTicker = draft.selectedSlot != null &&
-        (draft.hasActiveLock || !_expiryHandled);
+    final needsTicker =
+        draft.selectedSlot != null && (draft.hasActiveLock || !_expiryHandled);
     if (needsTicker) {
       if (!(_ticker?.isActive ?? false)) {
         _ticker?.start();
@@ -83,14 +80,22 @@ class _SlotLockBannerState extends ConsumerState<SlotLockBanner>
     final remaining = draft.lockRemaining ?? Duration.zero;
 
     final l10n = AppLocalizations.of(context)!;
-    final minutes = remaining.inMinutes.remainder(60).toString().padLeft(2, '0');
-    final seconds = remaining.inSeconds.remainder(60).toString().padLeft(2, '0');
+    final minutes = remaining.inMinutes
+        .remainder(60)
+        .toString()
+        .padLeft(2, '0');
+    final seconds = remaining.inSeconds
+        .remainder(60)
+        .toString()
+        .padLeft(2, '0');
     final time = '$minutes:$seconds';
     final warning = remaining.inSeconds < 60;
     final colorScheme = Theme.of(context).colorScheme;
 
     return Material(
-      color: warning ? colorScheme.errorContainer : colorScheme.primaryContainer,
+      color: warning
+          ? colorScheme.errorContainer
+          : colorScheme.primaryContainer,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: GpsSpacing.md,

@@ -100,7 +100,7 @@ void main() {
     mockSpecialties();
     dioAdapter.onGet('/doctors', (server) {
       return server.reply(200, {
-        'data': [],
+        'data': <Map<String, dynamic>>[],
         'meta': {'page': 1, 'page_size': 20, 'total': 0, 'total_pages': 0},
       });
     });

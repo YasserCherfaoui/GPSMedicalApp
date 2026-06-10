@@ -28,7 +28,10 @@ class AppointmentsUpcoming extends _$AppointmentsUpcoming {
     return _fetchPage(1, append: false);
   }
 
-  Future<AppointmentsListState> _fetchPage(int page, {required bool append}) async {
+  Future<AppointmentsListState> _fetchPage(
+    int page, {
+    required bool append,
+  }) async {
     final repo = ref.read(appointmentRepositoryProvider);
     final all = <Appointment>[];
     for (final status in _statuses) {

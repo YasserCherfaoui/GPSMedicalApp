@@ -56,13 +56,11 @@ class DoctorRepository {
     required int pageSize,
   }) async {
     try {
-      final response = await _client.v1
-          .getReviewsApi()
-          .doctorsDoctorIdReviewsGet(
-            doctorId: doctorId,
-            page: page,
-            pageSize: pageSize,
-          );
+      final response = await _client.reviews.listDoctorReviews(
+        doctorId: doctorId,
+        page: page,
+        pageSize: pageSize,
+      );
       final paginated = response.data;
       return (
         reviews: paginated?.data?.toList() ?? [],

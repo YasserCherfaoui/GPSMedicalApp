@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -28,24 +27,31 @@ void main() {
     repository = MedicalRecordsRepository(client);
   });
 
-  test('fetchDocumentBytes follows download link then fetches file bytes', () async {
-    adapter.onGet('/medical-records/doc-1/download', (server) {
-      return server.reply(200, {
-        'url': '/v1/medical-records/doc-1/file?exp=1710000000&token=abc',
-        'expires_at': '2026-06-01T10:05:00Z',
+  test(
+    'fetchDocumentBytes follows download link then fetches file bytes',
+    () async {
+      adapter.onGet('/medical-records/doc-1/download', (server) {
+        return server.reply(200, {
+          'url': '/v1/medical-records/doc-1/file?exp=1710000000&token=abc',
+          'expires_at': '2026-06-01T10:05:00Z',
+        });
       });
-    });
 
-    adapter.onGet('/medical-records/doc-1/file', (server) {
-      return server.reply(200, _pngBytes, headers: {
-        Headers.contentTypeHeader: ['image/png'],
+      adapter.onGet('/medical-records/doc-1/file', (server) {
+        return server.reply(
+          200,
+          _pngBytes,
+          headers: {
+            Headers.contentTypeHeader: ['image/png'],
+          },
+        );
       });
-    });
 
-    final bytes = await repository.fetchDocumentBytes('doc-1');
+      final bytes = await repository.fetchDocumentBytes('doc-1');
 
-    expect(bytes, _pngBytes);
-  });
+      expect(bytes, _pngBytes);
+    },
+  );
 
   test('delete calls DELETE endpoint', () async {
     adapter.onDelete('/medical-records/doc-1', (server) {

@@ -8,8 +8,8 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/discovery/widgets/wilaya_commune_picker.dart';
 
-import 'geo_test_fixtures.dart';
 import '../../test_api_constants.dart';
+import 'geo_test_fixtures.dart';
 
 void main() {
   late Dio dio;
@@ -32,12 +32,7 @@ void main() {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: const Locale('fr'),
-        home: Scaffold(
-          body: SizedBox(
-            height: 500,
-            child: child,
-          ),
-        ),
+        home: Scaffold(body: SizedBox(height: 500, child: child)),
       ),
     );
   }
@@ -46,7 +41,7 @@ void main() {
     final gate = Completer<void>();
     dioAdapter.onGet('/geo/wilayas', (server) async {
       await gate.future;
-      return server.reply(200, []);
+      return server.reply(200, <Map<String, dynamic>>[]);
     });
 
     await tester.pumpWidget(

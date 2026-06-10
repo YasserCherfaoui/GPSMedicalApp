@@ -38,8 +38,9 @@ class AppointmentPaymentSection extends StatelessWidget {
           const SizedBox(height: GpsSpacing.md),
           PrimaryButton(
             label: l10n.paymentDepositCta,
-            onPressed: () =>
-                context.push(GpsRoutes.appointmentPaymentDeposit(appointmentId)),
+            onPressed: () => context.push(
+              GpsRoutes.appointmentPaymentDeposit(appointmentId),
+            ),
           ),
         ],
       ),

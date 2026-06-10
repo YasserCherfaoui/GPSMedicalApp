@@ -59,7 +59,7 @@ void main() {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: const Locale('fr'),
-        home: PaymentDepositScreen(appointmentId: appointmentId),
+        home: const PaymentDepositScreen(appointmentId: appointmentId),
       ),
     );
   }
@@ -72,6 +72,9 @@ void main() {
     expect(find.text('Dr. Karim Benali'), findsOneWidget);
     expect(find.textContaining('3'), findsWidgets);
     expect(find.text('Mode test (sandbox)'), findsOneWidget);
-    expect(find.widgetWithText(PrimaryButton, 'Payer l\'acompte'), findsOneWidget);
+    expect(
+      find.widgetWithText(PrimaryButton, 'Payer l\'acompte'),
+      findsOneWidget,
+    );
   });
 }

@@ -47,10 +47,7 @@ void main() {
     adapter.onPatch('/patients/me', (server) {
       return server.reply(422, {
         'errors': [
-          {
-            'field': 'blood_type',
-            'message': 'Groupe sanguin invalide.',
-          },
+          {'field': 'blood_type', 'message': 'Groupe sanguin invalide.'},
         ],
       });
     });
@@ -58,9 +55,9 @@ void main() {
     await container.read(patientProfileProvider.future);
 
     expect(
-      () => container.read(patientProfileProvider.notifier).patchProfile(
-        PatientUpdate((b) => b..fullName = 'Amina Benali'),
-      ),
+      () => container
+          .read(patientProfileProvider.notifier)
+          .patchProfile(PatientUpdate((b) => b..fullName = 'Amina Benali')),
       throwsA(
         isA<ProfileValidationException>().having(
           (e) => e.fieldErrors['blood_type'],

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -59,9 +58,13 @@ void main() {
 
     adapter.onGet(
       '/medical-records/doc-1/file',
-      (server) => server.reply(200, _pngBytes, headers: {
-        Headers.contentTypeHeader: ['image/png'],
-      }),
+      (server) => server.reply(
+        200,
+        _pngBytes,
+        headers: {
+          Headers.contentTypeHeader: ['image/png'],
+        },
+      ),
     );
   });
 

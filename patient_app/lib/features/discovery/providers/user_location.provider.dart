@@ -6,11 +6,7 @@ import '../utils/location_permission.dart';
 part 'user_location.provider.g.dart';
 
 class UserLocationState {
-  const UserLocationState({
-    this.lat,
-    this.lng,
-    this.permissionGranted = false,
-  });
+  const UserLocationState({this.lat, this.lng, this.permissionGranted = false});
 
   final double? lat;
   final double? lng;

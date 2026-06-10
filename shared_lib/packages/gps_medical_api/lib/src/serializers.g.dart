@@ -32,6 +32,7 @@ Serializers _$serializers =
           ..add(CheckNinRequest.serializer)
           ..add(CheckPhoneRequest.serializer)
           ..add(Commune.serializer)
+          ..add(ConfirmPaymentIntentRequest.serializer)
           ..add(ConsentGrant.serializer)
           ..add(ConsentGrantConsentTypeEnum.serializer)
           ..add(Credential.serializer)
@@ -88,6 +89,7 @@ Serializers _$serializers =
           ..add(PaginatedNotifications.serializer)
           ..add(PaginatedReviews.serializer)
           ..add(PaginatedThreads.serializer)
+          ..add(PaginatedUserAdmin.serializer)
           ..add(PaginationMeta.serializer)
           ..add(PasswordResetRequest.serializer)
           ..add(Patient.serializer)
@@ -103,7 +105,6 @@ Serializers _$serializers =
           ..add(PaymentIntentCreateProviderEnum.serializer)
           ..add(PaymentIntentCreatePurposeEnum.serializer)
           ..add(PaymentIntentStatusEnum.serializer)
-          ..add(PaymentsIntentsIntentIdConfirmPostRequest.serializer)
           ..add(Prescription.serializer)
           ..add(PrescriptionItem.serializer)
           ..add(RefreshTokensRequest.serializer)
@@ -115,13 +116,13 @@ Serializers _$serializers =
           ..add(RegisterRequestRoleEnum.serializer)
           ..add(RegisterResponse.serializer)
           ..add(RegisterResponseNinVerificationStatusEnum.serializer)
+          ..add(ReportReviewRequest.serializer)
+          ..add(ReportReviewRequestReasonEnum.serializer)
           ..add(ResendOtpRequest.serializer)
           ..add(Review.serializer)
           ..add(ReviewCreate.serializer)
           ..add(ReviewStatusEnum.serializer)
           ..add(ReviewUpdate.serializer)
-          ..add(ReviewsReviewIdReportPostRequest.serializer)
-          ..add(ReviewsReviewIdReportPostRequestReasonEnum.serializer)
           ..add(RevokeConsentRequest.serializer)
           ..add(RevokeConsentRequestConsentTypeEnum.serializer)
           ..add(ScheduleException.serializer)
@@ -299,6 +300,10 @@ Serializers _$serializers =
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(TimeSeriesPoint)]),
             () => ListBuilder<TimeSeriesPoint>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [const FullType(UserAdmin)]),
+            () => ListBuilder<UserAdmin>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [

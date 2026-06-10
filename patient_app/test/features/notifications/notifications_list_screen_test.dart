@@ -51,7 +51,9 @@ void main() {
     );
   }
 
-  testWidgets('shows notification list and mark all read action', (tester) async {
+  testWidgets('shows notification list and mark all read action', (
+    tester,
+  ) async {
     await tester.pumpWidget(wrap());
     await tester.pumpAndSettle();
 

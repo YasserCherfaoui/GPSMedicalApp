@@ -16,9 +16,7 @@ class OnboardingScreen extends ConsumerWidget {
   final int step;
 
   Future<void> _completeOnboarding(WidgetRef ref) {
-    return ref
-        .read(appLaunchPreferencesProvider)
-        .setOnboardingCompleted(true);
+    return ref.read(appLaunchPreferencesProvider).setOnboardingCompleted(true);
   }
 
   @override

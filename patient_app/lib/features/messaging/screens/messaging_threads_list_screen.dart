@@ -5,8 +5,6 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../booking/providers/doctor_cache.provider.dart';
 import '../providers/messaging_threads_list.provider.dart';
-import '../repositories/messaging_repository.dart';
-import '../widgets/thread_row_tile.dart';
 
 class MessagingThreadsListScreen extends ConsumerStatefulWidget {
   const MessagingThreadsListScreen({super.key});
@@ -92,7 +90,8 @@ class _MessagingThreadsListScreenState
                 return _ThreadRow(
                   item: item,
                   doctorId: doctorId,
-                  onTap: () => context.push(GpsRoutes.messagingThreadDetail(threadId)),
+                  onTap: () =>
+                      context.push(GpsRoutes.messagingThreadDetail(threadId)),
                 );
               },
             ),
@@ -118,11 +117,7 @@ class _ThreadRow extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final doctorAsync = ref.watch(cachedDoctorProvider(doctorId));
     return doctorAsync.when(
-      data: (doctor) => ThreadRowTile(
-        item: item,
-        doctor: doctor,
-        onTap: onTap,
-      ),
+      data: (doctor) => ThreadRowTile(item: item, doctor: doctor, onTap: onTap),
       loading: () => const Padding(
         padding: EdgeInsets.only(bottom: GpsSpacing.sm),
         child: LoadingSkeleton(height: 88),

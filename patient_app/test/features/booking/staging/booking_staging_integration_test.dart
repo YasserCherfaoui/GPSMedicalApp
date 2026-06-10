@@ -39,10 +39,7 @@ void main() {
         expect(appointment.doctorId, target.doctorId);
         expect(
           appointment.status,
-          anyOf(
-            AppointmentStatusEnum.pending,
-            AppointmentStatusEnum.confirmed,
-          ),
+          anyOf(AppointmentStatusEnum.pending, AppointmentStatusEnum.confirmed),
         );
 
         final fetched = await session.appointments.fetchById(appointment.id!);
@@ -61,9 +58,7 @@ void main() {
           target,
           reason: 'STAGING_E2E_409_FIRST',
         );
-        addTearDown(
-          () => StagingHarness.cancelAppointment(session, first.id!),
-        );
+        addTearDown(() => StagingHarness.cancelAppointment(session, first.id!));
 
         expect(
           () => StagingHarness.bookSlot(

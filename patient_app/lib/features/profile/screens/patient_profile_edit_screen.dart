@@ -74,7 +74,7 @@ class _PatientProfileEditScreenState
     ref.read(locationFilterProvider.notifier).selectWilaya(wilaya);
     final communeId = address?.communeId;
     final wilayaCodeValue = wilaya.code;
-    if (communeId != null && wilayaCodeValue != null) {
+    if (communeId != null) {
       final communes = await ref
           .read(communesFetchProvider.notifier)
           .fetchForWilaya(wilayaCodeValue);
@@ -207,9 +207,9 @@ class _PatientProfileEditScreenState
       setState(() => _fieldErrors = e.fieldErrors);
     } catch (_) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.profileSaveError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.profileSaveError)));
     } finally {
       if (mounted) setState(() => _saving = false);
     }
@@ -252,8 +252,9 @@ class _PatientProfileEditScreenState
                 label: l10n.profileFullName,
                 errorText: _fieldErrors['full_name'],
                 onChanged: (_) => setState(
-                  () => _fieldErrors = Map.from(_fieldErrors)
-                    ..remove('full_name'),
+                  () =>
+                      _fieldErrors = Map.from(_fieldErrors)
+                        ..remove('full_name'),
                 ),
               ),
               const SizedBox(height: GpsSpacing.md),

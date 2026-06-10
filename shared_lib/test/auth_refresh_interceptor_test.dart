@@ -103,46 +103,51 @@ void main() {
     expect(refreshCallCount, 1);
   });
 
-  test('does not invoke refresh callback on non-401 error (e.g. HTTP 404)', () async {
-    final tokenStore = InMemoryTokenStore();
-    var refreshCallCount = 0;
+  test(
+    'does not invoke refresh callback on non-401 error (e.g. HTTP 404)',
+    () async {
+      final tokenStore = InMemoryTokenStore();
+      var refreshCallCount = 0;
 
-    final dio = Dio(
-      BaseOptions(
-        baseUrl: 'http://localhost:8080/v1',
-        validateStatus: (status) => status != null && status < 300,
-      ),
-    );
-    final adapter = DioAdapter(dio: dio);
-    dio.httpClientAdapter = adapter;
+      final dio = Dio(
+        BaseOptions(
+          baseUrl: 'http://localhost:8080/v1',
+          validateStatus: (status) => status != null && status < 300,
+        ),
+      );
+      final adapter = DioAdapter(dio: dio);
+      dio.httpClientAdapter = adapter;
 
-    dio.interceptors.add(
-      AuthRefreshInterceptor(
-        dio: dio,
-        tokenStore: tokenStore,
-        refreshTokens: (_) async {
-          refreshCallCount += 1;
-          return null;
-        },
-      ),
-    );
+      dio.interceptors.add(
+        AuthRefreshInterceptor(
+          dio: dio,
+          tokenStore: tokenStore,
+          refreshTokens: (_) async {
+            refreshCallCount += 1;
+            return null;
+          },
+        ),
+      );
 
-    adapter.onGet(
-      '/auth/me',
-      (server) => server.reply(404, {'title': 'Not Found'}),
-    );
+      adapter.onGet(
+        '/auth/me',
+        (server) => server.reply(404, {'title': 'Not Found'}),
+      );
 
-    await expectLater(
-      dio.get<void>('/auth/me', options: Options(extra: _bearerSecureExtra)),
-      throwsA(isA<DioException>().having(
-        (e) => e.response?.statusCode,
-        'statusCode',
-        404,
-      )),
-    );
+      await expectLater(
+        dio.get<void>('/auth/me', options: Options(extra: _bearerSecureExtra)),
+        throwsA(
+          isA<DioException>().having(
+            (e) => e.response?.statusCode,
+            'statusCode',
+            404,
+          ),
+        ),
+      );
 
-    expect(refreshCallCount, 0);
-  });
+      expect(refreshCallCount, 0);
+    },
+  );
 
   test('does not throw unhandled exception if retry fails', () async {
     final tokenStore = InMemoryTokenStore();
@@ -195,12 +200,13 @@ void main() {
 
     await expectLater(
       dio.get<void>('/auth/me', options: Options(extra: _bearerSecureExtra)),
-      throwsA(isA<DioException>().having(
-        (e) => e.response?.statusCode,
-        'statusCode',
-        404,
-      )),
+      throwsA(
+        isA<DioException>().having(
+          (e) => e.response?.statusCode,
+          'statusCode',
+          404,
+        ),
+      ),
     );
   });
 }
-

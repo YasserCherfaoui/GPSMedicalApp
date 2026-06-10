@@ -45,10 +45,9 @@ class DoctorList extends _$DoctorList {
   }
 
   Future<DoctorListState> _fetchPage(int page) async {
-    final result = await ref.read(doctorRepositoryProvider).listVerified(
-      page: page,
-      pageSize: 20,
-    );
+    final result = await ref
+        .read(doctorRepositoryProvider)
+        .listVerified(page: page, pageSize: 20);
     final doctors = result.doctors;
     final total = result.total;
     final hasMore = doctors.length == 20 && (page * 20) < total;

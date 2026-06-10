@@ -149,8 +149,8 @@ class _MedicalRecordsListScreenState
                           onTap: document.id == null
                               ? null
                               : () => context.push(
-                                    GpsRoutes.medicalRecordDetail(document.id!),
-                                  ),
+                                  GpsRoutes.medicalRecordDetail(document.id!),
+                                ),
                         ),
                       );
                     },

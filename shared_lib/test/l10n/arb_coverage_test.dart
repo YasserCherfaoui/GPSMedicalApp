@@ -36,7 +36,8 @@ void main() {
     expect(
       translatedRatio,
       greaterThanOrEqualTo(0.8),
-      reason: 'ber translated $translatedRatio (${keys.length - identical}/'
+      reason:
+          'ber translated $translatedRatio (${keys.length - identical}/'
           '${keys.length}); identical keys: $identical',
     );
   });

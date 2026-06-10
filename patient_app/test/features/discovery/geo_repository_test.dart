@@ -4,8 +4,8 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/discovery/repositories/geo_repository.dart';
 
-import 'geo_test_fixtures.dart';
 import '../../test_api_constants.dart';
+import 'geo_test_fixtures.dart';
 
 void main() {
   late Dio dio;
@@ -81,7 +81,7 @@ void main() {
       ),
     );
     dioAdapter.onGet('/geo/wilayas/16/communes', (server) {
-      return server.reply(200, []);
+      return server.reply(200, <Map<String, dynamic>>[]);
     });
 
     await repository.fetchCommunes('16');
@@ -91,29 +91,28 @@ void main() {
     expect(networkCalls, 2);
   });
 
-  test('findCommuneById resolves commune using wilaya hint from suggest label', () async {
-    const communeId = '5fcffb1c-ad63-4de0-b594-9f3a8c8f1a2b';
+  test(
+    'findCommuneById resolves commune using wilaya hint from suggest label',
+    () async {
+      const communeId = '5fcffb1c-ad63-4de0-b594-9f3a8c8f1a2b';
 
-    dioAdapter.onGet('/geo/wilayas', (server) {
-      return server.reply(200, [wilayaJson()]);
-    });
-    dioAdapter.onGet('/geo/wilayas/16/communes', (server) {
-      return server.reply(200, [
-        communeJson(
-          id: communeId,
-          nameFr: 'Hydra',
-          nameAr: 'حيدرة',
-        ),
-      ]);
-    });
+      dioAdapter.onGet('/geo/wilayas', (server) {
+        return server.reply(200, [wilayaJson()]);
+      });
+      dioAdapter.onGet('/geo/wilayas/16/communes', (server) {
+        return server.reply(200, [
+          communeJson(id: communeId, nameFr: 'Hydra', nameAr: 'حيدرة'),
+        ]);
+      });
 
-    final found = await repository.findCommuneById(
-      communeId,
-      wilayaNameHint: 'Alger',
-    );
+      final found = await repository.findCommuneById(
+        communeId,
+        wilayaNameHint: 'Alger',
+      );
 
-    expect(found?.id, communeId);
-    expect(found?.wilayaCode, '16');
-    expect(found?.nameFr, 'Hydra');
-  });
+      expect(found?.id, communeId);
+      expect(found?.wilayaCode, '16');
+      expect(found?.nameFr, 'Hydra');
+    },
+  );
 }

@@ -105,7 +105,8 @@ class _NotificationsListScreenState
                         child: ListView.separated(
                           controller: _scrollController,
                           padding: const EdgeInsets.all(GpsSpacing.md),
-                          itemCount: state.notifications.length +
+                          itemCount:
+                              state.notifications.length +
                               (state.isLoadingMore ? 1 : 0),
                           separatorBuilder: (_, __) =>
                               const SizedBox(height: GpsSpacing.sm),
@@ -129,9 +130,9 @@ class _NotificationsListScreenState
                             return Card(
                               color: isUnread
                                   ? Theme.of(context)
-                                      .colorScheme
-                                      .primaryContainer
-                                      .withValues(alpha: 0.35)
+                                        .colorScheme
+                                        .primaryContainer
+                                        .withValues(alpha: 0.35)
                                   : null,
                               child: ListTile(
                                 leading: Icon(
@@ -150,9 +151,9 @@ class _NotificationsListScreenState
                                         ),
                                         child: Text(
                                           timestamp,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall,
+                                          style: Theme.of(
+                                            context,
+                                          ).textTheme.bodySmall,
                                         ),
                                       ),
                                   ],

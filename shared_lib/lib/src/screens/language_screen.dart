@@ -30,7 +30,7 @@ class LanguageScreen extends ConsumerWidget {
       case AppLocale.arabic:
         return ClipRRect(
           borderRadius: BorderRadius.circular(4),
-          child: GpsCachedNetworkImage(
+          child: const GpsCachedNetworkImage(
             imageUrl:
                 'https://lh3.googleusercontent.com/aida-public/AB6AXuAGsLuKS4Wny8uKdaDarc_tPrzoJcMzwaiUKqvuBGR40wtvUkm7EQvN8-tH3ZUEUQO06CHtcrewlzMzoP4HSeP4UlwlzSTGR-ZQc32SbEVksRKCSDUJy-ORoEDmMB6qC_1MN2OPypFTPdRiot_AUPmFl3I9muVuc2ztaNkXMsn8ay8rWQZeXYRCGXpSwkHEMJ_wEAWGl-YPWXwQSMZG3sIJ2SHfMnCJyPTn2OE6rTR8Kl00aiY6priEfTTZJS07RXVUSoe9zKeJ1z8',
             width: 32,
@@ -38,7 +38,7 @@ class LanguageScreen extends ConsumerWidget {
             fit: BoxFit.cover,
             memCacheWidth: 64,
             memCacheHeight: 44,
-            error: const Text('🇩🇿', style: TextStyle(fontSize: 20)),
+            error: Text('🇩🇿', style: TextStyle(fontSize: 20)),
           ),
         );
       case AppLocale.french:

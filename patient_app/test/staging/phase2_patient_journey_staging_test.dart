@@ -75,9 +75,7 @@ void main() {
             rating: 5,
             comment: 'STAGING_PHASE2_JOURNEY review',
           );
-          addTearDown(
-            () => StagingHarness.deleteReview(session, review.id!),
-          );
+          addTearDown(() => StagingHarness.deleteReview(session, review.id!));
           expect(review.id, isNotNull);
           expect(review.rating, 5);
         } on ReviewAlreadyExistsException {

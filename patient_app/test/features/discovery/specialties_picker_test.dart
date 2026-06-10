@@ -39,7 +39,7 @@ void main() {
     final gate = Completer<void>();
     dioAdapter.onGet('/specialties', (server) async {
       await gate.future;
-      return server.reply(200, []);
+      return server.reply(200, <Map<String, dynamic>>[]);
     });
 
     await tester.pumpWidget(
@@ -94,7 +94,10 @@ void main() {
   });
 
   testWidgets('shows localized empty state', (tester) async {
-    dioAdapter.onGet('/specialties', (server) => server.reply(200, []));
+    dioAdapter.onGet(
+      '/specialties',
+      (server) => server.reply(200, <Map<String, dynamic>>[]),
+    );
 
     await tester.pumpWidget(
       wrap(SpecialtiesPicker(onSpecialtySelected: (_) {})),
@@ -107,15 +110,12 @@ void main() {
   testWidgets('shows localized error state with retry action', (tester) async {
     dioAdapter.onGet(
       '/specialties',
-      (server) => server.reply(
-        500,
-        {
-          'type': 'about:blank',
-          'title': 'Erreur',
-          'status': 500,
-          'detail': 'fail',
-        },
-      ),
+      (server) => server.reply(500, {
+        'type': 'about:blank',
+        'title': 'Erreur',
+        'status': 500,
+        'detail': 'fail',
+      }),
     );
 
     await tester.pumpWidget(

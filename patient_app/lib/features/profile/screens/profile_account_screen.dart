@@ -75,15 +75,15 @@ class _ProfileAccountScreenState extends ConsumerState<ProfileAccountScreen> {
       await ref.read(patientProfileProvider.notifier).deleteAccount();
       await signOutPatient(ref);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.profileDeleteSuccess)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.profileDeleteSuccess)));
       context.go(GpsRoutes.login);
     } catch (_) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.profileDeleteError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.profileDeleteError)));
     } finally {
       if (mounted) setState(() => _deleting = false);
     }

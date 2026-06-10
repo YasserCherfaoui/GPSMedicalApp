@@ -1,16 +1,45 @@
 # specialist_app
 
-A new Flutter project.
+GPS Médical — specialist (médecin) mobile application.
 
-## Getting Started
+## Shared library
 
-This project is a starting point for a Flutter application.
+Bootstraps via [`shared_lib`](../shared_lib): theme, auth, API client, design system, and messaging widgets.
 
-A few resources to get you started if this is your first Flutter project:
+## Routing
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Uses a dedicated [`go_router`](lib/routing/specialist_router.dart) config (not the patient `discover` shell). Post-login:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- `verification_status != verified` → verification-pending screen (stub until A-10.3)
+- verified → five-tab shell (Inbox, Calendar, Messages, Profile, Stats — placeholders in pre-flight)
+
+## l10n
+
+ARB files live in `shared_lib/lib/src/l10n/` (`app_fr.arb`, `app_ar.arb`, `app_ber.arb`). Specialist-specific keys use the `specialist*` prefix. Regenerate:
+
+```bash
+cd shared_lib && flutter gen-l10n
+```
+
+## Firebase / FCM (dev)
+
+1. Register a distinct Android `applicationId` and iOS bundle ID in the Firebase console (`gpsmedical` project).
+2. `firebase login --reauth`
+3. From repo root:
+
+```bash
+make -C mobile configure-firebase-specialist
+```
+
+## Run
+
+```bash
+cd specialist_app && flutter run
+```
+
+## Tests
+
+```bash
+flutter test
+make -C mobile ci   # includes specialist_app analyze + tests
+```

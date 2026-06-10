@@ -61,7 +61,7 @@ void main() {
       routes: [
         GoRoute(
           path: '/',
-          builder: (_, __) => CreateReviewScreen(appointmentId: appointmentId),
+          builder: (_, __) => const CreateReviewScreen(appointmentId: appointmentId),
         ),
         GoRoute(
           path: '/appointments/:id/review/confirmation',

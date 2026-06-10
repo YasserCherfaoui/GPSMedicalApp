@@ -59,6 +59,8 @@ void (empty response body)
 
 Suppression d'un ayant droit
 
+Suppression logique (`deleted_at`). Les rendez-vous existants conservent `dependent_id`.
+
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
@@ -90,7 +92,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -98,6 +100,8 @@ void (empty response body)
 > Dependent patientsMeDependentsDependentIdPatch(dependentId, dependentCreate)
 
 Modification d'un ayant droit
+
+Mise à jour partielle : seuls les champs présents dans le corps sont modifiés. Les champs absents restent inchangés (le schéma `DependentCreate` sert de modèle, pas de remplacement complet). 
 
 ### Example
 ```dart
@@ -133,7 +137,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -211,7 +215,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

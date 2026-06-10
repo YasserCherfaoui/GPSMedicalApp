@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:gps_medical_api/gps_medical_api.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

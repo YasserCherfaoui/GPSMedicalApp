@@ -38,7 +38,9 @@ class _AvailabilityCalendarScreenState
   @override
   void initState() {
     super.initState();
-    _apiMode = widget.modeFilter == 'telehealth' ? 'telehealth' : widget.modeFilter;
+    _apiMode = widget.modeFilter == 'telehealth'
+        ? 'telehealth'
+        : widget.modeFilter;
     WidgetsBinding.instance.addPostFrameCallback((_) => _syncDraftFromDetail());
   }
 
@@ -63,12 +65,14 @@ class _AvailabilityCalendarScreenState
       if (current.doctorId == widget.doctorId && current.doctor != null) {
         return;
       }
-      ref.read(bookingDraftProvider.notifier).startBooking(
-        doctorId: widget.doctorId,
-        doctor: doctor,
-        modeFilter: _apiMode,
-        rescheduleAppointmentId: widget.rescheduleAppointmentId,
-      );
+      ref
+          .read(bookingDraftProvider.notifier)
+          .startBooking(
+            doctorId: widget.doctorId,
+            doctor: doctor,
+            modeFilter: _apiMode,
+            rescheduleAppointmentId: widget.rescheduleAppointmentId,
+          );
     });
   }
 
@@ -108,9 +112,9 @@ class _AvailabilityCalendarScreenState
               ref.invalidate(
                 availabilitySlotsProvider(widget.doctorId, _apiMode),
               );
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(l10n.bookingLockExpired)),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(l10n.bookingLockExpired)));
             },
           ),
           AvailabilityWeekBar(
@@ -203,8 +207,7 @@ class _AvailabilityCalendarScreenState
                   ),
                 );
               },
-              loading: () =>
-                  const Center(child: CircularProgressIndicator()),
+              loading: () => const Center(child: CircularProgressIndicator()),
               error: (e, _) => BookingErrorView(
                 error: e,
                 message: l10n.bookingLoadError,

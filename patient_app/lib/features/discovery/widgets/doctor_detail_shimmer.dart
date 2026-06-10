@@ -6,11 +6,11 @@ class DoctorDetailShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(GpsSpacing.md),
+    return const SingleChildScrollView(
+      padding: EdgeInsets.all(GpsSpacing.md),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           LoadingSkeleton.card(),
           SizedBox(height: GpsSpacing.lg),
           LoadingSkeleton(height: 20, width: 120),

@@ -28,9 +28,9 @@ class PatientProfile extends _$PatientProfile {
     }
 
     try {
-      final updated = await ref.read(patientRepositoryProvider).patchProfile(
-        update,
-      );
+      final updated = await ref
+          .read(patientRepositoryProvider)
+          .patchProfile(update);
       state = AsyncValue.data(updated);
       return updated;
     } on ProfileValidationException {

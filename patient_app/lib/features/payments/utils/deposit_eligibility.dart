@@ -1,7 +1,5 @@
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
-import '../../booking/utils/booking_enums.dart';
-
 /// Whether the patient can pay a deposit for this appointment (Phase 2 rules).
 bool canPayAppointmentDeposit(Appointment appointment) {
   final status = appointment.status;

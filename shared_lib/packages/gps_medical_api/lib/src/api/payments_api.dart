@@ -11,9 +11,9 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/json_object.dart';
 import 'package:gps_medical_api/src/api_util.dart';
+import 'package:gps_medical_api/src/model/confirm_payment_intent_request.dart';
 import 'package:gps_medical_api/src/model/payment_intent.dart';
 import 'package:gps_medical_api/src/model/payment_intent_create.dart';
-import 'package:gps_medical_api/src/model/payments_intents_intent_id_confirm_post_request.dart';
 import 'package:gps_medical_api/src/model/problem.dart';
 import 'package:gps_medical_api/src/model/refund.dart';
 import 'package:gps_medical_api/src/model/refund_request.dart';
@@ -31,7 +31,7 @@ class PaymentsApi {
   ///
   /// Parameters:
   /// * [intentId] 
-  /// * [paymentsIntentsIntentIdConfirmPostRequest] 
+  /// * [confirmPaymentIntentRequest] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -39,11 +39,11 @@ class PaymentsApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [PaymentIntent] as data
+  /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaymentIntent>> paymentsIntentsIntentIdConfirmPost({ 
+  Future<Response<void>> confirmPaymentIntent({ 
     required String intentId,
-    required PaymentsIntentsIntentIdConfirmPostRequest paymentsIntentsIntentIdConfirmPostRequest,
+    required ConfirmPaymentIntentRequest confirmPaymentIntentRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -74,8 +74,8 @@ class PaymentsApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(PaymentsIntentsIntentIdConfirmPostRequest);
-      _bodyData = _serializers.serialize(paymentsIntentsIntentIdConfirmPostRequest, specifiedType: _type);
+      const _type = FullType(ConfirmPaymentIntentRequest);
+      _bodyData = _serializers.serialize(confirmPaymentIntentRequest, specifiedType: _type);
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -98,116 +98,7 @@ class PaymentsApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    PaymentIntent? _responseData;
-
-    try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(PaymentIntent),
-      ) as PaymentIntent;
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<PaymentIntent>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// État d&#39;une intention
-  /// 
-  ///
-  /// Parameters:
-  /// * [intentId] 
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [PaymentIntent] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaymentIntent>> paymentsIntentsIntentIdGet({ 
-    required String intentId,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/payments/intents/{intentId}'.replaceAll('{' r'intentId' '}', encodeQueryParameter(_serializers, intentId, const FullType(String)).toString());
-    final _options = Options(
-      method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'bearerAuth',
-          },
-        ],
-        ...?extra,
-      },
-      validateStatus: validateStatus,
-    );
-
-    final _response = await _dio.request<Object>(
-      _path,
-      options: _options,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    PaymentIntent? _responseData;
-
-    try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(PaymentIntent),
-      ) as PaymentIntent;
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<PaymentIntent>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
+    return _response;
   }
 
   /// Création d&#39;une intention de paiement (acompte ou téléconsultation)
@@ -224,7 +115,7 @@ class PaymentsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [PaymentIntent] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaymentIntent>> paymentsIntentsPost({ 
+  Future<Response<PaymentIntent>> createPaymentIntent({ 
     required PaymentIntentCreate paymentIntentCreate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -325,7 +216,7 @@ class PaymentsApi {
   ///
   /// Returns a [Future] containing a [Response] with a [Refund] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<Refund>> paymentsRefundsPost({ 
+  Future<Response<Refund>> createRefund({ 
     required RefundRequest refundRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -412,8 +303,89 @@ class PaymentsApi {
     );
   }
 
+  /// État d&#39;une intention
+  /// 
+  ///
+  /// Parameters:
+  /// * [intentId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [PaymentIntent] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<PaymentIntent>> getPaymentIntent({ 
+    required String intentId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/payments/intents/{intentId}'.replaceAll('{' r'intentId' '}', encodeQueryParameter(_serializers, intentId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    PaymentIntent? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaymentIntent),
+      ) as PaymentIntent;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PaymentIntent>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
   /// Webhook entrant des prestataires de paiement
-  /// Validation HMAC du payload selon &#x60;provider&#x60;.
+  /// Validation HMAC du payload selon &#x60;provider&#x60; (en-tête &#x60;X-GPS-Signature&#x60;, préfixe &#x60;sha256&#x3D;&#x60;).
   ///
   /// Parameters:
   /// * [provider] 
@@ -427,7 +399,7 @@ class PaymentsApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> paymentsWebhooksProviderPost({ 
+  Future<Response<void>> paymentWebhook({ 
     required String provider,
     required BuiltMap<String, JsonObject> requestBody,
     CancelToken? cancelToken,

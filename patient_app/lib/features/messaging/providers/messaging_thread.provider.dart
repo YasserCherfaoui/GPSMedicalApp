@@ -6,8 +6,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../booking/providers/doctor_cache.provider.dart';
 import '../../profile/providers/patient_profile.provider.dart';
-import '../models/thread_display_message.dart';
-import 'messaging_repositories.provider.dart';
 
 part 'messaging_thread.provider.g.dart';
 
@@ -90,10 +88,7 @@ class MessagingThread extends _$MessagingThread {
 
     try {
       final repo = ref.read(messagingRepositoryProvider);
-      final latest = await repo.listMessages(
-        threadId,
-        limit: _messagePageSize,
-      );
+      final latest = await repo.listMessages(threadId, limit: _messagePageSize);
       final merged = _mergeMessages(
         current.messages.where((m) => !m.isPending).toList(),
         latest.map(ThreadDisplayMessage.fromMessage).toList(),
@@ -124,8 +119,7 @@ class MessagingThread extends _$MessagingThread {
         before: oldest.createdAt,
         limit: _messagePageSize,
       );
-      final olderDisplay =
-          older.map(ThreadDisplayMessage.fromMessage).toList();
+      final olderDisplay = older.map(ThreadDisplayMessage.fromMessage).toList();
       final merged = _mergeMessages(olderDisplay, current.messages);
       final next = current.copyWith(
         messages: merged,
@@ -140,10 +134,7 @@ class MessagingThread extends _$MessagingThread {
     }
   }
 
-  Future<void> send({
-    String? body,
-    List<String>? attachmentDocumentIds,
-  }) async {
+  Future<void> send({String? body, List<String>? attachmentDocumentIds}) async {
     final trimmed = body?.trim() ?? '';
     final attachments = attachmentDocumentIds ?? const [];
     if (trimmed.isEmpty && attachments.isEmpty) return;
@@ -162,9 +153,7 @@ class MessagingThread extends _$MessagingThread {
           ? null
           : BuiltList<MessageAttachmentsInner>(
               attachments.map(
-                (id) => MessageAttachmentsInner(
-                  (b) => b..documentId = id,
-                ),
+                (id) => MessageAttachmentsInner((b) => b..documentId = id),
               ),
             ),
       isPending: true,
@@ -189,13 +178,9 @@ class MessagingThread extends _$MessagingThread {
       if (latest == null) return;
 
       final replaced = latest.messages
-          .map(
-            (m) => m.id == pendingId ? sentDisplay : m,
-          )
+          .map((m) => m.id == pendingId ? sentDisplay : m)
           .toList();
-      state = AsyncData(
-        latest.copyWith(messages: replaced, isSending: false),
-      );
+      state = AsyncData(latest.copyWith(messages: replaced, isSending: false));
     } catch (_) {
       final latest = state.value;
       if (latest == null) return;
@@ -206,9 +191,7 @@ class MessagingThread extends _$MessagingThread {
                 : m,
           )
           .toList();
-      state = AsyncData(
-        latest.copyWith(messages: failed, isSending: false),
-      );
+      state = AsyncData(latest.copyWith(messages: failed, isSending: false));
       rethrow;
     }
   }

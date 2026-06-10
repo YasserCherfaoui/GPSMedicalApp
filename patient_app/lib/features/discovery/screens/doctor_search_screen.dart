@@ -196,9 +196,8 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                 },
               );
             },
-            loading: () => const CustomScrollView(
-              slivers: [DoctorListShimmer()],
-            ),
+            loading: () =>
+                const CustomScrollView(slivers: [DoctorListShimmer()]),
             error: (error, stack) => Center(
               child: Padding(
                 padding: const EdgeInsets.all(GpsSpacing.md),
@@ -303,9 +302,8 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
                       },
                       loading: () =>
                           const Center(child: LoadingSkeleton(height: 40)),
-                      error: (err, stack) => Center(
-                        child: Text(l10n.searchSuggestionsLoadError),
-                      ),
+                      error: (err, stack) =>
+                          Center(child: Text(l10n.searchSuggestionsLoadError)),
                     );
                   },
                 ),

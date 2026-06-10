@@ -7,7 +7,6 @@ import '../../booking/providers/booking_draft.provider.dart';
 import '../providers/doctor_detail.provider.dart';
 import '../repositories/doctor_repository.dart';
 import '../utils/doctor_display.dart';
-import '../utils/relative_time.dart';
 import '../widgets/discovery_error_view.dart';
 import '../widgets/doctor_detail_shimmer.dart';
 import '../widgets/map_preview_tile.dart';
@@ -30,28 +29,25 @@ class _DoctorDetailScreenState extends ConsumerState<DoctorDetailScreen> {
   var _bookingLaunched = false;
 
   void _startInPersonBooking(Doctor doc) {
-    ref.read(bookingDraftProvider.notifier).startBooking(
-      doctorId: widget.doctorId,
-      doctor: doc,
-    );
+    ref
+        .read(bookingDraftProvider.notifier)
+        .startBooking(doctorId: widget.doctorId, doctor: doc);
     context.push(GpsRoutes.doctorBooking(widget.doctorId));
   }
 
   void _startTelehealthBooking(Doctor doc) {
-    ref.read(bookingDraftProvider.notifier).startBooking(
-      doctorId: widget.doctorId,
-      doctor: doc,
-      modeFilter: 'telehealth',
-    );
-    context.push(
-      '${GpsRoutes.doctorBooking(widget.doctorId)}?mode=telehealth',
-    );
+    ref
+        .read(bookingDraftProvider.notifier)
+        .startBooking(
+          doctorId: widget.doctorId,
+          doctor: doc,
+          modeFilter: 'telehealth',
+        );
+    context.push('${GpsRoutes.doctorBooking(widget.doctorId)}?mode=telehealth');
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
     final l10n = AppLocalizations.of(context)!;
     final languageCode = Localizations.localeOf(context).languageCode;
     final isRtl = Directionality.of(context) == TextDirection.rtl;
@@ -160,11 +156,7 @@ class _DoctorDetailBody extends StatelessWidget {
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                Icons.verified,
-                color: colorScheme.primary,
-                size: 18,
-              ),
+              child: Icon(Icons.verified, color: colorScheme.primary, size: 18),
             ),
           ),
       ],
@@ -212,8 +204,16 @@ class _DoctorDetailBody extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: isRtl
-                        ? [infoBlock, const SizedBox(width: GpsSpacing.md), photoBlock]
-                        : [photoBlock, const SizedBox(width: GpsSpacing.md), infoBlock],
+                        ? [
+                            infoBlock,
+                            const SizedBox(width: GpsSpacing.md),
+                            photoBlock,
+                          ]
+                        : [
+                            photoBlock,
+                            const SizedBox(width: GpsSpacing.md),
+                            infoBlock,
+                          ],
                   ),
                 ),
                 const SizedBox(height: GpsSpacing.lg),
@@ -237,8 +237,9 @@ class _DoctorDetailBody extends StatelessWidget {
                     color: languages.isEmpty
                         ? colorScheme.onSurfaceVariant
                         : null,
-                    fontStyle:
-                        languages.isEmpty ? FontStyle.italic : FontStyle.normal,
+                    fontStyle: languages.isEmpty
+                        ? FontStyle.italic
+                        : FontStyle.normal,
                   ),
                 ),
                 const SizedBox(height: GpsSpacing.lg),

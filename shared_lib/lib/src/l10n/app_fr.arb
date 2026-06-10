@@ -604,5 +604,13 @@
   "paymentDepositSandboxHint": "Le paiement est simulé en environnement de test.",
   "paymentDepositSuccess": "Paiement réussi. Votre rendez-vous est à jour.",
   "paymentDepositFailed": "Le paiement a échoué.",
-  "paymentDepositNotEligible": "Ce rendez-vous n'est pas éligible au paiement."
+  "paymentDepositNotEligible": "Ce rendez-vous n'est pas éligible au paiement.",
+  "specialistVerificationPendingTitle": "Dossier en cours d'examen",
+  "specialistVerificationPendingBody": "Votre dossier est en cours de vérification par notre équipe. Vous recevrez une notification dès qu'une décision sera prise.",
+  "specialistTabInbox": "Demandes",
+  "specialistTabCalendar": "Agenda",
+  "specialistTabMessages": "Messages",
+  "specialistTabProfile": "Profil",
+  "specialistTabStats": "Statistiques",
+  "specialistShellPlaceholder": "Bientôt disponible"
 }

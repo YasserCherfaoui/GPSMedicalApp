@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**adminDoctorsDoctorIdVerifyPost**](AdminApi.md#admindoctorsdoctoridverifypost) | **POST** /admin/doctors/{doctorId}/verify | Validation d&#39;un dossier médecin
 [**adminDoctorsPendingGet**](AdminApi.md#admindoctorspendingget) | **GET** /admin/doctors/pending | Médecins en attente de vérification
 [**adminExportUserConsents**](AdminApi.md#adminexportuserconsents) | **GET** /admin/users/{userId}/consents | Export ANPDP — historique complet des consentements (Phase 1)
+[**adminListUsers**](AdminApi.md#adminlistusers) | **GET** /admin/users | Liste paginée des utilisateurs (vue admin)
 [**adminReviewsQueueGet**](AdminApi.md#adminreviewsqueueget) | **GET** /admin/reviews/queue | File de modération des avis signalés
 [**adminReviewsReviewIdModeratePost**](AdminApi.md#adminreviewsreviewidmoderatepost) | **POST** /admin/reviews/{reviewId}/moderate | Décision de modération
 [**adminSpecialtiesPost**](AdminApi.md#adminspecialtiespost) | **POST** /admin/specialties | Création d&#39;une spécialité (référentiel)
@@ -188,6 +189,57 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BuiltList&lt;ConsentGrant&gt;**](ConsentGrant.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminListUsers**
+> PaginatedUserAdmin adminListUsers(role, status, q, page, pageSize)
+
+Liste paginée des utilisateurs (vue admin)
+
+Réservé aux administrateurs (`admin` uniquement). Filtre par rôle et statut ; recherche texte (`q`) sur nom affiché et e-mail uniquement (pas de NIN/téléphone). Chaque appel est audité (`admin.users.list`). Voir addendum-week-10.md. 
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAdminApi();
+final String role = role_example; // String | 
+final String status = status_example; // String | 
+final String q = q_example; // String | 
+final int page = 56; // int | 
+final int pageSize = 56; // int | 
+
+try {
+    final response = api.adminListUsers(role, status, q, page, pageSize);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AdminApi->adminListUsers: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **role** | **String**|  | [optional] 
+ **status** | **String**|  | [optional] 
+ **q** | **String**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **pageSize** | **int**|  | [optional] [default to 20]
+
+### Return type
+
+[**PaginatedUserAdmin**](PaginatedUserAdmin.md)
 
 ### Authorization
 

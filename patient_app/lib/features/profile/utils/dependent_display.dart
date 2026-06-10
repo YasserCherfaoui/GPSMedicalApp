@@ -23,14 +23,18 @@ String dependentRelationLabel(
   DependentRelationEnum? relation,
   AppLocalizations l10n,
 ) {
-  if (relation == DependentRelationEnum.child) return l10n.dependentRelationChild;
+  if (relation == DependentRelationEnum.child) {
+    return l10n.dependentRelationChild;
+  }
   if (relation == DependentRelationEnum.spouse) {
     return l10n.dependentRelationSpouse;
   }
   if (relation == DependentRelationEnum.parent) {
     return l10n.dependentRelationParent;
   }
-  if (relation == DependentRelationEnum.other) return l10n.dependentRelationOther;
+  if (relation == DependentRelationEnum.other) {
+    return l10n.dependentRelationOther;
+  }
   return l10n.profileNotSet;
 }
 

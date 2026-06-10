@@ -91,9 +91,6 @@ void main() {
 
     expect(find.byType(SnackBar), findsOneWidget);
     expect(find.text('Reprendre'), findsOneWidget);
-    expect(
-      find.textContaining('réservation en cours'),
-      findsOneWidget,
-    );
+    expect(find.textContaining('réservation en cours'), findsOneWidget);
   });
 }

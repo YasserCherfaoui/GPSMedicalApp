@@ -24,9 +24,8 @@ class NotificationPreferencesScreen extends ConsumerWidget {
               Text(l10n.notificationsLoadError),
               const SizedBox(height: GpsSpacing.md),
               FilledButton(
-                onPressed: () => ref.invalidate(
-                  notificationPreferencesControllerProvider,
-                ),
+                onPressed: () =>
+                    ref.invalidate(notificationPreferencesControllerProvider),
                 child: Text(l10n.retry),
               ),
             ],
@@ -56,37 +55,32 @@ class NotificationPreferencesScreen extends ConsumerWidget {
               SwitchListTile(
                 title: Text(l10n.notificationsPrefPush),
                 value: prefs.pushEnabled ?? false,
-                onChanged: (value) => save(
-                  prefs.rebuild((b) => b..pushEnabled = value),
-                ),
+                onChanged: (value) =>
+                    save(prefs.rebuild((b) => b..pushEnabled = value)),
               ),
               SwitchListTile(
                 title: Text(l10n.notificationsPrefSms),
                 value: prefs.smsEnabled ?? false,
-                onChanged: (value) => save(
-                  prefs.rebuild((b) => b..smsEnabled = value),
-                ),
+                onChanged: (value) =>
+                    save(prefs.rebuild((b) => b..smsEnabled = value)),
               ),
               SwitchListTile(
                 title: Text(l10n.notificationsPrefEmail),
                 value: prefs.emailEnabled ?? false,
-                onChanged: (value) => save(
-                  prefs.rebuild((b) => b..emailEnabled = value),
-                ),
+                onChanged: (value) =>
+                    save(prefs.rebuild((b) => b..emailEnabled = value)),
               ),
               SwitchListTile(
                 title: Text(l10n.notificationsPrefAppointmentReminders),
                 value: prefs.appointmentReminders ?? false,
-                onChanged: (value) => save(
-                  prefs.rebuild((b) => b..appointmentReminders = value),
-                ),
+                onChanged: (value) =>
+                    save(prefs.rebuild((b) => b..appointmentReminders = value)),
               ),
               SwitchListTile(
                 title: Text(l10n.notificationsPrefMarketing),
                 value: prefs.marketing ?? false,
-                onChanged: (value) => save(
-                  prefs.rebuild((b) => b..marketing = value),
-                ),
+                onChanged: (value) =>
+                    save(prefs.rebuild((b) => b..marketing = value)),
               ),
               const SizedBox(height: GpsSpacing.md),
               Text(

@@ -8,9 +8,7 @@ import 'package:patient_app/features/booking/widgets/offline_banner.dart';
 void main() {
   Widget wrap({required bool online}) {
     return ProviderScope(
-      overrides: [
-        isOnlineProvider.overrideWith((ref) => Stream.value(online)),
-      ],
+      overrides: [isOnlineProvider.overrideWith((ref) => Stream.value(online))],
       child: MaterialApp(
         theme: GpsTheme.light(),
         localizationsDelegates: AppLocalizations.localizationsDelegates,

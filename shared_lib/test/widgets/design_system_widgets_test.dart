@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
-Widget _wrap(Widget child, {ThemeData? theme, Locale locale = const Locale('fr')}) {
+Widget _wrap(
+  Widget child, {
+  ThemeData? theme,
+  Locale locale = const Locale('fr'),
+}) {
   return MaterialApp(
     theme: theme ?? GpsTheme.light(),
     localizationsDelegates: AppLocalizations.localizationsDelegates,

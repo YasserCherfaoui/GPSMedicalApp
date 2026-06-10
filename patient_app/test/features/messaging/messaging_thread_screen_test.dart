@@ -51,7 +51,7 @@ void main() {
         'verified': true,
         'offers_telehealth': true,
         'consultation_fee_dzd': 2500,
-        'specialties': [],
+        'specialties': <Map<String, dynamic>>[],
       });
     });
 
@@ -62,7 +62,7 @@ void main() {
           'thread_id': 'thread-1',
           'sender_id': 'doc-user-1',
           'body': 'Bonjour Amina',
-          'attachments': [],
+          'attachments': <Map<String, dynamic>>[],
           'created_at': '2026-06-01T09:00:00Z',
           'read_at': null,
         },
@@ -71,7 +71,7 @@ void main() {
           'thread_id': 'thread-1',
           'sender_id': 'user-patient-1',
           'body': 'Bonjour docteur',
-          'attachments': [],
+          'attachments': <Map<String, dynamic>>[],
           'created_at': '2026-06-01T09:30:00Z',
           'read_at': '2026-06-01T09:35:00Z',
         },

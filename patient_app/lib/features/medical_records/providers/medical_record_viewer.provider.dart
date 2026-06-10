@@ -8,10 +8,7 @@ import 'medical_records_repositories.provider.dart';
 part 'medical_record_viewer.provider.g.dart';
 
 class MedicalRecordViewerState {
-  const MedicalRecordViewerState({
-    required this.document,
-    required this.bytes,
-  });
+  const MedicalRecordViewerState({required this.document, required this.bytes});
 
   final MedicalDocument document;
   final Uint8List bytes;

@@ -14,6 +14,7 @@ import 'package:gps_medical_api/src/model/dependent.dart';
 import 'package:gps_medical_api/src/model/dependent_create.dart';
 import 'package:gps_medical_api/src/model/patient.dart';
 import 'package:gps_medical_api/src/model/patient_update.dart';
+import 'package:gps_medical_api/src/model/problem.dart';
 import 'package:gps_medical_api/src/model/validation_problem.dart';
 
 class PatientsApi {
@@ -76,7 +77,7 @@ class PatientsApi {
   }
 
   /// Suppression d&#39;un ayant droit
-  /// 
+  /// Suppression logique (&#x60;deleted_at&#x60;). Les rendez-vous existants conservent &#x60;dependent_id&#x60;.
   ///
   /// Parameters:
   /// * [dependentId] 
@@ -129,7 +130,7 @@ class PatientsApi {
   }
 
   /// Modification d&#39;un ayant droit
-  /// 
+  /// Mise à jour partielle : seuls les champs présents dans le corps sont modifiés. Les champs absents restent inchangés (le schéma &#x60;DependentCreate&#x60; sert de modèle, pas de remplacement complet). 
   ///
   /// Parameters:
   /// * [dependentId] 

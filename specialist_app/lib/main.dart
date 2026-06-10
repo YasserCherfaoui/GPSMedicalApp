@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'routing/specialist_router.provider.dart';
+
 const _appInfo = GpsMedicalAppInfo(
   displayName: 'GPS Médical — Spécialiste',
   clientKind: GpsMedicalClientKind.specialist,
@@ -55,7 +57,7 @@ class _SpecialistAppState extends ConsumerState<SpecialistApp> {
 
   @override
   Widget build(BuildContext context) {
-    final router = ref.watch(gpsRouterProvider);
+    final router = ref.watch(specialistRouterProvider);
 
     return GpsMedicalMaterialApp(
       title: _appInfo.displayName,

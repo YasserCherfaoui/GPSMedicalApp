@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 class ProfileFieldRow extends StatelessWidget {
-  const ProfileFieldRow({
-    required this.label,
-    required this.value,
-    super.key,
-  });
+  const ProfileFieldRow({required this.label, required this.value, super.key});
 
   final String label;
   final String value;

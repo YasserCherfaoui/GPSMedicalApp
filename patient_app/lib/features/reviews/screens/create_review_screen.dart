@@ -37,7 +37,10 @@ class _CreateReviewScreenState extends ConsumerState<CreateReviewScreen> {
     final l10n = AppLocalizations.of(context)!;
     final comment = _commentController.text;
     final errors = <String, String>{};
-    final ratingError = validateReviewRating(_rating, l10n.reviewRatingRequired);
+    final ratingError = validateReviewRating(
+      _rating,
+      l10n.reviewRatingRequired,
+    );
     if (ratingError != null) errors['rating'] = ratingError;
     final commentError = validateReviewComment(
       comment,
@@ -53,11 +56,13 @@ class _CreateReviewScreenState extends ConsumerState<CreateReviewScreen> {
 
     setState(() => _submitting = true);
     try {
-      final review = await ref.read(reviewsRepositoryProvider).create(
-        appointmentId: widget.appointmentId,
-        rating: _rating!,
-        comment: comment,
-      );
+      final review = await ref
+          .read(reviewsRepositoryProvider)
+          .create(
+            appointmentId: widget.appointmentId,
+            rating: _rating!,
+            comment: comment,
+          );
       await ref
           .read(appointmentReviewStoreProvider)
           .save(CachedAppointmentReview.fromReview(review));
@@ -70,27 +75,25 @@ class _CreateReviewScreenState extends ConsumerState<CreateReviewScreen> {
     } on ReviewAlreadyExistsException {
       await ref
           .read(appointmentReviewStoreProvider)
-          .save(
-            CachedAppointmentReview.alreadyExists(widget.appointmentId),
-          );
+          .save(CachedAppointmentReview.alreadyExists(widget.appointmentId));
       ref.invalidate(appointmentReviewProvider(widget.appointmentId));
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.reviewAlreadyExistsError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.reviewAlreadyExistsError)));
       context.pop();
     } on ReviewNotEligibleException {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.reviewNotEligibleError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.reviewNotEligibleError)));
     } on ReviewValidationException catch (e) {
       setState(() => _fieldErrors.addAll(e.fieldErrors));
     } catch (_) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.reviewSubmitError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.reviewSubmitError)));
     } finally {
       if (mounted) setState(() => _submitting = false);
     }
@@ -162,9 +165,8 @@ class _CreateReviewScreenState extends ConsumerState<CreateReviewScreen> {
         error: (e, _) => BookingErrorView(
           error: e,
           message: l10n.appointmentDetailLoadError,
-          onRetry: () => ref.invalidate(
-            appointmentDetailProvider(widget.appointmentId),
-          ),
+          onRetry: () =>
+              ref.invalidate(appointmentDetailProvider(widget.appointmentId)),
         ),
       ),
     );

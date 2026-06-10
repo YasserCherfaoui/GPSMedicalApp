@@ -7,13 +7,10 @@ import '../features/booking/screens/appointments_list_screen.dart';
 import '../features/booking/screens/availability_calendar_screen.dart';
 import '../features/booking/screens/booking_flow_screen.dart';
 import '../features/dashboard/screens/patient_dashboard_screen.dart';
-import '../features/profile/screens/patient_profile_screen.dart';
-import '../features/profile/screens/patient_profile_edit_screen.dart';
-import '../features/profile/screens/consent_management_screen.dart';
-import '../features/profile/screens/dependent_form_screen.dart';
-import '../features/profile/screens/dependents_list_screen.dart';
-import '../features/profile/screens/consent_revoked_screen.dart';
-import '../features/profile/screens/profile_account_screen.dart';
+import '../features/discovery/screens/doctor_detail_screen.dart';
+import '../features/discovery/screens/doctor_list_screen.dart';
+import '../features/discovery/screens/doctor_search_screen.dart';
+import '../features/discovery/screens/nearby_doctors_map_screen.dart';
 import '../features/medical_records/screens/medical_record_upload_screen.dart';
 import '../features/medical_records/screens/medical_record_viewer_screen.dart';
 import '../features/medical_records/screens/medical_records_list_screen.dart';
@@ -22,12 +19,15 @@ import '../features/messaging/screens/messaging_threads_list_screen.dart';
 import '../features/notifications/screens/notification_preferences_screen.dart';
 import '../features/notifications/screens/notifications_list_screen.dart';
 import '../features/payments/screens/payment_deposit_screen.dart';
+import '../features/profile/screens/consent_management_screen.dart';
+import '../features/profile/screens/consent_revoked_screen.dart';
+import '../features/profile/screens/dependent_form_screen.dart';
+import '../features/profile/screens/dependents_list_screen.dart';
+import '../features/profile/screens/patient_profile_edit_screen.dart';
+import '../features/profile/screens/patient_profile_screen.dart';
+import '../features/profile/screens/profile_account_screen.dart';
 import '../features/reviews/screens/create_review_screen.dart';
 import '../features/reviews/screens/review_confirmation_screen.dart';
-import '../features/discovery/screens/doctor_detail_screen.dart';
-import '../features/discovery/screens/doctor_list_screen.dart';
-import '../features/discovery/screens/doctor_search_screen.dart';
-import '../features/discovery/screens/nearby_doctors_map_screen.dart';
 
 /// Root navigator for app-wide overlays (e.g. offline draft resume snackbar).
 final patientRootNavigatorKey = GlobalKey<NavigatorState>();
@@ -126,10 +126,7 @@ GoRouter createPatientRouter({
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
           final openBooking = state.uri.queryParameters['book'] == 'true';
-          return DoctorDetailScreen(
-            doctorId: id,
-            openBooking: openBooking,
-          );
+          return DoctorDetailScreen(doctorId: id, openBooking: openBooking);
         },
       ),
       GoRoute(
@@ -193,10 +190,7 @@ GoRouter createPatientRouter({
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
           final title = state.uri.queryParameters['title'];
-          return MedicalRecordViewerScreen(
-            documentId: id,
-            title: title,
-          );
+          return MedicalRecordViewerScreen(documentId: id, title: title);
         },
       ),
       GoRoute(
@@ -230,10 +224,7 @@ GoRouter createPatientRouter({
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
           final review = state.extra is Review ? state.extra as Review : null;
-          return ReviewConfirmationScreen(
-            appointmentId: id,
-            review: review,
-          );
+          return ReviewConfirmationScreen(appointmentId: id, review: review);
         },
       ),
       GoRoute(

@@ -6,8 +6,7 @@ void main() {
   test('parseSignedMedicalRecordDownload extracts exp and token', () {
     final response = MedicalRecordsDocumentIdDownloadGet200Response(
       (b) => b
-        ..url =
-            '/v1/medical-records/doc-1/file?exp=1710000000&token=abc123'
+        ..url = '/v1/medical-records/doc-1/file?exp=1710000000&token=abc123'
         ..expiresAt = DateTime.parse('2026-06-01T10:05:00Z'),
     );
 

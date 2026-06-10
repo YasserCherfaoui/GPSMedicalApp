@@ -59,10 +59,7 @@ void main() {
   });
 
   test('slotDurationMinutes returns end minus start', () {
-    final slot = slotAt(
-      start: DateTime(2026, 6, 10, 9),
-      durationMinutes: 45,
-    );
+    final slot = slotAt(start: DateTime(2026, 6, 10, 9), durationMinutes: 45);
     expect(slotDurationMinutes(slot), 45);
   });
 }

@@ -83,9 +83,9 @@ class _MedicalRecordUploadScreenState
       l10n: l10n,
     );
     if (validationError != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(validationError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(validationError)));
       return;
     }
     final mime = detectMedicalRecordMimeType(bytes)!;
@@ -110,10 +110,7 @@ class _MedicalRecordUploadScreenState
     );
     if (image == null) return;
     final bytes = await image.readAsBytes();
-    await _addValidatedFile(
-      fileName: image.name,
-      bytes: bytes,
-    );
+    await _addValidatedFile(fileName: image.name, bytes: bytes);
   }
 
   Future<void> _pickFromGallery() async {
@@ -138,10 +135,7 @@ class _MedicalRecordUploadScreenState
     for (final file in result.files.take(_remainingSlots)) {
       final bytes = file.bytes;
       if (bytes == null) continue;
-      await _addValidatedFile(
-        fileName: file.name,
-        bytes: bytes,
-      );
+      await _addValidatedFile(fileName: file.name, bytes: bytes);
       if (_remainingSlots <= 0) break;
     }
   }
@@ -262,9 +256,9 @@ class _MedicalRecordUploadScreenState
               f.status == _UploadFileStatus.done ||
               f.status == _UploadFileStatus.cancelled,
         )) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.medicalRecordUploadSuccess)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.medicalRecordUploadSuccess)));
       context.pop();
     }
   }
@@ -295,9 +289,9 @@ class _MedicalRecordUploadScreenState
             onChanged: _submitting
                 ? null
                 : (value) => _setStateSafe(() {
-                      _type = value;
-                      _fieldErrors = Map.from(_fieldErrors)..remove('type');
-                    }),
+                    _type = value;
+                    _fieldErrors = Map.from(_fieldErrors)..remove('type');
+                  }),
           ),
           const SizedBox(height: GpsSpacing.md),
           TextField(
@@ -345,7 +339,7 @@ class _MedicalRecordUploadScreenState
                     onChanged: _submitting
                         ? null
                         : (value) =>
-                            _setStateSafe(() => _selectedDependentId = value),
+                              _setStateSafe(() => _selectedDependentId = value),
                   ),
               ],
             ),

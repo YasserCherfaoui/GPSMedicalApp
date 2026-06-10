@@ -85,9 +85,7 @@ void main() {
       }),
     );
 
-    await tester.pumpWidget(
-      wrap(DoctorDetailScreen(doctorId: doctorId)),
-    );
+    await tester.pumpWidget(wrap(const DoctorDetailScreen(doctorId: doctorId)));
     await tester.pump();
     await tester.pumpAndSettle();
 
@@ -109,9 +107,7 @@ void main() {
       (server) => server.reply(404, {'title': 'Not Found', 'status': 404}),
     );
 
-    await tester.pumpWidget(
-      wrap(DoctorDetailScreen(doctorId: doctorId)),
-    );
+    await tester.pumpWidget(wrap(const DoctorDetailScreen(doctorId: doctorId)));
     await tester.pumpAndSettle();
 
     expect(find.text('Médecin introuvable'), findsOneWidget);

@@ -45,11 +45,9 @@ class _MedicalRecordPickerSheetState
             ),
             Expanded(
               child: listAsync.when(
-                loading: () =>
-                    const Center(child: CircularProgressIndicator()),
-                error: (_, __) => Center(
-                  child: Text(l10n.medicalRecordsLoadError),
-                ),
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (_, __) =>
+                    Center(child: Text(l10n.medicalRecordsLoadError)),
                 data: (state) {
                   if (state.documents.isEmpty) {
                     return Center(child: Text(l10n.medicalRecordsEmpty));

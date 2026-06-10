@@ -36,10 +36,11 @@ class DependentsRepository {
     required DependentCreate update,
   }) async {
     try {
-      final response = await _client.patients.patientsMeDependentsDependentIdPatch(
-        dependentId: dependentId,
-        dependentCreate: update,
-      );
+      final response = await _client.patients
+          .patientsMeDependentsDependentIdPatch(
+            dependentId: dependentId,
+            dependentCreate: update,
+          );
       final dependent = response.data;
       if (dependent == null) {
         throw StateError('Empty dependent response');

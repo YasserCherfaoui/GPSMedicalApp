@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/booking/providers/appointment_detail.provider.dart';
@@ -10,8 +9,9 @@ import 'package:patient_app/features/booking/providers/appointments_upcoming.pro
 import 'package:patient_app/features/booking/providers/availability_window.provider.dart';
 import 'package:patient_app/features/booking/providers/booking_draft.provider.dart';
 import 'package:patient_app/features/booking/providers/dependents_list.provider.dart';
-import 'package:patient_app/features/booking/utils/booking_api_error.dart';
 import 'package:patient_app/features/booking/utils/booking_dates.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../test_api_constants.dart';
 
 void main() {
@@ -41,7 +41,9 @@ void main() {
   group('Availability window', () {
     test('default range is today through today+14', () {
       container.listen(availabilityWindowNotifierProvider('doc-1'), (_, __) {});
-      final window = container.read(availabilityWindowNotifierProvider('doc-1'));
+      final window = container.read(
+        availabilityWindowNotifierProvider('doc-1'),
+      );
       final today = todayDate();
       expect(window.from, today);
       expect(window.to, addDays(today, kAvailabilityDefaultRangeDays));
@@ -49,13 +51,20 @@ void main() {
 
     test('nextWeek advances from/to by seven days within cap', () {
       const doctorId = 'doc-avail';
-      container.listen(availabilityWindowNotifierProvider(doctorId), (_, __) {});
+      container.listen(
+        availabilityWindowNotifierProvider(doctorId),
+        (_, __) {},
+      );
 
-      final before = container.read(availabilityWindowNotifierProvider(doctorId));
+      final before = container.read(
+        availabilityWindowNotifierProvider(doctorId),
+      );
       container
           .read(availabilityWindowNotifierProvider(doctorId).notifier)
           .nextWeek('both');
-      final after = container.read(availabilityWindowNotifierProvider(doctorId));
+      final after = container.read(
+        availabilityWindowNotifierProvider(doctorId),
+      );
 
       expect(after.from, addDays(before.from, 7));
       expect(after.to, addDays(before.to, 7));
@@ -90,60 +99,67 @@ void main() {
       expect(state.lockRemaining!.inMinutes, lessThanOrEqualTo(5));
     });
 
-    test('persisted draft omits lock token and restores doctor snapshot', () async {
-      const doctorId = 'doc-persist';
-      final draft = container.read(bookingDraftProvider.notifier);
-      draft.startBooking(
-        doctorId: doctorId,
-        doctor: $Doctor(
-          (b) => b
-            ..id = doctorId
-            ..title = 'Dr.'
-            ..fullName = 'Karim Benali'
-            ..consultationFeeDzd = 2800,
-        ),
-      );
-      draft.selectSlot(
-        AvailabilitySlot(
-          (b) => b
-            ..startAt = DateTime.utc(2026, 6, 10, 9)
-            ..endAt = DateTime.utc(2026, 6, 10, 9, 30)
-            ..mode = AvailabilitySlotModeEnum.inPerson
-            ..slotLockToken = 'lock-persist',
-        ),
-      );
-      draft.setStep(3);
-      draft.setReason('Contrôle annuel');
-      await Future<void>.delayed(Duration.zero);
+    test(
+      'persisted draft omits lock token and restores doctor snapshot',
+      () async {
+        const doctorId = 'doc-persist';
+        final draft = container.read(bookingDraftProvider.notifier);
+        draft.startBooking(
+          doctorId: doctorId,
+          doctor: $Doctor(
+            (b) => b
+              ..id = doctorId
+              ..title = 'Dr.'
+              ..fullName = 'Karim Benali'
+              ..consultationFeeDzd = 2800,
+          ),
+        );
+        draft.selectSlot(
+          AvailabilitySlot(
+            (b) => b
+              ..startAt = DateTime.utc(2026, 6, 10, 9)
+              ..endAt = DateTime.utc(2026, 6, 10, 9, 30)
+              ..mode = AvailabilitySlotModeEnum.inPerson
+              ..slotLockToken = 'lock-persist',
+          ),
+        );
+        draft.setStep(3);
+        draft.setReason('Contrôle annuel');
+        await Future<void>.delayed(Duration.zero);
 
-      final prefs = await SharedPreferences.getInstance();
-      final raw = prefs.getString('booking_draft_v1');
-      expect(raw, isNotNull);
-      expect(raw, isNot(contains('slotLockToken')));
-      expect(raw, isNot(contains('slotLockExpiresAt')));
-      expect(raw, contains('Karim Benali'));
+        final prefs = await SharedPreferences.getInstance();
+        final raw = prefs.getString('booking_draft_v1');
+        expect(raw, isNotNull);
+        expect(raw, isNot(contains('slotLockToken')));
+        expect(raw, isNot(contains('slotLockExpiresAt')));
+        expect(raw, contains('Karim Benali'));
 
-      container.dispose();
-      final reloaded = ProviderContainer(
-        overrides: [gpsMedicalClientProvider.overrideWithValue(client)],
-      );
-      reloaded.listen(bookingDraftProvider, (_, __) {});
-      await Future<void>.delayed(const Duration(milliseconds: 50));
+        container.dispose();
+        final reloaded = ProviderContainer(
+          overrides: [gpsMedicalClientProvider.overrideWithValue(client)],
+        );
+        reloaded.listen(bookingDraftProvider, (_, __) {});
+        await Future<void>.delayed(const Duration(milliseconds: 50));
 
-      final state = reloaded.read(bookingDraftProvider);
-      expect(state.pendingResumePrompt, isTrue);
-      expect(state.step, 3);
-      expect(state.reason, 'Contrôle annuel');
-      expect(state.doctor?.fullName, 'Karim Benali');
-      expect(state.hasActiveLock, isFalse);
-      reloaded.dispose();
-    });
+        final state = reloaded.read(bookingDraftProvider);
+        expect(state.pendingResumePrompt, isTrue);
+        expect(state.step, 3);
+        expect(state.reason, 'Contrôle annuel');
+        expect(state.doctor?.fullName, 'Karim Benali');
+        expect(state.hasActiveLock, isFalse);
+        reloaded.dispose();
+      },
+    );
 
     test('selectSlotDraftOnly saves slot without active lock', () {
       final draft = container.read(bookingDraftProvider.notifier);
       draft.startBooking(
         doctorId: 'doc-offline',
-        doctor: $Doctor((b) => b..id = 'doc-offline'..fullName = 'Test'),
+        doctor: $Doctor(
+          (b) => b
+            ..id = 'doc-offline'
+            ..fullName = 'Test',
+        ),
       );
       draft.selectSlotDraftOnly(
         AvailabilitySlot(
@@ -257,55 +273,62 @@ void main() {
       expect(appointment.id, 'appt-1');
     });
 
-    test('submitCreate refreshes lock token when session lock expired', () async {
-      const doctorId = 'doc-1';
-      const startAt = '2026-06-10T09:00:00Z';
+    test(
+      'submitCreate refreshes lock token when session lock expired',
+      () async {
+        const doctorId = 'doc-1';
+        const startAt = '2026-06-10T09:00:00Z';
 
-      adapter.onGet(
-        '/doctors/$doctorId/availability',
-        (server) => server.reply(200, [
-          {
+        adapter.onGet(
+          '/doctors/$doctorId/availability',
+          (server) => server.reply(200, [
+            {
+              'start_at': startAt,
+              'end_at': '2026-06-10T09:30:00Z',
+              'mode': 'in_person',
+              'slot_lock_token': 'fresh-lock-token',
+            },
+          ]),
+        );
+
+        adapter.onPost('/appointments', (server) {
+          return server.reply(201, {
+            'id': 'appt-fresh',
+            'patient_id': 'pat-1',
+            'doctor_id': doctorId,
             'start_at': startAt,
             'end_at': '2026-06-10T09:30:00Z',
             'mode': 'in_person',
-            'slot_lock_token': 'fresh-lock-token',
-          },
-        ]),
-      );
-
-      adapter.onPost('/appointments', (server) {
-        return server.reply(201, {
-          'id': 'appt-fresh',
-          'patient_id': 'pat-1',
-          'doctor_id': doctorId,
-          'start_at': startAt,
-          'end_at': '2026-06-10T09:30:00Z',
-          'mode': 'in_person',
-          'status': 'confirmed',
-          'fee_dzd': 3000,
-          'payment_status': 'unpaid',
-          'created_at': startAt,
-          'updated_at': startAt,
+            'status': 'confirmed',
+            'fee_dzd': 3000,
+            'payment_status': 'unpaid',
+            'created_at': startAt,
+            'updated_at': startAt,
+          });
         });
-      });
 
-      final draft = container.read(bookingDraftProvider.notifier);
-      draft.startBooking(
-        doctorId: doctorId,
-        doctor: $Doctor((b) => b..id = doctorId..fullName = 'Karim Benali'),
-      );
-      draft.selectSlotDraftOnly(
-        AvailabilitySlot(
-          (b) => b
-            ..startAt = DateTime.parse(startAt)
-            ..endAt = DateTime.parse('2026-06-10T09:30:00Z')
-            ..mode = AvailabilitySlotModeEnum.inPerson,
-        ),
-      );
+        final draft = container.read(bookingDraftProvider.notifier);
+        draft.startBooking(
+          doctorId: doctorId,
+          doctor: $Doctor(
+            (b) => b
+              ..id = doctorId
+              ..fullName = 'Karim Benali',
+          ),
+        );
+        draft.selectSlotDraftOnly(
+          AvailabilitySlot(
+            (b) => b
+              ..startAt = DateTime.parse(startAt)
+              ..endAt = DateTime.parse('2026-06-10T09:30:00Z')
+              ..mode = AvailabilitySlotModeEnum.inPerson,
+          ),
+        );
 
-      final appointment = await draft.submitCreate();
-      expect(appointment.id, 'appt-fresh');
-    });
+        final appointment = await draft.submitCreate();
+        expect(appointment.id, 'appt-fresh');
+      },
+    );
   });
 
   group('Appointment cancel', () {
@@ -330,10 +353,7 @@ void main() {
       });
 
       adapter.onGet('/doctors/$doctorId', (server) {
-        return server.reply(200, {
-          'id': doctorId,
-          'full_name': 'Karim Benali',
-        });
+        return server.reply(200, {'id': doctorId, 'full_name': 'Karim Benali'});
       });
 
       adapter.onPost('/appointments/$appointmentId/cancel', (server) {
@@ -382,7 +402,12 @@ void main() {
                   'updated_at': '2026-06-01T00:00:00Z',
                 },
               ],
-              'meta': {'page': 1, 'page_size': 20, 'total': 1, 'total_pages': 1},
+              'meta': {
+                'page': 1,
+                'page_size': 20,
+                'total': 1,
+                'total_pages': 1,
+              },
             };
           }
           return {
@@ -439,7 +464,12 @@ void main() {
                   'updated_at': '2026-05-01T00:00:00Z',
                 },
               ],
-              'meta': {'page': 1, 'page_size': 20, 'total': 2, 'total_pages': 2},
+              'meta': {
+                'page': 1,
+                'page_size': 20,
+                'total': 2,
+                'total_pages': 2,
+              },
             };
           }
           if (p == 2 && status == 'completed') {
@@ -458,11 +488,16 @@ void main() {
                   'updated_at': '2026-04-01T00:00:00Z',
                 },
               ],
-              'meta': {'page': 2, 'page_size': 20, 'total': 2, 'total_pages': 2},
+              'meta': {
+                'page': 2,
+                'page_size': 20,
+                'total': 2,
+                'total_pages': 2,
+              },
             };
           }
           return {
-            'data': [],
+            'data': <Map<String, dynamic>>[],
             'meta': {'page': p, 'page_size': 20, 'total': 0, 'total_pages': 0},
           };
         }),

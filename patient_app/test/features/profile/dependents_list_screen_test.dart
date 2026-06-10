@@ -44,7 +44,9 @@ void main() {
     );
   }
 
-  testWidgets('shows dependent name relation age and gender icon', (tester) async {
+  testWidgets('shows dependent name relation age and gender icon', (
+    tester,
+  ) async {
     await tester.pumpWidget(wrap());
     await tester.pumpAndSettle();
 

@@ -63,18 +63,11 @@ class GeoRepository {
     final wilayas = await fetchWilayas();
     final candidates = wilayaNameHint == null
         ? wilayas
-        : wilayas
-              .where(
-                (w) => _wilayaMatchesHint(
-                  w,
-                  wilayaNameHint,
-                ),
-              )
-              .toList();
+        : wilayas.where((w) => _wilayaMatchesHint(w, wilayaNameHint)).toList();
 
     for (final wilaya in candidates) {
       final code = wilaya.code;
-      if (code == null || code.isEmpty) continue;
+      if (code.isEmpty) continue;
 
       final communes = await fetchCommunes(code);
       final found = communes.where((c) => c.id == communeId).firstOrNull;
@@ -88,9 +81,9 @@ class GeoRepository {
     final normalizedHint = _normalizeGeoName(hint);
     if (normalizedHint.isEmpty) return false;
 
-    final fr = _normalizeGeoName(wilaya.nameFr ?? '');
-    final ar = (wilaya.nameAr ?? '').trim().toLowerCase();
-    final code = (wilaya.code ?? '').trim();
+    final fr = _normalizeGeoName(wilaya.nameFr);
+    final ar = wilaya.nameAr.trim().toLowerCase();
+    final code = wilaya.code.trim();
 
     return fr == normalizedHint ||
         ar == hint.trim().toLowerCase() ||
@@ -98,8 +91,7 @@ class GeoRepository {
   }
 
   String _normalizeGeoName(String input) {
-    const withAccents =
-        'àáâãäåçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ';
+    const withAccents = 'àáâãäåçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ';
     const withoutAccents =
         'aaaaaaceeeeiiiinooooouuuuyyAAAAAACEEEEIIIINOOOOOUUUUY';
     var output = input.trim().toLowerCase();

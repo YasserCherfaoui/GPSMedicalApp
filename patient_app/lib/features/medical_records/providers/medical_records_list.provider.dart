@@ -71,11 +71,7 @@ class MedicalRecordsList extends _$MedicalRecordsList {
     final type = ref.read(medicalRecordsTypeFilterProvider);
     if (current == null || !current.hasMore || current.isLoadingMore) return;
     state = AsyncData(current.copyWith(isLoadingMore: true));
-    final next = await _fetchPage(
-      current.page + 1,
-      type: type,
-      append: true,
-    );
+    final next = await _fetchPage(current.page + 1, type: type, append: true);
     state = AsyncData(next);
   }
 
@@ -94,8 +90,9 @@ class MedicalRecordsList extends _$MedicalRecordsList {
     if (current == null) return;
     state = AsyncData(
       current.copyWith(
-        documents:
-            current.documents.where((doc) => doc.id != documentId).toList(),
+        documents: current.documents
+            .where((doc) => doc.id != documentId)
+            .toList(),
       ),
     );
   }

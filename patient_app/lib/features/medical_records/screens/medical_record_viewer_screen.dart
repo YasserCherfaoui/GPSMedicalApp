@@ -37,9 +37,9 @@ class MedicalRecordViewerScreen extends ConsumerWidget {
     final file = File('${directory.path}/$fileName');
     await file.writeAsBytes(bytes, flush: true);
     if (!context.mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(l10n.medicalRecordDownloadSuccess)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(l10n.medicalRecordDownloadSuccess)));
   }
 
   Future<void> _shareDocument(
@@ -48,15 +48,9 @@ class MedicalRecordViewerScreen extends ConsumerWidget {
     Uint8List bytes,
   ) async {
     final fileName = medicalRecordDownloadFileName(document);
-    await Share.shareXFiles(
-      [
-        XFile.fromData(
-          bytes,
-          name: fileName,
-          mimeType: document.mimeType,
-        ),
-      ],
-    );
+    await Share.shareXFiles([
+      XFile.fromData(bytes, name: fileName, mimeType: document.mimeType),
+    ]);
   }
 
   Future<void> _confirmDelete(
@@ -93,9 +87,9 @@ class MedicalRecordViewerScreen extends ConsumerWidget {
       context.pop();
     } catch (_) {
       if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.medicalRecordDeleteError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.medicalRecordDeleteError)));
     }
   }
 
@@ -142,7 +136,8 @@ class MedicalRecordViewerScreen extends ConsumerWidget {
               IconButton(
                 tooltip: l10n.medicalRecordDownload,
                 icon: const Icon(Icons.download_outlined),
-                onPressed: () => _saveToDownloads(context, document, state.bytes),
+                onPressed: () =>
+                    _saveToDownloads(context, document, state.bytes),
               ),
               IconButton(
                 tooltip: l10n.medicalRecordShare,
@@ -157,10 +152,7 @@ class MedicalRecordViewerScreen extends ConsumerWidget {
                 ),
             ],
           ),
-          body: _DocumentBody(
-            mimeType: document.mimeType,
-            bytes: state.bytes,
-          ),
+          body: _DocumentBody(mimeType: document.mimeType, bytes: state.bytes),
         );
       },
     );
@@ -168,10 +160,7 @@ class MedicalRecordViewerScreen extends ConsumerWidget {
 }
 
 class _DocumentBody extends StatelessWidget {
-  const _DocumentBody({
-    required this.mimeType,
-    required this.bytes,
-  });
+  const _DocumentBody({required this.mimeType, required this.bytes});
 
   final String? mimeType;
   final Uint8List bytes;
@@ -182,9 +171,7 @@ class _DocumentBody extends StatelessWidget {
       return InteractiveViewer(
         minScale: 0.5,
         maxScale: 4,
-        child: Center(
-          child: Image.memory(bytes, fit: BoxFit.contain),
-        ),
+        child: Center(child: Image.memory(bytes, fit: BoxFit.contain)),
       );
     }
 

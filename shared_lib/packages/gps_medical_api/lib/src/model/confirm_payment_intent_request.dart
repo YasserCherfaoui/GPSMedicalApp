@@ -6,38 +6,38 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'payments_intents_intent_id_confirm_post_request.g.dart';
+part 'confirm_payment_intent_request.g.dart';
 
-/// PaymentsIntentsIntentIdConfirmPostRequest
+/// ConfirmPaymentIntentRequest
 ///
 /// Properties:
 /// * [gatewayToken] 
 @BuiltValue()
-abstract class PaymentsIntentsIntentIdConfirmPostRequest implements Built<PaymentsIntentsIntentIdConfirmPostRequest, PaymentsIntentsIntentIdConfirmPostRequestBuilder> {
+abstract class ConfirmPaymentIntentRequest implements Built<ConfirmPaymentIntentRequest, ConfirmPaymentIntentRequestBuilder> {
   @BuiltValueField(wireName: r'gateway_token')
   String get gatewayToken;
 
-  PaymentsIntentsIntentIdConfirmPostRequest._();
+  ConfirmPaymentIntentRequest._();
 
-  factory PaymentsIntentsIntentIdConfirmPostRequest([void updates(PaymentsIntentsIntentIdConfirmPostRequestBuilder b)]) = _$PaymentsIntentsIntentIdConfirmPostRequest;
+  factory ConfirmPaymentIntentRequest([void updates(ConfirmPaymentIntentRequestBuilder b)]) = _$ConfirmPaymentIntentRequest;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(PaymentsIntentsIntentIdConfirmPostRequestBuilder b) => b;
+  static void _defaults(ConfirmPaymentIntentRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaymentsIntentsIntentIdConfirmPostRequest> get serializer => _$PaymentsIntentsIntentIdConfirmPostRequestSerializer();
+  static Serializer<ConfirmPaymentIntentRequest> get serializer => _$ConfirmPaymentIntentRequestSerializer();
 }
 
-class _$PaymentsIntentsIntentIdConfirmPostRequestSerializer implements PrimitiveSerializer<PaymentsIntentsIntentIdConfirmPostRequest> {
+class _$ConfirmPaymentIntentRequestSerializer implements PrimitiveSerializer<ConfirmPaymentIntentRequest> {
   @override
-  final Iterable<Type> types = const [PaymentsIntentsIntentIdConfirmPostRequest, _$PaymentsIntentsIntentIdConfirmPostRequest];
+  final Iterable<Type> types = const [ConfirmPaymentIntentRequest, _$ConfirmPaymentIntentRequest];
 
   @override
-  final String wireName = r'PaymentsIntentsIntentIdConfirmPostRequest';
+  final String wireName = r'ConfirmPaymentIntentRequest';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    PaymentsIntentsIntentIdConfirmPostRequest object, {
+    ConfirmPaymentIntentRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
     yield r'gateway_token';
@@ -50,7 +50,7 @@ class _$PaymentsIntentsIntentIdConfirmPostRequestSerializer implements Primitive
   @override
   Object serialize(
     Serializers serializers,
-    PaymentsIntentsIntentIdConfirmPostRequest object, {
+    ConfirmPaymentIntentRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -61,7 +61,7 @@ class _$PaymentsIntentsIntentIdConfirmPostRequestSerializer implements Primitive
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required PaymentsIntentsIntentIdConfirmPostRequestBuilder result,
+    required ConfirmPaymentIntentRequestBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -84,12 +84,12 @@ class _$PaymentsIntentsIntentIdConfirmPostRequestSerializer implements Primitive
   }
 
   @override
-  PaymentsIntentsIntentIdConfirmPostRequest deserialize(
+  ConfirmPaymentIntentRequest deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = PaymentsIntentsIntentIdConfirmPostRequestBuilder();
+    final result = ConfirmPaymentIntentRequestBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

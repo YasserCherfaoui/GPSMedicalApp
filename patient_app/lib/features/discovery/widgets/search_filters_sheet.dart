@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
-import '../providers/doctor_search.provider.dart';
 import '../providers/discovery_repositories.provider.dart';
+import '../providers/doctor_search.provider.dart';
 import '../providers/location_filter.provider.dart';
 import '../providers/specialties.provider.dart';
 import '../utils/geo_display.dart';
@@ -221,7 +221,9 @@ class SearchFiltersSheet extends ConsumerWidget {
                       ),
                     ),
                     value: filters.offersTelehealth,
-                    activeTrackColor: colorScheme.primary.withValues(alpha: 0.4),
+                    activeTrackColor: colorScheme.primary.withValues(
+                      alpha: 0.4,
+                    ),
                     activeColor: colorScheme.primary,
                     onChanged: searchFiltersNotifier.toggleTelehealth,
                   ),
@@ -397,9 +399,7 @@ class SearchFiltersSheet extends ConsumerWidget {
     final wilayas = ref.read(wilayasFetchProvider).value ?? [];
     Wilaya? wilaya;
     if (filters.wilayaCode != null) {
-      wilaya = wilayas
-          .where((w) => w.code == filters.wilayaCode)
-          .firstOrNull;
+      wilaya = wilayas.where((w) => w.code == filters.wilayaCode).firstOrNull;
     }
 
     if (filters.communeCode != null) {

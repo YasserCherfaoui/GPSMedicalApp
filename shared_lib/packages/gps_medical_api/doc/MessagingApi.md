@@ -9,29 +9,31 @@ All URIs are relative to *https://api.gpsmedical.dz/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**messagingMessagesMessageIdReadPost**](MessagingApi.md#messagingmessagesmessageidreadpost) | **POST** /messaging/messages/{messageId}/read | Marquer un message comme lu
-[**messagingThreadsGet**](MessagingApi.md#messagingthreadsget) | **GET** /messaging/threads | Liste des conversations
-[**messagingThreadsThreadIdGet**](MessagingApi.md#messagingthreadsthreadidget) | **GET** /messaging/threads/{threadId} | Détail d&#39;une conversation
-[**messagingThreadsThreadIdMessagesGet**](MessagingApi.md#messagingthreadsthreadidmessagesget) | **GET** /messaging/threads/{threadId}/messages | Messages d&#39;une conversation
-[**messagingThreadsThreadIdMessagesPost**](MessagingApi.md#messagingthreadsthreadidmessagespost) | **POST** /messaging/threads/{threadId}/messages | Envoi d&#39;un message
+[**createMessagingThreadMessage**](MessagingApi.md#createmessagingthreadmessage) | **POST** /messaging/threads/{threadId}/messages | Envoi d&#39;un message
+[**getMessagingThread**](MessagingApi.md#getmessagingthread) | **GET** /messaging/threads/{threadId} | Détail d&#39;une conversation
+[**listMessagingThreadMessages**](MessagingApi.md#listmessagingthreadmessages) | **GET** /messaging/threads/{threadId}/messages | Messages d&#39;une conversation
+[**listMessagingThreads**](MessagingApi.md#listmessagingthreads) | **GET** /messaging/threads | Liste des conversations
+[**markMessagingMessageRead**](MessagingApi.md#markmessagingmessageread) | **POST** /messaging/messages/{messageId}/read | Marquer un message comme lu
 
 
-# **messagingMessagesMessageIdReadPost**
-> messagingMessagesMessageIdReadPost(messageId)
+# **createMessagingThreadMessage**
+> Message createMessagingThreadMessage(threadId, messageCreate)
 
-Marquer un message comme lu
+Envoi d'un message
 
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
 
 final api = GpsMedicalApi().getMessagingApi();
-final String messageId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final String threadId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Thread UUID. For the first message in a new conversation, patients may pass the specialist `doctor_id`; specialists may pass the `patient_id` (medical.patients row). The server auto-creates the thread when a shared appointment exists. 
+final MessageCreate messageCreate = ; // MessageCreate | 
 
 try {
-    api.messagingMessagesMessageIdReadPost(messageId);
+    final response = api.createMessagingThreadMessage(threadId, messageCreate);
+    print(response);
 } on DioException catch (e) {
-    print('Exception when calling MessagingApi->messagingMessagesMessageIdReadPost: $e\n');
+    print('Exception when calling MessagingApi->createMessagingThreadMessage: $e\n');
 }
 ```
 
@@ -39,11 +41,53 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **messageId** | **String**|  | 
+ **threadId** | **String**| Thread UUID. For the first message in a new conversation, patients may pass the specialist `doctor_id`; specialists may pass the `patient_id` (medical.patients row). The server auto-creates the thread when a shared appointment exists.  | 
+ **messageCreate** | [**MessageCreate**](MessageCreate.md)|  | 
 
 ### Return type
 
-void (empty response body)
+[**Message**](Message.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getMessagingThread**
+> Thread getMessagingThread(threadId)
+
+Détail d'une conversation
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getMessagingApi();
+final String threadId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.getMessagingThread(threadId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling MessagingApi->getMessagingThread: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **threadId** | **String**|  | 
+
+### Return type
+
+[**Thread**](Thread.md)
 
 ### Authorization
 
@@ -52,12 +96,57 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **messagingThreadsGet**
-> PaginatedThreads messagingThreadsGet(page, pageSize)
+# **listMessagingThreadMessages**
+> BuiltList<Message> listMessagingThreadMessages(threadId, before, limit)
+
+Messages d'une conversation
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getMessagingApi();
+final String threadId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Thread UUID. For the first message in a new conversation, patients may pass the specialist `doctor_id`; specialists may pass the `patient_id` (medical.patients row). The server auto-creates the thread when a shared appointment exists. 
+final DateTime before = 2013-10-20T19:20:30+01:00; // DateTime | 
+final int limit = 56; // int | 
+
+try {
+    final response = api.listMessagingThreadMessages(threadId, before, limit);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling MessagingApi->listMessagingThreadMessages: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **threadId** | **String**| Thread UUID. For the first message in a new conversation, patients may pass the specialist `doctor_id`; specialists may pass the `patient_id` (medical.patients row). The server auto-creates the thread when a shared appointment exists.  | 
+ **before** | **DateTime**|  | [optional] 
+ **limit** | **int**|  | [optional] [default to 50]
+
+### Return type
+
+[**BuiltList&lt;Message&gt;**](Message.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listMessagingThreads**
+> PaginatedThreads listMessagingThreads(page, pageSize)
 
 Liste des conversations
 
@@ -70,10 +159,10 @@ final int page = 56; // int |
 final int pageSize = 56; // int | 
 
 try {
-    final response = api.messagingThreadsGet(page, pageSize);
+    final response = api.listMessagingThreads(page, pageSize);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling MessagingApi->messagingThreadsGet: $e\n');
+    print('Exception when calling MessagingApi->listMessagingThreads: $e\n');
 }
 ```
 
@@ -99,23 +188,22 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **messagingThreadsThreadIdGet**
-> Thread messagingThreadsThreadIdGet(threadId)
+# **markMessagingMessageRead**
+> markMessagingMessageRead(messageId)
 
-Détail d'une conversation
+Marquer un message comme lu
 
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
 
 final api = GpsMedicalApi().getMessagingApi();
-final String threadId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final String messageId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 
 try {
-    final response = api.messagingThreadsThreadIdGet(threadId);
-    print(response);
+    api.markMessagingMessageRead(messageId);
 } on DioException catch (e) {
-    print('Exception when calling MessagingApi->messagingThreadsThreadIdGet: $e\n');
+    print('Exception when calling MessagingApi->markMessagingMessageRead: $e\n');
 }
 ```
 
@@ -123,11 +211,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **threadId** | **String**|  | 
+ **messageId** | **String**|  | 
 
 ### Return type
 
-[**Thread**](Thread.md)
+void (empty response body)
 
 ### Authorization
 
@@ -136,95 +224,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **messagingThreadsThreadIdMessagesGet**
-> BuiltList<Message> messagingThreadsThreadIdMessagesGet(threadId, before, limit)
-
-Messages d'une conversation
-
-### Example
-```dart
-import 'package:gps_medical_api/api.dart';
-
-final api = GpsMedicalApi().getMessagingApi();
-final String threadId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final DateTime before = 2013-10-20T19:20:30+01:00; // DateTime | 
-final int limit = 56; // int | 
-
-try {
-    final response = api.messagingThreadsThreadIdMessagesGet(threadId, before, limit);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling MessagingApi->messagingThreadsThreadIdMessagesGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **threadId** | **String**|  | 
- **before** | **DateTime**|  | [optional] 
- **limit** | **int**|  | [optional] [default to 50]
-
-### Return type
-
-[**BuiltList&lt;Message&gt;**](Message.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **messagingThreadsThreadIdMessagesPost**
-> Message messagingThreadsThreadIdMessagesPost(threadId, messageCreate)
-
-Envoi d'un message
-
-### Example
-```dart
-import 'package:gps_medical_api/api.dart';
-
-final api = GpsMedicalApi().getMessagingApi();
-final String threadId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final MessageCreate messageCreate = ; // MessageCreate | 
-
-try {
-    final response = api.messagingThreadsThreadIdMessagesPost(threadId, messageCreate);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling MessagingApi->messagingThreadsThreadIdMessagesPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **threadId** | **String**|  | 
- **messageCreate** | [**MessageCreate**](MessageCreate.md)|  | 
-
-### Return type
-
-[**Message**](Message.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

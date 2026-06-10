@@ -5,19 +5,18 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:intl/intl.dart';
 
 import '../../discovery/utils/doctor_display.dart';
-import '../../discovery/utils/relative_time.dart';
 import '../../discovery/utils/specialty_display.dart';
+import '../../payments/utils/deposit_eligibility.dart';
+import '../../payments/widgets/appointment_payment_section.dart';
+import '../../reviews/widgets/appointment_review_section.dart';
 import '../providers/appointment_detail.provider.dart';
 import '../providers/booking_draft.provider.dart';
 import '../utils/address_launcher.dart';
 import '../utils/booking_dates.dart';
 import '../utils/booking_enums.dart';
-import '../../payments/utils/deposit_eligibility.dart';
 import '../widgets/booking_error_view.dart';
 import '../widgets/mode_badge.dart';
 import '../widgets/status_pill.dart';
-import '../../payments/widgets/appointment_payment_section.dart';
-import '../../reviews/widgets/appointment_review_section.dart';
 
 class AppointmentDetailScreen extends ConsumerWidget {
   const AppointmentDetailScreen({required this.appointmentId, super.key});
@@ -32,11 +31,8 @@ class AppointmentDetailScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.appointmentDetailTitle)),
       body: detailAsync.when(
-        data: (state) => _DetailBody(
-          state: state,
-          appointmentId: appointmentId,
-          l10n: l10n,
-        ),
+        data: (state) =>
+            _DetailBody(state: state, appointmentId: appointmentId, l10n: l10n),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => BookingErrorView(
           error: e,
@@ -78,8 +74,9 @@ class _DetailBody extends ConsumerWidget {
         start != null &&
         appointment.mode == AppointmentModeEnum.telehealth &&
         canJoinTelehealth(start, statusWire);
-    final relative =
-        start != null ? formatReviewRelativeTime(start, locale) : '';
+    final relative = start != null
+        ? formatReviewRelativeTime(start, locale)
+        : '';
     final specialty = doctor.specialties?.isNotEmpty == true
         ? specialtyDisplayName(doctor.specialties!.first, locale)
         : '';
@@ -236,11 +233,13 @@ class _DetailBody extends ConsumerWidget {
                     onPressed: () {
                       final docId = doctor.id;
                       if (docId == null) return;
-                      ref.read(bookingDraftProvider.notifier).startBooking(
-                        doctorId: docId,
-                        doctor: doctor,
-                        rescheduleAppointmentId: appointmentId,
-                      );
+                      ref
+                          .read(bookingDraftProvider.notifier)
+                          .startBooking(
+                            doctorId: docId,
+                            doctor: doctor,
+                            rescheduleAppointmentId: appointmentId,
+                          );
                       context.push(GpsRoutes.doctorBooking(docId));
                     },
                   ),
@@ -308,14 +307,12 @@ class _DetailBody extends ConsumerWidget {
     try {
       await ref
           .read(appointmentDetailProvider(appointmentId).notifier)
-          .cancel(
-            reason: cancelReason.isEmpty ? null : cancelReason,
-          );
+          .cancel(reason: cancelReason.isEmpty ? null : cancelReason);
     } catch (_) {
       if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.networkError)),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.networkError)));
       }
     }
   }

@@ -27,17 +27,12 @@ void main() {
       );
 
       final container = ProviderContainer(
-        overrides: [
-          gpsMedicalClientProvider.overrideWithValue(session.client),
-        ],
+        overrides: [gpsMedicalClientProvider.overrideWithValue(session.client)],
       );
       addTearDown(container.dispose);
 
       final state = await container.read(appointmentsUpcomingProvider.future);
-      expect(
-        state.appointments.any((a) => a.id == appointment.id),
-        isTrue,
-      );
+      expect(state.appointments.any((a) => a.id == appointment.id), isTrue);
     },
     skip: runStaging ? null : StagingEnv.skipReason,
   );

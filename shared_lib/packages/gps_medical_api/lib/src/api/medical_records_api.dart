@@ -27,7 +27,7 @@ class MedicalRecordsApi {
   const MedicalRecordsApi(this._dio, this._serializers);
 
   /// Téléchargement du document déchiffré (lien signé)
-  /// Diffuse le fichier en clair après vérification du jeton HMAC (&#x60;exp&#x60;, &#x60;token&#x60;) renvoyé dans l&#39;URL de &#x60;GET /medical-records/{documentId}/download&#x60;. L&#39;objet stocké reste en ciphertext (ADR 0006). 
+  /// Diffuse le fichier en clair après vérification du jeton HMAC (&#x60;exp&#x60;, &#x60;token&#x60;) renvoyé dans l&#39;URL de &#x60;GET /medical-records/{documentId}/download&#x60;. L&#39;objet stocké reste en ciphertext (ADR 0006). Accès journalisé (&#x60;medical_record.download&#x60;). 
   ///
   /// Parameters:
   /// * [documentId] 
@@ -110,7 +110,7 @@ class MedicalRecordsApi {
   }
 
   /// Suppression d&#39;un document (auteur uniquement)
-  /// 
+  /// Suppression logique (&#x60;deleted_at&#x60;). Seul &#x60;author_id&#x60; (JWT &#x60;sub&#x60;) peut supprimer. Le blob chiffré est supprimé du stockage objet en arrière-plan (retries). Journalisation &#x60;medical_record.delete&#x60; puis &#x60;medical_record.blob_purged&#x60;. 
   ///
   /// Parameters:
   /// * [documentId] 
@@ -244,7 +244,7 @@ class MedicalRecordsApi {
   }
 
   /// Métadonnées d&#39;un document
-  /// 
+  /// Même projection que la liste, sans &#x60;storage_key&#x60; ni champs de chiffrement. RBAC identique à &#x60;GET /medical-records&#x60; ; &#x60;404&#x60; si absent ou supprimé. 
   ///
   /// Parameters:
   /// * [documentId] 
@@ -325,7 +325,7 @@ class MedicalRecordsApi {
   }
 
   /// Documents accessibles à l&#39;utilisateur (patient ou médecin)
-  /// 
+  /// Métadonnées uniquement (pas de fichier). Pagination &#x60;page&#x60; (défaut 1), &#x60;page_size&#x60; (défaut 20, max 100). Sans &#x60;patient_id&#x60; : dossier du patient connecté ou uploads du médecin (auteur). Avec &#x60;patient_id&#x60; : patient (soi-même), médecin (parrainage), admin (tout patient). Documents supprimés (&#x60;deleted_at&#x60;) exclus. Tri &#x60;created_at DESC&#x60;, &#x60;id DESC&#x60;. 
   ///
   /// Parameters:
   /// * [patientId] - Réservé aux médecins ayant traité ce patient
@@ -420,7 +420,7 @@ class MedicalRecordsApi {
   }
 
   /// Téléversement d&#39;un document (médecin ou patient)
-  /// &#x60;multipart/form-data&#x60; avec champ fichier &#x60;file&#x60; (PDF, JPEG ou PNG). Taille maximale **20 Mo** pour les patients et médecins autorisés. Le type MIME réel est vérifié (magic bytes) en plus du &#x60;Content-Type&#x60; déclaré. 
+  /// &#x60;multipart/form-data&#x60; avec champ fichier &#x60;file&#x60; (PDF, JPEG ou PNG). Fichier maximal **20 Mo** ; enveloppe multipart serveur **25 Mo** (métadonnées incluses). Le type MIME réel est vérifié (magic bytes) en plus du &#x60;Content-Type&#x60; déclaré. Ciphertext stocké sous &#x60;{patient_id}/{document_id}.enc&#x60; (ADR 0006). 
   ///
   /// Parameters:
   /// * [file] 
@@ -537,7 +537,7 @@ class MedicalRecordsApi {
   }
 
   /// Création d&#39;une ordonnance numérique structurée
-  /// 
+  /// Réservé aux **médecins** (JWT specialist) pour un rendez-vous dont ils sont le praticien. Génère un PDF (gofpdf, corps en français, libellés d&#39;en-tête FR/AR), le chiffre et le stocke comme &#x60;medical.documents&#x60; (&#x60;type&#x3D;prescription&#x60;), puis crée une ligne &#x60;medical.prescriptions&#x60; avec &#x60;pdf_document_id&#x60;. 
   ///
   /// Parameters:
   /// * [prescriptionCreate] 

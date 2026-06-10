@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../notifications/widgets/notifications_bell_button.dart';
 import '../providers/patient_profile.provider.dart';
 import '../utils/profile_display.dart';
 import '../widgets/profile_field_row.dart';
-import '../../notifications/widgets/notifications_bell_button.dart';
 
 class PatientProfileScreen extends ConsumerWidget {
   const PatientProfileScreen({super.key});
@@ -114,14 +114,16 @@ class PatientProfileScreen extends ConsumerWidget {
                   children: [
                     ProfileFieldRow(
                       label: l10n.profileAllergies,
-                      value: patient.allergies == null ||
+                      value:
+                          patient.allergies == null ||
                               patient.allergies!.isEmpty
                           ? l10n.profileNotSet
                           : joinProfileTags(patient.allergies),
                     ),
                     ProfileFieldRow(
                       label: l10n.profileChronicConditions,
-                      value: patient.chronicConditions == null ||
+                      value:
+                          patient.chronicConditions == null ||
                               patient.chronicConditions!.isEmpty
                           ? l10n.profileNotSet
                           : joinProfileTags(patient.chronicConditions),

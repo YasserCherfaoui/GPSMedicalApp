@@ -99,6 +99,7 @@ Class | Method | HTTP request | Description
 [*AdminApi*](doc/AdminApi.md) | [**adminDoctorsDoctorIdVerifyPost**](doc/AdminApi.md#admindoctorsdoctoridverifypost) | **POST** /admin/doctors/{doctorId}/verify | Validation d&#39;un dossier médecin
 [*AdminApi*](doc/AdminApi.md) | [**adminDoctorsPendingGet**](doc/AdminApi.md#admindoctorspendingget) | **GET** /admin/doctors/pending | Médecins en attente de vérification
 [*AdminApi*](doc/AdminApi.md) | [**adminExportUserConsents**](doc/AdminApi.md#adminexportuserconsents) | **GET** /admin/users/{userId}/consents | Export ANPDP — historique complet des consentements (Phase 1)
+[*AdminApi*](doc/AdminApi.md) | [**adminListUsers**](doc/AdminApi.md#adminlistusers) | **GET** /admin/users | Liste paginée des utilisateurs (vue admin)
 [*AdminApi*](doc/AdminApi.md) | [**adminReviewsQueueGet**](doc/AdminApi.md#adminreviewsqueueget) | **GET** /admin/reviews/queue | File de modération des avis signalés
 [*AdminApi*](doc/AdminApi.md) | [**adminReviewsReviewIdModeratePost**](doc/AdminApi.md#adminreviewsreviewidmoderatepost) | **POST** /admin/reviews/{reviewId}/moderate | Décision de modération
 [*AdminApi*](doc/AdminApi.md) | [**adminSpecialtiesPost**](doc/AdminApi.md#adminspecialtiespost) | **POST** /admin/specialties | Création d&#39;une spécialité (référentiel)
@@ -153,18 +154,18 @@ Class | Method | HTTP request | Description
 [*MedicalRecordsApi*](doc/MedicalRecordsApi.md) | [**medicalRecordsGet**](doc/MedicalRecordsApi.md#medicalrecordsget) | **GET** /medical-records | Documents accessibles à l&#39;utilisateur (patient ou médecin)
 [*MedicalRecordsApi*](doc/MedicalRecordsApi.md) | [**medicalRecordsPost**](doc/MedicalRecordsApi.md#medicalrecordspost) | **POST** /medical-records | Téléversement d&#39;un document (médecin ou patient)
 [*MedicalRecordsApi*](doc/MedicalRecordsApi.md) | [**prescriptionsPost**](doc/MedicalRecordsApi.md#prescriptionspost) | **POST** /prescriptions | Création d&#39;une ordonnance numérique structurée
-[*MessagingApi*](doc/MessagingApi.md) | [**messagingMessagesMessageIdReadPost**](doc/MessagingApi.md#messagingmessagesmessageidreadpost) | **POST** /messaging/messages/{messageId}/read | Marquer un message comme lu
-[*MessagingApi*](doc/MessagingApi.md) | [**messagingThreadsGet**](doc/MessagingApi.md#messagingthreadsget) | **GET** /messaging/threads | Liste des conversations
-[*MessagingApi*](doc/MessagingApi.md) | [**messagingThreadsThreadIdGet**](doc/MessagingApi.md#messagingthreadsthreadidget) | **GET** /messaging/threads/{threadId} | Détail d&#39;une conversation
-[*MessagingApi*](doc/MessagingApi.md) | [**messagingThreadsThreadIdMessagesGet**](doc/MessagingApi.md#messagingthreadsthreadidmessagesget) | **GET** /messaging/threads/{threadId}/messages | Messages d&#39;une conversation
-[*MessagingApi*](doc/MessagingApi.md) | [**messagingThreadsThreadIdMessagesPost**](doc/MessagingApi.md#messagingthreadsthreadidmessagespost) | **POST** /messaging/threads/{threadId}/messages | Envoi d&#39;un message
-[*NotificationsApi*](doc/NotificationsApi.md) | [**notificationsDevicesDeviceIdDelete**](doc/NotificationsApi.md#notificationsdevicesdeviceiddelete) | **DELETE** /notifications/devices/{deviceId} | Désinscription d&#39;un device
-[*NotificationsApi*](doc/NotificationsApi.md) | [**notificationsDevicesPost**](doc/NotificationsApi.md#notificationsdevicespost) | **POST** /notifications/devices | Enregistrement d&#39;un device pour les push (FCM)
-[*NotificationsApi*](doc/NotificationsApi.md) | [**notificationsGet**](doc/NotificationsApi.md#notificationsget) | **GET** /notifications | Liste des notifications de l&#39;utilisateur
-[*NotificationsApi*](doc/NotificationsApi.md) | [**notificationsNotificationIdReadPost**](doc/NotificationsApi.md#notificationsnotificationidreadpost) | **POST** /notifications/{notificationId}/read | Marquer comme lu
-[*NotificationsApi*](doc/NotificationsApi.md) | [**notificationsPreferencesGet**](doc/NotificationsApi.md#notificationspreferencesget) | **GET** /notifications/preferences | Préférences de notification
-[*NotificationsApi*](doc/NotificationsApi.md) | [**notificationsPreferencesPut**](doc/NotificationsApi.md#notificationspreferencesput) | **PUT** /notifications/preferences | Mise à jour des préférences
-[*NotificationsApi*](doc/NotificationsApi.md) | [**notificationsReadAllPost**](doc/NotificationsApi.md#notificationsreadallpost) | **POST** /notifications/read-all | Marquer toutes les notifications comme lues
+[*MessagingApi*](doc/MessagingApi.md) | [**createMessagingThreadMessage**](doc/MessagingApi.md#createmessagingthreadmessage) | **POST** /messaging/threads/{threadId}/messages | Envoi d&#39;un message
+[*MessagingApi*](doc/MessagingApi.md) | [**getMessagingThread**](doc/MessagingApi.md#getmessagingthread) | **GET** /messaging/threads/{threadId} | Détail d&#39;une conversation
+[*MessagingApi*](doc/MessagingApi.md) | [**listMessagingThreadMessages**](doc/MessagingApi.md#listmessagingthreadmessages) | **GET** /messaging/threads/{threadId}/messages | Messages d&#39;une conversation
+[*MessagingApi*](doc/MessagingApi.md) | [**listMessagingThreads**](doc/MessagingApi.md#listmessagingthreads) | **GET** /messaging/threads | Liste des conversations
+[*MessagingApi*](doc/MessagingApi.md) | [**markMessagingMessageRead**](doc/MessagingApi.md#markmessagingmessageread) | **POST** /messaging/messages/{messageId}/read | Marquer un message comme lu
+[*NotificationsApi*](doc/NotificationsApi.md) | [**deleteNotificationDevice**](doc/NotificationsApi.md#deletenotificationdevice) | **DELETE** /notifications/devices/{deviceId} | Désinscription d&#39;un device
+[*NotificationsApi*](doc/NotificationsApi.md) | [**getNotificationPreferences**](doc/NotificationsApi.md#getnotificationpreferences) | **GET** /notifications/preferences | Préférences de notification
+[*NotificationsApi*](doc/NotificationsApi.md) | [**listNotifications**](doc/NotificationsApi.md#listnotifications) | **GET** /notifications | Liste des notifications de l&#39;utilisateur
+[*NotificationsApi*](doc/NotificationsApi.md) | [**markAllNotificationsRead**](doc/NotificationsApi.md#markallnotificationsread) | **POST** /notifications/read-all | Marquer toutes les notifications comme lues
+[*NotificationsApi*](doc/NotificationsApi.md) | [**markNotificationRead**](doc/NotificationsApi.md#marknotificationread) | **POST** /notifications/{notificationId}/read | Marquer comme lu
+[*NotificationsApi*](doc/NotificationsApi.md) | [**registerNotificationDevice**](doc/NotificationsApi.md#registernotificationdevice) | **POST** /notifications/devices | Enregistrement d&#39;un device pour les push (FCM)
+[*NotificationsApi*](doc/NotificationsApi.md) | [**updateNotificationPreferences**](doc/NotificationsApi.md#updatenotificationpreferences) | **PUT** /notifications/preferences | Mise à jour des préférences
 [*PatientsApi*](doc/PatientsApi.md) | [**patientsMeDelete**](doc/PatientsApi.md#patientsmedelete) | **DELETE** /patients/me | Suppression du compte patient (RGPD — droit à l&#39;effacement)
 [*PatientsApi*](doc/PatientsApi.md) | [**patientsMeDependentsDependentIdDelete**](doc/PatientsApi.md#patientsmedependentsdependentiddelete) | **DELETE** /patients/me/dependents/{dependentId} | Suppression d&#39;un ayant droit
 [*PatientsApi*](doc/PatientsApi.md) | [**patientsMeDependentsDependentIdPatch**](doc/PatientsApi.md#patientsmedependentsdependentidpatch) | **PATCH** /patients/me/dependents/{dependentId} | Modification d&#39;un ayant droit
@@ -172,16 +173,16 @@ Class | Method | HTTP request | Description
 [*PatientsApi*](doc/PatientsApi.md) | [**patientsMeDependentsPost**](doc/PatientsApi.md#patientsmedependentspost) | **POST** /patients/me/dependents | Ajout d&#39;un ayant droit
 [*PatientsApi*](doc/PatientsApi.md) | [**patientsMeGet**](doc/PatientsApi.md#patientsmeget) | **GET** /patients/me | Profil du patient connecté
 [*PatientsApi*](doc/PatientsApi.md) | [**patientsMePatch**](doc/PatientsApi.md#patientsmepatch) | **PATCH** /patients/me | Mise à jour partielle du profil patient
-[*PaymentsApi*](doc/PaymentsApi.md) | [**paymentsIntentsIntentIdConfirmPost**](doc/PaymentsApi.md#paymentsintentsintentidconfirmpost) | **POST** /payments/intents/{intentId}/confirm | Confirmation côté client (token gateway)
-[*PaymentsApi*](doc/PaymentsApi.md) | [**paymentsIntentsIntentIdGet**](doc/PaymentsApi.md#paymentsintentsintentidget) | **GET** /payments/intents/{intentId} | État d&#39;une intention
-[*PaymentsApi*](doc/PaymentsApi.md) | [**paymentsIntentsPost**](doc/PaymentsApi.md#paymentsintentspost) | **POST** /payments/intents | Création d&#39;une intention de paiement (acompte ou téléconsultation)
-[*PaymentsApi*](doc/PaymentsApi.md) | [**paymentsRefundsPost**](doc/PaymentsApi.md#paymentsrefundspost) | **POST** /payments/refunds | Demande de remboursement
-[*PaymentsApi*](doc/PaymentsApi.md) | [**paymentsWebhooksProviderPost**](doc/PaymentsApi.md#paymentswebhooksproviderpost) | **POST** /payments/webhooks/{provider} | Webhook entrant des prestataires de paiement
-[*ReviewsApi*](doc/ReviewsApi.md) | [**doctorsDoctorIdReviewsGet**](doc/ReviewsApi.md#doctorsdoctoridreviewsget) | **GET** /doctors/{doctorId}/reviews | Avis publics d&#39;un médecin
-[*ReviewsApi*](doc/ReviewsApi.md) | [**reviewsPost**](doc/ReviewsApi.md#reviewspost) | **POST** /reviews | Publication d&#39;un avis (uniquement après RDV terminé)
-[*ReviewsApi*](doc/ReviewsApi.md) | [**reviewsReviewIdDelete**](doc/ReviewsApi.md#reviewsreviewiddelete) | **DELETE** /reviews/{reviewId} | Suppression d&#39;un avis (auteur)
-[*ReviewsApi*](doc/ReviewsApi.md) | [**reviewsReviewIdPatch**](doc/ReviewsApi.md#reviewsreviewidpatch) | **PATCH** /reviews/{reviewId} | Modification d&#39;un avis (auteur uniquement, &lt; 7 jours)
-[*ReviewsApi*](doc/ReviewsApi.md) | [**reviewsReviewIdReportPost**](doc/ReviewsApi.md#reviewsreviewidreportpost) | **POST** /reviews/{reviewId}/report | Signalement d&#39;un avis abusif
+[*PaymentsApi*](doc/PaymentsApi.md) | [**confirmPaymentIntent**](doc/PaymentsApi.md#confirmpaymentintent) | **POST** /payments/intents/{intentId}/confirm | Confirmation côté client (token gateway)
+[*PaymentsApi*](doc/PaymentsApi.md) | [**createPaymentIntent**](doc/PaymentsApi.md#createpaymentintent) | **POST** /payments/intents | Création d&#39;une intention de paiement (acompte ou téléconsultation)
+[*PaymentsApi*](doc/PaymentsApi.md) | [**createRefund**](doc/PaymentsApi.md#createrefund) | **POST** /payments/refunds | Demande de remboursement
+[*PaymentsApi*](doc/PaymentsApi.md) | [**getPaymentIntent**](doc/PaymentsApi.md#getpaymentintent) | **GET** /payments/intents/{intentId} | État d&#39;une intention
+[*PaymentsApi*](doc/PaymentsApi.md) | [**paymentWebhook**](doc/PaymentsApi.md#paymentwebhook) | **POST** /payments/webhooks/{provider} | Webhook entrant des prestataires de paiement
+[*ReviewsApi*](doc/ReviewsApi.md) | [**createReview**](doc/ReviewsApi.md#createreview) | **POST** /reviews | Publication d&#39;un avis (uniquement après RDV terminé)
+[*ReviewsApi*](doc/ReviewsApi.md) | [**deleteReview**](doc/ReviewsApi.md#deletereview) | **DELETE** /reviews/{reviewId} | Suppression d&#39;un avis (auteur)
+[*ReviewsApi*](doc/ReviewsApi.md) | [**listDoctorReviews**](doc/ReviewsApi.md#listdoctorreviews) | **GET** /doctors/{doctorId}/reviews | Avis publics d&#39;un médecin
+[*ReviewsApi*](doc/ReviewsApi.md) | [**reportReview**](doc/ReviewsApi.md#reportreview) | **POST** /reviews/{reviewId}/report | Signalement d&#39;un avis abusif
+[*ReviewsApi*](doc/ReviewsApi.md) | [**updateReview**](doc/ReviewsApi.md#updatereview) | **PATCH** /reviews/{reviewId} | Modification d&#39;un avis (auteur uniquement, &lt; 7 jours)
 [*SearchApi*](doc/SearchApi.md) | [**searchDoctorsGet**](doc/SearchApi.md#searchdoctorsget) | **GET** /search/doctors | Recherche multicritères de médecins
 [*SearchApi*](doc/SearchApi.md) | [**searchSuggestGet**](doc/SearchApi.md#searchsuggestget) | **GET** /search/suggest | Suggestions auto-complétion (médecins, spécialités, communes)
 [*SystemApi*](doc/SystemApi.md) | [**getHealth**](doc/SystemApi.md#gethealth) | **GET** /health | Santé de l&#39;&#39;API — PostgreSQL et Redis
@@ -205,6 +206,7 @@ Class | Method | HTTP request | Description
  - [CheckNinRequest](doc/CheckNinRequest.md)
  - [CheckPhoneRequest](doc/CheckPhoneRequest.md)
  - [Commune](doc/Commune.md)
+ - [ConfirmPaymentIntentRequest](doc/ConfirmPaymentIntentRequest.md)
  - [ConsentGrant](doc/ConsentGrant.md)
  - [Credential](doc/Credential.md)
  - [Dependent](doc/Dependent.md)
@@ -240,6 +242,7 @@ Class | Method | HTTP request | Description
  - [PaginatedNotifications](doc/PaginatedNotifications.md)
  - [PaginatedReviews](doc/PaginatedReviews.md)
  - [PaginatedThreads](doc/PaginatedThreads.md)
+ - [PaginatedUserAdmin](doc/PaginatedUserAdmin.md)
  - [PaginationMeta](doc/PaginationMeta.md)
  - [PasswordResetRequest](doc/PasswordResetRequest.md)
  - [Patient](doc/Patient.md)
@@ -247,7 +250,6 @@ Class | Method | HTTP request | Description
  - [PatientUpdate](doc/PatientUpdate.md)
  - [PaymentIntent](doc/PaymentIntent.md)
  - [PaymentIntentCreate](doc/PaymentIntentCreate.md)
- - [PaymentsIntentsIntentIdConfirmPostRequest](doc/PaymentsIntentsIntentIdConfirmPostRequest.md)
  - [Prescription](doc/Prescription.md)
  - [PrescriptionCreate](doc/PrescriptionCreate.md)
  - [PrescriptionItem](doc/PrescriptionItem.md)
@@ -257,11 +259,11 @@ Class | Method | HTTP request | Description
  - [RefundRequest](doc/RefundRequest.md)
  - [RegisterRequest](doc/RegisterRequest.md)
  - [RegisterResponse](doc/RegisterResponse.md)
+ - [ReportReviewRequest](doc/ReportReviewRequest.md)
  - [ResendOtpRequest](doc/ResendOtpRequest.md)
  - [Review](doc/Review.md)
  - [ReviewCreate](doc/ReviewCreate.md)
  - [ReviewUpdate](doc/ReviewUpdate.md)
- - [ReviewsReviewIdReportPostRequest](doc/ReviewsReviewIdReportPostRequest.md)
  - [RevokeConsentRequest](doc/RevokeConsentRequest.md)
  - [ScheduleException](doc/ScheduleException.md)
  - [ScheduleExceptionCreate](doc/ScheduleExceptionCreate.md)

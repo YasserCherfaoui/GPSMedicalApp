@@ -6,7 +6,7 @@ class NotificationsRepository {
   final GpsMedicalClient _client;
 
   Future<int> countUnread() async {
-    final response = await _client.notifications.notificationsGet(
+    final response = await _client.notifications.listNotifications(
       unreadOnly: true,
       page: 1,
       pageSize: 1,
@@ -18,7 +18,7 @@ class NotificationsRepository {
     required int page,
     int pageSize = 20,
   }) async {
-    final response = await _client.notifications.notificationsGet(
+    final response = await _client.notifications.listNotifications(
       page: page,
       pageSize: pageSize,
     );
@@ -36,18 +36,17 @@ class NotificationsRepository {
   }
 
   Future<void> markRead(String notificationId) async {
-    await _client.notifications.notificationsNotificationIdReadPost(
+    await _client.notifications.markNotificationRead(
       notificationId: notificationId,
     );
   }
 
   Future<void> markAllRead() async {
-    await _client.notifications.notificationsReadAllPost();
+    await _client.notifications.markAllNotificationsRead();
   }
 
   Future<NotificationPreferences> getPreferences() async {
-    final response =
-        await _client.notifications.notificationsPreferencesGet();
+    final response = await _client.notifications.getNotificationPreferences();
     final prefs = response.data;
     if (prefs == null) {
       throw StateError('Empty notification preferences response');
@@ -58,10 +57,9 @@ class NotificationsRepository {
   Future<NotificationPreferences> updatePreferences(
     NotificationPreferences preferences,
   ) async {
-    final response =
-        await _client.notifications.notificationsPreferencesPut(
-          notificationPreferences: preferences,
-        );
+    final response = await _client.notifications.updateNotificationPreferences(
+      notificationPreferences: preferences,
+    );
     final prefs = response.data;
     if (prefs == null) {
       throw StateError('Empty notification preferences response');
@@ -70,7 +68,7 @@ class NotificationsRepository {
   }
 
   Future<Device> registerDevice(DeviceRegistration registration) async {
-    final response = await _client.notifications.notificationsDevicesPost(
+    final response = await _client.notifications.registerNotificationDevice(
       deviceRegistration: registration,
     );
     final device = response.data;
@@ -81,7 +79,7 @@ class NotificationsRepository {
   }
 
   Future<void> unregisterDevice(String deviceId) async {
-    await _client.notifications.notificationsDevicesDeviceIdDelete(
+    await _client.notifications.deleteNotificationDevice(
       deviceId: deviceId,
     );
   }

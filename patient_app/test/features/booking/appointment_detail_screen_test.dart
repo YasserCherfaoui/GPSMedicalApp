@@ -192,7 +192,8 @@ void main() {
     tester,
   ) async {
     SharedPreferences.setMockInitialValues({
-      'gps_appointment_reviews': '{"$appointmentId":{"appointment_id":"$appointmentId","review_id":"rev-1","rating":5,"created_at":"2026-06-01T10:00:00Z","status":"pending"}}',
+      'gps_appointment_reviews':
+          '{"$appointmentId":{"appointment_id":"$appointmentId","review_id":"rev-1","rating":5,"created_at":"2026-06-01T10:00:00Z","status":"pending"}}',
     });
     mockDetail(
       status: 'completed',

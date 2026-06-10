@@ -150,10 +150,7 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
               alignment: AlignmentDirectional.centerStart,
               child: TextButton.icon(
                 onPressed: () {
-                  widget.onLocationChanged(
-                    locationFilter.selectedWilaya,
-                    null,
-                  );
+                  widget.onLocationChanged(locationFilter.selectedWilaya, null);
                 },
                 icon: const Icon(Icons.map_outlined, size: 18),
                 label: Text(l10n.geoUseWilayaCenter),
@@ -288,9 +285,8 @@ class _WilayaCommunePickerState extends ConsumerState<WilayaCommunePicker> {
         title: l10n.errorGenericTitle,
         message: l10n.geoCommunesLoadError,
         retryLabel: l10n.retry,
-        onRetry: () => ref
-            .read(communesFetchProvider.notifier)
-            .refreshWilaya(wilayaCode),
+        onRetry: () =>
+            ref.read(communesFetchProvider.notifier).refreshWilaya(wilayaCode),
       ),
     );
   }

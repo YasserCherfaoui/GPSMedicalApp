@@ -2,10 +2,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:intl/intl.dart';
 
-String profileGenderLabel(
-  PatientGenderEnum? gender,
-  AppLocalizations l10n,
-) {
+String profileGenderLabel(PatientGenderEnum? gender, AppLocalizations l10n) {
   return switch (gender) {
     PatientGenderEnum.male => l10n.profileGenderMale,
     PatientGenderEnum.female => l10n.profileGenderFemale,
@@ -108,7 +105,9 @@ PatientGenderEnum? toPatientGender(PatientUpdateGenderEnum? gender) {
   };
 }
 
-PatientBloodTypeEnum? toPatientBloodType(PatientUpdateBloodTypeEnum? bloodType) {
+PatientBloodTypeEnum? toPatientBloodType(
+  PatientUpdateBloodTypeEnum? bloodType,
+) {
   if (bloodType == null) return null;
   return PatientBloodTypeEnum.valueOf(bloodType.name);
 }

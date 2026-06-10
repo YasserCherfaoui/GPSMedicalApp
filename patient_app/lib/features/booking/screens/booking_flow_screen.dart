@@ -30,7 +30,9 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _maybeShowResumePrompt());
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _maybeShowResumePrompt(),
+    );
   }
 
   @override
@@ -90,9 +92,7 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
       if (next.value != true || prev?.value != false || !mounted) return;
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(content: Text(l10n.bookingOnlineRestored)),
-        );
+        ..showSnackBar(SnackBar(content: Text(l10n.bookingOnlineRestored)));
     });
 
     if (draft.doctorId == null || draft.selectedSlot == null) {
@@ -118,9 +118,9 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
           SlotLockBanner(
             onExpired: () {
               ref.read(bookingDraftProvider.notifier).clearSlotLock();
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(l10n.bookingLockExpired)),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(l10n.bookingLockExpired)));
               final doctorId = draft.doctorId;
               if (doctorId != null && GoRouter.maybeOf(context) != null) {
                 context.go(GpsRoutes.doctorBooking(doctorId));
@@ -155,9 +155,8 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
                     l10n: l10n,
                     reasonController: _reasonController,
                     fieldErrors: _fieldErrors,
-                    onReasonChanged: (v) => ref
-                        .read(bookingDraftProvider.notifier)
-                        .setReason(v),
+                    onReasonChanged: (v) =>
+                        ref.read(bookingDraftProvider.notifier).setReason(v),
                   ),
                 ),
               ],
@@ -210,9 +209,9 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
       return;
     }
     if (!online) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.bookingOfflineSubmit)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.bookingOfflineSubmit)));
       return;
     }
     setState(() {
@@ -236,9 +235,9 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
       ref.read(bookingDraftProvider.notifier).setStep(3);
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.networkError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.networkError)));
     } finally {
       if (mounted) setState(() => _submitting = false);
     }

@@ -77,7 +77,9 @@ class AppointmentRowTile extends StatelessWidget {
                       runSpacing: GpsSpacing.xs,
                       children: [
                         if (appointment.mode != null)
-                          ModeBadge(mode: appointmentModeWire(appointment.mode)),
+                          ModeBadge(
+                            mode: appointmentModeWire(appointment.mode),
+                          ),
                         if (appointment.status != null)
                           StatusPill(
                             status: appointmentStatusWire(appointment.status),

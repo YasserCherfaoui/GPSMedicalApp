@@ -23,16 +23,7 @@ void main() {
     );
     expect(
       detectMedicalRecordMimeType(
-        Uint8List.fromList([
-          0x89,
-          0x50,
-          0x4E,
-          0x47,
-          0x0D,
-          0x0A,
-          0x1A,
-          0x0A,
-        ]),
+        Uint8List.fromList([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]),
       ),
       'image/png',
     );
@@ -56,10 +47,7 @@ void main() {
 
   test('validateMedicalRecordFileBytes accepts valid PDF bytes', () {
     final bytes = Uint8List.fromList([0x25, 0x50, 0x44, 0x46, 0x2D]);
-    expect(
-      validateMedicalRecordFileBytes(bytes: bytes, l10n: l10n),
-      isNull,
-    );
+    expect(validateMedicalRecordFileBytes(bytes: bytes, l10n: l10n), isNull);
   });
 
   test('validateMedicalRecordUploadForm requires type and files', () {

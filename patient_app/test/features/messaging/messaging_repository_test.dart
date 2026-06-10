@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:patient_app/features/messaging/repositories/messaging_repository.dart';
 import '../../test_api_constants.dart';
 
 void main() {
@@ -48,7 +47,7 @@ void main() {
           'thread_id': 'thread-1',
           'sender_id': 'doc-user-1',
           'body': 'Bonjour, comment allez-vous ?',
-          'attachments': [],
+          'attachments': <Map<String, dynamic>>[],
           'created_at': '2026-06-01T10:00:00Z',
           'read_at': null,
         },
@@ -73,7 +72,7 @@ void main() {
         'thread_id': 'thread-1',
         'sender_id': 'user-1',
         'body': 'Merci',
-        'attachments': [],
+        'attachments': <Map<String, dynamic>>[],
         'created_at': '2026-06-01T11:00:00Z',
         'read_at': null,
       });

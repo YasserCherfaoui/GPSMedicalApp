@@ -51,15 +51,17 @@ void main() {
     );
   }
 
-  testWidgets('lists consent history with marketing toggle and essential revoke',
-      (tester) async {
-    await tester.pumpWidget(wrap());
-    await tester.pumpAndSettle();
+  testWidgets(
+    'lists consent history with marketing toggle and essential revoke',
+    (tester) async {
+      await tester.pumpWidget(wrap());
+      await tester.pumpAndSettle();
 
-    expect(find.text('Mes consentements'), findsOneWidget);
-    expect(find.text('Communications marketing (optionnel)'), findsWidgets);
-    expect(find.text('Traitement de mes données de santé'), findsOneWidget);
-    expect(find.text('Retirer mon consentement'), findsOneWidget);
-    expect(find.byType(SwitchListTile), findsOneWidget);
-  });
+      expect(find.text('Mes consentements'), findsOneWidget);
+      expect(find.text('Communications marketing (optionnel)'), findsWidgets);
+      expect(find.text('Traitement de mes données de santé'), findsOneWidget);
+      expect(find.text('Retirer mon consentement'), findsOneWidget);
+      expect(find.byType(SwitchListTile), findsOneWidget);
+    },
+  );
 }

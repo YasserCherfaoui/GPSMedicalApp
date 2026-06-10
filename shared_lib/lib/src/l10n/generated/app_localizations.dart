@@ -2685,6 +2685,54 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Ce rendez-vous n\'est pas éligible au paiement.'**
   String get paymentDepositNotEligible;
+
+  /// No description provided for @specialistVerificationPendingTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dossier en cours d\'examen'**
+  String get specialistVerificationPendingTitle;
+
+  /// No description provided for @specialistVerificationPendingBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre dossier est en cours de vérification par notre équipe. Vous recevrez une notification dès qu\'une décision sera prise.'**
+  String get specialistVerificationPendingBody;
+
+  /// No description provided for @specialistTabInbox.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demandes'**
+  String get specialistTabInbox;
+
+  /// No description provided for @specialistTabCalendar.
+  ///
+  /// In fr, this message translates to:
+  /// **'Agenda'**
+  String get specialistTabCalendar;
+
+  /// No description provided for @specialistTabMessages.
+  ///
+  /// In fr, this message translates to:
+  /// **'Messages'**
+  String get specialistTabMessages;
+
+  /// No description provided for @specialistTabProfile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Profil'**
+  String get specialistTabProfile;
+
+  /// No description provided for @specialistTabStats.
+  ///
+  /// In fr, this message translates to:
+  /// **'Statistiques'**
+  String get specialistTabStats;
+
+  /// No description provided for @specialistShellPlaceholder.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bientôt disponible'**
+  String get specialistShellPlaceholder;
 }
 
 class _AppLocalizationsDelegate

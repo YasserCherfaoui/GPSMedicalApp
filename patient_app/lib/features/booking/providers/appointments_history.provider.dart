@@ -28,7 +28,10 @@ class AppointmentsHistory extends _$AppointmentsHistory {
     return _fetchPage(1, append: false);
   }
 
-  Future<AppointmentsHistoryState> _fetchPage(int page, {required bool append}) async {
+  Future<AppointmentsHistoryState> _fetchPage(
+    int page, {
+    required bool append,
+  }) async {
     final repo = ref.read(appointmentRepositoryProvider);
     final all = <Appointment>[];
     var hasMore = false;

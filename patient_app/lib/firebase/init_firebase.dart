@@ -17,7 +17,9 @@ Future<void> initPatientFirebase() async {
   }
 
   try {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   } catch (e) {
     if (kDebugMode) {
       debugPrint('Firebase: init skipped — $e');

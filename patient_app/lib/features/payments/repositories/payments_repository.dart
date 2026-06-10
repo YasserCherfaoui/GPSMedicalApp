@@ -26,7 +26,7 @@ class PaymentsRepository {
           ..provider = PaymentIntentCreateProviderEnum.stripeTest
           ..returnUrl = returnUrl,
       );
-      final response = await _client.payments.paymentsIntentsPost(
+      final response = await _client.payments.createPaymentIntent(
         paymentIntentCreate: body,
       );
       final intent = response.data;
@@ -41,7 +41,7 @@ class PaymentsRepository {
 
   Future<PaymentIntent> getIntent(String intentId) async {
     try {
-      final response = await _client.payments.paymentsIntentsIntentIdGet(
+      final response = await _client.payments.getPaymentIntent(
         intentId: intentId,
       );
       final intent = response.data;
@@ -59,19 +59,14 @@ class PaymentsRepository {
     required String gatewayToken,
   }) async {
     try {
-      final request = PaymentsIntentsIntentIdConfirmPostRequest(
+      final request = ConfirmPaymentIntentRequest(
         (b) => b..gatewayToken = gatewayToken,
       );
-      final response =
-          await _client.payments.paymentsIntentsIntentIdConfirmPost(
-            intentId: intentId,
-            paymentsIntentsIntentIdConfirmPostRequest: request,
-          );
-      final intent = response.data;
-      if (intent == null) {
-        throw StateError('Empty payment confirm response');
-      }
-      return intent;
+      await _client.payments.confirmPaymentIntent(
+        intentId: intentId,
+        confirmPaymentIntentRequest: request,
+      );
+      return getIntent(intentId);
     } catch (e) {
       rethrowPaymentsApiError(e);
     }

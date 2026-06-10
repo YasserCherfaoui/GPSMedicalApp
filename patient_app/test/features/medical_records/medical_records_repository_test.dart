@@ -54,15 +54,12 @@ void main() {
       (server) => server.reply(200, (RequestOptions options) {
         expect(options.queryParameters['type'], 'lab_result');
         return {
-          'data': [],
+          'data': <Map<String, dynamic>>[],
           'meta': {'page': 1, 'page_size': 20, 'total': 0, 'total_pages': 0},
         };
       }),
     );
 
-    await repository.list(
-      type: MedicalDocumentTypeEnum.labResult,
-      page: 1,
-    );
+    await repository.list(type: MedicalDocumentTypeEnum.labResult, page: 1);
   });
 }

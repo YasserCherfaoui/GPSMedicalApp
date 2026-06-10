@@ -12,9 +12,7 @@ class ConsentRepository {
 
   Future<void> revokeConsent(RevokeConsentRequestConsentTypeEnum type) async {
     await _client.phase1.revokeMyConsent(
-      revokeConsentRequest: RevokeConsentRequest(
-        (b) => b..consentType = type,
-      ),
+      revokeConsentRequest: RevokeConsentRequest((b) => b..consentType = type),
     );
   }
 }

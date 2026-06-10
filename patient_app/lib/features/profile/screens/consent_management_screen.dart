@@ -63,18 +63,18 @@ class _ConsentManagementScreenState
 
     setState(() => _revokingId = grant.id);
     try {
-      await ref.read(consentsListProvider.notifier).revoke(
-        RevokeConsentRequestConsentTypeEnum.dataProcessing,
-      );
+      await ref
+          .read(consentsListProvider.notifier)
+          .revoke(RevokeConsentRequestConsentTypeEnum.dataProcessing);
       await ref.read(pushNotificationServiceProvider).unregisterDevice();
       await ref.read(authSessionProvider).signOut();
       if (!mounted) return;
       context.go(GpsRoutes.consentRevoked);
     } catch (_) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.consentRevokeError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.consentRevokeError)));
     } finally {
       if (mounted) setState(() => _revokingId = null);
     }
@@ -114,7 +114,8 @@ class _ConsentManagementScreenState
             child: ListView.separated(
               padding: const EdgeInsets.all(GpsSpacing.md),
               itemCount: consents.length,
-              separatorBuilder: (_, __) => const SizedBox(height: GpsSpacing.sm),
+              separatorBuilder: (_, __) =>
+                  const SizedBox(height: GpsSpacing.sm),
               itemBuilder: (context, index) {
                 final grant = consents[index];
                 return _ConsentHistoryCard(
@@ -171,7 +172,9 @@ class _ConsentHistoryCard extends StatelessWidget {
                   style: theme.textTheme.titleSmall,
                 ),
               ),
-              GpsBadge(label: active ? l10n.consentActive : l10n.consentRevoked),
+              GpsBadge(
+                label: active ? l10n.consentActive : l10n.consentRevoked,
+              ),
             ],
           ),
           const SizedBox(height: GpsSpacing.sm),

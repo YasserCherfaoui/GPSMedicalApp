@@ -109,7 +109,7 @@ No authorization required
 
 Téléversement d'un diplôme ou justificatif (PDF/image)
 
-`multipart/form-data` : champs `file` et `type`. Taille maximale **10 Mo**. PDF, JPEG ou PNG uniquement ; le contenu est contrôlé par magic bytes. 
+`multipart/form-data` : champs `file` et `type`. Fichier maximal **10 Mo** ; enveloppe multipart serveur **15 Mo**. PDF, JPEG ou PNG uniquement ; le contenu est contrôlé par magic bytes. 
 
 ### Example
 ```dart

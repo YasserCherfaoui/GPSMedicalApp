@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
-// tests for PaymentsIntentsIntentIdConfirmPostRequest
+// tests for ConfirmPaymentIntentRequest
 void main() {
-  final instance = PaymentsIntentsIntentIdConfirmPostRequestBuilder();
+  final instance = ConfirmPaymentIntentRequestBuilder();
   // TODO add properties to the builder and call build()
 
-  group(PaymentsIntentsIntentIdConfirmPostRequest, () {
+  group(ConfirmPaymentIntentRequest, () {
     // String gatewayToken
     test('to test the property `gatewayToken`', () async {
       // TODO

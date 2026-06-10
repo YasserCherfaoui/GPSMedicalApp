@@ -85,9 +85,7 @@ void main() {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           locale: const Locale('fr'),
-          home: Scaffold(
-            body: SlotLockBanner(onExpired: () => expired = true),
-          ),
+          home: Scaffold(body: SlotLockBanner(onExpired: () => expired = true)),
         ),
       ),
     );
@@ -113,10 +111,7 @@ void main() {
 
   testWidgets('uses warning colours below 60 seconds', (tester) async {
     await tester.pumpWidget(
-      wrap(
-        lockDuration: const Duration(seconds: 45),
-        onExpired: () {},
-      ),
+      wrap(lockDuration: const Duration(seconds: 45), onExpired: () {}),
     );
     await tester.pump();
     await tester.pump();
@@ -127,9 +122,7 @@ void main() {
       matching: find.byType(Material),
     );
     final material = tester.widget<Material>(materialFinder);
-    final colorScheme = Theme.of(
-      tester.element(banner),
-    ).colorScheme;
+    final colorScheme = Theme.of(tester.element(banner)).colorScheme;
 
     expect(material.color, colorScheme.errorContainer);
   });
@@ -138,10 +131,7 @@ void main() {
     var expiredCount = 0;
 
     await tester.pumpWidget(
-      wrap(
-        expiredLock: true,
-        onExpired: () => expiredCount++,
-      ),
+      wrap(expiredLock: true, onExpired: () => expiredCount++),
     );
     await tester.pump();
     await tester.pump();

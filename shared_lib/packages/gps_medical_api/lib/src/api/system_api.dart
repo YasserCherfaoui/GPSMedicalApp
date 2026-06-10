@@ -19,7 +19,7 @@ class SystemApi {
   const SystemApi(this._dio, this._serializers);
 
   /// Santé de l&#39;&#39;API — PostgreSQL et Redis
-  /// Vérifie la disponibilité de PostgreSQL (&#x60;db&#x60;), de Redis (&#x60;redis&#x60;) et, si configuré, du stockage objet (&#x60;storage&#x60;). &#x60;storage&#x3D;disabled&#x60; lorsque &#x60;STORAGE_PROVIDER&#x60; est vide (uploads désactivés) ; cela ne dégrade pas le statut global. Une réponse &#x60;200&#x60; indique une plateforme prête (&#x60;status&#x3D;ok&#x60;). Une réponse &#x60;503&#x60; indique une perte ou refus (&#x60;status&#x3D;degraded&#x60;). Une corrélation requête/réponse est toujours possible via **X-Request-ID** renvoyé dans l&#39;&#39;en-tête de réponse. 
+  /// Vérifie la disponibilité de PostgreSQL (&#x60;db&#x60;), de Redis (&#x60;redis&#x60;) et, si configuré, du stockage objet (&#x60;storage&#x60;). &#x60;storage&#x3D;disabled&#x60; lorsque &#x60;STORAGE_PROVIDER&#x60; est vide ou &#x60;disabled&#x60; (uploads désactivés) ; cela ne dégrade pas le statut global. Une réponse &#x60;200&#x60; indique une plateforme prête (&#x60;status&#x3D;ok&#x60;). Une réponse &#x60;503&#x60; indique une perte ou refus (&#x60;status&#x3D;degraded&#x60;). Une corrélation requête/réponse est toujours possible via **X-Request-ID** renvoyé dans l&#39;&#39;en-tête de réponse. 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation

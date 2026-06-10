@@ -42,9 +42,9 @@ class _ReviewConfirmationScreenState
 
     if (cached?.createdAt != null &&
         !canDeleteReviewWithinWindow(cached!.createdAt!)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.reviewDeleteExpired)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.reviewDeleteExpired)));
       return;
     }
 
@@ -74,15 +74,15 @@ class _ReviewConfirmationScreenState
           .clear(widget.appointmentId);
       ref.invalidate(appointmentReviewProvider(widget.appointmentId));
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.reviewDeleteSuccess)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.reviewDeleteSuccess)));
       context.go(GpsRoutes.appointmentDetail(widget.appointmentId));
     } catch (_) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.reviewDeleteError)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.reviewDeleteError)));
     } finally {
       if (mounted) setState(() => _deleting = false);
     }

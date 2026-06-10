@@ -6,6 +6,8 @@ part of 'notification.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const NotificationTypeEnum _$notificationTypeEnum_appointmentCreated =
+    const NotificationTypeEnum._('appointmentCreated');
 const NotificationTypeEnum _$notificationTypeEnum_appointmentConfirmed =
     const NotificationTypeEnum._('appointmentConfirmed');
 const NotificationTypeEnum _$notificationTypeEnum_appointmentReminder =
@@ -29,6 +31,8 @@ const NotificationTypeEnum _$notificationTypeEnum_adminAnnouncement =
 
 NotificationTypeEnum _$notificationTypeEnumValueOf(String name) {
   switch (name) {
+    case 'appointmentCreated':
+      return _$notificationTypeEnum_appointmentCreated;
     case 'appointmentConfirmed':
       return _$notificationTypeEnum_appointmentConfirmed;
     case 'appointmentReminder':
@@ -56,6 +60,7 @@ NotificationTypeEnum _$notificationTypeEnumValueOf(String name) {
 
 final BuiltSet<NotificationTypeEnum> _$notificationTypeEnumValues =
     BuiltSet<NotificationTypeEnum>(const <NotificationTypeEnum>[
+      _$notificationTypeEnum_appointmentCreated,
       _$notificationTypeEnum_appointmentConfirmed,
       _$notificationTypeEnum_appointmentReminder,
       _$notificationTypeEnum_appointmentCancelled,
@@ -74,6 +79,7 @@ Serializer<NotificationTypeEnum> _$notificationTypeEnumSerializer =
 class _$NotificationTypeEnumSerializer
     implements PrimitiveSerializer<NotificationTypeEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
+    'appointmentCreated': 'appointment_created',
     'appointmentConfirmed': 'appointment_confirmed',
     'appointmentReminder': 'appointment_reminder',
     'appointmentCancelled': 'appointment_cancelled',
@@ -86,6 +92,7 @@ class _$NotificationTypeEnumSerializer
     'adminAnnouncement': 'admin_announcement',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
+    'appointment_created': 'appointmentCreated',
     'appointment_confirmed': 'appointmentConfirmed',
     'appointment_reminder': 'appointmentReminder',
     'appointment_cancelled': 'appointmentCancelled',

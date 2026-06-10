@@ -31,7 +31,7 @@ abstract class PaymentIntentCreate implements Built<PaymentIntentCreate, Payment
 
   @BuiltValueField(wireName: r'provider')
   PaymentIntentCreateProviderEnum get provider;
-  // enum providerEnum {  satim,  edahabia,  cib,  };
+  // enum providerEnum {  satim,  edahabia,  cib,  stripe_test,  };
 
   @BuiltValueField(wireName: r'return_url')
   String? get returnUrl;
@@ -201,8 +201,7 @@ class PaymentIntentCreateProviderEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'cib')
   static const PaymentIntentCreateProviderEnum cib = _$paymentIntentCreateProviderEnum_cib;
   @BuiltValueEnumConst(wireName: r'stripe_test')
-  static const PaymentIntentCreateProviderEnum stripeTest =
-      _$paymentIntentCreateProviderEnum_stripeTest;
+  static const PaymentIntentCreateProviderEnum stripeTest = _$paymentIntentCreateProviderEnum_stripeTest;
 
   static Serializer<PaymentIntentCreateProviderEnum> get serializer => _$paymentIntentCreateProviderEnumSerializer;
 

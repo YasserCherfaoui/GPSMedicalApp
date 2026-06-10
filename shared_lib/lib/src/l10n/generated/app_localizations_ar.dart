@@ -1406,4 +1406,29 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get paymentDepositNotEligible => 'هذا الموعد غير مؤهل للدفع.';
+
+  @override
+  String get specialistVerificationPendingTitle => 'الملف قيد المراجعة';
+
+  @override
+  String get specialistVerificationPendingBody =>
+      'ملفك قيد التحقق من قبل فريقنا. ستتلقى إشعارًا عند اتخاذ القرار.';
+
+  @override
+  String get specialistTabInbox => 'الطلبات';
+
+  @override
+  String get specialistTabCalendar => 'الأجندة';
+
+  @override
+  String get specialistTabMessages => 'الرسائل';
+
+  @override
+  String get specialistTabProfile => 'الملف';
+
+  @override
+  String get specialistTabStats => 'الإحصائيات';
+
+  @override
+  String get specialistShellPlaceholder => 'قريبًا';
 }

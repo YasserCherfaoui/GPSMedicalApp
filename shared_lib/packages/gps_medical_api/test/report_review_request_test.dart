@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
-// tests for ReviewsReviewIdReportPostRequest
+// tests for ReportReviewRequest
 void main() {
-  final instance = ReviewsReviewIdReportPostRequestBuilder();
+  final instance = ReportReviewRequestBuilder();
   // TODO add properties to the builder and call build()
 
-  group(ReviewsReviewIdReportPostRequest, () {
+  group(ReportReviewRequest, () {
     // String reason
     test('to test the property `reason`', () async {
       // TODO
