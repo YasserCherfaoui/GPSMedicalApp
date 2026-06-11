@@ -33,6 +33,7 @@
   "sendCode": "Azen tangalt",
   "otpTitle": "Sekcem tangalt i d-tufiḍ",
   "otpSubtitle": "Tangalt s 6 n yizwilen i d-yettwaznen ɣer {phone}",
+  "ninVerificationPendingBanner": "Asulay-ik yettwaseɣreg. Tzemreḍ ad tkemmeḍ ujerred — ulac ayen i tesriḍ.",
   "resendCode": "Ales azen tangalt",
   "resendIn": "Ales azen deg 0:{seconds}",
   "verify": "Senqed",

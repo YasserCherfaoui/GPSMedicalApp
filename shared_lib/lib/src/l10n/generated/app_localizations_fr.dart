@@ -114,6 +114,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get ninVerificationPendingBanner =>
+      'Votre identité est en cours de vérification. Vous pouvez continuer l\'inscription — aucune action n\'est requise de votre part.';
+
+  @override
   String get resendCode => 'Renvoyer le code';
 
   @override

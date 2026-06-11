@@ -1,3 +1,5 @@
+import 'package:gps_medical_api/gps_medical_api.dart';
+
 /// In-memory registration data collected across the sign-up flow.
 class RegistrationDraft {
   const RegistrationDraft({
@@ -10,6 +12,7 @@ class RegistrationDraft {
     this.consentAnpdpTerms = false,
     this.consentMarketing = false,
     this.otpSent = false,
+    this.ninVerificationStatus,
   });
 
   final String? nin;
@@ -21,6 +24,9 @@ class RegistrationDraft {
   final bool consentAnpdpTerms;
   final bool consentMarketing;
   final bool otpSent;
+
+  /// From [RegisterResponse.ninVerificationStatus] — informational per ADR 0005.
+  final RegisterResponseNinVerificationStatusEnum? ninVerificationStatus;
 
   bool get requiredConsentsGranted =>
       consentDataProcessing && consentHealthData && consentAnpdpTerms;
@@ -45,6 +51,7 @@ class RegistrationDraft {
     bool? consentAnpdpTerms,
     bool? consentMarketing,
     bool? otpSent,
+    RegisterResponseNinVerificationStatusEnum? ninVerificationStatus,
   }) {
     return RegistrationDraft(
       nin: nin ?? this.nin,
@@ -57,6 +64,8 @@ class RegistrationDraft {
       consentAnpdpTerms: consentAnpdpTerms ?? this.consentAnpdpTerms,
       consentMarketing: consentMarketing ?? this.consentMarketing,
       otpSent: otpSent ?? this.otpSent,
+      ninVerificationStatus:
+          ninVerificationStatus ?? this.ninVerificationStatus,
     );
   }
 }

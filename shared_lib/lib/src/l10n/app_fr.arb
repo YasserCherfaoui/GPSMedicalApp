@@ -40,6 +40,7 @@
       }
     }
   },
+  "ninVerificationPendingBanner": "Votre identité est en cours de vérification. Vous pouvez continuer l'inscription — aucune action n'est requise de votre part.",
   "resendCode": "Renvoyer le code",
   "resendIn": "Renvoyer dans 0:{seconds}",
   "@resendIn": {

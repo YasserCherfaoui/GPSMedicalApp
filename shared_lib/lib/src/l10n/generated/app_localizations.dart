@@ -298,6 +298,12 @@ abstract class AppLocalizations {
   /// **'Code à 6 chiffres envoyé au {phone}'**
   String otpSubtitle(String phone);
 
+  /// No description provided for @ninVerificationPendingBanner.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre identité est en cours de vérification. Vous pouvez continuer l\'inscription — aucune action n\'est requise de votre part.'**
+  String get ninVerificationPendingBanner;
+
   /// No description provided for @resendCode.
   ///
   /// In fr, this message translates to:

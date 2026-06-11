@@ -112,6 +112,10 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get ninVerificationPendingBanner =>
+      'هويتك قيد التحقق. يمكنك متابعة التسجيل — لا يلزم أي إجراء منك.';
+
+  @override
   String get resendCode => 'إعادة إرسال الرمز';
 
   @override

@@ -60,8 +60,10 @@ class MessagingRepository {
     if (threadId == null || threadId.isEmpty) return null;
 
     try {
-      final response = await _client.messaging
-          .listMessagingThreadMessages(threadId: threadId, limit: 1);
+      final response = await _client.messaging.listMessagingThreadMessages(
+        threadId: threadId,
+        limit: 1,
+      );
       final messages = response.data;
       if (messages == null || messages.isEmpty) return null;
       return _rawPreviewFromMessage(messages.first);
@@ -86,12 +88,11 @@ class MessagingRepository {
     DateTime? before,
     int limit = 50,
   }) async {
-    final response = await _client.messaging
-        .listMessagingThreadMessages(
-          threadId: threadId,
-          before: before,
-          limit: limit,
-        );
+    final response = await _client.messaging.listMessagingThreadMessages(
+      threadId: threadId,
+      before: before,
+      limit: limit,
+    );
     return response.data?.toList() ?? [];
   }
 
@@ -100,22 +101,20 @@ class MessagingRepository {
     String? body,
     List<String>? attachmentDocumentIds,
   }) async {
-    final response = await _client.messaging
-        .createMessagingThreadMessage(
-          threadId: threadId,
-          messageCreate: MessageCreate((b) {
-            final trimmed = body?.trim();
-            if (trimmed != null && trimmed.isNotEmpty) {
-              b.body = trimmed;
-            }
-            if (attachmentDocumentIds != null &&
-                attachmentDocumentIds.isNotEmpty) {
-              b.attachmentDocumentIds.replace(
-                BuiltList<String>(attachmentDocumentIds),
-              );
-            }
-          }),
-        );
+    final response = await _client.messaging.createMessagingThreadMessage(
+      threadId: threadId,
+      messageCreate: MessageCreate((b) {
+        final trimmed = body?.trim();
+        if (trimmed != null && trimmed.isNotEmpty) {
+          b.body = trimmed;
+        }
+        if (attachmentDocumentIds != null && attachmentDocumentIds.isNotEmpty) {
+          b.attachmentDocumentIds.replace(
+            BuiltList<String>(attachmentDocumentIds),
+          );
+        }
+      }),
+    );
     final message = response.data;
     if (message == null) {
       throw StateError('Empty message response');
@@ -124,9 +123,7 @@ class MessagingRepository {
   }
 
   Future<void> markMessageRead(String messageId) async {
-    await _client.messaging.markMessagingMessageRead(
-      messageId: messageId,
-    );
+    await _client.messaging.markMessagingMessageRead(messageId: messageId);
   }
 
   String? _rawPreviewFromMessage(Message message) {

@@ -33,6 +33,7 @@
   "sendCode": "إرسال الرمز",
   "otpTitle": "أدخل الرمز المستلم",
   "otpSubtitle": "رمز من 6 أرقام أُرسل إلى {phone}",
+  "ninVerificationPendingBanner": "هويتك قيد التحقق. يمكنك متابعة التسجيل — لا يلزم أي إجراء منك.",
   "resendCode": "إعادة إرسال الرمز",
   "resendIn": "إعادة الإرسال خلال 0:{seconds}",
   "verify": "تحقق",

@@ -63,6 +63,9 @@ class AuthStrings {
 
   String otpSubtitle(String phone) => _localizations.otpSubtitle(phone);
 
+  String get ninVerificationPendingBanner =>
+      _localizations.ninVerificationPendingBanner;
+
   String get resendCode => _localizations.resendCode;
 
   String resendIn(int seconds) => _localizations.resendIn(seconds.toString());

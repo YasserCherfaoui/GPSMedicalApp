@@ -1,3 +1,4 @@
+import 'package:gps_medical_api/gps_medical_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'registration_draft.dart' as draft;
@@ -41,6 +42,12 @@ class RegistrationDraft extends _$RegistrationDraft {
 
   void markOtpSent() {
     state = state.copyWith(otpSent: true);
+  }
+
+  void setNinVerificationStatus(
+    RegisterResponseNinVerificationStatusEnum status,
+  ) {
+    state = state.copyWith(ninVerificationStatus: status);
   }
 
   void reset() {

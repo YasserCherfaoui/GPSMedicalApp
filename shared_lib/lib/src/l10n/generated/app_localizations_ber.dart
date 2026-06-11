@@ -113,6 +113,10 @@ class AppLocalizationsBer extends AppLocalizations {
   }
 
   @override
+  String get ninVerificationPendingBanner =>
+      'Asulay-ik yettwaseɣreg. Tzemreḍ ad tkemmeḍ ujerred — ulac ayen i tesriḍ.';
+
+  @override
   String get resendCode => 'Ales azen tangalt';
 
   @override

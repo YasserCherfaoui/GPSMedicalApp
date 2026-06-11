@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gps_medical_api/gps_medical_api.dart';
 
 import '../auth/auth_exception.dart';
 import '../auth/auth_repository.provider.dart';
@@ -554,8 +555,13 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
 
     try {
       final repo = ref.read(authRepositoryProvider);
-      await repo.register(draft: draft, role: appInfo.clientKind);
-      ref.read(registrationDraftProvider.notifier).markOtpSent();
+      final response = await repo.register(
+        draft: draft,
+        role: appInfo.clientKind,
+      );
+      final draftNotifier = ref.read(registrationDraftProvider.notifier);
+      draftNotifier.markOtpSent();
+      draftNotifier.setNinVerificationStatus(response.ninVerificationStatus);
       if (mounted) {
         context.push(GpsRoutes.registerOtp);
       }
@@ -734,6 +740,12 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
   bool _loading = false;
   String? _error;
 
+  bool get _showNinVerificationBanner {
+    final status = ref.watch(registrationDraftProvider).ninVerificationStatus;
+    return status == RegisterResponseNinVerificationStatusEnum.pending ||
+        status == RegisterResponseNinVerificationStatusEnum.failed;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -847,6 +859,12 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: GpsSpacing.xl),
+          if (_showNinVerificationBanner) ...[
+            _NinVerificationBanner(
+              message: strings.ninVerificationPendingBanner,
+            ),
+            const SizedBox(height: GpsSpacing.md),
+          ],
           OtpPinInput(
             enabled: !_loading,
             onChanged: (_) {},
@@ -1467,6 +1485,42 @@ class RegistrationSuccessScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: GpsSpacing.md),
+        ],
+      ),
+    );
+  }
+}
+
+class _NinVerificationBanner extends StatelessWidget {
+  const _NinVerificationBanner({required this.message});
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.all(GpsSpacing.md),
+      decoration: BoxDecoration(
+        color: colorScheme.secondaryContainer.withOpacity(0.35),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: colorScheme.outlineVariant.withOpacity(0.4)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.verified_user_outlined, color: colorScheme.primary),
+          const SizedBox(width: GpsSpacing.sm),
+          Expanded(
+            child: Text(
+              message,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+                height: 1.4,
+              ),
+            ),
+          ),
         ],
       ),
     );
