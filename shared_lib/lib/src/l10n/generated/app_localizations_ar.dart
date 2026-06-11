@@ -1419,6 +1419,65 @@ class AppLocalizationsAr extends AppLocalizations {
       'ملفك قيد التحقق من قبل فريقنا. ستتلقى إشعارًا عند اتخاذ القرار.';
 
   @override
+  String get specialistVerificationSubmitCta => 'إرسال مستنداتي';
+
+  @override
+  String get specialistCredentialsTitle => 'المستندات المهنية';
+
+  @override
+  String get specialistCredentialsSubtitle =>
+      'أدخل رقم نقابة الأطباء وارفع diplômes أو بطاقاتك (PDF، JPEG، PNG — 10 ميغا كحد أقصى).';
+
+  @override
+  String get specialistCredentialsCouncilNumber => 'رقم نقابة الأطباء';
+
+  @override
+  String get specialistCredentialsCouncilRequired => 'رقم نقابة الأطباء مطلوب.';
+
+  @override
+  String get specialistCredentialsType => 'نوع المستند';
+
+  @override
+  String get specialistCredentialsAddFile => 'إضافة ملف';
+
+  @override
+  String get specialistCredentialsNoFiles => 'أضف مستندًا واحدًا على الأقل.';
+
+  @override
+  String get specialistCredentialsSubmit => 'إرسال للتحقق';
+
+  @override
+  String get specialistCredentialsExisting => 'المستندات المرسلة مسبقًا';
+
+  @override
+  String get specialistCredentialsSubmitSuccess =>
+      'تم إرسال المستندات. ملفك قيد المراجعة.';
+
+  @override
+  String get specialistCredentialsUploadFailed => 'فشل الرفع. حاول مرة أخرى.';
+
+  @override
+  String get specialistCredentialTypeDiploma => 'شهادة';
+
+  @override
+  String get specialistCredentialTypeCouncilCard => 'بطاقة النقابة';
+
+  @override
+  String get specialistCredentialTypeSpecialtyCert => 'شهادة تخصص';
+
+  @override
+  String get specialistCredentialTypeOther => 'أخرى';
+
+  @override
+  String get specialistCredentialStatusPending => 'قيد الانتظار';
+
+  @override
+  String get specialistCredentialStatusApproved => 'موافق عليه';
+
+  @override
+  String get specialistCredentialStatusRejected => 'مرفوض';
+
+  @override
   String get specialistTabInbox => 'الطلبات';
 
   @override

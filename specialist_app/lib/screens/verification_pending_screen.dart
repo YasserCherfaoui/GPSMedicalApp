@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
+
+import '../routing/specialist_routes.dart';
 
 class VerificationPendingScreen extends StatelessWidget {
   const VerificationPendingScreen({super.key});
@@ -33,6 +36,12 @@ class VerificationPendingScreen extends StatelessWidget {
               style: theme.textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
+            const Spacer(),
+            PrimaryButton(
+              label: l10n.specialistVerificationSubmitCta,
+              onPressed: () => context.push(SpecialistRoutes.credentials),
+            ),
+            const SizedBox(height: GpsSpacing.md),
           ],
         ),
       ),

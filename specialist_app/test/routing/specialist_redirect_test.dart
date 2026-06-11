@@ -21,6 +21,18 @@ void main() {
       );
     });
 
+    test('allows unverified specialist on credentials submission route', () {
+      expect(
+        resolveSpecialistRedirect(
+          session: authenticated,
+          matchedLocation: SpecialistRoutes.credentials,
+          onboardingCompleted: true,
+          verificationStatus: SpecialistVerificationStatus.pending,
+        ),
+        isNull,
+      );
+    });
+
     test('routes unverified specialist profile to verification pending', () {
       expect(
         resolveSpecialistRedirect(

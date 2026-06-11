@@ -1448,6 +1448,70 @@ class AppLocalizationsFr extends AppLocalizations {
       'Votre dossier est en cours de vérification par notre équipe. Vous recevrez une notification dès qu\'une décision sera prise.';
 
   @override
+  String get specialistVerificationSubmitCta => 'Soumettre mes justificatifs';
+
+  @override
+  String get specialistCredentialsTitle => 'Justificatifs professionnels';
+
+  @override
+  String get specialistCredentialsSubtitle =>
+      'Indiquez votre numéro au Conseil de l\'Ordre et téléversez vos diplômes ou cartes (PDF, JPEG, PNG — 10 Mo max).';
+
+  @override
+  String get specialistCredentialsCouncilNumber => 'N° au Conseil de l\'Ordre';
+
+  @override
+  String get specialistCredentialsCouncilRequired =>
+      'Le numéro au Conseil de l\'Ordre est obligatoire.';
+
+  @override
+  String get specialistCredentialsType => 'Type de justificatif';
+
+  @override
+  String get specialistCredentialsAddFile => 'Ajouter un fichier';
+
+  @override
+  String get specialistCredentialsNoFiles =>
+      'Ajoutez au moins un justificatif.';
+
+  @override
+  String get specialistCredentialsSubmit => 'Soumettre pour vérification';
+
+  @override
+  String get specialistCredentialsExisting => 'Justificatifs déjà envoyés';
+
+  @override
+  String get specialistCredentialsSubmitSuccess =>
+      'Justificatifs envoyés. Votre dossier est en cours d\'examen.';
+
+  @override
+  String get specialistCredentialsUploadFailed =>
+      'Échec du téléversement. Réessayez.';
+
+  @override
+  String get specialistCredentialTypeDiploma => 'Diplôme';
+
+  @override
+  String get specialistCredentialTypeCouncilCard =>
+      'Carte du Conseil de l\'Ordre';
+
+  @override
+  String get specialistCredentialTypeSpecialtyCert =>
+      'Certificat de spécialité';
+
+  @override
+  String get specialistCredentialTypeOther => 'Autre';
+
+  @override
+  String get specialistCredentialStatusPending => 'En attente';
+
+  @override
+  String get specialistCredentialStatusApproved => 'Approuvé';
+
+  @override
+  String get specialistCredentialStatusRejected => 'Refusé';
+
+  @override
   String get specialistTabInbox => 'Demandes';
 
   @override

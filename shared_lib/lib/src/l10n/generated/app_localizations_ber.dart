@@ -1428,6 +1428,67 @@ class AppLocalizationsBer extends AppLocalizations {
       'Aseɣwen-ik yettwaseɣreg sɣur teɣribt-nneɣ. Ad teṭṭfeḍ ilɣa mi ara d-yettwafken umala.';
 
   @override
+  String get specialistVerificationSubmitCta => 'Azen iseklasen-iw';
+
+  @override
+  String get specialistCredentialsTitle => 'Isekla-s udmawanen';
+
+  @override
+  String get specialistCredentialsSubtitle =>
+      'Sekcem uṭṭun n tɣemmas n tdokturan, ssekcem diplômes neɣ tikaratin (PDF, JPEG, PNG — 10 Mo s uɣbelas).';
+
+  @override
+  String get specialistCredentialsCouncilNumber =>
+      'Uṭṭun n tɣemmas n tdokturan';
+
+  @override
+  String get specialistCredentialsCouncilRequired =>
+      'Uṭṭun n tɣemmas n tdokturan yettwasra.';
+
+  @override
+  String get specialistCredentialsType => 'Anaw n usekles';
+
+  @override
+  String get specialistCredentialsAddFile => 'Rnu afaylu';
+
+  @override
+  String get specialistCredentialsNoFiles => 'Rnu yiwet n usekles aṭas.';
+
+  @override
+  String get specialistCredentialsSubmit => 'Azen i usenqed';
+
+  @override
+  String get specialistCredentialsExisting => 'Isekla-s yettwaznen yakan';
+
+  @override
+  String get specialistCredentialsSubmitSuccess =>
+      'Isekla-s ttwaznen. Aseɣwen-ik yettwaseɣreg.';
+
+  @override
+  String get specialistCredentialsUploadFailed => 'Asali yecceḍ. Ɛreḍ ticki.';
+
+  @override
+  String get specialistCredentialTypeDiploma => 'Aselmad';
+
+  @override
+  String get specialistCredentialTypeCouncilCard => 'Takarit n tɣemmas';
+
+  @override
+  String get specialistCredentialTypeSpecialtyCert => 'Aselmad n umeẓlu';
+
+  @override
+  String get specialistCredentialTypeOther => 'Wayeḍ';
+
+  @override
+  String get specialistCredentialStatusPending => 'Yettṛaju';
+
+  @override
+  String get specialistCredentialStatusApproved => 'Yettwaqbel';
+
+  @override
+  String get specialistCredentialStatusRejected => 'Yettwaɣel';
+
+  @override
   String get specialistTabInbox => 'Isuter';
 
   @override

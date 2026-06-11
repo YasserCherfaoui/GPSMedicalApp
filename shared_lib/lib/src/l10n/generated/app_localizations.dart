@@ -2704,6 +2704,120 @@ abstract class AppLocalizations {
   /// **'Votre dossier est en cours de vérification par notre équipe. Vous recevrez une notification dès qu\'une décision sera prise.'**
   String get specialistVerificationPendingBody;
 
+  /// No description provided for @specialistVerificationSubmitCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Soumettre mes justificatifs'**
+  String get specialistVerificationSubmitCta;
+
+  /// No description provided for @specialistCredentialsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Justificatifs professionnels'**
+  String get specialistCredentialsTitle;
+
+  /// No description provided for @specialistCredentialsSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Indiquez votre numéro au Conseil de l\'Ordre et téléversez vos diplômes ou cartes (PDF, JPEG, PNG — 10 Mo max).'**
+  String get specialistCredentialsSubtitle;
+
+  /// No description provided for @specialistCredentialsCouncilNumber.
+  ///
+  /// In fr, this message translates to:
+  /// **'N° au Conseil de l\'Ordre'**
+  String get specialistCredentialsCouncilNumber;
+
+  /// No description provided for @specialistCredentialsCouncilRequired.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le numéro au Conseil de l\'Ordre est obligatoire.'**
+  String get specialistCredentialsCouncilRequired;
+
+  /// No description provided for @specialistCredentialsType.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type de justificatif'**
+  String get specialistCredentialsType;
+
+  /// No description provided for @specialistCredentialsAddFile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un fichier'**
+  String get specialistCredentialsAddFile;
+
+  /// No description provided for @specialistCredentialsNoFiles.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoutez au moins un justificatif.'**
+  String get specialistCredentialsNoFiles;
+
+  /// No description provided for @specialistCredentialsSubmit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Soumettre pour vérification'**
+  String get specialistCredentialsSubmit;
+
+  /// No description provided for @specialistCredentialsExisting.
+  ///
+  /// In fr, this message translates to:
+  /// **'Justificatifs déjà envoyés'**
+  String get specialistCredentialsExisting;
+
+  /// No description provided for @specialistCredentialsSubmitSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Justificatifs envoyés. Votre dossier est en cours d\'examen.'**
+  String get specialistCredentialsSubmitSuccess;
+
+  /// No description provided for @specialistCredentialsUploadFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Échec du téléversement. Réessayez.'**
+  String get specialistCredentialsUploadFailed;
+
+  /// No description provided for @specialistCredentialTypeDiploma.
+  ///
+  /// In fr, this message translates to:
+  /// **'Diplôme'**
+  String get specialistCredentialTypeDiploma;
+
+  /// No description provided for @specialistCredentialTypeCouncilCard.
+  ///
+  /// In fr, this message translates to:
+  /// **'Carte du Conseil de l\'Ordre'**
+  String get specialistCredentialTypeCouncilCard;
+
+  /// No description provided for @specialistCredentialTypeSpecialtyCert.
+  ///
+  /// In fr, this message translates to:
+  /// **'Certificat de spécialité'**
+  String get specialistCredentialTypeSpecialtyCert;
+
+  /// No description provided for @specialistCredentialTypeOther.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autre'**
+  String get specialistCredentialTypeOther;
+
+  /// No description provided for @specialistCredentialStatusPending.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente'**
+  String get specialistCredentialStatusPending;
+
+  /// No description provided for @specialistCredentialStatusApproved.
+  ///
+  /// In fr, this message translates to:
+  /// **'Approuvé'**
+  String get specialistCredentialStatusApproved;
+
+  /// No description provided for @specialistCredentialStatusRejected.
+  ///
+  /// In fr, this message translates to:
+  /// **'Refusé'**
+  String get specialistCredentialStatusRejected;
+
   /// No description provided for @specialistTabInbox.
   ///
   /// In fr, this message translates to:

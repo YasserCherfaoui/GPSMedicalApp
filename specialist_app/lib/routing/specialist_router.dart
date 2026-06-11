@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../features/credentials/screens/credentials_submission_screen.dart';
 import '../screens/specialist_shell_screen.dart';
 import '../screens/verification_pending_screen.dart';
 import 'specialist_redirect.dart';
@@ -94,6 +95,10 @@ GoRouter createSpecialistRouter({
       GoRoute(
         path: SpecialistRoutes.verificationPending,
         builder: (context, state) => const VerificationPendingScreen(),
+      ),
+      GoRoute(
+        path: SpecialistRoutes.credentials,
+        builder: (context, state) => const CredentialsSubmissionScreen(),
       ),
       GoRoute(
         path: SpecialistRoutes.shell,
