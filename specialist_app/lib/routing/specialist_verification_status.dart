@@ -1,2 +1,7 @@
-/// Specialist verification gate (stub until A-10.3 wires `/doctors/me`).
-enum SpecialistVerificationStatus { pending, verified }
+/// Specialist verification gate mapped from `DoctorPrivate.verification_status`.
+enum SpecialistVerificationStatus {
+  pending,
+  moreInfo,
+  rejected,
+  verified,
+}

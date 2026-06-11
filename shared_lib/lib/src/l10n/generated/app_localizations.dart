@@ -2704,11 +2704,41 @@ abstract class AppLocalizations {
   /// **'Votre dossier est en cours de vérification par notre équipe. Vous recevrez une notification dès qu\'une décision sera prise.'**
   String get specialistVerificationPendingBody;
 
+  /// No description provided for @specialistVerificationMoreInfoTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Informations complémentaires requises'**
+  String get specialistVerificationMoreInfoTitle;
+
+  /// No description provided for @specialistVerificationMoreInfoBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notre équipe a besoin de documents ou précisions supplémentaires avant de valider votre dossier.'**
+  String get specialistVerificationMoreInfoBody;
+
+  /// No description provided for @specialistVerificationRejectedTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dossier refusé'**
+  String get specialistVerificationRejectedTitle;
+
+  /// No description provided for @specialistVerificationRejectedBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre dossier n\'a pas pu être validé. Consultez le message ci-dessous et soumettez de nouveaux justificatifs si nécessaire.'**
+  String get specialistVerificationRejectedBody;
+
   /// No description provided for @specialistVerificationSubmitCta.
   ///
   /// In fr, this message translates to:
   /// **'Soumettre mes justificatifs'**
   String get specialistVerificationSubmitCta;
+
+  /// No description provided for @specialistVerificationResubmitCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Resoumettre mes justificatifs'**
+  String get specialistVerificationResubmitCta;
 
   /// No description provided for @specialistCredentialsTitle.
   ///

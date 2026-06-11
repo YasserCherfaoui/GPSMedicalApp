@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
+import 'package:specialist_app/features/verification/specialist_verification.provider.dart';
+import 'package:specialist_app/features/verification/specialist_verification_repository.dart';
+import 'package:specialist_app/features/verification/specialist_verification_state.dart';
 import 'package:specialist_app/main.dart';
 import 'package:specialist_app/routing/specialist_router.provider.dart';
+import 'package:specialist_app/routing/specialist_verification_status.dart';
 import 'package:specialist_app/screens/verification_pending_screen.dart';
 
 const _specialistAppInfo = GpsMedicalAppInfo(
@@ -30,6 +34,9 @@ void main() {
           appInfoProvider.overrideWithValue(_specialistAppInfo),
           tokenStoreProvider.overrideWithValue(InMemoryTokenStore()),
           appLaunchPreferencesProvider.overrideWithValue(launchPrefs),
+          specialistVerificationRepositoryProvider.overrideWith((ref) {
+            return _PendingVerificationRepository();
+          }),
         ],
       );
       addTearDown(container.dispose);
@@ -60,4 +67,21 @@ void main() {
       expect(find.byType(VerificationPendingScreen), findsOneWidget);
     },
   );
+}
+
+class _PendingVerificationRepository extends SpecialistVerificationRepository {
+  _PendingVerificationRepository()
+    : super(
+        GpsMedicalClient(
+          tokenStore: InMemoryTokenStore(),
+          apiRootUrl: 'http://localhost:8080',
+        ),
+      );
+
+  @override
+  Future<SpecialistVerificationState> fetch() async {
+    return const SpecialistVerificationState(
+      status: SpecialistVerificationStatus.pending,
+    );
+  }
 }

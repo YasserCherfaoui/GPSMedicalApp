@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
@@ -9,8 +10,11 @@ import 'specialist_redirect.dart';
 import 'specialist_routes.dart';
 import 'specialist_verification_status.dart';
 
+final specialistRootNavigatorKey = GlobalKey<NavigatorState>();
+
 GoRouter createSpecialistRouter({
   required AuthSessionNotifier authListenable,
+  required Listenable verificationListenable,
   required GpsMedicalAppInfo appInfo,
   required AppLaunchPreferences launchPreferences,
   required SpecialistVerificationStatus verificationStatus,
@@ -18,8 +22,12 @@ GoRouter createSpecialistRouter({
   AuthSession sessionOf() => authListenable.session;
 
   return GoRouter(
+    navigatorKey: specialistRootNavigatorKey,
     initialLocation: GpsRoutes.splash,
-    refreshListenable: authListenable,
+    refreshListenable: Listenable.merge([
+      authListenable,
+      verificationListenable,
+    ]),
     redirect: (context, state) {
       return resolveSpecialistRedirect(
         session: sessionOf(),

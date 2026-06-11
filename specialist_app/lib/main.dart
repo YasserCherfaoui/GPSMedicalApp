@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'features/verification/specialist_verification_lifecycle.dart';
 import 'routing/specialist_router.provider.dart';
 
 const _appInfo = GpsMedicalAppInfo(
@@ -59,9 +60,11 @@ class _SpecialistAppState extends ConsumerState<SpecialistApp> {
   Widget build(BuildContext context) {
     final router = ref.watch(specialistRouterProvider);
 
-    return GpsMedicalMaterialApp(
-      title: _appInfo.displayName,
-      routerConfig: router,
+    return SpecialistVerificationLifecycle(
+      child: GpsMedicalMaterialApp(
+        title: _appInfo.displayName,
+        routerConfig: router,
+      ),
     );
   }
 }

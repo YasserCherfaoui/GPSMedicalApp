@@ -1448,7 +1448,26 @@ class AppLocalizationsFr extends AppLocalizations {
       'Votre dossier est en cours de vérification par notre équipe. Vous recevrez une notification dès qu\'une décision sera prise.';
 
   @override
+  String get specialistVerificationMoreInfoTitle =>
+      'Informations complémentaires requises';
+
+  @override
+  String get specialistVerificationMoreInfoBody =>
+      'Notre équipe a besoin de documents ou précisions supplémentaires avant de valider votre dossier.';
+
+  @override
+  String get specialistVerificationRejectedTitle => 'Dossier refusé';
+
+  @override
+  String get specialistVerificationRejectedBody =>
+      'Votre dossier n\'a pas pu être validé. Consultez le message ci-dessous et soumettez de nouveaux justificatifs si nécessaire.';
+
+  @override
   String get specialistVerificationSubmitCta => 'Soumettre mes justificatifs';
+
+  @override
+  String get specialistVerificationResubmitCta =>
+      'Resoumettre mes justificatifs';
 
   @override
   String get specialistCredentialsTitle => 'Justificatifs professionnels';

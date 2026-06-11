@@ -1,46 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../features/verification/specialist_verification.provider.dart';
 import '../routing/specialist_routes.dart';
+import '../routing/specialist_verification_status.dart';
 
-class VerificationPendingScreen extends StatelessWidget {
+class VerificationPendingScreen extends ConsumerWidget {
   const VerificationPendingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
+    final gate = ref.watch(specialistVerificationGateProvider);
+    final state = gate.state;
+
+    final title = switch (state.status) {
+      SpecialistVerificationStatus.rejected =>
+        l10n.specialistVerificationRejectedTitle,
+      SpecialistVerificationStatus.moreInfo =>
+        l10n.specialistVerificationMoreInfoTitle,
+      _ => l10n.specialistVerificationPendingTitle,
+    };
+
+    final body = switch (state.status) {
+      SpecialistVerificationStatus.rejected =>
+        l10n.specialistVerificationRejectedBody,
+      SpecialistVerificationStatus.moreInfo =>
+        l10n.specialistVerificationMoreInfoBody,
+      _ => l10n.specialistVerificationPendingBody,
+    };
+
+    final icon = switch (state.status) {
+      SpecialistVerificationStatus.rejected => Icons.cancel_outlined,
+      SpecialistVerificationStatus.moreInfo => Icons.info_outline,
+      _ => Icons.hourglass_top_rounded,
+    };
+
+    final showResubmitCta =
+        state.status == SpecialistVerificationStatus.moreInfo ||
+        state.status == SpecialistVerificationStatus.rejected;
+    final showSubmitCta =
+        state.status == SpecialistVerificationStatus.pending &&
+        !state.hasSubmittedCredentials;
+    final showCredentialsCta = showResubmitCta || showSubmitCta;
+    final credentialsCtaLabel = showResubmitCta
+        ? l10n.specialistVerificationResubmitCta
+        : l10n.specialistVerificationSubmitCta;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.specialistVerificationPendingTitle)),
+      appBar: AppBar(title: Text(title)),
       body: Padding(
         padding: const EdgeInsets.all(GpsSpacing.lg),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Icon(
-              Icons.hourglass_top_rounded,
-              size: 72,
-              color: theme.colorScheme.primary,
-            ),
+            if (state.isLoading)
+              const LinearProgressIndicator(minHeight: 2),
+            Icon(icon, size: 72, color: theme.colorScheme.primary),
             const SizedBox(height: GpsSpacing.lg),
             Text(
-              l10n.specialistVerificationPendingTitle,
+              title,
               style: theme.textTheme.headlineSmall,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: GpsSpacing.md),
             Text(
-              l10n.specialistVerificationPendingBody,
+              body,
               style: theme.textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
+            if (state.comment != null) ...[
+              const SizedBox(height: GpsSpacing.lg),
+              Container(
+                padding: const EdgeInsets.all(GpsSpacing.md),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.surfaceContainerLow,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: theme.colorScheme.outlineVariant.withOpacity(0.4),
+                  ),
+                ),
+                child: Text(
+                  state.comment!,
+                  style: theme.textTheme.bodyMedium,
+                  textAlign: TextAlign.start,
+                ),
+              ),
+            ],
             const Spacer(),
-            PrimaryButton(
-              label: l10n.specialistVerificationSubmitCta,
-              onPressed: () => context.push(SpecialistRoutes.credentials),
-            ),
+            if (showCredentialsCta)
+              PrimaryButton(
+                label: credentialsCtaLabel,
+                onPressed: () => context.push(SpecialistRoutes.credentials),
+              ),
             const SizedBox(height: GpsSpacing.md),
           ],
         ),

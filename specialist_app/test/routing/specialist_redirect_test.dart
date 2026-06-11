@@ -57,6 +57,42 @@ void main() {
       );
     });
 
+    test('allows more_info specialist on credentials route', () {
+      expect(
+        resolveSpecialistRedirect(
+          session: authenticated,
+          matchedLocation: SpecialistRoutes.credentials,
+          onboardingCompleted: true,
+          verificationStatus: SpecialistVerificationStatus.moreInfo,
+        ),
+        isNull,
+      );
+    });
+
+    test('routes rejected specialist away from shell to verification pending', () {
+      expect(
+        resolveSpecialistRedirect(
+          session: authenticated,
+          matchedLocation: SpecialistRoutes.shell,
+          onboardingCompleted: true,
+          verificationStatus: SpecialistVerificationStatus.rejected,
+        ),
+        SpecialistRoutes.verificationPending,
+      );
+    });
+
+    test('routes verified specialist away from verification pending to shell', () {
+      expect(
+        resolveSpecialistRedirect(
+          session: authenticated,
+          matchedLocation: SpecialistRoutes.verificationPending,
+          onboardingCompleted: true,
+          verificationStatus: SpecialistVerificationStatus.verified,
+        ),
+        SpecialistRoutes.shell,
+      );
+    });
+
     test('allows verified specialist on shell', () {
       expect(
         resolveSpecialistRedirect(

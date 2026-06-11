@@ -1419,7 +1419,24 @@ class AppLocalizationsAr extends AppLocalizations {
       'ملفك قيد التحقق من قبل فريقنا. ستتلقى إشعارًا عند اتخاذ القرار.';
 
   @override
+  String get specialistVerificationMoreInfoTitle => 'معلومات إضافية مطلوبة';
+
+  @override
+  String get specialistVerificationMoreInfoBody =>
+      'يحتاج فريقنا إلى مستندات أو توضيحات إضافية قبل اعتماد ملفك.';
+
+  @override
+  String get specialistVerificationRejectedTitle => 'تم رفض الملف';
+
+  @override
+  String get specialistVerificationRejectedBody =>
+      'تعذّر اعتماد ملفك. راجع الرسالة أدناه وأعد إرسال المستندات إذا لزم الأمر.';
+
+  @override
   String get specialistVerificationSubmitCta => 'إرسال مستنداتي';
+
+  @override
+  String get specialistVerificationResubmitCta => 'إعادة إرسال مستنداتي';
 
   @override
   String get specialistCredentialsTitle => 'المستندات المهنية';

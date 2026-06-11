@@ -1428,7 +1428,24 @@ class AppLocalizationsBer extends AppLocalizations {
       'Aseɣwen-ik yettwaseɣreg sɣur teɣribt-nneɣ. Ad teṭṭfeḍ ilɣa mi ara d-yettwafken umala.';
 
   @override
+  String get specialistVerificationMoreInfoTitle => 'Isefka-nniḍen yettwasra';
+
+  @override
+  String get specialistVerificationMoreInfoBody =>
+      'Teɣribt-nneɣ tesra iseklasen neɣ isefka-nniḍen uqbel ad tseddu aseɣwen-ik.';
+
+  @override
+  String get specialistVerificationRejectedTitle => 'Aseɣwen yettwagi';
+
+  @override
+  String get specialistVerificationRejectedBody =>
+      'Ur yezmir ara ad yettwaseddu aseɣwen-ik. Wali izen ddaw-nni u azen iseklasen timaynutin ma yella yesra.';
+
+  @override
   String get specialistVerificationSubmitCta => 'Azen iseklasen-iw';
+
+  @override
+  String get specialistVerificationResubmitCta => 'Ales azen iseklasen-iw';
 
   @override
   String get specialistCredentialsTitle => 'Isekla-s udmawanen';
