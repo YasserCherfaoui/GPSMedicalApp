@@ -1470,6 +1470,78 @@ class AppLocalizationsFr extends AppLocalizations {
       'Resoumettre mes justificatifs';
 
   @override
+  String get specialistVerificationCompleteProfileCta => 'Compléter mon profil';
+
+  @override
+  String get specialistProfileEditTitle => 'Modifier mon profil';
+
+  @override
+  String get specialistProfileSaveChanges => 'Enregistrer les modifications';
+
+  @override
+  String get specialistProfileSectionInfo => 'Informations';
+
+  @override
+  String get specialistProfileSectionSpecialties => 'Spécialités';
+
+  @override
+  String get specialistProfileSectionLanguages => 'Langues parlées';
+
+  @override
+  String get specialistProfileSectionConsultation => 'Consultation';
+
+  @override
+  String get specialistProfileSectionPractice => 'Lieu d\'exercice';
+
+  @override
+  String get specialistProfileTitle => 'Titre';
+
+  @override
+  String get specialistProfileBio => 'Biographie';
+
+  @override
+  String get specialistProfilePhotoUrl => 'URL de la photo';
+
+  @override
+  String get specialistProfileSelectSpecialty => 'Spécialité principale';
+
+  @override
+  String get specialistProfileFee => 'Tarif de consultation (DZD)';
+
+  @override
+  String get specialistProfileCnas => 'Conventionné CNAS';
+
+  @override
+  String get specialistProfileCasnos => 'Conventionné CASNOS';
+
+  @override
+  String get specialistProfileTelehealth => 'Téléconsultation disponible';
+
+  @override
+  String get specialistProfileConfirmationPolicy => 'Politique de confirmation';
+
+  @override
+  String get specialistProfilePolicyManual => 'Manuelle';
+
+  @override
+  String get specialistProfilePolicyAuto => 'Automatique';
+
+  @override
+  String get specialistProfileBookingWindow => 'Fenêtre de réservation (jours)';
+
+  @override
+  String get specialistProfileAddressLine1 => 'Adresse';
+
+  @override
+  String get specialistProfileAddressLine2 => 'Complément d\'adresse';
+
+  @override
+  String get specialistProfileVerifiedBadge => 'Compte vérifié';
+
+  @override
+  String get specialistProfileUnverifiedBadge => 'Non vérifié';
+
+  @override
   String get specialistCredentialsTitle => 'Justificatifs professionnels';
 
   @override

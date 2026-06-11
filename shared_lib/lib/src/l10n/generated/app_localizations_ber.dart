@@ -1448,6 +1448,78 @@ class AppLocalizationsBer extends AppLocalizations {
   String get specialistVerificationResubmitCta => 'Ales azen iseklasen-iw';
 
   @override
+  String get specialistVerificationCompleteProfileCta => 'Semmed amaɣnu-iw';
+
+  @override
+  String get specialistProfileEditTitle => 'Senfel amaɣnu-iw';
+
+  @override
+  String get specialistProfileSaveChanges => 'Sekles ibeddilen';
+
+  @override
+  String get specialistProfileSectionInfo => 'Isefka';
+
+  @override
+  String get specialistProfileSectionSpecialties => 'Timaliwin';
+
+  @override
+  String get specialistProfileSectionLanguages => 'Tutlayin yettwahderen';
+
+  @override
+  String get specialistProfileSectionConsultation => 'Aselmen';
+
+  @override
+  String get specialistProfileSectionPractice => 'Adeg n uxeddim';
+
+  @override
+  String get specialistProfileTitle => 'Azwel';
+
+  @override
+  String get specialistProfileBio => 'Tameddurt';
+
+  @override
+  String get specialistProfilePhotoUrl => 'URL n uṭṭṭun';
+
+  @override
+  String get specialistProfileSelectSpecialty => 'Tamlilt tameqqrant';
+
+  @override
+  String get specialistProfileFee => 'Azal n uselmen (DZD)';
+
+  @override
+  String get specialistProfileCnas => 'Ameɣnas CNAS';
+
+  @override
+  String get specialistProfileCasnos => 'Ameɣnas CASNOS';
+
+  @override
+  String get specialistProfileTelehealth => 'Aselmen s usrid yella';
+
+  @override
+  String get specialistProfileConfirmationPolicy => 'Tarrayt n usentem';
+
+  @override
+  String get specialistProfilePolicyManual => 'S ufus';
+
+  @override
+  String get specialistProfilePolicyAuto => 'Awurman';
+
+  @override
+  String get specialistProfileBookingWindow => 'Asfaw n ujerred (ussan)';
+
+  @override
+  String get specialistProfileAddressLine1 => 'Tansa';
+
+  @override
+  String get specialistProfileAddressLine2 => 'Tansa tamernant';
+
+  @override
+  String get specialistProfileVerifiedBadge => 'Amiḍan yettwasenqed';
+
+  @override
+  String get specialistProfileUnverifiedBadge => 'Ur yettwasenqed ara';
+
+  @override
   String get specialistCredentialsTitle => 'Isekla-s udmawanen';
 
   @override

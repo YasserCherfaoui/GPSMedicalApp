@@ -96,6 +96,11 @@ class VerificationPendingScreen extends ConsumerWidget {
                 label: credentialsCtaLabel,
                 onPressed: () => context.push(SpecialistRoutes.credentials),
               ),
+            if (showCredentialsCta) const SizedBox(height: GpsSpacing.sm),
+            SecondaryButton(
+              label: l10n.specialistVerificationCompleteProfileCta,
+              onPressed: () => context.push(SpecialistRoutes.profileEdit),
+            ),
             const SizedBox(height: GpsSpacing.md),
           ],
         ),

@@ -2740,6 +2740,150 @@ abstract class AppLocalizations {
   /// **'Resoumettre mes justificatifs'**
   String get specialistVerificationResubmitCta;
 
+  /// No description provided for @specialistVerificationCompleteProfileCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compléter mon profil'**
+  String get specialistVerificationCompleteProfileCta;
+
+  /// No description provided for @specialistProfileEditTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier mon profil'**
+  String get specialistProfileEditTitle;
+
+  /// No description provided for @specialistProfileSaveChanges.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer les modifications'**
+  String get specialistProfileSaveChanges;
+
+  /// No description provided for @specialistProfileSectionInfo.
+  ///
+  /// In fr, this message translates to:
+  /// **'Informations'**
+  String get specialistProfileSectionInfo;
+
+  /// No description provided for @specialistProfileSectionSpecialties.
+  ///
+  /// In fr, this message translates to:
+  /// **'Spécialités'**
+  String get specialistProfileSectionSpecialties;
+
+  /// No description provided for @specialistProfileSectionLanguages.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langues parlées'**
+  String get specialistProfileSectionLanguages;
+
+  /// No description provided for @specialistProfileSectionConsultation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consultation'**
+  String get specialistProfileSectionConsultation;
+
+  /// No description provided for @specialistProfileSectionPractice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lieu d\'exercice'**
+  String get specialistProfileSectionPractice;
+
+  /// No description provided for @specialistProfileTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre'**
+  String get specialistProfileTitle;
+
+  /// No description provided for @specialistProfileBio.
+  ///
+  /// In fr, this message translates to:
+  /// **'Biographie'**
+  String get specialistProfileBio;
+
+  /// No description provided for @specialistProfilePhotoUrl.
+  ///
+  /// In fr, this message translates to:
+  /// **'URL de la photo'**
+  String get specialistProfilePhotoUrl;
+
+  /// No description provided for @specialistProfileSelectSpecialty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Spécialité principale'**
+  String get specialistProfileSelectSpecialty;
+
+  /// No description provided for @specialistProfileFee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarif de consultation (DZD)'**
+  String get specialistProfileFee;
+
+  /// No description provided for @specialistProfileCnas.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conventionné CNAS'**
+  String get specialistProfileCnas;
+
+  /// No description provided for @specialistProfileCasnos.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conventionné CASNOS'**
+  String get specialistProfileCasnos;
+
+  /// No description provided for @specialistProfileTelehealth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléconsultation disponible'**
+  String get specialistProfileTelehealth;
+
+  /// No description provided for @specialistProfileConfirmationPolicy.
+  ///
+  /// In fr, this message translates to:
+  /// **'Politique de confirmation'**
+  String get specialistProfileConfirmationPolicy;
+
+  /// No description provided for @specialistProfilePolicyManual.
+  ///
+  /// In fr, this message translates to:
+  /// **'Manuelle'**
+  String get specialistProfilePolicyManual;
+
+  /// No description provided for @specialistProfilePolicyAuto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Automatique'**
+  String get specialistProfilePolicyAuto;
+
+  /// No description provided for @specialistProfileBookingWindow.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fenêtre de réservation (jours)'**
+  String get specialistProfileBookingWindow;
+
+  /// No description provided for @specialistProfileAddressLine1.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse'**
+  String get specialistProfileAddressLine1;
+
+  /// No description provided for @specialistProfileAddressLine2.
+  ///
+  /// In fr, this message translates to:
+  /// **'Complément d\'adresse'**
+  String get specialistProfileAddressLine2;
+
+  /// No description provided for @specialistProfileVerifiedBadge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compte vérifié'**
+  String get specialistProfileVerifiedBadge;
+
+  /// No description provided for @specialistProfileUnverifiedBadge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non vérifié'**
+  String get specialistProfileUnverifiedBadge;
+
   /// No description provided for @specialistCredentialsTitle.
   ///
   /// In fr, this message translates to:

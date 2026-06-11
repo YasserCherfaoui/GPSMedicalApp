@@ -1439,6 +1439,78 @@ class AppLocalizationsAr extends AppLocalizations {
   String get specialistVerificationResubmitCta => 'إعادة إرسال مستنداتي';
 
   @override
+  String get specialistVerificationCompleteProfileCta => 'إكمال ملفي';
+
+  @override
+  String get specialistProfileEditTitle => 'تعديل ملفي';
+
+  @override
+  String get specialistProfileSaveChanges => 'حفظ التعديلات';
+
+  @override
+  String get specialistProfileSectionInfo => 'المعلومات';
+
+  @override
+  String get specialistProfileSectionSpecialties => 'التخصصات';
+
+  @override
+  String get specialistProfileSectionLanguages => 'اللغات المتحدثة';
+
+  @override
+  String get specialistProfileSectionConsultation => 'الاستشارة';
+
+  @override
+  String get specialistProfileSectionPractice => 'مكان الممارسة';
+
+  @override
+  String get specialistProfileTitle => 'اللقب';
+
+  @override
+  String get specialistProfileBio => 'السيرة الذاتية';
+
+  @override
+  String get specialistProfilePhotoUrl => 'رابط الصورة';
+
+  @override
+  String get specialistProfileSelectSpecialty => 'التخصص الرئيسي';
+
+  @override
+  String get specialistProfileFee => 'سعر الاستشارة (دج)';
+
+  @override
+  String get specialistProfileCnas => 'متعاقد CNAS';
+
+  @override
+  String get specialistProfileCasnos => 'متعاقد CASNOS';
+
+  @override
+  String get specialistProfileTelehealth => 'استشارة عن بُعد متاحة';
+
+  @override
+  String get specialistProfileConfirmationPolicy => 'سياسة التأكيد';
+
+  @override
+  String get specialistProfilePolicyManual => 'يدوي';
+
+  @override
+  String get specialistProfilePolicyAuto => 'تلقائي';
+
+  @override
+  String get specialistProfileBookingWindow => 'نافذة الحجز (أيام)';
+
+  @override
+  String get specialistProfileAddressLine1 => 'العنوان';
+
+  @override
+  String get specialistProfileAddressLine2 => 'تفاصيل إضافية';
+
+  @override
+  String get specialistProfileVerifiedBadge => 'حساب موثّق';
+
+  @override
+  String get specialistProfileUnverifiedBadge => 'غير موثّق';
+
+  @override
   String get specialistCredentialsTitle => 'المستندات المهنية';
 
   @override

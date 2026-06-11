@@ -3,9 +3,24 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import 'discovery_repositories.provider.dart';
 
-final wilayasFetchProvider = FutureProvider<List<Wilaya>>((ref) {
-  return ref.watch(geoRepositoryProvider).fetchWilayas();
-});
+final wilayasFetchProvider =
+    AsyncNotifierProvider<WilayasFetchNotifier, List<Wilaya>>(
+      WilayasFetchNotifier.new,
+    );
+
+class WilayasFetchNotifier extends AsyncNotifier<List<Wilaya>> {
+  @override
+  Future<List<Wilaya>> build() {
+    return ref.watch(geoRepositoryProvider).fetchWilayas();
+  }
+
+  Future<void> refresh() async {
+    state = const AsyncValue.loading();
+    final repo = ref.read(geoRepositoryProvider);
+    repo.clearWilayasCache();
+    state = await AsyncValue.guard(repo.fetchWilayas);
+  }
+}
 
 final communesFetchProvider =
     AsyncNotifierProvider<CommunesFetchNotifier, Map<String, List<Commune>>>(
@@ -38,6 +53,10 @@ class CommunesFetchNotifier extends AsyncNotifier<Map<String, List<Commune>>> {
       ..[wilayaCode] = list;
     state = AsyncValue.data(updatedMap);
     return list;
+  }
+
+  Future<void> refreshWilaya(String wilayaCode) async {
+    await fetchForWilaya(wilayaCode, forceRefresh: true);
   }
 }
 

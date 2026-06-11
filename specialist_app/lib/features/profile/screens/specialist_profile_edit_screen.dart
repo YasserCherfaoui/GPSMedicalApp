@@ -306,12 +306,15 @@ class _SpecialistProfileEditScreenState
                 errorText: _fieldErrors['full_name'],
               ),
               const SizedBox(height: GpsSpacing.md),
-              GpsTextField(
+              TextField(
                 controller: _bioController,
-                label: l10n.specialistProfileBio,
                 maxLines: 4,
                 maxLength: _bioMaxLength,
-                errorText: _fieldErrors['bio'],
+                decoration: InputDecoration(
+                  labelText: l10n.specialistProfileBio,
+                  errorText: _fieldErrors['bio'],
+                  alignLabelWithHint: true,
+                ),
               ),
               const SizedBox(height: GpsSpacing.md),
               GpsTextField(

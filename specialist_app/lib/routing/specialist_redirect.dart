@@ -20,7 +20,9 @@ String? resolveSpecialistRedirect({
     final onShell = location == SpecialistRoutes.shell;
 
     if (!isVerified) {
-      if (onVerification || location == SpecialistRoutes.credentials) {
+      if (onVerification ||
+          location == SpecialistRoutes.credentials ||
+          location == SpecialistRoutes.profileEdit) {
         return null;
       }
       if (onShell) {
@@ -40,6 +42,7 @@ String? resolveSpecialistRedirect({
 
     if (onVerification ||
         location == SpecialistRoutes.credentials ||
+        location == SpecialistRoutes.profileEdit ||
         GpsRoutes.isAuthEntryPath(location) ||
         location.startsWith('/auth/register') ||
         location == GpsRoutes.registrationSuccess ||

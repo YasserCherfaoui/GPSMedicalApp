@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../features/profile/screens/specialist_profile_hub_screen.dart';
+
 class SpecialistShellScreen extends StatefulWidget {
   const SpecialistShellScreen({super.key});
 
@@ -23,14 +25,17 @@ class _SpecialistShellScreenState extends State<SpecialistShellScreen> {
       l10n.specialistTabStats,
     ];
 
+    final bodies = [
+      Center(child: Text(l10n.specialistShellPlaceholder)),
+      Center(child: Text(l10n.specialistShellPlaceholder)),
+      Center(child: Text(l10n.specialistShellPlaceholder)),
+      const SpecialistProfileHubScreen(),
+      Center(child: Text(l10n.specialistShellPlaceholder)),
+    ];
+
     return Scaffold(
       appBar: AppBar(title: Text(labels[_index])),
-      body: Center(
-        child: Text(
-          l10n.specialistShellPlaceholder,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-      ),
+      body: bodies[_index],
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (value) => setState(() => _index = value),
