@@ -1619,4 +1619,168 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get specialistShellPlaceholder => 'Bientôt disponible';
+
+  @override
+  String get specialistScheduleTitle => 'Mon agenda';
+
+  @override
+  String get specialistScheduleTabTemplates => 'Horaires';
+
+  @override
+  String get specialistScheduleTabExceptions => 'Exceptions';
+
+  @override
+  String get specialistScheduleTabPreview => 'Aperçu';
+
+  @override
+  String get specialistScheduleAddWindow => 'Ajouter une plage';
+
+  @override
+  String get specialistScheduleEditWindow => 'Modifier la plage';
+
+  @override
+  String get specialistScheduleSaveWindow => 'Enregistrer la plage';
+
+  @override
+  String get specialistScheduleSaveSuccess => 'Agenda enregistré.';
+
+  @override
+  String get specialistScheduleStartTime => 'Heure de début';
+
+  @override
+  String get specialistScheduleEndTime => 'Heure de fin';
+
+  @override
+  String get specialistScheduleSlotDuration => 'Durée des créneaux';
+
+  @override
+  String specialistScheduleSlotMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get specialistScheduleMode => 'Mode de consultation';
+
+  @override
+  String get specialistScheduleModeInPerson => 'Présentiel';
+
+  @override
+  String get specialistScheduleModeTelehealth => 'Téléconsultation';
+
+  @override
+  String get specialistScheduleModeBoth => 'Les deux';
+
+  @override
+  String get specialistScheduleActive => 'Plage active';
+
+  @override
+  String get specialistScheduleActiveHint =>
+      'Désactiver supprime la plage lors de l\'enregistrement.';
+
+  @override
+  String get specialistScheduleInactive => 'Inactive';
+
+  @override
+  String get specialistScheduleNoWindowsTitle => 'Aucune plage';
+
+  @override
+  String get specialistScheduleNoWindowsBody =>
+      'Ajoutez vos heures de consultation pour ce jour.';
+
+  @override
+  String get specialistScheduleDeleteWindowTitle => 'Supprimer cette plage ?';
+
+  @override
+  String get specialistScheduleDeleteWindowBody =>
+      'Les créneaux générés à partir de cette plage ne seront plus disponibles.';
+
+  @override
+  String get specialistScheduleAddException => 'Ajouter une exception';
+
+  @override
+  String get specialistScheduleExceptionDates => 'Période';
+
+  @override
+  String get specialistSchedulePickDates => 'Choisir';
+
+  @override
+  String get specialistScheduleExceptionKind => 'Type';
+
+  @override
+  String get specialistScheduleExceptionVacation => 'Congés';
+
+  @override
+  String get specialistScheduleExceptionSick => 'Maladie';
+
+  @override
+  String get specialistScheduleExceptionBlocked => 'Indisponible';
+
+  @override
+  String get specialistScheduleExceptionExtra => 'Exception';
+
+  @override
+  String get specialistScheduleExceptionNote => 'Note (optionnelle)';
+
+  @override
+  String get specialistScheduleExceptionSaved => 'Exception enregistrée.';
+
+  @override
+  String specialistScheduleExceptionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count exceptions',
+      one: '1 exception',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get specialistScheduleNoExceptionsTitle => 'Aucune exception';
+
+  @override
+  String get specialistScheduleNoExceptionsBody =>
+      'Bloquez des jours pour congés, maladie ou indisponibilité.';
+
+  @override
+  String get specialistSchedulePreviewEmptyTitle => 'Aucun créneau';
+
+  @override
+  String get specialistSchedulePreviewEmptyBody =>
+      'Enregistrez vos plages horaires puis revenez ici pour vérifier les créneaux générés.';
+
+  @override
+  String get specialistScheduleLoadError => 'Impossible de charger l\'agenda.';
+
+  @override
+  String get specialistScheduleErrorWeekday => 'Jour de la semaine invalide.';
+
+  @override
+  String get specialistScheduleErrorSlotDuration =>
+      'La durée ou l\'intervalle des créneaux est invalide.';
+
+  @override
+  String get specialistScheduleErrorMode => 'Mode de consultation invalide.';
+
+  @override
+  String get specialistScheduleErrorStartTime => 'Heure de début invalide.';
+
+  @override
+  String get specialistScheduleErrorEndTime => 'Heure de fin invalide.';
+
+  @override
+  String get specialistScheduleErrorStartDate => 'Date de début invalide.';
+
+  @override
+  String get specialistScheduleErrorEndDate => 'Date de fin invalide.';
+
+  @override
+  String get specialistScheduleErrorKind => 'Type d\'exception invalide.';
+
+  @override
+  String get specialistScheduleErrorNote =>
+      'La note ne doit pas dépasser 200 caractères.';
+
+  @override
+  String get specialistProfileManageSchedule => 'Gérer mon agenda';
 }

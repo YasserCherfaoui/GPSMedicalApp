@@ -30,6 +30,31 @@ Reusable across patient and specialist apps:
 
 Import via `package:gps_medical_shared/gps_medical_shared.dart`.
 
+## Specialist widgets (Phase 3 — shared for specialist app)
+
+| Widget / helper | Purpose |
+|-----------------|---------|
+| `ScheduleWeekdayGrid` | Horizontal weekday chips (API `0` = Sunday) with template indicators |
+| `formatApiWeekday` / `formatScheduleWindow` | Localised weekday and time labels for schedule editors |
+| `VerificationStatusBanner` | Verification dossier status (icon, title, body, admin comment) |
+
+```dart
+ScheduleWeekdayGrid(
+  selectedWeekday: 1,
+  weekdaysWithTemplates: {1, 3},
+  onWeekdaySelected: (day) {},
+)
+
+VerificationStatusBanner(
+  title: l10n.specialistVerificationPendingTitle,
+  body: l10n.specialistVerificationPendingBody,
+  icon: Icons.hourglass_top_rounded,
+  comment: adminComment,
+)
+```
+
+Widget tests: `test/widgets/specialist_shared_widgets_test.dart`, `test/schedule/schedule_weekday_test.dart`.
+
 Import from the barrel:
 
 ```dart

@@ -3027,6 +3027,300 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Bientôt disponible'**
   String get specialistShellPlaceholder;
+
+  /// No description provided for @specialistScheduleTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon agenda'**
+  String get specialistScheduleTitle;
+
+  /// No description provided for @specialistScheduleTabTemplates.
+  ///
+  /// In fr, this message translates to:
+  /// **'Horaires'**
+  String get specialistScheduleTabTemplates;
+
+  /// No description provided for @specialistScheduleTabExceptions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Exceptions'**
+  String get specialistScheduleTabExceptions;
+
+  /// No description provided for @specialistScheduleTabPreview.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aperçu'**
+  String get specialistScheduleTabPreview;
+
+  /// No description provided for @specialistScheduleAddWindow.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une plage'**
+  String get specialistScheduleAddWindow;
+
+  /// No description provided for @specialistScheduleEditWindow.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier la plage'**
+  String get specialistScheduleEditWindow;
+
+  /// No description provided for @specialistScheduleSaveWindow.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer la plage'**
+  String get specialistScheduleSaveWindow;
+
+  /// No description provided for @specialistScheduleSaveSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Agenda enregistré.'**
+  String get specialistScheduleSaveSuccess;
+
+  /// No description provided for @specialistScheduleStartTime.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heure de début'**
+  String get specialistScheduleStartTime;
+
+  /// No description provided for @specialistScheduleEndTime.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heure de fin'**
+  String get specialistScheduleEndTime;
+
+  /// No description provided for @specialistScheduleSlotDuration.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée des créneaux'**
+  String get specialistScheduleSlotDuration;
+
+  /// No description provided for @specialistScheduleSlotMinutes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{minutes} min'**
+  String specialistScheduleSlotMinutes(int minutes);
+
+  /// No description provided for @specialistScheduleMode.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mode de consultation'**
+  String get specialistScheduleMode;
+
+  /// No description provided for @specialistScheduleModeInPerson.
+  ///
+  /// In fr, this message translates to:
+  /// **'Présentiel'**
+  String get specialistScheduleModeInPerson;
+
+  /// No description provided for @specialistScheduleModeTelehealth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléconsultation'**
+  String get specialistScheduleModeTelehealth;
+
+  /// No description provided for @specialistScheduleModeBoth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les deux'**
+  String get specialistScheduleModeBoth;
+
+  /// No description provided for @specialistScheduleActive.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plage active'**
+  String get specialistScheduleActive;
+
+  /// No description provided for @specialistScheduleActiveHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Désactiver supprime la plage lors de l\'enregistrement.'**
+  String get specialistScheduleActiveHint;
+
+  /// No description provided for @specialistScheduleInactive.
+  ///
+  /// In fr, this message translates to:
+  /// **'Inactive'**
+  String get specialistScheduleInactive;
+
+  /// No description provided for @specialistScheduleNoWindowsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune plage'**
+  String get specialistScheduleNoWindowsTitle;
+
+  /// No description provided for @specialistScheduleNoWindowsBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoutez vos heures de consultation pour ce jour.'**
+  String get specialistScheduleNoWindowsBody;
+
+  /// No description provided for @specialistScheduleDeleteWindowTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer cette plage ?'**
+  String get specialistScheduleDeleteWindowTitle;
+
+  /// No description provided for @specialistScheduleDeleteWindowBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les créneaux générés à partir de cette plage ne seront plus disponibles.'**
+  String get specialistScheduleDeleteWindowBody;
+
+  /// No description provided for @specialistScheduleAddException.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une exception'**
+  String get specialistScheduleAddException;
+
+  /// No description provided for @specialistScheduleExceptionDates.
+  ///
+  /// In fr, this message translates to:
+  /// **'Période'**
+  String get specialistScheduleExceptionDates;
+
+  /// No description provided for @specialistSchedulePickDates.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir'**
+  String get specialistSchedulePickDates;
+
+  /// No description provided for @specialistScheduleExceptionKind.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type'**
+  String get specialistScheduleExceptionKind;
+
+  /// No description provided for @specialistScheduleExceptionVacation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Congés'**
+  String get specialistScheduleExceptionVacation;
+
+  /// No description provided for @specialistScheduleExceptionSick.
+  ///
+  /// In fr, this message translates to:
+  /// **'Maladie'**
+  String get specialistScheduleExceptionSick;
+
+  /// No description provided for @specialistScheduleExceptionBlocked.
+  ///
+  /// In fr, this message translates to:
+  /// **'Indisponible'**
+  String get specialistScheduleExceptionBlocked;
+
+  /// No description provided for @specialistScheduleExceptionExtra.
+  ///
+  /// In fr, this message translates to:
+  /// **'Exception'**
+  String get specialistScheduleExceptionExtra;
+
+  /// No description provided for @specialistScheduleExceptionNote.
+  ///
+  /// In fr, this message translates to:
+  /// **'Note (optionnelle)'**
+  String get specialistScheduleExceptionNote;
+
+  /// No description provided for @specialistScheduleExceptionSaved.
+  ///
+  /// In fr, this message translates to:
+  /// **'Exception enregistrée.'**
+  String get specialistScheduleExceptionSaved;
+
+  /// No description provided for @specialistScheduleExceptionCount.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{1 exception} other{{count} exceptions}}'**
+  String specialistScheduleExceptionCount(int count);
+
+  /// No description provided for @specialistScheduleNoExceptionsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune exception'**
+  String get specialistScheduleNoExceptionsTitle;
+
+  /// No description provided for @specialistScheduleNoExceptionsBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bloquez des jours pour congés, maladie ou indisponibilité.'**
+  String get specialistScheduleNoExceptionsBody;
+
+  /// No description provided for @specialistSchedulePreviewEmptyTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun créneau'**
+  String get specialistSchedulePreviewEmptyTitle;
+
+  /// No description provided for @specialistSchedulePreviewEmptyBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrez vos plages horaires puis revenez ici pour vérifier les créneaux générés.'**
+  String get specialistSchedulePreviewEmptyBody;
+
+  /// No description provided for @specialistScheduleLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger l\'agenda.'**
+  String get specialistScheduleLoadError;
+
+  /// No description provided for @specialistScheduleErrorWeekday.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jour de la semaine invalide.'**
+  String get specialistScheduleErrorWeekday;
+
+  /// No description provided for @specialistScheduleErrorSlotDuration.
+  ///
+  /// In fr, this message translates to:
+  /// **'La durée ou l\'intervalle des créneaux est invalide.'**
+  String get specialistScheduleErrorSlotDuration;
+
+  /// No description provided for @specialistScheduleErrorMode.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mode de consultation invalide.'**
+  String get specialistScheduleErrorMode;
+
+  /// No description provided for @specialistScheduleErrorStartTime.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heure de début invalide.'**
+  String get specialistScheduleErrorStartTime;
+
+  /// No description provided for @specialistScheduleErrorEndTime.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heure de fin invalide.'**
+  String get specialistScheduleErrorEndTime;
+
+  /// No description provided for @specialistScheduleErrorStartDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date de début invalide.'**
+  String get specialistScheduleErrorStartDate;
+
+  /// No description provided for @specialistScheduleErrorEndDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date de fin invalide.'**
+  String get specialistScheduleErrorEndDate;
+
+  /// No description provided for @specialistScheduleErrorKind.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type d\'exception invalide.'**
+  String get specialistScheduleErrorKind;
+
+  /// No description provided for @specialistScheduleErrorNote.
+  ///
+  /// In fr, this message translates to:
+  /// **'La note ne doit pas dépasser 200 caractères.'**
+  String get specialistScheduleErrorNote;
+
+  /// No description provided for @specialistProfileManageSchedule.
+  ///
+  /// In fr, this message translates to:
+  /// **'Gérer mon agenda'**
+  String get specialistProfileManageSchedule;
 }
 
 class _AppLocalizationsDelegate

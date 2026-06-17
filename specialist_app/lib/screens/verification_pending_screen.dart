@@ -13,7 +13,6 @@ class VerificationPendingScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
     final gate = ref.watch(specialistVerificationGateProvider);
     final state = gate.state;
 
@@ -57,39 +56,13 @@ class VerificationPendingScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (state.isLoading)
-              const LinearProgressIndicator(minHeight: 2),
-            Icon(icon, size: 72, color: theme.colorScheme.primary),
-            const SizedBox(height: GpsSpacing.lg),
-            Text(
-              title,
-              style: theme.textTheme.headlineSmall,
-              textAlign: TextAlign.center,
+            VerificationStatusBanner(
+              title: title,
+              body: body,
+              icon: icon,
+              comment: state.comment,
+              isLoading: state.isLoading,
             ),
-            const SizedBox(height: GpsSpacing.md),
-            Text(
-              body,
-              style: theme.textTheme.bodyLarge,
-              textAlign: TextAlign.center,
-            ),
-            if (state.comment != null) ...[
-              const SizedBox(height: GpsSpacing.lg),
-              Container(
-                padding: const EdgeInsets.all(GpsSpacing.md),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surfaceContainerLow,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: theme.colorScheme.outlineVariant.withOpacity(0.4),
-                  ),
-                ),
-                child: Text(
-                  state.comment!,
-                  style: theme.textTheme.bodyMedium,
-                  textAlign: TextAlign.start,
-                ),
-              ),
-            ],
             const Spacer(),
             if (showCredentialsCta)
               PrimaryButton(

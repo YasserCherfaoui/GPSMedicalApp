@@ -71,6 +71,11 @@ class SpecialistProfileHubScreen extends ConsumerWidget {
               label: l10n.specialistProfileEditTitle,
               onPressed: () => context.push(SpecialistRoutes.profileEdit),
             ),
+            const SizedBox(height: GpsSpacing.md),
+            SecondaryButton(
+              label: l10n.specialistProfileManageSchedule,
+              onPressed: () => context.push(SpecialistRoutes.scheduleEdit),
+            ),
           ],
         );
       },

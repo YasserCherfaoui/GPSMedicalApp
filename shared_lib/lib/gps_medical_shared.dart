@@ -32,6 +32,7 @@ export 'src/routing/gps_redirect.dart';
 export 'src/routing/gps_router.dart';
 export 'src/routing/gps_router.provider.dart';
 export 'src/routing/gps_routes.dart';
+export 'src/schedule/schedule_weekday.dart';
 export 'src/screens/screens.dart';
 export 'src/theme/gps_colors.dart';
 export 'src/theme/gps_elevation.dart';

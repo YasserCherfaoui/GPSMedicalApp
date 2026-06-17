@@ -5,6 +5,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../features/credentials/screens/credentials_submission_screen.dart';
 import '../features/profile/screens/specialist_profile_edit_screen.dart';
+import '../features/schedule/screens/schedule_editor_screen.dart';
 import '../screens/specialist_shell_screen.dart';
 import '../screens/verification_pending_screen.dart';
 import 'specialist_redirect.dart';
@@ -112,6 +113,10 @@ GoRouter createSpecialistRouter({
       GoRoute(
         path: SpecialistRoutes.profileEdit,
         builder: (context, state) => const SpecialistProfileEditScreen(),
+      ),
+      GoRoute(
+        path: SpecialistRoutes.scheduleEdit,
+        builder: (context, state) => const ScheduleEditorScreen(),
       ),
       GoRoute(
         path: SpecialistRoutes.shell,

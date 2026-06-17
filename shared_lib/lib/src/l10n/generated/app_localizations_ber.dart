@@ -1594,4 +1594,174 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get specialistShellPlaceholder => 'Yettwalien';
+
+  @override
+  String get specialistScheduleTitle => 'Awitay-iw';
+
+  @override
+  String get specialistScheduleTabTemplates => 'Isragen';
+
+  @override
+  String get specialistScheduleTabExceptions => 'Tilyaṭin';
+
+  @override
+  String get specialistScheduleTabPreview => 'Taskant';
+
+  @override
+  String get specialistScheduleAddWindow => 'Rnu tarrayt';
+
+  @override
+  String get specialistScheduleEditWindow => 'Senfel tarrayt';
+
+  @override
+  String get specialistScheduleSaveWindow => 'Sekles tarrayt';
+
+  @override
+  String get specialistScheduleSaveSuccess => 'Awitay yettwasekles.';
+
+  @override
+  String get specialistScheduleStartTime => 'Akud n tnekra';
+
+  @override
+  String get specialistScheduleEndTime => 'Akud n taggara';
+
+  @override
+  String get specialistScheduleSlotDuration => 'Tanzagt n umeẓlu';
+
+  @override
+  String specialistScheduleSlotMinutes(int minutes) {
+    return '$minutes n tesdatin';
+  }
+
+  @override
+  String get specialistScheduleMode => 'Aɣanib n uselmen';
+
+  @override
+  String get specialistScheduleModeInPerson => 'S udem';
+
+  @override
+  String get specialistScheduleModeTelehealth => 'S usrid';
+
+  @override
+  String get specialistScheduleModeBoth => 'Sin';
+
+  @override
+  String get specialistScheduleActive => 'Tarrayt turmidt';
+
+  @override
+  String get specialistScheduleActiveHint =>
+      'Asens yekkes tarrayt mi ara tsekles.';
+
+  @override
+  String get specialistScheduleInactive => 'Ur turmid ara';
+
+  @override
+  String get specialistScheduleNoWindowsTitle => 'Ulac tarrayt';
+
+  @override
+  String get specialistScheduleNoWindowsBody =>
+      'Rnu isragen n uselmen i wass-a.';
+
+  @override
+  String get specialistScheduleDeleteWindowTitle => 'Kkes tarrayt-a?';
+
+  @override
+  String get specialistScheduleDeleteWindowBody =>
+      'Imeẓlan yettwagenren seg tarrayt-a ur dɣin ara.';
+
+  @override
+  String get specialistScheduleAddException => 'Rnu tilya';
+
+  @override
+  String get specialistScheduleExceptionDates => 'Akud';
+
+  @override
+  String get specialistSchedulePickDates => 'Fren';
+
+  @override
+  String get specialistScheduleExceptionKind => 'Anaw';
+
+  @override
+  String get specialistScheduleExceptionVacation => 'Asikel';
+
+  @override
+  String get specialistScheduleExceptionSick => 'Aẓẓa';
+
+  @override
+  String get specialistScheduleExceptionBlocked => 'Ur yezmir ara';
+
+  @override
+  String get specialistScheduleExceptionExtra => 'Tilya';
+
+  @override
+  String get specialistScheduleExceptionNote => 'Tazmilt (ma yella)';
+
+  @override
+  String get specialistScheduleExceptionSaved => 'Tilya tettwasekles.';
+
+  @override
+  String specialistScheduleExceptionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count n tilyaṭin',
+      one: '1 n tilya',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get specialistScheduleNoExceptionsTitle => 'Ulac tilyaṭin';
+
+  @override
+  String get specialistScheduleNoExceptionsBody =>
+      'Ssewḥel ussan i usikel, aẓẓa neɣ ur yezmir ara.';
+
+  @override
+  String get specialistSchedulePreviewEmptyTitle => 'Ulac imeẓlan';
+
+  @override
+  String get specialistSchedulePreviewEmptyBody =>
+      'Sekles isragen-ik u ɛreḍ ticki i wali n yimeẓlan yettwagenren.';
+
+  @override
+  String get specialistScheduleLoadError => 'Ur izmir ara ad d-yali awitay.';
+
+  @override
+  String get specialistScheduleErrorWeekday =>
+      'Ass n umalas ur yelli d ameɣtu.';
+
+  @override
+  String get specialistScheduleErrorSlotDuration =>
+      'Tanzagt neɣ tarrayt n umeẓlu ur dɣint ara.';
+
+  @override
+  String get specialistScheduleErrorMode =>
+      'Aɣanib n uselmen ur yelli d ameɣtu.';
+
+  @override
+  String get specialistScheduleErrorStartTime =>
+      'Akud n tnekra ur yelli d ameɣtu.';
+
+  @override
+  String get specialistScheduleErrorEndTime =>
+      'Akud n taggara ur yelli d ameɣtu.';
+
+  @override
+  String get specialistScheduleErrorStartDate =>
+      'Azemz n tnekra ur yelli d ameɣtu.';
+
+  @override
+  String get specialistScheduleErrorEndDate =>
+      'Azemz n taggara ur yelli d ameɣtu.';
+
+  @override
+  String get specialistScheduleErrorKind => 'Anaw n tilya ur yelli d ameɣtu.';
+
+  @override
+  String get specialistScheduleErrorNote =>
+      'Tazmilt ur ilaq ad teɛeddi 200 n isekkilen.';
+
+  @override
+  String get specialistProfileManageSchedule => 'Sefrek awitay-iw';
 }

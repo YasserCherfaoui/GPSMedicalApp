@@ -1583,4 +1583,168 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get specialistShellPlaceholder => 'قريبًا';
+
+  @override
+  String get specialistScheduleTitle => 'أجندتي';
+
+  @override
+  String get specialistScheduleTabTemplates => 'المواعيد';
+
+  @override
+  String get specialistScheduleTabExceptions => 'الاستثناءات';
+
+  @override
+  String get specialistScheduleTabPreview => 'معاينة';
+
+  @override
+  String get specialistScheduleAddWindow => 'إضافة فترة';
+
+  @override
+  String get specialistScheduleEditWindow => 'تعديل الفترة';
+
+  @override
+  String get specialistScheduleSaveWindow => 'حفظ الفترة';
+
+  @override
+  String get specialistScheduleSaveSuccess => 'تم حفظ الأجندة.';
+
+  @override
+  String get specialistScheduleStartTime => 'وقت البداية';
+
+  @override
+  String get specialistScheduleEndTime => 'وقت النهاية';
+
+  @override
+  String get specialistScheduleSlotDuration => 'مدة الموعد';
+
+  @override
+  String specialistScheduleSlotMinutes(int minutes) {
+    return '$minutes د';
+  }
+
+  @override
+  String get specialistScheduleMode => 'نوع الاستشارة';
+
+  @override
+  String get specialistScheduleModeInPerson => 'حضوري';
+
+  @override
+  String get specialistScheduleModeTelehealth => 'عن بُعد';
+
+  @override
+  String get specialistScheduleModeBoth => 'كلاهما';
+
+  @override
+  String get specialistScheduleActive => 'فترة نشطة';
+
+  @override
+  String get specialistScheduleActiveHint =>
+      'إلغاء التفعيل يحذف الفترة عند الحفظ.';
+
+  @override
+  String get specialistScheduleInactive => 'غير نشطة';
+
+  @override
+  String get specialistScheduleNoWindowsTitle => 'لا توجد فترات';
+
+  @override
+  String get specialistScheduleNoWindowsBody =>
+      'أضف ساعات الاستشارة لهذا اليوم.';
+
+  @override
+  String get specialistScheduleDeleteWindowTitle => 'حذف هذه الفترة؟';
+
+  @override
+  String get specialistScheduleDeleteWindowBody =>
+      'لن تكون المواعيد المولّدة من هذه الفترة متاحة بعد الآن.';
+
+  @override
+  String get specialistScheduleAddException => 'إضافة استثناء';
+
+  @override
+  String get specialistScheduleExceptionDates => 'الفترة';
+
+  @override
+  String get specialistSchedulePickDates => 'اختيار';
+
+  @override
+  String get specialistScheduleExceptionKind => 'النوع';
+
+  @override
+  String get specialistScheduleExceptionVacation => 'إجازة';
+
+  @override
+  String get specialistScheduleExceptionSick => 'مرض';
+
+  @override
+  String get specialistScheduleExceptionBlocked => 'غير متاح';
+
+  @override
+  String get specialistScheduleExceptionExtra => 'استثناء';
+
+  @override
+  String get specialistScheduleExceptionNote => 'ملاحظة (اختياري)';
+
+  @override
+  String get specialistScheduleExceptionSaved => 'تم حفظ الاستثناء.';
+
+  @override
+  String specialistScheduleExceptionCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count استثناءات',
+      one: 'استثناء واحد',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get specialistScheduleNoExceptionsTitle => 'لا استثناءات';
+
+  @override
+  String get specialistScheduleNoExceptionsBody =>
+      'احجب أيامًا للإجازة أو المرض أو عدم التوفر.';
+
+  @override
+  String get specialistSchedulePreviewEmptyTitle => 'لا مواعيد';
+
+  @override
+  String get specialistSchedulePreviewEmptyBody =>
+      'سجّل فتراتك ثم عد هنا للتحقق من المواعيد المتاحة.';
+
+  @override
+  String get specialistScheduleLoadError => 'تعذر تحميل الأجندة.';
+
+  @override
+  String get specialistScheduleErrorWeekday => 'يوم الأسبوع غير صالح.';
+
+  @override
+  String get specialistScheduleErrorSlotDuration =>
+      'مدة أو فاصل الموعد غير صالح.';
+
+  @override
+  String get specialistScheduleErrorMode => 'نوع الاستشارة غير صالح.';
+
+  @override
+  String get specialistScheduleErrorStartTime => 'وقت البداية غير صالح.';
+
+  @override
+  String get specialistScheduleErrorEndTime => 'وقت النهاية غير صالح.';
+
+  @override
+  String get specialistScheduleErrorStartDate => 'تاريخ البداية غير صالح.';
+
+  @override
+  String get specialistScheduleErrorEndDate => 'تاريخ النهاية غير صالح.';
+
+  @override
+  String get specialistScheduleErrorKind => 'نوع الاستثناء غير صالح.';
+
+  @override
+  String get specialistScheduleErrorNote =>
+      'يجب ألا تتجاوز الملاحظة 200 حرفًا.';
+
+  @override
+  String get specialistProfileManageSchedule => 'إدارة أجندتي';
 }
