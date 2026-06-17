@@ -105,6 +105,30 @@ void main() {
       );
     });
 
+    test('routes authenticated specialist away from splash', () {
+      expect(
+        resolveSpecialistRedirect(
+          session: authenticated,
+          matchedLocation: GpsRoutes.splash,
+          onboardingCompleted: true,
+          verificationStatus: SpecialistVerificationStatus.pending,
+        ),
+        SpecialistRoutes.verificationPending,
+      );
+    });
+
+    test('routes verified specialist away from splash to shell', () {
+      expect(
+        resolveSpecialistRedirect(
+          session: authenticated,
+          matchedLocation: GpsRoutes.splash,
+          onboardingCompleted: true,
+          verificationStatus: SpecialistVerificationStatus.verified,
+        ),
+        SpecialistRoutes.shell,
+      );
+    });
+
     test('delegates guests to shared pre-auth redirect', () {
       expect(
         resolveSpecialistRedirect(

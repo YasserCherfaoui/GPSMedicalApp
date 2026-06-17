@@ -14,6 +14,17 @@ String? resolveSpecialistRedirect({
   final authed = session.isAuthenticated;
 
   if (authed) {
+    final postAuthHome = verificationStatus ==
+            SpecialistVerificationStatus.verified
+        ? SpecialistRoutes.shell
+        : SpecialistRoutes.verificationPending;
+
+    if (location == GpsRoutes.splash ||
+        location == GpsRoutes.language ||
+        location.startsWith('${GpsRoutes.onboarding}/')) {
+      return postAuthHome;
+    }
+
     final isVerified =
         verificationStatus == SpecialistVerificationStatus.verified;
     final onVerification = location == SpecialistRoutes.verificationPending;

@@ -24,7 +24,7 @@ GoRouter createSpecialistRouter({
   required Listenable verificationListenable,
   required GpsMedicalAppInfo appInfo,
   required AppLaunchPreferences launchPreferences,
-  required SpecialistVerificationStatus verificationStatus,
+  required SpecialistVerificationStatus Function() verificationStatusOf,
 }) {
   AuthSession sessionOf() => authListenable.session;
 
@@ -40,7 +40,7 @@ GoRouter createSpecialistRouter({
         session: sessionOf(),
         matchedLocation: state.matchedLocation,
         onboardingCompleted: launchPreferences.onboardingCompleted,
-        verificationStatus: verificationStatus,
+        verificationStatus: verificationStatusOf(),
       );
     },
     routes: [
