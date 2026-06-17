@@ -1764,4 +1764,135 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get specialistProfileManageSchedule => 'Sefrek awitay-iw';
+
+  @override
+  String get specialistInboxTabRequests => 'Isuter';
+
+  @override
+  String get specialistInboxTabConfirmed => 'Isekked';
+
+  @override
+  String get specialistInboxTabHistory => 'Amazray';
+
+  @override
+  String get specialistInboxEmptyRequests => 'Ulac isuter yettraǧun';
+
+  @override
+  String get specialistInboxEmptyConfirmed => 'Ulac imeẓlan yettwasekded';
+
+  @override
+  String get specialistInboxEmptyHistory => 'Ulac imeẓlan yezrin';
+
+  @override
+  String get specialistAppointmentDetailTitle => 'Talqayt n umeẓlu';
+
+  @override
+  String get specialistAppointmentPatientAnonymous => 'Amḍan (isem yeffren)';
+
+  @override
+  String get specialistAppointmentPatientLabel => 'Amḍan';
+
+  @override
+  String specialistAppointmentPatientRef(String ref) {
+    return 'Amḍan ····$ref';
+  }
+
+  @override
+  String get specialistAppointmentConfirmed => 'Ameẓlu yettwasekded';
+
+  @override
+  String get specialistAppointmentCancelTitle => 'Sefsex ameẓlu';
+
+  @override
+  String get specialistAppointmentStartTelehealth => 'Bdu aselmen s usrid';
+
+  @override
+  String get specialistTelehealthComingSoon =>
+      'Aselmen s usrid ad yili yezwar.';
+
+  @override
+  String get specialistAppointmentViewRecords => 'Wali afaylu aṭbibi';
+
+  @override
+  String get specialistAppointmentIssuePrescription => 'Aru tawsit';
+
+  @override
+  String get specialistAppointmentConfirm => 'Sekded ameẓlu';
+
+  @override
+  String get specialistAppointmentMarkNoShow => 'Creḍ d ur yeddi ara';
+
+  @override
+  String get specialistCalendarMonthView => 'Ayyur';
+
+  @override
+  String get specialistCalendarWeekView => 'Imalas';
+
+  @override
+  String get specialistCalendarDayAppointments => 'Imeẓlan n wass';
+
+  @override
+  String get specialistCalendarEmptyDay => 'Ulac imeẓlan deg wass-a';
+
+  @override
+  String get specialistCalendarLoadError => 'Ur izmir ara ad d-yali awitay.';
+
+  @override
+  String get specialistPatientRecordsTitle => 'Afaylu n umdan';
+
+  @override
+  String get specialistPatientRecordsEmpty => 'Ulac isemliyen yettwabḍan';
+
+  @override
+  String get specialistPatientRecordsForbidden =>
+      'Ulac isemliyen yettwabḍan akked umdan-a';
+
+  @override
+  String get specialistPatientRecordsLoadError =>
+      'Ur izmir ara ad d-yali afaylu.';
+
+  @override
+  String get specialistPrescriptionTitle => 'Tawsit';
+
+  @override
+  String get specialistPrescriptionDiagnosis => 'Tagnit';
+
+  @override
+  String get specialistPrescriptionValidUntil => 'Teddi armi';
+
+  @override
+  String get specialistPrescriptionDrugsSection => 'Isseksawen';
+
+  @override
+  String specialistPrescriptionDrugNumber(int number) {
+    return 'Asekkes $number';
+  }
+
+  @override
+  String get specialistPrescriptionAddDrug => 'Rnu asekkes';
+
+  @override
+  String get specialistPrescriptionDrugName => 'Isem n usekkes';
+
+  @override
+  String get specialistPrescriptionDosage => 'Azal';
+
+  @override
+  String get specialistPrescriptionFrequency => 'Asnagar';
+
+  @override
+  String get specialistPrescriptionDurationDays => 'Tanzagt (ussan)';
+
+  @override
+  String get specialistPrescriptionInstructions => 'Timahilin';
+
+  @override
+  String get specialistPrescriptionSubmit => 'Suffeg tawsit';
+
+  @override
+  String get specialistPrescriptionSuccess => 'Tawsit tettwafeg akken iwata';
+
+  @override
+  String get specialistPrescriptionAtLeastOneDrug =>
+      'Rnu ma drus yiwen n usekkes';
 }

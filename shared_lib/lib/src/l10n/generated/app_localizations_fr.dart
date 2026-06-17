@@ -1783,4 +1783,137 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get specialistProfileManageSchedule => 'Gérer mon agenda';
+
+  @override
+  String get specialistInboxTabRequests => 'Demandes';
+
+  @override
+  String get specialistInboxTabConfirmed => 'Confirmés';
+
+  @override
+  String get specialistInboxTabHistory => 'Historique';
+
+  @override
+  String get specialistInboxEmptyRequests => 'Aucune demande en attente';
+
+  @override
+  String get specialistInboxEmptyConfirmed => 'Aucun rendez-vous confirmé';
+
+  @override
+  String get specialistInboxEmptyHistory => 'Aucun rendez-vous passé';
+
+  @override
+  String get specialistAppointmentDetailTitle => 'Détail du rendez-vous';
+
+  @override
+  String get specialistAppointmentPatientAnonymous =>
+      'Patient (identité masquée)';
+
+  @override
+  String get specialistAppointmentPatientLabel => 'Patient';
+
+  @override
+  String specialistAppointmentPatientRef(String ref) {
+    return 'Patient ····$ref';
+  }
+
+  @override
+  String get specialistAppointmentConfirmed => 'Rendez-vous confirmé';
+
+  @override
+  String get specialistAppointmentCancelTitle => 'Annuler le rendez-vous';
+
+  @override
+  String get specialistAppointmentStartTelehealth =>
+      'Démarrer la téléconsultation';
+
+  @override
+  String get specialistTelehealthComingSoon =>
+      'La téléconsultation sera disponible prochainement.';
+
+  @override
+  String get specialistAppointmentViewRecords => 'Voir le dossier médical';
+
+  @override
+  String get specialistAppointmentIssuePrescription => 'Rédiger une ordonnance';
+
+  @override
+  String get specialistAppointmentConfirm => 'Confirmer le rendez-vous';
+
+  @override
+  String get specialistAppointmentMarkNoShow => 'Marquer absent';
+
+  @override
+  String get specialistCalendarMonthView => 'Mois';
+
+  @override
+  String get specialistCalendarWeekView => 'Semaine';
+
+  @override
+  String get specialistCalendarDayAppointments => 'Rendez-vous du jour';
+
+  @override
+  String get specialistCalendarEmptyDay => 'Aucun rendez-vous ce jour';
+
+  @override
+  String get specialistCalendarLoadError => 'Impossible de charger l\'agenda.';
+
+  @override
+  String get specialistPatientRecordsTitle => 'Dossier du patient';
+
+  @override
+  String get specialistPatientRecordsEmpty => 'Aucun document partagé';
+
+  @override
+  String get specialistPatientRecordsForbidden =>
+      'Aucun document partagé avec vous pour ce patient';
+
+  @override
+  String get specialistPatientRecordsLoadError =>
+      'Impossible de charger le dossier.';
+
+  @override
+  String get specialistPrescriptionTitle => 'Ordonnance';
+
+  @override
+  String get specialistPrescriptionDiagnosis => 'Diagnostic';
+
+  @override
+  String get specialistPrescriptionValidUntil => 'Valable jusqu\'au';
+
+  @override
+  String get specialistPrescriptionDrugsSection => 'Médicaments';
+
+  @override
+  String specialistPrescriptionDrugNumber(int number) {
+    return 'Médicament $number';
+  }
+
+  @override
+  String get specialistPrescriptionAddDrug => 'Ajouter un médicament';
+
+  @override
+  String get specialistPrescriptionDrugName => 'Nom du médicament';
+
+  @override
+  String get specialistPrescriptionDosage => 'Posologie';
+
+  @override
+  String get specialistPrescriptionFrequency => 'Fréquence';
+
+  @override
+  String get specialistPrescriptionDurationDays => 'Durée (jours)';
+
+  @override
+  String get specialistPrescriptionInstructions => 'Instructions';
+
+  @override
+  String get specialistPrescriptionSubmit => 'Émettre l\'ordonnance';
+
+  @override
+  String get specialistPrescriptionSuccess => 'Ordonnance émise avec succès';
+
+  @override
+  String get specialistPrescriptionAtLeastOneDrug =>
+      'Ajoutez au moins un médicament';
 }

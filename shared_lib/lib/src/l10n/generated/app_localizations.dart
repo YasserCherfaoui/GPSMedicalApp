@@ -3321,6 +3321,252 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Gérer mon agenda'**
   String get specialistProfileManageSchedule;
+
+  /// No description provided for @specialistInboxTabRequests.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demandes'**
+  String get specialistInboxTabRequests;
+
+  /// No description provided for @specialistInboxTabConfirmed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmés'**
+  String get specialistInboxTabConfirmed;
+
+  /// No description provided for @specialistInboxTabHistory.
+  ///
+  /// In fr, this message translates to:
+  /// **'Historique'**
+  String get specialistInboxTabHistory;
+
+  /// No description provided for @specialistInboxEmptyRequests.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune demande en attente'**
+  String get specialistInboxEmptyRequests;
+
+  /// No description provided for @specialistInboxEmptyConfirmed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun rendez-vous confirmé'**
+  String get specialistInboxEmptyConfirmed;
+
+  /// No description provided for @specialistInboxEmptyHistory.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun rendez-vous passé'**
+  String get specialistInboxEmptyHistory;
+
+  /// No description provided for @specialistAppointmentDetailTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Détail du rendez-vous'**
+  String get specialistAppointmentDetailTitle;
+
+  /// No description provided for @specialistAppointmentPatientAnonymous.
+  ///
+  /// In fr, this message translates to:
+  /// **'Patient (identité masquée)'**
+  String get specialistAppointmentPatientAnonymous;
+
+  /// No description provided for @specialistAppointmentPatientLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Patient'**
+  String get specialistAppointmentPatientLabel;
+
+  /// No description provided for @specialistAppointmentPatientRef.
+  ///
+  /// In fr, this message translates to:
+  /// **'Patient ····{ref}'**
+  String specialistAppointmentPatientRef(String ref);
+
+  /// No description provided for @specialistAppointmentConfirmed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendez-vous confirmé'**
+  String get specialistAppointmentConfirmed;
+
+  /// No description provided for @specialistAppointmentCancelTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler le rendez-vous'**
+  String get specialistAppointmentCancelTitle;
+
+  /// No description provided for @specialistAppointmentStartTelehealth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Démarrer la téléconsultation'**
+  String get specialistAppointmentStartTelehealth;
+
+  /// No description provided for @specialistTelehealthComingSoon.
+  ///
+  /// In fr, this message translates to:
+  /// **'La téléconsultation sera disponible prochainement.'**
+  String get specialistTelehealthComingSoon;
+
+  /// No description provided for @specialistAppointmentViewRecords.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir le dossier médical'**
+  String get specialistAppointmentViewRecords;
+
+  /// No description provided for @specialistAppointmentIssuePrescription.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rédiger une ordonnance'**
+  String get specialistAppointmentIssuePrescription;
+
+  /// No description provided for @specialistAppointmentConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer le rendez-vous'**
+  String get specialistAppointmentConfirm;
+
+  /// No description provided for @specialistAppointmentMarkNoShow.
+  ///
+  /// In fr, this message translates to:
+  /// **'Marquer absent'**
+  String get specialistAppointmentMarkNoShow;
+
+  /// No description provided for @specialistCalendarMonthView.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mois'**
+  String get specialistCalendarMonthView;
+
+  /// No description provided for @specialistCalendarWeekView.
+  ///
+  /// In fr, this message translates to:
+  /// **'Semaine'**
+  String get specialistCalendarWeekView;
+
+  /// No description provided for @specialistCalendarDayAppointments.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendez-vous du jour'**
+  String get specialistCalendarDayAppointments;
+
+  /// No description provided for @specialistCalendarEmptyDay.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun rendez-vous ce jour'**
+  String get specialistCalendarEmptyDay;
+
+  /// No description provided for @specialistCalendarLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger l\'agenda.'**
+  String get specialistCalendarLoadError;
+
+  /// No description provided for @specialistPatientRecordsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dossier du patient'**
+  String get specialistPatientRecordsTitle;
+
+  /// No description provided for @specialistPatientRecordsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun document partagé'**
+  String get specialistPatientRecordsEmpty;
+
+  /// No description provided for @specialistPatientRecordsForbidden.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun document partagé avec vous pour ce patient'**
+  String get specialistPatientRecordsForbidden;
+
+  /// No description provided for @specialistPatientRecordsLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger le dossier.'**
+  String get specialistPatientRecordsLoadError;
+
+  /// No description provided for @specialistPrescriptionTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ordonnance'**
+  String get specialistPrescriptionTitle;
+
+  /// No description provided for @specialistPrescriptionDiagnosis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Diagnostic'**
+  String get specialistPrescriptionDiagnosis;
+
+  /// No description provided for @specialistPrescriptionValidUntil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Valable jusqu\'au'**
+  String get specialistPrescriptionValidUntil;
+
+  /// No description provided for @specialistPrescriptionDrugsSection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médicaments'**
+  String get specialistPrescriptionDrugsSection;
+
+  /// No description provided for @specialistPrescriptionDrugNumber.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médicament {number}'**
+  String specialistPrescriptionDrugNumber(int number);
+
+  /// No description provided for @specialistPrescriptionAddDrug.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un médicament'**
+  String get specialistPrescriptionAddDrug;
+
+  /// No description provided for @specialistPrescriptionDrugName.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom du médicament'**
+  String get specialistPrescriptionDrugName;
+
+  /// No description provided for @specialistPrescriptionDosage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Posologie'**
+  String get specialistPrescriptionDosage;
+
+  /// No description provided for @specialistPrescriptionFrequency.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fréquence'**
+  String get specialistPrescriptionFrequency;
+
+  /// No description provided for @specialistPrescriptionDurationDays.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée (jours)'**
+  String get specialistPrescriptionDurationDays;
+
+  /// No description provided for @specialistPrescriptionInstructions.
+  ///
+  /// In fr, this message translates to:
+  /// **'Instructions'**
+  String get specialistPrescriptionInstructions;
+
+  /// No description provided for @specialistPrescriptionSubmit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Émettre l\'ordonnance'**
+  String get specialistPrescriptionSubmit;
+
+  /// No description provided for @specialistPrescriptionSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ordonnance émise avec succès'**
+  String get specialistPrescriptionSuccess;
+
+  /// No description provided for @specialistPrescriptionAtLeastOneDrug.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoutez au moins un médicament'**
+  String get specialistPrescriptionAtLeastOneDrug;
 }
 
 class _AppLocalizationsDelegate

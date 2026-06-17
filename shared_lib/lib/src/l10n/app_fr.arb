@@ -720,5 +720,56 @@
   "specialistScheduleErrorEndDate": "Date de fin invalide.",
   "specialistScheduleErrorKind": "Type d'exception invalide.",
   "specialistScheduleErrorNote": "La note ne doit pas dépasser 200 caractères.",
-  "specialistProfileManageSchedule": "Gérer mon agenda"
+  "specialistProfileManageSchedule": "Gérer mon agenda",
+  "specialistInboxTabRequests": "Demandes",
+  "specialistInboxTabConfirmed": "Confirmés",
+  "specialistInboxTabHistory": "Historique",
+  "specialistInboxEmptyRequests": "Aucune demande en attente",
+  "specialistInboxEmptyConfirmed": "Aucun rendez-vous confirmé",
+  "specialistInboxEmptyHistory": "Aucun rendez-vous passé",
+  "specialistAppointmentDetailTitle": "Détail du rendez-vous",
+  "specialistAppointmentPatientAnonymous": "Patient (identité masquée)",
+  "specialistAppointmentPatientLabel": "Patient",
+  "specialistAppointmentPatientRef": "Patient ····{ref}",
+  "@specialistAppointmentPatientRef": {
+    "placeholders": {
+      "ref": { "type": "String" }
+    }
+  },
+  "specialistAppointmentConfirmed": "Rendez-vous confirmé",
+  "specialistAppointmentCancelTitle": "Annuler le rendez-vous",
+  "specialistAppointmentStartTelehealth": "Démarrer la téléconsultation",
+  "specialistTelehealthComingSoon": "La téléconsultation sera disponible prochainement.",
+  "specialistAppointmentViewRecords": "Voir le dossier médical",
+  "specialistAppointmentIssuePrescription": "Rédiger une ordonnance",
+  "specialistAppointmentConfirm": "Confirmer le rendez-vous",
+  "specialistAppointmentMarkNoShow": "Marquer absent",
+  "specialistCalendarMonthView": "Mois",
+  "specialistCalendarWeekView": "Semaine",
+  "specialistCalendarDayAppointments": "Rendez-vous du jour",
+  "specialistCalendarEmptyDay": "Aucun rendez-vous ce jour",
+  "specialistCalendarLoadError": "Impossible de charger l'agenda.",
+  "specialistPatientRecordsTitle": "Dossier du patient",
+  "specialistPatientRecordsEmpty": "Aucun document partagé",
+  "specialistPatientRecordsForbidden": "Aucun document partagé avec vous pour ce patient",
+  "specialistPatientRecordsLoadError": "Impossible de charger le dossier.",
+  "specialistPrescriptionTitle": "Ordonnance",
+  "specialistPrescriptionDiagnosis": "Diagnostic",
+  "specialistPrescriptionValidUntil": "Valable jusqu'au",
+  "specialistPrescriptionDrugsSection": "Médicaments",
+  "specialistPrescriptionDrugNumber": "Médicament {number}",
+  "@specialistPrescriptionDrugNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "specialistPrescriptionAddDrug": "Ajouter un médicament",
+  "specialistPrescriptionDrugName": "Nom du médicament",
+  "specialistPrescriptionDosage": "Posologie",
+  "specialistPrescriptionFrequency": "Fréquence",
+  "specialistPrescriptionDurationDays": "Durée (jours)",
+  "specialistPrescriptionInstructions": "Instructions",
+  "specialistPrescriptionSubmit": "Émettre l'ordonnance",
+  "specialistPrescriptionSuccess": "Ordonnance émise avec succès",
+  "specialistPrescriptionAtLeastOneDrug": "Ajoutez au moins un médicament"
 }

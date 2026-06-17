@@ -1747,4 +1747,134 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get specialistProfileManageSchedule => 'إدارة أجندتي';
+
+  @override
+  String get specialistInboxTabRequests => 'الطلبات';
+
+  @override
+  String get specialistInboxTabConfirmed => 'المؤكدة';
+
+  @override
+  String get specialistInboxTabHistory => 'السجل';
+
+  @override
+  String get specialistInboxEmptyRequests => 'لا توجد طلبات قيد الانتظار';
+
+  @override
+  String get specialistInboxEmptyConfirmed => 'لا توجد مواعيد مؤكدة';
+
+  @override
+  String get specialistInboxEmptyHistory => 'لا توجد مواعيد سابقة';
+
+  @override
+  String get specialistAppointmentDetailTitle => 'تفاصيل الموعد';
+
+  @override
+  String get specialistAppointmentPatientAnonymous => 'مريض (هوية مخفية)';
+
+  @override
+  String get specialistAppointmentPatientLabel => 'مريض';
+
+  @override
+  String specialistAppointmentPatientRef(String ref) {
+    return 'مريض ····$ref';
+  }
+
+  @override
+  String get specialistAppointmentConfirmed => 'تم تأكيد الموعد';
+
+  @override
+  String get specialistAppointmentCancelTitle => 'إلغاء الموعد';
+
+  @override
+  String get specialistAppointmentStartTelehealth => 'بدء الاستشارة عن بُعد';
+
+  @override
+  String get specialistTelehealthComingSoon =>
+      'ستتوفر الاستشارة عن بُعد قريبًا.';
+
+  @override
+  String get specialistAppointmentViewRecords => 'عرض الملف الطبي';
+
+  @override
+  String get specialistAppointmentIssuePrescription => 'كتابة وصفة طبية';
+
+  @override
+  String get specialistAppointmentConfirm => 'تأكيد الموعد';
+
+  @override
+  String get specialistAppointmentMarkNoShow => 'تسجيل غياب';
+
+  @override
+  String get specialistCalendarMonthView => 'شهر';
+
+  @override
+  String get specialistCalendarWeekView => 'أسبوع';
+
+  @override
+  String get specialistCalendarDayAppointments => 'مواعيد اليوم';
+
+  @override
+  String get specialistCalendarEmptyDay => 'لا مواعيد في هذا اليوم';
+
+  @override
+  String get specialistCalendarLoadError => 'تعذر تحميل الأجندة.';
+
+  @override
+  String get specialistPatientRecordsTitle => 'ملف المريض';
+
+  @override
+  String get specialistPatientRecordsEmpty => 'لا توجد مستندات مشتركة';
+
+  @override
+  String get specialistPatientRecordsForbidden =>
+      'لا توجد مستندات مشتركة معك لهذا المريض';
+
+  @override
+  String get specialistPatientRecordsLoadError => 'تعذر تحميل الملف.';
+
+  @override
+  String get specialistPrescriptionTitle => 'وصفة طبية';
+
+  @override
+  String get specialistPrescriptionDiagnosis => 'التشخيص';
+
+  @override
+  String get specialistPrescriptionValidUntil => 'صالحة حتى';
+
+  @override
+  String get specialistPrescriptionDrugsSection => 'الأدوية';
+
+  @override
+  String specialistPrescriptionDrugNumber(int number) {
+    return 'دواء $number';
+  }
+
+  @override
+  String get specialistPrescriptionAddDrug => 'إضافة دواء';
+
+  @override
+  String get specialistPrescriptionDrugName => 'اسم الدواء';
+
+  @override
+  String get specialistPrescriptionDosage => 'الجرعة';
+
+  @override
+  String get specialistPrescriptionFrequency => 'التكرار';
+
+  @override
+  String get specialistPrescriptionDurationDays => 'المدة (أيام)';
+
+  @override
+  String get specialistPrescriptionInstructions => 'التعليمات';
+
+  @override
+  String get specialistPrescriptionSubmit => 'إصدار الوصفة';
+
+  @override
+  String get specialistPrescriptionSuccess => 'تم إصدار الوصفة بنجاح';
+
+  @override
+  String get specialistPrescriptionAtLeastOneDrug =>
+      'أضف دواءً واحدًا على الأقل';
 }

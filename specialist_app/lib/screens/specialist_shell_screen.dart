@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../features/appointments/providers/appointments.provider.dart';
+import '../features/appointments/screens/appointments_calendar_screen.dart';
+import '../features/appointments/screens/appointments_inbox_screen.dart';
 import '../features/profile/screens/specialist_profile_hub_screen.dart';
 
-class SpecialistShellScreen extends StatefulWidget {
+class SpecialistShellScreen extends ConsumerStatefulWidget {
   const SpecialistShellScreen({super.key});
 
   @override
-  State<SpecialistShellScreen> createState() => _SpecialistShellScreenState();
+  ConsumerState<SpecialistShellScreen> createState() =>
+      _SpecialistShellScreenState();
 }
 
-class _SpecialistShellScreenState extends State<SpecialistShellScreen> {
+class _SpecialistShellScreenState extends ConsumerState<SpecialistShellScreen> {
   int _index = 0;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final pendingCountAsync = ref.watch(specialistPendingCountProvider);
 
     final labels = [
       l10n.specialistTabInbox,
@@ -26,12 +32,14 @@ class _SpecialistShellScreenState extends State<SpecialistShellScreen> {
     ];
 
     final bodies = [
-      Center(child: Text(l10n.specialistShellPlaceholder)),
-      Center(child: Text(l10n.specialistShellPlaceholder)),
+      const AppointmentsInboxScreen(),
+      const AppointmentsCalendarScreen(),
       Center(child: Text(l10n.specialistShellPlaceholder)),
       const SpecialistProfileHubScreen(),
       Center(child: Text(l10n.specialistShellPlaceholder)),
     ];
+
+    final pendingCount = pendingCountAsync.valueOrNull ?? 0;
 
     return Scaffold(
       appBar: AppBar(title: Text(labels[_index])),
@@ -41,7 +49,16 @@ class _SpecialistShellScreenState extends State<SpecialistShellScreen> {
         onDestinationSelected: (value) => setState(() => _index = value),
         destinations: [
           NavigationDestination(
-            icon: const Icon(Icons.inbox_outlined),
+            icon: Badge(
+              isLabelVisible: pendingCount > 0,
+              label: Text(pendingCount > 99 ? '99+' : '$pendingCount'),
+              child: const Icon(Icons.inbox_outlined),
+            ),
+            selectedIcon: Badge(
+              isLabelVisible: pendingCount > 0,
+              label: Text(pendingCount > 99 ? '99+' : '$pendingCount'),
+              child: const Icon(Icons.inbox),
+            ),
             label: l10n.specialistTabInbox,
           ),
           NavigationDestination(

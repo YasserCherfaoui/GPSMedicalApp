@@ -4,6 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../features/credentials/screens/credentials_submission_screen.dart';
+import '../features/appointments/screens/appointment_detail_screen.dart';
+import '../features/appointments/screens/specialist_reschedule_screen.dart';
+import '../features/patient_records/screens/specialist_medical_record_viewer_screen.dart';
+import '../features/patient_records/screens/specialist_patient_records_screen.dart';
+import '../features/prescriptions/screens/specialist_prescription_compose_screen.dart';
 import '../features/profile/screens/specialist_profile_edit_screen.dart';
 import '../features/schedule/screens/schedule_editor_screen.dart';
 import '../screens/specialist_shell_screen.dart';
@@ -117,6 +122,37 @@ GoRouter createSpecialistRouter({
       GoRoute(
         path: SpecialistRoutes.scheduleEdit,
         builder: (context, state) => const ScheduleEditorScreen(),
+      ),
+      GoRoute(
+        path: '/specialist/appointments/:id',
+        builder: (context, state) => SpecialistAppointmentDetailScreen(
+          appointmentId: state.pathParameters['id']!,
+        ),
+      ),
+      GoRoute(
+        path: '/specialist/appointments/:id/reschedule',
+        builder: (context, state) => SpecialistRescheduleScreen(
+          appointmentId: state.pathParameters['id']!,
+        ),
+      ),
+      GoRoute(
+        path: '/specialist/appointments/:appointmentId/records',
+        builder: (context, state) => SpecialistPatientRecordsScreen(
+          appointmentId: state.pathParameters['appointmentId']!,
+        ),
+      ),
+      GoRoute(
+        path: '/specialist/appointments/:appointmentId/prescription',
+        builder: (context, state) => SpecialistPrescriptionComposeScreen(
+          appointmentId: state.pathParameters['appointmentId']!,
+        ),
+      ),
+      GoRoute(
+        path: '/specialist/medical-records/:documentId',
+        builder: (context, state) => SpecialistMedicalRecordViewerScreen(
+          documentId: state.pathParameters['documentId']!,
+          title: state.uri.queryParameters['title'],
+        ),
       ),
       GoRoute(
         path: SpecialistRoutes.shell,
