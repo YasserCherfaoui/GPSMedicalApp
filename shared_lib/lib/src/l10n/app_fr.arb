@@ -615,6 +615,18 @@
   "specialistVerificationSubmitCta": "Soumettre mes justificatifs",
   "specialistVerificationResubmitCta": "Resoumettre mes justificatifs",
   "specialistVerificationCompleteProfileCta": "Compléter mon profil",
+  "specialistVerificationRefreshCta": "Actualiser le statut",
+  "specialistVerificationRefreshLoading": "Vérification en cours…",
+  "specialistVerificationRefreshCompleted": "Vérification terminée",
+  "specialistVerificationRefreshFailed": "Échec de la vérification. Réessayez.",
+  "specialistVerificationLastChecked": "Dernière vérification : {timestamp}",
+  "@specialistVerificationLastChecked": {
+    "placeholders": {
+      "timestamp": {
+        "type": "String"
+      }
+    }
+  },
   "specialistProfileEditTitle": "Modifier mon profil",
   "specialistProfileSaveChanges": "Enregistrer les modifications",
   "specialistProfileSectionInfo": "Informations",

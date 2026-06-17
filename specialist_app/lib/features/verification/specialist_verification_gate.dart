@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../routing/specialist_verification_status.dart';
 import 'specialist_verification_repository.dart';
@@ -18,20 +17,28 @@ class SpecialistVerificationGate extends ChangeNotifier {
   SpecialistVerificationStatus get status => _state.status;
 
   Future<void> refresh() async {
-    _state = _state.copyWith(isLoading: true);
+    _state = _state.copyWith(
+      isLoading: true,
+      refreshStatus: VerificationRefreshStatus.loading,
+    );
     _notifyIfActive();
 
     try {
-      _state = await _repository.fetch();
+      _state = (await _repository.fetch()).copyWith(
+        refreshStatus: VerificationRefreshStatus.completed,
+      );
     } catch (e) {
       if (kDebugMode) {
         debugPrint('Specialist verification refresh failed: $e');
       }
-      _state = const SpecialistVerificationState(
-        status: SpecialistVerificationStatus.pending,
+      _state = _state.copyWith(
+        refreshStatus: VerificationRefreshStatus.failed,
       );
     } finally {
-      _state = _state.copyWith(isLoading: false);
+      _state = _state.copyWith(
+        isLoading: false,
+        lastCheckedAt: DateTime.now(),
+      );
       _notifyIfActive();
     }
   }
@@ -39,6 +46,7 @@ class SpecialistVerificationGate extends ChangeNotifier {
   void reset() {
     _state = const SpecialistVerificationState(
       status: SpecialistVerificationStatus.pending,
+      refreshStatus: VerificationRefreshStatus.idle,
     );
     _notifyIfActive();
   }

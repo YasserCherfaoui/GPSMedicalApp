@@ -471,6 +471,18 @@
   "specialistVerificationSubmitCta": "Azen iseklasen-iw",
   "specialistVerificationResubmitCta": "Ales azen iseklasen-iw",
   "specialistVerificationCompleteProfileCta": "Semmed amaɣnu-iw",
+  "specialistVerificationRefreshCta": "Leqqem addad",
+  "specialistVerificationRefreshLoading": "Asenqed itteddu…",
+  "specialistVerificationRefreshCompleted": "Asenqed yemmed",
+  "specialistVerificationRefreshFailed": "Asenqed yexser. Ɛreḍ tikelt nniḍen.",
+  "specialistVerificationLastChecked": "Asenqed aneggaru: {timestamp}",
+  "@specialistVerificationLastChecked": {
+    "placeholders": {
+      "timestamp": {
+        "type": "String"
+      }
+    }
+  },
   "specialistProfileEditTitle": "Senfel amaɣnu-iw",
   "specialistProfileSaveChanges": "Sekles ibeddilen",
   "specialistProfileSectionInfo": "Isefka",

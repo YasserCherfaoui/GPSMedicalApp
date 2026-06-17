@@ -471,6 +471,18 @@
   "specialistVerificationSubmitCta": "إرسال مستنداتي",
   "specialistVerificationResubmitCta": "إعادة إرسال مستنداتي",
   "specialistVerificationCompleteProfileCta": "إكمال ملفي",
+  "specialistVerificationRefreshCta": "تحديث الحالة",
+  "specialistVerificationRefreshLoading": "جاري التحقق…",
+  "specialistVerificationRefreshCompleted": "اكتمل التحقق",
+  "specialistVerificationRefreshFailed": "فشل التحقق. أعد المحاولة.",
+  "specialistVerificationLastChecked": "آخر تحقق: {timestamp}",
+  "@specialistVerificationLastChecked": {
+    "placeholders": {
+      "timestamp": {
+        "type": "String"
+      }
+    }
+  },
   "specialistProfileEditTitle": "تعديل ملفي",
   "specialistProfileSaveChanges": "حفظ التعديلات",
   "specialistProfileSectionInfo": "المعلومات",

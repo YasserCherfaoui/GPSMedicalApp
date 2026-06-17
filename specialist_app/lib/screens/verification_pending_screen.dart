@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../features/verification/specialist_verification.provider.dart';
+import '../features/verification/utils/verification_last_checked_format.dart';
+import '../features/verification/widgets/verification_refresh_status_indicator.dart';
 import '../routing/specialist_routes.dart';
 import '../routing/specialist_verification_status.dart';
 
@@ -13,6 +15,8 @@ class VerificationPendingScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final locale = Localizations.localeOf(context).languageCode;
+    final theme = Theme.of(context);
     final gate = ref.watch(specialistVerificationGateProvider);
     final state = gate.state;
 
@@ -63,6 +67,31 @@ class VerificationPendingScreen extends ConsumerWidget {
               comment: state.comment,
               isLoading: state.isLoading,
             ),
+            const SizedBox(height: GpsSpacing.lg),
+            TextButton.icon(
+              onPressed: state.isLoading ? null : gate.refresh,
+              icon: const Icon(Icons.refresh),
+              label: Text(l10n.specialistVerificationRefreshCta),
+            ),
+            const SizedBox(height: GpsSpacing.sm),
+            VerificationRefreshStatusIndicator(
+              status: state.refreshStatus,
+              loadingLabel: l10n.specialistVerificationRefreshLoading,
+              completedLabel: l10n.specialistVerificationRefreshCompleted,
+              failedLabel: l10n.specialistVerificationRefreshFailed,
+            ),
+            if (state.lastCheckedAt case final checkedAt?) ...[
+              const SizedBox(height: GpsSpacing.sm),
+              Text(
+                l10n.specialistVerificationLastChecked(
+                  formatVerificationLastChecked(checkedAt, locale),
+                ),
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
             const Spacer(),
             if (showCredentialsCta)
               PrimaryButton(

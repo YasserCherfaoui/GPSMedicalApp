@@ -1451,6 +1451,24 @@ class AppLocalizationsBer extends AppLocalizations {
   String get specialistVerificationCompleteProfileCta => 'Semmed amaɣnu-iw';
 
   @override
+  String get specialistVerificationRefreshCta => 'Leqqem addad';
+
+  @override
+  String get specialistVerificationRefreshLoading => 'Asenqed itteddu…';
+
+  @override
+  String get specialistVerificationRefreshCompleted => 'Asenqed yemmed';
+
+  @override
+  String get specialistVerificationRefreshFailed =>
+      'Asenqed yexser. Ɛreḍ tikelt nniḍen.';
+
+  @override
+  String specialistVerificationLastChecked(String timestamp) {
+    return 'Asenqed aneggaru: $timestamp';
+  }
+
+  @override
   String get specialistProfileEditTitle => 'Senfel amaɣnu-iw';
 
   @override

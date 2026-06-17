@@ -2746,6 +2746,36 @@ abstract class AppLocalizations {
   /// **'Compléter mon profil'**
   String get specialistVerificationCompleteProfileCta;
 
+  /// No description provided for @specialistVerificationRefreshCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Actualiser le statut'**
+  String get specialistVerificationRefreshCta;
+
+  /// No description provided for @specialistVerificationRefreshLoading.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification en cours…'**
+  String get specialistVerificationRefreshLoading;
+
+  /// No description provided for @specialistVerificationRefreshCompleted.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification terminée'**
+  String get specialistVerificationRefreshCompleted;
+
+  /// No description provided for @specialistVerificationRefreshFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Échec de la vérification. Réessayez.'**
+  String get specialistVerificationRefreshFailed;
+
+  /// No description provided for @specialistVerificationLastChecked.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dernière vérification : {timestamp}'**
+  String specialistVerificationLastChecked(String timestamp);
+
   /// No description provided for @specialistProfileEditTitle.
   ///
   /// In fr, this message translates to:

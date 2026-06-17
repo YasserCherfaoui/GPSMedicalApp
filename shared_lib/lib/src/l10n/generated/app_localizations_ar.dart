@@ -1442,6 +1442,23 @@ class AppLocalizationsAr extends AppLocalizations {
   String get specialistVerificationCompleteProfileCta => 'إكمال ملفي';
 
   @override
+  String get specialistVerificationRefreshCta => 'تحديث الحالة';
+
+  @override
+  String get specialistVerificationRefreshLoading => 'جاري التحقق…';
+
+  @override
+  String get specialistVerificationRefreshCompleted => 'اكتمل التحقق';
+
+  @override
+  String get specialistVerificationRefreshFailed => 'فشل التحقق. أعد المحاولة.';
+
+  @override
+  String specialistVerificationLastChecked(String timestamp) {
+    return 'آخر تحقق: $timestamp';
+  }
+
+  @override
   String get specialistProfileEditTitle => 'تعديل ملفي';
 
   @override

@@ -1473,6 +1473,24 @@ class AppLocalizationsFr extends AppLocalizations {
   String get specialistVerificationCompleteProfileCta => 'Compléter mon profil';
 
   @override
+  String get specialistVerificationRefreshCta => 'Actualiser le statut';
+
+  @override
+  String get specialistVerificationRefreshLoading => 'Vérification en cours…';
+
+  @override
+  String get specialistVerificationRefreshCompleted => 'Vérification terminée';
+
+  @override
+  String get specialistVerificationRefreshFailed =>
+      'Échec de la vérification. Réessayez.';
+
+  @override
+  String specialistVerificationLastChecked(String timestamp) {
+    return 'Dernière vérification : $timestamp';
+  }
+
+  @override
   String get specialistProfileEditTitle => 'Modifier mon profil';
 
   @override
