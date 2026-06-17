@@ -277,6 +277,7 @@ class _SpecialistProfileEditScreenState
         error: (_, __) => Center(child: Text(l10n.profileLoadError)),
         data: (profile) {
           _seedFromProfile(profile);
+          final locationFilter = ref.watch(locationFilterProvider);
           final specialtiesAsync = ref.watch(specialtiesProvider);
           final selectedSpecialtyName = specialtiesAsync.maybeWhen(
             data: (list) {
@@ -428,7 +429,11 @@ class _SpecialistProfileEditScreenState
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(l10n.geoWilayaPickerTitle),
-                subtitle: Text(_addressSummary(l10n)),
+                subtitle: Text(
+                  locationFilter.selectedWilaya == null
+                      ? l10n.profileNotSet
+                      : _addressSummary(l10n),
+                ),
                 trailing: const Icon(Icons.place_outlined),
                 onTap: _openAddressPicker,
               ),
