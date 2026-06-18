@@ -28,17 +28,48 @@ class AppointmentDetailScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final detailAsync = ref.watch(appointmentDetailProvider(appointmentId));
 
+    Future<void> refresh() async {
+      ref.invalidate(appointmentDetailProvider(appointmentId));
+      await ref.read(appointmentDetailProvider(appointmentId).future);
+    }
+
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.appointmentDetailTitle)),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go(GpsRoutes.appointments);
+            }
+          },
+        ),
+        title: Text(l10n.appointmentDetailTitle),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            tooltip: l10n.retry,
+            onPressed: () => refresh(),
+          ),
+        ],
+      ),
       body: detailAsync.when(
-        data: (state) =>
-            _DetailBody(state: state, appointmentId: appointmentId, l10n: l10n),
+        data: (state) => RefreshIndicator(
+          onRefresh: refresh,
+          child: _DetailBody(
+            state: state,
+            appointmentId: appointmentId,
+            l10n: l10n,
+          ),
+        ),
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => BookingErrorView(
           error: e,
           message: l10n.appointmentDetailLoadError,
-          onRetry: () =>
-              ref.invalidate(appointmentDetailProvider(appointmentId)),
+          onRetry: refresh,
         ),
       ),
     );
@@ -83,6 +114,7 @@ class _DetailBody extends ConsumerWidget {
     final addressLine = formatPracticeAddress(doctor.practiceAddress);
 
     return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.all(GpsSpacing.md),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

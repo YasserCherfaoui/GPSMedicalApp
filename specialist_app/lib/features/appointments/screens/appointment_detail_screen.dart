@@ -36,7 +36,33 @@ class SpecialistAppointmentDetailScreen extends ConsumerWidget {
     final profile = ref.watch(specialistProfileProvider).valueOrNull;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.specialistAppointmentDetailTitle)),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go(SpecialistRoutes.shell);
+            }
+          },
+        ),
+        title: Text(l10n.specialistAppointmentDetailTitle),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            tooltip: l10n.retry,
+            onPressed: () async {
+              ref.invalidate(specialistAppointmentDetailProvider(appointmentId));
+              await ref.read(
+                specialistAppointmentDetailProvider(appointmentId).future,
+              );
+            },
+          ),
+        ],
+      ),
       body: appointmentAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, __) => ErrorState(
@@ -45,10 +71,18 @@ class SpecialistAppointmentDetailScreen extends ConsumerWidget {
             specialistAppointmentDetailProvider(appointmentId),
           ),
         ),
-        data: (appointment) => _DetailBody(
-          appointment: appointment,
-          appointmentId: appointmentId,
-          offersTelehealth: profile?.offersTelehealth == true,
+        data: (appointment) => RefreshIndicator(
+          onRefresh: () async {
+            ref.invalidate(specialistAppointmentDetailProvider(appointmentId));
+            await ref.read(
+              specialistAppointmentDetailProvider(appointmentId).future,
+            );
+          },
+          child: _DetailBody(
+            appointment: appointment,
+            appointmentId: appointmentId,
+            offersTelehealth: profile?.offersTelehealth == true,
+          ),
         ),
       ),
     );
@@ -182,6 +216,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
     return Stack(
       children: [
         SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.all(GpsSpacing.md),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
