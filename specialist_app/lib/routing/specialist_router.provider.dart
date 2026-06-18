@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
@@ -13,11 +15,16 @@ final specialistRouterProvider = Provider<GoRouter>((ref) {
   final launchPreferences = ref.read(appLaunchPreferencesProvider);
   final verificationGate = ref.read(specialistVerificationGateProvider);
 
-  return createSpecialistRouter(
+  final router = createSpecialistRouter(
     authListenable: auth,
     verificationListenable: verificationGate,
     appInfo: appInfo,
     launchPreferences: launchPreferences,
     verificationStatusOf: () => verificationGate.status,
   );
+
+  // The gate may finish its first fetch before GoRouter attaches listeners.
+  scheduleMicrotask(verificationGate.publish);
+
+  return router;
 });

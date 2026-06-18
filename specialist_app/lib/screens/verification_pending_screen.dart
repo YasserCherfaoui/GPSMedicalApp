@@ -17,8 +17,8 @@ class VerificationPendingScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final locale = Localizations.localeOf(context).languageCode;
     final theme = Theme.of(context);
-    final gate = ref.watch(specialistVerificationGateProvider);
-    final state = gate.state;
+    final state = ref.watch(specialistVerificationStateProvider);
+    final gate = ref.read(specialistVerificationGateProvider);
 
     final title = switch (state.status) {
       SpecialistVerificationStatus.rejected =>

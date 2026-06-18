@@ -21,7 +21,7 @@ class SpecialistVerificationGate extends ChangeNotifier {
       isLoading: true,
       refreshStatus: VerificationRefreshStatus.loading,
     );
-    _notifyIfActive();
+    notifyListeners();
 
     try {
       _state = (await _repository.fetch()).copyWith(
@@ -39,7 +39,7 @@ class SpecialistVerificationGate extends ChangeNotifier {
         isLoading: false,
         lastCheckedAt: DateTime.now(),
       );
-      _notifyIfActive();
+      notifyListeners();
     }
   }
 
@@ -48,11 +48,9 @@ class SpecialistVerificationGate extends ChangeNotifier {
       status: SpecialistVerificationStatus.pending,
       refreshStatus: VerificationRefreshStatus.idle,
     );
-    _notifyIfActive();
-  }
-
-  void _notifyIfActive() {
-    if (!hasListeners) return;
     notifyListeners();
   }
+
+  /// Re-run [GoRouter] redirects after listeners attach (first fetch may finish earlier).
+  void publish() => notifyListeners();
 }
