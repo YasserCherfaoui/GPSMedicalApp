@@ -53,7 +53,6 @@ String? resolveSpecialistRedirect({
 
     if (onVerification ||
         location == SpecialistRoutes.credentials ||
-        location == SpecialistRoutes.profileEdit ||
         GpsRoutes.isAuthEntryPath(location) ||
         location.startsWith('/auth/register') ||
         location == GpsRoutes.registrationSuccess ||

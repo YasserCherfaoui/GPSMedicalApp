@@ -66,9 +66,12 @@ class _AppointmentsInboxScreenState extends ConsumerState<AppointmentsInboxScree
               _AppointmentTab(
                 asyncValue: ref.watch(specialistPendingAppointmentsProvider),
                 emptyTitle: l10n.specialistInboxEmptyRequests,
-                onRefresh: () => ref
-                    .read(specialistPendingAppointmentsProvider.notifier)
-                    .refresh(),
+                onRefresh: () async {
+                  await ref
+                      .read(specialistPendingAppointmentsProvider.notifier)
+                      .refresh();
+                  ref.invalidate(specialistPendingCountProvider);
+                },
                 onTap: _openDetail,
               ),
               _AppointmentTab(
@@ -122,32 +125,44 @@ class _AppointmentTab extends StatelessWidget {
         onRetry: onRefresh,
       ),
       data: (state) {
-        if (state.appointments.isEmpty) {
-          return EmptyState(title: emptyTitle, icon: Icons.inbox_outlined);
-        }
         return RefreshIndicator(
           onRefresh: onRefresh,
-          child: ListView.builder(
-            controller: scrollController,
-            padding: const EdgeInsets.all(GpsSpacing.md),
-            itemCount:
-                state.appointments.length + (state.isLoadingMore ? 1 : 0),
-            itemBuilder: (context, index) {
-              if (index >= state.appointments.length) {
-                return const Padding(
-                  padding: EdgeInsets.all(GpsSpacing.md),
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              }
-              final appointment = state.appointments[index];
-              final id = appointment.id;
-              if (id == null) return const SizedBox.shrink();
-              return SpecialistAppointmentRowTile(
-                appointment: appointment,
-                onTap: () => onTap(id),
-              );
-            },
-          ),
+          child: state.appointments.isEmpty
+              ? ListView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.all(GpsSpacing.md),
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height * 0.45,
+                      child: EmptyState(
+                        title: emptyTitle,
+                        icon: Icons.inbox_outlined,
+                      ),
+                    ),
+                  ],
+                )
+              : ListView.builder(
+                  controller: scrollController,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.all(GpsSpacing.md),
+                  itemCount: state.appointments.length +
+                      (state.isLoadingMore ? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (index >= state.appointments.length) {
+                      return const Padding(
+                        padding: EdgeInsets.all(GpsSpacing.md),
+                        child: Center(child: CircularProgressIndicator()),
+                      );
+                    }
+                    final appointment = state.appointments[index];
+                    final id = appointment.id;
+                    if (id == null) return const SizedBox.shrink();
+                    return SpecialistAppointmentRowTile(
+                      appointment: appointment,
+                      onTap: () => onTap(id),
+                    );
+                  },
+                ),
         );
       },
     );

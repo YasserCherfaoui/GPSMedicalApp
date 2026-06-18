@@ -104,37 +104,22 @@ class _ScheduleTemplateEditorSheetState
             ),
           ),
           const SizedBox(height: GpsSpacing.lg),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.specialistScheduleStartTime),
-            subtitle: _errors['start_time'] != null
-                ? Text(
-                    validationErrorMessage(l10n, _errors['start_time']!),
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                  )
+          _TimePickerField(
+            label: l10n.specialistScheduleStartTime,
+            timeLabel: formatScheduleTime(_formatTime(_start), locale),
+            errorText: _errors['start_time'] != null
+                ? validationErrorMessage(l10n, _errors['start_time']!)
                 : null,
-            trailing: OutlinedButton(
-              onPressed: () => _pickTime(isStart: true),
-              child: Text(formatScheduleTime(_formatTime(_start), locale)),
-            ),
+            onPressed: () => _pickTime(isStart: true),
           ),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.specialistScheduleEndTime),
-            subtitle: _errors['end_time'] != null
-                ? Text(
-                    validationErrorMessage(l10n, _errors['end_time']!),
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                  )
+          const SizedBox(height: GpsSpacing.sm),
+          _TimePickerField(
+            label: l10n.specialistScheduleEndTime,
+            timeLabel: formatScheduleTime(_formatTime(_end), locale),
+            errorText: _errors['end_time'] != null
+                ? validationErrorMessage(l10n, _errors['end_time']!)
                 : null,
-            trailing: OutlinedButton(
-              onPressed: () => _pickTime(isStart: false),
-              child: Text(formatScheduleTime(_formatTime(_end), locale)),
-            ),
+            onPressed: () => _pickTime(isStart: false),
           ),
           const SizedBox(height: GpsSpacing.sm),
           DropdownButtonFormField<int>(
@@ -224,6 +209,54 @@ class _ScheduleTemplateEditorSheetState
           ),
         ],
       ),
+    );
+  }
+}
+
+class _TimePickerField extends StatelessWidget {
+  const _TimePickerField({
+    required this.label,
+    required this.timeLabel,
+    required this.onPressed,
+    this.errorText,
+  });
+
+  final String label;
+  final String timeLabel;
+  final VoidCallback onPressed;
+  final String? errorText;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(child: Text(label, style: theme.textTheme.bodyLarge)),
+            OutlinedButton(
+              onPressed: onPressed,
+              style: OutlinedButton.styleFrom(
+                minimumSize: const Size(0, 40),
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+              child: Text(timeLabel),
+            ),
+          ],
+        ),
+        if (errorText != null) ...[
+          const SizedBox(height: GpsSpacing.xs),
+          Text(
+            errorText!,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.error,
+            ),
+          ),
+        ],
+      ],
     );
   }
 }

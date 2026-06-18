@@ -105,6 +105,30 @@ void main() {
       );
     });
 
+    test('allows verified specialist on profile edit', () {
+      expect(
+        resolveSpecialistRedirect(
+          session: authenticated,
+          matchedLocation: SpecialistRoutes.profileEdit,
+          onboardingCompleted: true,
+          verificationStatus: SpecialistVerificationStatus.verified,
+        ),
+        isNull,
+      );
+    });
+
+    test('allows verified specialist on schedule edit', () {
+      expect(
+        resolveSpecialistRedirect(
+          session: authenticated,
+          matchedLocation: SpecialistRoutes.scheduleEdit,
+          onboardingCompleted: true,
+          verificationStatus: SpecialistVerificationStatus.verified,
+        ),
+        isNull,
+      );
+    });
+
     test('routes authenticated specialist away from splash', () {
       expect(
         resolveSpecialistRedirect(
