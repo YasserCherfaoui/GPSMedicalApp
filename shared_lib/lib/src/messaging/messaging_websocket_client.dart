@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -42,6 +43,28 @@ class MessagingRealtimeEvent {
   }
 }
 
+/// Builds a `ws`/`wss` URI for the messaging gateway from the v1 REST base URL.
+Uri buildMessagingWebSocketUri({
+  required String v1BaseUrl,
+  required String accessToken,
+}) {
+  final rest = Uri.parse(v1BaseUrl);
+  final wsScheme = switch (rest.scheme) {
+    'https' => 'wss',
+    'http' => 'ws',
+    'wss' => 'wss',
+    'ws' => 'ws',
+    _ => 'ws',
+  };
+  final basePath = rest.path.replaceAll(RegExp(r'/+$'), '');
+  return rest.replace(
+    scheme: wsScheme,
+    path: '$basePath/messaging/ws',
+    queryParameters: {'token': accessToken},
+    fragment: null,
+  );
+}
+
 /// WebSocket transport for messaging with reconnect backoff (ADR 0013).
 class MessagingWebSocketClient {
   MessagingWebSocketClient({
@@ -66,26 +89,40 @@ class MessagingWebSocketClient {
   Future<void> connect() async {
     if (_disposed) return;
     await _disconnectChannel();
-    final uri = _wsUri();
+    final uri = buildMessagingWebSocketUri(
+      v1BaseUrl: v1BaseUrl,
+      accessToken: accessToken,
+    );
     try {
-      _channel = WebSocketChannel.connect(uri);
-      _subscription = _channel!.stream.listen(
+      final channel = WebSocketChannel.connect(uri);
+      await channel.ready.timeout(const Duration(seconds: 10));
+      if (_disposed) {
+        await channel.sink.close();
+        return;
+      }
+      _channel = channel;
+      _subscription = channel.stream.listen(
         _onData,
-        onError: (_) => _scheduleReconnect(),
-        onDone: _scheduleReconnect,
+        onError: _onConnectionLost,
+        onDone: _onConnectionLost,
         cancelOnError: true,
       );
       _attempt = 0;
-    } catch (_) {
+    } catch (e, stackTrace) {
+      if (kDebugMode) {
+        debugPrint(
+          'Messaging WS connect failed (attempt $_attempt): $e\n$stackTrace',
+        );
+      }
       _scheduleReconnect();
     }
   }
 
-  Uri _wsUri() {
-    final httpBase = v1BaseUrl.replaceFirst(RegExp(r'^http'), 'ws');
-    return Uri.parse('$httpBase/messaging/ws').replace(
-      queryParameters: {'token': accessToken},
-    );
+  void _onConnectionLost([Object? error, StackTrace? stackTrace]) {
+    if (kDebugMode && error != null) {
+      debugPrint('Messaging WS disconnected: $error');
+    }
+    _scheduleReconnect();
   }
 
   void _onData(dynamic data) {
@@ -107,13 +144,19 @@ class MessagingWebSocketClient {
     final delay = Duration(
       seconds: (_attempt.clamp(1, 6) * 2).clamp(2, 30),
     );
-    _reconnectTimer = Timer(delay, connect);
+    _reconnectTimer = Timer(delay, () {
+      unawaited(connect().catchError((_) {}));
+    });
   }
 
   Future<void> _disconnectChannel() async {
     await _subscription?.cancel();
     _subscription = null;
-    await _channel?.sink.close();
+    try {
+      await _channel?.sink.close();
+    } catch (_) {
+      // Channel may already be closed after a failed handshake.
+    }
     _channel = null;
   }
 

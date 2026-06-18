@@ -21,7 +21,7 @@ final messagingWebSocketClientProvider = Provider<MessagingWebSocketClient?>((
     v1BaseUrl: client.v1BaseUrl,
     accessToken: accessToken,
   );
-  unawaited(ws.connect());
+  unawaited(ws.connect().catchError((_) {}));
   ref.onDispose(ws.disconnect);
   return ws;
 });

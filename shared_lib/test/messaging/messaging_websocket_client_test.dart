@@ -2,6 +2,29 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 void main() {
+  group('buildMessagingWebSocketUri', () {
+    test('converts http v1 base to ws messaging path', () {
+      final uri = buildMessagingWebSocketUri(
+        v1BaseUrl: 'http://localhost:8080/v1',
+        accessToken: 'abc',
+      );
+      expect(uri.scheme, 'ws');
+      expect(uri.host, 'localhost');
+      expect(uri.port, 8080);
+      expect(uri.path, '/v1/messaging/ws');
+      expect(uri.queryParameters['token'], 'abc');
+    });
+
+    test('converts https v1 base to wss', () {
+      final uri = buildMessagingWebSocketUri(
+        v1BaseUrl: 'https://api.example.com/v1',
+        accessToken: 'tok',
+      );
+      expect(uri.scheme, 'wss');
+      expect(uri.path, '/v1/messaging/ws');
+    });
+  });
+
   test('MessagingRealtimeEvent parses message.new payload', () {
     final event = MessagingRealtimeEvent.fromJson({
       'type': 'message.new',
