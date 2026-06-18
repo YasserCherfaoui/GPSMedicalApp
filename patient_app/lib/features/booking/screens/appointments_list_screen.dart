@@ -102,10 +102,11 @@ class _UpcomingTab extends ConsumerWidget {
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, _) => BookingErrorView(
+      error: (e, _) => _AppointmentsError(
+        l10n: l10n,
         error: e,
-        message: l10n.appointmentsLoadError,
-        onRetry: () => ref.invalidate(appointmentsUpcomingProvider),
+        onRetry: () =>
+            ref.read(appointmentsUpcomingProvider.notifier).refresh(),
       ),
     );
   }
@@ -184,10 +185,11 @@ class _HistoryTabState extends ConsumerState<_HistoryTab> {
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, _) => BookingErrorView(
+      error: (e, _) => _AppointmentsError(
+        l10n: widget.l10n,
         error: e,
-        message: widget.l10n.appointmentsLoadError,
-        onRetry: () => ref.invalidate(appointmentsHistoryProvider),
+        onRetry: () =>
+            ref.read(appointmentsHistoryProvider.notifier).refresh(),
       ),
     );
   }
@@ -216,6 +218,38 @@ class _AppointmentRow extends ConsumerWidget {
         child: LoadingSkeleton(height: 88),
       ),
       error: (_, _) => const SizedBox.shrink(),
+    );
+  }
+}
+
+class _AppointmentsError extends StatelessWidget {
+  const _AppointmentsError({
+    required this.l10n,
+    required this.error,
+    required this.onRetry,
+  });
+
+  final AppLocalizations l10n;
+  final Object error;
+  final Future<void> Function() onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: onRetry,
+      child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: [
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height * 0.55,
+            child: BookingErrorView(
+              error: error,
+              message: l10n.appointmentsLoadError,
+              onRetry: () => onRetry(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

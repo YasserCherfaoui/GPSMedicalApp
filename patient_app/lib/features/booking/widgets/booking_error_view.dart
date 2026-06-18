@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../discovery/utils/discovery_api_error.dart';
+import '../utils/booking_api_error.dart';
 
 class BookingErrorView extends StatelessWidget {
   const BookingErrorView({
@@ -26,9 +27,11 @@ class BookingErrorView extends StatelessWidget {
         onRetry: onRetry,
       );
     }
+    final resolvedMessage =
+        isBookingNetworkError(error) ? l10n.networkError : message;
     return ErrorState(
       title: l10n.errorGenericTitle,
-      message: message,
+      message: resolvedMessage,
       onRetry: onRetry,
     );
   }

@@ -56,6 +56,18 @@ Never rethrowBookingApiError(Object error) {
   throw error;
 }
 
+bool isBookingNetworkError(Object error) {
+  if (error is! DioException) return false;
+  return switch (error.type) {
+    DioExceptionType.connectionError ||
+    DioExceptionType.connectionTimeout ||
+    DioExceptionType.sendTimeout ||
+    DioExceptionType.receiveTimeout =>
+      true,
+    _ => false,
+  };
+}
+
 Map<String, dynamic>? _asJsonMap(Object? data) {
   if (data is Map<String, dynamic>) return data;
   if (data is Map) {

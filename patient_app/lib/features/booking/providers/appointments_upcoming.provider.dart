@@ -33,10 +33,14 @@ class AppointmentsUpcoming extends _$AppointmentsUpcoming {
     required bool append,
   }) async {
     final repo = ref.read(appointmentRepositoryProvider);
+    final results = await Future.wait(
+      _statuses.map((status) => repo.list(status: status, page: page)),
+    );
     final all = <Appointment>[];
-    for (final status in _statuses) {
-      final result = await repo.list(status: status, page: page);
+    var hasMore = false;
+    for (final result in results) {
       all.addAll(result.appointments);
+      if (result.hasMore) hasMore = true;
     }
     all.sort((a, b) {
       final sa = a.startAt;
@@ -44,28 +48,29 @@ class AppointmentsUpcoming extends _$AppointmentsUpcoming {
       if (sa == null || sb == null) return 0;
       return sa.compareTo(sb);
     });
-    final current = state.value;
+    final current = state.valueOrNull;
     final merged = append && current != null
         ? [...current.appointments, ...all]
         : all;
     return AppointmentsListState(
       appointments: merged,
       page: page,
-      hasMore: all.isNotEmpty,
+      hasMore: hasMore,
     );
   }
 
   Future<void> refresh() async {
     state = const AsyncLoading();
-    state = AsyncData(await _fetchPage(1, append: false));
+    state = await AsyncValue.guard(() => _fetchPage(1, append: false));
   }
 
   Future<void> loadMore() async {
-    final current = state.value;
+    final current = state.valueOrNull;
     if (current == null || !current.hasMore || current.isLoadingMore) return;
     state = AsyncData(current.copyWith(isLoadingMore: true));
-    final next = await _fetchPage(current.page + 1, append: true);
-    state = AsyncData(next);
+    state = await AsyncValue.guard(
+      () => _fetchPage(current.page + 1, append: true),
+    );
   }
 }
 

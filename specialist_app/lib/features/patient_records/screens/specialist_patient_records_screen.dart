@@ -106,32 +106,67 @@ class _SpecialistPatientRecordsScreenState
             specialistPatientRecordsProvider(patientId),
           );
 
+          Future<void> refreshRecords() => ref
+              .read(specialistPatientRecordsProvider(patientId).notifier)
+              .refresh();
+
           return recordsAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (_, __) => ErrorState(
-              title: l10n.specialistPatientRecordsLoadError,
-              onRetry: () =>
-                  ref.invalidate(specialistPatientRecordsProvider(patientId)),
+            error: (_, __) => RefreshIndicator(
+              onRefresh: refreshRecords,
+              child: ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                children: [
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height * 0.55,
+                    child: ErrorState(
+                      title: l10n.specialistPatientRecordsLoadError,
+                      onRetry: refreshRecords,
+                    ),
+                  ),
+                ],
+              ),
             ),
             data: (state) {
               if (state.noAccess) {
-                return EmptyState(
-                  title: l10n.specialistPatientRecordsForbidden,
-                  icon: Icons.lock_outline,
+                return RefreshIndicator(
+                  onRefresh: refreshRecords,
+                  child: ListView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.sizeOf(context).height * 0.55,
+                        child: EmptyState(
+                          title: l10n.specialistPatientRecordsForbidden,
+                          icon: Icons.lock_outline,
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               }
               if (state.documents.isEmpty) {
-                return EmptyState(
-                  title: l10n.specialistPatientRecordsEmpty,
-                  icon: Icons.folder_open_outlined,
+                return RefreshIndicator(
+                  onRefresh: refreshRecords,
+                  child: ListView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.sizeOf(context).height * 0.55,
+                        child: EmptyState(
+                          title: l10n.specialistPatientRecordsEmpty,
+                          icon: Icons.folder_open_outlined,
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               }
               return RefreshIndicator(
-                onRefresh: () => ref
-                    .read(specialistPatientRecordsProvider(patientId).notifier)
-                    .refresh(),
+                onRefresh: refreshRecords,
                 child: ListView.builder(
                   controller: _scrollController,
+                  physics: const AlwaysScrollableScrollPhysics(),
                   padding: const EdgeInsets.all(GpsSpacing.md),
                   itemCount:
                       state.documents.length + (state.isLoadingMore ? 1 : 0),

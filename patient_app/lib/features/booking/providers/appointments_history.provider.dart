@@ -46,7 +46,7 @@ class AppointmentsHistory extends _$AppointmentsHistory {
       if (sa == null || sb == null) return 0;
       return sb.compareTo(sa);
     });
-    final current = state.value;
+    final current = state.valueOrNull;
     final merged = append && current != null
         ? [...current.appointments, ...all]
         : all;
@@ -59,15 +59,16 @@ class AppointmentsHistory extends _$AppointmentsHistory {
 
   Future<void> refresh() async {
     state = const AsyncLoading();
-    state = AsyncData(await _fetchPage(1, append: false));
+    state = await AsyncValue.guard(() => _fetchPage(1, append: false));
   }
 
   Future<void> loadMore() async {
-    final current = state.value;
+    final current = state.valueOrNull;
     if (current == null || !current.hasMore || current.isLoadingMore) return;
     state = AsyncData(current.copyWith(isLoadingMore: true));
-    final next = await _fetchPage(current.page + 1, append: true);
-    state = AsyncData(next);
+    state = await AsyncValue.guard(
+      () => _fetchPage(current.page + 1, append: true),
+    );
   }
 }
 
