@@ -6,6 +6,8 @@ import '../features/appointments/providers/appointments.provider.dart';
 import '../features/appointments/screens/appointments_calendar_screen.dart';
 import '../features/appointments/screens/appointments_inbox_screen.dart';
 import '../features/profile/screens/specialist_profile_hub_screen.dart';
+import '../features/messaging/screens/specialist_messaging_threads_screen.dart';
+import '../features/stats/screens/specialist_stats_screen.dart';
 
 class SpecialistShellScreen extends ConsumerStatefulWidget {
   const SpecialistShellScreen({super.key});
@@ -34,9 +36,9 @@ class _SpecialistShellScreenState extends ConsumerState<SpecialistShellScreen> {
     final bodies = [
       const AppointmentsInboxScreen(),
       const AppointmentsCalendarScreen(),
-      Center(child: Text(l10n.specialistShellPlaceholder)),
+      const SpecialistMessagingThreadsScreen(),
       const SpecialistProfileHubScreen(),
-      Center(child: Text(l10n.specialistShellPlaceholder)),
+      const SpecialistStatsScreen(),
     ];
 
     final pendingCount = pendingCountAsync.valueOrNull ?? 0;

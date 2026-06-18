@@ -219,11 +219,9 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                 const SizedBox(height: GpsSpacing.lg),
                 PrimaryButton(
                   label: l10n.specialistAppointmentStartTelehealth,
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(l10n.specialistTelehealthComingSoon)),
-                    );
-                  },
+                  onPressed: () => context.push(
+                    SpecialistRoutes.teleconsultation(widget.appointmentId),
+                  ),
                 ),
               ],
               if (canViewRecords) ...[

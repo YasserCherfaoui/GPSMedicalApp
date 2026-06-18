@@ -5,6 +5,7 @@ abstract final class SpecialistRoutes {
   static const profileEdit = '/specialist/profile/edit';
   static const scheduleEdit = '/specialist/schedule/edit';
   static const shell = '/specialist/shell';
+  static const notifications = '/specialist/notifications';
 
   static String appointmentDetail(String id) => '/specialist/appointments/$id';
   static String appointmentReschedule(String id) =>
@@ -13,6 +14,10 @@ abstract final class SpecialistRoutes {
       '/specialist/appointments/$appointmentId/records';
   static String prescriptionCompose(String appointmentId) =>
       '/specialist/appointments/$appointmentId/prescription';
+  static String messagingThread(String threadId) =>
+      '/specialist/messages/$threadId';
+  static String teleconsultation(String appointmentId) =>
+      '/specialist/appointments/$appointmentId/teleconsultation';
   static String medicalRecordViewer(String documentId, {String? title}) {
     final base = '/specialist/medical-records/$documentId';
     if (title == null || title.isEmpty) return base;

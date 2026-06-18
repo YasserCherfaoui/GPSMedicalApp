@@ -1894,4 +1894,76 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get specialistPrescriptionAtLeastOneDrug =>
       'أضف دواءً واحدًا على الأقل';
+
+  @override
+  String get specialistTeleconsultTitle => 'استشارة عن بُعد';
+
+  @override
+  String get specialistTeleconsultWindowClosed => 'الجلسة غير مفتوحة بعد.';
+
+  @override
+  String specialistTeleconsultOpensIn(String time) {
+    return 'تفتح خلال $time';
+  }
+
+  @override
+  String get specialistTeleconsultWaitingPatient => 'في انتظار المريض…';
+
+  @override
+  String get specialistTeleconsultConnectionError =>
+      'تعذر بدء الاستشارة عن بُعد.';
+
+  @override
+  String get specialistStatsRatingTitle => 'التقييم المتوسط';
+
+  @override
+  String get specialistStatsAppointments => 'المواعيد';
+
+  @override
+  String get specialistStatsCompleted => 'المنجزة';
+
+  @override
+  String get specialistStatsRevenue => 'الإيرادات';
+
+  @override
+  String get specialistStatsNoShowRate => 'معدل الغياب';
+
+  @override
+  String get specialistStatsTrendTitle => 'الاتجاه';
+
+  @override
+  String get specialistStatsMetricAppointments => 'مواعيد';
+
+  @override
+  String get specialistStatsMetricRevenue => 'إيرادات';
+
+  @override
+  String get specialistStatsMetricNoShow => 'الغياب';
+
+  @override
+  String get specialistStatsMetricNewPatients => 'مرضى جدد';
+
+  @override
+  String get specialistStatsGranularityDay => 'يوم';
+
+  @override
+  String get specialistStatsGranularityWeek => 'أسبوع';
+
+  @override
+  String get specialistStatsGranularityMonth => 'شهر';
+
+  @override
+  String get specialistStatsLoadError => 'تعذر تحميل الإحصائيات.';
+
+  @override
+  String get specialistStatsChartEmpty => 'لا توجد بيانات كافية للرسم.';
+
+  @override
+  String get specialistStatsReviewsTitle => 'تقييماتي';
+
+  @override
+  String get specialistStatsReviewsEmpty => 'لا توجد تقييمات منشورة';
+
+  @override
+  String get specialistStatsReviewsLoadError => 'تعذر تحميل التقييمات.';
 }

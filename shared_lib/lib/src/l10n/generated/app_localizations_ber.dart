@@ -1913,4 +1913,78 @@ class AppLocalizationsBer extends AppLocalizations {
   @override
   String get specialistPrescriptionAtLeastOneDrug =>
       'Rnu ma drus yiwen n usekkes';
+
+  @override
+  String get specialistTeleconsultTitle => 'Aselmen s usrid';
+
+  @override
+  String get specialistTeleconsultWindowClosed => 'Asarag ur yelli yezwar ara.';
+
+  @override
+  String specialistTeleconsultOpensIn(String time) {
+    return 'Ad yili yezwar deg $time';
+  }
+
+  @override
+  String get specialistTeleconsultWaitingPatient => 'Ara ttraǧu amḍan…';
+
+  @override
+  String get specialistTeleconsultConnectionError =>
+      'Ur izmir ara ad yebdu aselmen s usrid.';
+
+  @override
+  String get specialistStatsRatingTitle => 'Tazmert tamatut';
+
+  @override
+  String get specialistStatsAppointments => 'Imeẓlan';
+
+  @override
+  String get specialistStatsCompleted => 'Immed';
+
+  @override
+  String get specialistStatsRevenue => 'Tiguri';
+
+  @override
+  String get specialistStatsNoShowRate => 'Taux n ur yeddi ara';
+
+  @override
+  String get specialistStatsTrendTitle => 'Aɣanib';
+
+  @override
+  String get specialistStatsMetricAppointments => 'Imeẓlan';
+
+  @override
+  String get specialistStatsMetricRevenue => 'Tiguri';
+
+  @override
+  String get specialistStatsMetricNoShow => 'Ur yeddi ara';
+
+  @override
+  String get specialistStatsMetricNewPatients => 'Imusnawen imaynuten';
+
+  @override
+  String get specialistStatsGranularityDay => 'Ass';
+
+  @override
+  String get specialistStatsGranularityWeek => 'Imalas';
+
+  @override
+  String get specialistStatsGranularityMonth => 'Ayyur';
+
+  @override
+  String get specialistStatsLoadError =>
+      'Ur izmir ara ad d-yalent istatistikat.';
+
+  @override
+  String get specialistStatsChartEmpty => 'Ulac isefka i usenqed n ugrudem.';
+
+  @override
+  String get specialistStatsReviewsTitle => 'Iɣallen-iw';
+
+  @override
+  String get specialistStatsReviewsEmpty => 'Ulac iɣallen yettwaseklen';
+
+  @override
+  String get specialistStatsReviewsLoadError =>
+      'Ur izmir ara ad d-alin iɣallen.';
 }

@@ -58,6 +58,19 @@ class MessagingThread extends _$MessagingThread {
     ref.onDispose(() => _pollTimer?.cancel());
     _pollTimer = Timer.periodic(_pollInterval, (_) => unawaited(pollLatest()));
 
+    ref.listen<AsyncValue<MessagingRealtimeEvent>>(
+      messagingRealtimeEventsProvider,
+      (_, next) {
+        next.whenData((event) {
+          if (event.threadId != threadId) return;
+          final message = event.toMessage();
+          if (message != null) {
+            unawaited(_mergeIncomingMessage(message));
+          }
+        });
+      },
+    );
+
     final repo = ref.read(messagingRepositoryProvider);
     final thread = await repo.getThread(threadId);
     final doctorId = thread.doctorId;
@@ -75,6 +88,18 @@ class MessagingThread extends _$MessagingThread {
       messages: display,
       hasOlder: messages.length >= _messagePageSize,
     );
+  }
+
+  Future<void> _mergeIncomingMessage(Message message) async {
+    final current = state.value;
+    if (current == null) return;
+    final incoming = ThreadDisplayMessage.fromMessage(message);
+    final merged = _mergeMessages(
+      current.messages.where((m) => !m.isPending).toList(),
+      [incoming],
+    );
+    await _markIncomingRead(merged);
+    state = AsyncData(current.copyWith(messages: merged));
   }
 
   Future<void> refresh() async {

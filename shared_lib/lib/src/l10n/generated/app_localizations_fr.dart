@@ -1934,4 +1934,80 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get specialistPrescriptionAtLeastOneDrug =>
       'Ajoutez au moins un médicament';
+
+  @override
+  String get specialistTeleconsultTitle => 'Téléconsultation';
+
+  @override
+  String get specialistTeleconsultWindowClosed =>
+      'La session n\'est pas encore ouverte.';
+
+  @override
+  String specialistTeleconsultOpensIn(String time) {
+    return 'Ouverture dans $time';
+  }
+
+  @override
+  String get specialistTeleconsultWaitingPatient => 'En attente du patient…';
+
+  @override
+  String get specialistTeleconsultConnectionError =>
+      'Impossible de démarrer la téléconsultation.';
+
+  @override
+  String get specialistStatsRatingTitle => 'Note moyenne';
+
+  @override
+  String get specialistStatsAppointments => 'Rendez-vous';
+
+  @override
+  String get specialistStatsCompleted => 'Terminés';
+
+  @override
+  String get specialistStatsRevenue => 'Revenus';
+
+  @override
+  String get specialistStatsNoShowRate => 'Taux d\'absence';
+
+  @override
+  String get specialistStatsTrendTitle => 'Tendance';
+
+  @override
+  String get specialistStatsMetricAppointments => 'RDV';
+
+  @override
+  String get specialistStatsMetricRevenue => 'Revenus';
+
+  @override
+  String get specialistStatsMetricNoShow => 'Absences';
+
+  @override
+  String get specialistStatsMetricNewPatients => 'Nouveaux patients';
+
+  @override
+  String get specialistStatsGranularityDay => 'Jour';
+
+  @override
+  String get specialistStatsGranularityWeek => 'Semaine';
+
+  @override
+  String get specialistStatsGranularityMonth => 'Mois';
+
+  @override
+  String get specialistStatsLoadError =>
+      'Impossible de charger les statistiques.';
+
+  @override
+  String get specialistStatsChartEmpty =>
+      'Pas assez de données pour afficher le graphique.';
+
+  @override
+  String get specialistStatsReviewsTitle => 'Mes avis';
+
+  @override
+  String get specialistStatsReviewsEmpty => 'Aucun avis publié';
+
+  @override
+  String get specialistStatsReviewsLoadError =>
+      'Impossible de charger les avis.';
 }

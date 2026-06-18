@@ -8,6 +8,11 @@ import '../features/appointments/screens/appointment_detail_screen.dart';
 import '../features/appointments/screens/specialist_reschedule_screen.dart';
 import '../features/patient_records/screens/specialist_medical_record_viewer_screen.dart';
 import '../features/patient_records/screens/specialist_patient_records_screen.dart';
+import '../features/messaging/screens/specialist_messaging_thread_screen.dart';
+import '../features/messaging/screens/specialist_messaging_threads_screen.dart';
+import '../features/stats/screens/specialist_stats_screen.dart';
+import '../features/teleconsultation/screens/specialist_teleconsultation_screen.dart';
+import '../features/notifications/screens/specialist_notifications_list_screen.dart';
 import '../features/prescriptions/screens/specialist_prescription_compose_screen.dart';
 import '../features/profile/screens/specialist_profile_edit_screen.dart';
 import '../features/schedule/screens/schedule_editor_screen.dart';
@@ -153,6 +158,22 @@ GoRouter createSpecialistRouter({
           documentId: state.pathParameters['documentId']!,
           title: state.uri.queryParameters['title'],
         ),
+      ),
+      GoRoute(
+        path: '/specialist/messages/:threadId',
+        builder: (context, state) => SpecialistMessagingThreadScreen(
+          threadId: state.pathParameters['threadId']!,
+        ),
+      ),
+      GoRoute(
+        path: '/specialist/appointments/:id/teleconsultation',
+        builder: (context, state) => SpecialistTeleconsultationScreen(
+          appointmentId: state.pathParameters['id']!,
+        ),
+      ),
+      GoRoute(
+        path: SpecialistRoutes.notifications,
+        builder: (context, state) => const SpecialistNotificationsListScreen(),
       ),
       GoRoute(
         path: SpecialistRoutes.shell,

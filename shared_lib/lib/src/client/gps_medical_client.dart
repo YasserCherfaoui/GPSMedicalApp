@@ -110,6 +110,10 @@ class GpsMedicalClient {
 
   ReviewsApi get reviews => _v1.getReviewsApi();
 
+  AnalyticsApi get analytics => _v1.getAnalyticsApi();
+
+  TeleconsultationApi get teleconsultation => _v1.getTeleconsultationApi();
+
   PaymentsApi get payments => _v1.getPaymentsApi();
 
   /// Sets the bearer token on the generated client's interceptor map.

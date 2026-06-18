@@ -783,5 +783,33 @@
   "specialistPrescriptionInstructions": "Instructions",
   "specialistPrescriptionSubmit": "Émettre l'ordonnance",
   "specialistPrescriptionSuccess": "Ordonnance émise avec succès",
-  "specialistPrescriptionAtLeastOneDrug": "Ajoutez au moins un médicament"
+  "specialistPrescriptionAtLeastOneDrug": "Ajoutez au moins un médicament",
+  "specialistTeleconsultTitle": "Téléconsultation",
+  "specialistTeleconsultWindowClosed": "La session n'est pas encore ouverte.",
+  "specialistTeleconsultOpensIn": "Ouverture dans {time}",
+  "@specialistTeleconsultOpensIn": {
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+  "specialistTeleconsultWaitingPatient": "En attente du patient…",
+  "specialistTeleconsultConnectionError": "Impossible de démarrer la téléconsultation.",
+  "specialistStatsRatingTitle": "Note moyenne",
+  "specialistStatsAppointments": "Rendez-vous",
+  "specialistStatsCompleted": "Terminés",
+  "specialistStatsRevenue": "Revenus",
+  "specialistStatsNoShowRate": "Taux d'absence",
+  "specialistStatsTrendTitle": "Tendance",
+  "specialistStatsMetricAppointments": "RDV",
+  "specialistStatsMetricRevenue": "Revenus",
+  "specialistStatsMetricNoShow": "Absences",
+  "specialistStatsMetricNewPatients": "Nouveaux patients",
+  "specialistStatsGranularityDay": "Jour",
+  "specialistStatsGranularityWeek": "Semaine",
+  "specialistStatsGranularityMonth": "Mois",
+  "specialistStatsLoadError": "Impossible de charger les statistiques.",
+  "specialistStatsChartEmpty": "Pas assez de données pour afficher le graphique.",
+  "specialistStatsReviewsTitle": "Mes avis",
+  "specialistStatsReviewsEmpty": "Aucun avis publié",
+  "specialistStatsReviewsLoadError": "Impossible de charger les avis."
 }

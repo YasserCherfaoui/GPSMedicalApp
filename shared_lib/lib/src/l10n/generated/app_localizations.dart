@@ -3597,6 +3597,144 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Ajoutez au moins un médicament'**
   String get specialistPrescriptionAtLeastOneDrug;
+
+  /// No description provided for @specialistTeleconsultTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléconsultation'**
+  String get specialistTeleconsultTitle;
+
+  /// No description provided for @specialistTeleconsultWindowClosed.
+  ///
+  /// In fr, this message translates to:
+  /// **'La session n\'est pas encore ouverte.'**
+  String get specialistTeleconsultWindowClosed;
+
+  /// No description provided for @specialistTeleconsultOpensIn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouverture dans {time}'**
+  String specialistTeleconsultOpensIn(String time);
+
+  /// No description provided for @specialistTeleconsultWaitingPatient.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente du patient…'**
+  String get specialistTeleconsultWaitingPatient;
+
+  /// No description provided for @specialistTeleconsultConnectionError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de démarrer la téléconsultation.'**
+  String get specialistTeleconsultConnectionError;
+
+  /// No description provided for @specialistStatsRatingTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Note moyenne'**
+  String get specialistStatsRatingTitle;
+
+  /// No description provided for @specialistStatsAppointments.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendez-vous'**
+  String get specialistStatsAppointments;
+
+  /// No description provided for @specialistStatsCompleted.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminés'**
+  String get specialistStatsCompleted;
+
+  /// No description provided for @specialistStatsRevenue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Revenus'**
+  String get specialistStatsRevenue;
+
+  /// No description provided for @specialistStatsNoShowRate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Taux d\'absence'**
+  String get specialistStatsNoShowRate;
+
+  /// No description provided for @specialistStatsTrendTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tendance'**
+  String get specialistStatsTrendTitle;
+
+  /// No description provided for @specialistStatsMetricAppointments.
+  ///
+  /// In fr, this message translates to:
+  /// **'RDV'**
+  String get specialistStatsMetricAppointments;
+
+  /// No description provided for @specialistStatsMetricRevenue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Revenus'**
+  String get specialistStatsMetricRevenue;
+
+  /// No description provided for @specialistStatsMetricNoShow.
+  ///
+  /// In fr, this message translates to:
+  /// **'Absences'**
+  String get specialistStatsMetricNoShow;
+
+  /// No description provided for @specialistStatsMetricNewPatients.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveaux patients'**
+  String get specialistStatsMetricNewPatients;
+
+  /// No description provided for @specialistStatsGranularityDay.
+  ///
+  /// In fr, this message translates to:
+  /// **'Jour'**
+  String get specialistStatsGranularityDay;
+
+  /// No description provided for @specialistStatsGranularityWeek.
+  ///
+  /// In fr, this message translates to:
+  /// **'Semaine'**
+  String get specialistStatsGranularityWeek;
+
+  /// No description provided for @specialistStatsGranularityMonth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mois'**
+  String get specialistStatsGranularityMonth;
+
+  /// No description provided for @specialistStatsLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les statistiques.'**
+  String get specialistStatsLoadError;
+
+  /// No description provided for @specialistStatsChartEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas assez de données pour afficher le graphique.'**
+  String get specialistStatsChartEmpty;
+
+  /// No description provided for @specialistStatsReviewsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes avis'**
+  String get specialistStatsReviewsTitle;
+
+  /// No description provided for @specialistStatsReviewsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun avis publié'**
+  String get specialistStatsReviewsEmpty;
+
+  /// No description provided for @specialistStatsReviewsLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les avis.'**
+  String get specialistStatsReviewsLoadError;
 }
 
 class _AppLocalizationsDelegate

@@ -77,11 +77,13 @@ class _PatientAppState extends ConsumerState<PatientApp> {
     final router = ref.watch(gpsRouterProvider);
 
     return PushNotificationsBootstrap(
-      child: BookingDraftResumeListener(
-        navigatorKey: patientRootNavigatorKey,
-        child: GpsMedicalMaterialApp(
-          title: _appInfo.displayName,
-          routerConfig: router,
+      child: MessagingRealtimeLifecycle(
+        child: BookingDraftResumeListener(
+          navigatorKey: patientRootNavigatorKey,
+          child: GpsMedicalMaterialApp(
+            title: _appInfo.displayName,
+            routerConfig: router,
+          ),
         ),
       ),
     );

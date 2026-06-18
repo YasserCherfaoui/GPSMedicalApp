@@ -1,3 +1,5 @@
+export 'messaging_realtime.provider.dart';
+export 'messaging_websocket_client.dart';
 export 'models/thread_display_message.dart';
 export 'providers/messaging_repository.provider.dart';
 export 'repositories/messaging_repository.dart';
