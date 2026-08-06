@@ -34,6 +34,8 @@ void main() {
           appInfoProvider.overrideWithValue(_specialistAppInfo),
           tokenStoreProvider.overrideWithValue(InMemoryTokenStore()),
           appLaunchPreferencesProvider.overrideWithValue(launchPrefs),
+          // Avoid WebSocket reconnect timers after sign-in.
+          messagingWebSocketClientProvider.overrideWith((ref) => null),
           specialistVerificationRepositoryProvider.overrideWith((ref) {
             return _PendingVerificationRepository();
           }),
@@ -65,6 +67,10 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(VerificationPendingScreen), findsOneWidget);
+
+      // Dispose the app tree so no pending timers remain (reconnect backoff).
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
     },
   );
 }

@@ -57,4 +57,40 @@ void main() {
     expect(body['specialty_ids'], ['00000000-0000-4000-8000-000000000001']);
     expect(body['consultation_fee_dzd'], 2500);
   });
+
+  test('getProfile parses GET /doctors/me', () async {
+    adapter.onGet('/doctors/me', (server) {
+      server.reply(200, {
+        'id': '00000000-0000-4000-8000-000000000010',
+        'full_name': 'Dr. Test',
+        'verification_status': 'approved',
+        'consultation_fee_dzd': 2500,
+      });
+    });
+
+    final profile = await repository.getProfile();
+    expect(profile.fullName, 'Dr. Test');
+    expect(profile.consultationFeeDzd, 2500);
+  });
+
+  test('mergeOptimistic applies patch fields', () {
+    final previous = DoctorPrivate(
+      (b) => b
+        ..id = '00000000-0000-4000-8000-000000000010'
+        ..fullName = 'Old'
+        ..consultationFeeDzd = 1000,
+    );
+    final merged = repository.mergeOptimistic(previous, {
+      'full_name': 'New',
+      'consultation_fee_dzd': 2500,
+      'bio': 'Hello',
+      'accepts_cnas': true,
+      'offers_telehealth': true,
+    });
+    expect(merged.fullName, 'New');
+    expect(merged.consultationFeeDzd, 2500);
+    expect(merged.bio, 'Hello');
+    expect(merged.acceptsCnas, isTrue);
+    expect(merged.offersTelehealth, isTrue);
+  });
 }

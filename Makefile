@@ -10,7 +10,7 @@ OPENAPI_SPEC := $(abspath ../docs/api/openapi.yaml)
 API_PKG := shared_lib/packages/gps_medical_api
 API_PUBSPEC := shared_lib/tool/gps_medical_api.pubspec.yaml
 
-.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models gen-providers configure-firebase-patient configure-firebase-specialist setup-maps-secrets
+.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models gen-providers configure-firebase-patient configure-firebase-specialist setup-maps-secrets test-cover-features test-cover-specialist-features
 
 gen-providers:
 	cd shared_lib && dart pub get && dart run build_runner build --delete-conflicting-outputs
@@ -63,7 +63,7 @@ format-check:
 test: pub-get
 	@for d in $(PACKAGES); do \
 		echo "==> $$d: flutter test"; \
-		if [ "$$d" = "patient_app" ]; then \
+		if [ "$$d" = "patient_app" ] || [ "$$d" = "specialist_app" ]; then \
 			(cd $$d && flutter test --exclude-tags staging) || exit 1; \
 		else \
 			(cd $$d && flutter test) || exit 1; \
@@ -76,10 +76,16 @@ test-booking-staging:
 test-phase2-staging:
 	cd patient_app && STAGING_INTEGRATION=1 flutter test test/staging test/features/booking/staging --tags staging --concurrency=1
 
+test-phase3-specialist-staging:
+	cd specialist_app && STAGING_INTEGRATION=1 flutter test test/staging --tags staging --concurrency=1
+
 test-cover-features:
 	bash patient_app/scripts/check_features_coverage.sh
 
-ci: format-check analyze test test-cover-features
+test-cover-specialist-features:
+	bash specialist_app/scripts/check_features_coverage.sh
+
+ci: format-check analyze test test-cover-features test-cover-specialist-features
 
 build-apk: pub-get
 	@for d in patient_app specialist_app; do \
