@@ -14,7 +14,7 @@ Method | HTTP request | Description
 [**doctorsMeCredentialsPost**](DoctorsApi.md#doctorsmecredentialspost) | **POST** /doctors/me/credentials | Téléversement d&#39;un diplôme ou justificatif (PDF/image)
 [**doctorsMeGet**](DoctorsApi.md#doctorsmeget) | **GET** /doctors/me | Profil du médecin connecté (vue privée)
 [**doctorsMePatch**](DoctorsApi.md#doctorsmepatch) | **PATCH** /doctors/me | Mise à jour du profil médecin
-[**getDoctorCredentialFile**](DoctorsApi.md#getdoctorcredentialfile) | **GET** /doctors/me/credentials/{credentialId}/file | Téléchargement du justificatif déchiffré (lien signé)
+[**getDoctorCredentialFile**](DoctorsApi.md#getdoctorcredentialfile) | **GET** /doctors/me/credentials/{credentialId}/file | Aperçu du justificatif déchiffré (lien signé)
 [**specialtiesGet**](DoctorsApi.md#specialtiesget) | **GET** /specialties | Référentiel des spécialités médicales
 
 
@@ -232,9 +232,9 @@ Name | Type | Description  | Notes
 # **getDoctorCredentialFile**
 > Uint8List getDoctorCredentialFile(credentialId, exp, token)
 
-Téléchargement du justificatif déchiffré (lien signé)
+Aperçu du justificatif déchiffré (lien signé)
 
-Diffuse le fichier en clair après vérification du jeton HMAC (`exp`, `token`) émis dans `Credential.file_url` à la création ou via un flux équivalent. Accès sans en-tête `Authorization` : le secret est porté par la query. 
+Diffuse le fichier en clair après vérification du jeton HMAC (`exp`, `token`) émis dans `Credential.file_url` à la création ou via un flux équivalent. Accès sans en-tête `Authorization` : le secret est porté par la query. Le fichier est servi avec `Content-Disposition: inline` pour affichage dans l'onglet du navigateur (PDF, JPEG, PNG). 
 
 ### Example
 ```dart

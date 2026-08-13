@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **address** | [**Address**](Address.md) |  | [optional] 
 **allergies** | **BuiltList&lt;String&gt;** |  | [optional] 
 **chronicConditions** | **BuiltList&lt;String&gt;** |  | [optional] 
+**insurance** | [**PatientUpdateInsurance**](PatientUpdateInsurance.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

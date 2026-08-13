@@ -7,6 +7,22 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(DoctorUpdate, () {
+    // String fullName
+    test('to test the property `fullName`', () async {
+      // TODO
+    });
+
+    // e.g. Dr., Pr.
+    // String title
+    test('to test the property `title`', () async {
+      // TODO
+    });
+
+    // String gender
+    test('to test the property `gender`', () async {
+      // TODO
+    });
+
     // String bio
     test('to test the property `bio`', () async {
       // TODO

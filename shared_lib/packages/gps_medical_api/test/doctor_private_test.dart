@@ -87,7 +87,7 @@ void main() {
       // TODO
     });
 
-    // Numéro algérien au format E.164
+    // Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
     // String phone
     test('to test the property `phone`', () async {
       // TODO
@@ -106,6 +106,12 @@ void main() {
 
     // String verificationStatus
     test('to test the property `verificationStatus`', () async {
+      // TODO
+    });
+
+    // Admin feedback from the verification decision (more_info / rejected).
+    // String verificationComment
+    test('to test the property `verificationComment`', () async {
       // TODO
     });
 

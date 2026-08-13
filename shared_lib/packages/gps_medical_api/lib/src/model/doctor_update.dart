@@ -13,6 +13,9 @@ part 'doctor_update.g.dart';
 /// DoctorUpdate
 ///
 /// Properties:
+/// * [fullName] 
+/// * [title] - e.g. Dr., Pr.
+/// * [gender] 
 /// * [bio] 
 /// * [photoUrl] 
 /// * [languages] 
@@ -26,6 +29,17 @@ part 'doctor_update.g.dart';
 /// * [specialtyIds] 
 @BuiltValue()
 abstract class DoctorUpdate implements Built<DoctorUpdate, DoctorUpdateBuilder> {
+  @BuiltValueField(wireName: r'full_name')
+  String? get fullName;
+
+  /// e.g. Dr., Pr.
+  @BuiltValueField(wireName: r'title')
+  String? get title;
+
+  @BuiltValueField(wireName: r'gender')
+  DoctorUpdateGenderEnum? get gender;
+  // enum genderEnum {  male,  female,  };
+
   @BuiltValueField(wireName: r'bio')
   String? get bio;
 
@@ -84,6 +98,27 @@ class _$DoctorUpdateSerializer implements PrimitiveSerializer<DoctorUpdate> {
     DoctorUpdate object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.fullName != null) {
+      yield r'full_name';
+      yield serializers.serialize(
+        object.fullName,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.title != null) {
+      yield r'title';
+      yield serializers.serialize(
+        object.title,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.gender != null) {
+      yield r'gender';
+      yield serializers.serialize(
+        object.gender,
+        specifiedType: const FullType(DoctorUpdateGenderEnum),
+      );
+    }
     if (object.bio != null) {
       yield r'bio';
       yield serializers.serialize(
@@ -184,6 +219,27 @@ class _$DoctorUpdateSerializer implements PrimitiveSerializer<DoctorUpdate> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'full_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.fullName = valueDes;
+          break;
+        case r'title':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.title = valueDes;
+          break;
+        case r'gender':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DoctorUpdateGenderEnum),
+          ) as DoctorUpdateGenderEnum;
+          result.gender = valueDes;
+          break;
         case r'bio':
           final valueDes = serializers.deserialize(
             value,
@@ -288,6 +344,21 @@ class _$DoctorUpdateSerializer implements PrimitiveSerializer<DoctorUpdate> {
     );
     return result.build();
   }
+}
+
+class DoctorUpdateGenderEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'male')
+  static const DoctorUpdateGenderEnum male = _$doctorUpdateGenderEnum_male;
+  @BuiltValueEnumConst(wireName: r'female')
+  static const DoctorUpdateGenderEnum female = _$doctorUpdateGenderEnum_female;
+
+  static Serializer<DoctorUpdateGenderEnum> get serializer => _$doctorUpdateGenderEnumSerializer;
+
+  const DoctorUpdateGenderEnum._(String name): super(name);
+
+  static BuiltSet<DoctorUpdateGenderEnum> get values => _$doctorUpdateGenderEnumValues;
+  static DoctorUpdateGenderEnum valueOf(String name) => _$doctorUpdateGenderEnumValueOf(name);
 }
 
 class DoctorUpdateLanguagesEnum extends EnumClass {

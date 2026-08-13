@@ -66,9 +66,11 @@ class _$RegisterRequestRoleEnumSerializer
 
 class _$RegisterRequest extends RegisterRequest {
   @override
+  final CountryCode country;
+  @override
   final String phone;
   @override
-  final String nin;
+  final String? nin;
   @override
   final String password;
   @override
@@ -90,8 +92,9 @@ class _$RegisterRequest extends RegisterRequest {
       (RegisterRequestBuilder()..update(updates))._build();
 
   _$RegisterRequest._({
+    required this.country,
     required this.phone,
-    required this.nin,
+    this.nin,
     required this.password,
     required this.role,
     required this.fullName,
@@ -112,6 +115,7 @@ class _$RegisterRequest extends RegisterRequest {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is RegisterRequest &&
+        country == other.country &&
         phone == other.phone &&
         nin == other.nin &&
         password == other.password &&
@@ -127,6 +131,7 @@ class _$RegisterRequest extends RegisterRequest {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, country.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, nin.hashCode);
     _$hash = $jc(_$hash, password.hashCode);
@@ -144,6 +149,7 @@ class _$RegisterRequest extends RegisterRequest {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'RegisterRequest')
+          ..add('country', country)
           ..add('phone', phone)
           ..add('nin', nin)
           ..add('password', password)
@@ -161,6 +167,10 @@ class _$RegisterRequest extends RegisterRequest {
 class RegisterRequestBuilder
     implements Builder<RegisterRequest, RegisterRequestBuilder> {
   _$RegisterRequest? _$v;
+
+  CountryCode? _country;
+  CountryCode? get country => _$this._country;
+  set country(CountryCode? country) => _$this._country = country;
 
   String? _phone;
   String? get phone => _$this._phone;
@@ -213,6 +223,7 @@ class RegisterRequestBuilder
   RegisterRequestBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _country = $v.country;
       _phone = $v.phone;
       _nin = $v.nin;
       _password = $v.password;
@@ -245,16 +256,17 @@ class RegisterRequestBuilder
     final _$result =
         _$v ??
         _$RegisterRequest._(
+          country: BuiltValueNullFieldError.checkNotNull(
+            country,
+            r'RegisterRequest',
+            'country',
+          ),
           phone: BuiltValueNullFieldError.checkNotNull(
             phone,
             r'RegisterRequest',
             'phone',
           ),
-          nin: BuiltValueNullFieldError.checkNotNull(
-            nin,
-            r'RegisterRequest',
-            'nin',
-          ),
+          nin: nin,
           password: BuiltValueNullFieldError.checkNotNull(
             password,
             r'RegisterRequest',

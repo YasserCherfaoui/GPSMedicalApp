@@ -413,7 +413,7 @@ class PatientsApi {
   }
 
   /// Profil du patient connecté
-  /// 
+  /// Retourne le profil patient. Pour &#x60;data_residency_mode&#x3D;device_only&#x60; (pays &#x60;DZ&#x60;), les champs restreints (&#x60;birth_date&#x60;, &#x60;gender&#x60;, &#x60;blood_type&#x60;, &#x60;address&#x60;, &#x60;allergies&#x60;, &#x60;chronic_conditions&#x60;, &#x60;insurance&#x60;) sont renvoyés à &#x60;null&#x60; même si des valeurs legacy existent en base (pas de purge ; elles ne sont simplement pas exposées — addendum-1.1.0). 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -492,7 +492,7 @@ class PatientsApi {
   }
 
   /// Mise à jour partielle du profil patient
-  /// 
+  /// Mise à jour partielle. Le champ &#x60;country&#x60; n&#39;est **pas** accepté (immuable après OTP). Pour &#x60;data_residency_mode&#x3D;device_only&#x60;, toute tentative d&#39;écrire un champ restreint (&#x60;birth_date&#x60;, &#x60;gender&#x60;, &#x60;blood_type&#x60;, &#x60;address&#x60;, &#x60;allergies&#x60;, &#x60;chronic_conditions&#x60;, &#x60;insurance&#x60;) est rejetée explicitement avec &#x60;422&#x60; et &#x60;errors[].code &#x3D; field_not_storable_in_country&#x60; (pas de strip silencieux). Les champs autorisés (&#x60;full_name&#x60;, &#x60;email&#x60;, …) restent acceptés. 
   ///
   /// Parameters:
   /// * [patientUpdate] 

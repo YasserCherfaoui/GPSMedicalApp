@@ -39,9 +39,9 @@ void main() {
 
     // Liste paginée des utilisateurs (vue admin)
     //
-    // Réservé aux administrateurs (`admin` uniquement). Filtre par rôle et statut ; recherche texte (`q`) sur nom affiché et e-mail uniquement (pas de NIN/téléphone). Chaque appel est audité (`admin.users.list`). Voir addendum-week-10.md. 
+    // Réservé aux administrateurs (`admin` uniquement). Filtre par rôle, statut et pays (`country`) ; recherche texte (`q`) sur nom affiché et e-mail uniquement (pas de NIN/téléphone). Chaque appel est audité (`admin.users.list`). Voir addendum-week-10.md et addendum-1.1.0.md. 
     //
-    //Future<PaginatedUserAdmin> adminListUsers({ String role, String status, String q, int page, int pageSize }) async
+    //Future<PaginatedUserAdmin> adminListUsers({ String role, String status, CountryCode country, String q, int page, int pageSize }) async
     test('test adminListUsers', () async {
       // TODO
     });

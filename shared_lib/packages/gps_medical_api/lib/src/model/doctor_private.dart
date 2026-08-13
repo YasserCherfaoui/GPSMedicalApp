@@ -32,10 +32,11 @@ part 'doctor_private.g.dart';
 /// * [ratingAverage] 
 /// * [ratingCount] 
 /// * [verified] 
-/// * [phone] - Numéro algérien au format E.164
+/// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
 /// * [email] 
 /// * [councilNumber] - N° au Conseil de l'Ordre
 /// * [verificationStatus] 
+/// * [verificationComment] - Admin feedback from the verification decision (more_info / rejected).
 /// * [credentials] 
 /// * [confirmationPolicy] 
 /// * [bookingWindowDays] 
@@ -44,7 +45,7 @@ abstract class DoctorPrivate implements Doctor, Built<DoctorPrivate, DoctorPriva
   @BuiltValueField(wireName: r'booking_window_days')
   int? get bookingWindowDays;
 
-  /// Numéro algérien au format E.164
+  /// Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
   @BuiltValueField(wireName: r'phone')
   String? get phone;
 
@@ -65,6 +66,10 @@ abstract class DoctorPrivate implements Doctor, Built<DoctorPrivate, DoctorPriva
 
   @BuiltValueField(wireName: r'email')
   String? get email;
+
+  /// Admin feedback from the verification decision (more_info / rejected).
+  @BuiltValueField(wireName: r'verification_comment')
+  String? get verificationComment;
 
   DoctorPrivate._();
 
@@ -241,6 +246,13 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
       yield serializers.serialize(
         object.email,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.verificationComment != null) {
+      yield r'verification_comment';
+      yield serializers.serialize(
+        object.verificationComment,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.ratingAverage != null) {
@@ -426,6 +438,14 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
             specifiedType: const FullType(String),
           ) as String;
           result.email = valueDes;
+          break;
+        case r'verification_comment':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.verificationComment = valueDes;
           break;
         case r'rating_average':
           final valueDes = serializers.deserialize(

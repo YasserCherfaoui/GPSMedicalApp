@@ -22,7 +22,9 @@ doc/CheckPhoneRequest.md
 doc/Commune.md
 doc/ConfirmPaymentIntentRequest.md
 doc/ConsentGrant.md
+doc/CountryCode.md
 doc/Credential.md
+doc/DataResidencyMode.md
 doc/Dependent.md
 doc/DependentCreate.md
 doc/Device.md
@@ -48,6 +50,7 @@ doc/Message.md
 doc/MessageAttachmentsInner.md
 doc/MessageCreate.md
 doc/MessagingApi.md
+doc/MessagingRealtimeEvent.md
 doc/Notification.md
 doc/NotificationPreferences.md
 doc/NotificationsApi.md
@@ -67,6 +70,7 @@ doc/PasswordResetRequest.md
 doc/Patient.md
 doc/PatientAllOfInsurance.md
 doc/PatientUpdate.md
+doc/PatientUpdateInsurance.md
 doc/PatientsApi.md
 doc/PaymentIntent.md
 doc/PaymentIntentCreate.md
@@ -151,7 +155,9 @@ lib/src/model/check_phone_request.dart
 lib/src/model/commune.dart
 lib/src/model/confirm_payment_intent_request.dart
 lib/src/model/consent_grant.dart
+lib/src/model/country_code.dart
 lib/src/model/credential.dart
+lib/src/model/data_residency_mode.dart
 lib/src/model/date.dart
 lib/src/model/dependent.dart
 lib/src/model/dependent_create.dart
@@ -174,6 +180,7 @@ lib/src/model/medical_records_document_id_download_get200_response.dart
 lib/src/model/message.dart
 lib/src/model/message_attachments_inner.dart
 lib/src/model/message_create.dart
+lib/src/model/messaging_realtime_event.dart
 lib/src/model/notification.dart
 lib/src/model/notification_preferences.dart
 lib/src/model/otp_verify_request.dart
@@ -192,6 +199,7 @@ lib/src/model/password_reset_request.dart
 lib/src/model/patient.dart
 lib/src/model/patient_all_of_insurance.dart
 lib/src/model/patient_update.dart
+lib/src/model/patient_update_insurance.dart
 lib/src/model/payment_intent.dart
 lib/src/model/payment_intent_create.dart
 lib/src/model/prescription.dart
@@ -252,7 +260,9 @@ test/check_phone_request_test.dart
 test/commune_test.dart
 test/confirm_payment_intent_request_test.dart
 test/consent_grant_test.dart
+test/country_code_test.dart
 test/credential_test.dart
+test/data_residency_mode_test.dart
 test/dependent_create_test.dart
 test/dependent_test.dart
 test/device_registration_test.dart
@@ -278,6 +288,7 @@ test/message_attachments_inner_test.dart
 test/message_create_test.dart
 test/message_test.dart
 test/messaging_api_test.dart
+test/messaging_realtime_event_test.dart
 test/notification_preferences_test.dart
 test/notification_test.dart
 test/notifications_api_test.dart
@@ -296,6 +307,7 @@ test/pagination_meta_test.dart
 test/password_reset_request_test.dart
 test/patient_all_of_insurance_test.dart
 test/patient_test.dart
+test/patient_update_insurance_test.dart
 test/patient_update_test.dart
 test/patients_api_test.dart
 test/payment_intent_create_test.dart

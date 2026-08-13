@@ -47,5 +47,10 @@ void main() {
       // TODO
     });
 
+    // PatientUpdateInsurance insurance
+    test('to test the property `insurance`', () async {
+      // TODO
+    });
+
   });
 }

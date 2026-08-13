@@ -12,6 +12,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_api/src/api_util.dart';
 import 'package:gps_medical_api/src/model/message.dart';
 import 'package:gps_medical_api/src/model/message_create.dart';
+import 'package:gps_medical_api/src/model/messaging_realtime_event.dart';
 import 'package:gps_medical_api/src/model/paginated_threads.dart';
 import 'package:gps_medical_api/src/model/problem.dart';
 import 'package:gps_medical_api/src/model/thread.dart';
@@ -23,6 +24,64 @@ class MessagingApi {
   final Serializers _serializers;
 
   const MessagingApi(this._dio, this._serializers);
+
+  /// Canal WebSocket temps réel (messages et accusés de lecture)
+  /// Upgrade WebSocket. Authentification via en-tête &#x60;Authorization: Bearer&#x60; ou paramètre &#x60;token&#x60; (JWT access). Réservé aux rôles &#x60;patient&#x60; et &#x60;specialist&#x60; avec participation au fil (même RBAC que B-9.1).  Événements serveur → client (&#x60;MessagingRealtimeEvent&#x60;) : - &#x60;message.new&#x60; — nouveau message dans un fil participé ; - &#x60;message.read&#x60; — accusé de lecture.  **Dégradation gracieuse :** REST reste la source de vérité pour l&#39;historique et l&#39;envoi ; si le WS est indisponible, les clients basculent sur le polling REST (Phase 2) sans perte. Voir ADR 0013 pour la sémantique de livraison (at-least-once côté push). 
+  ///
+  /// Parameters:
+  /// * [token] - JWT d'accès (alternative à Authorization pour certains clients WebSocket)
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future]
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<void>> connectMessagingWebSocket({ 
+    String? token,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/messaging/ws';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (token != null) r'token': encodeQueryParameter(_serializers, token, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    return _response;
+  }
 
   /// Envoi d&#39;un message
   /// 
@@ -41,7 +100,7 @@ class MessagingApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<Message>> createMessagingThreadMessage({ 
     required String threadId,
-    MessageCreate? messageCreate,
+    required MessageCreate messageCreate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,

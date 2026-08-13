@@ -17,11 +17,13 @@ void main() {
       // TODO
     });
 
+    // `anpdp_terms` désigne les conditions légales applicables au pays de l'utilisateur (rename cosmétique différé). 
     // String consentType
     test('to test the property `consentType`', () async {
       // TODO
     });
 
+    // Version scopée par pays (ex. `dz-1.2`, `tn-1.0`). 
     // String version
     test('to test the property `version`', () async {
       // TODO

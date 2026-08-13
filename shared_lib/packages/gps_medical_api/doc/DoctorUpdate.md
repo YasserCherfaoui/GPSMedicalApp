@@ -8,6 +8,9 @@ import 'package:gps_medical_api/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**fullName** | **String** |  | [optional] 
+**title** | **String** | e.g. Dr., Pr. | [optional] 
+**gender** | **String** |  | [optional] 
 **bio** | **String** |  | [optional] 
 **photoUrl** | **String** |  | [optional] 
 **languages** | **BuiltList&lt;String&gt;** |  | [optional] 

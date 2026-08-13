@@ -202,11 +202,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **adminListUsers**
-> PaginatedUserAdmin adminListUsers(role, status, q, page, pageSize)
+> PaginatedUserAdmin adminListUsers(role, status, country, q, page, pageSize)
 
 Liste paginée des utilisateurs (vue admin)
 
-Réservé aux administrateurs (`admin` uniquement). Filtre par rôle et statut ; recherche texte (`q`) sur nom affiché et e-mail uniquement (pas de NIN/téléphone). Chaque appel est audité (`admin.users.list`). Voir addendum-week-10.md. 
+Réservé aux administrateurs (`admin` uniquement). Filtre par rôle, statut et pays (`country`) ; recherche texte (`q`) sur nom affiché et e-mail uniquement (pas de NIN/téléphone). Chaque appel est audité (`admin.users.list`). Voir addendum-week-10.md et addendum-1.1.0.md. 
 
 ### Example
 ```dart
@@ -215,12 +215,13 @@ import 'package:gps_medical_api/api.dart';
 final api = GpsMedicalApi().getAdminApi();
 final String role = role_example; // String | 
 final String status = status_example; // String | 
+final CountryCode country = ; // CountryCode | Filtre ISO 3166-1 alpha-2 (`DZ` | `TN`)
 final String q = q_example; // String | 
 final int page = 56; // int | 
 final int pageSize = 56; // int | 
 
 try {
-    final response = api.adminListUsers(role, status, q, page, pageSize);
+    final response = api.adminListUsers(role, status, country, q, page, pageSize);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling AdminApi->adminListUsers: $e\n');
@@ -233,6 +234,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **role** | **String**|  | [optional] 
  **status** | **String**|  | [optional] 
+ **country** | [**CountryCode**](.md)| Filtre ISO 3166-1 alpha-2 (`DZ` | `TN`) | [optional] 
  **q** | **String**|  | [optional] 
  **page** | **int**|  | [optional] [default to 1]
  **pageSize** | **int**|  | [optional] [default to 20]

@@ -27,7 +27,7 @@ class MedicalRecordsApi {
   const MedicalRecordsApi(this._dio, this._serializers);
 
   /// Téléchargement du document déchiffré (lien signé)
-  /// Diffuse le fichier en clair après vérification du jeton HMAC (&#x60;exp&#x60;, &#x60;token&#x60;) renvoyé dans l&#39;URL de &#x60;GET /medical-records/{documentId}/download&#x60;. L&#39;objet stocké reste en ciphertext (ADR 0006). Accès journalisé (&#x60;medical_record.download&#x60;). 
+  /// Diffuse le fichier en clair après vérification du jeton HMAC (&#x60;exp&#x60;, &#x60;token&#x60;) renvoyé dans l&#39;URL de &#x60;GET /medical-records/{documentId}/download&#x60;. L&#39;objet stocké reste en ciphertext (ADR 0006). Accès journalisé (&#x60;medical_record.download&#x60;). Patient &#x60;device_only&#x60; → &#x60;403 data_residency_restricted&#x60;. 
   ///
   /// Parameters:
   /// * [documentId] 
@@ -110,7 +110,7 @@ class MedicalRecordsApi {
   }
 
   /// Suppression d&#39;un document (auteur uniquement)
-  /// Suppression logique (&#x60;deleted_at&#x60;). Seul &#x60;author_id&#x60; (JWT &#x60;sub&#x60;) peut supprimer. Le blob chiffré est supprimé du stockage objet en arrière-plan (retries). Journalisation &#x60;medical_record.delete&#x60; puis &#x60;medical_record.blob_purged&#x60;. 
+  /// Suppression logique (&#x60;deleted_at&#x60;). Seul &#x60;author_id&#x60; (JWT &#x60;sub&#x60;) peut supprimer. Le blob chiffré est supprimé du stockage objet en arrière-plan (retries). Journalisation &#x60;medical_record.delete&#x60; puis &#x60;medical_record.blob_purged&#x60;. Patient &#x60;device_only&#x60; → &#x60;403 data_residency_restricted&#x60;. 
   ///
   /// Parameters:
   /// * [documentId] 
@@ -163,7 +163,7 @@ class MedicalRecordsApi {
   }
 
   /// URL signée de téléchargement (expire 5 min)
-  /// Renvoie une URL API signée (TTL 5 minutes, query &#x60;exp&#x60; + &#x60;token&#x60;) vers &#x60;GET /v1/medical-records/{documentId}/file&#x60;, qui diffuse le fichier déchiffré. L&#39;objet dans le stockage reste en ciphertext (ADR 0006). Accès réservé au patient propriétaire ou à un médecin ayant un parrainage (&#x60;referrals&#x60;) avec ce patient. 
+  /// Renvoie une URL API signée (TTL 5 minutes, query &#x60;exp&#x60; + &#x60;token&#x60;) vers &#x60;GET /v1/medical-records/{documentId}/file&#x60;, qui diffuse le fichier déchiffré. L&#39;objet dans le stockage reste en ciphertext (ADR 0006). Accès réservé au patient propriétaire ou à un médecin ayant un parrainage (&#x60;referrals&#x60;) avec ce patient. Patient &#x60;device_only&#x60; → &#x60;403 data_residency_restricted&#x60;. 
   ///
   /// Parameters:
   /// * [documentId] 
@@ -244,7 +244,7 @@ class MedicalRecordsApi {
   }
 
   /// Métadonnées d&#39;un document
-  /// Même projection que la liste, sans &#x60;storage_key&#x60; ni champs de chiffrement. RBAC identique à &#x60;GET /medical-records&#x60; ; &#x60;404&#x60; si absent ou supprimé. 
+  /// Même projection que la liste, sans &#x60;storage_key&#x60; ni champs de chiffrement. RBAC identique à &#x60;GET /medical-records&#x60; ; &#x60;404&#x60; si absent ou supprimé. Patient &#x60;device_only&#x60; → &#x60;403 data_residency_restricted&#x60;. 
   ///
   /// Parameters:
   /// * [documentId] 
@@ -325,7 +325,7 @@ class MedicalRecordsApi {
   }
 
   /// Documents accessibles à l&#39;utilisateur (patient ou médecin)
-  /// Métadonnées uniquement (pas de fichier). Pagination &#x60;page&#x60; (défaut 1), &#x60;page_size&#x60; (défaut 20, max 100). Sans &#x60;patient_id&#x60; : dossier du patient connecté ou uploads du médecin (auteur). Avec &#x60;patient_id&#x60; : patient (soi-même), médecin (parrainage), admin (tout patient). Documents supprimés (&#x60;deleted_at&#x60;) exclus. Tri &#x60;created_at DESC&#x60;, &#x60;id DESC&#x60;. 
+  /// Métadonnées uniquement (pas de fichier). Pagination &#x60;page&#x60; (défaut 1), &#x60;page_size&#x60; (défaut 20, max 100). Sans &#x60;patient_id&#x60; : dossier du patient connecté ou uploads du médecin (auteur). Avec &#x60;patient_id&#x60; : patient (soi-même), médecin (parrainage), admin (tout patient). Documents supprimés (&#x60;deleted_at&#x60;) exclus. Tri &#x60;created_at DESC&#x60;, &#x60;id DESC&#x60;.  **Résidence (v1.1.0):** si le sujet patient a &#x60;data_residency_mode&#x3D;device_only&#x60;, la requête est rejetée avec &#x60;403&#x60; et &#x60;code&#x3D;data_residency_restricted&#x60; (coffre appareil uniquement — addendum-1.1.0). 
   ///
   /// Parameters:
   /// * [patientId] - Réservé aux médecins ayant traité ce patient
@@ -420,7 +420,7 @@ class MedicalRecordsApi {
   }
 
   /// Téléversement d&#39;un document (médecin ou patient)
-  /// &#x60;multipart/form-data&#x60; avec champ fichier &#x60;file&#x60; (PDF, JPEG ou PNG). Fichier maximal **20 Mo** ; enveloppe multipart serveur **25 Mo** (métadonnées incluses). Le type MIME réel est vérifié (magic bytes) en plus du &#x60;Content-Type&#x60; déclaré. Ciphertext stocké sous &#x60;{patient_id}/{document_id}.enc&#x60; (ADR 0006). 
+  /// &#x60;multipart/form-data&#x60; avec champ fichier &#x60;file&#x60; (PDF, JPEG ou PNG). Fichier maximal **20 Mo** ; enveloppe multipart serveur **25 Mo** (métadonnées incluses). Le type MIME réel est vérifié (magic bytes) en plus du &#x60;Content-Type&#x60; déclaré. Ciphertext stocké sous &#x60;{patient_id}/{document_id}.enc&#x60; (ADR 0006).  **Résidence (v1.1.0):** patient &#x60;device_only&#x60; → &#x60;403 data_residency_restricted&#x60;. 
   ///
   /// Parameters:
   /// * [file] 

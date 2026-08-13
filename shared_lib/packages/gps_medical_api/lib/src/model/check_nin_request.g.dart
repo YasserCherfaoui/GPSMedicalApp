@@ -9,11 +9,13 @@ part of 'check_nin_request.dart';
 class _$CheckNinRequest extends CheckNinRequest {
   @override
   final String nin;
+  @override
+  final CountryCode? country;
 
   factory _$CheckNinRequest([void Function(CheckNinRequestBuilder)? updates]) =>
       (CheckNinRequestBuilder()..update(updates))._build();
 
-  _$CheckNinRequest._({required this.nin}) : super._();
+  _$CheckNinRequest._({required this.nin, this.country}) : super._();
   @override
   CheckNinRequest rebuild(void Function(CheckNinRequestBuilder) updates) =>
       (toBuilder()..update(updates)).build();
@@ -24,22 +26,26 @@ class _$CheckNinRequest extends CheckNinRequest {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is CheckNinRequest && nin == other.nin;
+    return other is CheckNinRequest &&
+        nin == other.nin &&
+        country == other.country;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, nin.hashCode);
+    _$hash = $jc(_$hash, country.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(
-      r'CheckNinRequest',
-    )..add('nin', nin)).toString();
+    return (newBuiltValueToStringHelper(r'CheckNinRequest')
+          ..add('nin', nin)
+          ..add('country', country))
+        .toString();
   }
 }
 
@@ -51,6 +57,10 @@ class CheckNinRequestBuilder
   String? get nin => _$this._nin;
   set nin(String? nin) => _$this._nin = nin;
 
+  CountryCode? _country;
+  CountryCode? get country => _$this._country;
+  set country(CountryCode? country) => _$this._country = country;
+
   CheckNinRequestBuilder() {
     CheckNinRequest._defaults(this);
   }
@@ -59,6 +69,7 @@ class CheckNinRequestBuilder
     final $v = _$v;
     if ($v != null) {
       _nin = $v.nin;
+      _country = $v.country;
       _$v = null;
     }
     return this;
@@ -86,6 +97,7 @@ class CheckNinRequestBuilder
             r'CheckNinRequest',
             'nin',
           ),
+          country: country,
         );
     replace(_$result);
     return _$result;

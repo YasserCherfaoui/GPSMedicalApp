@@ -224,6 +224,8 @@ Name | Type | Description  | Notes
 
 Profil du patient connecté
 
+Retourne le profil patient. Pour `data_residency_mode=device_only` (pays `DZ`), les champs restreints (`birth_date`, `gender`, `blood_type`, `address`, `allergies`, `chronic_conditions`, `insurance`) sont renvoyés à `null` même si des valeurs legacy existent en base (pas de purge ; elles ne sont simplement pas exposées — addendum-1.1.0). 
+
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
@@ -260,6 +262,8 @@ This endpoint does not need any parameter.
 > Patient patientsMePatch(patientUpdate)
 
 Mise à jour partielle du profil patient
+
+Mise à jour partielle. Le champ `country` n'est **pas** accepté (immuable après OTP). Pour `data_residency_mode=device_only`, toute tentative d'écrire un champ restreint (`birth_date`, `gender`, `blood_type`, `address`, `allergies`, `chronic_conditions`, `insurance`) est rejetée explicitement avec `422` et `errors[].code = field_not_storable_in_country` (pas de strip silencieux). Les champs autorisés (`full_name`, `email`, …) restent acceptés. 
 
 ### Example
 ```dart

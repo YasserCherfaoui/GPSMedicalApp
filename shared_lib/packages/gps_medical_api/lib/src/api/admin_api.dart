@@ -13,6 +13,7 @@ import 'package:gps_medical_api/src/api_util.dart';
 import 'package:gps_medical_api/src/model/admin_doctors_doctor_id_verify_post_request.dart';
 import 'package:gps_medical_api/src/model/admin_reviews_review_id_moderate_post_request.dart';
 import 'package:gps_medical_api/src/model/consent_grant.dart';
+import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:gps_medical_api/src/model/doctor_private.dart';
 import 'package:gps_medical_api/src/model/paginated_audit_entries.dart';
 import 'package:gps_medical_api/src/model/paginated_doctors_private.dart';
@@ -408,11 +409,12 @@ class AdminApi {
   }
 
   /// Liste paginée des utilisateurs (vue admin)
-  /// Réservé aux administrateurs (&#x60;admin&#x60; uniquement). Filtre par rôle et statut ; recherche texte (&#x60;q&#x60;) sur nom affiché et e-mail uniquement (pas de NIN/téléphone). Chaque appel est audité (&#x60;admin.users.list&#x60;). Voir addendum-week-10.md. 
+  /// Réservé aux administrateurs (&#x60;admin&#x60; uniquement). Filtre par rôle, statut et pays (&#x60;country&#x60;) ; recherche texte (&#x60;q&#x60;) sur nom affiché et e-mail uniquement (pas de NIN/téléphone). Chaque appel est audité (&#x60;admin.users.list&#x60;). Voir addendum-week-10.md et addendum-1.1.0.md. 
   ///
   /// Parameters:
   /// * [role] 
   /// * [status] 
+  /// * [country] - Filtre ISO 3166-1 alpha-2 (`DZ` | `TN`)
   /// * [q] 
   /// * [page] 
   /// * [pageSize] 
@@ -428,6 +430,7 @@ class AdminApi {
   Future<Response<PaginatedUserAdmin>> adminListUsers({ 
     String? role,
     String? status,
+    CountryCode? country,
     String? q,
     int? page = 1,
     int? pageSize = 20,
@@ -460,6 +463,7 @@ class AdminApi {
     final _queryParameters = <String, dynamic>{
       if (role != null) r'role': encodeQueryParameter(_serializers, role, const FullType(String)),
       if (status != null) r'status': encodeQueryParameter(_serializers, status, const FullType(String)),
+      if (country != null) r'country': encodeQueryParameter(_serializers, country, const FullType(CountryCode)),
       if (q != null) r'q': encodeQueryParameter(_serializers, q, const FullType(String)),
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),

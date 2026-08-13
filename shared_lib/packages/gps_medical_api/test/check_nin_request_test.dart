@@ -13,5 +13,11 @@ void main() {
       // TODO
     });
 
+    // Optionnel ; sémantique DZ par défaut. Les clients TN ne doivent pas appeler cet endpoint. 
+    // CountryCode country
+    test('to test the property `country`', () async {
+      // TODO
+    });
+
   });
 }

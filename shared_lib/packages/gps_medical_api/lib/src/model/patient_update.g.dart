@@ -187,6 +187,8 @@ class _$PatientUpdate extends PatientUpdate {
   final BuiltList<String>? allergies;
   @override
   final BuiltList<String>? chronicConditions;
+  @override
+  final PatientUpdateInsurance? insurance;
 
   factory _$PatientUpdate([void Function(PatientUpdateBuilder)? updates]) =>
       (PatientUpdateBuilder()..update(updates))._build();
@@ -200,6 +202,7 @@ class _$PatientUpdate extends PatientUpdate {
     this.address,
     this.allergies,
     this.chronicConditions,
+    this.insurance,
   }) : super._();
   @override
   PatientUpdate rebuild(void Function(PatientUpdateBuilder) updates) =>
@@ -219,7 +222,8 @@ class _$PatientUpdate extends PatientUpdate {
         bloodType == other.bloodType &&
         address == other.address &&
         allergies == other.allergies &&
-        chronicConditions == other.chronicConditions;
+        chronicConditions == other.chronicConditions &&
+        insurance == other.insurance;
   }
 
   @override
@@ -233,6 +237,7 @@ class _$PatientUpdate extends PatientUpdate {
     _$hash = $jc(_$hash, address.hashCode);
     _$hash = $jc(_$hash, allergies.hashCode);
     _$hash = $jc(_$hash, chronicConditions.hashCode);
+    _$hash = $jc(_$hash, insurance.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -247,7 +252,8 @@ class _$PatientUpdate extends PatientUpdate {
           ..add('bloodType', bloodType)
           ..add('address', address)
           ..add('allergies', allergies)
-          ..add('chronicConditions', chronicConditions))
+          ..add('chronicConditions', chronicConditions)
+          ..add('insurance', insurance))
         .toString();
   }
 }
@@ -293,6 +299,12 @@ class PatientUpdateBuilder
   set chronicConditions(ListBuilder<String>? chronicConditions) =>
       _$this._chronicConditions = chronicConditions;
 
+  PatientUpdateInsuranceBuilder? _insurance;
+  PatientUpdateInsuranceBuilder get insurance =>
+      _$this._insurance ??= PatientUpdateInsuranceBuilder();
+  set insurance(PatientUpdateInsuranceBuilder? insurance) =>
+      _$this._insurance = insurance;
+
   PatientUpdateBuilder() {
     PatientUpdate._defaults(this);
   }
@@ -308,6 +320,7 @@ class PatientUpdateBuilder
       _address = $v.address?.toBuilder();
       _allergies = $v.allergies?.toBuilder();
       _chronicConditions = $v.chronicConditions?.toBuilder();
+      _insurance = $v.insurance?.toBuilder();
       _$v = null;
     }
     return this;
@@ -340,6 +353,7 @@ class PatientUpdateBuilder
             address: _address?.build(),
             allergies: _allergies?.build(),
             chronicConditions: _chronicConditions?.build(),
+            insurance: _insurance?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -350,6 +364,8 @@ class PatientUpdateBuilder
         _allergies?.build();
         _$failedField = 'chronicConditions';
         _chronicConditions?.build();
+        _$failedField = 'insurance';
+        _insurance?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
           r'PatientUpdate',

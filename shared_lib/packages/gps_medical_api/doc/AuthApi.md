@@ -30,7 +30,7 @@ Method | HTTP request | Description
 
 Vérifier le format et la disponibilité d'un NIN avant inscription
 
-Valide le NIN (règles locales, voir `NINAlgerian`) et vérifie qu'aucun compte existant n'utilise déjà ce numéro. Appelé par les clients mobiles avant de poursuivre le parcours d'inscription. 
+Réservé aux inscriptions **DZ**. Valide le NIN (règles locales, voir `NINAlgerian`) et vérifie qu'aucun compte existant n'utilise déjà ce numéro. Les clients TN ne doivent pas appeler cet endpoint (le parcours NIN est sauté pour `country=TN`). 
 
 ### Example
 ```dart
@@ -72,7 +72,7 @@ No authorization required
 
 Vérifier le format et la disponibilité d'un numéro avant inscription
 
-Valide le numéro algérien E.164 et vérifie qu'aucun compte existant n'utilise déjà ce téléphone. Appelé par les clients mobiles avant de poursuivre le parcours d'inscription. 
+Valide le numéro E.164 (DZ `+213` ou TN `+216`) et vérifie qu'aucun compte existant n'utilise déjà ce téléphone. `country` est obligatoire : un indicatif qui ne correspond pas au pays déclaré renvoie `422` avec `phone_country_mismatch`. 
 
 ### Example
 ```dart
@@ -271,6 +271,8 @@ This endpoint does not need any parameter.
 
 Connexion par téléphone + mot de passe
 
+Les applications mobiles omettent `client` (équivalent à `mobile`).  Avec `client=dashboard`, seuls les comptes `admin` et `moderator` reçoivent un couple de jetons. Les autres rôles obtiennent `401` avec le même message que des identifiants invalides (pas d'énumération de rôle). Les jetons émis portent la claim JWT `aud=dashboard` et sont requis pour les routes `/v1/admin/…`. 
+
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
@@ -389,7 +391,7 @@ No authorization required
 
 Inscription d'un nouvel utilisateur (patient ou médecin)
 
-Crée un compte et envoie un OTP à 6 chiffres par SMS au numéro fourni. Le compte reste à l'état `pending_verification` jusqu'à validation OTP. L'OTP expire au bout de 5 minutes.  Le NIN est validé localement (format à 18 chiffres, sexe, année de naissance plausible). La vérification auprès de l'API gouvernementale est *best-effort* — voir `RegisterResponse.nin_verification_status`.  `409 Conflict` est retourné si le numéro de téléphone **ou** le NIN est déjà associé à un compte existant.  Les consentements ANPDP obligatoires (`consent_data_processing`, `consent_health_data`, `consent_anpdp_terms`) doivent tous être `true` ; sinon la requête est rejetée avec `422`. 
+Crée un compte et envoie un OTP à 6 chiffres par SMS au numéro fourni. Le compte reste à l'état `pending_verification` jusqu'à validation OTP. L'OTP expire au bout de 5 minutes.  **Pays (v1.1.0):** `country` est obligatoire (`DZ` | `TN`) et **immuable** après vérification OTP. Le numéro E.164 doit correspondre à l'indicatif du pays déclaré (`+213` ↔ `DZ`, `+216` ↔ `TN`) — sinon `422` avec `phone_country_mismatch`.  **NIN:** obligatoire si `country=DZ` (validation locale + vérification gouvernementale *best-effort* — voir `RegisterResponse.nin_verification_status`). Doit être **absent** si `country=TN` (`422 nin_not_applicable` s'il est fourni ; `422 nin_required` s'il manque pour DZ). Pour TN, `nin_verification_status = not_required`.  **Rôle:** `role=specialist` avec `country=TN` est rejeté (`422 country_not_supported_for_role`) — l'onboarding médecin TN est hors périmètre Phase 3.5.  `409 Conflict` est retourné si le numéro de téléphone **ou** le NIN (lorsque fourni) est déjà associé à un compte existant.  Les consentements obligatoires (`consent_data_processing`, `consent_health_data`, `consent_anpdp_terms`) doivent tous être `true` ; sinon la requête est rejetée avec `422`. Les versions de consentement sont scopées par pays (ex. `dz-1.2`, `tn-1.0`). 
 
 ### Example
 ```dart

@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,11 +13,17 @@ part 'check_nin_request.g.dart';
 ///
 /// Properties:
 /// * [nin] - Numéro d'Identification National (NIN) algérien — 18 chiffres, institué par le décret exécutif n° 10-210 (2010) et reconduit par le décret de 2023. La structure officielle des 18 chiffres est :  | Positions | Lg | Signification | |---|---|---| | 1 | 1 | Sexe (`1` = homme, `2` = femme) | | 2 | 1 | Code mention (naissance régulière, transcription, naturalisation, …) | | 3–5 | 3 | Trois derniers chiffres de l'année d'inscription au registre | | 6–9 | 4 | Code commune (ou pays, pour les naissances à l'étranger) | | 10–14 | 5 | Numéro d'acte de naissance | | 15–16 | 2 | Numéro de série du registre pour l'année | | 17–18 | 2 | Clé de contrôle |  Le format est validé côté serveur (longueur, chiffres uniquement, sexe, année d'inscription résolvable en `19xx`/`20xx`, code commune non nul, pas de chiffre répété). La clé de contrôle n'est **pas** vérifiée localement : l'algorithme officiel est de la responsabilité de l'API gouvernementale.  La vérification auprès de l'API gouvernementale est *best-effort* : en cas d'indisponibilité, l'inscription est acceptée et le compte reste avec `nin_verification_status = pending` jusqu'à validation ultérieure (voir ADR 0005). 
+/// * [country] - Optionnel ; sémantique DZ par défaut. Les clients TN ne doivent pas appeler cet endpoint. 
 @BuiltValue()
 abstract class CheckNinRequest implements Built<CheckNinRequest, CheckNinRequestBuilder> {
   /// Numéro d'Identification National (NIN) algérien — 18 chiffres, institué par le décret exécutif n° 10-210 (2010) et reconduit par le décret de 2023. La structure officielle des 18 chiffres est :  | Positions | Lg | Signification | |---|---|---| | 1 | 1 | Sexe (`1` = homme, `2` = femme) | | 2 | 1 | Code mention (naissance régulière, transcription, naturalisation, …) | | 3–5 | 3 | Trois derniers chiffres de l'année d'inscription au registre | | 6–9 | 4 | Code commune (ou pays, pour les naissances à l'étranger) | | 10–14 | 5 | Numéro d'acte de naissance | | 15–16 | 2 | Numéro de série du registre pour l'année | | 17–18 | 2 | Clé de contrôle |  Le format est validé côté serveur (longueur, chiffres uniquement, sexe, année d'inscription résolvable en `19xx`/`20xx`, code commune non nul, pas de chiffre répété). La clé de contrôle n'est **pas** vérifiée localement : l'algorithme officiel est de la responsabilité de l'API gouvernementale.  La vérification auprès de l'API gouvernementale est *best-effort* : en cas d'indisponibilité, l'inscription est acceptée et le compte reste avec `nin_verification_status = pending` jusqu'à validation ultérieure (voir ADR 0005). 
   @BuiltValueField(wireName: r'nin')
   String get nin;
+
+  /// Optionnel ; sémantique DZ par défaut. Les clients TN ne doivent pas appeler cet endpoint. 
+  @BuiltValueField(wireName: r'country')
+  CountryCode? get country;
+  // enum countryEnum {  DZ,  TN,  };
 
   CheckNinRequest._();
 
@@ -46,6 +53,13 @@ class _$CheckNinRequestSerializer implements PrimitiveSerializer<CheckNinRequest
       object.nin,
       specifiedType: const FullType(String),
     );
+    if (object.country != null) {
+      yield r'country';
+      yield serializers.serialize(
+        object.country,
+        specifiedType: const FullType(CountryCode),
+      );
+    }
   }
 
   @override
@@ -75,6 +89,13 @@ class _$CheckNinRequestSerializer implements PrimitiveSerializer<CheckNinRequest
             specifiedType: const FullType(String),
           ) as String;
           result.nin = valueDes;
+          break;
+        case r'country':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CountryCode),
+          ) as CountryCode;
+          result.country = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -29,7 +29,9 @@ import 'package:gps_medical_api/src/model/check_phone_request.dart';
 import 'package:gps_medical_api/src/model/commune.dart';
 import 'package:gps_medical_api/src/model/confirm_payment_intent_request.dart';
 import 'package:gps_medical_api/src/model/consent_grant.dart';
+import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:gps_medical_api/src/model/credential.dart';
+import 'package:gps_medical_api/src/model/data_residency_mode.dart';
 import 'package:gps_medical_api/src/model/dependent.dart';
 import 'package:gps_medical_api/src/model/dependent_create.dart';
 import 'package:gps_medical_api/src/model/device.dart';
@@ -51,6 +53,7 @@ import 'package:gps_medical_api/src/model/medical_records_document_id_download_g
 import 'package:gps_medical_api/src/model/message.dart';
 import 'package:gps_medical_api/src/model/message_attachments_inner.dart';
 import 'package:gps_medical_api/src/model/message_create.dart';
+import 'package:gps_medical_api/src/model/messaging_realtime_event.dart';
 import 'package:gps_medical_api/src/model/notification.dart';
 import 'package:gps_medical_api/src/model/notification_preferences.dart';
 import 'package:gps_medical_api/src/model/otp_verify_request.dart';
@@ -69,6 +72,7 @@ import 'package:gps_medical_api/src/model/password_reset_request.dart';
 import 'package:gps_medical_api/src/model/patient.dart';
 import 'package:gps_medical_api/src/model/patient_all_of_insurance.dart';
 import 'package:gps_medical_api/src/model/patient_update.dart';
+import 'package:gps_medical_api/src/model/patient_update_insurance.dart';
 import 'package:gps_medical_api/src/model/payment_intent.dart';
 import 'package:gps_medical_api/src/model/payment_intent_create.dart';
 import 'package:gps_medical_api/src/model/prescription.dart';
@@ -126,7 +130,9 @@ part 'serializers.g.dart';
   Commune,
   ConfirmPaymentIntentRequest,
   ConsentGrant,
+  CountryCode,
   Credential,
+  DataResidencyMode,
   Dependent,
   DependentCreate,
   Device,
@@ -148,6 +154,7 @@ part 'serializers.g.dart';
   Message,
   MessageAttachmentsInner,
   MessageCreate,
+  MessagingRealtimeEvent,
   Notification,
   NotificationPreferences,
   OtpVerifyRequest,
@@ -166,6 +173,7 @@ part 'serializers.g.dart';
   Patient,
   PatientAllOfInsurance,
   PatientUpdate,
+  PatientUpdateInsurance,
   PaymentIntent,
   PaymentIntentCreate,
   Prescription,

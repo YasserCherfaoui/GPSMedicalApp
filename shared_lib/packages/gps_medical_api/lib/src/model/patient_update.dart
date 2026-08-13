@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:gps_medical_api/src/model/patient_update_insurance.dart';
 import 'package:gps_medical_api/src/model/address.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_api/src/model/date.dart';
@@ -11,7 +12,7 @@ import 'package:built_value/serializer.dart';
 
 part 'patient_update.g.dart';
 
-/// PatientUpdate
+/// Mise à jour partielle. `country` n'est **pas** un champ accepté (immuable). Champs restreints pour `device_only` : `birth_date`, `gender`, `blood_type`, `address`, `allergies`, `chronic_conditions`, `insurance` — écriture → `422` avec `errors[].code=field_not_storable_in_country`. 
 ///
 /// Properties:
 /// * [fullName] 
@@ -22,6 +23,7 @@ part 'patient_update.g.dart';
 /// * [address] 
 /// * [allergies] 
 /// * [chronicConditions] 
+/// * [insurance] 
 @BuiltValue()
 abstract class PatientUpdate implements Built<PatientUpdate, PatientUpdateBuilder> {
   @BuiltValueField(wireName: r'full_name')
@@ -49,6 +51,9 @@ abstract class PatientUpdate implements Built<PatientUpdate, PatientUpdateBuilde
 
   @BuiltValueField(wireName: r'chronic_conditions')
   BuiltList<String>? get chronicConditions;
+
+  @BuiltValueField(wireName: r'insurance')
+  PatientUpdateInsurance? get insurance;
 
   PatientUpdate._();
 
@@ -129,6 +134,13 @@ class _$PatientUpdateSerializer implements PrimitiveSerializer<PatientUpdate> {
         specifiedType: const FullType(BuiltList, [FullType(String)]),
       );
     }
+    if (object.insurance != null) {
+      yield r'insurance';
+      yield serializers.serialize(
+        object.insurance,
+        specifiedType: const FullType(PatientUpdateInsurance),
+      );
+    }
   }
 
   @override
@@ -207,6 +219,13 @@ class _$PatientUpdateSerializer implements PrimitiveSerializer<PatientUpdate> {
             specifiedType: const FullType(BuiltList, [FullType(String)]),
           ) as BuiltList<String>;
           result.chronicConditions.replace(valueDes);
+          break;
+        case r'insurance':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(PatientUpdateInsurance),
+          ) as PatientUpdateInsurance;
+          result.insurance.replace(valueDes);
           break;
         default:
           unhandled.add(key);

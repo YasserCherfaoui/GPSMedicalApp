@@ -14,8 +14,8 @@ part 'consent_grant.g.dart';
 /// Properties:
 /// * [id] 
 /// * [userId] 
-/// * [consentType] 
-/// * [version] 
+/// * [consentType] - `anpdp_terms` désigne les conditions légales applicables au pays de l'utilisateur (rename cosmétique différé). 
+/// * [version] - Version scopée par pays (ex. `dz-1.2`, `tn-1.0`). 
 /// * [grantedAt] 
 /// * [revokedAt] 
 /// * [ipAddress] 
@@ -28,10 +28,12 @@ abstract class ConsentGrant implements Built<ConsentGrant, ConsentGrantBuilder> 
   @BuiltValueField(wireName: r'user_id')
   String get userId;
 
+  /// `anpdp_terms` désigne les conditions légales applicables au pays de l'utilisateur (rename cosmétique différé). 
   @BuiltValueField(wireName: r'consent_type')
   ConsentGrantConsentTypeEnum get consentType;
   // enum consentTypeEnum {  data_processing,  health_data,  anpdp_terms,  marketing,  };
 
+  /// Version scopée par pays (ex. `dz-1.2`, `tn-1.0`). 
   @BuiltValueField(wireName: r'version')
   String get version;
 
@@ -229,12 +231,16 @@ class _$ConsentGrantSerializer implements PrimitiveSerializer<ConsentGrant> {
 
 class ConsentGrantConsentTypeEnum extends EnumClass {
 
+  /// `anpdp_terms` désigne les conditions légales applicables au pays de l'utilisateur (rename cosmétique différé). 
   @BuiltValueEnumConst(wireName: r'data_processing')
   static const ConsentGrantConsentTypeEnum dataProcessing = _$consentGrantConsentTypeEnum_dataProcessing;
+  /// `anpdp_terms` désigne les conditions légales applicables au pays de l'utilisateur (rename cosmétique différé). 
   @BuiltValueEnumConst(wireName: r'health_data')
   static const ConsentGrantConsentTypeEnum healthData = _$consentGrantConsentTypeEnum_healthData;
+  /// `anpdp_terms` désigne les conditions légales applicables au pays de l'utilisateur (rename cosmétique différé). 
   @BuiltValueEnumConst(wireName: r'anpdp_terms')
   static const ConsentGrantConsentTypeEnum anpdpTerms = _$consentGrantConsentTypeEnum_anpdpTerms;
+  /// `anpdp_terms` désigne les conditions légales applicables au pays de l'utilisateur (rename cosmétique différé). 
   @BuiltValueEnumConst(wireName: r'marketing')
   static const ConsentGrantConsentTypeEnum marketing = _$consentGrantConsentTypeEnum_marketing;
 

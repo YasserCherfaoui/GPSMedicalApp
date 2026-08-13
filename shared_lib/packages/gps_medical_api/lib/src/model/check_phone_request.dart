@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,12 +12,18 @@ part 'check_phone_request.g.dart';
 /// CheckPhoneRequest
 ///
 /// Properties:
-/// * [phone] - Numéro algérien au format E.164
+/// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
+/// * [country] - Doit correspondre à l'indicatif du `phone` (`DZ`↔`+213`, `TN`↔`+216`) — sinon `422 phone_country_mismatch`. 
 @BuiltValue()
 abstract class CheckPhoneRequest implements Built<CheckPhoneRequest, CheckPhoneRequestBuilder> {
-  /// Numéro algérien au format E.164
+  /// Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
   @BuiltValueField(wireName: r'phone')
   String get phone;
+
+  /// Doit correspondre à l'indicatif du `phone` (`DZ`↔`+213`, `TN`↔`+216`) — sinon `422 phone_country_mismatch`. 
+  @BuiltValueField(wireName: r'country')
+  CountryCode get country;
+  // enum countryEnum {  DZ,  TN,  };
 
   CheckPhoneRequest._();
 
@@ -45,6 +52,11 @@ class _$CheckPhoneRequestSerializer implements PrimitiveSerializer<CheckPhoneReq
     yield serializers.serialize(
       object.phone,
       specifiedType: const FullType(String),
+    );
+    yield r'country';
+    yield serializers.serialize(
+      object.country,
+      specifiedType: const FullType(CountryCode),
     );
   }
 
@@ -75,6 +87,13 @@ class _$CheckPhoneRequestSerializer implements PrimitiveSerializer<CheckPhoneReq
             specifiedType: const FullType(String),
           ) as String;
           result.phone = valueDes;
+          break;
+        case r'country':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CountryCode),
+          ) as CountryCode;
+          result.country = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -35,9 +35,11 @@ Serializers _$serializers =
           ..add(ConfirmPaymentIntentRequest.serializer)
           ..add(ConsentGrant.serializer)
           ..add(ConsentGrantConsentTypeEnum.serializer)
+          ..add(CountryCode.serializer)
           ..add(Credential.serializer)
           ..add(CredentialStatusEnum.serializer)
           ..add(CredentialTypeEnum.serializer)
+          ..add(DataResidencyMode.serializer)
           ..add(Dependent.serializer)
           ..add(DependentCreate.serializer)
           ..add(DependentCreateGenderEnum.serializer)
@@ -55,6 +57,7 @@ Serializers _$serializers =
           ..add(DoctorPrivateVerificationStatusEnum.serializer)
           ..add(DoctorUpdate.serializer)
           ..add(DoctorUpdateConfirmationPolicyEnum.serializer)
+          ..add(DoctorUpdateGenderEnum.serializer)
           ..add(DoctorUpdateLanguagesEnum.serializer)
           ..add(DoctorWithDistance.serializer)
           ..add(Funnel.serializer)
@@ -68,6 +71,7 @@ Serializers _$serializers =
           ..add(JWKS.serializer)
           ..add(JWKSKeysInner.serializer)
           ..add(LoginRequest.serializer)
+          ..add(LoginRequestClientEnum.serializer)
           ..add(MedicalDocument.serializer)
           ..add(MedicalDocumentAuthorRoleEnum.serializer)
           ..add(MedicalDocumentTypeEnum.serializer)
@@ -75,6 +79,8 @@ Serializers _$serializers =
           ..add(Message.serializer)
           ..add(MessageAttachmentsInner.serializer)
           ..add(MessageCreate.serializer)
+          ..add(MessagingRealtimeEvent.serializer)
+          ..add(MessagingRealtimeEventTypeEnum.serializer)
           ..add(Notification.serializer)
           ..add(NotificationPreferences.serializer)
           ..add(NotificationPreferencesReminderHoursBeforeEnum.serializer)
@@ -100,6 +106,8 @@ Serializers _$serializers =
           ..add(PatientUpdate.serializer)
           ..add(PatientUpdateBloodTypeEnum.serializer)
           ..add(PatientUpdateGenderEnum.serializer)
+          ..add(PatientUpdateInsurance.serializer)
+          ..add(PatientUpdateInsuranceProviderEnum.serializer)
           ..add(PaymentIntent.serializer)
           ..add(PaymentIntentCreate.serializer)
           ..add(PaymentIntentCreateProviderEnum.serializer)
@@ -310,6 +318,13 @@ Serializers _$serializers =
               const FullType(ValidationProblemAllOfErrors),
             ]),
             () => ListBuilder<ValidationProblemAllOfErrors>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltMap, const [
+              const FullType(String),
+              const FullType.nullable(JsonObject),
+            ]),
+            () => MapBuilder<String, JsonObject?>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltMap, const [

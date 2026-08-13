@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -12,29 +13,36 @@ part 'register_request.g.dart';
 /// RegisterRequest
 ///
 /// Properties:
-/// * [phone] - Numéro algérien au format E.164
-/// * [nin] - Numéro d'Identification National (NIN) algérien — 18 chiffres, institué par le décret exécutif n° 10-210 (2010) et reconduit par le décret de 2023. La structure officielle des 18 chiffres est :  | Positions | Lg | Signification | |---|---|---| | 1 | 1 | Sexe (`1` = homme, `2` = femme) | | 2 | 1 | Code mention (naissance régulière, transcription, naturalisation, …) | | 3–5 | 3 | Trois derniers chiffres de l'année d'inscription au registre | | 6–9 | 4 | Code commune (ou pays, pour les naissances à l'étranger) | | 10–14 | 5 | Numéro d'acte de naissance | | 15–16 | 2 | Numéro de série du registre pour l'année | | 17–18 | 2 | Clé de contrôle |  Le format est validé côté serveur (longueur, chiffres uniquement, sexe, année d'inscription résolvable en `19xx`/`20xx`, code commune non nul, pas de chiffre répété). La clé de contrôle n'est **pas** vérifiée localement : l'algorithme officiel est de la responsabilité de l'API gouvernementale.  La vérification auprès de l'API gouvernementale est *best-effort* : en cas d'indisponibilité, l'inscription est acceptée et le compte reste avec `nin_verification_status = pending` jusqu'à validation ultérieure (voir ADR 0005). 
+/// * [country] - Pays du compte. Obligatoire. Immuable après OTP. 
+/// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
+/// * [nin] - Obligatoire si `country=DZ` (`422 nin_required` si absent). Doit être absent si `country=TN` (`422 nin_not_applicable` sinon). 
 /// * [password] 
-/// * [role] 
+/// * [role] - `specialist` + `country=TN` → `422 country_not_supported_for_role`. 
 /// * [fullName] 
 /// * [email] 
-/// * [consentDataProcessing] - Consentement obligatoire au traitement des données personnelles (ANPDP).
+/// * [consentDataProcessing] - Consentement obligatoire au traitement des données personnelles (termes légaux du pays).
 /// * [consentHealthData] - Consentement obligatoire au traitement des données de santé.
-/// * [consentAnpdpTerms] - Acceptation des conditions légales / politique ANPDP.
+/// * [consentAnpdpTerms] - Acceptation des conditions légales applicables au pays de l'utilisateur (libellé historique `anpdp_terms` — rename cosmétique différé). 
 /// * [consentMarketing] - Optionnel — communications marketing (révocable sans suspension de compte).
 @BuiltValue()
 abstract class RegisterRequest implements Built<RegisterRequest, RegisterRequestBuilder> {
-  /// Numéro algérien au format E.164
+  /// Pays du compte. Obligatoire. Immuable après OTP. 
+  @BuiltValueField(wireName: r'country')
+  CountryCode get country;
+  // enum countryEnum {  DZ,  TN,  };
+
+  /// Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
   @BuiltValueField(wireName: r'phone')
   String get phone;
 
-  /// Numéro d'Identification National (NIN) algérien — 18 chiffres, institué par le décret exécutif n° 10-210 (2010) et reconduit par le décret de 2023. La structure officielle des 18 chiffres est :  | Positions | Lg | Signification | |---|---|---| | 1 | 1 | Sexe (`1` = homme, `2` = femme) | | 2 | 1 | Code mention (naissance régulière, transcription, naturalisation, …) | | 3–5 | 3 | Trois derniers chiffres de l'année d'inscription au registre | | 6–9 | 4 | Code commune (ou pays, pour les naissances à l'étranger) | | 10–14 | 5 | Numéro d'acte de naissance | | 15–16 | 2 | Numéro de série du registre pour l'année | | 17–18 | 2 | Clé de contrôle |  Le format est validé côté serveur (longueur, chiffres uniquement, sexe, année d'inscription résolvable en `19xx`/`20xx`, code commune non nul, pas de chiffre répété). La clé de contrôle n'est **pas** vérifiée localement : l'algorithme officiel est de la responsabilité de l'API gouvernementale.  La vérification auprès de l'API gouvernementale est *best-effort* : en cas d'indisponibilité, l'inscription est acceptée et le compte reste avec `nin_verification_status = pending` jusqu'à validation ultérieure (voir ADR 0005). 
+  /// Obligatoire si `country=DZ` (`422 nin_required` si absent). Doit être absent si `country=TN` (`422 nin_not_applicable` sinon). 
   @BuiltValueField(wireName: r'nin')
-  String get nin;
+  String? get nin;
 
   @BuiltValueField(wireName: r'password')
   String get password;
 
+  /// `specialist` + `country=TN` → `422 country_not_supported_for_role`. 
   @BuiltValueField(wireName: r'role')
   RegisterRequestRoleEnum get role;
   // enum roleEnum {  patient,  specialist,  };
@@ -45,7 +53,7 @@ abstract class RegisterRequest implements Built<RegisterRequest, RegisterRequest
   @BuiltValueField(wireName: r'email')
   String? get email;
 
-  /// Consentement obligatoire au traitement des données personnelles (ANPDP).
+  /// Consentement obligatoire au traitement des données personnelles (termes légaux du pays).
   @BuiltValueField(wireName: r'consent_data_processing')
   bool get consentDataProcessing;
 
@@ -53,7 +61,7 @@ abstract class RegisterRequest implements Built<RegisterRequest, RegisterRequest
   @BuiltValueField(wireName: r'consent_health_data')
   bool get consentHealthData;
 
-  /// Acceptation des conditions légales / politique ANPDP.
+  /// Acceptation des conditions légales applicables au pays de l'utilisateur (libellé historique `anpdp_terms` — rename cosmétique différé). 
   @BuiltValueField(wireName: r'consent_anpdp_terms')
   bool get consentAnpdpTerms;
 
@@ -84,16 +92,23 @@ class _$RegisterRequestSerializer implements PrimitiveSerializer<RegisterRequest
     RegisterRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    yield r'country';
+    yield serializers.serialize(
+      object.country,
+      specifiedType: const FullType(CountryCode),
+    );
     yield r'phone';
     yield serializers.serialize(
       object.phone,
       specifiedType: const FullType(String),
     );
-    yield r'nin';
-    yield serializers.serialize(
-      object.nin,
-      specifiedType: const FullType(String),
-    );
+    if (object.nin != null) {
+      yield r'nin';
+      yield serializers.serialize(
+        object.nin,
+        specifiedType: const FullType(String),
+      );
+    }
     yield r'password';
     yield serializers.serialize(
       object.password,
@@ -161,6 +176,13 @@ class _$RegisterRequestSerializer implements PrimitiveSerializer<RegisterRequest
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'country':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CountryCode),
+          ) as CountryCode;
+          result.country = valueDes;
+          break;
         case r'phone':
           final valueDes = serializers.deserialize(
             value,
@@ -262,8 +284,10 @@ class _$RegisterRequestSerializer implements PrimitiveSerializer<RegisterRequest
 
 class RegisterRequestRoleEnum extends EnumClass {
 
+  /// `specialist` + `country=TN` → `422 country_not_supported_for_role`. 
   @BuiltValueEnumConst(wireName: r'patient')
   static const RegisterRequestRoleEnum patient = _$registerRequestRoleEnum_patient;
+  /// `specialist` + `country=TN` → `422 country_not_supported_for_role`. 
   @BuiltValueEnumConst(wireName: r'specialist')
   static const RegisterRequestRoleEnum specialist = _$registerRequestRoleEnum_specialist;
 

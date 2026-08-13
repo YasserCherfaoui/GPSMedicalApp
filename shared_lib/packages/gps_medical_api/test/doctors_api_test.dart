@@ -44,9 +44,9 @@ void main() {
       // TODO
     });
 
-    // Téléchargement du justificatif déchiffré (lien signé)
+    // Aperçu du justificatif déchiffré (lien signé)
     //
-    // Diffuse le fichier en clair après vérification du jeton HMAC (`exp`, `token`) émis dans `Credential.file_url` à la création ou via un flux équivalent. Accès sans en-tête `Authorization` : le secret est porté par la query. 
+    // Diffuse le fichier en clair après vérification du jeton HMAC (`exp`, `token`) émis dans `Credential.file_url` à la création ou via un flux équivalent. Accès sans en-tête `Authorization` : le secret est porté par la query. Le fichier est servi avec `Content-Disposition: inline` pour affichage dans l'onglet du navigateur (PDF, JPEG, PNG). 
     //
     //Future<Uint8List> getDoctorCredentialFile(String credentialId, int exp, String token) async
     test('test getDoctorCredentialFile', () async {

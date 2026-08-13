@@ -6,6 +6,8 @@
 import 'package:gps_medical_api/src/model/user.dart';
 import 'package:gps_medical_api/src/model/address.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:gps_medical_api/src/model/data_residency_mode.dart';
+import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:gps_medical_api/src/model/date.dart';
 import 'package:gps_medical_api/src/model/patient_all_of_insurance.dart';
 import 'package:built_value/built_value.dart';
@@ -17,11 +19,13 @@ part 'patient.g.dart';
 ///
 /// Properties:
 /// * [id] 
-/// * [phone] - Numéro algérien au format E.164
+/// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
 /// * [email] 
 /// * [role] 
 /// * [fullName] 
 /// * [status] 
+/// * [country] - Fixé à l'inscription ; jamais mutable via l'API.
+/// * [dataResidencyMode] - Dérivé de `country` : `DZ` → `device_only`, `TN` → `server`. 
 /// * [createdAt] 
 /// * [birthDate] 
 /// * [gender] 
@@ -82,21 +86,28 @@ class _$PatientSerializer implements PrimitiveSerializer<Patient> {
       yield r'allergies';
       yield serializers.serialize(
         object.allergies,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
+        specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
       );
     }
     if (object.insurance != null) {
       yield r'insurance';
       yield serializers.serialize(
         object.insurance,
-        specifiedType: const FullType(PatientAllOfInsurance),
+        specifiedType: const FullType.nullable(PatientAllOfInsurance),
+      );
+    }
+    if (object.country != null) {
+      yield r'country';
+      yield serializers.serialize(
+        object.country,
+        specifiedType: const FullType(CountryCode),
       );
     }
     if (object.address != null) {
       yield r'address';
       yield serializers.serialize(
         object.address,
-        specifiedType: const FullType(Address),
+        specifiedType: const FullType.nullable(Address),
       );
     }
     if (object.role != null) {
@@ -110,7 +121,7 @@ class _$PatientSerializer implements PrimitiveSerializer<Patient> {
       yield r'gender';
       yield serializers.serialize(
         object.gender,
-        specifiedType: const FullType(PatientGenderEnum),
+        specifiedType: const FullType.nullable(PatientGenderEnum),
       );
     }
     if (object.fullName != null) {
@@ -124,14 +135,21 @@ class _$PatientSerializer implements PrimitiveSerializer<Patient> {
       yield r'blood_type';
       yield serializers.serialize(
         object.bloodType,
-        specifiedType: const FullType(PatientBloodTypeEnum),
+        specifiedType: const FullType.nullable(PatientBloodTypeEnum),
       );
     }
     if (object.birthDate != null) {
       yield r'birth_date';
       yield serializers.serialize(
         object.birthDate,
-        specifiedType: const FullType(Date),
+        specifiedType: const FullType.nullable(Date),
+      );
+    }
+    if (object.dataResidencyMode != null) {
+      yield r'data_residency_mode';
+      yield serializers.serialize(
+        object.dataResidencyMode,
+        specifiedType: const FullType(DataResidencyMode),
       );
     }
     if (object.createdAt != null) {
@@ -159,7 +177,7 @@ class _$PatientSerializer implements PrimitiveSerializer<Patient> {
       yield r'chronic_conditions';
       yield serializers.serialize(
         object.chronicConditions,
-        specifiedType: const FullType(BuiltList, [FullType(String)]),
+        specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
       );
     }
     if (object.email != null) {
@@ -202,22 +220,32 @@ class _$PatientSerializer implements PrimitiveSerializer<Patient> {
         case r'allergies':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.allergies.replace(valueDes);
           break;
         case r'insurance':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PatientAllOfInsurance),
-          ) as PatientAllOfInsurance;
+            specifiedType: const FullType.nullable(PatientAllOfInsurance),
+          ) as PatientAllOfInsurance?;
+          if (valueDes == null) continue;
           result.insurance.replace(valueDes);
+          break;
+        case r'country':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CountryCode),
+          ) as CountryCode;
+          result.country = valueDes;
           break;
         case r'address':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Address),
-          ) as Address;
+            specifiedType: const FullType.nullable(Address),
+          ) as Address?;
+          if (valueDes == null) continue;
           result.address.replace(valueDes);
           break;
         case r'role':
@@ -230,8 +258,9 @@ class _$PatientSerializer implements PrimitiveSerializer<Patient> {
         case r'gender':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PatientGenderEnum),
-          ) as PatientGenderEnum;
+            specifiedType: const FullType.nullable(PatientGenderEnum),
+          ) as PatientGenderEnum?;
+          if (valueDes == null) continue;
           result.gender = valueDes;
           break;
         case r'full_name':
@@ -244,16 +273,25 @@ class _$PatientSerializer implements PrimitiveSerializer<Patient> {
         case r'blood_type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PatientBloodTypeEnum),
-          ) as PatientBloodTypeEnum;
+            specifiedType: const FullType.nullable(PatientBloodTypeEnum),
+          ) as PatientBloodTypeEnum?;
+          if (valueDes == null) continue;
           result.bloodType = valueDes;
           break;
         case r'birth_date':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(Date),
-          ) as Date;
+            specifiedType: const FullType.nullable(Date),
+          ) as Date?;
+          if (valueDes == null) continue;
           result.birthDate = valueDes;
+          break;
+        case r'data_residency_mode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DataResidencyMode),
+          ) as DataResidencyMode;
+          result.dataResidencyMode = valueDes;
           break;
         case r'created_at':
           final valueDes = serializers.deserialize(
@@ -279,8 +317,9 @@ class _$PatientSerializer implements PrimitiveSerializer<Patient> {
         case r'chronic_conditions':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.chronicConditions.replace(valueDes);
           break;
         case r'email':

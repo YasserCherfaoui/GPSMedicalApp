@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
 **userId** | **String** |  | 
-**consentType** | **String** |  | 
-**version** | **String** |  | 
+**consentType** | **String** | `anpdp_terms` désigne les conditions légales applicables au pays de l'utilisateur (rename cosmétique différé).  | 
+**version** | **String** | Version scopée par pays (ex. `dz-1.2`, `tn-1.0`).  | 
 **grantedAt** | [**DateTime**](DateTime.md) |  | 
 **revokedAt** | [**DateTime**](DateTime.md) |  | [optional] 
 **ipAddress** | **String** |  | [optional] 

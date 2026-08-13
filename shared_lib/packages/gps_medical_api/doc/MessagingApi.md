@@ -9,12 +9,55 @@ All URIs are relative to *https://api.gpsmedical.dz/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**connectMessagingWebSocket**](MessagingApi.md#connectmessagingwebsocket) | **GET** /messaging/ws | Canal WebSocket temps réel (messages et accusés de lecture)
 [**createMessagingThreadMessage**](MessagingApi.md#createmessagingthreadmessage) | **POST** /messaging/threads/{threadId}/messages | Envoi d&#39;un message
 [**getMessagingThread**](MessagingApi.md#getmessagingthread) | **GET** /messaging/threads/{threadId} | Détail d&#39;une conversation
 [**listMessagingThreadMessages**](MessagingApi.md#listmessagingthreadmessages) | **GET** /messaging/threads/{threadId}/messages | Messages d&#39;une conversation
 [**listMessagingThreads**](MessagingApi.md#listmessagingthreads) | **GET** /messaging/threads | Liste des conversations
 [**markMessagingMessageRead**](MessagingApi.md#markmessagingmessageread) | **POST** /messaging/messages/{messageId}/read | Marquer un message comme lu
 
+
+# **connectMessagingWebSocket**
+> connectMessagingWebSocket(token)
+
+Canal WebSocket temps réel (messages et accusés de lecture)
+
+Upgrade WebSocket. Authentification via en-tête `Authorization: Bearer` ou paramètre `token` (JWT access). Réservé aux rôles `patient` et `specialist` avec participation au fil (même RBAC que B-9.1).  Événements serveur → client (`MessagingRealtimeEvent`) : - `message.new` — nouveau message dans un fil participé ; - `message.read` — accusé de lecture.  **Dégradation gracieuse :** REST reste la source de vérité pour l'historique et l'envoi ; si le WS est indisponible, les clients basculent sur le polling REST (Phase 2) sans perte. Voir ADR 0013 pour la sémantique de livraison (at-least-once côté push). 
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getMessagingApi();
+final String token = token_example; // String | JWT d'accès (alternative à Authorization pour certains clients WebSocket)
+
+try {
+    api.connectMessagingWebSocket(token);
+} on DioException catch (e) {
+    print('Exception when calling MessagingApi->connectMessagingWebSocket: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **String**| JWT d'accès (alternative à Authorization pour certains clients WebSocket) | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createMessagingThreadMessage**
 > Message createMessagingThreadMessage(threadId, messageCreate)

@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 Téléchargement du document déchiffré (lien signé)
 
-Diffuse le fichier en clair après vérification du jeton HMAC (`exp`, `token`) renvoyé dans l'URL de `GET /medical-records/{documentId}/download`. L'objet stocké reste en ciphertext (ADR 0006). Accès journalisé (`medical_record.download`). 
+Diffuse le fichier en clair après vérification du jeton HMAC (`exp`, `token`) renvoyé dans l'URL de `GET /medical-records/{documentId}/download`. L'objet stocké reste en ciphertext (ADR 0006). Accès journalisé (`medical_record.download`). Patient `device_only` → `403 data_residency_restricted`. 
 
 ### Example
 ```dart
@@ -70,7 +70,7 @@ No authorization required
 
 Suppression d'un document (auteur uniquement)
 
-Suppression logique (`deleted_at`). Seul `author_id` (JWT `sub`) peut supprimer. Le blob chiffré est supprimé du stockage objet en arrière-plan (retries). Journalisation `medical_record.delete` puis `medical_record.blob_purged`. 
+Suppression logique (`deleted_at`). Seul `author_id` (JWT `sub`) peut supprimer. Le blob chiffré est supprimé du stockage objet en arrière-plan (retries). Journalisation `medical_record.delete` puis `medical_record.blob_purged`. Patient `device_only` → `403 data_residency_restricted`. 
 
 ### Example
 ```dart
@@ -112,7 +112,7 @@ void (empty response body)
 
 URL signée de téléchargement (expire 5 min)
 
-Renvoie une URL API signée (TTL 5 minutes, query `exp` + `token`) vers `GET /v1/medical-records/{documentId}/file`, qui diffuse le fichier déchiffré. L'objet dans le stockage reste en ciphertext (ADR 0006). Accès réservé au patient propriétaire ou à un médecin ayant un parrainage (`referrals`) avec ce patient. 
+Renvoie une URL API signée (TTL 5 minutes, query `exp` + `token`) vers `GET /v1/medical-records/{documentId}/file`, qui diffuse le fichier déchiffré. L'objet dans le stockage reste en ciphertext (ADR 0006). Accès réservé au patient propriétaire ou à un médecin ayant un parrainage (`referrals`) avec ce patient. Patient `device_only` → `403 data_residency_restricted`. 
 
 ### Example
 ```dart
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 
 Métadonnées d'un document
 
-Même projection que la liste, sans `storage_key` ni champs de chiffrement. RBAC identique à `GET /medical-records` ; `404` si absent ou supprimé. 
+Même projection que la liste, sans `storage_key` ni champs de chiffrement. RBAC identique à `GET /medical-records` ; `404` si absent ou supprimé. Patient `device_only` → `403 data_residency_restricted`. 
 
 ### Example
 ```dart
@@ -198,7 +198,7 @@ Name | Type | Description  | Notes
 
 Documents accessibles à l'utilisateur (patient ou médecin)
 
-Métadonnées uniquement (pas de fichier). Pagination `page` (défaut 1), `page_size` (défaut 20, max 100). Sans `patient_id` : dossier du patient connecté ou uploads du médecin (auteur). Avec `patient_id` : patient (soi-même), médecin (parrainage), admin (tout patient). Documents supprimés (`deleted_at`) exclus. Tri `created_at DESC`, `id DESC`. 
+Métadonnées uniquement (pas de fichier). Pagination `page` (défaut 1), `page_size` (défaut 20, max 100). Sans `patient_id` : dossier du patient connecté ou uploads du médecin (auteur). Avec `patient_id` : patient (soi-même), médecin (parrainage), admin (tout patient). Documents supprimés (`deleted_at`) exclus. Tri `created_at DESC`, `id DESC`.  **Résidence (v1.1.0):** si le sujet patient a `data_residency_mode=device_only`, la requête est rejetée avec `403` et `code=data_residency_restricted` (coffre appareil uniquement — addendum-1.1.0). 
 
 ### Example
 ```dart
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
 
 Téléversement d'un document (médecin ou patient)
 
-`multipart/form-data` avec champ fichier `file` (PDF, JPEG ou PNG). Fichier maximal **20 Mo** ; enveloppe multipart serveur **25 Mo** (métadonnées incluses). Le type MIME réel est vérifié (magic bytes) en plus du `Content-Type` déclaré. Ciphertext stocké sous `{patient_id}/{document_id}.enc` (ADR 0006). 
+`multipart/form-data` avec champ fichier `file` (PDF, JPEG ou PNG). Fichier maximal **20 Mo** ; enveloppe multipart serveur **25 Mo** (métadonnées incluses). Le type MIME réel est vérifié (magic bytes) en plus du `Content-Type` déclaré. Ciphertext stocké sous `{patient_id}/{document_id}.enc` (ADR 0006).  **Résidence (v1.1.0):** patient `device_only` → `403 data_residency_restricted`. 
 
 ### Example
 ```dart

@@ -357,6 +357,10 @@ class _$Patient extends Patient {
   @override
   final UserStatusEnum? status;
   @override
+  final CountryCode? country;
+  @override
+  final DataResidencyMode? dataResidencyMode;
+  @override
   final DateTime? createdAt;
 
   factory _$Patient([void Function(PatientBuilder)? updates]) =>
@@ -376,6 +380,8 @@ class _$Patient extends Patient {
     this.role,
     this.fullName,
     this.status,
+    this.country,
+    this.dataResidencyMode,
     this.createdAt,
   }) : super._();
   @override
@@ -402,6 +408,8 @@ class _$Patient extends Patient {
         role == other.role &&
         fullName == other.fullName &&
         status == other.status &&
+        country == other.country &&
+        dataResidencyMode == other.dataResidencyMode &&
         createdAt == other.createdAt;
   }
 
@@ -421,6 +429,8 @@ class _$Patient extends Patient {
     _$hash = $jc(_$hash, role.hashCode);
     _$hash = $jc(_$hash, fullName.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, country.hashCode);
+    _$hash = $jc(_$hash, dataResidencyMode.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -442,6 +452,8 @@ class _$Patient extends Patient {
           ..add('role', role)
           ..add('fullName', fullName)
           ..add('status', status)
+          ..add('country', country)
+          ..add('dataResidencyMode', dataResidencyMode)
           ..add('createdAt', createdAt))
         .toString();
   }
@@ -509,6 +521,15 @@ class PatientBuilder implements Builder<Patient, PatientBuilder>, UserBuilder {
   UserStatusEnum? get status => _$this._status;
   set status(covariant UserStatusEnum? status) => _$this._status = status;
 
+  CountryCode? _country;
+  CountryCode? get country => _$this._country;
+  set country(covariant CountryCode? country) => _$this._country = country;
+
+  DataResidencyMode? _dataResidencyMode;
+  DataResidencyMode? get dataResidencyMode => _$this._dataResidencyMode;
+  set dataResidencyMode(covariant DataResidencyMode? dataResidencyMode) =>
+      _$this._dataResidencyMode = dataResidencyMode;
+
   DateTime? _createdAt;
   DateTime? get createdAt => _$this._createdAt;
   set createdAt(covariant DateTime? createdAt) => _$this._createdAt = createdAt;
@@ -533,6 +554,8 @@ class PatientBuilder implements Builder<Patient, PatientBuilder>, UserBuilder {
       _role = $v.role;
       _fullName = $v.fullName;
       _status = $v.status;
+      _country = $v.country;
+      _dataResidencyMode = $v.dataResidencyMode;
       _createdAt = $v.createdAt;
       _$v = null;
     }
@@ -571,6 +594,8 @@ class PatientBuilder implements Builder<Patient, PatientBuilder>, UserBuilder {
             role: role,
             fullName: fullName,
             status: status,
+            country: country,
+            dataResidencyMode: dataResidencyMode,
             createdAt: createdAt,
           );
     } catch (_) {

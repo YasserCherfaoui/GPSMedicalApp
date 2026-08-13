@@ -5,6 +5,8 @@
 // ignore_for_file: unused_element
 import 'package:gps_medical_api/src/model/user.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:gps_medical_api/src/model/data_residency_mode.dart';
+import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,11 +16,13 @@ part 'user_admin.g.dart';
 ///
 /// Properties:
 /// * [id] 
-/// * [phone] - Numéro algérien au format E.164
+/// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
 /// * [email] 
 /// * [role] 
 /// * [fullName] 
 /// * [status] 
+/// * [country] - Fixé à l'inscription ; jamais mutable via l'API.
+/// * [dataResidencyMode] - Dérivé de `country` : `DZ` → `device_only`, `TN` → `server`. 
 /// * [createdAt] 
 /// * [lastLoginAt] 
 /// * [loginCount] 
@@ -61,6 +65,48 @@ class _$UserAdminSerializer implements PrimitiveSerializer<UserAdmin> {
     UserAdmin object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
+    if (object.country != null) {
+      yield r'country';
+      yield serializers.serialize(
+        object.country,
+        specifiedType: const FullType(CountryCode),
+      );
+    }
+    if (object.role != null) {
+      yield r'role';
+      yield serializers.serialize(
+        object.role,
+        specifiedType: const FullType(UserRoleEnum),
+      );
+    }
+    if (object.suspensionReason != null) {
+      yield r'suspension_reason';
+      yield serializers.serialize(
+        object.suspensionReason,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.fullName != null) {
+      yield r'full_name';
+      yield serializers.serialize(
+        object.fullName,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.loginCount != null) {
+      yield r'login_count';
+      yield serializers.serialize(
+        object.loginCount,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.dataResidencyMode != null) {
+      yield r'data_residency_mode';
+      yield serializers.serialize(
+        object.dataResidencyMode,
+        specifiedType: const FullType(DataResidencyMode),
+      );
+    }
     if (object.createdAt != null) {
       yield r'created_at';
       yield serializers.serialize(
@@ -82,31 +128,10 @@ class _$UserAdminSerializer implements PrimitiveSerializer<UserAdmin> {
         specifiedType: const FullType(DateTime),
       );
     }
-    if (object.role != null) {
-      yield r'role';
-      yield serializers.serialize(
-        object.role,
-        specifiedType: const FullType(UserRoleEnum),
-      );
-    }
     if (object.phone != null) {
       yield r'phone';
       yield serializers.serialize(
         object.phone,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.suspensionReason != null) {
-      yield r'suspension_reason';
-      yield serializers.serialize(
-        object.suspensionReason,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-    if (object.fullName != null) {
-      yield r'full_name';
-      yield serializers.serialize(
-        object.fullName,
         specifiedType: const FullType(String),
       );
     }
@@ -115,13 +140,6 @@ class _$UserAdminSerializer implements PrimitiveSerializer<UserAdmin> {
       yield serializers.serialize(
         object.id,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.loginCount != null) {
-      yield r'login_count';
-      yield serializers.serialize(
-        object.loginCount,
-        specifiedType: const FullType(int),
       );
     }
     if (object.email != null) {
@@ -161,6 +179,49 @@ class _$UserAdminSerializer implements PrimitiveSerializer<UserAdmin> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'country':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CountryCode),
+          ) as CountryCode;
+          result.country = valueDes;
+          break;
+        case r'role':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(UserRoleEnum),
+          ) as UserRoleEnum;
+          result.role = valueDes;
+          break;
+        case r'suspension_reason':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.suspensionReason = valueDes;
+          break;
+        case r'full_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.fullName = valueDes;
+          break;
+        case r'login_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.loginCount = valueDes;
+          break;
+        case r'data_residency_mode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DataResidencyMode),
+          ) as DataResidencyMode;
+          result.dataResidencyMode = valueDes;
+          break;
         case r'created_at':
           final valueDes = serializers.deserialize(
             value,
@@ -183,13 +244,6 @@ class _$UserAdminSerializer implements PrimitiveSerializer<UserAdmin> {
           ) as DateTime;
           result.lastLoginAt = valueDes;
           break;
-        case r'role':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(UserRoleEnum),
-          ) as UserRoleEnum;
-          result.role = valueDes;
-          break;
         case r'phone':
           final valueDes = serializers.deserialize(
             value,
@@ -197,34 +251,12 @@ class _$UserAdminSerializer implements PrimitiveSerializer<UserAdmin> {
           ) as String;
           result.phone = valueDes;
           break;
-        case r'suspension_reason':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.suspensionReason = valueDes;
-          break;
-        case r'full_name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.fullName = valueDes;
-          break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.id = valueDes;
-          break;
-        case r'login_count':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.loginCount = valueDes;
           break;
         case r'email':
           final valueDes = serializers.deserialize(

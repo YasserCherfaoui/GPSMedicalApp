@@ -35,7 +35,7 @@ class AuthApi {
   const AuthApi(this._dio, this._serializers);
 
   /// Vérifier le format et la disponibilité d&#39;un NIN avant inscription
-  /// Valide le NIN (règles locales, voir &#x60;NINAlgerian&#x60;) et vérifie qu&#39;aucun compte existant n&#39;utilise déjà ce numéro. Appelé par les clients mobiles avant de poursuivre le parcours d&#39;inscription. 
+  /// Réservé aux inscriptions **DZ**. Valide le NIN (règles locales, voir &#x60;NINAlgerian&#x60;) et vérifie qu&#39;aucun compte existant n&#39;utilise déjà ce numéro. Les clients TN ne doivent pas appeler cet endpoint (le parcours NIN est sauté pour &#x60;country&#x3D;TN&#x60;). 
   ///
   /// Parameters:
   /// * [checkNinRequest] 
@@ -102,7 +102,7 @@ class AuthApi {
   }
 
   /// Vérifier le format et la disponibilité d&#39;un numéro avant inscription
-  /// Valide le numéro algérien E.164 et vérifie qu&#39;aucun compte existant n&#39;utilise déjà ce téléphone. Appelé par les clients mobiles avant de poursuivre le parcours d&#39;inscription. 
+  /// Valide le numéro E.164 (DZ &#x60;+213&#x60; ou TN &#x60;+216&#x60;) et vérifie qu&#39;aucun compte existant n&#39;utilise déjà ce téléphone. &#x60;country&#x60; est obligatoire : un indicatif qui ne correspond pas au pays déclaré renvoie &#x60;422&#x60; avec &#x60;phone_country_mismatch&#x60;. 
   ///
   /// Parameters:
   /// * [checkPhoneRequest] 
@@ -467,7 +467,7 @@ class AuthApi {
   }
 
   /// Connexion par téléphone + mot de passe
-  /// 
+  /// Les applications mobiles omettent &#x60;client&#x60; (équivalent à &#x60;mobile&#x60;).  Avec &#x60;client&#x3D;dashboard&#x60;, seuls les comptes &#x60;admin&#x60; et &#x60;moderator&#x60; reçoivent un couple de jetons. Les autres rôles obtiennent &#x60;401&#x60; avec le même message que des identifiants invalides (pas d&#39;énumération de rôle). Les jetons émis portent la claim JWT &#x60;aud&#x3D;dashboard&#x60; et sont requis pour les routes &#x60;/v1/admin/…&#x60;. 
   ///
   /// Parameters:
   /// * [loginRequest] 
@@ -708,7 +708,7 @@ class AuthApi {
   }
 
   /// Inscription d&#39;un nouvel utilisateur (patient ou médecin)
-  /// Crée un compte et envoie un OTP à 6 chiffres par SMS au numéro fourni. Le compte reste à l&#39;état &#x60;pending_verification&#x60; jusqu&#39;à validation OTP. L&#39;OTP expire au bout de 5 minutes.  Le NIN est validé localement (format à 18 chiffres, sexe, année de naissance plausible). La vérification auprès de l&#39;API gouvernementale est *best-effort* — voir &#x60;RegisterResponse.nin_verification_status&#x60;.  &#x60;409 Conflict&#x60; est retourné si le numéro de téléphone **ou** le NIN est déjà associé à un compte existant.  Les consentements ANPDP obligatoires (&#x60;consent_data_processing&#x60;, &#x60;consent_health_data&#x60;, &#x60;consent_anpdp_terms&#x60;) doivent tous être &#x60;true&#x60; ; sinon la requête est rejetée avec &#x60;422&#x60;. 
+  /// Crée un compte et envoie un OTP à 6 chiffres par SMS au numéro fourni. Le compte reste à l&#39;état &#x60;pending_verification&#x60; jusqu&#39;à validation OTP. L&#39;OTP expire au bout de 5 minutes.  **Pays (v1.1.0):** &#x60;country&#x60; est obligatoire (&#x60;DZ&#x60; | &#x60;TN&#x60;) et **immuable** après vérification OTP. Le numéro E.164 doit correspondre à l&#39;indicatif du pays déclaré (&#x60;+213&#x60; ↔ &#x60;DZ&#x60;, &#x60;+216&#x60; ↔ &#x60;TN&#x60;) — sinon &#x60;422&#x60; avec &#x60;phone_country_mismatch&#x60;.  **NIN:** obligatoire si &#x60;country&#x3D;DZ&#x60; (validation locale + vérification gouvernementale *best-effort* — voir &#x60;RegisterResponse.nin_verification_status&#x60;). Doit être **absent** si &#x60;country&#x3D;TN&#x60; (&#x60;422 nin_not_applicable&#x60; s&#39;il est fourni ; &#x60;422 nin_required&#x60; s&#39;il manque pour DZ). Pour TN, &#x60;nin_verification_status &#x3D; not_required&#x60;.  **Rôle:** &#x60;role&#x3D;specialist&#x60; avec &#x60;country&#x3D;TN&#x60; est rejeté (&#x60;422 country_not_supported_for_role&#x60;) — l&#39;onboarding médecin TN est hors périmètre Phase 3.5.  &#x60;409 Conflict&#x60; est retourné si le numéro de téléphone **ou** le NIN (lorsque fourni) est déjà associé à un compte existant.  Les consentements obligatoires (&#x60;consent_data_processing&#x60;, &#x60;consent_health_data&#x60;, &#x60;consent_anpdp_terms&#x60;) doivent tous être &#x60;true&#x60; ; sinon la requête est rejetée avec &#x60;422&#x60;. Les versions de consentement sont scopées par pays (ex. &#x60;dz-1.2&#x60;, &#x60;tn-1.0&#x60;). 
   ///
   /// Parameters:
   /// * [registerRequest] 

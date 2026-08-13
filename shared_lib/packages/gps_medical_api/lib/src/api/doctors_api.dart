@@ -477,8 +477,8 @@ class DoctorsApi {
     );
   }
 
-  /// Téléchargement du justificatif déchiffré (lien signé)
-  /// Diffuse le fichier en clair après vérification du jeton HMAC (&#x60;exp&#x60;, &#x60;token&#x60;) émis dans &#x60;Credential.file_url&#x60; à la création ou via un flux équivalent. Accès sans en-tête &#x60;Authorization&#x60; : le secret est porté par la query. 
+  /// Aperçu du justificatif déchiffré (lien signé)
+  /// Diffuse le fichier en clair après vérification du jeton HMAC (&#x60;exp&#x60;, &#x60;token&#x60;) émis dans &#x60;Credential.file_url&#x60; à la création ou via un flux équivalent. Accès sans en-tête &#x60;Authorization&#x60; : le secret est porté par la query. Le fichier est servi avec &#x60;Content-Disposition: inline&#x60; pour affichage dans l&#39;onglet du navigateur (PDF, JPEG, PNG). 
   ///
   /// Parameters:
   /// * [credentialId] 

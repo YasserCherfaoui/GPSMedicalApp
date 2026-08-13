@@ -4,6 +4,8 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:gps_medical_api/src/model/data_residency_mode.dart';
+import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -13,18 +15,20 @@ part 'user.g.dart';
 ///
 /// Properties:
 /// * [id] 
-/// * [phone] - Numéro algérien au format E.164
+/// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
 /// * [email] 
 /// * [role] 
 /// * [fullName] 
 /// * [status] 
+/// * [country] - Fixé à l'inscription ; jamais mutable via l'API.
+/// * [dataResidencyMode] - Dérivé de `country` : `DZ` → `device_only`, `TN` → `server`. 
 /// * [createdAt] 
 @BuiltValue(instantiable: false)
 abstract class User  {
   @BuiltValueField(wireName: r'id')
   String? get id;
 
-  /// Numéro algérien au format E.164
+  /// Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
   @BuiltValueField(wireName: r'phone')
   String? get phone;
 
@@ -41,6 +45,16 @@ abstract class User  {
   @BuiltValueField(wireName: r'status')
   UserStatusEnum? get status;
   // enum statusEnum {  pending_verification,  active,  suspended,  deleted,  };
+
+  /// Fixé à l'inscription ; jamais mutable via l'API.
+  @BuiltValueField(wireName: r'country')
+  CountryCode? get country;
+  // enum countryEnum {  DZ,  TN,  };
+
+  /// Dérivé de `country` : `DZ` → `device_only`, `TN` → `server`. 
+  @BuiltValueField(wireName: r'data_residency_mode')
+  DataResidencyMode? get dataResidencyMode;
+  // enum dataResidencyModeEnum {  server,  device_only,  };
 
   @BuiltValueField(wireName: r'created_at')
   DateTime? get createdAt;
@@ -101,6 +115,20 @@ class _$UserSerializer implements PrimitiveSerializer<User> {
       yield serializers.serialize(
         object.status,
         specifiedType: const FullType(UserStatusEnum),
+      );
+    }
+    if (object.country != null) {
+      yield r'country';
+      yield serializers.serialize(
+        object.country,
+        specifiedType: const FullType(CountryCode),
+      );
+    }
+    if (object.dataResidencyMode != null) {
+      yield r'data_residency_mode';
+      yield serializers.serialize(
+        object.dataResidencyMode,
+        specifiedType: const FullType(DataResidencyMode),
       );
     }
     if (object.createdAt != null) {
@@ -214,6 +242,20 @@ class _$$UserSerializer implements PrimitiveSerializer<$User> {
             specifiedType: const FullType(UserStatusEnum),
           ) as UserStatusEnum;
           result.status = valueDes;
+          break;
+        case r'country':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CountryCode),
+          ) as CountryCode;
+          result.country = valueDes;
+          break;
+        case r'data_residency_mode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DataResidencyMode),
+          ) as DataResidencyMode;
+          result.dataResidencyMode = valueDes;
           break;
         case r'created_at':
           final valueDes = serializers.deserialize(

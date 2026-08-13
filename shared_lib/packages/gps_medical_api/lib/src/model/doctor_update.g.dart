@@ -6,6 +6,28 @@ part of 'doctor_update.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const DoctorUpdateGenderEnum _$doctorUpdateGenderEnum_male =
+    const DoctorUpdateGenderEnum._('male');
+const DoctorUpdateGenderEnum _$doctorUpdateGenderEnum_female =
+    const DoctorUpdateGenderEnum._('female');
+
+DoctorUpdateGenderEnum _$doctorUpdateGenderEnumValueOf(String name) {
+  switch (name) {
+    case 'male':
+      return _$doctorUpdateGenderEnum_male;
+    case 'female':
+      return _$doctorUpdateGenderEnum_female;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<DoctorUpdateGenderEnum> _$doctorUpdateGenderEnumValues =
+    BuiltSet<DoctorUpdateGenderEnum>(const <DoctorUpdateGenderEnum>[
+      _$doctorUpdateGenderEnum_male,
+      _$doctorUpdateGenderEnum_female,
+    ]);
+
 const DoctorUpdateLanguagesEnum _$doctorUpdateLanguagesEnum_ar =
     const DoctorUpdateLanguagesEnum._('ar');
 const DoctorUpdateLanguagesEnum _$doctorUpdateLanguagesEnum_fr =
@@ -67,11 +89,46 @@ _$doctorUpdateConfirmationPolicyEnumValues =
       ],
     );
 
+Serializer<DoctorUpdateGenderEnum> _$doctorUpdateGenderEnumSerializer =
+    _$DoctorUpdateGenderEnumSerializer();
 Serializer<DoctorUpdateLanguagesEnum> _$doctorUpdateLanguagesEnumSerializer =
     _$DoctorUpdateLanguagesEnumSerializer();
 Serializer<DoctorUpdateConfirmationPolicyEnum>
 _$doctorUpdateConfirmationPolicyEnumSerializer =
     _$DoctorUpdateConfirmationPolicyEnumSerializer();
+
+class _$DoctorUpdateGenderEnumSerializer
+    implements PrimitiveSerializer<DoctorUpdateGenderEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'male': 'male',
+    'female': 'female',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'male': 'male',
+    'female': 'female',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[DoctorUpdateGenderEnum];
+  @override
+  final String wireName = 'DoctorUpdateGenderEnum';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    DoctorUpdateGenderEnum object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => _toWire[object.name] ?? object.name;
+
+  @override
+  DoctorUpdateGenderEnum deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => DoctorUpdateGenderEnum.valueOf(
+    _fromWire[serialized] ?? (serialized is String ? serialized : ''),
+  );
+}
 
 class _$DoctorUpdateLanguagesEnumSerializer
     implements PrimitiveSerializer<DoctorUpdateLanguagesEnum> {
@@ -145,6 +202,12 @@ class _$DoctorUpdateConfirmationPolicyEnumSerializer
 
 class _$DoctorUpdate extends DoctorUpdate {
   @override
+  final String? fullName;
+  @override
+  final String? title;
+  @override
+  final DoctorUpdateGenderEnum? gender;
+  @override
   final String? bio;
   @override
   final String? photoUrl;
@@ -171,6 +234,9 @@ class _$DoctorUpdate extends DoctorUpdate {
       (DoctorUpdateBuilder()..update(updates))._build();
 
   _$DoctorUpdate._({
+    this.fullName,
+    this.title,
+    this.gender,
     this.bio,
     this.photoUrl,
     this.languages,
@@ -194,6 +260,9 @@ class _$DoctorUpdate extends DoctorUpdate {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is DoctorUpdate &&
+        fullName == other.fullName &&
+        title == other.title &&
+        gender == other.gender &&
         bio == other.bio &&
         photoUrl == other.photoUrl &&
         languages == other.languages &&
@@ -210,6 +279,9 @@ class _$DoctorUpdate extends DoctorUpdate {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, fullName.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, gender.hashCode);
     _$hash = $jc(_$hash, bio.hashCode);
     _$hash = $jc(_$hash, photoUrl.hashCode);
     _$hash = $jc(_$hash, languages.hashCode);
@@ -228,6 +300,9 @@ class _$DoctorUpdate extends DoctorUpdate {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'DoctorUpdate')
+          ..add('fullName', fullName)
+          ..add('title', title)
+          ..add('gender', gender)
           ..add('bio', bio)
           ..add('photoUrl', photoUrl)
           ..add('languages', languages)
@@ -246,6 +321,18 @@ class _$DoctorUpdate extends DoctorUpdate {
 class DoctorUpdateBuilder
     implements Builder<DoctorUpdate, DoctorUpdateBuilder> {
   _$DoctorUpdate? _$v;
+
+  String? _fullName;
+  String? get fullName => _$this._fullName;
+  set fullName(String? fullName) => _$this._fullName = fullName;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  DoctorUpdateGenderEnum? _gender;
+  DoctorUpdateGenderEnum? get gender => _$this._gender;
+  set gender(DoctorUpdateGenderEnum? gender) => _$this._gender = gender;
 
   String? _bio;
   String? get bio => _$this._bio;
@@ -311,6 +398,9 @@ class DoctorUpdateBuilder
   DoctorUpdateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _fullName = $v.fullName;
+      _title = $v.title;
+      _gender = $v.gender;
       _bio = $v.bio;
       _photoUrl = $v.photoUrl;
       _languages = $v.languages?.toBuilder();
@@ -346,6 +436,9 @@ class DoctorUpdateBuilder
       _$result =
           _$v ??
           _$DoctorUpdate._(
+            fullName: fullName,
+            title: title,
+            gender: gender,
             bio: bio,
             photoUrl: photoUrl,
             languages: _languages?.build(),

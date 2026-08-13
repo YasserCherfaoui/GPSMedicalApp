@@ -299,6 +299,8 @@ class _$DoctorPrivate extends DoctorPrivate {
   @override
   final String? email;
   @override
+  final String? verificationComment;
+  @override
   final String? id;
   @override
   final String? fullName;
@@ -342,6 +344,7 @@ class _$DoctorPrivate extends DoctorPrivate {
     this.confirmationPolicy,
     this.councilNumber,
     this.email,
+    this.verificationComment,
     this.id,
     this.fullName,
     this.title,
@@ -377,6 +380,7 @@ class _$DoctorPrivate extends DoctorPrivate {
         confirmationPolicy == other.confirmationPolicy &&
         councilNumber == other.councilNumber &&
         email == other.email &&
+        verificationComment == other.verificationComment &&
         id == other.id &&
         fullName == other.fullName &&
         title == other.title &&
@@ -405,6 +409,7 @@ class _$DoctorPrivate extends DoctorPrivate {
     _$hash = $jc(_$hash, confirmationPolicy.hashCode);
     _$hash = $jc(_$hash, councilNumber.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, verificationComment.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, fullName.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
@@ -435,6 +440,7 @@ class _$DoctorPrivate extends DoctorPrivate {
           ..add('confirmationPolicy', confirmationPolicy)
           ..add('councilNumber', councilNumber)
           ..add('email', email)
+          ..add('verificationComment', verificationComment)
           ..add('id', id)
           ..add('fullName', fullName)
           ..add('title', title)
@@ -496,6 +502,11 @@ class DoctorPrivateBuilder
   String? _email;
   String? get email => _$this._email;
   set email(covariant String? email) => _$this._email = email;
+
+  String? _verificationComment;
+  String? get verificationComment => _$this._verificationComment;
+  set verificationComment(covariant String? verificationComment) =>
+      _$this._verificationComment = verificationComment;
 
   String? _id;
   String? get id => _$this._id;
@@ -587,6 +598,7 @@ class DoctorPrivateBuilder
       _confirmationPolicy = $v.confirmationPolicy;
       _councilNumber = $v.councilNumber;
       _email = $v.email;
+      _verificationComment = $v.verificationComment;
       _id = $v.id;
       _fullName = $v.fullName;
       _title = $v.title;
@@ -634,6 +646,7 @@ class DoctorPrivateBuilder
             confirmationPolicy: confirmationPolicy,
             councilNumber: councilNumber,
             email: email,
+            verificationComment: verificationComment,
             id: id,
             fullName: fullName,
             title: title,

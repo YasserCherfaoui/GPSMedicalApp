@@ -7,6 +7,15 @@ void main() {
   final instance = GpsMedicalApi().getMessagingApi();
 
   group(MessagingApi, () {
+    // Canal WebSocket temps réel (messages et accusés de lecture)
+    //
+    // Upgrade WebSocket. Authentification via en-tête `Authorization: Bearer` ou paramètre `token` (JWT access). Réservé aux rôles `patient` et `specialist` avec participation au fil (même RBAC que B-9.1).  Événements serveur → client (`MessagingRealtimeEvent`) : - `message.new` — nouveau message dans un fil participé ; - `message.read` — accusé de lecture.  **Dégradation gracieuse :** REST reste la source de vérité pour l'historique et l'envoi ; si le WS est indisponible, les clients basculent sur le polling REST (Phase 2) sans perte. Voir ADR 0013 pour la sémantique de livraison (at-least-once côté push). 
+    //
+    //Future connectMessagingWebSocket({ String token }) async
+    test('test connectMessagingWebSocket', () async {
+      // TODO
+    });
+
     // Envoi d'un message
     //
     //Future<Message> createMessagingThreadMessage(String threadId, MessageCreate messageCreate) async
