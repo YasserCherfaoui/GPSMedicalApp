@@ -19,6 +19,7 @@ class GpsTextField extends StatelessWidget {
     this.autofillHints,
     this.inputFormatters,
     this.prefixIcon,
+    this.prefixIconConstraints,
     this.suffixIcon,
     this.enabled = true,
   });
@@ -35,6 +36,7 @@ class GpsTextField extends StatelessWidget {
   final Iterable<String>? autofillHints;
   final List<TextInputFormatter>? inputFormatters;
   final Widget? prefixIcon;
+  final BoxConstraints? prefixIconConstraints;
   final Widget? suffixIcon;
   final bool enabled;
 
@@ -61,6 +63,7 @@ class GpsTextField extends StatelessWidget {
             hintText: hint,
             errorText: errorText,
             prefixIcon: prefixIcon,
+            prefixIconConstraints: prefixIconConstraints,
             suffixIcon: suffixIcon,
             constraints: const BoxConstraints(
               minHeight: GpsSpacing.minTouchTarget,

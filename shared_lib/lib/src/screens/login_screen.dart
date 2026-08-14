@@ -5,13 +5,14 @@ import 'package:go_router/go_router.dart';
 import '../auth/auth_exception.dart';
 import '../auth/auth_repository.provider.dart';
 import '../auth/auth_session.provider.dart';
+import '../constants/registration_countries.dart';
 import '../l10n/auth_strings.dart';
 import '../routing/gps_routes.dart';
 import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
-import '../widgets/algerian_phone_field.dart';
 import '../widgets/auth_flow_scaffold.dart';
 import '../widgets/auth_toast.dart';
+import '../widgets/country_phone_field.dart';
 import '../widgets/gps_text_field.dart';
 import '../widgets/primary_button.dart';
 
@@ -24,6 +25,7 @@ class LoginScreen extends ConsumerStatefulWidget {
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _passwordController = TextEditingController();
+  RegistrationCountry _country = RegistrationCountry.dz;
   String? _phoneE164;
   String? _phoneError;
   String? _error;
@@ -38,7 +40,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Future<void> _signIn() async {
     final strings = AuthStrings.of(context);
     if (_phoneE164 == null) {
-      setState(() => _phoneError = strings.invalidPhone);
+      setState(() => _phoneError = strings.invalidPhoneFor(_country));
       return;
     }
     if (_passwordController.text.isEmpty) {
@@ -101,8 +103,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                AlgerianPhoneField(
+                CountryPhoneField(
+                  country: _country,
                   errorText: _phoneError,
+                  onCountryChanged: (country) => setState(() {
+                    _country = country;
+                    _phoneE164 = null;
+                    _phoneError = null;
+                  }),
                   onChanged: (e164) => setState(() {
                     _phoneE164 = e164;
                     _phoneError = null;
