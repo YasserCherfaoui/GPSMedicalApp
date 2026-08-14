@@ -1,12 +1,14 @@
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../utils/profile_api_error.dart';
+import 'patient_profile_repository.dart';
 
-class PatientRepository {
+class PatientRepository implements PatientProfileRepository {
   PatientRepository(this._client);
 
   final GpsMedicalClient _client;
 
+  @override
   Future<Patient> getProfile() async {
     try {
       final response = await _client.patients.patientsMeGet();
@@ -20,6 +22,7 @@ class PatientRepository {
     }
   }
 
+  @override
   Future<Patient> patchProfile(PatientUpdate update) async {
     try {
       final response = await _client.patients.patientsMePatch(
@@ -35,6 +38,7 @@ class PatientRepository {
     }
   }
 
+  @override
   Future<void> deleteProfile() async {
     try {
       await _client.patients.patientsMeDelete();

@@ -7,12 +7,14 @@ import 'package:http_parser/http_parser.dart';
 import '../utils/medical_record_display.dart';
 import '../utils/medical_record_download.dart';
 import '../utils/medical_records_api_error.dart';
+import 'medical_records_store.dart';
 
-class MedicalRecordsRepository {
+class MedicalRecordsRepository implements MedicalRecordsStore {
   MedicalRecordsRepository(this._client);
 
   final GpsMedicalClient _client;
 
+  @override
   Future<({List<MedicalDocument> documents, bool hasMore})> list({
     MedicalDocumentTypeEnum? type,
     required int page,
@@ -36,6 +38,7 @@ class MedicalRecordsRepository {
     return (documents: items, hasMore: hasMore);
   }
 
+  @override
   Future<MedicalDocument> upload({
     required Uint8List bytes,
     required String fileName,
@@ -77,6 +80,7 @@ class MedicalRecordsRepository {
     }
   }
 
+  @override
   Future<MedicalDocument> fetchById(String documentId) async {
     try {
       final response = await _client.medicalRecords.medicalRecordsDocumentIdGet(
@@ -124,6 +128,7 @@ class MedicalRecordsRepository {
     return bytes;
   }
 
+  @override
   Future<Uint8List> fetchDocumentBytes(String documentId) async {
     var download = await getDownloadLink(documentId);
     var link = parseSignedMedicalRecordDownload(download);
@@ -150,6 +155,7 @@ class MedicalRecordsRepository {
     }
   }
 
+  @override
   Future<void> delete(String documentId) async {
     try {
       await _client.medicalRecords.medicalRecordsDocumentIdDelete(

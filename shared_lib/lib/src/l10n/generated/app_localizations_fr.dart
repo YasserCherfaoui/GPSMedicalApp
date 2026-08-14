@@ -1021,6 +1021,23 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileDeleteError => 'Suppression impossible';
 
   @override
+  String get deviceVaultBannerTitle => 'Données uniquement sur cet appareil';
+
+  @override
+  String get deviceVaultBannerBody =>
+      'Votre date de naissance, groupe sanguin, adresse, antécédents et documents médicaux restent sur cet appareil. Désinstaller l\'application ou perdre le téléphone les supprime définitivement.';
+
+  @override
+  String get deviceVaultBannerDismiss => 'J\'ai compris';
+
+  @override
+  String get deviceVaultSettingsTitle => 'Coffre sur l\'appareil';
+
+  @override
+  String get deviceVaultSettingsBody =>
+      'Ces données vivent uniquement sur cet appareil. Désinstaller l\'application ou perdre le téléphone les supprime. Aucune sauvegarde n\'est proposée.';
+
+  @override
   String get profileConsents => 'Consentements ANPDP';
 
   @override

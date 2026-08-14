@@ -6,6 +6,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../../notifications/widgets/notifications_bell_button.dart';
 import '../providers/patient_profile.provider.dart';
 import '../utils/profile_display.dart';
+import '../widgets/device_vault_warning_banner.dart';
 import '../widgets/profile_field_row.dart';
 
 class PatientProfileScreen extends ConsumerWidget {
@@ -53,6 +54,7 @@ class PatientProfileScreen extends ConsumerWidget {
           child: ListView(
             padding: const EdgeInsets.all(GpsSpacing.md),
             children: [
+              const DeviceVaultWarningBanner(),
               GpsCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,

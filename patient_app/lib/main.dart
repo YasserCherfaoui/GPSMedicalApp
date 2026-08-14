@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:patient_app/features/booking/widgets/booking_draft_resume_listener.dart';
 import 'package:patient_app/features/notifications/widgets/push_notifications_bootstrap.dart';
 import 'package:patient_app/firebase/init_firebase.dart';
@@ -22,8 +25,10 @@ void main() async {
   final results = await Future.wait([
     initPatientFirebase(),
     bootstrapGpsMedicalApp(),
+    _openDeviceVault(),
   ]);
   final bootstrap = results[1] as AppBootstrapData;
+  final vault = results[2] as DeviceVault;
 
   final app = ProviderScope(
     overrides: [
@@ -32,6 +37,7 @@ void main() async {
       appLaunchPreferencesProvider.overrideWithValue(
         bootstrap.launchPreferences,
       ),
+      deviceVaultProvider.overrideWithValue(vault),
       gpsRouterProvider.overrideWith((ref) {
         final auth = ref.read(authSessionProvider);
         final appInfo = ref.watch(appInfoProvider);
@@ -54,6 +60,14 @@ void main() async {
   } else {
     runApp(app);
   }
+}
+
+Future<DeviceVault> _openDeviceVault() async {
+  final docs = await getApplicationDocumentsDirectory();
+  return EncryptedHiveDeviceVault.open(
+    root: Directory('${docs.path}/device_vault'),
+    keys: SecureStorageVaultKeyStore(),
+  );
 }
 
 class PatientApp extends ConsumerStatefulWidget {

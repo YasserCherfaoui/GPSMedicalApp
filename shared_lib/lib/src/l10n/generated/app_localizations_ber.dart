@@ -1010,6 +1010,23 @@ class AppLocalizationsBer extends AppLocalizations {
   String get profileDeleteError => 'Tukksa ur teddi ara';
 
   @override
+  String get deviceVaultBannerTitle => 'Isefka ɣef yibenk-a kan';
+
+  @override
+  String get deviceVaultBannerBody =>
+      'Azemz n tlalit, agraw n yidammen, tansa, azref n teddwit d yisemliyen qqimen ɣef yibenk-a. Tukksa n usnas neɣ asṛuḥ n tiliɣri ad ten-yekkes i lebda.';
+
+  @override
+  String get deviceVaultBannerDismiss => 'Gziɣ';
+
+  @override
+  String get deviceVaultSettingsTitle => 'Agerruj ɣef yibenk';
+
+  @override
+  String get deviceVaultSettingsBody =>
+      'Isefka-agi llan ɣef yibenk-a kan. Tukksa n usnas neɣ asṛuḥ n tiliɣri ad ten-yekkes. Ulac aḥraz.';
+
+  @override
   String get profileConsents => 'Asenqed ANPDP';
 
   @override

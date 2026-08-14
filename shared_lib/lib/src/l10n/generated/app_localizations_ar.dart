@@ -1002,6 +1002,23 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profileDeleteError => 'تعذر الحذف';
 
   @override
+  String get deviceVaultBannerTitle => 'البيانات على هذا الجهاز فقط';
+
+  @override
+  String get deviceVaultBannerBody =>
+      'تاريخ الميلاد وفصيلة الدم والعنوان والسوابق الطبية والوثائق تبقى على هذا الجهاز. إلغاء تثبيت التطبيق أو فقدان الهاتف يحذفها نهائياً.';
+
+  @override
+  String get deviceVaultBannerDismiss => 'فهمت';
+
+  @override
+  String get deviceVaultSettingsTitle => 'خزنة على الجهاز';
+
+  @override
+  String get deviceVaultSettingsBody =>
+      'هذه البيانات موجودة على هذا الجهاز فقط. إلغاء تثبيت التطبيق أو فقدان الهاتف يحذفها. لا تتوفر نسخة احتياطية.';
+
+  @override
   String get profileConsents => 'موافقات ANPDP';
 
   @override

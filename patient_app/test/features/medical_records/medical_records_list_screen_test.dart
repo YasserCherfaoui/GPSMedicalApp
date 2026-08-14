@@ -18,6 +18,17 @@ void main() {
     dio.httpClientAdapter = adapter;
     client = GpsMedicalClient(tokenStore: InMemoryTokenStore(), v1Dio: dio);
 
+    adapter.onGet('/patients/me', (server) {
+      return server.reply(200, {
+        'id': 'pat-1',
+        'phone': '+21355001111',
+        'role': 'patient',
+        'full_name': 'Amina Benali',
+        'status': 'active',
+        'created_at': '2026-01-01T00:00:00Z',
+      });
+    });
+
     adapter.onGet('/medical-records', (server) {
       return server.reply(200, {
         'data': [

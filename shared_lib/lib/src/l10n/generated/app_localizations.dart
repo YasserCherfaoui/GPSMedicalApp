@@ -1954,6 +1954,36 @@ abstract class AppLocalizations {
   /// **'Suppression impossible'**
   String get profileDeleteError;
 
+  /// No description provided for @deviceVaultBannerTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Données uniquement sur cet appareil'**
+  String get deviceVaultBannerTitle;
+
+  /// No description provided for @deviceVaultBannerBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre date de naissance, groupe sanguin, adresse, antécédents et documents médicaux restent sur cet appareil. Désinstaller l\'application ou perdre le téléphone les supprime définitivement.'**
+  String get deviceVaultBannerBody;
+
+  /// No description provided for @deviceVaultBannerDismiss.
+  ///
+  /// In fr, this message translates to:
+  /// **'J\'ai compris'**
+  String get deviceVaultBannerDismiss;
+
+  /// No description provided for @deviceVaultSettingsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Coffre sur l\'appareil'**
+  String get deviceVaultSettingsTitle;
+
+  /// No description provided for @deviceVaultSettingsBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ces données vivent uniquement sur cet appareil. Désinstaller l\'application ou perdre le téléphone les supprime. Aucune sauvegarde n\'est proposée.'**
+  String get deviceVaultSettingsBody;
+
   /// No description provided for @profileConsents.
   ///
   /// In fr, this message translates to:
