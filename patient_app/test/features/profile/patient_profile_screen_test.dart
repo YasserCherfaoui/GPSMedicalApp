@@ -79,6 +79,7 @@ void main() {
     expect(find.text('Amina Benali'), findsOneWidget);
     expect(find.text('+21355001111'), findsOneWidget);
     expect(find.byIcon(Icons.edit_outlined), findsOneWidget);
+    expect(find.byIcon(Icons.logout_outlined), findsOneWidget);
     expect(find.text('Données uniquement sur cet appareil'), findsNothing);
 
     await tester.drag(find.byType(ListView), const Offset(0, -800));

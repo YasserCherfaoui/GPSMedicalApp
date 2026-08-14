@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../notifications/utils/patient_sign_out.dart';
 import '../../notifications/widgets/notifications_bell_button.dart';
 import '../providers/patient_profile.provider.dart';
 import '../utils/profile_display.dart';
@@ -27,6 +28,11 @@ class PatientProfileScreen extends ConsumerWidget {
             icon: const Icon(Icons.edit_outlined),
             tooltip: l10n.profileEdit,
             onPressed: () => context.push(GpsRoutes.profileEdit),
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout_outlined),
+            tooltip: l10n.profileSignOut,
+            onPressed: () => signOutPatient(ref, context: context),
           ),
         ],
       ),
