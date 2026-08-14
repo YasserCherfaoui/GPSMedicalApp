@@ -52,10 +52,13 @@ class Phase1Api {
   }
 
   /// POST `/auth/register/check-phone` — 204 when valid and available.
-  Future<Response<void>> checkRegisterPhone({required String phone}) {
+  Future<Response<void>> checkRegisterPhone({
+    required String phone,
+    required CountryCode country,
+  }) {
     return _v1.dio.post<void>(
       '/auth/register/check-phone',
-      data: <String, dynamic>{'phone': phone},
+      data: <String, dynamic>{'phone': phone, 'country': country.name},
       options: Options(
         contentType: Headers.jsonContentType,
         responseType: ResponseType.plain,

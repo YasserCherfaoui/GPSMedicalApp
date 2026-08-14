@@ -23,6 +23,8 @@ Method | HTTP request | Description
 
 Fiche publique d'un médecin
 
+**404** si le médecin n'est pas `verified=true` (dossiers `approved_pending_activation` inclus — pas de fuite d'offre en quarantaine). Voir addendum-1.1.1.md. 
+
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
@@ -63,6 +65,8 @@ No authorization required
 > PaginatedDoctors doctorsGet(page, pageSize, verifiedOnly)
 
 Liste publique des médecins (annuaire)
+
+Par défaut `verified_only=true` : seuls les médecins `verified=true` (donc **pas** `approved_pending_activation`) apparaissent. Voir addendum-1.1.1.md (invariant découverte). 
 
 ### Example
 ```dart

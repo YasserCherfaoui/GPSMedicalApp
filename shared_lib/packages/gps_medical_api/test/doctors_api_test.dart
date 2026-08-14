@@ -9,12 +9,16 @@ void main() {
   group(DoctorsApi, () {
     // Fiche publique d'un médecin
     //
+    // **404** si le médecin n'est pas `verified=true` (dossiers `approved_pending_activation` inclus — pas de fuite d'offre en quarantaine). Voir addendum-1.1.1.md. 
+    //
     //Future<Doctor> doctorsDoctorIdGet(String doctorId) async
     test('test doctorsDoctorIdGet', () async {
       // TODO
     });
 
     // Liste publique des médecins (annuaire)
+    //
+    // Par défaut `verified_only=true` : seuls les médecins `verified=true` (donc **pas** `approved_pending_activation`) apparaissent. Voir addendum-1.1.1.md (invariant découverte). 
     //
     //Future<PaginatedDoctors> doctorsGet({ int page, int pageSize, bool verifiedOnly }) async
     test('test doctorsGet', () async {

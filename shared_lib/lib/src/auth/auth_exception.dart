@@ -52,7 +52,23 @@ final class AuthValidationException extends AuthException {
   const AuthValidationException(
     super.message, {
     super.errorCode = AuthErrorCode.validationError,
+    this.problemCode,
   });
+
+  /// OpenAPI `errors[].code` / `Problem.code` when present (e.g. `phone_country_mismatch`).
+  final String? problemCode;
+
+  @override
+  String getLocalizedMessage(AuthStrings strings) {
+    switch (problemCode) {
+      case 'phone_country_mismatch':
+        return strings.phoneCountryMismatch;
+      case 'country_not_supported_for_role':
+        return strings.countryNotSupportedForRole;
+      default:
+        return super.getLocalizedMessage(strings);
+    }
+  }
 }
 
 final class AuthNetworkException extends AuthException {

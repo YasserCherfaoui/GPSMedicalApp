@@ -214,6 +214,49 @@ class AppLocalizationsBer extends AppLocalizations {
       'Isem ur yettwasenqed ara (gar 2 akked 120 n yiḥerfufen).';
 
   @override
+  String get countryTitle => 'Tamurt-ik';
+
+  @override
+  String get countrySubtitle =>
+      'Fren tamurt n tnezduɣt. Ur yezmir ara ad yettwabeddel ticki.';
+
+  @override
+  String get countryImmutableNotice =>
+      'Tamurt i tferneḍ d tabadut. Ur tettwabeddel ara seld n tmerna n umiḍan.';
+
+  @override
+  String get countryAlgeria => 'Lezzayer';
+
+  @override
+  String get countryTunisia => 'Tunes';
+
+  @override
+  String get phoneCountryMismatch =>
+      'Uṭṭun-agi ur yemṣada ara d tmurt i tferneḍ.';
+
+  @override
+  String get countryNotSupportedForRole =>
+      'Ajerred n yimussnawen ur yewwiḍ ara yakan di Tunes.';
+
+  @override
+  String get consentSubtitleTn => 'Akked d uzref n Tunes INPDP (azref 2004-63)';
+
+  @override
+  String get consentTermsTn => 'Tiwtilin d tsertit INPDP';
+
+  @override
+  String consentLegalVersion(String version) {
+    return 'Lqem n tewtilin: $version';
+  }
+
+  @override
+  String get invalidPhoneTn =>
+      'Uṭṭun ur yettwasenqed ara (+216 2/4/5/9 + 7 n yizwilen)';
+
+  @override
+  String get phoneFormatHintTn => 'Amasal: +216 2X, 4X, 5X neɣ 9X';
+
+  @override
   String get errorInvalidCredentials =>
       'Isefka n tuqqna ur mṣadan ara. Senqed uṭṭun n tiliɣri d wawal uffir.';
 

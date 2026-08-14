@@ -8,6 +8,7 @@ void main() {
   final repo = MockAuthRepository();
 
   const draft = RegistrationDraft(
+    country: RegistrationCountry.dz,
     nin: '109880554003450000',
     phoneE164: '+213551234567',
     password: 'SecurePass1!',
@@ -55,6 +56,42 @@ void main() {
     expect(
       () => failing.register(draft: draft, role: GpsMedicalClientKind.patient),
       throwsA(isA<AuthNetworkException>()),
+    );
+  });
+
+  test('register succeeds for TN without NIN', () async {
+    const tnDraft = RegistrationDraft(
+      country: RegistrationCountry.tn,
+      phoneE164: '+21622123456',
+      password: 'SecurePass1!',
+      fullName: 'Test User',
+      consentDataProcessing: true,
+      consentHealthData: true,
+      consentAnpdpTerms: true,
+    );
+    final response = await repo.register(
+      draft: tnDraft,
+      role: GpsMedicalClientKind.patient,
+    );
+    expect(
+      response.ninVerificationStatus,
+      RegisterResponseNinVerificationStatusEnum.notRequired,
+    );
+  });
+
+  test('checkRegisterPhone rejects mismatch', () async {
+    expect(
+      () => repo.checkRegisterPhone(
+        phoneE164: '+21622123456',
+        country: RegistrationCountry.dz,
+      ),
+      throwsA(
+        isA<AuthValidationException>().having(
+          (e) => e.problemCode,
+          'problemCode',
+          'phone_country_mismatch',
+        ),
+      ),
     );
   });
 }

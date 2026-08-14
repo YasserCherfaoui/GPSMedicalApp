@@ -15,7 +15,6 @@ import 'package:gps_medical_api/src/date_serializer.dart';
 import 'package:gps_medical_api/src/model/date.dart';
 
 import 'package:gps_medical_api/src/model/address.dart';
-import 'package:gps_medical_api/src/model/admin_doctors_doctor_id_verify_post_request.dart';
 import 'package:gps_medical_api/src/model/admin_overview.dart';
 import 'package:gps_medical_api/src/model/admin_reviews_review_id_moderate_post_request.dart';
 import 'package:gps_medical_api/src/model/appointment.dart';
@@ -40,6 +39,7 @@ import 'package:gps_medical_api/src/model/doctor.dart';
 import 'package:gps_medical_api/src/model/doctor_overview.dart';
 import 'package:gps_medical_api/src/model/doctor_private.dart';
 import 'package:gps_medical_api/src/model/doctor_update.dart';
+import 'package:gps_medical_api/src/model/doctor_verification_status.dart';
 import 'package:gps_medical_api/src/model/doctor_with_distance.dart';
 import 'package:gps_medical_api/src/model/funnel.dart';
 import 'package:gps_medical_api/src/model/health_check.dart';
@@ -110,13 +110,13 @@ import 'package:gps_medical_api/src/model/user_admin.dart';
 import 'package:gps_medical_api/src/model/user_admin_update.dart';
 import 'package:gps_medical_api/src/model/validation_problem.dart';
 import 'package:gps_medical_api/src/model/validation_problem_all_of_errors.dart';
+import 'package:gps_medical_api/src/model/verify_doctor_request.dart';
 import 'package:gps_medical_api/src/model/wilaya.dart';
 
 part 'serializers.g.dart';
 
 @SerializersFor([
   Address,
-  AdminDoctorsDoctorIdVerifyPostRequest,
   AdminOverview,
   AdminReviewsReviewIdModeratePostRequest,
   Appointment,
@@ -141,6 +141,7 @@ part 'serializers.g.dart';
   DoctorOverview,
   DoctorPrivate,
   DoctorUpdate,
+  DoctorVerificationStatus,
   DoctorWithDistance,
   Funnel,
   HealthCheck,
@@ -211,6 +212,7 @@ part 'serializers.g.dart';
   UserAdminUpdate,
   ValidationProblem,
   ValidationProblemAllOfErrors,
+  VerifyDoctorRequest,
   Wilaya,
 ])
 Serializers serializers = (_$serializers.toBuilder()

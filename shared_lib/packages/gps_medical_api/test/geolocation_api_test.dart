@@ -9,6 +9,8 @@ void main() {
   group(GeolocationApi, () {
     // Médecins à proximité d'un point GPS
     //
+    // Uniquement des médecins `verified=true`. Les dossiers `approved_pending_activation` sont exclus. 
+    //
     //Future<PaginatedDoctorsWithDistance> geoDoctorsNearbyGet(double lat, double lng, { num radiusKm, String specialtyId, int page, int pageSize }) async
     test('test geoDoctorsNearbyGet', () async {
       // TODO

@@ -15,6 +15,7 @@ part 'admin_overview.g.dart';
 /// * [patientsActive] 
 /// * [doctorsActive] 
 /// * [doctorsPendingVerification] 
+/// * [doctorsApprovedPendingActivation] - Effectif des médecins TN en quarantaine (`approved_pending_activation`). Compteur pipeline d'offre TN (B-14.2). 
 /// * [appointmentsLast30d] 
 /// * [gmvDzdLast30d] 
 /// * [avgAppointmentsPerActiveUser] 
@@ -31,6 +32,10 @@ abstract class AdminOverview implements Built<AdminOverview, AdminOverviewBuilde
 
   @BuiltValueField(wireName: r'doctors_pending_verification')
   int? get doctorsPendingVerification;
+
+  /// Effectif des médecins TN en quarantaine (`approved_pending_activation`). Compteur pipeline d'offre TN (B-14.2). 
+  @BuiltValueField(wireName: r'doctors_approved_pending_activation')
+  int? get doctorsApprovedPendingActivation;
 
   @BuiltValueField(wireName: r'appointments_last_30d')
   int? get appointmentsLast30d;
@@ -89,6 +94,13 @@ class _$AdminOverviewSerializer implements PrimitiveSerializer<AdminOverview> {
       yield r'doctors_pending_verification';
       yield serializers.serialize(
         object.doctorsPendingVerification,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.doctorsApprovedPendingActivation != null) {
+      yield r'doctors_approved_pending_activation';
+      yield serializers.serialize(
+        object.doctorsApprovedPendingActivation,
         specifiedType: const FullType(int),
       );
     }
@@ -163,6 +175,13 @@ class _$AdminOverviewSerializer implements PrimitiveSerializer<AdminOverview> {
             specifiedType: const FullType(int),
           ) as int;
           result.doctorsPendingVerification = valueDes;
+          break;
+        case r'doctors_approved_pending_activation':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.doctorsApprovedPendingActivation = valueDes;
           break;
         case r'appointments_last_30d':
           final valueDes = serializers.deserialize(

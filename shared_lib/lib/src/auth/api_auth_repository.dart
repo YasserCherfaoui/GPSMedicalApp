@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
 import '../client/phase1_api.dart';
+import '../constants/registration_countries.dart';
 import '../models/app_info.dart';
 import 'auth_exception.dart';
 import 'auth_repository.dart';
@@ -45,9 +46,15 @@ class ApiAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> checkRegisterPhone(String phoneE164) async {
+  Future<void> checkRegisterPhone({
+    required String phoneE164,
+    required RegistrationCountry country,
+  }) async {
     try {
-      final response = await _phase1.checkRegisterPhone(phone: phoneE164);
+      final response = await _phase1.checkRegisterPhone(
+        phone: phoneE164,
+        country: country.apiCode,
+      );
       _throwIfNotNoContent(response);
     } on DioException catch (e) {
       throw _mapDio(e);
@@ -64,25 +71,28 @@ class ApiAuthRepository implements AuthRepository {
         'Informations d\'inscription incomplètes.',
       );
     }
+    final country = draft.country!;
     final phone = draft.phoneE164!;
-    final nin = draft.nin!;
     final password = draft.password!;
     final fullName = draft.fullName!.trim();
 
     try {
       final response = await _phase1.registerUser(
-        registerRequest: RegisterRequest(
-          (b) => b
+        registerRequest: RegisterRequest((b) {
+          b
+            ..country = country.apiCode
             ..phone = phone
-            ..nin = nin
             ..password = password
             ..role = _role(role)
             ..fullName = fullName
             ..consentDataProcessing = draft.consentDataProcessing
             ..consentHealthData = draft.consentHealthData
             ..consentAnpdpTerms = draft.consentAnpdpTerms
-            ..consentMarketing = draft.consentMarketing,
-        ),
+            ..consentMarketing = draft.consentMarketing;
+          if (country.requiresNin) {
+            b.nin = draft.nin;
+          }
+        }),
       );
       final data = response.data;
       if (data == null) {
@@ -271,6 +281,7 @@ class ApiAuthRepository implements AuthRepository {
       return AuthValidationException(
         message,
         errorCode: AuthErrorCode.validationError,
+        problemCode: _parseProblemCode(response.data),
       );
     }
     if (statusCode == 429) {
@@ -349,4 +360,60 @@ String _validationProblemMessage(ValidationProblem vp) {
     return detail;
   }
   return vp.title;
+}
+
+String? _parseProblemCode(Object? data) {
+  if (data is! Map) {
+    return null;
+  }
+  final raw = Map<String, Object?>.from(data);
+
+  try {
+    final deserialized = standardSerializers.deserialize(
+      raw,
+      specifiedType: const FullType(ValidationProblem),
+    );
+    if (deserialized is ValidationProblem) {
+      final errors = deserialized.errors;
+      if (errors != null && errors.isNotEmpty) {
+        final code = errors.first.code;
+        if (code != null && code.isNotEmpty) {
+          return code;
+        }
+      }
+      final top = deserialized.code;
+      if (top != null && top.isNotEmpty) {
+        return top;
+      }
+    }
+  } catch (_) {}
+
+  try {
+    final deserialized = standardSerializers.deserialize(
+      raw,
+      specifiedType: const FullType($Problem),
+    );
+    if (deserialized is $Problem) {
+      final code = deserialized.code;
+      if (code != null && code.isNotEmpty) {
+        return code;
+      }
+    }
+  } catch (_) {}
+
+  final top = raw['code'];
+  if (top is String && top.isNotEmpty) {
+    return top;
+  }
+  final errors = raw['errors'];
+  if (errors is List && errors.isNotEmpty) {
+    final first = errors.first;
+    if (first is Map) {
+      final code = first['code'];
+      if (code is String && code.isNotEmpty) {
+        return code;
+      }
+    }
+  }
+  return null;
 }

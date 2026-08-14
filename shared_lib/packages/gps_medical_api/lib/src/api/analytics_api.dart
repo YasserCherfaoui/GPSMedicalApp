@@ -113,7 +113,7 @@ class AnalyticsApi {
   }
 
   /// Vue d&#39;ensemble plateforme (admin)
-  /// 
+  /// KPIs globaux. &#x60;doctors_approved_pending_activation&#x60; est le compteur d&#39;offre TN en quarantaine (addendum-1.1.1). 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation

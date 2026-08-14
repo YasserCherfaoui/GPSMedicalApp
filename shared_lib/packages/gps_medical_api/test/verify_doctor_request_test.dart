@@ -1,12 +1,12 @@
 import 'package:test/test.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
-// tests for AdminDoctorsDoctorIdVerifyPostRequest
+// tests for VerifyDoctorRequest
 void main() {
-  final instance = AdminDoctorsDoctorIdVerifyPostRequestBuilder();
+  final instance = VerifyDoctorRequestBuilder();
   // TODO add properties to the builder and call build()
 
-  group(AdminDoctorsDoctorIdVerifyPostRequest, () {
+  group(VerifyDoctorRequest, () {
     // String decision
     test('to test the property `decision`', () async {
       // TODO

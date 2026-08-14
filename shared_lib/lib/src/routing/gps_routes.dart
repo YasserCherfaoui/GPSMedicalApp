@@ -14,6 +14,7 @@ abstract final class GpsRoutes {
   static const login = '/auth/login';
 
   // Registration
+  static const registerCountry = '/auth/register/country';
   static const registerNin = '/auth/register/nin';
   static const registerFullName = '/auth/register/name';
   static const registerPhone = '/auth/register/phone';
@@ -71,6 +72,7 @@ abstract final class GpsRoutes {
     onboarding,
     authWelcome,
     login,
+    registerCountry,
     registerNin,
     registerFullName,
     registerPhone,

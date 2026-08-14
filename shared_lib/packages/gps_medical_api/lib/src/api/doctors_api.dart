@@ -29,7 +29,7 @@ class DoctorsApi {
   const DoctorsApi(this._dio, this._serializers);
 
   /// Fiche publique d&#39;un médecin
-  /// 
+  /// **404** si le médecin n&#39;est pas &#x60;verified&#x3D;true&#x60; (dossiers &#x60;approved_pending_activation&#x60; inclus — pas de fuite d&#39;offre en quarantaine). Voir addendum-1.1.1.md. 
   ///
   /// Parameters:
   /// * [doctorId] 
@@ -104,7 +104,7 @@ class DoctorsApi {
   }
 
   /// Liste publique des médecins (annuaire)
-  /// 
+  /// Par défaut &#x60;verified_only&#x3D;true&#x60; : seuls les médecins &#x60;verified&#x3D;true&#x60; (donc **pas** &#x60;approved_pending_activation&#x60;) apparaissent. Voir addendum-1.1.1.md (invariant découverte). 
   ///
   /// Parameters:
   /// * [page] 

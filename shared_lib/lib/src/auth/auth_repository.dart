@@ -1,8 +1,9 @@
 import 'package:gps_medical_api/gps_medical_api.dart';
 
+import '../constants/registration_countries.dart';
 import '../models/app_info.dart';
-import '../validation/algerian_phone.dart';
 import '../validation/nin.dart';
+import '../validation/phone_e164.dart';
 import 'auth_exception.dart';
 import 'registration_draft.dart';
 
@@ -37,7 +38,10 @@ abstract interface class AuthRepository {
   Future<void> checkRegisterNin(String nin);
 
   /// Validates phone format and ensures it is not already registered.
-  Future<void> checkRegisterPhone(String phoneE164);
+  Future<void> checkRegisterPhone({
+    required String phoneE164,
+    required RegistrationCountry country,
+  });
 }
 
 /// Week 3 mock — deterministic OTP `123456`, simulated latency.
@@ -69,12 +73,14 @@ class MockAuthRepository implements AuthRepository {
         'Informations d\'inscription incomplètes.',
       );
     }
+    final ninStatus = draft.country == RegistrationCountry.tn
+        ? RegisterResponseNinVerificationStatusEnum.notRequired
+        : RegisterResponseNinVerificationStatusEnum.pending;
     return RegisterResponse(
       (b) => b
         ..userId = '00000000-0000-4000-8000-000000000001'
         ..otpExpiresAt = DateTime.now().add(const Duration(minutes: 5))
-        ..ninVerificationStatus =
-            RegisterResponseNinVerificationStatusEnum.pending,
+        ..ninVerificationStatus = ninStatus,
     );
   }
 
@@ -165,15 +171,19 @@ class MockAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> checkRegisterPhone(String phoneE164) async {
+  Future<void> checkRegisterPhone({
+    required String phoneE164,
+    required RegistrationCountry country,
+  }) async {
     await Future<void>.delayed(simulatedDelay);
     if (failNextCall) {
       failNextCall = false;
       throw const AuthNetworkException('Réseau indisponible (mock).');
     }
-    if (AlgerianPhone.validateE164(phoneE164) == null) {
+    if (!PhoneE164.matchesCountry(phoneE164, country)) {
       throw const AuthValidationException(
-        'Numéro invalide (+213 5/6/7 + 8 chiffres).',
+        'Numéro invalide pour le pays choisi.',
+        problemCode: 'phone_country_mismatch',
       );
     }
   }

@@ -57,7 +57,10 @@ class _SuccessAuthRepository implements AuthRepository {
   Future<void> checkRegisterNin(String nin) async {}
 
   @override
-  Future<void> checkRegisterPhone(String phoneE164) async {}
+  Future<void> checkRegisterPhone({
+    required String phoneE164,
+    required RegistrationCountry country,
+  }) async {}
 }
 
 void main() {
@@ -124,6 +127,7 @@ void main() {
       addTearDown(container.dispose);
 
       container.read(registrationDraftProvider.notifier)
+        ..updateCountry(RegistrationCountry.dz)
         ..updateNin('109880554003450000')
         ..updateFullName('Dr. Test')
         ..updatePhone('+213555123456')

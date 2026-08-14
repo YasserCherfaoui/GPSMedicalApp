@@ -1,8 +1,11 @@
 import 'package:gps_medical_api/gps_medical_api.dart';
 
+import '../constants/registration_countries.dart';
+
 /// In-memory registration data collected across the sign-up flow.
 class RegistrationDraft {
   const RegistrationDraft({
+    this.country,
     this.nin,
     this.phoneE164,
     this.password,
@@ -15,6 +18,7 @@ class RegistrationDraft {
     this.ninVerificationStatus,
   });
 
+  final RegistrationCountry? country;
   final String? nin;
   final String? phoneE164;
   final String? password;
@@ -32,8 +36,13 @@ class RegistrationDraft {
       consentDataProcessing && consentHealthData && consentAnpdpTerms;
 
   bool get readyToRegister {
+    final selected = country;
+    if (selected == null) {
+      return false;
+    }
     final name = fullName?.trim();
-    return nin != null &&
+    final ninOk = !selected.requiresNin || nin != null;
+    return ninOk &&
         phoneE164 != null &&
         password != null &&
         name != null &&
@@ -42,6 +51,7 @@ class RegistrationDraft {
   }
 
   RegistrationDraft copyWith({
+    RegistrationCountry? country,
     String? nin,
     String? phoneE164,
     String? password,
@@ -52,10 +62,13 @@ class RegistrationDraft {
     bool? consentMarketing,
     bool? otpSent,
     RegisterResponseNinVerificationStatusEnum? ninVerificationStatus,
+    bool clearNin = false,
+    bool clearPhone = false,
   }) {
     return RegistrationDraft(
-      nin: nin ?? this.nin,
-      phoneE164: phoneE164 ?? this.phoneE164,
+      country: country ?? this.country,
+      nin: clearNin ? null : (nin ?? this.nin),
+      phoneE164: clearPhone ? null : (phoneE164 ?? this.phoneE164),
       password: password ?? this.password,
       fullName: fullName ?? this.fullName,
       consentDataProcessing:

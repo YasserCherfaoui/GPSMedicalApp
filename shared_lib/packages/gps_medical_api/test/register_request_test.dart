@@ -30,7 +30,7 @@ void main() {
       // TODO
     });
 
-    // `specialist` + `country=TN` → `422 country_not_supported_for_role`. 
+    // `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
     // String role
     test('to test the property `role`', () async {
       // TODO

@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 
 Création d'un rendez-vous
 
-Le créneau doit être disponible. Verrou optimiste sur le slot.
+Le créneau doit être disponible. Verrou optimiste sur le slot. Un médecin qui n'est pas `verified=true` (y compris `approved_pending_activation`) n'est pas réservable → `404` ou `422`. 
 
 ### Example
 ```dart

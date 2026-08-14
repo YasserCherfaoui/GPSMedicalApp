@@ -192,7 +192,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
               ),
               TextButton(
-                onPressed: () => context.push(GpsRoutes.registerNin),
+                onPressed: () => context.push(GpsRoutes.registerCountry),
                 child: Text(
                   strings.createAccount,
                   style: TextStyle(

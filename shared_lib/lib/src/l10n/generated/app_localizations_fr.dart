@@ -217,6 +217,49 @@ class AppLocalizationsFr extends AppLocalizations {
   String get invalidFullName => 'Nom invalide (2 à 120 caractères).';
 
   @override
+  String get countryTitle => 'Votre pays';
+
+  @override
+  String get countrySubtitle =>
+      'Choisissez le pays de résidence. Cette information ne pourra pas être modifiée plus tard.';
+
+  @override
+  String get countryImmutableNotice =>
+      'Le pays choisi est définitif. Il ne pourra pas être modifié après la création du compte.';
+
+  @override
+  String get countryAlgeria => 'Algérie';
+
+  @override
+  String get countryTunisia => 'Tunisie';
+
+  @override
+  String get phoneCountryMismatch =>
+      'Ce numéro ne correspond pas au pays choisi.';
+
+  @override
+  String get countryNotSupportedForRole =>
+      'L\'inscription des spécialistes n\'est pas encore disponible en Tunisie.';
+
+  @override
+  String get consentSubtitleTn =>
+      'Conformément à la loi tunisienne INPDP (loi 2004-63)';
+
+  @override
+  String get consentTermsTn => 'Conditions et politique INPDP';
+
+  @override
+  String consentLegalVersion(String version) {
+    return 'Version des conditions : $version';
+  }
+
+  @override
+  String get invalidPhoneTn => 'Numéro invalide (+216 2/4/5/9 + 7 chiffres)';
+
+  @override
+  String get phoneFormatHintTn => 'Format : +216 2X, 4X, 5X ou 9X';
+
+  @override
   String get errorInvalidCredentials =>
       'Identifiants incorrects. Veuillez vérifier votre numéro de téléphone et votre mot de passe.';
 

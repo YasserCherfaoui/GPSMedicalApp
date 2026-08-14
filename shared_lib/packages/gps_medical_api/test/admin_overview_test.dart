@@ -27,6 +27,12 @@ void main() {
       // TODO
     });
 
+    // Effectif des médecins TN en quarantaine (`approved_pending_activation`). Compteur pipeline d'offre TN (B-14.2). 
+    // int doctorsApprovedPendingActivation
+    test('to test the property `doctorsApprovedPendingActivation`', () async {
+      // TODO
+    });
+
     // int appointmentsLast30d
     test('to test the property `appointmentsLast30d`', () async {
       // TODO

@@ -18,6 +18,8 @@ Method | HTTP request | Description
 
 Recherche multicritères de médecins
 
+Uniquement des médecins `verified=true`. Les dossiers `approved_pending_activation` sont exclus. 
+
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';
@@ -88,6 +90,8 @@ No authorization required
 > SearchSuggestGet200Response searchSuggestGet(q)
 
 Suggestions auto-complétion (médecins, spécialités, communes)
+
+Les suggestions de médecins ne portent que sur `verified=true`. 
 
 ### Example
 ```dart

@@ -1,7 +1,8 @@
 /// Shared library for GPS Médical patient and specialist mobile apps.
 library;
 
-export 'package:gps_medical_api/gps_medical_api.dart';
+export 'package:gps_medical_api/gps_medical_api.dart'
+    hide MessagingRealtimeEvent;
 
 export 'src/auth/auth_repository.dart';
 export 'src/auth/auth_repository.provider.dart';
@@ -20,6 +21,7 @@ export 'src/client/auth_refresh_interceptor.dart';
 export 'src/client/gps_medical_client.dart';
 export 'src/client/phase1_api.dart';
 export 'src/constants/api_constants.dart';
+export 'src/constants/registration_countries.dart';
 export 'src/l10n/app_locale.dart';
 export 'src/l10n/auth_strings.dart';
 export 'src/l10n/generated/app_localizations.dart';
@@ -43,4 +45,5 @@ export 'src/utils/relative_time.dart';
 export 'src/validation/algerian_phone.dart';
 export 'src/validation/nin.dart';
 export 'src/validation/password_strength.dart';
+export 'src/validation/phone_e164.dart';
 export 'src/widgets/widgets.dart';

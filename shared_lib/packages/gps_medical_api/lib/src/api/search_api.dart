@@ -22,7 +22,7 @@ class SearchApi {
   const SearchApi(this._dio, this._serializers);
 
   /// Recherche multicritères de médecins
-  /// 
+  /// Uniquement des médecins &#x60;verified&#x3D;true&#x60;. Les dossiers &#x60;approved_pending_activation&#x60; sont exclus. 
   ///
   /// Parameters:
   /// * [q] - Mot-clé libre (nom, spécialité, cabinet)
@@ -147,7 +147,7 @@ class SearchApi {
   }
 
   /// Suggestions auto-complétion (médecins, spécialités, communes)
-  /// 
+  /// Les suggestions de médecins ne portent que sur &#x60;verified&#x3D;true&#x60;. 
   ///
   /// Parameters:
   /// * [q] 

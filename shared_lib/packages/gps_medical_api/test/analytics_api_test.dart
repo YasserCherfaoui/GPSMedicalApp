@@ -16,6 +16,8 @@ void main() {
 
     // Vue d'ensemble plateforme (admin)
     //
+    // KPIs globaux. `doctors_approved_pending_activation` est le compteur d'offre TN en quarantaine (addendum-1.1.1). 
+    //
     //Future<AdminOverview> analyticsAdminOverviewGet() async
     test('test analyticsAdminOverviewGet', () async {
       // TODO

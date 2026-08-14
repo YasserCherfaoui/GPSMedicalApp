@@ -60,46 +60,6 @@ final BuiltSet<DoctorPrivateLanguagesEnum> _$doctorPrivateLanguagesEnumValues =
       _$doctorPrivateLanguagesEnum_ber,
     ]);
 
-const DoctorPrivateVerificationStatusEnum
-_$doctorPrivateVerificationStatusEnum_pending =
-    const DoctorPrivateVerificationStatusEnum._('pending');
-const DoctorPrivateVerificationStatusEnum
-_$doctorPrivateVerificationStatusEnum_inReview =
-    const DoctorPrivateVerificationStatusEnum._('inReview');
-const DoctorPrivateVerificationStatusEnum
-_$doctorPrivateVerificationStatusEnum_approved =
-    const DoctorPrivateVerificationStatusEnum._('approved');
-const DoctorPrivateVerificationStatusEnum
-_$doctorPrivateVerificationStatusEnum_rejected =
-    const DoctorPrivateVerificationStatusEnum._('rejected');
-
-DoctorPrivateVerificationStatusEnum
-_$doctorPrivateVerificationStatusEnumValueOf(String name) {
-  switch (name) {
-    case 'pending':
-      return _$doctorPrivateVerificationStatusEnum_pending;
-    case 'inReview':
-      return _$doctorPrivateVerificationStatusEnum_inReview;
-    case 'approved':
-      return _$doctorPrivateVerificationStatusEnum_approved;
-    case 'rejected':
-      return _$doctorPrivateVerificationStatusEnum_rejected;
-    default:
-      throw ArgumentError(name);
-  }
-}
-
-final BuiltSet<DoctorPrivateVerificationStatusEnum>
-_$doctorPrivateVerificationStatusEnumValues =
-    BuiltSet<DoctorPrivateVerificationStatusEnum>(
-      const <DoctorPrivateVerificationStatusEnum>[
-        _$doctorPrivateVerificationStatusEnum_pending,
-        _$doctorPrivateVerificationStatusEnum_inReview,
-        _$doctorPrivateVerificationStatusEnum_approved,
-        _$doctorPrivateVerificationStatusEnum_rejected,
-      ],
-    );
-
 const DoctorPrivateConfirmationPolicyEnum
 _$doctorPrivateConfirmationPolicyEnum_auto =
     const DoctorPrivateConfirmationPolicyEnum._('auto');
@@ -132,9 +92,6 @@ Serializer<DoctorPrivateGenderEnum> _$doctorPrivateGenderEnumSerializer =
     _$DoctorPrivateGenderEnumSerializer();
 Serializer<DoctorPrivateLanguagesEnum> _$doctorPrivateLanguagesEnumSerializer =
     _$DoctorPrivateLanguagesEnumSerializer();
-Serializer<DoctorPrivateVerificationStatusEnum>
-_$doctorPrivateVerificationStatusEnumSerializer =
-    _$DoctorPrivateVerificationStatusEnumSerializer();
 Serializer<DoctorPrivateConfirmationPolicyEnum>
 _$doctorPrivateConfirmationPolicyEnumSerializer =
     _$DoctorPrivateConfirmationPolicyEnumSerializer();
@@ -209,45 +166,6 @@ class _$DoctorPrivateLanguagesEnumSerializer
   );
 }
 
-class _$DoctorPrivateVerificationStatusEnumSerializer
-    implements PrimitiveSerializer<DoctorPrivateVerificationStatusEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'pending': 'pending',
-    'inReview': 'in_review',
-    'approved': 'approved',
-    'rejected': 'rejected',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'pending': 'pending',
-    'in_review': 'inReview',
-    'approved': 'approved',
-    'rejected': 'rejected',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    DoctorPrivateVerificationStatusEnum,
-  ];
-  @override
-  final String wireName = 'DoctorPrivateVerificationStatusEnum';
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    DoctorPrivateVerificationStatusEnum object, {
-    FullType specifiedType = FullType.unspecified,
-  }) => _toWire[object.name] ?? object.name;
-
-  @override
-  DoctorPrivateVerificationStatusEnum deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) => DoctorPrivateVerificationStatusEnum.valueOf(
-    _fromWire[serialized] ?? (serialized is String ? serialized : ''),
-  );
-}
-
 class _$DoctorPrivateConfirmationPolicyEnumSerializer
     implements PrimitiveSerializer<DoctorPrivateConfirmationPolicyEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
@@ -285,11 +203,13 @@ class _$DoctorPrivateConfirmationPolicyEnumSerializer
 
 class _$DoctorPrivate extends DoctorPrivate {
   @override
+  final CountryCode? country;
+  @override
   final int? bookingWindowDays;
   @override
   final String? phone;
   @override
-  final DoctorPrivateVerificationStatusEnum? verificationStatus;
+  final DoctorVerificationStatus? verificationStatus;
   @override
   final BuiltList<Credential>? credentials;
   @override
@@ -337,6 +257,7 @@ class _$DoctorPrivate extends DoctorPrivate {
       (DoctorPrivateBuilder()..update(updates))._build();
 
   _$DoctorPrivate._({
+    this.country,
     this.bookingWindowDays,
     this.phone,
     this.verificationStatus,
@@ -373,6 +294,7 @@ class _$DoctorPrivate extends DoctorPrivate {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is DoctorPrivate &&
+        country == other.country &&
         bookingWindowDays == other.bookingWindowDays &&
         phone == other.phone &&
         verificationStatus == other.verificationStatus &&
@@ -402,6 +324,7 @@ class _$DoctorPrivate extends DoctorPrivate {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, country.hashCode);
     _$hash = $jc(_$hash, bookingWindowDays.hashCode);
     _$hash = $jc(_$hash, phone.hashCode);
     _$hash = $jc(_$hash, verificationStatus.hashCode);
@@ -433,6 +356,7 @@ class _$DoctorPrivate extends DoctorPrivate {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'DoctorPrivate')
+          ..add('country', country)
           ..add('bookingWindowDays', bookingWindowDays)
           ..add('phone', phone)
           ..add('verificationStatus', verificationStatus)
@@ -465,6 +389,10 @@ class DoctorPrivateBuilder
     implements Builder<DoctorPrivate, DoctorPrivateBuilder>, DoctorBuilder {
   _$DoctorPrivate? _$v;
 
+  CountryCode? _country;
+  CountryCode? get country => _$this._country;
+  set country(covariant CountryCode? country) => _$this._country = country;
+
   int? _bookingWindowDays;
   int? get bookingWindowDays => _$this._bookingWindowDays;
   set bookingWindowDays(covariant int? bookingWindowDays) =>
@@ -474,11 +402,11 @@ class DoctorPrivateBuilder
   String? get phone => _$this._phone;
   set phone(covariant String? phone) => _$this._phone = phone;
 
-  DoctorPrivateVerificationStatusEnum? _verificationStatus;
-  DoctorPrivateVerificationStatusEnum? get verificationStatus =>
+  DoctorVerificationStatus? _verificationStatus;
+  DoctorVerificationStatus? get verificationStatus =>
       _$this._verificationStatus;
   set verificationStatus(
-    covariant DoctorPrivateVerificationStatusEnum? verificationStatus,
+    covariant DoctorVerificationStatus? verificationStatus,
   ) => _$this._verificationStatus = verificationStatus;
 
   ListBuilder<Credential>? _credentials;
@@ -591,6 +519,7 @@ class DoctorPrivateBuilder
   DoctorPrivateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _country = $v.country;
       _bookingWindowDays = $v.bookingWindowDays;
       _phone = $v.phone;
       _verificationStatus = $v.verificationStatus;
@@ -639,6 +568,7 @@ class DoctorPrivateBuilder
       _$result =
           _$v ??
           _$DoctorPrivate._(
+            country: country,
             bookingWindowDays: bookingWindowDays,
             phone: phone,
             verificationStatus: verificationStatus,

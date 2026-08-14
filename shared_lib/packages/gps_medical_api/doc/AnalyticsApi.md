@@ -63,6 +63,8 @@ Name | Type | Description  | Notes
 
 Vue d'ensemble plateforme (admin)
 
+KPIs globaux. `doctors_approved_pending_activation` est le compteur d'offre TN en quarantaine (addendum-1.1.1). 
+
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';

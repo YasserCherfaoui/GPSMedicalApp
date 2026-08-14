@@ -211,6 +211,47 @@ class AppLocalizationsAr extends AppLocalizations {
   String get invalidFullName => 'اسم غير صالح (من 2 إلى 120 حرفًا).';
 
   @override
+  String get countryTitle => 'بلدكم';
+
+  @override
+  String get countrySubtitle =>
+      'اختروا بلد الإقامة. لا يمكن تغيير هذه المعلومة لاحقاً.';
+
+  @override
+  String get countryImmutableNotice =>
+      'البلد المختار نهائي ولا يمكن تغييره بعد إنشاء الحساب.';
+
+  @override
+  String get countryAlgeria => 'الجزائر';
+
+  @override
+  String get countryTunisia => 'تونس';
+
+  @override
+  String get phoneCountryMismatch => 'هذا الرقم لا يتوافق مع البلد المختار.';
+
+  @override
+  String get countryNotSupportedForRole =>
+      'تسجيل المختصين غير متاح بعد في تونس.';
+
+  @override
+  String get consentSubtitleTn => 'وفقاً للقانون التونسي INPDP (قانون 2004-63)';
+
+  @override
+  String get consentTermsTn => 'الشروط وسياسة INPDP';
+
+  @override
+  String consentLegalVersion(String version) {
+    return 'إصدار الشروط: $version';
+  }
+
+  @override
+  String get invalidPhoneTn => 'رقم غير صالح (+216 2/4/5/9 + 7 أرقام)';
+
+  @override
+  String get phoneFormatHintTn => 'الصيغة: +216 2X أو 4X أو 5X أو 9X';
+
+  @override
   String get errorInvalidCredentials =>
       'بيانات الاعتماد غير صحيحة. يرجى التحقق من رقم الهاتف وكلمة المرور.';
 

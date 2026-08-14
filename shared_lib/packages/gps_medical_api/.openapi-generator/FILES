@@ -4,7 +4,6 @@ README.md
 analysis_options.yaml
 doc/Address.md
 doc/AdminApi.md
-doc/AdminDoctorsDoctorIdVerifyPostRequest.md
 doc/AdminOverview.md
 doc/AdminReviewsReviewIdModeratePostRequest.md
 doc/AnalyticsApi.md
@@ -33,6 +32,7 @@ doc/Doctor.md
 doc/DoctorOverview.md
 doc/DoctorPrivate.md
 doc/DoctorUpdate.md
+doc/DoctorVerificationStatus.md
 doc/DoctorWithDistance.md
 doc/DoctorsApi.md
 doc/Funnel.md
@@ -114,6 +114,7 @@ doc/UserAdmin.md
 doc/UserAdminUpdate.md
 doc/ValidationProblem.md
 doc/ValidationProblemAllOfErrors.md
+doc/VerifyDoctorRequest.md
 doc/Wilaya.md
 lib/gps_medical_api.dart
 lib/src/api.dart
@@ -141,7 +142,6 @@ lib/src/auth/bearer_auth.dart
 lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/address.dart
-lib/src/model/admin_doctors_doctor_id_verify_post_request.dart
 lib/src/model/admin_overview.dart
 lib/src/model/admin_reviews_review_id_moderate_post_request.dart
 lib/src/model/appointment.dart
@@ -167,6 +167,7 @@ lib/src/model/doctor.dart
 lib/src/model/doctor_overview.dart
 lib/src/model/doctor_private.dart
 lib/src/model/doctor_update.dart
+lib/src/model/doctor_verification_status.dart
 lib/src/model/doctor_with_distance.dart
 lib/src/model/funnel.dart
 lib/src/model/health_check.dart
@@ -237,12 +238,12 @@ lib/src/model/user_admin.dart
 lib/src/model/user_admin_update.dart
 lib/src/model/validation_problem.dart
 lib/src/model/validation_problem_all_of_errors.dart
+lib/src/model/verify_doctor_request.dart
 lib/src/model/wilaya.dart
 lib/src/serializers.dart
 pubspec.yaml
 test/address_test.dart
 test/admin_api_test.dart
-test/admin_doctors_doctor_id_verify_post_request_test.dart
 test/admin_overview_test.dart
 test/admin_reviews_review_id_moderate_post_request_test.dart
 test/analytics_api_test.dart
@@ -271,6 +272,7 @@ test/doctor_overview_test.dart
 test/doctor_private_test.dart
 test/doctor_test.dart
 test/doctor_update_test.dart
+test/doctor_verification_status_test.dart
 test/doctor_with_distance_test.dart
 test/doctors_api_test.dart
 test/funnel_test.dart
@@ -352,4 +354,5 @@ test/user_admin_update_test.dart
 test/user_test.dart
 test/validation_problem_all_of_errors_test.dart
 test/validation_problem_test.dart
+test/verify_doctor_request_test.dart
 test/wilaya_test.dart

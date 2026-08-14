@@ -10,7 +10,6 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_api/src/api_util.dart';
-import 'package:gps_medical_api/src/model/admin_doctors_doctor_id_verify_post_request.dart';
 import 'package:gps_medical_api/src/model/admin_reviews_review_id_moderate_post_request.dart';
 import 'package:gps_medical_api/src/model/consent_grant.dart';
 import 'package:gps_medical_api/src/model/country_code.dart';
@@ -25,6 +24,7 @@ import 'package:gps_medical_api/src/model/specialty.dart';
 import 'package:gps_medical_api/src/model/specialty_create.dart';
 import 'package:gps_medical_api/src/model/user_admin.dart';
 import 'package:gps_medical_api/src/model/user_admin_update.dart';
+import 'package:gps_medical_api/src/model/verify_doctor_request.dart';
 
 class AdminApi {
 
@@ -135,198 +135,6 @@ class AdminApi {
     );
   }
 
-  /// Validation d&#39;un dossier médecin
-  /// 
-  ///
-  /// Parameters:
-  /// * [doctorId] 
-  /// * [adminDoctorsDoctorIdVerifyPostRequest] 
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [DoctorPrivate] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<DoctorPrivate>> adminDoctorsDoctorIdVerifyPost({ 
-    required String doctorId,
-    required AdminDoctorsDoctorIdVerifyPostRequest adminDoctorsDoctorIdVerifyPostRequest,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/admin/doctors/{doctorId}/verify'.replaceAll('{' r'doctorId' '}', encodeQueryParameter(_serializers, doctorId, const FullType(String)).toString());
-    final _options = Options(
-      method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'bearerAuth',
-          },
-        ],
-        ...?extra,
-      },
-      contentType: 'application/json',
-      validateStatus: validateStatus,
-    );
-
-    dynamic _bodyData;
-
-    try {
-      const _type = FullType(AdminDoctorsDoctorIdVerifyPostRequest);
-      _bodyData = _serializers.serialize(adminDoctorsDoctorIdVerifyPostRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
-      throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    final _response = await _dio.request<Object>(
-      _path,
-      data: _bodyData,
-      options: _options,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    DoctorPrivate? _responseData;
-
-    try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(DoctorPrivate),
-      ) as DoctorPrivate;
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<DoctorPrivate>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// Médecins en attente de vérification
-  /// 
-  ///
-  /// Parameters:
-  /// * [page] 
-  /// * [pageSize] 
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [PaginatedDoctorsPrivate] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<PaginatedDoctorsPrivate>> adminDoctorsPendingGet({ 
-    int? page = 1,
-    int? pageSize = 20,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/admin/doctors/pending';
-    final _options = Options(
-      method: r'GET',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[
-          {
-            'type': 'http',
-            'scheme': 'bearer',
-            'name': 'bearerAuth',
-          },
-        ],
-        ...?extra,
-      },
-      validateStatus: validateStatus,
-    );
-
-    final _queryParameters = <String, dynamic>{
-      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-    };
-
-    final _response = await _dio.request<Object>(
-      _path,
-      options: _options,
-      queryParameters: _queryParameters,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    PaginatedDoctorsPrivate? _responseData;
-
-    try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(PaginatedDoctorsPrivate),
-      ) as PaginatedDoctorsPrivate;
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<PaginatedDoctorsPrivate>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
   /// Export ANPDP — historique complet des consentements (Phase 1)
   /// Réservé aux administrateurs. Retourne l&#39;historique brut des lignes &#x60;consent_grants&#x60; pour audit et conformité. Implémentation complète des exports signés / filtres en Phase 4. 
   ///
@@ -397,6 +205,98 @@ class AdminApi {
     }
 
     return Response<BuiltList<ConsentGrant>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Médecins en attente de vérification
+  /// Dossiers &#x60;pending&#x60; et &#x60;in_review&#x60; uniquement. Les médecins en &#x60;approved_pending_activation&#x60; ont quitté cette file ; leur effectif est &#x60;AdminOverview.doctors_approved_pending_activation&#x60;. 
+  ///
+  /// Parameters:
+  /// * [page] 
+  /// * [pageSize] 
+  /// * [country] - Filtre ISO 3166-1 alpha-2 (`DZ` | `TN`)
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [PaginatedDoctorsPrivate] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<PaginatedDoctorsPrivate>> adminListPendingDoctors({ 
+    int? page = 1,
+    int? pageSize = 20,
+    CountryCode? country,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/doctors/pending';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (country != null) r'country': encodeQueryParameter(_serializers, country, const FullType(CountryCode)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    PaginatedDoctorsPrivate? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedDoctorsPrivate),
+      ) as PaginatedDoctorsPrivate;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PaginatedDoctorsPrivate>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -975,6 +875,109 @@ class AdminApi {
     }
 
     return Response<UserAdmin>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Validation d&#39;un dossier médecin
+  /// Décision &#x60;approved&#x60; : pour un médecin **DZ**, &#x60;verification_status&#x3D;approved&#x60; et &#x60;verified&#x3D;true&#x60;. Pour un médecin **TN**, tant que le flag serveur &#x60;TN_SPECIALIST_ACTIVATION&#x60; est **off** (défaut), le résultat est &#x60;approved_pending_activation&#x60; / &#x60;verified&#x3D;false&#x60; ; une fois le flag **on**, même branche que DZ. &#x60;rejected&#x60; et &#x60;more_info&#x60; inchangés. Le corps 200 est le &#x60;DoctorPrivate&#x60; résultant (statut + &#x60;country&#x60;). Voir addendum-1.1.1.md. 
+  ///
+  /// Parameters:
+  /// * [doctorId] 
+  /// * [verifyDoctorRequest] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [DoctorPrivate] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<DoctorPrivate>> adminVerifyDoctor({ 
+    required String doctorId,
+    required VerifyDoctorRequest verifyDoctorRequest,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/doctors/{doctorId}/verify'.replaceAll('{' r'doctorId' '}', encodeQueryParameter(_serializers, doctorId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(VerifyDoctorRequest);
+      _bodyData = _serializers.serialize(verifyDoctorRequest, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    DoctorPrivate? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(DoctorPrivate),
+      ) as DoctorPrivate;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<DoctorPrivate>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

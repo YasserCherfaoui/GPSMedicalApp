@@ -19,6 +19,8 @@ Method | HTTP request | Description
 
 Médecins à proximité d'un point GPS
 
+Uniquement des médecins `verified=true`. Les dossiers `approved_pending_activation` sont exclus. 
+
 ### Example
 ```dart
 import 'package:gps_medical_api/api.dart';

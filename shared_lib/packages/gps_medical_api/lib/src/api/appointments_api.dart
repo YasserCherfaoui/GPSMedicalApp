@@ -574,7 +574,7 @@ class AppointmentsApi {
   }
 
   /// Création d&#39;un rendez-vous
-  /// Le créneau doit être disponible. Verrou optimiste sur le slot.
+  /// Le créneau doit être disponible. Verrou optimiste sur le slot. Un médecin qui n&#39;est pas &#x60;verified&#x3D;true&#x60; (y compris &#x60;approved_pending_activation&#x60;) n&#39;est pas réservable → &#x60;404&#x60; ou &#x60;422&#x60;. 
   ///
   /// Parameters:
   /// * [appointmentCreate] 

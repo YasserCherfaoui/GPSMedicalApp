@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import '../constants/registration_countries.dart';
 import 'generated/app_localizations.dart';
 
 /// Auth-flow localized copy delegates dynamically to code-generated [AppLocalizations].
@@ -106,6 +107,47 @@ class AuthStrings {
   String get errorNetworkTimeout => _localizations.errorNetworkTimeout;
   String get errorNetworkConnection => _localizations.errorNetworkConnection;
   String get errorPasswordRequired => _localizations.errorPasswordRequired;
+
+  String get countryTitle => _localizations.countryTitle;
+  String get countrySubtitle => _localizations.countrySubtitle;
+  String get countryImmutableNotice => _localizations.countryImmutableNotice;
+  String get countryAlgeria => _localizations.countryAlgeria;
+  String get countryTunisia => _localizations.countryTunisia;
+  String get phoneCountryMismatch => _localizations.phoneCountryMismatch;
+  String get countryNotSupportedForRole =>
+      _localizations.countryNotSupportedForRole;
+  String get consentSubtitleTn => _localizations.consentSubtitleTn;
+  String get consentTermsTn => _localizations.consentTermsTn;
+  String get invalidPhoneTn => _localizations.invalidPhoneTn;
+  String get phoneFormatHintTn => _localizations.phoneFormatHintTn;
+
+  String consentLegalVersion(String version) =>
+      _localizations.consentLegalVersion(version);
+
+  String countryName(RegistrationCountry country) => switch (country) {
+    RegistrationCountry.dz => countryAlgeria,
+    RegistrationCountry.tn => countryTunisia,
+  };
+
+  String phoneFormatHintFor(RegistrationCountry country) => switch (country) {
+    RegistrationCountry.dz => phoneFormatHint,
+    RegistrationCountry.tn => phoneFormatHintTn,
+  };
+
+  String invalidPhoneFor(RegistrationCountry country) => switch (country) {
+    RegistrationCountry.dz => invalidPhone,
+    RegistrationCountry.tn => invalidPhoneTn,
+  };
+
+  String consentSubtitleFor(RegistrationCountry country) => switch (country) {
+    RegistrationCountry.dz => consentSubtitle,
+    RegistrationCountry.tn => consentSubtitleTn,
+  };
+
+  String consentTermsFor(RegistrationCountry country) => switch (country) {
+    RegistrationCountry.dz => consentTerms,
+    RegistrationCountry.tn => consentTermsTn,
+  };
 }
 
 class _AuthStringsDelegate extends LocalizationsDelegate<AuthStrings> {

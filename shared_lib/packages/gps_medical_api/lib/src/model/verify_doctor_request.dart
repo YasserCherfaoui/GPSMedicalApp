@@ -7,49 +7,49 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'admin_doctors_doctor_id_verify_post_request.g.dart';
+part 'verify_doctor_request.g.dart';
 
-/// AdminDoctorsDoctorIdVerifyPostRequest
+/// VerifyDoctorRequest
 ///
 /// Properties:
 /// * [decision] 
 /// * [comment] 
 @BuiltValue()
-abstract class AdminDoctorsDoctorIdVerifyPostRequest implements Built<AdminDoctorsDoctorIdVerifyPostRequest, AdminDoctorsDoctorIdVerifyPostRequestBuilder> {
+abstract class VerifyDoctorRequest implements Built<VerifyDoctorRequest, VerifyDoctorRequestBuilder> {
   @BuiltValueField(wireName: r'decision')
-  AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum get decision;
+  VerifyDoctorRequestDecisionEnum get decision;
   // enum decisionEnum {  approved,  rejected,  more_info,  };
 
   @BuiltValueField(wireName: r'comment')
   String? get comment;
 
-  AdminDoctorsDoctorIdVerifyPostRequest._();
+  VerifyDoctorRequest._();
 
-  factory AdminDoctorsDoctorIdVerifyPostRequest([void updates(AdminDoctorsDoctorIdVerifyPostRequestBuilder b)]) = _$AdminDoctorsDoctorIdVerifyPostRequest;
+  factory VerifyDoctorRequest([void updates(VerifyDoctorRequestBuilder b)]) = _$VerifyDoctorRequest;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(AdminDoctorsDoctorIdVerifyPostRequestBuilder b) => b;
+  static void _defaults(VerifyDoctorRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<AdminDoctorsDoctorIdVerifyPostRequest> get serializer => _$AdminDoctorsDoctorIdVerifyPostRequestSerializer();
+  static Serializer<VerifyDoctorRequest> get serializer => _$VerifyDoctorRequestSerializer();
 }
 
-class _$AdminDoctorsDoctorIdVerifyPostRequestSerializer implements PrimitiveSerializer<AdminDoctorsDoctorIdVerifyPostRequest> {
+class _$VerifyDoctorRequestSerializer implements PrimitiveSerializer<VerifyDoctorRequest> {
   @override
-  final Iterable<Type> types = const [AdminDoctorsDoctorIdVerifyPostRequest, _$AdminDoctorsDoctorIdVerifyPostRequest];
+  final Iterable<Type> types = const [VerifyDoctorRequest, _$VerifyDoctorRequest];
 
   @override
-  final String wireName = r'AdminDoctorsDoctorIdVerifyPostRequest';
+  final String wireName = r'VerifyDoctorRequest';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    AdminDoctorsDoctorIdVerifyPostRequest object, {
+    VerifyDoctorRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
     yield r'decision';
     yield serializers.serialize(
       object.decision,
-      specifiedType: const FullType(AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum),
+      specifiedType: const FullType(VerifyDoctorRequestDecisionEnum),
     );
     if (object.comment != null) {
       yield r'comment';
@@ -63,7 +63,7 @@ class _$AdminDoctorsDoctorIdVerifyPostRequestSerializer implements PrimitiveSeri
   @override
   Object serialize(
     Serializers serializers,
-    AdminDoctorsDoctorIdVerifyPostRequest object, {
+    VerifyDoctorRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -74,7 +74,7 @@ class _$AdminDoctorsDoctorIdVerifyPostRequestSerializer implements PrimitiveSeri
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required AdminDoctorsDoctorIdVerifyPostRequestBuilder result,
+    required VerifyDoctorRequestBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -84,8 +84,8 @@ class _$AdminDoctorsDoctorIdVerifyPostRequestSerializer implements PrimitiveSeri
         case r'decision':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum),
-          ) as AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum;
+            specifiedType: const FullType(VerifyDoctorRequestDecisionEnum),
+          ) as VerifyDoctorRequestDecisionEnum;
           result.decision = valueDes;
           break;
         case r'comment':
@@ -104,12 +104,12 @@ class _$AdminDoctorsDoctorIdVerifyPostRequestSerializer implements PrimitiveSeri
   }
 
   @override
-  AdminDoctorsDoctorIdVerifyPostRequest deserialize(
+  VerifyDoctorRequest deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = AdminDoctorsDoctorIdVerifyPostRequestBuilder();
+    final result = VerifyDoctorRequestBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(
@@ -124,20 +124,20 @@ class _$AdminDoctorsDoctorIdVerifyPostRequestSerializer implements PrimitiveSeri
   }
 }
 
-class AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum extends EnumClass {
+class VerifyDoctorRequestDecisionEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'approved')
-  static const AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum approved = _$adminDoctorsDoctorIdVerifyPostRequestDecisionEnum_approved;
+  static const VerifyDoctorRequestDecisionEnum approved = _$verifyDoctorRequestDecisionEnum_approved;
   @BuiltValueEnumConst(wireName: r'rejected')
-  static const AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum rejected = _$adminDoctorsDoctorIdVerifyPostRequestDecisionEnum_rejected;
+  static const VerifyDoctorRequestDecisionEnum rejected = _$verifyDoctorRequestDecisionEnum_rejected;
   @BuiltValueEnumConst(wireName: r'more_info')
-  static const AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum moreInfo = _$adminDoctorsDoctorIdVerifyPostRequestDecisionEnum_moreInfo;
+  static const VerifyDoctorRequestDecisionEnum moreInfo = _$verifyDoctorRequestDecisionEnum_moreInfo;
 
-  static Serializer<AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum> get serializer => _$adminDoctorsDoctorIdVerifyPostRequestDecisionEnumSerializer;
+  static Serializer<VerifyDoctorRequestDecisionEnum> get serializer => _$verifyDoctorRequestDecisionEnumSerializer;
 
-  const AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum._(String name): super(name);
+  const VerifyDoctorRequestDecisionEnum._(String name): super(name);
 
-  static BuiltSet<AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum> get values => _$adminDoctorsDoctorIdVerifyPostRequestDecisionEnumValues;
-  static AdminDoctorsDoctorIdVerifyPostRequestDecisionEnum valueOf(String name) => _$adminDoctorsDoctorIdVerifyPostRequestDecisionEnumValueOf(name);
+  static BuiltSet<VerifyDoctorRequestDecisionEnum> get values => _$verifyDoctorRequestDecisionEnumValues;
+  static VerifyDoctorRequestDecisionEnum valueOf(String name) => _$verifyDoctorRequestDecisionEnumValueOf(name);
 }
 

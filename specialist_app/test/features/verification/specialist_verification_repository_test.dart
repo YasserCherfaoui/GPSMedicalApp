@@ -26,19 +26,19 @@ void main() {
   group('mapApiStatus', () {
     test('maps API enums to specialist states', () {
       expect(
-        repository.mapApiStatus(DoctorPrivateVerificationStatusEnum.approved),
+        repository.mapApiStatus(DoctorVerificationStatus.approved),
         SpecialistVerificationStatus.verified,
       );
       expect(
-        repository.mapApiStatus(DoctorPrivateVerificationStatusEnum.rejected),
+        repository.mapApiStatus(DoctorVerificationStatus.rejected),
         SpecialistVerificationStatus.rejected,
       );
       expect(
-        repository.mapApiStatus(DoctorPrivateVerificationStatusEnum.inReview),
+        repository.mapApiStatus(DoctorVerificationStatus.inReview),
         SpecialistVerificationStatus.moreInfo,
       );
       expect(
-        repository.mapApiStatus(DoctorPrivateVerificationStatusEnum.pending),
+        repository.mapApiStatus(DoctorVerificationStatus.pending),
         SpecialistVerificationStatus.pending,
       );
     });

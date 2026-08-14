@@ -490,6 +490,78 @@ abstract class AppLocalizations {
   /// **'Nom invalide (2 à 120 caractères).'**
   String get invalidFullName;
 
+  /// No description provided for @countryTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre pays'**
+  String get countryTitle;
+
+  /// No description provided for @countrySubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez le pays de résidence. Cette information ne pourra pas être modifiée plus tard.'**
+  String get countrySubtitle;
+
+  /// No description provided for @countryImmutableNotice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le pays choisi est définitif. Il ne pourra pas être modifié après la création du compte.'**
+  String get countryImmutableNotice;
+
+  /// No description provided for @countryAlgeria.
+  ///
+  /// In fr, this message translates to:
+  /// **'Algérie'**
+  String get countryAlgeria;
+
+  /// No description provided for @countryTunisia.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tunisie'**
+  String get countryTunisia;
+
+  /// No description provided for @phoneCountryMismatch.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce numéro ne correspond pas au pays choisi.'**
+  String get phoneCountryMismatch;
+
+  /// No description provided for @countryNotSupportedForRole.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'inscription des spécialistes n\'est pas encore disponible en Tunisie.'**
+  String get countryNotSupportedForRole;
+
+  /// No description provided for @consentSubtitleTn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conformément à la loi tunisienne INPDP (loi 2004-63)'**
+  String get consentSubtitleTn;
+
+  /// No description provided for @consentTermsTn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conditions et politique INPDP'**
+  String get consentTermsTn;
+
+  /// No description provided for @consentLegalVersion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Version des conditions : {version}'**
+  String consentLegalVersion(String version);
+
+  /// No description provided for @invalidPhoneTn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Numéro invalide (+216 2/4/5/9 + 7 chiffres)'**
+  String get invalidPhoneTn;
+
+  /// No description provided for @phoneFormatHintTn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Format : +216 2X, 4X, 5X ou 9X'**
+  String get phoneFormatHintTn;
+
   /// No description provided for @errorInvalidCredentials.
   ///
   /// In fr, this message translates to:

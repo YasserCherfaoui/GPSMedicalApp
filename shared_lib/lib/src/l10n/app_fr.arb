@@ -79,6 +79,25 @@
   "fullNameSubtitle": "Tel qu'indiqué sur vos documents officiels (2 à 120 caractères).",
   "fullNameHint": "Nom et prénom",
   "invalidFullName": "Nom invalide (2 à 120 caractères).",
+  "countryTitle": "Votre pays",
+  "countrySubtitle": "Choisissez le pays de résidence. Cette information ne pourra pas être modifiée plus tard.",
+  "countryImmutableNotice": "Le pays choisi est définitif. Il ne pourra pas être modifié après la création du compte.",
+  "countryAlgeria": "Algérie",
+  "countryTunisia": "Tunisie",
+  "phoneCountryMismatch": "Ce numéro ne correspond pas au pays choisi.",
+  "countryNotSupportedForRole": "L'inscription des spécialistes n'est pas encore disponible en Tunisie.",
+  "consentSubtitleTn": "Conformément à la loi tunisienne INPDP (loi 2004-63)",
+  "consentTermsTn": "Conditions et politique INPDP",
+  "consentLegalVersion": "Version des conditions : {version}",
+  "@consentLegalVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "invalidPhoneTn": "Numéro invalide (+216 2/4/5/9 + 7 chiffres)",
+  "phoneFormatHintTn": "Format : +216 2X, 4X, 5X ou 9X",
   "errorInvalidCredentials": "Identifiants incorrects. Veuillez vérifier votre numéro de téléphone et votre mot de passe.",
   "errorAccessDenied": "Accès refusé. Vous n'avez pas l'autorisation d'accéder à cette application.",
   "errorTooManyRequests": "Trop de tentatives. Veuillez réessayer dans quelques minutes.",

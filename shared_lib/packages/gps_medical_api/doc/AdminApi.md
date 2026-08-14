@@ -10,15 +10,15 @@ All URIs are relative to *https://api.gpsmedical.dz/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**adminAuditLogGet**](AdminApi.md#adminauditlogget) | **GET** /admin/audit-log | Journal d&#39;audit
-[**adminDoctorsDoctorIdVerifyPost**](AdminApi.md#admindoctorsdoctoridverifypost) | **POST** /admin/doctors/{doctorId}/verify | Validation d&#39;un dossier médecin
-[**adminDoctorsPendingGet**](AdminApi.md#admindoctorspendingget) | **GET** /admin/doctors/pending | Médecins en attente de vérification
 [**adminExportUserConsents**](AdminApi.md#adminexportuserconsents) | **GET** /admin/users/{userId}/consents | Export ANPDP — historique complet des consentements (Phase 1)
+[**adminListPendingDoctors**](AdminApi.md#adminlistpendingdoctors) | **GET** /admin/doctors/pending | Médecins en attente de vérification
 [**adminListUsers**](AdminApi.md#adminlistusers) | **GET** /admin/users | Liste paginée des utilisateurs (vue admin)
 [**adminReviewsQueueGet**](AdminApi.md#adminreviewsqueueget) | **GET** /admin/reviews/queue | File de modération des avis signalés
 [**adminReviewsReviewIdModeratePost**](AdminApi.md#adminreviewsreviewidmoderatepost) | **POST** /admin/reviews/{reviewId}/moderate | Décision de modération
 [**adminSpecialtiesPost**](AdminApi.md#adminspecialtiespost) | **POST** /admin/specialties | Création d&#39;une spécialité (référentiel)
 [**adminUsersUserIdGet**](AdminApi.md#adminusersuseridget) | **GET** /admin/users/{userId} | Détail d&#39;un utilisateur (vue admin)
 [**adminUsersUserIdPatch**](AdminApi.md#adminusersuseridpatch) | **PATCH** /admin/users/{userId} | Suspension / réactivation / changement de rôle
+[**adminVerifyDoctor**](AdminApi.md#adminverifydoctor) | **POST** /admin/doctors/{doctorId}/verify | Validation d&#39;un dossier médecin
 
 
 # **adminAuditLogGet**
@@ -72,92 +72,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **adminDoctorsDoctorIdVerifyPost**
-> DoctorPrivate adminDoctorsDoctorIdVerifyPost(doctorId, adminDoctorsDoctorIdVerifyPostRequest)
-
-Validation d'un dossier médecin
-
-### Example
-```dart
-import 'package:gps_medical_api/api.dart';
-
-final api = GpsMedicalApi().getAdminApi();
-final String doctorId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-final AdminDoctorsDoctorIdVerifyPostRequest adminDoctorsDoctorIdVerifyPostRequest = ; // AdminDoctorsDoctorIdVerifyPostRequest | 
-
-try {
-    final response = api.adminDoctorsDoctorIdVerifyPost(doctorId, adminDoctorsDoctorIdVerifyPostRequest);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling AdminApi->adminDoctorsDoctorIdVerifyPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **doctorId** | **String**|  | 
- **adminDoctorsDoctorIdVerifyPostRequest** | [**AdminDoctorsDoctorIdVerifyPostRequest**](AdminDoctorsDoctorIdVerifyPostRequest.md)|  | 
-
-### Return type
-
-[**DoctorPrivate**](DoctorPrivate.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **adminDoctorsPendingGet**
-> PaginatedDoctorsPrivate adminDoctorsPendingGet(page, pageSize)
-
-Médecins en attente de vérification
-
-### Example
-```dart
-import 'package:gps_medical_api/api.dart';
-
-final api = GpsMedicalApi().getAdminApi();
-final int page = 56; // int | 
-final int pageSize = 56; // int | 
-
-try {
-    final response = api.adminDoctorsPendingGet(page, pageSize);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling AdminApi->adminDoctorsPendingGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int**|  | [optional] [default to 1]
- **pageSize** | **int**|  | [optional] [default to 20]
-
-### Return type
-
-[**PaginatedDoctorsPrivate**](PaginatedDoctorsPrivate.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **adminExportUserConsents**
 > BuiltList<ConsentGrant> adminExportUserConsents(userId)
 
@@ -198,6 +112,53 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminListPendingDoctors**
+> PaginatedDoctorsPrivate adminListPendingDoctors(page, pageSize, country)
+
+Médecins en attente de vérification
+
+Dossiers `pending` et `in_review` uniquement. Les médecins en `approved_pending_activation` ont quitté cette file ; leur effectif est `AdminOverview.doctors_approved_pending_activation`. 
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAdminApi();
+final int page = 56; // int | 
+final int pageSize = 56; // int | 
+final CountryCode country = ; // CountryCode | Filtre ISO 3166-1 alpha-2 (`DZ` | `TN`)
+
+try {
+    final response = api.adminListPendingDoctors(page, pageSize, country);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AdminApi->adminListPendingDoctors: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**|  | [optional] [default to 1]
+ **pageSize** | **int**|  | [optional] [default to 20]
+ **country** | [**CountryCode**](.md)| Filtre ISO 3166-1 alpha-2 (`DZ` | `TN`) | [optional] 
+
+### Return type
+
+[**PaginatedDoctorsPrivate**](PaginatedDoctorsPrivate.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -453,6 +414,51 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserAdmin**](UserAdmin.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminVerifyDoctor**
+> DoctorPrivate adminVerifyDoctor(doctorId, verifyDoctorRequest)
+
+Validation d'un dossier médecin
+
+Décision `approved` : pour un médecin **DZ**, `verification_status=approved` et `verified=true`. Pour un médecin **TN**, tant que le flag serveur `TN_SPECIALIST_ACTIVATION` est **off** (défaut), le résultat est `approved_pending_activation` / `verified=false` ; une fois le flag **on**, même branche que DZ. `rejected` et `more_info` inchangés. Le corps 200 est le `DoctorPrivate` résultant (statut + `country`). Voir addendum-1.1.1.md. 
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAdminApi();
+final String doctorId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final VerifyDoctorRequest verifyDoctorRequest = ; // VerifyDoctorRequest | 
+
+try {
+    final response = api.adminVerifyDoctor(doctorId, verifyDoctorRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AdminApi->adminVerifyDoctor: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **doctorId** | **String**|  | 
+ **verifyDoctorRequest** | [**VerifyDoctorRequest**](VerifyDoctorRequest.md)|  | 
+
+### Return type
+
+[**DoctorPrivate**](DoctorPrivate.md)
 
 ### Authorization
 

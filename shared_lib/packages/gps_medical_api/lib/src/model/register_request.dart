@@ -17,7 +17,7 @@ part 'register_request.g.dart';
 /// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
 /// * [nin] - Obligatoire si `country=DZ` (`422 nin_required` si absent). Doit être absent si `country=TN` (`422 nin_not_applicable` sinon). 
 /// * [password] 
-/// * [role] - `specialist` + `country=TN` → `422 country_not_supported_for_role`. 
+/// * [role] - `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
 /// * [fullName] 
 /// * [email] 
 /// * [consentDataProcessing] - Consentement obligatoire au traitement des données personnelles (termes légaux du pays).
@@ -42,7 +42,7 @@ abstract class RegisterRequest implements Built<RegisterRequest, RegisterRequest
   @BuiltValueField(wireName: r'password')
   String get password;
 
-  /// `specialist` + `country=TN` → `422 country_not_supported_for_role`. 
+  /// `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
   @BuiltValueField(wireName: r'role')
   RegisterRequestRoleEnum get role;
   // enum roleEnum {  patient,  specialist,  };
@@ -284,10 +284,10 @@ class _$RegisterRequestSerializer implements PrimitiveSerializer<RegisterRequest
 
 class RegisterRequestRoleEnum extends EnumClass {
 
-  /// `specialist` + `country=TN` → `422 country_not_supported_for_role`. 
+  /// `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
   @BuiltValueEnumConst(wireName: r'patient')
   static const RegisterRequestRoleEnum patient = _$registerRequestRoleEnum_patient;
-  /// `specialist` + `country=TN` → `422 country_not_supported_for_role`. 
+  /// `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
   @BuiltValueEnumConst(wireName: r'specialist')
   static const RegisterRequestRoleEnum specialist = _$registerRequestRoleEnum_specialist;
 

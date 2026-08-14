@@ -98,13 +98,19 @@ void main() {
       // TODO
     });
 
+    // Pays du compte médecin (lecture seule, issu de `auth.users`). 
+    // CountryCode country
+    test('to test the property `country`', () async {
+      // TODO
+    });
+
     // N° au Conseil de l'Ordre
     // String councilNumber
     test('to test the property `councilNumber`', () async {
       // TODO
     });
 
-    // String verificationStatus
+    // DoctorVerificationStatus verificationStatus
     test('to test the property `verificationStatus`', () async {
       // TODO
     });

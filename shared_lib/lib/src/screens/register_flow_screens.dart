@@ -11,22 +11,202 @@ import '../auth/auth_repository.provider.dart';
 import '../auth/auth_session.provider.dart';
 import '../auth/recovery_phone.provider.dart';
 import '../auth/registration_draft.provider.dart';
+import '../constants/registration_countries.dart';
 import '../l10n/auth_strings.dart';
+import '../models/app_info.dart';
 import '../models/app_info.provider.dart';
 import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
-import '../validation/algerian_phone.dart';
 import '../validation/nin.dart';
 import '../validation/password_strength.dart';
+import '../validation/phone_e164.dart';
 import '../widgets/algerian_phone_field.dart';
 import '../widgets/auth_flow_scaffold.dart';
 import '../widgets/auth_toast.dart';
+import '../widgets/country_phone_field.dart';
 import '../widgets/gps_text_field.dart';
 import '../widgets/otp_pin_input.dart';
 import '../widgets/password_strength_field.dart';
 import '../widgets/primary_button.dart';
 
-// --- STEP 1: NIN ENTRY ---
+// --- STEP 1: COUNTRY ---
+class RegisterCountryScreen extends ConsumerStatefulWidget {
+  const RegisterCountryScreen({super.key});
+
+  @override
+  ConsumerState<RegisterCountryScreen> createState() =>
+      _RegisterCountryScreenState();
+}
+
+class _RegisterCountryScreenState extends ConsumerState<RegisterCountryScreen> {
+  RegistrationCountry? _selected;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _selected = ref.read(registrationDraftProvider).country;
+  }
+
+  void _continue() {
+    final strings = AuthStrings.of(context);
+    final selected = _selected;
+    if (selected == null) {
+      return;
+    }
+    final appInfo = ref.read(appInfoProvider);
+    if (appInfo.clientKind == GpsMedicalClientKind.specialist &&
+        selected == RegistrationCountry.tn) {
+      setState(() => _error = strings.countryNotSupportedForRole);
+      return;
+    }
+    ref.read(registrationDraftProvider.notifier).updateCountry(selected);
+    if (selected.requiresNin) {
+      context.push(GpsRoutes.registerNin);
+    } else {
+      context.push(GpsRoutes.registerFullName);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = AuthStrings.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+    final country = _selected;
+
+    return AuthFlowScaffold(
+      fallbackPopLocation: GpsRoutes.authWelcome,
+      title: strings.registration,
+      step: RegistrationSteps.country(country),
+      totalSteps: RegistrationSteps.total(country),
+      subtitle: strings.countryTitle,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            strings.countrySubtitle,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: GpsSpacing.lg),
+          for (final option in RegistrationCountries.all) ...[
+            _CountryOptionCard(
+              country: option,
+              label: strings.countryName(option),
+              selected: _selected == option,
+              onTap: () => setState(() {
+                _selected = option;
+                _error = null;
+              }),
+            ),
+            const SizedBox(height: GpsSpacing.md),
+          ],
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(Icons.info_outline, size: 16, color: colorScheme.outline),
+              const SizedBox(width: GpsSpacing.xs),
+              Expanded(
+                child: Text(
+                  strings.countryImmutableNotice,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          if (_error != null) ...[
+            const SizedBox(height: GpsSpacing.md),
+            Text(
+              _error!,
+              style: TextStyle(color: colorScheme.error),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ],
+      ),
+      bottom: PrimaryButton(
+        label: strings.continueLabel,
+        onPressed: _selected == null ? null : _continue,
+      ),
+    );
+  }
+}
+
+class _CountryOptionCard extends StatelessWidget {
+  const _CountryOptionCard({
+    required this.country,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final RegistrationCountry country;
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Ink(
+          padding: const EdgeInsets.all(GpsSpacing.md),
+          decoration: BoxDecoration(
+            color: selected
+                ? colorScheme.primary.withOpacity(0.08)
+                : colorScheme.surfaceContainerLowest.withOpacity(0.8),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: selected
+                  ? colorScheme.primary
+                  : colorScheme.outlineVariant.withOpacity(0.3),
+              width: selected ? 2 : 1,
+            ),
+          ),
+          child: Row(
+            children: [
+              Text(country.flag, style: const TextStyle(fontSize: 28)),
+              const SizedBox(width: GpsSpacing.md),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      label,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      country.dialingCode,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(
+                selected ? Icons.radio_button_checked : Icons.radio_button_off,
+                color: selected ? colorScheme.primary : colorScheme.outline,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// --- STEP 2 (DZ): NIN ENTRY ---
 class RegisterNinScreen extends ConsumerStatefulWidget {
   const RegisterNinScreen({super.key});
 
@@ -38,6 +218,22 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
   final _controller = TextEditingController();
   String? _error;
   bool _checking = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) {
+        return;
+      }
+      final country = ref.read(registrationDraftProvider).country;
+      if (country == null) {
+        context.go(GpsRoutes.registerCountry);
+      } else if (!country.requiresNin) {
+        context.go(GpsRoutes.registerFullName);
+      }
+    });
+  }
 
   @override
   void dispose() {
@@ -79,12 +275,13 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
   Widget build(BuildContext context) {
     final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
+    final country = ref.watch(registrationDraftProvider).country;
 
     return AuthFlowScaffold(
-      fallbackPopLocation: GpsRoutes.authWelcome,
+      fallbackPopLocation: GpsRoutes.registerCountry,
       title: strings.registration,
-      step: 1,
-      totalSteps: 6,
+      step: RegistrationSteps.nin(country),
+      totalSteps: RegistrationSteps.total(country),
       subtitle: strings.ninTitle,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -260,11 +457,12 @@ class _RegisterFullNameScreenState
   Widget build(BuildContext context) {
     final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
+    final country = ref.watch(registrationDraftProvider).country;
 
     return AuthFlowScaffold(
       title: strings.registration,
-      step: 2,
-      totalSteps: 6,
+      step: RegistrationSteps.fullName(country),
+      totalSteps: RegistrationSteps.total(country),
       subtitle: strings.fullNameTitle,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -307,8 +505,17 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
 
   Future<void> _continue() async {
     final strings = AuthStrings.of(context);
+    final country = ref.read(registrationDraftProvider).country;
+    if (country == null) {
+      context.go(GpsRoutes.registerCountry);
+      return;
+    }
     if (_phoneE164 == null) {
-      setState(() => _error = strings.invalidPhone);
+      setState(() => _error = strings.invalidPhoneFor(country));
+      return;
+    }
+    if (!PhoneE164.matchesCountry(_phoneE164!, country)) {
+      setState(() => _error = strings.phoneCountryMismatch);
       return;
     }
 
@@ -318,13 +525,21 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
     });
 
     try {
-      await ref.read(authRepositoryProvider).checkRegisterPhone(_phoneE164!);
+      await ref
+          .read(authRepositoryProvider)
+          .checkRegisterPhone(phoneE164: _phoneE164!, country: country);
       ref.read(registrationDraftProvider.notifier).updatePhone(_phoneE164!);
       if (mounted) {
         context.push(GpsRoutes.registerPassword);
       }
     } on AuthException catch (e) {
-      if (mounted) {
+      if (!mounted) {
+        return;
+      }
+      if (e is AuthValidationException &&
+          e.problemCode == 'phone_country_mismatch') {
+        setState(() => _error = strings.phoneCountryMismatch);
+      } else {
         showAuthErrorToast(context, e);
       }
     } finally {
@@ -338,11 +553,25 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
   Widget build(BuildContext context) {
     final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
+    final country = ref.watch(registrationDraftProvider).country;
+
+    if (country == null) {
+      return AuthFlowScaffold(
+        fallbackPopLocation: GpsRoutes.registerCountry,
+        title: strings.registration,
+        subtitle: strings.phoneTitle,
+        body: const SizedBox.shrink(),
+        bottom: PrimaryButton(
+          label: strings.continueLabel,
+          onPressed: () => context.go(GpsRoutes.registerCountry),
+        ),
+      );
+    }
 
     return AuthFlowScaffold(
       title: strings.registration,
-      step: 3,
-      totalSteps: 6,
+      step: RegistrationSteps.phone(country),
+      totalSteps: RegistrationSteps.total(country),
       subtitle: strings.phoneTitle,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -354,7 +583,8 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
             ),
           ),
           const SizedBox(height: GpsSpacing.lg),
-          AlgerianPhoneField(
+          CountryPhoneField(
+            country: country,
             errorText: _error,
             onChanged: (e164) => setState(() {
               _phoneE164 = e164;
@@ -366,10 +596,12 @@ class _RegisterPhoneScreenState extends ConsumerState<RegisterPhoneScreen> {
             children: [
               Icon(Icons.info_outline, size: 14, color: colorScheme.outline),
               const SizedBox(width: 4),
-              Text(
-                'Format attendu : +213 5XX, 6XX ou 7XX',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: colorScheme.onSurfaceVariant,
+              Expanded(
+                child: Text(
+                  strings.phoneFormatHintFor(country),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ),
             ],
@@ -465,11 +697,12 @@ class _RegisterPasswordScreenState
   Widget build(BuildContext context) {
     final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
+    final country = ref.watch(registrationDraftProvider).country;
 
     return AuthFlowScaffold(
       title: strings.registration,
-      step: 4,
-      totalSteps: 6,
+      step: RegistrationSteps.password(country),
+      totalSteps: RegistrationSteps.total(country),
       subtitle: strings.passwordTitle,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -580,21 +813,30 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
   Widget build(BuildContext context) {
     final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
+    final country =
+        ref.watch(registrationDraftProvider).country ?? RegistrationCountry.dz;
     final canSubmit = _data && _health && _terms && _cgu && !_loading;
 
     return AuthFlowScaffold(
       title: strings.registration,
-      step: 5,
-      totalSteps: 6,
+      step: RegistrationSteps.consent(country),
+      totalSteps: RegistrationSteps.total(country),
       subtitle: strings.consentTitle,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'Conformément à la loi algérienne ANPDP',
+            strings.consentSubtitleFor(country),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: colorScheme.onSurfaceVariant,
             ),
+          ),
+          const SizedBox(height: GpsSpacing.xs),
+          Text(
+            strings.consentLegalVersion(country.consentPolicyVersion),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: colorScheme.outline),
           ),
           const SizedBox(height: GpsSpacing.lg),
           // Consent Cards List
@@ -617,9 +859,8 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
           ),
           const SizedBox(height: GpsSpacing.md),
           _ConsentCard(
-            title: strings.consentTerms,
-            subtitle:
-                'Consentement explicite pour la collecte des données conformément à la réglementation ANPDP.',
+            title: strings.consentTermsFor(country),
+            subtitle: strings.consentSubtitleFor(country),
             value: _terms,
             onChanged: (v) => setState(() => _terms = v),
           ),
@@ -824,15 +1065,15 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
   Widget build(BuildContext context) {
     final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
-    final phone = ref.watch(registrationDraftProvider).phoneE164 ?? '+213…';
-    final displayPhone = AlgerianPhone.formatDisplay(
-      phone.length >= 13 ? phone : '+213500000000',
-    );
+    final draft = ref.watch(registrationDraftProvider);
+    final country = draft.country;
+    final phone = draft.phoneE164 ?? country?.dialingCode ?? '+213…';
+    final displayPhone = PhoneE164.formatDisplay(phone);
 
     return AuthFlowScaffold(
       title: strings.verification,
-      step: 6,
-      totalSteps: 6,
+      step: RegistrationSteps.otp(country),
+      totalSteps: RegistrationSteps.total(country),
       subtitle: strings.otpTitle,
       body: Column(
         children: [

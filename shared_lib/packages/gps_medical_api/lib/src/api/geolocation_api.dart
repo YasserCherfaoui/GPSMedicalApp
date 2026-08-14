@@ -23,7 +23,7 @@ class GeolocationApi {
   const GeolocationApi(this._dio, this._serializers);
 
   /// Médecins à proximité d&#39;un point GPS
-  /// 
+  /// Uniquement des médecins &#x60;verified&#x3D;true&#x60;. Les dossiers &#x60;approved_pending_activation&#x60; sont exclus. 
   ///
   /// Parameters:
   /// * [lat] 

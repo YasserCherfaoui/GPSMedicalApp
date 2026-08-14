@@ -76,6 +76,10 @@ GoRouter createPatientRouter({
         builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
+        path: GpsRoutes.registerCountry,
+        builder: (context, state) => const RegisterCountryScreen(),
+      ),
+      GoRoute(
         path: GpsRoutes.registerNin,
         builder: (context, state) => const RegisterNinScreen(),
       ),

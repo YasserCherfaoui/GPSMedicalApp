@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **patientsActive** | **int** |  | [optional] 
 **doctorsActive** | **int** |  | [optional] 
 **doctorsPendingVerification** | **int** |  | [optional] 
+**doctorsApprovedPendingActivation** | **int** | Effectif des médecins TN en quarantaine (`approved_pending_activation`). Compteur pipeline d'offre TN (B-14.2).  | [optional] 
 **appointmentsLast30d** | **int** |  | [optional] 
 **gmvDzdLast30d** | **int** |  | [optional] 
 **avgAppointmentsPerActiveUser** | **double** |  | [optional] 

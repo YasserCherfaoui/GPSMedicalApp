@@ -14,26 +14,21 @@ void main() {
       // TODO
     });
 
-    // Validation d'un dossier médecin
-    //
-    //Future<DoctorPrivate> adminDoctorsDoctorIdVerifyPost(String doctorId, AdminDoctorsDoctorIdVerifyPostRequest adminDoctorsDoctorIdVerifyPostRequest) async
-    test('test adminDoctorsDoctorIdVerifyPost', () async {
-      // TODO
-    });
-
-    // Médecins en attente de vérification
-    //
-    //Future<PaginatedDoctorsPrivate> adminDoctorsPendingGet({ int page, int pageSize }) async
-    test('test adminDoctorsPendingGet', () async {
-      // TODO
-    });
-
     // Export ANPDP — historique complet des consentements (Phase 1)
     //
     // Réservé aux administrateurs. Retourne l'historique brut des lignes `consent_grants` pour audit et conformité. Implémentation complète des exports signés / filtres en Phase 4. 
     //
     //Future<BuiltList<ConsentGrant>> adminExportUserConsents(String userId) async
     test('test adminExportUserConsents', () async {
+      // TODO
+    });
+
+    // Médecins en attente de vérification
+    //
+    // Dossiers `pending` et `in_review` uniquement. Les médecins en `approved_pending_activation` ont quitté cette file ; leur effectif est `AdminOverview.doctors_approved_pending_activation`. 
+    //
+    //Future<PaginatedDoctorsPrivate> adminListPendingDoctors({ int page, int pageSize, CountryCode country }) async
+    test('test adminListPendingDoctors', () async {
       // TODO
     });
 
@@ -78,6 +73,15 @@ void main() {
     //
     //Future<UserAdmin> adminUsersUserIdPatch(String userId, UserAdminUpdate userAdminUpdate) async
     test('test adminUsersUserIdPatch', () async {
+      // TODO
+    });
+
+    // Validation d'un dossier médecin
+    //
+    // Décision `approved` : pour un médecin **DZ**, `verification_status=approved` et `verified=true`. Pour un médecin **TN**, tant que le flag serveur `TN_SPECIALIST_ACTIVATION` est **off** (défaut), le résultat est `approved_pending_activation` / `verified=false` ; une fois le flag **on**, même branche que DZ. `rejected` et `more_info` inchangés. Le corps 200 est le `DoctorPrivate` résultant (statut + `country`). Voir addendum-1.1.1.md. 
+    //
+    //Future<DoctorPrivate> adminVerifyDoctor(String doctorId, VerifyDoctorRequest verifyDoctorRequest) async
+    test('test adminVerifyDoctor', () async {
       // TODO
     });
 

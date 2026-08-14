@@ -16,6 +16,8 @@ class _$AdminOverview extends AdminOverview {
   @override
   final int? doctorsPendingVerification;
   @override
+  final int? doctorsApprovedPendingActivation;
+  @override
   final int? appointmentsLast30d;
   @override
   final int? gmvDzdLast30d;
@@ -30,6 +32,7 @@ class _$AdminOverview extends AdminOverview {
     this.patientsActive,
     this.doctorsActive,
     this.doctorsPendingVerification,
+    this.doctorsApprovedPendingActivation,
     this.appointmentsLast30d,
     this.gmvDzdLast30d,
     this.avgAppointmentsPerActiveUser,
@@ -49,6 +52,8 @@ class _$AdminOverview extends AdminOverview {
         patientsActive == other.patientsActive &&
         doctorsActive == other.doctorsActive &&
         doctorsPendingVerification == other.doctorsPendingVerification &&
+        doctorsApprovedPendingActivation ==
+            other.doctorsApprovedPendingActivation &&
         appointmentsLast30d == other.appointmentsLast30d &&
         gmvDzdLast30d == other.gmvDzdLast30d &&
         avgAppointmentsPerActiveUser == other.avgAppointmentsPerActiveUser;
@@ -61,6 +66,7 @@ class _$AdminOverview extends AdminOverview {
     _$hash = $jc(_$hash, patientsActive.hashCode);
     _$hash = $jc(_$hash, doctorsActive.hashCode);
     _$hash = $jc(_$hash, doctorsPendingVerification.hashCode);
+    _$hash = $jc(_$hash, doctorsApprovedPendingActivation.hashCode);
     _$hash = $jc(_$hash, appointmentsLast30d.hashCode);
     _$hash = $jc(_$hash, gmvDzdLast30d.hashCode);
     _$hash = $jc(_$hash, avgAppointmentsPerActiveUser.hashCode);
@@ -75,6 +81,10 @@ class _$AdminOverview extends AdminOverview {
           ..add('patientsActive', patientsActive)
           ..add('doctorsActive', doctorsActive)
           ..add('doctorsPendingVerification', doctorsPendingVerification)
+          ..add(
+            'doctorsApprovedPendingActivation',
+            doctorsApprovedPendingActivation,
+          )
           ..add('appointmentsLast30d', appointmentsLast30d)
           ..add('gmvDzdLast30d', gmvDzdLast30d)
           ..add('avgAppointmentsPerActiveUser', avgAppointmentsPerActiveUser))
@@ -105,6 +115,13 @@ class AdminOverviewBuilder
   set doctorsPendingVerification(int? doctorsPendingVerification) =>
       _$this._doctorsPendingVerification = doctorsPendingVerification;
 
+  int? _doctorsApprovedPendingActivation;
+  int? get doctorsApprovedPendingActivation =>
+      _$this._doctorsApprovedPendingActivation;
+  set doctorsApprovedPendingActivation(int? doctorsApprovedPendingActivation) =>
+      _$this._doctorsApprovedPendingActivation =
+          doctorsApprovedPendingActivation;
+
   int? _appointmentsLast30d;
   int? get appointmentsLast30d => _$this._appointmentsLast30d;
   set appointmentsLast30d(int? appointmentsLast30d) =>
@@ -132,6 +149,7 @@ class AdminOverviewBuilder
       _patientsActive = $v.patientsActive;
       _doctorsActive = $v.doctorsActive;
       _doctorsPendingVerification = $v.doctorsPendingVerification;
+      _doctorsApprovedPendingActivation = $v.doctorsApprovedPendingActivation;
       _appointmentsLast30d = $v.appointmentsLast30d;
       _gmvDzdLast30d = $v.gmvDzdLast30d;
       _avgAppointmentsPerActiveUser = $v.avgAppointmentsPerActiveUser;
@@ -161,6 +179,7 @@ class AdminOverviewBuilder
           patientsActive: patientsActive,
           doctorsActive: doctorsActive,
           doctorsPendingVerification: doctorsPendingVerification,
+          doctorsApprovedPendingActivation: doctorsApprovedPendingActivation,
           appointmentsLast30d: appointmentsLast30d,
           gmvDzdLast30d: gmvDzdLast30d,
           avgAppointmentsPerActiveUser: avgAppointmentsPerActiveUser,

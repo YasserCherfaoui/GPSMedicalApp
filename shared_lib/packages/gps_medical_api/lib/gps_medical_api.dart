@@ -28,7 +28,6 @@ export 'package:gps_medical_api/src/api/system_api.dart';
 export 'package:gps_medical_api/src/api/teleconsultation_api.dart';
 
 export 'package:gps_medical_api/src/model/address.dart';
-export 'package:gps_medical_api/src/model/admin_doctors_doctor_id_verify_post_request.dart';
 export 'package:gps_medical_api/src/model/admin_overview.dart';
 export 'package:gps_medical_api/src/model/admin_reviews_review_id_moderate_post_request.dart';
 export 'package:gps_medical_api/src/model/appointment.dart';
@@ -53,6 +52,7 @@ export 'package:gps_medical_api/src/model/doctor.dart';
 export 'package:gps_medical_api/src/model/doctor_overview.dart';
 export 'package:gps_medical_api/src/model/doctor_private.dart';
 export 'package:gps_medical_api/src/model/doctor_update.dart';
+export 'package:gps_medical_api/src/model/doctor_verification_status.dart';
 export 'package:gps_medical_api/src/model/doctor_with_distance.dart';
 export 'package:gps_medical_api/src/model/funnel.dart';
 export 'package:gps_medical_api/src/model/health_check.dart';
@@ -123,5 +123,6 @@ export 'package:gps_medical_api/src/model/user_admin.dart';
 export 'package:gps_medical_api/src/model/user_admin_update.dart';
 export 'package:gps_medical_api/src/model/validation_problem.dart';
 export 'package:gps_medical_api/src/model/validation_problem_all_of_errors.dart';
+export 'package:gps_medical_api/src/model/verify_doctor_request.dart';
 export 'package:gps_medical_api/src/model/wilaya.dart';
 

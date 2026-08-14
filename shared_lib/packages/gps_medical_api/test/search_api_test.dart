@@ -9,12 +9,16 @@ void main() {
   group(SearchApi, () {
     // Recherche multicritères de médecins
     //
+    // Uniquement des médecins `verified=true`. Les dossiers `approved_pending_activation` sont exclus. 
+    //
     //Future<PaginatedDoctors> searchDoctorsGet({ String q, String specialtyId, String wilayaCode, String communeId, String gender, BuiltList<String> language, bool acceptsCnas, bool acceptsCasnos, int maxFeeDzd, bool telehealth, int availableWithinDays, double lat, double lng, String sort, int page, int pageSize }) async
     test('test searchDoctorsGet', () async {
       // TODO
     });
 
     // Suggestions auto-complétion (médecins, spécialités, communes)
+    //
+    // Les suggestions de médecins ne portent que sur `verified=true`. 
     //
     //Future<SearchSuggestGet200Response> searchSuggestGet(String q) async
     test('test searchSuggestGet', () async {

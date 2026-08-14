@@ -3,11 +3,13 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:gps_medical_api/src/model/doctor_verification_status.dart';
 import 'package:gps_medical_api/src/model/specialty.dart';
 import 'package:gps_medical_api/src/model/address.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_api/src/model/credential.dart';
 import 'package:gps_medical_api/src/model/doctor.dart';
+import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -34,6 +36,7 @@ part 'doctor_private.g.dart';
 /// * [verified] 
 /// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
 /// * [email] 
+/// * [country] - Pays du compte médecin (lecture seule, issu de `auth.users`). 
 /// * [councilNumber] - N° au Conseil de l'Ordre
 /// * [verificationStatus] 
 /// * [verificationComment] - Admin feedback from the verification decision (more_info / rejected).
@@ -42,6 +45,11 @@ part 'doctor_private.g.dart';
 /// * [bookingWindowDays] 
 @BuiltValue()
 abstract class DoctorPrivate implements Doctor, Built<DoctorPrivate, DoctorPrivateBuilder> {
+  /// Pays du compte médecin (lecture seule, issu de `auth.users`). 
+  @BuiltValueField(wireName: r'country')
+  CountryCode? get country;
+  // enum countryEnum {  DZ,  TN,  };
+
   @BuiltValueField(wireName: r'booking_window_days')
   int? get bookingWindowDays;
 
@@ -50,8 +58,8 @@ abstract class DoctorPrivate implements Doctor, Built<DoctorPrivate, DoctorPriva
   String? get phone;
 
   @BuiltValueField(wireName: r'verification_status')
-  DoctorPrivateVerificationStatusEnum? get verificationStatus;
-  // enum verificationStatusEnum {  pending,  in_review,  approved,  rejected,  };
+  DoctorVerificationStatus? get verificationStatus;
+  // enum verificationStatusEnum {  pending,  in_review,  approved,  approved_pending_activation,  rejected,  };
 
   @BuiltValueField(wireName: r'credentials')
   BuiltList<Credential>? get credentials;
@@ -94,11 +102,11 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
     DoctorPrivate object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.bookingWindowDays != null) {
-      yield r'booking_window_days';
+    if (object.country != null) {
+      yield r'country';
       yield serializers.serialize(
-        object.bookingWindowDays,
-        specifiedType: const FullType(int),
+        object.country,
+        specifiedType: const FullType(CountryCode),
       );
     }
     if (object.practiceAddress != null) {
@@ -108,32 +116,11 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
         specifiedType: const FullType(Address),
       );
     }
-    if (object.acceptsCasnos != null) {
-      yield r'accepts_casnos';
-      yield serializers.serialize(
-        object.acceptsCasnos,
-        specifiedType: const FullType(bool),
-      );
-    }
     if (object.gender != null) {
       yield r'gender';
       yield serializers.serialize(
         object.gender,
         specifiedType: const FullType(DoctorGenderEnum),
-      );
-    }
-    if (object.languages != null) {
-      yield r'languages';
-      yield serializers.serialize(
-        object.languages,
-        specifiedType: const FullType(BuiltList, [FullType(DoctorLanguagesEnum)]),
-      );
-    }
-    if (object.verificationStatus != null) {
-      yield r'verification_status';
-      yield serializers.serialize(
-        object.verificationStatus,
-        specifiedType: const FullType(DoctorPrivateVerificationStatusEnum),
       );
     }
     if (object.credentials != null) {
@@ -150,32 +137,11 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
         specifiedType: const FullType(DoctorPrivateConfirmationPolicyEnum),
       );
     }
-    if (object.consultationFeeDzd != null) {
-      yield r'consultation_fee_dzd';
-      yield serializers.serialize(
-        object.consultationFeeDzd,
-        specifiedType: const FullType(int),
-      );
-    }
     if (object.offersTelehealth != null) {
       yield r'offers_telehealth';
       yield serializers.serialize(
         object.offersTelehealth,
         specifiedType: const FullType(bool),
-      );
-    }
-    if (object.verified != null) {
-      yield r'verified';
-      yield serializers.serialize(
-        object.verified,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.fullName != null) {
-      yield r'full_name';
-      yield serializers.serialize(
-        object.fullName,
-        specifiedType: const FullType(String),
       );
     }
     if (object.bio != null) {
@@ -190,13 +156,6 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
       yield serializers.serialize(
         object.title,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.ratingCount != null) {
-      yield r'rating_count';
-      yield serializers.serialize(
-        object.ratingCount,
-        specifiedType: const FullType(int),
       );
     }
     if (object.photoUrl != null) {
@@ -220,13 +179,6 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
         specifiedType: const FullType(bool),
       );
     }
-    if (object.phone != null) {
-      yield r'phone';
-      yield serializers.serialize(
-        object.phone,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.id != null) {
       yield r'id';
       yield serializers.serialize(
@@ -234,17 +186,80 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
         specifiedType: const FullType(String),
       );
     }
-    if (object.councilNumber != null) {
-      yield r'council_number';
-      yield serializers.serialize(
-        object.councilNumber,
-        specifiedType: const FullType(String),
-      );
-    }
     if (object.email != null) {
       yield r'email';
       yield serializers.serialize(
         object.email,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.bookingWindowDays != null) {
+      yield r'booking_window_days';
+      yield serializers.serialize(
+        object.bookingWindowDays,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.acceptsCasnos != null) {
+      yield r'accepts_casnos';
+      yield serializers.serialize(
+        object.acceptsCasnos,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.languages != null) {
+      yield r'languages';
+      yield serializers.serialize(
+        object.languages,
+        specifiedType: const FullType(BuiltList, [FullType(DoctorLanguagesEnum)]),
+      );
+    }
+    if (object.verificationStatus != null) {
+      yield r'verification_status';
+      yield serializers.serialize(
+        object.verificationStatus,
+        specifiedType: const FullType(DoctorVerificationStatus),
+      );
+    }
+    if (object.consultationFeeDzd != null) {
+      yield r'consultation_fee_dzd';
+      yield serializers.serialize(
+        object.consultationFeeDzd,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.verified != null) {
+      yield r'verified';
+      yield serializers.serialize(
+        object.verified,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.fullName != null) {
+      yield r'full_name';
+      yield serializers.serialize(
+        object.fullName,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.ratingCount != null) {
+      yield r'rating_count';
+      yield serializers.serialize(
+        object.ratingCount,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.phone != null) {
+      yield r'phone';
+      yield serializers.serialize(
+        object.phone,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.councilNumber != null) {
+      yield r'council_number';
+      yield serializers.serialize(
+        object.councilNumber,
         specifiedType: const FullType(String),
       );
     }
@@ -285,12 +300,12 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'booking_window_days':
+        case r'country':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.bookingWindowDays = valueDes;
+            specifiedType: const FullType(CountryCode),
+          ) as CountryCode;
+          result.country = valueDes;
           break;
         case r'practice_address':
           final valueDes = serializers.deserialize(
@@ -299,33 +314,12 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
           ) as Address;
           result.practiceAddress.replace(valueDes);
           break;
-        case r'accepts_casnos':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.acceptsCasnos = valueDes;
-          break;
         case r'gender':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(DoctorGenderEnum),
           ) as DoctorGenderEnum;
           result.gender = valueDes;
-          break;
-        case r'languages':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(DoctorLanguagesEnum)]),
-          ) as BuiltList<DoctorLanguagesEnum>;
-          result.languages.replace(valueDes);
-          break;
-        case r'verification_status':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DoctorPrivateVerificationStatusEnum),
-          ) as DoctorPrivateVerificationStatusEnum;
-          result.verificationStatus = valueDes;
           break;
         case r'credentials':
           final valueDes = serializers.deserialize(
@@ -341,33 +335,12 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
           ) as DoctorPrivateConfirmationPolicyEnum;
           result.confirmationPolicy = valueDes;
           break;
-        case r'consultation_fee_dzd':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.consultationFeeDzd = valueDes;
-          break;
         case r'offers_telehealth':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(bool),
           ) as bool;
           result.offersTelehealth = valueDes;
-          break;
-        case r'verified':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.verified = valueDes;
-          break;
-        case r'full_name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.fullName = valueDes;
           break;
         case r'bio':
           final valueDes = serializers.deserialize(
@@ -382,13 +355,6 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
             specifiedType: const FullType(String),
           ) as String;
           result.title = valueDes;
-          break;
-        case r'rating_count':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.ratingCount = valueDes;
           break;
         case r'photo_url':
           final valueDes = serializers.deserialize(
@@ -411,13 +377,6 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
           ) as bool;
           result.acceptsCnas = valueDes;
           break;
-        case r'phone':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.phone = valueDes;
-          break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
@@ -425,19 +384,82 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
           ) as String;
           result.id = valueDes;
           break;
-        case r'council_number':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.councilNumber = valueDes;
-          break;
         case r'email':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.email = valueDes;
+          break;
+        case r'booking_window_days':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.bookingWindowDays = valueDes;
+          break;
+        case r'accepts_casnos':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.acceptsCasnos = valueDes;
+          break;
+        case r'languages':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(DoctorLanguagesEnum)]),
+          ) as BuiltList<DoctorLanguagesEnum>;
+          result.languages.replace(valueDes);
+          break;
+        case r'verification_status':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(DoctorVerificationStatus),
+          ) as DoctorVerificationStatus;
+          result.verificationStatus = valueDes;
+          break;
+        case r'consultation_fee_dzd':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.consultationFeeDzd = valueDes;
+          break;
+        case r'verified':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.verified = valueDes;
+          break;
+        case r'full_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.fullName = valueDes;
+          break;
+        case r'rating_count':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.ratingCount = valueDes;
+          break;
+        case r'phone':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.phone = valueDes;
+          break;
+        case r'council_number':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.councilNumber = valueDes;
           break;
         case r'verification_comment':
           final valueDes = serializers.deserialize(
@@ -515,25 +537,6 @@ class DoctorPrivateLanguagesEnum extends EnumClass {
 
   static BuiltSet<DoctorPrivateLanguagesEnum> get values => _$doctorPrivateLanguagesEnumValues;
   static DoctorPrivateLanguagesEnum valueOf(String name) => _$doctorPrivateLanguagesEnumValueOf(name);
-}
-
-class DoctorPrivateVerificationStatusEnum extends EnumClass {
-
-  @BuiltValueEnumConst(wireName: r'pending')
-  static const DoctorPrivateVerificationStatusEnum pending = _$doctorPrivateVerificationStatusEnum_pending;
-  @BuiltValueEnumConst(wireName: r'in_review')
-  static const DoctorPrivateVerificationStatusEnum inReview = _$doctorPrivateVerificationStatusEnum_inReview;
-  @BuiltValueEnumConst(wireName: r'approved')
-  static const DoctorPrivateVerificationStatusEnum approved = _$doctorPrivateVerificationStatusEnum_approved;
-  @BuiltValueEnumConst(wireName: r'rejected')
-  static const DoctorPrivateVerificationStatusEnum rejected = _$doctorPrivateVerificationStatusEnum_rejected;
-
-  static Serializer<DoctorPrivateVerificationStatusEnum> get serializer => _$doctorPrivateVerificationStatusEnumSerializer;
-
-  const DoctorPrivateVerificationStatusEnum._(String name): super(name);
-
-  static BuiltSet<DoctorPrivateVerificationStatusEnum> get values => _$doctorPrivateVerificationStatusEnumValues;
-  static DoctorPrivateVerificationStatusEnum valueOf(String name) => _$doctorPrivateVerificationStatusEnumValueOf(name);
 }
 
 class DoctorPrivateConfirmationPolicyEnum extends EnumClass {

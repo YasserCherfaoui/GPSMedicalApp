@@ -11,16 +11,18 @@ class SpecialistVerificationRepository {
   final GpsMedicalClient _client;
 
   SpecialistVerificationStatus mapApiStatus(
-    DoctorPrivateVerificationStatusEnum? api,
+    DoctorVerificationStatus? api,
   ) {
     return switch (api) {
-      DoctorPrivateVerificationStatusEnum.approved =>
+      DoctorVerificationStatus.approved =>
         SpecialistVerificationStatus.verified,
-      DoctorPrivateVerificationStatusEnum.rejected =>
+      DoctorVerificationStatus.rejected =>
         SpecialistVerificationStatus.rejected,
-      DoctorPrivateVerificationStatusEnum.inReview =>
+      DoctorVerificationStatus.inReview =>
         SpecialistVerificationStatus.moreInfo,
-      DoctorPrivateVerificationStatusEnum.pending =>
+      DoctorVerificationStatus.pending =>
+        SpecialistVerificationStatus.pending,
+      DoctorVerificationStatus.approvedPendingActivation =>
         SpecialistVerificationStatus.pending,
       null => SpecialistVerificationStatus.pending,
       _ => SpecialistVerificationStatus.pending,

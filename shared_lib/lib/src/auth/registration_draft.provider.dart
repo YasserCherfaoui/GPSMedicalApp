@@ -1,6 +1,7 @@
 import 'package:gps_medical_api/gps_medical_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../constants/registration_countries.dart';
 import 'registration_draft.dart' as draft;
 
 part 'registration_draft.provider.g.dart';
@@ -9,6 +10,15 @@ part 'registration_draft.provider.g.dart';
 class RegistrationDraft extends _$RegistrationDraft {
   @override
   draft.RegistrationDraft build() => const draft.RegistrationDraft();
+
+  void updateCountry(RegistrationCountry country) {
+    final changed = state.country != country;
+    state = state.copyWith(
+      country: country,
+      clearNin: changed,
+      clearPhone: changed,
+    );
+  }
 
   void updateNin(String nin) {
     state = state.copyWith(nin: nin);

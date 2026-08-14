@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
-import 'messaging_websocket_client.dart';
-
 final messagingWebSocketClientProvider = Provider<MessagingWebSocketClient?>((
   ref,
 ) {
