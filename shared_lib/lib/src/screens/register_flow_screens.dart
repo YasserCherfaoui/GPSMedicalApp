@@ -20,7 +20,6 @@ import '../theme/gps_spacing.dart';
 import '../validation/nin.dart';
 import '../validation/password_strength.dart';
 import '../validation/phone_e164.dart';
-import '../widgets/algerian_phone_field.dart';
 import '../widgets/auth_flow_scaffold.dart';
 import '../widgets/auth_toast.dart';
 import '../widgets/country_phone_field.dart';
@@ -1217,6 +1216,7 @@ class ForgotPasswordScreen extends ConsumerStatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
+  RegistrationCountry _country = RegistrationCountry.dz;
   String? _phoneE164;
   String? _error;
   bool _loading = false;
@@ -1224,7 +1224,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
   Future<void> _submit() async {
     final strings = AuthStrings.of(context);
     if (_phoneE164 == null) {
-      setState(() => _error = strings.invalidPhone);
+      setState(() => _error = strings.invalidPhoneFor(_country));
       return;
     }
     setState(() => _loading = true);
@@ -1255,8 +1255,14 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       fallbackPopLocation: GpsRoutes.login,
       title: strings.forgotTitle,
       subtitle: strings.forgotTitle,
-      body: AlgerianPhoneField(
+      body: CountryPhoneField(
+        country: _country,
         errorText: _error,
+        onCountryChanged: (country) => setState(() {
+          _country = country;
+          _phoneE164 = null;
+          _error = null;
+        }),
         onChanged: (e164) => setState(() {
           _phoneE164 = e164;
           _error = null;
