@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/booking/screens/appointment_detail_screen.dart';
@@ -41,6 +42,7 @@ void main() {
     required String status,
     required String mode,
     required String startAt,
+    String? endAt,
     String? reason,
     String paymentStatus = 'unpaid',
   }) {
@@ -50,7 +52,7 @@ void main() {
         'patient_id': 'pat-1',
         'doctor_id': doctorId,
         'start_at': startAt,
-        'end_at': '2026-06-10T09:30:00Z',
+        'end_at': endAt ?? '2026-06-10T09:30:00Z',
         'mode': mode,
         'status': status,
         'fee_dzd': 3000,
@@ -209,5 +211,58 @@ void main() {
 
     expect(find.text('Vous avez déjà laissé un avis'), findsOneWidget);
     expect(find.text('Laisser un avis'), findsNothing);
+  });
+
+  testWidgets('confirmed telehealth appointment enables join CTA', (
+    tester,
+  ) async {
+    final start = DateTime.now().subtract(const Duration(minutes: 5)).toUtc();
+    mockDetail(
+      status: 'confirmed',
+      mode: 'telehealth',
+      startAt: start.toIso8601String(),
+      endAt: start.add(const Duration(minutes: 30)).toIso8601String(),
+    );
+
+    var openedTeleconsult = false;
+    final router = GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (_, __) =>
+              const AppointmentDetailScreen(appointmentId: appointmentId),
+        ),
+        GoRoute(
+          path: GpsRoutes.appointmentTeleconsultation(appointmentId),
+          builder: (_, __) {
+            openedTeleconsult = true;
+            return const SizedBox.shrink();
+          },
+        ),
+      ],
+    );
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [gpsMedicalClientProvider.overrideWithValue(client)],
+        child: MaterialApp.router(
+          theme: GpsTheme.light(),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: const Locale('fr'),
+          routerConfig: router,
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pumpAndSettle();
+
+    final joinButton = find.text('Rejoindre');
+    expect(joinButton, findsOneWidget);
+
+    await tester.ensureVisible(joinButton);
+    await tester.tap(joinButton);
+    await tester.pumpAndSettle();
+    expect(openedTeleconsult, isTrue);
   });
 }

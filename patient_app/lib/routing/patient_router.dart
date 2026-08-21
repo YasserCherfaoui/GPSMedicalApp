@@ -28,6 +28,7 @@ import '../features/profile/screens/patient_profile_screen.dart';
 import '../features/profile/screens/profile_account_screen.dart';
 import '../features/reviews/screens/create_review_screen.dart';
 import '../features/reviews/screens/review_confirmation_screen.dart';
+import '../features/teleconsultation/screens/patient_teleconsultation_screen.dart';
 
 /// Root navigator for app-wide overlays (e.g. offline draft resume snackbar).
 final patientRootNavigatorKey = GlobalKey<NavigatorState>();
@@ -236,6 +237,13 @@ GoRouter createPatientRouter({
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
           return CreateReviewScreen(appointmentId: id);
+        },
+      ),
+      GoRoute(
+        path: '/appointments/:id/teleconsultation',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return PatientTeleconsultationScreen(appointmentId: id);
         },
       ),
       GoRoute(

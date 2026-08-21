@@ -871,7 +871,7 @@ abstract class AppLocalizations {
   /// No description provided for @appointmentJoinTelehealthHint.
   ///
   /// In fr, this message translates to:
-  /// **'La téléconsultation sera disponible dans une prochaine version.'**
+  /// **'Disponible 15 minutes avant l\'heure du rendez-vous.'**
   String get appointmentJoinTelehealthHint;
 
   /// No description provided for @appointmentLeaveReview.
@@ -3729,6 +3729,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Impossible de démarrer la téléconsultation.'**
   String get specialistTeleconsultConnectionError;
+
+  /// No description provided for @patientTeleconsultTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléconsultation'**
+  String get patientTeleconsultTitle;
+
+  /// No description provided for @patientTeleconsultWindowClosed.
+  ///
+  /// In fr, this message translates to:
+  /// **'La session n\'est pas encore ouverte.'**
+  String get patientTeleconsultWindowClosed;
+
+  /// No description provided for @patientTeleconsultOpensIn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouverture dans {time}'**
+  String patientTeleconsultOpensIn(String time);
+
+  /// No description provided for @patientTeleconsultWaitingDoctor.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente du médecin…'**
+  String get patientTeleconsultWaitingDoctor;
+
+  /// No description provided for @patientTeleconsultConnectionError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de démarrer la téléconsultation.'**
+  String get patientTeleconsultConnectionError;
 
   /// No description provided for @specialistStatsRatingTitle.
   ///

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
@@ -47,6 +49,7 @@ class AuthRefreshInterceptor extends Interceptor {
   final TokenStore tokenStore;
   final TokenRefresher _refreshTokens;
   final Future<void> Function()? onSessionExpired;
+  Future<TokenPair?>? _refreshInFlight;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
@@ -125,25 +128,10 @@ class AuthRefreshInterceptor extends Interceptor {
       return null;
     }
 
-    final TokenPair pair;
-    try {
-      final refreshed = await _refreshTokens(refreshToken);
-      if (refreshed == null ||
-          refreshed.accessToken == null ||
-          refreshed.refreshToken == null) {
-        await onSessionExpired?.call();
-        return null;
-      }
-      pair = refreshed;
-    } on DioException {
-      await onSessionExpired?.call();
-      return null;
-    } catch (_) {
-      await onSessionExpired?.call();
+    final pair = await _refreshShared(refreshToken);
+    if (pair == null || pair.accessToken == null || pair.accessToken!.isEmpty) {
       return null;
     }
-
-    await tokenStore.saveTokens(pair);
 
     final retryOptions = requestOptions;
     retryOptions.extra = Map<String, dynamic>.from(retryOptions.extra)
@@ -153,6 +141,52 @@ class AuthRefreshInterceptor extends Interceptor {
     final retryDio = Dio(dio.options)
       ..httpClientAdapter = dio.httpClientAdapter;
     return await retryDio.fetch<dynamic>(retryOptions);
+  }
+
+  Future<TokenPair?> _refreshShared(String refreshToken) {
+    final inFlight = _refreshInFlight;
+    if (inFlight != null) {
+      return inFlight;
+    }
+
+    final done = Completer<TokenPair?>();
+    _refreshInFlight = done.future;
+    unawaited(
+      Future<void>(() async {
+        try {
+          done.complete(await _refreshAndStore(refreshToken));
+        } catch (_) {
+          if (!done.isCompleted) {
+            done.complete(null);
+          }
+        } finally {
+          if (identical(_refreshInFlight, done.future)) {
+            _refreshInFlight = null;
+          }
+        }
+      }),
+    );
+    return done.future;
+  }
+
+  Future<TokenPair?> _refreshAndStore(String refreshToken) async {
+    try {
+      final refreshed = await _refreshTokens(refreshToken);
+      if (refreshed == null ||
+          refreshed.accessToken == null ||
+          refreshed.refreshToken == null) {
+        await onSessionExpired?.call();
+        return null;
+      }
+      await tokenStore.saveTokens(refreshed);
+      return refreshed;
+    } on DioException {
+      await onSessionExpired?.call();
+      return null;
+    } catch (_) {
+      await onSessionExpired?.call();
+      return null;
+    }
   }
 
   bool _shouldAttachAccessToken(RequestOptions options) {

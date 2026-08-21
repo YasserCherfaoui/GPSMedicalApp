@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
@@ -208,5 +210,84 @@ void main() {
         ),
       ),
     );
+  });
+
+  test('shares a single refresh across concurrent 401s', () async {
+    final tokenStore = InMemoryTokenStore();
+    await tokenStore.saveTokens(
+      TokenPair(
+        (b) => b
+          ..accessToken = 'expired-access'
+          ..refreshToken = 'valid-refresh'
+          ..expiresIn = 3600,
+      ),
+    );
+
+    var refreshCallCount = 0;
+    final refreshStarted = Completer<void>();
+    final allowRefresh = Completer<void>();
+
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: 'http://localhost:8080/v1',
+        validateStatus: (status) => status != null && status < 300,
+      ),
+    );
+    final adapter = DioAdapter(dio: dio);
+    dio.httpClientAdapter = adapter;
+
+    var sessionExpired = 0;
+    dio.interceptors.add(
+      AuthRefreshInterceptor(
+        dio: dio,
+        tokenStore: tokenStore,
+        onSessionExpired: () async {
+          sessionExpired += 1;
+        },
+        refreshTokens: (refreshToken) async {
+          refreshCallCount += 1;
+          expect(refreshToken, 'valid-refresh');
+          if (!refreshStarted.isCompleted) {
+            refreshStarted.complete();
+          }
+          await allowRefresh.future;
+          return TokenPair(
+            (b) => b
+              ..accessToken = 'new-access-token'
+              ..refreshToken = 'new-refresh-token'
+              ..expiresIn = 3600,
+          );
+        },
+      ),
+    );
+
+    adapter.onGet(
+      '/auth/me',
+      (server) => server.reply(401, {'title': 'Unauthorized'}),
+    );
+    adapter.onGet(
+      '/doctors/me',
+      (server) => server.reply(401, {'title': 'Unauthorized'}),
+    );
+
+    final first = dio.get<void>(
+      '/auth/me',
+      options: Options(extra: _bearerSecureExtra),
+    );
+    final second = dio.get<void>(
+      '/doctors/me',
+      options: Options(extra: _bearerSecureExtra),
+    );
+
+    await refreshStarted.future;
+    allowRefresh.complete();
+
+    await Future.wait<void>([
+      first.then<void>((_) {}, onError: (_) {}),
+      second.then<void>((_) {}, onError: (_) {}),
+    ]);
+    expect(refreshCallCount, 1);
+    expect(sessionExpired, 0);
+    expect(tokenStore.refreshToken, 'new-refresh-token');
   });
 }

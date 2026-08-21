@@ -62,4 +62,22 @@ void main() {
     final slot = slotAt(start: DateTime(2026, 6, 10, 9), durationMinutes: 45);
     expect(slotDurationMinutes(slot), 45);
   });
+
+  test('canJoinTelehealth is true 15 min before start until end + 30 min', () {
+    final start = DateTime.now().add(const Duration(minutes: 10));
+    final end = start.add(const Duration(minutes: 30));
+    expect(
+      canJoinTelehealth(startAt: start, endAt: end, statusWire: 'confirmed'),
+      isTrue,
+    );
+  });
+
+  test('canJoinTelehealth is false when appointment is not confirmed', () {
+    final start = DateTime.now();
+    final end = start.add(const Duration(minutes: 30));
+    expect(
+      canJoinTelehealth(startAt: start, endAt: end, statusWire: 'pending'),
+      isFalse,
+    );
+  });
 }

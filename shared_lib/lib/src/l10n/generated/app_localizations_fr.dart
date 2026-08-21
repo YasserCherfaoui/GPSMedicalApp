@@ -440,7 +440,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get appointmentJoinTelehealthHint =>
-      'La téléconsultation sera disponible dans une prochaine version.';
+      'Disponible 15 minutes avant l\'heure du rendez-vous.';
 
   @override
   String get appointmentLeaveReview => 'Laisser un avis';
@@ -2012,6 +2012,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get specialistTeleconsultConnectionError =>
+      'Impossible de démarrer la téléconsultation.';
+
+  @override
+  String get patientTeleconsultTitle => 'Téléconsultation';
+
+  @override
+  String get patientTeleconsultWindowClosed =>
+      'La session n\'est pas encore ouverte.';
+
+  @override
+  String patientTeleconsultOpensIn(String time) {
+    return 'Ouverture dans $time';
+  }
+
+  @override
+  String get patientTeleconsultWaitingDoctor => 'En attente du médecin…';
+
+  @override
+  String get patientTeleconsultConnectionError =>
       'Impossible de démarrer la téléconsultation.';
 
   @override

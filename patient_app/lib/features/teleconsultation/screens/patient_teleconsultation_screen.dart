@@ -6,26 +6,23 @@ import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
-import '../../appointments/providers/appointments.provider.dart';
+import '../../booking/providers/appointment_detail.provider.dart';
 import '../providers/teleconsultation.provider.dart';
-import '../repositories/specialist_teleconsultation_repository.dart';
+import '../repositories/patient_teleconsultation_repository.dart';
 import '../utils/teleconsult_window.dart';
 
-class SpecialistTeleconsultationScreen extends ConsumerStatefulWidget {
-  const SpecialistTeleconsultationScreen({
-    required this.appointmentId,
-    super.key,
-  });
+class PatientTeleconsultationScreen extends ConsumerStatefulWidget {
+  const PatientTeleconsultationScreen({required this.appointmentId, super.key});
 
   final String appointmentId;
 
   @override
-  ConsumerState<SpecialistTeleconsultationScreen> createState() =>
-      _SpecialistTeleconsultationScreenState();
+  ConsumerState<PatientTeleconsultationScreen> createState() =>
+      _PatientTeleconsultationScreenState();
 }
 
-class _SpecialistTeleconsultationScreenState
-    extends ConsumerState<SpecialistTeleconsultationScreen> {
+class _PatientTeleconsultationScreenState
+    extends ConsumerState<PatientTeleconsultationScreen> {
   TeleconsultationCallController? _controller;
   Timer? _countdownTimer;
   String? _errorMessage;
@@ -48,9 +45,10 @@ class _SpecialistTeleconsultationScreenState
 
   Future<void> _bootstrap() async {
     try {
-      final appointment = await ref.read(
-        specialistAppointmentDetailProvider(widget.appointmentId).future,
+      final detail = await ref.read(
+        appointmentDetailProvider(widget.appointmentId).future,
       );
+      final appointment = detail.appointment;
       final window = teleconsultWindowFor(appointment);
       if (!window.isOpen) {
         _startCountdown(window);
@@ -67,7 +65,7 @@ class _SpecialistTeleconsultationScreenState
         _loading = false;
         _errorMessage = AppLocalizations.of(
           context,
-        )!.specialistTeleconsultConnectionError;
+        )!.patientTeleconsultConnectionError;
       });
     }
   }
@@ -91,7 +89,7 @@ class _SpecialistTeleconsultationScreenState
       _errorMessage = null;
     });
     try {
-      final repo = ref.read(specialistTeleconsultationRepositoryProvider);
+      final repo = ref.read(patientTeleconsultationRepositoryProvider);
       final session = await repo.startSession(widget.appointmentId);
       final turn = await repo.fetchTurnCredentials();
       final iceServers = buildIceServers(
@@ -110,7 +108,7 @@ class _SpecialistTeleconsultationScreenState
           setState(() {
             _errorMessage = AppLocalizations.of(
               context,
-            )!.specialistTeleconsultConnectionError;
+            )!.patientTeleconsultConnectionError;
           });
         },
       );
@@ -118,7 +116,7 @@ class _SpecialistTeleconsultationScreenState
         iceServers: iceServers,
         signalling: repo.signallingClient(),
         appointmentId: widget.appointmentId,
-        isOfferer: true,
+        isOfferer: false,
       );
       if (!mounted) {
         await controller.dispose();
@@ -149,7 +147,7 @@ class _SpecialistTeleconsultationScreenState
         _loading = false;
         _errorMessage = AppLocalizations.of(
           context,
-        )!.specialistTeleconsultConnectionError;
+        )!.patientTeleconsultConnectionError;
       });
     }
   }
@@ -167,7 +165,7 @@ class _SpecialistTeleconsultationScreenState
     try {
       if (duration > 0) {
         await ref
-            .read(specialistTeleconsultationRepositoryProvider)
+            .read(patientTeleconsultationRepositoryProvider)
             .endSession(
               appointmentId: widget.appointmentId,
               durationSeconds: duration,
@@ -186,14 +184,14 @@ class _SpecialistTeleconsultationScreenState
 
     if (_loading) {
       return Scaffold(
-        appBar: AppBar(title: Text(l10n.specialistTeleconsultTitle)),
+        appBar: AppBar(title: Text(l10n.patientTeleconsultTitle)),
         body: const Center(child: CircularProgressIndicator()),
       );
     }
 
     if (controller == null) {
       return Scaffold(
-        appBar: AppBar(title: Text(l10n.specialistTeleconsultTitle)),
+        appBar: AppBar(title: Text(l10n.patientTeleconsultTitle)),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(GpsSpacing.lg),
@@ -201,13 +199,13 @@ class _SpecialistTeleconsultationScreenState
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  _errorMessage ?? l10n.specialistTeleconsultWindowClosed,
+                  _errorMessage ?? l10n.patientTeleconsultWindowClosed,
                   textAlign: TextAlign.center,
                 ),
                 if (_opensIn != null) ...[
                   const SizedBox(height: GpsSpacing.md),
                   Text(
-                    l10n.specialistTeleconsultOpensIn(
+                    l10n.patientTeleconsultOpensIn(
                       formatTeleconsultCountdown(_opensIn!),
                     ),
                     style: Theme.of(context).textTheme.titleMedium,
@@ -225,7 +223,7 @@ class _SpecialistTeleconsultationScreenState
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text(l10n.specialistTeleconsultTitle),
+        title: Text(l10n.patientTeleconsultTitle),
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
       ),
@@ -237,7 +235,7 @@ class _SpecialistTeleconsultationScreenState
           else
             Center(
               child: Text(
-                l10n.specialistTeleconsultWaitingPatient,
+                l10n.patientTeleconsultWaitingDoctor,
                 style: const TextStyle(color: Colors.white70),
               ),
             ),

@@ -76,6 +76,9 @@ PODS:
     - Flutter
   - flutter_secure_storage (6.0.0):
     - Flutter
+  - flutter_webrtc (0.12.6):
+    - Flutter
+    - WebRTC-SDK (= 125.6422.06)
   - geolocator_apple (1.2.0):
     - Flutter
     - FlutterMacOS
@@ -149,6 +152,7 @@ PODS:
   - SwiftyGif (5.4.5)
   - url_launcher_ios (0.0.1):
     - Flutter
+  - WebRTC-SDK (125.6422.06)
 
 DEPENDENCIES:
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
@@ -160,6 +164,7 @@ DEPENDENCIES:
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_pdfview (from `.symlinks/plugins/flutter_pdfview/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
+  - flutter_webrtc (from `.symlinks/plugins/flutter_webrtc/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/darwin`)
   - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
@@ -190,6 +195,7 @@ SPEC REPOS:
     - SDWebImage
     - Sentry
     - SwiftyGif
+    - WebRTC-SDK
 
 EXTERNAL SOURCES:
   connectivity_plus:
@@ -210,6 +216,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_pdfview/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
+  flutter_webrtc:
+    :path: ".symlinks/plugins/flutter_webrtc/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/darwin"
   google_maps_flutter_ios:
@@ -250,6 +258,7 @@ SPEC CHECKSUMS:
   flutter_native_splash: df59bb2e1421aa0282cb2e95618af4dcb0c56c29
   flutter_pdfview: 2e4d13ffb774858562ffbdfdb61b40744b191adc
   flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
+  flutter_webrtc: 90260f83024b1b96d239a575ea4e3708e79344d1
   geolocator_apple: 66b711889fd333205763b83c9dcf0a57a28c7afd
   Google-Maps-iOS-Utils: bed22fa703c919259b3901449434d60d994fae20
   google_maps_flutter_ios: ffdd933832966673a1f57f5effd014dc8d4d43a2
@@ -270,6 +279,7 @@ SPEC CHECKSUMS:
   sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
+  WebRTC-SDK: 79942c006ea64f6fb48d7da8a4786dfc820bc1db
 
 PODFILE CHECKSUM: cfc53c522a494028cfb8ad88cb7525a912bd33c6
 

@@ -428,7 +428,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get appointmentJoinTelehealthHint =>
-      'الاستشارة عن بُعد ستكون متاحة في إصدار لاحق.';
+      'متاحة قبل 15 دقيقة من موعد الاستشارة.';
 
   @override
   String get appointmentLeaveReview => 'ترك تقييم';
@@ -1970,6 +1970,23 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get specialistTeleconsultConnectionError =>
       'تعذر بدء الاستشارة عن بُعد.';
+
+  @override
+  String get patientTeleconsultTitle => 'استشارة عن بُعد';
+
+  @override
+  String get patientTeleconsultWindowClosed => 'الجلسة غير مفتوحة بعد.';
+
+  @override
+  String patientTeleconsultOpensIn(String time) {
+    return 'تفتح خلال $time';
+  }
+
+  @override
+  String get patientTeleconsultWaitingDoctor => 'في انتظار الطبيب…';
+
+  @override
+  String get patientTeleconsultConnectionError => 'تعذر بدء الاستشارة عن بُعد.';
 
   @override
   String get specialistStatsRatingTitle => 'التقييم المتوسط';

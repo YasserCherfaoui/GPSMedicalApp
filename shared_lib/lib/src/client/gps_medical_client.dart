@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
 import '../auth/token_store.dart';
 import '../constants/api_constants.dart';
 import 'auth_refresh_interceptor.dart';
+import 'http_debug_log_interceptor.dart';
 import 'phase1_api.dart';
 
 /// Configured HTTP client for GPS Médical (v1 API + root-level system routes).
@@ -20,6 +22,12 @@ class GpsMedicalClient {
        ).replaceAll(RegExp(r'/+$'), ''),
        v1BaseUrl =
            '${resolveApiUrl(apiRootUrl ?? kDefaultApiRootUrl).replaceAll(RegExp(r'/+$'), '')}/v1' {
+    if (gpsHttpDebugLogsEnabled()) {
+      debugPrint(
+        '[GPS HTTP] apiRootUrl=${this.apiRootUrl} v1BaseUrl=$v1BaseUrl',
+      );
+    }
+
     final refreshDio = Dio(
       BaseOptions(
         baseUrl: v1BaseUrl,
@@ -48,6 +56,8 @@ class GpsMedicalClient {
         onSessionExpired: onSessionExpired,
       ),
     );
+    _attachHttpDebugLogs(authenticatedDio, 'v1');
+    _attachHttpDebugLogs(refreshDio, 'refresh');
 
     _v1 = GpsMedicalApi(
       dio: authenticatedDio,
@@ -55,15 +65,18 @@ class GpsMedicalClient {
       interceptors: const [],
     );
 
-    _root = GpsMedicalApi(
-      dio: Dio(
-        BaseOptions(
-          baseUrl: this.apiRootUrl,
-          connectTimeout: connectTimeout,
-          receiveTimeout: receiveTimeout,
-          headers: const {'Accept': 'application/json'},
-        ),
+    final rootDio = Dio(
+      BaseOptions(
+        baseUrl: this.apiRootUrl,
+        connectTimeout: connectTimeout,
+        receiveTimeout: receiveTimeout,
+        headers: const {'Accept': 'application/json'},
       ),
+    );
+    _attachHttpDebugLogs(rootDio, 'root');
+
+    _root = GpsMedicalApi(
+      dio: rootDio,
       serializers: standardSerializers,
       interceptors: const [],
     );
@@ -125,5 +138,10 @@ class GpsMedicalClient {
   Future<void> signOut() async {
     await tokenStore.clearTokens();
     _v1.removeBearerAuth(kBearerAuthSchemeName);
+  }
+
+  void _attachHttpDebugLogs(Dio dio, String label) {
+    if (!gpsHttpDebugLogsEnabled()) return;
+    dio.interceptors.add(HttpDebugLogInterceptor(label: label));
   }
 }

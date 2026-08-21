@@ -36,7 +36,7 @@ Project: **`gps-medical-dev`**
 
    ```bash
    cd mobile/patient_app
-   flutter run --flavor dev --dart-define=APP_FLAVOR=dev
+   flutter run --flavor dev --dart-define-from-file=config/dev.json
    ```
 
 Until step 2 completes, the app builds and runs but **skips** Firebase init (debug log only).
@@ -62,7 +62,7 @@ Until step 2 completes, the app builds and runs but **skips** Firebase init (deb
 3. Full rebuild:
 
    ```bash
-   flutter run --flavor dev --dart-define=APP_FLAVOR=dev
+   flutter run --flavor dev --dart-define-from-file=config/dev.json
    ```
 
 | Variable | Purpose |

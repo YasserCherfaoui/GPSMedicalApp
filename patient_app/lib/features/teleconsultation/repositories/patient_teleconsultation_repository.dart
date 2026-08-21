@@ -8,8 +8,8 @@ class TeleconsultationSessionException implements Exception {
   final int? statusCode;
 }
 
-class SpecialistTeleconsultationRepository {
-  SpecialistTeleconsultationRepository(this._client);
+class PatientTeleconsultationRepository {
+  PatientTeleconsultationRepository(this._client);
 
   final GpsMedicalClient _client;
 

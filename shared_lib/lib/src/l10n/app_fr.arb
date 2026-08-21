@@ -170,7 +170,7 @@
   "appointmentConfirmCancel": "Confirmer l'annulation",
   "appointmentDirections": "Itinéraire",
   "appointmentJoinTelehealth": "Rejoindre",
-  "appointmentJoinTelehealthHint": "La téléconsultation sera disponible dans une prochaine version.",
+  "appointmentJoinTelehealthHint": "Disponible 15 minutes avant l'heure du rendez-vous.",
   "appointmentLeaveReview": "Laisser un avis",
   "appointmentStatusPending": "En attente",
   "appointmentStatusConfirmed": "Confirmé",
@@ -818,6 +818,16 @@
   },
   "specialistTeleconsultWaitingPatient": "En attente du patient…",
   "specialistTeleconsultConnectionError": "Impossible de démarrer la téléconsultation.",
+  "patientTeleconsultTitle": "Téléconsultation",
+  "patientTeleconsultWindowClosed": "La session n'est pas encore ouverte.",
+  "patientTeleconsultOpensIn": "Ouverture dans {time}",
+  "@patientTeleconsultOpensIn": {
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+  "patientTeleconsultWaitingDoctor": "En attente du médecin…",
+  "patientTeleconsultConnectionError": "Impossible de démarrer la téléconsultation.",
   "specialistStatsRatingTitle": "Note moyenne",
   "specialistStatsAppointments": "Rendez-vous",
   "specialistStatsCompleted": "Terminés",

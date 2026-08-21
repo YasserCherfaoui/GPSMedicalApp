@@ -100,10 +100,14 @@ bool canPatientModifyAppointment(DateTime startAt) {
   return DateTime.now().isBefore(startAt.subtract(const Duration(hours: 24)));
 }
 
-bool canJoinTelehealth(DateTime startAt, String statusWire) {
+bool canJoinTelehealth({
+  required DateTime startAt,
+  required DateTime endAt,
+  required String statusWire,
+}) {
   if (statusWire != 'confirmed') return false;
   final now = DateTime.now();
   final windowStart = startAt.subtract(const Duration(minutes: 15));
-  return !now.isBefore(windowStart) &&
-      now.isBefore(startAt.add(const Duration(hours: 2)));
+  final windowEnd = endAt.add(const Duration(minutes: 30));
+  return !now.isBefore(windowStart) && !now.isAfter(windowEnd);
 }

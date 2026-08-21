@@ -434,7 +434,7 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get appointmentJoinTelehealthHint =>
-      'Aselkim aḥric ad yili deg lqem d-iteddun.';
+      'Yella 15 n tesdatin send aselkim.';
 
   @override
   String get appointmentLeaveReview => 'Eǧǧ tamawt';
@@ -1990,6 +1990,24 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get specialistTeleconsultConnectionError =>
+      'Ur izmir ara ad yebdu aselmen s usrid.';
+
+  @override
+  String get patientTeleconsultTitle => 'Aselmen s usrid';
+
+  @override
+  String get patientTeleconsultWindowClosed => 'Asarag ur yelli yezwar ara.';
+
+  @override
+  String patientTeleconsultOpensIn(String time) {
+    return 'Ad yili yezwar deg $time';
+  }
+
+  @override
+  String get patientTeleconsultWaitingDoctor => 'Ara ttraǧu imsujji…';
+
+  @override
+  String get patientTeleconsultConnectionError =>
       'Ur izmir ara ad yebdu aselmen s usrid.';
 
   @override

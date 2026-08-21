@@ -28,5 +28,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSCameraUsageDescription</key>
+	<string>GPS Médical a besoin de la caméra pour la téléconsultation.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>GPS Médical a besoin du microphone pour la téléconsultation.</string>
 </dict>
 </plist>

@@ -101,10 +101,12 @@ class _DetailBody extends ConsumerWidget {
         (status == AppointmentStatusEnum.pending ||
             status == AppointmentStatusEnum.confirmed) &&
         canPatientModifyAppointment(start);
+    final end = appointment.endAt?.toLocal();
     final showJoin =
         start != null &&
+        end != null &&
         appointment.mode == AppointmentModeEnum.telehealth &&
-        canJoinTelehealth(start, statusWire);
+        canJoinTelehealth(startAt: start, endAt: end, statusWire: statusWire);
     final relative = start != null
         ? formatReviewRelativeTime(start, locale)
         : '';
@@ -229,10 +231,11 @@ class _DetailBody extends ConsumerWidget {
             const SizedBox(height: GpsSpacing.md),
             Tooltip(
               message: l10n.appointmentJoinTelehealthHint,
-              child: FilledButton.icon(
-                onPressed: null,
-                icon: const Icon(Icons.videocam_outlined),
-                label: Text(l10n.appointmentJoinTelehealth),
+              child: PrimaryButton(
+                label: l10n.appointmentJoinTelehealth,
+                onPressed: () => context.push(
+                  GpsRoutes.appointmentTeleconsultation(appointmentId),
+                ),
               ),
             ),
           ],
