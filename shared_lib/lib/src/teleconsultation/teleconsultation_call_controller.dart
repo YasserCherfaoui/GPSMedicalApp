@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 
@@ -23,7 +24,7 @@ class TeleconsultationCallController {
   MediaStream? _remoteStream;
   TeleconsultationSignallingClient? _signalling;
   String? _appointmentId;
-  Timer? _pollTimer;
+  CancelToken? _pollCancel;
   bool _micEnabled = true;
   bool _cameraEnabled = true;
   bool _isOfferer = false;
@@ -96,10 +97,7 @@ class TeleconsultationCallController {
     if (isOfferer) {
       await _createAndSendOffer();
     }
-    _pollTimer = Timer.periodic(const Duration(milliseconds: 500), (_) {
-      unawaited(_poll());
-    });
-    await _poll();
+    unawaited(_pollLoop());
   }
 
   Future<void> sendHangup() async {
@@ -136,8 +134,8 @@ class TeleconsultationCallController {
 
   Future<void> dispose() async {
     _disposed = true;
-    _pollTimer?.cancel();
-    _pollTimer = null;
+    _pollCancel?.cancel();
+    _pollCancel = null;
     _pendingRemoteIce.clear();
     _queuedLocalIce.clear();
     for (final track in _localStream?.getTracks() ?? []) {
@@ -173,6 +171,25 @@ class TeleconsultationCallController {
     await _flushQueuedLocalIce();
   }
 
+  Future<void> _pollLoop() async {
+    while (!_disposed) {
+      _pollCancel = CancelToken();
+      try {
+        await _poll();
+      } on DioException catch (error) {
+        if (_disposed || CancelToken.isCancel(error)) {
+          return;
+        }
+        _log('poll failed: $error');
+        await Future<void>.delayed(const Duration(seconds: 1));
+      } catch (error) {
+        if (_disposed) return;
+        _log('poll failed: $error');
+        await Future<void>.delayed(const Duration(seconds: 1));
+      }
+    }
+  }
+
   Future<void> _poll() async {
     if (_disposed || _polling) return;
     final signalling = _signalling;
@@ -184,6 +201,8 @@ class TeleconsultationCallController {
       final signals = await signalling.list(
         appointmentId: appointmentId,
         since: _since,
+        waitMs: 10000,
+        cancelToken: _pollCancel,
       );
       for (final signal in signals) {
         if (_disposed) return;
@@ -192,8 +211,6 @@ class TeleconsultationCallController {
         }
         await _applyRemoteSignal(signal);
       }
-    } catch (error) {
-      _log('poll failed: $error');
     } finally {
       _polling = false;
     }

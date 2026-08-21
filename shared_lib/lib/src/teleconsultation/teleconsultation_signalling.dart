@@ -84,10 +84,13 @@ class TeleconsultationSignallingClient {
   Future<List<TeleconsultSignal>> list({
     required String appointmentId,
     required int since,
+    int waitMs = 0,
+    CancelToken? cancelToken,
   }) async {
     final response = await _dio.get<Map<String, dynamic>>(
       '/teleconsultations/$appointmentId/signals',
-      queryParameters: {'since': since},
+      queryParameters: {'since': since, if (waitMs > 0) 'wait_ms': waitMs},
+      cancelToken: cancelToken,
     );
     final raw = response.data?['signals'];
     if (raw is! List) return const [];
