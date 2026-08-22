@@ -1989,6 +1989,30 @@ class AppLocalizationsAr extends AppLocalizations {
   String get patientTeleconsultConnectionError => 'تعذر بدء الاستشارة عن بُعد.';
 
   @override
+  String get teleconsultMicOn => 'الميكروفون مفعّل';
+
+  @override
+  String get teleconsultMicOff => 'الميكروفون متوقف';
+
+  @override
+  String get teleconsultCameraOn => 'الكاميرا مفعّلة';
+
+  @override
+  String get teleconsultCameraOff => 'الكاميرا متوقفة';
+
+  @override
+  String get teleconsultHangupTitle => 'إنهاء المكالمة؟';
+
+  @override
+  String get teleconsultHangupMessage => 'سيتم قطع اتصال المشارك الآخر.';
+
+  @override
+  String get teleconsultHangupConfirm => 'إنهاء';
+
+  @override
+  String get teleconsultHangupStay => 'البقاء في المكالمة';
+
+  @override
   String get specialistStatsRatingTitle => 'التقييم المتوسط';
 
   @override

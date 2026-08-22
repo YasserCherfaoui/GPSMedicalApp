@@ -2034,6 +2034,31 @@ class AppLocalizationsFr extends AppLocalizations {
       'Impossible de démarrer la téléconsultation.';
 
   @override
+  String get teleconsultMicOn => 'Micro allumé';
+
+  @override
+  String get teleconsultMicOff => 'Micro coupé';
+
+  @override
+  String get teleconsultCameraOn => 'Caméra allumée';
+
+  @override
+  String get teleconsultCameraOff => 'Caméra coupée';
+
+  @override
+  String get teleconsultHangupTitle => 'Terminer l\'appel ?';
+
+  @override
+  String get teleconsultHangupMessage =>
+      'L\'autre participant sera déconnecté.';
+
+  @override
+  String get teleconsultHangupConfirm => 'Raccrocher';
+
+  @override
+  String get teleconsultHangupStay => 'Rester dans l\'appel';
+
+  @override
   String get specialistStatsRatingTitle => 'Note moyenne';
 
   @override

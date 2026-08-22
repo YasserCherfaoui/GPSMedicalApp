@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
@@ -31,6 +30,7 @@ class _SpecialistTeleconsultationScreenState
   String? _errorMessage;
   bool _loading = true;
   bool _ending = false;
+  bool _confirmingHangup = false;
   Duration? _opensIn;
 
   @override
@@ -102,6 +102,9 @@ class _SpecialistTeleconsultationScreenState
         onRemoteStreamChanged: () {
           if (mounted) setState(() {});
         },
+        onLocalMediaChanged: () {
+          if (mounted) setState(() {});
+        },
         onRemoteHangup: () {
           if (mounted) unawaited(_endCall(notifyPeer: false));
         },
@@ -151,6 +154,18 @@ class _SpecialistTeleconsultationScreenState
           context,
         )!.specialistTeleconsultConnectionError;
       });
+    }
+  }
+
+  Future<void> _requestHangup() async {
+    if (_ending || _confirmingHangup) return;
+    _confirmingHangup = true;
+    try {
+      final confirmed = await TeleconsultationCallBar.confirmHangup(context);
+      if (!mounted || !confirmed) return;
+      await _endCall();
+    } finally {
+      _confirmingHangup = false;
     }
   }
 
@@ -222,147 +237,60 @@ class _SpecialistTeleconsultationScreenState
       );
     }
 
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text(l10n.specialistTeleconsultTitle),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        unawaited(_requestHangup());
+      },
+      child: Scaffold(
         backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-      ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          if (controller.remoteStream != null)
-            _RemoteVideoPreview(stream: controller.remoteStream!)
-          else
-            Center(
-              child: Text(
-                l10n.specialistTeleconsultWaitingPatient,
-                style: const TextStyle(color: Colors.white70),
+        appBar: AppBar(
+          title: Text(l10n.specialistTeleconsultTitle),
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+            onPressed: _requestHangup,
+          ),
+        ),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            TeleconsultationRemotePreview(
+              stream: controller.remoteStream,
+              waitingLabel: l10n.specialistTeleconsultWaitingPatient,
+            ),
+            Positioned(
+              right: GpsSpacing.md,
+              top: GpsSpacing.md,
+              width: 120,
+              height: 160,
+              child: controller.localStream != null
+                  ? TeleconsultationLocalPreview(
+                      stream: controller.localStream!,
+                      cameraEnabled: controller.cameraEnabled,
+                    )
+                  : const SizedBox.shrink(),
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: GpsSpacing.lg,
+              child: TeleconsultationCallBar(
+                micEnabled: controller.micEnabled,
+                cameraEnabled: controller.cameraEnabled,
+                onMicPressed: () =>
+                    controller.setMicEnabled(!controller.micEnabled),
+                onCameraPressed: () =>
+                    controller.setCameraEnabled(!controller.cameraEnabled),
+                onHangupPressed: _requestHangup,
               ),
             ),
-          Positioned(
-            right: GpsSpacing.md,
-            top: GpsSpacing.md,
-            width: 120,
-            height: 160,
-            child: controller.localStream != null
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(GpsRadii.md),
-                    child: _LocalVideoPreview(stream: controller.localStream!),
-                  )
-                : const SizedBox.shrink(),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: GpsSpacing.lg,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton.filled(
-                  onPressed: () =>
-                      controller.setMicEnabled(!controller.micEnabled),
-                  icon: Icon(controller.micEnabled ? Icons.mic : Icons.mic_off),
-                ),
-                const SizedBox(width: GpsSpacing.md),
-                IconButton.filled(
-                  onPressed: () =>
-                      controller.setCameraEnabled(!controller.cameraEnabled),
-                  icon: Icon(
-                    controller.cameraEnabled
-                        ? Icons.videocam
-                        : Icons.videocam_off,
-                  ),
-                ),
-                const SizedBox(width: GpsSpacing.md),
-                IconButton.filled(
-                  style: IconButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.error,
-                  ),
-                  onPressed: _endCall,
-                  icon: const Icon(Icons.call_end),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
-  }
-}
-
-class _RemoteVideoPreview extends StatefulWidget {
-  const _RemoteVideoPreview({required this.stream});
-
-  final MediaStream stream;
-
-  @override
-  State<_RemoteVideoPreview> createState() => _RemoteVideoPreviewState();
-}
-
-class _RemoteVideoPreviewState extends State<_RemoteVideoPreview> {
-  final _renderer = RTCVideoRenderer();
-
-  @override
-  void initState() {
-    super.initState();
-    _initRenderer();
-  }
-
-  Future<void> _initRenderer() async {
-    await _renderer.initialize();
-    _renderer.srcObject = widget.stream;
-    if (mounted) setState(() {});
-  }
-
-  @override
-  void dispose() {
-    _renderer.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return RTCVideoView(
-      _renderer,
-      objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
-    );
-  }
-}
-
-class _LocalVideoPreview extends StatefulWidget {
-  const _LocalVideoPreview({required this.stream});
-
-  final MediaStream stream;
-
-  @override
-  State<_LocalVideoPreview> createState() => _LocalVideoPreviewState();
-}
-
-class _LocalVideoPreviewState extends State<_LocalVideoPreview> {
-  final _renderer = RTCVideoRenderer();
-
-  @override
-  void initState() {
-    super.initState();
-    _initRenderer();
-  }
-
-  Future<void> _initRenderer() async {
-    await _renderer.initialize();
-    _renderer.srcObject = widget.stream;
-    if (mounted) setState(() {});
-  }
-
-  @override
-  void dispose() {
-    _renderer.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return RTCVideoView(_renderer, mirror: true);
   }
 }

@@ -47,6 +47,7 @@ export 'src/screens/screens.dart';
 export 'src/teleconsultation/ice_servers.dart';
 export 'src/teleconsultation/sdp_compat.dart';
 export 'src/teleconsultation/teleconsultation_call_controller.dart';
+export 'src/teleconsultation/teleconsultation_call_controls.dart';
 export 'src/teleconsultation/teleconsultation_signalling.dart';
 export 'src/theme/gps_colors.dart';
 export 'src/theme/gps_elevation.dart';

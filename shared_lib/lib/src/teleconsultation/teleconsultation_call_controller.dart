@@ -12,11 +12,13 @@ import 'teleconsultation_signalling.dart';
 class TeleconsultationCallController {
   TeleconsultationCallController({
     this.onRemoteStreamChanged,
+    this.onLocalMediaChanged,
     this.onRemoteHangup,
     this.onIceFailed,
   });
 
   VoidCallback? onRemoteStreamChanged;
+  VoidCallback? onLocalMediaChanged;
   VoidCallback? onRemoteHangup;
   VoidCallback? onIceFailed;
 
@@ -120,6 +122,7 @@ class TeleconsultationCallController {
     for (final track in _localStream?.getAudioTracks() ?? []) {
       track.enabled = enabled;
     }
+    onLocalMediaChanged?.call();
   }
 
   Future<void> setCameraEnabled(bool enabled) async {
@@ -127,6 +130,7 @@ class TeleconsultationCallController {
     for (final track in _localStream?.getVideoTracks() ?? []) {
       track.enabled = enabled;
     }
+    onLocalMediaChanged?.call();
   }
 
   int elapsedSeconds() {

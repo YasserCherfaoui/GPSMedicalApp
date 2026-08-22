@@ -13,6 +13,7 @@ class GpsModal extends StatelessWidget {
     this.onPrimaryAction,
     this.secondaryActionLabel,
     this.onSecondaryAction,
+    this.primaryIsDestructive = false,
     this.child,
   });
 
@@ -22,6 +23,7 @@ class GpsModal extends StatelessWidget {
   final VoidCallback? onPrimaryAction;
   final String? secondaryActionLabel;
   final VoidCallback? onSecondaryAction;
+  final bool primaryIsDestructive;
   final Widget? child;
 
   static Future<T?> show<T>({
@@ -32,6 +34,7 @@ class GpsModal extends StatelessWidget {
     VoidCallback? onPrimaryAction,
     String? secondaryActionLabel,
     VoidCallback? onSecondaryAction,
+    bool primaryIsDestructive = false,
     Widget? child,
   }) {
     return showDialog<T>(
@@ -43,6 +46,7 @@ class GpsModal extends StatelessWidget {
         onPrimaryAction: onPrimaryAction,
         secondaryActionLabel: secondaryActionLabel,
         onSecondaryAction: onSecondaryAction,
+        primaryIsDestructive: primaryIsDestructive,
         child: child,
       ),
     );
@@ -70,8 +74,14 @@ class GpsModal extends StatelessWidget {
             const SizedBox(height: GpsSpacing.lg),
             if (primaryActionLabel != null)
               FilledButton(
+                style: primaryIsDestructive
+                    ? FilledButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.error,
+                        foregroundColor: Theme.of(context).colorScheme.onError,
+                      )
+                    : null,
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(true);
                   onPrimaryAction?.call();
                 },
                 child: Text(primaryActionLabel!),
@@ -80,7 +90,7 @@ class GpsModal extends StatelessWidget {
               const SizedBox(height: GpsSpacing.sm),
               OutlinedButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pop(false);
                   onSecondaryAction?.call();
                 },
                 child: Text(secondaryActionLabel!),

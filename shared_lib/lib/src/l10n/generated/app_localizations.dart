@@ -3760,6 +3760,54 @@ abstract class AppLocalizations {
   /// **'Impossible de démarrer la téléconsultation.'**
   String get patientTeleconsultConnectionError;
 
+  /// No description provided for @teleconsultMicOn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Micro allumé'**
+  String get teleconsultMicOn;
+
+  /// No description provided for @teleconsultMicOff.
+  ///
+  /// In fr, this message translates to:
+  /// **'Micro coupé'**
+  String get teleconsultMicOff;
+
+  /// No description provided for @teleconsultCameraOn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Caméra allumée'**
+  String get teleconsultCameraOn;
+
+  /// No description provided for @teleconsultCameraOff.
+  ///
+  /// In fr, this message translates to:
+  /// **'Caméra coupée'**
+  String get teleconsultCameraOff;
+
+  /// No description provided for @teleconsultHangupTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminer l\'appel ?'**
+  String get teleconsultHangupTitle;
+
+  /// No description provided for @teleconsultHangupMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'autre participant sera déconnecté.'**
+  String get teleconsultHangupMessage;
+
+  /// No description provided for @teleconsultHangupConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Raccrocher'**
+  String get teleconsultHangupConfirm;
+
+  /// No description provided for @teleconsultHangupStay.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rester dans l\'appel'**
+  String get teleconsultHangupStay;
+
   /// No description provided for @specialistStatsRatingTitle.
   ///
   /// In fr, this message translates to:

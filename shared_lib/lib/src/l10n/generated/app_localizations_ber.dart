@@ -2011,6 +2011,30 @@ class AppLocalizationsBer extends AppLocalizations {
       'Ur izmir ara ad yebdu aselmen s usrid.';
 
   @override
+  String get teleconsultMicOn => 'Amikru yermed';
+
+  @override
+  String get teleconsultMicOff => 'Amikru yens';
+
+  @override
+  String get teleconsultCameraOn => 'Takamirat yermed';
+
+  @override
+  String get teleconsultCameraOff => 'Takamirat yens';
+
+  @override
+  String get teleconsultHangupTitle => 'Smed asawel?';
+
+  @override
+  String get teleconsultHangupMessage => 'Amyar nni ad yettwazreɛ.';
+
+  @override
+  String get teleconsultHangupConfirm => 'Smed asawel';
+
+  @override
+  String get teleconsultHangupStay => 'Qqim deg usawel';
+
+  @override
   String get specialistStatsRatingTitle => 'Tazmert tamatut';
 
   @override

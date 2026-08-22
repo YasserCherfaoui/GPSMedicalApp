@@ -95,6 +95,40 @@ void main() {
       expect(find.text('Message'), findsOneWidget);
       expect(find.text('OK'), findsOneWidget);
     });
+
+    testWidgets('destructive primary pops true', (tester) async {
+      bool? result;
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: GpsTheme.light(),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: const Locale('fr'),
+          home: Builder(
+            builder: (context) => Scaffold(
+              body: ElevatedButton(
+                onPressed: () async {
+                  result = await GpsModal.show<bool>(
+                    context: context,
+                    title: 'Terminer ?',
+                    primaryActionLabel: 'Raccrocher',
+                    secondaryActionLabel: 'Rester',
+                    primaryIsDestructive: true,
+                  );
+                },
+                child: const Text('open'),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('open'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Raccrocher'));
+      await tester.pumpAndSettle();
+      expect(result, isTrue);
+    });
   });
 
   group('GpsBadge', () {
