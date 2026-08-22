@@ -62,4 +62,33 @@ class AuthUserSnapshot {
       return null;
     }
   }
+
+  /// UTC expiry from a JWT `exp` claim, or null if [token] is not a JWT.
+  static DateTime? expiryFromJwt(String token) {
+    final parts = token.split('.');
+    if (parts.length != 3) {
+      return null;
+    }
+    try {
+      final normalized = base64Url.normalize(parts[1]);
+      final payload =
+          jsonDecode(utf8.decode(base64Url.decode(normalized)))
+              as Map<String, dynamic>;
+      final exp = payload['exp'];
+      if (exp is int) {
+        return DateTime.fromMillisecondsSinceEpoch(exp * 1000, isUtc: true);
+      }
+      if (exp is num) {
+        return DateTime.fromMillisecondsSinceEpoch(
+          (exp * 1000).round(),
+          isUtc: true,
+        );
+      }
+      return null;
+    } on FormatException {
+      return null;
+    } on Object {
+      return null;
+    }
+  }
 }

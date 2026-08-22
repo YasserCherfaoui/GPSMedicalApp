@@ -11,46 +11,61 @@ class SpecialistVerificationGate extends ChangeNotifier {
   final SpecialistVerificationRepository _repository;
 
   SpecialistVerificationState _state = SpecialistVerificationState.initial;
+  bool _disposed = false;
 
   SpecialistVerificationState get state => _state;
 
   SpecialistVerificationStatus get status => _state.status;
 
   Future<void> refresh() async {
+    if (_disposed) return;
     _state = _state.copyWith(
       isLoading: true,
       refreshStatus: VerificationRefreshStatus.loading,
     );
-    notifyListeners();
+    _emit();
 
     try {
       _state = (await _repository.fetch()).copyWith(
         refreshStatus: VerificationRefreshStatus.completed,
       );
     } catch (e) {
+      if (_disposed) return;
       if (kDebugMode) {
         debugPrint('Specialist verification refresh failed: $e');
       }
-      _state = _state.copyWith(
-        refreshStatus: VerificationRefreshStatus.failed,
-      );
+      _state = _state.copyWith(refreshStatus: VerificationRefreshStatus.failed);
     } finally {
-      _state = _state.copyWith(
-        isLoading: false,
-        lastCheckedAt: DateTime.now(),
-      );
-      notifyListeners();
+      if (!_disposed) {
+        _state = _state.copyWith(
+          isLoading: false,
+          lastCheckedAt: DateTime.now(),
+        );
+        _emit();
+      }
     }
   }
 
   void reset() {
+    if (_disposed) return;
     _state = const SpecialistVerificationState(
       status: SpecialistVerificationStatus.pending,
       refreshStatus: VerificationRefreshStatus.idle,
     );
-    notifyListeners();
+    _emit();
   }
 
   /// Re-run [GoRouter] redirects after listeners attach (first fetch may finish earlier).
-  void publish() => notifyListeners();
+  void publish() => _emit();
+
+  @override
+  void dispose() {
+    _disposed = true;
+    super.dispose();
+  }
+
+  void _emit() {
+    if (_disposed) return;
+    notifyListeners();
+  }
 }

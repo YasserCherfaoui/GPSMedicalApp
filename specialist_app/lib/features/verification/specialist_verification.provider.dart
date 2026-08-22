@@ -10,7 +10,9 @@ import 'specialist_verification_state.dart';
 
 final specialistVerificationRepositoryProvider =
     Provider<SpecialistVerificationRepository>((ref) {
-      return SpecialistVerificationRepository(ref.watch(gpsMedicalClientProvider));
+      return SpecialistVerificationRepository(
+        ref.watch(gpsMedicalClientProvider),
+      );
     });
 
 /// Verification gate — [ChangeNotifierProvider] so screens rebuild and
@@ -21,7 +23,12 @@ final specialistVerificationGateProvider =
         ref.watch(specialistVerificationRepositoryProvider),
       );
 
-      ref.listen<AuthSessionNotifier>(authSessionProvider, (previous, next) {
+      ref.listen<AuthSession>(authSessionStateProvider, (previous, next) {
+        // Token refresh notifies the session without a login/logout. Do not
+        // hit GET /doctors/me (or rebuild this gate) in the middle of a call.
+        if (previous?.isAuthenticated == true && next.isAuthenticated) {
+          return;
+        }
         if (next.isAuthenticated) {
           unawaited(gate.refresh());
         } else {

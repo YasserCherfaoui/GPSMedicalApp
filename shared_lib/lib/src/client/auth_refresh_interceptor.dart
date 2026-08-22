@@ -2,12 +2,15 @@ import 'dart:async';
 
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:gps_medical_api/gps_medical_api.dart';
 
+import '../auth/auth_user_snapshot.dart';
 import '../auth/token_store.dart';
 import '../constants/api_constants.dart';
 
 const String _retriedExtraKey = 'gps_auth_retried';
+const Duration _refreshLeadTime = Duration(seconds: 90);
 
 /// Refreshes an access token using a refresh token (typically `POST /auth/refresh`).
 typedef TokenRefresher = Future<TokenPair?> Function(String refreshToken);
@@ -53,14 +56,35 @@ class AuthRefreshInterceptor extends Interceptor {
   final TokenRefresher _refreshTokens;
   final Future<void> Function()? onSessionExpired;
   final void Function(TokenPair pair)? onTokensRefreshed;
-  Future<TokenPair?>? _refreshInFlight;
+
+  /// Process-wide lock so two Dio stacks cannot rotate the same refresh JWT.
+  static Future<TokenPair?>? _sharedRefreshInFlight;
+
+  @visibleForTesting
+  static void debugResetSharedRefresh() {
+    _sharedRefreshInFlight = null;
+  }
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final accessToken = tokenStore.accessToken;
-    if (accessToken != null && _shouldAttachAccessToken(options)) {
-      options.headers['Authorization'] = 'Bearer $accessToken';
+    unawaited(_prepareRequest(options, handler));
+  }
+
+  Future<void> _prepareRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    try {
+      if (_shouldRefreshProactively(options)) {
+        final refreshToken = tokenStore.refreshToken;
+        if (refreshToken != null && refreshToken.isNotEmpty) {
+          await _refreshShared(refreshToken);
+        }
+      }
+    } catch (_) {
+      // Attach whatever token we still have; 401 handling can retry.
     }
+    _attachAccessToken(options);
     handler.next(options);
   }
 
@@ -148,13 +172,18 @@ class AuthRefreshInterceptor extends Interceptor {
   }
 
   Future<TokenPair?> _refreshShared(String refreshToken) {
-    final inFlight = _refreshInFlight;
+    final existing = _pairFromStore();
+    if (existing != null && existing.refreshToken != refreshToken) {
+      return Future<TokenPair?>.value(existing);
+    }
+
+    final inFlight = _sharedRefreshInFlight;
     if (inFlight != null) {
       return inFlight;
     }
 
     final done = Completer<TokenPair?>();
-    _refreshInFlight = done.future;
+    _sharedRefreshInFlight = done.future;
     unawaited(
       Future<void>(() async {
         try {
@@ -164,8 +193,8 @@ class AuthRefreshInterceptor extends Interceptor {
             done.complete(null);
           }
         } finally {
-          if (identical(_refreshInFlight, done.future)) {
-            _refreshInFlight = null;
+          if (identical(_sharedRefreshInFlight, done.future)) {
+            _sharedRefreshInFlight = null;
           }
         }
       }),
@@ -174,17 +203,26 @@ class AuthRefreshInterceptor extends Interceptor {
   }
 
   Future<TokenPair?> _refreshAndStore(String refreshToken) async {
+    final existing = _pairFromStore();
+    if (existing != null && existing.refreshToken != refreshToken) {
+      return existing;
+    }
+
     try {
       final refreshed = await _refreshTokens(refreshToken);
       if (refreshed == null ||
           refreshed.accessToken == null ||
           refreshed.refreshToken == null) {
-        return null;
+        return _pairFromStore();
       }
       await tokenStore.saveTokens(refreshed);
       onTokensRefreshed?.call(refreshed);
       return refreshed;
     } on DioException catch (e) {
+      final rotated = _pairFromStore();
+      if (rotated != null && rotated.refreshToken != refreshToken) {
+        return rotated;
+      }
       if (_isDefinitiveAuthFailure(e)) {
         await onSessionExpired?.call();
       }
@@ -194,9 +232,48 @@ class AuthRefreshInterceptor extends Interceptor {
     }
   }
 
+  TokenPair? _pairFromStore() {
+    final access = tokenStore.accessToken;
+    final refresh = tokenStore.refreshToken;
+    if (access == null ||
+        access.isEmpty ||
+        refresh == null ||
+        refresh.isEmpty) {
+      return null;
+    }
+    return TokenPair(
+      (b) => b
+        ..accessToken = access
+        ..refreshToken = refresh
+        ..expiresIn = 0,
+    );
+  }
+
   bool _isDefinitiveAuthFailure(DioException error) {
     final status = error.response?.statusCode;
     return status == 401 || status == 403;
+  }
+
+  bool _shouldRefreshProactively(RequestOptions options) {
+    if (!_shouldAttachAccessToken(options) || _isPublicPath(options.uri.path)) {
+      return false;
+    }
+    final access = tokenStore.accessToken;
+    if (access == null || access.isEmpty) {
+      return false;
+    }
+    final expiry = AuthUserSnapshot.expiryFromJwt(access);
+    if (expiry == null) {
+      return false;
+    }
+    return !expiry.isAfter(DateTime.now().toUtc().add(_refreshLeadTime));
+  }
+
+  void _attachAccessToken(RequestOptions options) {
+    final accessToken = tokenStore.accessToken;
+    if (accessToken != null && _shouldAttachAccessToken(options)) {
+      options.headers['Authorization'] = 'Bearer $accessToken';
+    }
   }
 
   bool _shouldAttachAccessToken(RequestOptions options) {

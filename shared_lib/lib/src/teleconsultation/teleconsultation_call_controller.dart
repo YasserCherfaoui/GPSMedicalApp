@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 
+import 'sdp_compat.dart';
 import 'teleconsultation_signalling.dart';
 
 /// Local media + peer connection with REST SDP/ICE signalling (ADR 0012).
@@ -33,6 +34,8 @@ class TeleconsultationCallController {
   bool _remoteDescriptionSet = false;
   bool _hangupNotified = false;
   bool _localSdpPublished = false;
+  String? _localSdpText;
+  bool _firstPoll = true;
   int _since = 0;
   DateTime? _startedAt;
   Future<void> _iceSendChain = Future.value();
@@ -161,13 +164,15 @@ class TeleconsultationCallController {
       'offerToReceiveVideo': true,
     });
     await pc.setLocalDescription(offer);
+    final offerSdp = compatSdp(offer.sdp ?? '');
+    _localSdpText = offerSdp;
     await signalling.post(
       appointmentId: appointmentId,
       type: 'offer',
-      sdp: offer.sdp,
+      sdp: offerSdp,
     );
     _localSdpPublished = true;
-    _log('--> offer sdpChars=${offer.sdp?.length ?? 0}');
+    _log('--> offer sdpChars=${offerSdp.length}');
     await _flushQueuedLocalIce();
   }
 
@@ -201,15 +206,16 @@ class TeleconsultationCallController {
       final signals = await signalling.list(
         appointmentId: appointmentId,
         since: _since,
-        waitMs: 10000,
+        waitMs: _firstPoll ? 0 : 10000,
         cancelToken: _pollCancel,
       );
+      _firstPoll = false;
       for (final signal in signals) {
         if (_disposed) return;
+        await _applyRemoteSignal(signal);
         if (signal.seq > _since) {
           _since = signal.seq;
         }
-        await _applyRemoteSignal(signal);
       }
     } finally {
       _polling = false;
@@ -250,25 +256,36 @@ class TeleconsultationCallController {
     if (pc == null || signalling == null || appointmentId == null) return;
     if (sdp == null || sdp.isEmpty) return;
 
-    await pc.setRemoteDescription(RTCSessionDescription(sdp, 'offer'));
-    _remoteDescriptionSet = true;
-    await _flushPendingIce();
-    final answer = await pc.createAnswer();
-    await pc.setLocalDescription(answer);
+    if (!_remoteDescriptionSet) {
+      final remoteSdp = compatSdp(sdp);
+      await pc.setRemoteDescription(RTCSessionDescription(remoteSdp, 'offer'));
+      _remoteDescriptionSet = true;
+      await _flushPendingIce();
+      final answer = await pc.createAnswer();
+      await pc.setLocalDescription(answer);
+      _localSdpText = compatSdp(answer.sdp ?? '');
+    }
+
+    final answerSdp = _localSdpText;
+    if (answerSdp == null || answerSdp.isEmpty) return;
+    if (_localSdpPublished) return;
+
     await signalling.post(
       appointmentId: appointmentId,
       type: 'answer',
-      sdp: answer.sdp,
+      sdp: answerSdp,
     );
     _localSdpPublished = true;
-    _log('--> answer sdpChars=${answer.sdp?.length ?? 0}');
+    _log('--> answer sdpChars=${answerSdp.length}');
     await _flushQueuedLocalIce();
   }
 
   Future<void> _acceptAnswer(String? sdp) async {
     final pc = _peerConnection;
     if (pc == null || sdp == null || sdp.isEmpty) return;
-    await pc.setRemoteDescription(RTCSessionDescription(sdp, 'answer'));
+    await pc.setRemoteDescription(
+      RTCSessionDescription(compatSdp(sdp), 'answer'),
+    );
     _remoteDescriptionSet = true;
     await _flushPendingIce();
   }
@@ -329,6 +346,27 @@ class TeleconsultationCallController {
         ),
       );
       _log('--> ice candidate');
+    } on DioException catch (error) {
+      final status = error.response?.statusCode;
+      if (status == 500) {
+        try {
+          await signalling.post(
+            appointmentId: appointmentId,
+            type: 'ice_candidate',
+            candidate: TeleconsultIceCandidate(
+              candidate: value,
+              sdpMid: candidate.sdpMid,
+              sdpMLineIndex: candidate.sdpMLineIndex,
+            ),
+          );
+          _log('--> ice candidate (retry)');
+          return;
+        } catch (retryError) {
+          _log('ICE post failed: $retryError');
+          return;
+        }
+      }
+      _log('ICE post failed: $error');
     } catch (error) {
       _log('ICE post failed: $error');
     }

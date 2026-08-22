@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:specialist_app/features/verification/specialist_verification_gate.dart';
@@ -36,6 +38,15 @@ void main() {
     expect(notifications, countAfterRefresh + 1);
     expect(gate.status, SpecialistVerificationStatus.verified);
   });
+
+  test('refresh after dispose does not throw', () async {
+    final repo = _CompleterRepository();
+    final gate = SpecialistVerificationGate(repo);
+    final refreshFuture = gate.refresh();
+    gate.dispose();
+    repo.complete();
+    await refreshFuture;
+  });
 }
 
 class _VerifiedRepository extends SpecialistVerificationRepository {
@@ -53,4 +64,27 @@ class _VerifiedRepository extends SpecialistVerificationRepository {
       status: SpecialistVerificationStatus.verified,
     );
   }
+}
+
+class _CompleterRepository extends SpecialistVerificationRepository {
+  _CompleterRepository()
+    : super(
+        GpsMedicalClient(
+          tokenStore: InMemoryTokenStore(),
+          apiRootUrl: 'http://localhost:8080',
+        ),
+      );
+
+  final _completer = Completer<SpecialistVerificationState>();
+
+  void complete() {
+    _completer.complete(
+      const SpecialistVerificationState(
+        status: SpecialistVerificationStatus.verified,
+      ),
+    );
+  }
+
+  @override
+  Future<SpecialistVerificationState> fetch() => _completer.future;
 }
