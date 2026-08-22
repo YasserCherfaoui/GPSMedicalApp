@@ -13,6 +13,7 @@ class GpsMedicalClient {
   GpsMedicalClient({
     required this.tokenStore,
     this.onSessionExpired,
+    this.onTokensRefreshed,
     String? apiRootUrl,
     Dio? v1Dio,
     Duration connectTimeout = const Duration(seconds: 15),
@@ -54,6 +55,7 @@ class GpsMedicalClient {
         tokenStore: tokenStore,
         refreshDio: refreshDio,
         onSessionExpired: onSessionExpired,
+        onTokensRefreshed: onTokensRefreshed,
       ),
     );
     _attachHttpDebugLogs(authenticatedDio, 'v1');
@@ -86,6 +88,7 @@ class GpsMedicalClient {
   final String v1BaseUrl;
   final TokenStore tokenStore;
   final Future<void> Function()? onSessionExpired;
+  final void Function(TokenPair pair)? onTokensRefreshed;
 
   late final GpsMedicalApi _v1;
   late final GpsMedicalApi _root;

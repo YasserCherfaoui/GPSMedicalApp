@@ -1030,7 +1030,7 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
         phoneE164: phone,
         code: code,
       );
-      await ref.read(authSessionProvider).signIn(tokens);
+      await ref.read(authSessionProvider).signIn(tokens, phone: phone);
       if (mounted) {
         context.go(GpsRoutes.biometricSetup);
       }
@@ -1333,7 +1333,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
             code: otp,
             newPassword: _passwordController.text,
           );
-      await ref.read(authSessionProvider).signIn(tokens);
+      await ref.read(authSessionProvider).signIn(tokens, phone: phone);
       if (mounted) {
         context.go(GpsRoutes.profile);
       }

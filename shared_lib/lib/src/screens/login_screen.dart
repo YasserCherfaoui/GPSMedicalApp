@@ -57,7 +57,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       final tokens = await ref
           .read(authRepositoryProvider)
           .login(phoneE164: _phoneE164!, password: _passwordController.text);
-      await ref.read(authSessionProvider).signIn(tokens);
+      await ref.read(authSessionProvider).signIn(tokens, phone: _phoneE164);
       if (mounted) {
         context.go(GpsRoutes.profile);
       }

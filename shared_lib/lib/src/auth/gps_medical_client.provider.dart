@@ -28,6 +28,7 @@ GpsMedicalClient gpsMedicalClient(Ref ref) {
   return GpsMedicalClient(
     tokenStore: tokenStore,
     onSessionExpired: sessionNotifier.handleSessionExpired,
+    onTokensRefreshed: sessionNotifier.applyRefreshedTokens,
     apiRootUrl: apiRootUrl,
   );
 }

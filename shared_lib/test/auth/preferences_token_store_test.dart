@@ -41,6 +41,9 @@ void main() {
             ..expiresIn = 3600,
         ),
       );
+      await store.saveUserSnapshot(
+        const AuthUserSnapshot(userId: 'u1', role: 'patient', phone: '+2131'),
+      );
       await store.clearTokens();
 
       final reloaded = SharedPreferencesTokenStore(prefs);
@@ -48,6 +51,24 @@ void main() {
 
       expect(reloaded.accessToken, isNull);
       expect(reloaded.refreshToken, isNull);
+      expect(reloaded.userSnapshot, isNull);
+    });
+
+    test('persists and reloads user snapshot', () async {
+      final store = SharedPreferencesTokenStore(prefs);
+      await store.saveUserSnapshot(
+        const AuthUserSnapshot(
+          userId: 'u1',
+          role: 'specialist',
+          phone: '+21620111222',
+        ),
+      );
+
+      final reloaded = SharedPreferencesTokenStore(prefs);
+      await reloaded.load();
+      expect(reloaded.userSnapshot?.userId, 'u1');
+      expect(reloaded.userSnapshot?.role, 'specialist');
+      expect(reloaded.userSnapshot?.phone, '+21620111222');
     });
   });
 }

@@ -9,6 +9,7 @@ export 'src/auth/auth_repository.provider.dart';
 export 'src/auth/auth_session.dart';
 export 'src/auth/auth_session.notifier.dart';
 export 'src/auth/auth_session.provider.dart';
+export 'src/auth/auth_user_snapshot.dart';
 export 'src/auth/gps_medical_client.provider.dart';
 export 'src/auth/preferences_token_store.dart';
 export 'src/auth/registration_draft.provider.dart' hide RegistrationDraft;

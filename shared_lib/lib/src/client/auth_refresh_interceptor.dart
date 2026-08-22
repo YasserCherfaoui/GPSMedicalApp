@@ -19,6 +19,7 @@ class AuthRefreshInterceptor extends Interceptor {
     required this.tokenStore,
     required TokenRefresher refreshTokens,
     this.onSessionExpired,
+    this.onTokensRefreshed,
   }) : _refreshTokens = refreshTokens;
 
   factory AuthRefreshInterceptor.withDio({
@@ -26,6 +27,7 @@ class AuthRefreshInterceptor extends Interceptor {
     required TokenStore tokenStore,
     required Dio refreshDio,
     Future<void> Function()? onSessionExpired,
+    void Function(TokenPair pair)? onTokensRefreshed,
     Serializers? serializers,
   }) {
     final resolvedSerializers = serializers ?? standardSerializers;
@@ -33,6 +35,7 @@ class AuthRefreshInterceptor extends Interceptor {
       dio: dio,
       tokenStore: tokenStore,
       onSessionExpired: onSessionExpired,
+      onTokensRefreshed: onTokensRefreshed,
       refreshTokens: (refreshToken) async {
         final response = await AuthApi(refreshDio, resolvedSerializers)
             .refreshTokens(
@@ -49,6 +52,7 @@ class AuthRefreshInterceptor extends Interceptor {
   final TokenStore tokenStore;
   final TokenRefresher _refreshTokens;
   final Future<void> Function()? onSessionExpired;
+  final void Function(TokenPair pair)? onTokensRefreshed;
   Future<TokenPair?>? _refreshInFlight;
 
   @override
@@ -175,18 +179,24 @@ class AuthRefreshInterceptor extends Interceptor {
       if (refreshed == null ||
           refreshed.accessToken == null ||
           refreshed.refreshToken == null) {
-        await onSessionExpired?.call();
         return null;
       }
       await tokenStore.saveTokens(refreshed);
+      onTokensRefreshed?.call(refreshed);
       return refreshed;
-    } on DioException {
-      await onSessionExpired?.call();
+    } on DioException catch (e) {
+      if (_isDefinitiveAuthFailure(e)) {
+        await onSessionExpired?.call();
+      }
       return null;
     } catch (_) {
-      await onSessionExpired?.call();
       return null;
     }
+  }
+
+  bool _isDefinitiveAuthFailure(DioException error) {
+    final status = error.response?.statusCode;
+    return status == 401 || status == 403;
   }
 
   bool _shouldAttachAccessToken(RequestOptions options) {

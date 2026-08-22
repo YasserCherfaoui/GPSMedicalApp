@@ -19,6 +19,29 @@ void main() {
     expect(notifier.session.accessToken, 'access');
   });
 
+  test(
+    'restores authenticated session when only refresh token exists',
+    () async {
+      final store = InMemoryTokenStore();
+      await store.saveTokens(
+        TokenPair(
+          (b) => b
+            ..accessToken = 'x'
+            ..refreshToken = 'refresh'
+            ..expiresIn = 3600,
+        ),
+      );
+      await store.saveUserSnapshot(
+        const AuthUserSnapshot(userId: 'user-1', role: 'patient'),
+      );
+
+      final notifier = AuthSessionNotifier(store);
+
+      expect(notifier.isAuthenticated, isTrue);
+      expect(notifier.currentUser?.userId, 'user-1');
+    },
+  );
+
   test('signOut clears restored session', () async {
     final store = InMemoryTokenStore();
     await store.saveTokens(
