@@ -26,4 +26,38 @@ class AvailabilityRepository {
       rethrowBookingApiError(e);
     }
   }
+
+  Future<List<AvailabilitySlot>> fetchClinicSlots({
+    required String clinicId,
+    required String serviceId,
+    required Date from,
+    required Date to,
+    String? mode,
+  }) async {
+    try {
+      final response = await _client.availability.getClinicServiceAvailability(
+        clinicId: clinicId,
+        serviceId: serviceId,
+        from: from,
+        to: to,
+        mode: mode == null || mode == 'both' ? null : mode,
+      );
+      final clinicSlots = response.data?.toList() ?? [];
+      return clinicSlots.map(_mapClinicSlot).toList();
+    } catch (e) {
+      rethrowBookingApiError(e);
+    }
+  }
+}
+
+AvailabilitySlot _mapClinicSlot(ClinicAvailabilitySlot slot) {
+  return AvailabilitySlot(
+    (b) => b
+      ..startAt = slot.startAt
+      ..endAt = slot.endAt
+      ..slotLockToken = slot.slotLockToken
+      ..mode = slot.mode == ClinicAvailabilitySlotModeEnum.telehealth
+          ? AvailabilitySlotModeEnum.telehealth
+          : AvailabilitySlotModeEnum.inPerson,
+  );
 }

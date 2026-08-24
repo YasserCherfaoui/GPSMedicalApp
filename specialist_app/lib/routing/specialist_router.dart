@@ -14,6 +14,7 @@ import '../features/stats/screens/specialist_stats_screen.dart';
 import '../features/teleconsultation/screens/specialist_teleconsultation_screen.dart';
 import '../features/notifications/screens/specialist_notifications_list_screen.dart';
 import '../features/prescriptions/screens/specialist_prescription_compose_screen.dart';
+import '../features/profile/screens/clinic_memberships_screen.dart';
 import '../features/profile/screens/specialist_profile_edit_screen.dart';
 import '../features/schedule/screens/schedule_editor_screen.dart';
 import '../screens/specialist_shell_screen.dart';
@@ -178,6 +179,10 @@ GoRouter createSpecialistRouter({
       GoRoute(
         path: SpecialistRoutes.notifications,
         builder: (context, state) => const SpecialistNotificationsListScreen(),
+      ),
+      GoRoute(
+        path: SpecialistRoutes.clinicMemberships,
+        builder: (context, state) => const ClinicMembershipsScreen(),
       ),
       GoRoute(
         path: SpecialistRoutes.shell,

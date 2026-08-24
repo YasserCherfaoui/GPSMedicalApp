@@ -58,8 +58,8 @@ abstract class AppointmentCreate implements Built<AppointmentCreate, Appointment
   factory AppointmentCreate([void updates(AppointmentCreateBuilder b)]) = _$AppointmentCreate;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(AppointmentCreateBuilder b) => b
-      ..origin = AppointmentCreateOriginEnum.valueOf('doctor_direct');
+  static void _defaults(AppointmentCreateBuilder b) =>
+      b..origin = AppointmentCreateOriginEnum.doctorDirect;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<AppointmentCreate> get serializer => _$AppointmentCreateSerializer();

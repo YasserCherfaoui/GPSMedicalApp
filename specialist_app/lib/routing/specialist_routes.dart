@@ -6,6 +6,7 @@ abstract final class SpecialistRoutes {
   static const scheduleEdit = '/specialist/schedule/edit';
   static const shell = '/specialist/shell';
   static const notifications = '/specialist/notifications';
+  static const clinicMemberships = '/specialist/clinic-memberships';
 
   static String appointmentDetail(String id) => '/specialist/appointments/$id';
   static String appointmentReschedule(String id) =>

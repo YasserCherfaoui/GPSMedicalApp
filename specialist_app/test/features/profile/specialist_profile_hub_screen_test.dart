@@ -35,6 +35,10 @@ void main() {
             path: SpecialistRoutes.notifications,
             builder: (context, state) => const SizedBox.shrink(),
           ),
+          GoRoute(
+            path: SpecialistRoutes.clinicMemberships,
+            builder: (context, state) => const SizedBox.shrink(),
+          ),
         ],
       ),
     );
@@ -42,5 +46,6 @@ void main() {
 
     expect(find.text('Dr. Test Specialist'), findsOneWidget);
     expect(find.text('Modifier mon profil'), findsOneWidget);
+    expect(find.text('Affiliations cliniques'), findsOneWidget);
   });
 }

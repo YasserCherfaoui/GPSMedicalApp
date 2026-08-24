@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../booking/providers/booking_draft.provider.dart';
 import '../providers/clinic_detail.provider.dart';
 import '../repositories/clinic_repository.dart';
 import '../utils/clinic_display.dart';
@@ -192,7 +193,11 @@ class _ClinicDetailBody extends StatelessWidget {
             ...detail.services.map(
               (service) => Padding(
                 padding: const EdgeInsets.only(bottom: GpsSpacing.sm),
-                child: _ServiceTile(service: service),
+                child: _ServiceTile(
+                  service: service,
+                  clinicId: clinic.id ?? '',
+                  clinicName: clinic.name ?? '',
+                ),
               ),
             ),
           const SizedBox(height: GpsSpacing.lg),
@@ -282,13 +287,19 @@ class _SectionTitle extends StatelessWidget {
   }
 }
 
-class _ServiceTile extends StatelessWidget {
-  const _ServiceTile({required this.service});
+class _ServiceTile extends ConsumerWidget {
+  const _ServiceTile({
+    required this.service,
+    required this.clinicId,
+    required this.clinicName,
+  });
 
   final ClinicService service;
+  final String clinicId;
+  final String clinicName;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = AppLocalizations.of(context)!;
@@ -365,6 +376,28 @@ class _ServiceTile extends StatelessWidget {
                   ),
               ],
             ),
+            if (service.id != null &&
+                service.id!.isNotEmpty &&
+                clinicId.isNotEmpty) ...[
+              const SizedBox(height: GpsSpacing.md),
+              PrimaryButton(
+                label: l10n.clinicBookingCta,
+                onPressed: () {
+                  ref
+                      .read(bookingDraftProvider.notifier)
+                      .startClinicBooking(
+                        clinicId: clinicId,
+                        clinicName: clinicName,
+                        serviceId: service.id!,
+                        serviceName: service.name ?? '',
+                        serviceFeeAmount: service.priceAmount,
+                        serviceCurrency: clinicCurrencyLabel(service.currency),
+                        offersTelehealth: service.offersTelehealth == true,
+                      );
+                  context.push(GpsRoutes.clinicBooking(clinicId, service.id!));
+                },
+              ),
+            ],
           ],
         ),
       ),

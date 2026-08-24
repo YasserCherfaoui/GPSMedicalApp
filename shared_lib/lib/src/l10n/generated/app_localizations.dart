@@ -4095,6 +4095,90 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Aucune clinique vérifiée n\'est disponible pour le moment.'**
   String get discoveryClinicsEmptyMessage;
+
+  /// No description provided for @clinicBookingCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réserver'**
+  String get clinicBookingCta;
+
+  /// No description provided for @clinicBookingSummaryClinic.
+  ///
+  /// In fr, this message translates to:
+  /// **'Clinique'**
+  String get clinicBookingSummaryClinic;
+
+  /// No description provided for @clinicBookingSummaryService.
+  ///
+  /// In fr, this message translates to:
+  /// **'Service'**
+  String get clinicBookingSummaryService;
+
+  /// No description provided for @clinicMembershipsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Affiliations cliniques'**
+  String get clinicMembershipsTitle;
+
+  /// No description provided for @clinicMembershipsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune invitation ni affiliation pour le moment.'**
+  String get clinicMembershipsEmpty;
+
+  /// No description provided for @clinicMembershipsInvitations.
+  ///
+  /// In fr, this message translates to:
+  /// **'Invitations'**
+  String get clinicMembershipsInvitations;
+
+  /// No description provided for @clinicMembershipsActive.
+  ///
+  /// In fr, this message translates to:
+  /// **'Affiliations actives'**
+  String get clinicMembershipsActive;
+
+  /// No description provided for @clinicMembershipsAccept.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accepter'**
+  String get clinicMembershipsAccept;
+
+  /// No description provided for @clinicMembershipsRefuse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Refuser'**
+  String get clinicMembershipsRefuse;
+
+  /// No description provided for @clinicMembershipsDetach.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demander le détachement'**
+  String get clinicMembershipsDetach;
+
+  /// No description provided for @clinicMembershipsDetachPending.
+  ///
+  /// In fr, this message translates to:
+  /// **'Détachement en attente d\'approbation'**
+  String get clinicMembershipsDetachPending;
+
+  /// No description provided for @clinicMembershipsVisibleOnProfile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Visible sur mon profil public'**
+  String get clinicMembershipsVisibleOnProfile;
+
+  /// No description provided for @clinicMembershipsLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les affiliations.'**
+  String get clinicMembershipsLoadError;
+
+  /// No description provided for @clinicMembershipsActionError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Action impossible. Réessayez.'**
+  String get clinicMembershipsActionError;
 }
 
 class _AppLocalizationsDelegate

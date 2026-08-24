@@ -2216,4 +2216,50 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get discoveryClinicsEmptyMessage =>
       'Aucune clinique vérifiée n\'est disponible pour le moment.';
+
+  @override
+  String get clinicBookingCta => 'Réserver';
+
+  @override
+  String get clinicBookingSummaryClinic => 'Clinique';
+
+  @override
+  String get clinicBookingSummaryService => 'Service';
+
+  @override
+  String get clinicMembershipsTitle => 'Affiliations cliniques';
+
+  @override
+  String get clinicMembershipsEmpty =>
+      'Aucune invitation ni affiliation pour le moment.';
+
+  @override
+  String get clinicMembershipsInvitations => 'Invitations';
+
+  @override
+  String get clinicMembershipsActive => 'Affiliations actives';
+
+  @override
+  String get clinicMembershipsAccept => 'Accepter';
+
+  @override
+  String get clinicMembershipsRefuse => 'Refuser';
+
+  @override
+  String get clinicMembershipsDetach => 'Demander le détachement';
+
+  @override
+  String get clinicMembershipsDetachPending =>
+      'Détachement en attente d\'approbation';
+
+  @override
+  String get clinicMembershipsVisibleOnProfile =>
+      'Visible sur mon profil public';
+
+  @override
+  String get clinicMembershipsLoadError =>
+      'Impossible de charger les affiliations.';
+
+  @override
+  String get clinicMembershipsActionError => 'Action impossible. Réessayez.';
 }

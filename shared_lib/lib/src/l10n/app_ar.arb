@@ -719,5 +719,19 @@
   "clinicDetailLoadMoreReviews": "عرض المزيد من التقييمات",
   "clinicDetailVerifiedBadge": "عيادة موثّقة",
   "discoveryClinicsEmptyTitle": "لا توجد عيادات",
-  "discoveryClinicsEmptyMessage": "لا توجد عيادة موثّقة متاحة حالياً."
+  "discoveryClinicsEmptyMessage": "لا توجد عيادة موثّقة متاحة حالياً.",
+  "clinicBookingCta": "حجز",
+  "clinicBookingSummaryClinic": "العيادة",
+  "clinicBookingSummaryService": "الخدمة",
+  "clinicMembershipsTitle": "انتسابات العيادات",
+  "clinicMembershipsEmpty": "لا توجد دعوات أو انتسابات حالياً.",
+  "clinicMembershipsInvitations": "الدعوات",
+  "clinicMembershipsActive": "الانتسابات النشطة",
+  "clinicMembershipsAccept": "قبول",
+  "clinicMembershipsRefuse": "رفض",
+  "clinicMembershipsDetach": "طلب فك الارتباط",
+  "clinicMembershipsDetachPending": "فك الارتباط بانتظار الموافقة",
+  "clinicMembershipsVisibleOnProfile": "ظاهر على ملفي العام",
+  "clinicMembershipsLoadError": "تعذر تحميل الانتسابات.",
+  "clinicMembershipsActionError": "تعذر تنفيذ الإجراء. أعد المحاولة."
 }

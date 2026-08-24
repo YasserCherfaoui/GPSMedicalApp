@@ -120,6 +120,7 @@ void main() {
     );
     expect(find.text('Patient vérifié'), findsOneWidget);
     expect(find.text('Accueil excellent.'), findsOneWidget);
+    expect(find.text('Réserver'), findsOneWidget);
   });
 
   testWidgets('shows not-found state on 404', (tester) async {

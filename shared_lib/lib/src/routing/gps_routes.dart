@@ -54,6 +54,8 @@ abstract final class GpsRoutes {
   static const booking = '/booking';
   static String doctorDetail(String id) => '/doctors/$id';
   static String clinicDetail(String id) => '/clinics/$id';
+  static String clinicBooking(String clinicId, String serviceId) =>
+      '/clinics/$clinicId/services/$serviceId/book';
   static String doctorBooking(String id) => '/doctors/$id/book';
   static String appointmentDetail(String id) => '/appointments/$id';
   static String appointmentReview(String appointmentId) =>

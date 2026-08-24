@@ -719,5 +719,19 @@
   "clinicDetailLoadMoreReviews": "Wali ugar n iɣallen",
   "clinicDetailVerifiedBadge": "Tagunit yettwasneqden",
   "discoveryClinicsEmptyTitle": "Ulac tigunatin",
-  "discoveryClinicsEmptyMessage": "Ulac tagunit yettwasneqden tura."
+  "discoveryClinicsEmptyMessage": "Ulac tagunit yettwasneqden tura.",
+  "clinicBookingCta": "Seggem",
+  "clinicBookingSummaryClinic": "Tagunit",
+  "clinicBookingSummaryService": "Ameẓlu",
+  "clinicMembershipsTitle": "Timellit n tigunatin",
+  "clinicMembershipsEmpty": "Ulac tinnubga neɣ timellit tura.",
+  "clinicMembershipsInvitations": "Tinnubga",
+  "clinicMembershipsActive": "Timellit turmidin",
+  "clinicMembershipsAccept": "Qbel",
+  "clinicMembershipsRefuse": "Aggwi",
+  "clinicMembershipsDetach": "Suter tukksa",
+  "clinicMembershipsDetachPending": "Tukksa tettraqab aqbal",
+  "clinicMembershipsVisibleOnProfile": "Yettban ɣef uɣmis-iw azayez",
+  "clinicMembershipsLoadError": "Ur izmir ara ad d-talin timellit.",
+  "clinicMembershipsActionError": "Ulac tigawt. Ɛreḍ tikkelt-nniḍen."
 }

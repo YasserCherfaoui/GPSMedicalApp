@@ -900,5 +900,19 @@
   "clinicDetailLoadMoreReviews": "Voir plus d'avis",
   "clinicDetailVerifiedBadge": "Clinique vérifiée",
   "discoveryClinicsEmptyTitle": "Aucune clinique trouvée",
-  "discoveryClinicsEmptyMessage": "Aucune clinique vérifiée n'est disponible pour le moment."
+  "discoveryClinicsEmptyMessage": "Aucune clinique vérifiée n'est disponible pour le moment.",
+  "clinicBookingCta": "Réserver",
+  "clinicBookingSummaryClinic": "Clinique",
+  "clinicBookingSummaryService": "Service",
+  "clinicMembershipsTitle": "Affiliations cliniques",
+  "clinicMembershipsEmpty": "Aucune invitation ni affiliation pour le moment.",
+  "clinicMembershipsInvitations": "Invitations",
+  "clinicMembershipsActive": "Affiliations actives",
+  "clinicMembershipsAccept": "Accepter",
+  "clinicMembershipsRefuse": "Refuser",
+  "clinicMembershipsDetach": "Demander le détachement",
+  "clinicMembershipsDetachPending": "Détachement en attente d'approbation",
+  "clinicMembershipsVisibleOnProfile": "Visible sur mon profil public",
+  "clinicMembershipsLoadError": "Impossible de charger les affiliations.",
+  "clinicMembershipsActionError": "Action impossible. Réessayez."
 }

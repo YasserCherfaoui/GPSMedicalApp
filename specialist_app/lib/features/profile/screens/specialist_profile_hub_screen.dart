@@ -81,6 +81,11 @@ class SpecialistProfileHubScreen extends ConsumerWidget {
               label: l10n.notificationsTitle,
               onPressed: () => context.push(SpecialistRoutes.notifications),
             ),
+            const SizedBox(height: GpsSpacing.md),
+            SecondaryButton(
+              label: l10n.clinicMembershipsTitle,
+              onPressed: () => context.push(SpecialistRoutes.clinicMemberships),
+            ),
           ],
         );
       },

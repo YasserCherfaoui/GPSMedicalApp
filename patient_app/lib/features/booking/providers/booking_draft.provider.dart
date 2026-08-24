@@ -17,6 +17,13 @@ class BookingDraftState {
   const BookingDraftState({
     this.doctorId,
     this.doctor,
+    this.clinicId,
+    this.clinicName,
+    this.serviceId,
+    this.serviceName,
+    this.serviceFeeAmount,
+    this.serviceCurrency = 'DZD',
+    this.offersTelehealth = false,
     this.modeFilter = 'both',
     this.selectedSlot,
     this.slotLockExpiresAt,
@@ -29,6 +36,13 @@ class BookingDraftState {
 
   final String? doctorId;
   final Doctor? doctor;
+  final String? clinicId;
+  final String? clinicName;
+  final String? serviceId;
+  final String? serviceName;
+  final int? serviceFeeAmount;
+  final String serviceCurrency;
+  final bool offersTelehealth;
   final String modeFilter;
   final AvailabilitySlot? selectedSlot;
   final DateTime? slotLockExpiresAt;
@@ -45,8 +59,10 @@ class BookingDraftState {
 
   bool get isReschedule => rescheduleAppointmentId != null;
 
+  bool get isClinicBooking => clinicId != null && serviceId != null;
+
   bool get hasRestorableDraft =>
-      doctorId != null && selectedSlot?.startAt != null;
+      (doctorId != null || isClinicBooking) && selectedSlot?.startAt != null;
 
   Duration? get lockRemaining {
     if (slotLockExpiresAt == null) return null;
@@ -58,6 +74,13 @@ class BookingDraftState {
   BookingDraftState copyWith({
     String? doctorId,
     Doctor? doctor,
+    String? clinicId,
+    String? clinicName,
+    String? serviceId,
+    String? serviceName,
+    int? serviceFeeAmount,
+    String? serviceCurrency,
+    bool? offersTelehealth,
     String? modeFilter,
     AvailabilitySlot? selectedSlot,
     DateTime? slotLockExpiresAt,
@@ -73,6 +96,13 @@ class BookingDraftState {
     return BookingDraftState(
       doctorId: doctorId ?? this.doctorId,
       doctor: doctor ?? this.doctor,
+      clinicId: clinicId ?? this.clinicId,
+      clinicName: clinicName ?? this.clinicName,
+      serviceId: serviceId ?? this.serviceId,
+      serviceName: serviceName ?? this.serviceName,
+      serviceFeeAmount: serviceFeeAmount ?? this.serviceFeeAmount,
+      serviceCurrency: serviceCurrency ?? this.serviceCurrency,
+      offersTelehealth: offersTelehealth ?? this.offersTelehealth,
       modeFilter: modeFilter ?? this.modeFilter,
       selectedSlot: clearSlot ? null : (selectedSlot ?? this.selectedSlot),
       slotLockExpiresAt: clearSlot
@@ -91,6 +121,13 @@ class BookingDraftState {
   /// Persisted draft JSON — slot lock tokens and expiry are session-only.
   Map<String, dynamic> toPersistJson() => {
     'doctorId': doctorId,
+    'clinicId': clinicId,
+    'clinicName': clinicName,
+    'serviceId': serviceId,
+    'serviceName': serviceName,
+    'serviceFeeAmount': serviceFeeAmount,
+    'serviceCurrency': serviceCurrency,
+    'offersTelehealth': offersTelehealth,
     'modeFilter': modeFilter,
     'step': step,
     'dependentId': dependentId,
@@ -124,7 +161,8 @@ class BookingDraft extends _$BookingDraft {
     try {
       final map = jsonDecode(raw) as Map<String, dynamic>;
       final doctorId = map['doctorId'] as String?;
-      if (doctorId == null) return;
+      final clinicId = map['clinicId'] as String?;
+      if (doctorId == null && clinicId == null) return;
       AvailabilitySlot? slot;
       final startStr = map['slotStartAt'] as String?;
       if (startStr != null) {
@@ -151,6 +189,13 @@ class BookingDraft extends _$BookingDraft {
       state = BookingDraftState(
         doctorId: doctorId,
         doctor: doctor,
+        clinicId: clinicId,
+        clinicName: map['clinicName'] as String?,
+        serviceId: map['serviceId'] as String?,
+        serviceName: map['serviceName'] as String?,
+        serviceFeeAmount: map['serviceFeeAmount'] as int?,
+        serviceCurrency: map['serviceCurrency'] as String? ?? 'DZD',
+        offersTelehealth: map['offersTelehealth'] as bool? ?? false,
         modeFilter: map['modeFilter'] as String? ?? 'both',
         selectedSlot: slot,
         step: map['step'] as int? ?? 1,
@@ -166,7 +211,7 @@ class BookingDraft extends _$BookingDraft {
 
   Future<void> _persist() async {
     final prefs = await SharedPreferences.getInstance();
-    if (state.doctorId == null) {
+    if (state.doctorId == null && !state.isClinicBooking) {
       await prefs.remove(_draftPrefsKey);
       return;
     }
@@ -184,6 +229,30 @@ class BookingDraft extends _$BookingDraft {
       doctor: doctor,
       modeFilter: modeFilter,
       rescheduleAppointmentId: rescheduleAppointmentId,
+      step: 1,
+    );
+    _persist();
+  }
+
+  void startClinicBooking({
+    required String clinicId,
+    required String clinicName,
+    required String serviceId,
+    required String serviceName,
+    int? serviceFeeAmount,
+    String serviceCurrency = 'DZD',
+    bool offersTelehealth = false,
+    String modeFilter = 'both',
+  }) {
+    state = BookingDraftState(
+      clinicId: clinicId,
+      clinicName: clinicName,
+      serviceId: serviceId,
+      serviceName: serviceName,
+      serviceFeeAmount: serviceFeeAmount,
+      serviceCurrency: serviceCurrency,
+      offersTelehealth: offersTelehealth,
+      modeFilter: offersTelehealth ? modeFilter : 'in_person',
       step: 1,
     );
     _persist();
@@ -253,9 +322,15 @@ class BookingDraft extends _$BookingDraft {
   }
 
   Future<Appointment> submitCreate() async {
-    final doctorId = state.doctorId;
     final slot = state.selectedSlot;
-    if (doctorId == null || slot == null) {
+    if (slot == null) {
+      throw StateError('Incomplete booking draft');
+    }
+    if (state.isClinicBooking) {
+      return _submitClinicCreate(slot);
+    }
+    final doctorId = state.doctorId;
+    if (doctorId == null) {
       throw StateError('Incomplete booking draft');
     }
     final repo = ref.read(appointmentRepositoryProvider);
@@ -289,7 +364,58 @@ class BookingDraft extends _$BookingDraft {
 
     final create = AppointmentCreate(
       (b) => b
+        ..origin = AppointmentCreateOriginEnum.doctorDirect
         ..doctorId = doctorId
+        ..startAt = start.toUtc()
+        ..mode = toCreateMode(mode)
+        ..slotLockToken = lockToken
+        ..reason = state.reason.isNotEmpty ? state.reason : null
+        ..dependentId = state.dependentId,
+    );
+    return repo.create(create);
+  }
+
+  Future<Appointment> _submitClinicCreate(AvailabilitySlot slot) async {
+    final clinicId = state.clinicId;
+    final serviceId = state.serviceId;
+    if (clinicId == null || serviceId == null) {
+      throw StateError('Incomplete clinic booking draft');
+    }
+    final repo = ref.read(appointmentRepositoryProvider);
+    final availRepo = ref.read(availabilityRepositoryProvider);
+
+    final start = slot.startAt;
+    final mode = slot.mode;
+    if (start == null || mode == null) {
+      throw StateError('Invalid slot');
+    }
+    final modeWire = slotModeWire(mode);
+
+    String lockToken = slot.slotLockToken ?? '';
+    if (!state.hasActiveLock || lockToken.isEmpty) {
+      final day = start.toLocal().toDate();
+      final slots = await availRepo.fetchClinicSlots(
+        clinicId: clinicId,
+        serviceId: serviceId,
+        from: day,
+        to: day,
+        mode: modeWire == 'both' ? null : modeWire,
+      );
+      final match = slots.where((s) {
+        return s.startAt?.toUtc() == start.toUtc() && s.mode == mode;
+      }).firstOrNull;
+      if (match?.slotLockToken == null) {
+        throw const SlotTakenException();
+      }
+      lockToken = match!.slotLockToken!;
+      state = state.copyWith(selectedSlot: match);
+    }
+
+    final create = AppointmentCreate(
+      (b) => b
+        ..origin = AppointmentCreateOriginEnum.clinicService
+        ..clinicId = clinicId
+        ..serviceId = serviceId
         ..startAt = start.toUtc()
         ..mode = toCreateMode(mode)
         ..slotLockToken = lockToken

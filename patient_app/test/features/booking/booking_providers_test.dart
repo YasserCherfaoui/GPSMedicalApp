@@ -329,6 +329,74 @@ void main() {
         expect(appointment.id, 'appt-fresh');
       },
     );
+
+    test('clinic submitCreate posts origin=clinic_service', () async {
+      const clinicId = 'clinic-1';
+      const serviceId = 'svc-1';
+      const startAt = '2026-06-10T09:00:00Z';
+      Map<String, dynamic>? captured;
+
+      dio.interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (options, handler) {
+            if (options.method == 'POST' &&
+                options.path.contains('/appointments')) {
+              final data = options.data;
+              if (data is Map<String, dynamic>) {
+                captured = data;
+              } else if (data is Map) {
+                captured = Map<String, dynamic>.from(data);
+              }
+            }
+            handler.next(options);
+          },
+        ),
+      );
+
+      adapter.onPost('/appointments', (server) {
+        return server.reply(201, {
+          'id': 'apt-clinic-1',
+          'status': 'pending',
+          'mode': 'in_person',
+          'origin': 'clinic_service',
+          'clinic_id': clinicId,
+          'service_id': serviceId,
+          'start_at': startAt,
+          'end_at': '2026-06-10T09:30:00Z',
+          'fee_dzd': 3500,
+          'payment_status': 'unpaid',
+          'created_at': startAt,
+          'updated_at': startAt,
+        });
+      });
+
+      final draft = container.read(bookingDraftProvider.notifier);
+      draft.startClinicBooking(
+        clinicId: clinicId,
+        clinicName: 'Clinique El Shifa',
+        serviceId: serviceId,
+        serviceName: 'Consultation générale',
+        serviceFeeAmount: 3500,
+      );
+      draft.selectSlot(
+        AvailabilitySlot(
+          (b) => b
+            ..startAt = DateTime.parse(startAt)
+            ..endAt = DateTime.parse('2026-06-10T09:30:00Z')
+            ..mode = AvailabilitySlotModeEnum.inPerson
+            ..slotLockToken = 'lock-clinic',
+        ),
+      );
+
+      final appointment = await draft.submitCreate();
+      expect(appointment.id, 'apt-clinic-1');
+      expect(captured, isNotNull);
+      expect(captured!['origin'], 'clinic_service');
+      expect(captured!['clinic_id'], clinicId);
+      expect(captured!['service_id'], serviceId);
+      expect(captured!['slot_lock_token'], 'lock-clinic');
+      expect(captured!.containsKey('doctor_id'), isFalse);
+    });
   });
 
   group('Appointment cancel', () {

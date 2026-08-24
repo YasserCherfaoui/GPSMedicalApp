@@ -2163,4 +2163,47 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get discoveryClinicsEmptyMessage =>
       'لا توجد عيادة موثّقة متاحة حالياً.';
+
+  @override
+  String get clinicBookingCta => 'حجز';
+
+  @override
+  String get clinicBookingSummaryClinic => 'العيادة';
+
+  @override
+  String get clinicBookingSummaryService => 'الخدمة';
+
+  @override
+  String get clinicMembershipsTitle => 'انتسابات العيادات';
+
+  @override
+  String get clinicMembershipsEmpty => 'لا توجد دعوات أو انتسابات حالياً.';
+
+  @override
+  String get clinicMembershipsInvitations => 'الدعوات';
+
+  @override
+  String get clinicMembershipsActive => 'الانتسابات النشطة';
+
+  @override
+  String get clinicMembershipsAccept => 'قبول';
+
+  @override
+  String get clinicMembershipsRefuse => 'رفض';
+
+  @override
+  String get clinicMembershipsDetach => 'طلب فك الارتباط';
+
+  @override
+  String get clinicMembershipsDetachPending => 'فك الارتباط بانتظار الموافقة';
+
+  @override
+  String get clinicMembershipsVisibleOnProfile => 'ظاهر على ملفي العام';
+
+  @override
+  String get clinicMembershipsLoadError => 'تعذر تحميل الانتسابات.';
+
+  @override
+  String get clinicMembershipsActionError =>
+      'تعذر تنفيذ الإجراء. أعد المحاولة.';
 }

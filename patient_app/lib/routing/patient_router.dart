@@ -6,6 +6,7 @@ import '../features/booking/screens/appointment_detail_screen.dart';
 import '../features/booking/screens/appointments_list_screen.dart';
 import '../features/booking/screens/availability_calendar_screen.dart';
 import '../features/booking/screens/booking_flow_screen.dart';
+import '../features/booking/screens/clinic_availability_calendar_screen.dart';
 import '../features/dashboard/screens/patient_dashboard_screen.dart';
 import '../features/discovery/screens/clinic_detail_screen.dart';
 import '../features/discovery/screens/doctor_detail_screen.dart';
@@ -126,6 +127,17 @@ GoRouter createPatientRouter({
       GoRoute(
         path: GpsRoutes.search,
         builder: (context, state) => const DoctorSearchScreen(),
+      ),
+      GoRoute(
+        path: '/clinics/:clinicId/services/:serviceId/book',
+        builder: (context, state) {
+          final clinicId = state.pathParameters['clinicId'] ?? '';
+          final serviceId = state.pathParameters['serviceId'] ?? '';
+          return ClinicAvailabilityCalendarScreen(
+            clinicId: clinicId,
+            serviceId: serviceId,
+          );
+        },
       ),
       GoRoute(
         path: '/clinics/:id',

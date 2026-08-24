@@ -6,7 +6,7 @@ part of 'booking_draft.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$bookingDraftHash() => r'e62d8e4cb5e53ef7e9ef56c1be47fa782adec54e';
+String _$bookingDraftHash() => r'739c9cf7c634e6bae018b833679e7994b50fe005';
 
 /// See also [BookingDraft].
 @ProviderFor(BookingDraft)

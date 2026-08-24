@@ -2188,4 +2188,47 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get discoveryClinicsEmptyMessage => 'Ulac tagunit yettwasneqden tura.';
+
+  @override
+  String get clinicBookingCta => 'Seggem';
+
+  @override
+  String get clinicBookingSummaryClinic => 'Tagunit';
+
+  @override
+  String get clinicBookingSummaryService => 'Ameẓlu';
+
+  @override
+  String get clinicMembershipsTitle => 'Timellit n tigunatin';
+
+  @override
+  String get clinicMembershipsEmpty => 'Ulac tinnubga neɣ timellit tura.';
+
+  @override
+  String get clinicMembershipsInvitations => 'Tinnubga';
+
+  @override
+  String get clinicMembershipsActive => 'Timellit turmidin';
+
+  @override
+  String get clinicMembershipsAccept => 'Qbel';
+
+  @override
+  String get clinicMembershipsRefuse => 'Aggwi';
+
+  @override
+  String get clinicMembershipsDetach => 'Suter tukksa';
+
+  @override
+  String get clinicMembershipsDetachPending => 'Tukksa tettraqab aqbal';
+
+  @override
+  String get clinicMembershipsVisibleOnProfile => 'Yettban ɣef uɣmis-iw azayez';
+
+  @override
+  String get clinicMembershipsLoadError => 'Ur izmir ara ad d-talin timellit.';
+
+  @override
+  String get clinicMembershipsActionError =>
+      'Ulac tigawt. Ɛreḍ tikkelt-nniḍen.';
 }

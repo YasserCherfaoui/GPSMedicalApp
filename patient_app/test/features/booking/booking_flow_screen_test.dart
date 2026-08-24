@@ -88,6 +88,14 @@ void main() {
           path: '/doctors/:id/book',
           builder: (_, __) => const SizedBox.shrink(),
         ),
+        GoRoute(
+          path: '/clinics/:clinicId/services/:serviceId/book',
+          builder: (_, __) => const SizedBox.shrink(),
+        ),
+        GoRoute(
+          path: '/appointments/:id',
+          builder: (_, __) => const SizedBox.shrink(),
+        ),
       ],
     );
 
@@ -247,5 +255,47 @@ void main() {
       find.text('Connexion requise pour confirmer le rendez-vous'),
       findsOneWidget,
     );
+  });
+
+  testWidgets('clinic booking step 1 shows clinic service summary', (
+    tester,
+  ) async {
+    mockDependents();
+
+    await tester.pumpWidget(wrap(const BookingFlowScreen()));
+
+    final container = ProviderScope.containerOf(
+      tester.element(find.byType(BookingFlowScreen)),
+    );
+    container.read(bookingDraftProvider.notifier).state = BookingDraftState(
+      clinicId: 'clinic-1',
+      clinicName: 'Clinique El Shifa',
+      serviceId: 'svc-1',
+      serviceName: 'Consultation générale',
+      serviceFeeAmount: 3500,
+      serviceCurrency: 'DZD',
+      offersTelehealth: true,
+      selectedSlot: AvailabilitySlot(
+        (b) => b
+          ..startAt = DateTime.utc(2026, 6, 10, 9)
+          ..endAt = DateTime.utc(2026, 6, 10, 9, 30)
+          ..mode = AvailabilitySlotModeEnum.inPerson
+          ..slotLockToken = 'lock-clinic',
+      ),
+      slotLockExpiresAt: DateTime.now().add(const Duration(minutes: 5)),
+      step: 1,
+    );
+    await pumpBooking(tester);
+
+    expect(
+      find.text(
+        'Vous réservez un service ; la clinique attribue le praticien.',
+      ),
+      findsWidgets,
+    );
+    expect(find.text('Clinique El Shifa'), findsWidgets);
+    expect(find.text('Consultation générale'), findsWidgets);
+    expect(find.text('3500 DZD'), findsWidgets);
+    expect(find.text('Dr. Karim Benali'), findsNothing);
   });
 }

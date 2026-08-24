@@ -95,7 +95,8 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
         ..showSnackBar(SnackBar(content: Text(l10n.bookingOnlineRestored)));
     });
 
-    if (draft.doctorId == null || draft.selectedSlot == null) {
+    if ((!draft.isClinicBooking && draft.doctorId == null) ||
+        draft.selectedSlot == null) {
       return Scaffold(
         appBar: AppBar(),
         body: const Center(child: CircularProgressIndicator()),
@@ -122,7 +123,15 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
                 context,
               ).showSnackBar(SnackBar(content: Text(l10n.bookingLockExpired)));
               final doctorId = draft.doctorId;
-              if (doctorId != null && GoRouter.maybeOf(context) != null) {
+              if (draft.isClinicBooking &&
+                  draft.clinicId != null &&
+                  draft.serviceId != null &&
+                  GoRouter.maybeOf(context) != null) {
+                context.go(
+                  GpsRoutes.clinicBooking(draft.clinicId!, draft.serviceId!),
+                );
+              } else if (doctorId != null &&
+                  GoRouter.maybeOf(context) != null) {
                 context.go(GpsRoutes.doctorBooking(doctorId));
               }
             },
@@ -256,7 +265,14 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
             onPressed: () {
               Navigator.pop(ctx);
               ref.read(bookingDraftProvider.notifier).clearSlotLock();
-              if (doctorId != null && GoRouter.maybeOf(ctx) != null) {
+              if (draft.isClinicBooking &&
+                  draft.clinicId != null &&
+                  draft.serviceId != null &&
+                  GoRouter.maybeOf(ctx) != null) {
+                context.go(
+                  GpsRoutes.clinicBooking(draft.clinicId!, draft.serviceId!),
+                );
+              } else if (doctorId != null && GoRouter.maybeOf(ctx) != null) {
                 context.go(GpsRoutes.doctorBooking(doctorId));
               }
             },
@@ -285,14 +301,39 @@ class _StepConfirm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            l10n.bookingSummaryDoctor,
-            style: Theme.of(context).textTheme.labelMedium,
-          ),
-          Text(
-            '${doctor?.title ?? 'Dr.'} ${doctor?.fullName ?? ''}',
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
+          if (draft.isClinicBooking) ...[
+            Text(
+              l10n.clinicDetailAssignNotice,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            const SizedBox(height: GpsSpacing.md),
+            Text(
+              l10n.clinicBookingSummaryClinic,
+              style: Theme.of(context).textTheme.labelMedium,
+            ),
+            Text(
+              draft.clinicName ?? '',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: GpsSpacing.sm),
+            Text(
+              l10n.clinicBookingSummaryService,
+              style: Theme.of(context).textTheme.labelMedium,
+            ),
+            Text(
+              draft.serviceName ?? '',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ] else ...[
+            Text(
+              l10n.bookingSummaryDoctor,
+              style: Theme.of(context).textTheme.labelMedium,
+            ),
+            Text(
+              '${doctor?.title ?? 'Dr.'} ${doctor?.fullName ?? ''}',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ],
           const SizedBox(height: GpsSpacing.md),
           Text(l10n.bookingSummarySlot),
           if (start != null) ...[
@@ -322,7 +363,9 @@ class _StepConfirm extends StatelessWidget {
           const SizedBox(height: GpsSpacing.md),
           Text(l10n.bookingFeeLabel),
           Text(
-            '${doctor?.consultationFeeDzd ?? '—'} DZD',
+            draft.isClinicBooking
+                ? '${draft.serviceFeeAmount ?? '—'} ${draft.serviceCurrency}'
+                : '${doctor?.consultationFeeDzd ?? '—'} DZD',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -432,14 +475,39 @@ class _StepReview extends ConsumerWidget {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: GpsSpacing.sm),
-              Text(
-                l10n.bookingSummaryDoctor,
-                style: Theme.of(context).textTheme.labelMedium,
-              ),
-              Text(
-                '${draft.doctor?.title ?? 'Dr.'} ${draft.doctor?.fullName ?? ''}',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
+              if (draft.isClinicBooking) ...[
+                Text(
+                  l10n.clinicDetailAssignNotice,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                const SizedBox(height: GpsSpacing.sm),
+                Text(
+                  l10n.clinicBookingSummaryClinic,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+                Text(
+                  draft.clinicName ?? '',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                const SizedBox(height: GpsSpacing.sm),
+                Text(
+                  l10n.clinicBookingSummaryService,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+                Text(
+                  draft.serviceName ?? '',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ] else ...[
+                Text(
+                  l10n.bookingSummaryDoctor,
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+                Text(
+                  '${draft.doctor?.title ?? 'Dr.'} ${draft.doctor?.fullName ?? ''}',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
               const SizedBox(height: GpsSpacing.sm),
               Text(
                 l10n.bookingSummarySlot,
@@ -459,7 +527,9 @@ class _StepReview extends ConsumerWidget {
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               Text(
-                '${draft.doctor?.consultationFeeDzd ?? '—'} DZD',
+                draft.isClinicBooking
+                    ? '${draft.serviceFeeAmount ?? '—'} ${draft.serviceCurrency}'
+                    : '${draft.doctor?.consultationFeeDzd ?? '—'} DZD',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.w600,
