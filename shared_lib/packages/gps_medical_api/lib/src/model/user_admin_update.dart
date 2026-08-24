@@ -30,7 +30,7 @@ abstract class UserAdminUpdate implements Built<UserAdminUpdate, UserAdminUpdate
 
   @BuiltValueField(wireName: r'role')
   UserAdminUpdateRoleEnum? get role;
-  // enum roleEnum {  patient,  specialist,  concierge,  admin,  moderator,  };
+  // enum roleEnum {  patient,  specialist,  clinic_owner,  clinic_admin,  concierge,  admin,  moderator,  };
 
   UserAdminUpdate._();
 
@@ -184,6 +184,10 @@ class UserAdminUpdateRoleEnum extends EnumClass {
   static const UserAdminUpdateRoleEnum patient = _$userAdminUpdateRoleEnum_patient;
   @BuiltValueEnumConst(wireName: r'specialist')
   static const UserAdminUpdateRoleEnum specialist = _$userAdminUpdateRoleEnum_specialist;
+  @BuiltValueEnumConst(wireName: r'clinic_owner')
+  static const UserAdminUpdateRoleEnum clinicOwner = _$userAdminUpdateRoleEnum_clinicOwner;
+  @BuiltValueEnumConst(wireName: r'clinic_admin')
+  static const UserAdminUpdateRoleEnum clinicAdmin = _$userAdminUpdateRoleEnum_clinicAdmin;
   @BuiltValueEnumConst(wireName: r'concierge')
   static const UserAdminUpdateRoleEnum concierge = _$userAdminUpdateRoleEnum_concierge;
   @BuiltValueEnumConst(wireName: r'admin')

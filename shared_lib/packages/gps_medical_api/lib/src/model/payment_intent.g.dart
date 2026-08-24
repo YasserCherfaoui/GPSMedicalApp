@@ -48,8 +48,32 @@ final BuiltSet<PaymentIntentStatusEnum> _$paymentIntentStatusEnumValues =
       _$paymentIntentStatusEnum_cancelled,
     ]);
 
+const PaymentIntentPayeeTypeEnum _$paymentIntentPayeeTypeEnum_specialist =
+    const PaymentIntentPayeeTypeEnum._('specialist');
+const PaymentIntentPayeeTypeEnum _$paymentIntentPayeeTypeEnum_clinic =
+    const PaymentIntentPayeeTypeEnum._('clinic');
+
+PaymentIntentPayeeTypeEnum _$paymentIntentPayeeTypeEnumValueOf(String name) {
+  switch (name) {
+    case 'specialist':
+      return _$paymentIntentPayeeTypeEnum_specialist;
+    case 'clinic':
+      return _$paymentIntentPayeeTypeEnum_clinic;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<PaymentIntentPayeeTypeEnum> _$paymentIntentPayeeTypeEnumValues =
+    BuiltSet<PaymentIntentPayeeTypeEnum>(const <PaymentIntentPayeeTypeEnum>[
+      _$paymentIntentPayeeTypeEnum_specialist,
+      _$paymentIntentPayeeTypeEnum_clinic,
+    ]);
+
 Serializer<PaymentIntentStatusEnum> _$paymentIntentStatusEnumSerializer =
     _$PaymentIntentStatusEnumSerializer();
+Serializer<PaymentIntentPayeeTypeEnum> _$paymentIntentPayeeTypeEnumSerializer =
+    _$PaymentIntentPayeeTypeEnumSerializer();
 
 class _$PaymentIntentStatusEnumSerializer
     implements PrimitiveSerializer<PaymentIntentStatusEnum> {
@@ -92,6 +116,39 @@ class _$PaymentIntentStatusEnumSerializer
   );
 }
 
+class _$PaymentIntentPayeeTypeEnumSerializer
+    implements PrimitiveSerializer<PaymentIntentPayeeTypeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'specialist': 'specialist',
+    'clinic': 'clinic',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'specialist': 'specialist',
+    'clinic': 'clinic',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[PaymentIntentPayeeTypeEnum];
+  @override
+  final String wireName = 'PaymentIntentPayeeTypeEnum';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    PaymentIntentPayeeTypeEnum object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => _toWire[object.name] ?? object.name;
+
+  @override
+  PaymentIntentPayeeTypeEnum deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => PaymentIntentPayeeTypeEnum.valueOf(
+    _fromWire[serialized] ?? (serialized is String ? serialized : ''),
+  );
+}
+
 class _$PaymentIntent extends PaymentIntent {
   @override
   final String? id;
@@ -108,6 +165,10 @@ class _$PaymentIntent extends PaymentIntent {
   @override
   final String? clientSecret;
   @override
+  final PaymentIntentPayeeTypeEnum? payeeType;
+  @override
+  final String? payeeId;
+  @override
   final String? redirectUrl;
   @override
   final DateTime? createdAt;
@@ -123,6 +184,8 @@ class _$PaymentIntent extends PaymentIntent {
     this.provider,
     this.status,
     this.clientSecret,
+    this.payeeType,
+    this.payeeId,
     this.redirectUrl,
     this.createdAt,
   }) : super._();
@@ -144,6 +207,8 @@ class _$PaymentIntent extends PaymentIntent {
         provider == other.provider &&
         status == other.status &&
         clientSecret == other.clientSecret &&
+        payeeType == other.payeeType &&
+        payeeId == other.payeeId &&
         redirectUrl == other.redirectUrl &&
         createdAt == other.createdAt;
   }
@@ -158,6 +223,8 @@ class _$PaymentIntent extends PaymentIntent {
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, clientSecret.hashCode);
+    _$hash = $jc(_$hash, payeeType.hashCode);
+    _$hash = $jc(_$hash, payeeId.hashCode);
     _$hash = $jc(_$hash, redirectUrl.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jf(_$hash);
@@ -174,6 +241,8 @@ class _$PaymentIntent extends PaymentIntent {
           ..add('provider', provider)
           ..add('status', status)
           ..add('clientSecret', clientSecret)
+          ..add('payeeType', payeeType)
+          ..add('payeeId', payeeId)
           ..add('redirectUrl', redirectUrl)
           ..add('createdAt', createdAt))
         .toString();
@@ -213,6 +282,15 @@ class PaymentIntentBuilder
   String? get clientSecret => _$this._clientSecret;
   set clientSecret(String? clientSecret) => _$this._clientSecret = clientSecret;
 
+  PaymentIntentPayeeTypeEnum? _payeeType;
+  PaymentIntentPayeeTypeEnum? get payeeType => _$this._payeeType;
+  set payeeType(PaymentIntentPayeeTypeEnum? payeeType) =>
+      _$this._payeeType = payeeType;
+
+  String? _payeeId;
+  String? get payeeId => _$this._payeeId;
+  set payeeId(String? payeeId) => _$this._payeeId = payeeId;
+
   String? _redirectUrl;
   String? get redirectUrl => _$this._redirectUrl;
   set redirectUrl(String? redirectUrl) => _$this._redirectUrl = redirectUrl;
@@ -235,6 +313,8 @@ class PaymentIntentBuilder
       _provider = $v.provider;
       _status = $v.status;
       _clientSecret = $v.clientSecret;
+      _payeeType = $v.payeeType;
+      _payeeId = $v.payeeId;
       _redirectUrl = $v.redirectUrl;
       _createdAt = $v.createdAt;
       _$v = null;
@@ -266,6 +346,8 @@ class PaymentIntentBuilder
           provider: provider,
           status: status,
           clientSecret: clientSecret,
+          payeeType: payeeType,
+          payeeId: payeeId,
           redirectUrl: redirectUrl,
           createdAt: createdAt,
         );

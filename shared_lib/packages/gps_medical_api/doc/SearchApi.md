@@ -9,9 +9,59 @@ All URIs are relative to *https://api.gpsmedical.dz/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**searchClinics**](SearchApi.md#searchclinics) | **GET** /search/clinics | Recherche de cliniques
 [**searchDoctorsGet**](SearchApi.md#searchdoctorsget) | **GET** /search/doctors | Recherche multicritères de médecins
 [**searchSuggestGet**](SearchApi.md#searchsuggestget) | **GET** /search/suggest | Suggestions auto-complétion (médecins, spécialités, communes)
 
+
+# **searchClinics**
+> PaginatedClinics searchClinics(q, wilayaCode, communeId, page, pageSize)
+
+Recherche de cliniques
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getSearchApi();
+final String q = q_example; // String | 
+final String wilayaCode = wilayaCode_example; // String | 
+final String communeId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final int page = 56; // int | 
+final int pageSize = 56; // int | 
+
+try {
+    final response = api.searchClinics(q, wilayaCode, communeId, page, pageSize);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling SearchApi->searchClinics: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **q** | **String**|  | [optional] 
+ **wilayaCode** | **String**|  | [optional] 
+ **communeId** | **String**|  | [optional] 
+ **page** | **int**|  | [optional] [default to 1]
+ **pageSize** | **int**|  | [optional] [default to 20]
+
+### Return type
+
+[**PaginatedClinics**](PaginatedClinics.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **searchDoctorsGet**
 > PaginatedDoctors searchDoctorsGet(q, specialtyId, wilayaCode, communeId, gender, language, acceptsCnas, acceptsCasnos, maxFeeDzd, telehealth, availableWithinDays, lat, lng, sort, page, pageSize)

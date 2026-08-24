@@ -11,6 +11,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createReview**](ReviewsApi.md#createreview) | **POST** /reviews | Publication d&#39;un avis (uniquement après RDV terminé)
 [**deleteReview**](ReviewsApi.md#deletereview) | **DELETE** /reviews/{reviewId} | Suppression d&#39;un avis (auteur)
+[**listClinicAppointmentReviews**](ReviewsApi.md#listclinicappointmentreviews) | **GET** /clinics/me/reviews | Avis au niveau rendez-vous (privés, staff clinique)
+[**listClinicPublicReviews**](ReviewsApi.md#listclinicpublicreviews) | **GET** /clinics/{clinicId}/reviews | Avis publics de profil clinique
 [**listDoctorReviews**](ReviewsApi.md#listdoctorreviews) | **GET** /doctors/{doctorId}/reviews | Avis publics d&#39;un médecin
 [**reportReview**](ReviewsApi.md#reportreview) | **POST** /reviews/{reviewId}/report | Signalement d&#39;un avis abusif
 [**updateReview**](ReviewsApi.md#updatereview) | **PATCH** /reviews/{reviewId} | Modification d&#39;un avis (auteur uniquement, &lt; 7 jours)
@@ -94,6 +96,94 @@ void (empty response body)
 
  - **Content-Type**: Not defined
  - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listClinicAppointmentReviews**
+> PaginatedAppointmentReviewsForClinic listClinicAppointmentReviews(page, pageSize)
+
+Avis au niveau rendez-vous (privés, staff clinique)
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getReviewsApi();
+final int page = 56; // int | 
+final int pageSize = 56; // int | 
+
+try {
+    final response = api.listClinicAppointmentReviews(page, pageSize);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ReviewsApi->listClinicAppointmentReviews: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**|  | [optional] [default to 1]
+ **pageSize** | **int**|  | [optional] [default to 20]
+
+### Return type
+
+[**PaginatedAppointmentReviewsForClinic**](PaginatedAppointmentReviewsForClinic.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listClinicPublicReviews**
+> PaginatedClinicReviews listClinicPublicReviews(clinicId, page, pageSize)
+
+Avis publics de profil clinique
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getReviewsApi();
+final String clinicId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final int page = 56; // int | 
+final int pageSize = 56; // int | 
+
+try {
+    final response = api.listClinicPublicReviews(clinicId, page, pageSize);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ReviewsApi->listClinicPublicReviews: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clinicId** | **String**|  | 
+ **page** | **int**|  | [optional] [default to 1]
+ **pageSize** | **int**|  | [optional] [default to 20]
+
+### Return type
+
+[**PaginatedClinicReviews**](PaginatedClinicReviews.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

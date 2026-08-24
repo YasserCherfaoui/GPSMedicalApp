@@ -12,6 +12,11 @@ void main() {
       // TODO
     });
 
+    // String clinicId
+    test('to test the property `clinicId`', () async {
+      // TODO
+    });
+
     // 0 = dimanche
     // int weekday
     test('to test the property `weekday`', () async {

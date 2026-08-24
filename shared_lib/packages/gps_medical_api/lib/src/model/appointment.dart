@@ -16,6 +16,9 @@ part 'appointment.g.dart';
 /// * [patientId] 
 /// * [dependentId] 
 /// * [doctorId] 
+/// * [clinicId] 
+/// * [serviceId] 
+/// * [origin] 
 /// * [startAt] 
 /// * [endAt] 
 /// * [mode] 
@@ -38,6 +41,16 @@ abstract class Appointment implements Built<Appointment, AppointmentBuilder> {
 
   @BuiltValueField(wireName: r'doctor_id')
   String? get doctorId;
+
+  @BuiltValueField(wireName: r'clinic_id')
+  String? get clinicId;
+
+  @BuiltValueField(wireName: r'service_id')
+  String? get serviceId;
+
+  @BuiltValueField(wireName: r'origin')
+  AppointmentOriginEnum? get origin;
+  // enum originEnum {  doctor_direct,  clinic_service,  };
 
   @BuiltValueField(wireName: r'start_at')
   DateTime? get startAt;
@@ -117,7 +130,28 @@ class _$AppointmentSerializer implements PrimitiveSerializer<Appointment> {
       yield r'doctor_id';
       yield serializers.serialize(
         object.doctorId,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.clinicId != null) {
+      yield r'clinic_id';
+      yield serializers.serialize(
+        object.clinicId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.serviceId != null) {
+      yield r'service_id';
+      yield serializers.serialize(
+        object.serviceId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.origin != null) {
+      yield r'origin';
+      yield serializers.serialize(
+        object.origin,
+        specifiedType: const FullType(AppointmentOriginEnum),
       );
     }
     if (object.startAt != null) {
@@ -231,9 +265,33 @@ class _$AppointmentSerializer implements PrimitiveSerializer<Appointment> {
         case r'doctor_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.doctorId = valueDes;
+          break;
+        case r'clinic_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.clinicId = valueDes;
+          break;
+        case r'service_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.serviceId = valueDes;
+          break;
+        case r'origin':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AppointmentOriginEnum),
+          ) as AppointmentOriginEnum;
+          result.origin = valueDes;
           break;
         case r'start_at':
           final valueDes = serializers.deserialize(
@@ -325,6 +383,21 @@ class _$AppointmentSerializer implements PrimitiveSerializer<Appointment> {
     );
     return result.build();
   }
+}
+
+class AppointmentOriginEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'doctor_direct')
+  static const AppointmentOriginEnum doctorDirect = _$appointmentOriginEnum_doctorDirect;
+  @BuiltValueEnumConst(wireName: r'clinic_service')
+  static const AppointmentOriginEnum clinicService = _$appointmentOriginEnum_clinicService;
+
+  static Serializer<AppointmentOriginEnum> get serializer => _$appointmentOriginEnumSerializer;
+
+  const AppointmentOriginEnum._(String name): super(name);
+
+  static BuiltSet<AppointmentOriginEnum> get values => _$appointmentOriginEnumValues;
+  static AppointmentOriginEnum valueOf(String name) => _$appointmentOriginEnumValueOf(name);
 }
 
 class AppointmentModeEnum extends EnumClass {

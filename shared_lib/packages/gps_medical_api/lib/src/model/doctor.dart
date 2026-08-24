@@ -6,6 +6,7 @@
 import 'package:gps_medical_api/src/model/specialty.dart';
 import 'package:gps_medical_api/src/model/address.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:gps_medical_api/src/model/clinic_specialist_affiliation.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -30,6 +31,7 @@ part 'doctor.g.dart';
 /// * [ratingAverage] 
 /// * [ratingCount] 
 /// * [verified] 
+/// * [clinicAffiliations] 
 @BuiltValue(instantiable: false)
 abstract class Doctor  {
   @BuiltValueField(wireName: r'id')
@@ -81,6 +83,9 @@ abstract class Doctor  {
 
   @BuiltValueField(wireName: r'verified')
   bool? get verified;
+
+  @BuiltValueField(wireName: r'clinic_affiliations')
+  BuiltList<ClinicSpecialistAffiliation>? get clinicAffiliations;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<Doctor> get serializer => _$DoctorSerializer();
@@ -208,6 +213,13 @@ class _$DoctorSerializer implements PrimitiveSerializer<Doctor> {
       yield serializers.serialize(
         object.verified,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.clinicAffiliations != null) {
+      yield r'clinic_affiliations';
+      yield serializers.serialize(
+        object.clinicAffiliations,
+        specifiedType: const FullType(BuiltList, [FullType(ClinicSpecialistAffiliation)]),
       );
     }
   }
@@ -384,6 +396,13 @@ class _$$DoctorSerializer implements PrimitiveSerializer<$Doctor> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.verified = valueDes;
+          break;
+        case r'clinic_affiliations':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ClinicSpecialistAffiliation)]),
+          ) as BuiltList<ClinicSpecialistAffiliation>;
+          result.clinicAffiliations.replace(valueDes);
           break;
         default:
           unhandled.add(key);

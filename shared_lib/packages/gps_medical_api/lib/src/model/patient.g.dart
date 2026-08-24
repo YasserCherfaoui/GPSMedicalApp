@@ -12,6 +12,12 @@ const PatientRoleEnum _$patientRoleEnum_patient = const PatientRoleEnum._(
 const PatientRoleEnum _$patientRoleEnum_specialist = const PatientRoleEnum._(
   'specialist',
 );
+const PatientRoleEnum _$patientRoleEnum_clinicOwner = const PatientRoleEnum._(
+  'clinicOwner',
+);
+const PatientRoleEnum _$patientRoleEnum_clinicAdmin = const PatientRoleEnum._(
+  'clinicAdmin',
+);
 const PatientRoleEnum _$patientRoleEnum_concierge = const PatientRoleEnum._(
   'concierge',
 );
@@ -28,6 +34,10 @@ PatientRoleEnum _$patientRoleEnumValueOf(String name) {
       return _$patientRoleEnum_patient;
     case 'specialist':
       return _$patientRoleEnum_specialist;
+    case 'clinicOwner':
+      return _$patientRoleEnum_clinicOwner;
+    case 'clinicAdmin':
+      return _$patientRoleEnum_clinicAdmin;
     case 'concierge':
       return _$patientRoleEnum_concierge;
     case 'admin':
@@ -43,6 +53,8 @@ final BuiltSet<PatientRoleEnum> _$patientRoleEnumValues =
     BuiltSet<PatientRoleEnum>(const <PatientRoleEnum>[
       _$patientRoleEnum_patient,
       _$patientRoleEnum_specialist,
+      _$patientRoleEnum_clinicOwner,
+      _$patientRoleEnum_clinicAdmin,
       _$patientRoleEnum_concierge,
       _$patientRoleEnum_admin,
       _$patientRoleEnum_moderator,
@@ -178,6 +190,8 @@ class _$PatientRoleEnumSerializer
   static const Map<String, Object> _toWire = const <String, Object>{
     'patient': 'patient',
     'specialist': 'specialist',
+    'clinicOwner': 'clinic_owner',
+    'clinicAdmin': 'clinic_admin',
     'concierge': 'concierge',
     'admin': 'admin',
     'moderator': 'moderator',
@@ -185,6 +199,8 @@ class _$PatientRoleEnumSerializer
   static const Map<Object, String> _fromWire = const <Object, String>{
     'patient': 'patient',
     'specialist': 'specialist',
+    'clinic_owner': 'clinicOwner',
+    'clinic_admin': 'clinicAdmin',
     'concierge': 'concierge',
     'admin': 'admin',
     'moderator': 'moderator',

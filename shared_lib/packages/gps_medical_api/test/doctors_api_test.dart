@@ -7,6 +7,15 @@ void main() {
   final instance = GpsMedicalApi().getDoctorsApi();
 
   group(DoctorsApi, () {
+    // Accepter une invitation
+    //
+    // invited -> active. Autre etat -> 409.
+    //
+    //Future<ClinicMembership> acceptClinicMembership(String membershipId) async
+    test('test acceptClinicMembership', () async {
+      // TODO
+    });
+
     // Fiche publique d'un médecin
     //
     // **404** si le médecin n'est pas `verified=true` (dossiers `approved_pending_activation` inclus — pas de fuite d'offre en quarantaine). Voir addendum-1.1.1.md. 
@@ -54,6 +63,38 @@ void main() {
     //
     //Future<Uint8List> getDoctorCredentialFile(String credentialId, int exp, String token) async
     test('test getDoctorCredentialFile', () async {
+      // TODO
+    });
+
+    // Affiliations cliniques du spécialiste
+    //
+    //Future<BuiltList<ClinicMembership>> listDoctorMemberships() async
+    test('test listDoctorMemberships', () async {
+      // TODO
+    });
+
+    // Basculer la visibilité sur le profil public
+    //
+    //Future<ClinicMembership> patchDoctorMembership(String membershipId, PatchDoctorMembershipRequest patchDoctorMembershipRequest) async
+    test('test patchDoctorMembership', () async {
+      // TODO
+    });
+
+    // Refuser une invitation
+    //
+    // invited -> refused. Autre etat -> 409.
+    //
+    //Future<ClinicMembership> refuseClinicMembership(String membershipId) async
+    test('test refuseClinicMembership', () async {
+      // TODO
+    });
+
+    // Demander un détachement
+    //
+    // active -> detach_requested. Pas de detachement unilateral.
+    //
+    //Future<ClinicMembership> requestClinicDetach(String membershipId) async
+    test('test requestClinicDetach', () async {
       // TODO
     });
 

@@ -27,7 +27,7 @@ abstract class Notification implements Built<Notification, NotificationBuilder> 
 
   @BuiltValueField(wireName: r'type')
   NotificationTypeEnum? get type;
-  // enum typeEnum {  appointment_created,  appointment_confirmed,  appointment_reminder,  appointment_cancelled,  appointment_rescheduled,  new_message,  prescription_issued,  payment_succeeded,  payment_failed,  review_request,  admin_announcement,  };
+  // enum typeEnum {  appointment_created,  appointment_confirmed,  appointment_reminder,  appointment_cancelled,  appointment_rescheduled,  new_message,  prescription_issued,  payment_succeeded,  payment_failed,  review_request,  admin_announcement,  clinic_membership_invited,  clinic_membership_accepted,  clinic_membership_refused,  clinic_detach_requested,  clinic_detach_approved,  clinic_specialist_assigned,  };
 
   @BuiltValueField(wireName: r'title')
   String? get title;
@@ -242,6 +242,18 @@ class NotificationTypeEnum extends EnumClass {
   static const NotificationTypeEnum reviewRequest = _$notificationTypeEnum_reviewRequest;
   @BuiltValueEnumConst(wireName: r'admin_announcement')
   static const NotificationTypeEnum adminAnnouncement = _$notificationTypeEnum_adminAnnouncement;
+  @BuiltValueEnumConst(wireName: r'clinic_membership_invited')
+  static const NotificationTypeEnum clinicMembershipInvited = _$notificationTypeEnum_clinicMembershipInvited;
+  @BuiltValueEnumConst(wireName: r'clinic_membership_accepted')
+  static const NotificationTypeEnum clinicMembershipAccepted = _$notificationTypeEnum_clinicMembershipAccepted;
+  @BuiltValueEnumConst(wireName: r'clinic_membership_refused')
+  static const NotificationTypeEnum clinicMembershipRefused = _$notificationTypeEnum_clinicMembershipRefused;
+  @BuiltValueEnumConst(wireName: r'clinic_detach_requested')
+  static const NotificationTypeEnum clinicDetachRequested = _$notificationTypeEnum_clinicDetachRequested;
+  @BuiltValueEnumConst(wireName: r'clinic_detach_approved')
+  static const NotificationTypeEnum clinicDetachApproved = _$notificationTypeEnum_clinicDetachApproved;
+  @BuiltValueEnumConst(wireName: r'clinic_specialist_assigned')
+  static const NotificationTypeEnum clinicSpecialistAssigned = _$notificationTypeEnum_clinicSpecialistAssigned;
 
   static Serializer<NotificationTypeEnum> get serializer => _$notificationTypeEnumSerializer;
 

@@ -6,6 +6,50 @@ part of 'review.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const ReviewSubjectTypeEnum _$reviewSubjectTypeEnum_doctor =
+    const ReviewSubjectTypeEnum._('doctor');
+const ReviewSubjectTypeEnum _$reviewSubjectTypeEnum_clinic =
+    const ReviewSubjectTypeEnum._('clinic');
+
+ReviewSubjectTypeEnum _$reviewSubjectTypeEnumValueOf(String name) {
+  switch (name) {
+    case 'doctor':
+      return _$reviewSubjectTypeEnum_doctor;
+    case 'clinic':
+      return _$reviewSubjectTypeEnum_clinic;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<ReviewSubjectTypeEnum> _$reviewSubjectTypeEnumValues =
+    BuiltSet<ReviewSubjectTypeEnum>(const <ReviewSubjectTypeEnum>[
+      _$reviewSubjectTypeEnum_doctor,
+      _$reviewSubjectTypeEnum_clinic,
+    ]);
+
+const ReviewReviewScopeEnum _$reviewReviewScopeEnum_appointment =
+    const ReviewReviewScopeEnum._('appointment');
+const ReviewReviewScopeEnum _$reviewReviewScopeEnum_profile =
+    const ReviewReviewScopeEnum._('profile');
+
+ReviewReviewScopeEnum _$reviewReviewScopeEnumValueOf(String name) {
+  switch (name) {
+    case 'appointment':
+      return _$reviewReviewScopeEnum_appointment;
+    case 'profile':
+      return _$reviewReviewScopeEnum_profile;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<ReviewReviewScopeEnum> _$reviewReviewScopeEnumValues =
+    BuiltSet<ReviewReviewScopeEnum>(const <ReviewReviewScopeEnum>[
+      _$reviewReviewScopeEnum_appointment,
+      _$reviewReviewScopeEnum_profile,
+    ]);
+
 const ReviewStatusEnum _$reviewStatusEnum_pending = const ReviewStatusEnum._(
   'pending',
 );
@@ -42,8 +86,78 @@ final BuiltSet<ReviewStatusEnum> _$reviewStatusEnumValues =
       _$reviewStatusEnum_deleted,
     ]);
 
+Serializer<ReviewSubjectTypeEnum> _$reviewSubjectTypeEnumSerializer =
+    _$ReviewSubjectTypeEnumSerializer();
+Serializer<ReviewReviewScopeEnum> _$reviewReviewScopeEnumSerializer =
+    _$ReviewReviewScopeEnumSerializer();
 Serializer<ReviewStatusEnum> _$reviewStatusEnumSerializer =
     _$ReviewStatusEnumSerializer();
+
+class _$ReviewSubjectTypeEnumSerializer
+    implements PrimitiveSerializer<ReviewSubjectTypeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'doctor': 'doctor',
+    'clinic': 'clinic',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'doctor': 'doctor',
+    'clinic': 'clinic',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[ReviewSubjectTypeEnum];
+  @override
+  final String wireName = 'ReviewSubjectTypeEnum';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    ReviewSubjectTypeEnum object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => _toWire[object.name] ?? object.name;
+
+  @override
+  ReviewSubjectTypeEnum deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => ReviewSubjectTypeEnum.valueOf(
+    _fromWire[serialized] ?? (serialized is String ? serialized : ''),
+  );
+}
+
+class _$ReviewReviewScopeEnumSerializer
+    implements PrimitiveSerializer<ReviewReviewScopeEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'appointment': 'appointment',
+    'profile': 'profile',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'appointment': 'appointment',
+    'profile': 'profile',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[ReviewReviewScopeEnum];
+  @override
+  final String wireName = 'ReviewReviewScopeEnum';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    ReviewReviewScopeEnum object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => _toWire[object.name] ?? object.name;
+
+  @override
+  ReviewReviewScopeEnum deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => ReviewReviewScopeEnum.valueOf(
+    _fromWire[serialized] ?? (serialized is String ? serialized : ''),
+  );
+}
 
 class _$ReviewStatusEnumSerializer
     implements PrimitiveSerializer<ReviewStatusEnum> {
@@ -86,7 +200,15 @@ class _$Review extends Review {
   @override
   final String? id;
   @override
+  final ReviewSubjectTypeEnum? subjectType;
+  @override
+  final String? subjectId;
+  @override
+  final ReviewReviewScopeEnum? reviewScope;
+  @override
   final String? doctorId;
+  @override
+  final String? clinicId;
   @override
   final String? patientId;
   @override
@@ -105,7 +227,11 @@ class _$Review extends Review {
 
   _$Review._({
     this.id,
+    this.subjectType,
+    this.subjectId,
+    this.reviewScope,
     this.doctorId,
+    this.clinicId,
     this.patientId,
     this.appointmentId,
     this.rating,
@@ -125,7 +251,11 @@ class _$Review extends Review {
     if (identical(other, this)) return true;
     return other is Review &&
         id == other.id &&
+        subjectType == other.subjectType &&
+        subjectId == other.subjectId &&
+        reviewScope == other.reviewScope &&
         doctorId == other.doctorId &&
+        clinicId == other.clinicId &&
         patientId == other.patientId &&
         appointmentId == other.appointmentId &&
         rating == other.rating &&
@@ -138,7 +268,11 @@ class _$Review extends Review {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, subjectType.hashCode);
+    _$hash = $jc(_$hash, subjectId.hashCode);
+    _$hash = $jc(_$hash, reviewScope.hashCode);
     _$hash = $jc(_$hash, doctorId.hashCode);
+    _$hash = $jc(_$hash, clinicId.hashCode);
     _$hash = $jc(_$hash, patientId.hashCode);
     _$hash = $jc(_$hash, appointmentId.hashCode);
     _$hash = $jc(_$hash, rating.hashCode);
@@ -153,7 +287,11 @@ class _$Review extends Review {
   String toString() {
     return (newBuiltValueToStringHelper(r'Review')
           ..add('id', id)
+          ..add('subjectType', subjectType)
+          ..add('subjectId', subjectId)
+          ..add('reviewScope', reviewScope)
           ..add('doctorId', doctorId)
+          ..add('clinicId', clinicId)
           ..add('patientId', patientId)
           ..add('appointmentId', appointmentId)
           ..add('rating', rating)
@@ -171,9 +309,27 @@ class ReviewBuilder implements Builder<Review, ReviewBuilder> {
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
 
+  ReviewSubjectTypeEnum? _subjectType;
+  ReviewSubjectTypeEnum? get subjectType => _$this._subjectType;
+  set subjectType(ReviewSubjectTypeEnum? subjectType) =>
+      _$this._subjectType = subjectType;
+
+  String? _subjectId;
+  String? get subjectId => _$this._subjectId;
+  set subjectId(String? subjectId) => _$this._subjectId = subjectId;
+
+  ReviewReviewScopeEnum? _reviewScope;
+  ReviewReviewScopeEnum? get reviewScope => _$this._reviewScope;
+  set reviewScope(ReviewReviewScopeEnum? reviewScope) =>
+      _$this._reviewScope = reviewScope;
+
   String? _doctorId;
   String? get doctorId => _$this._doctorId;
   set doctorId(String? doctorId) => _$this._doctorId = doctorId;
+
+  String? _clinicId;
+  String? get clinicId => _$this._clinicId;
+  set clinicId(String? clinicId) => _$this._clinicId = clinicId;
 
   String? _patientId;
   String? get patientId => _$this._patientId;
@@ -208,7 +364,11 @@ class ReviewBuilder implements Builder<Review, ReviewBuilder> {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
+      _subjectType = $v.subjectType;
+      _subjectId = $v.subjectId;
+      _reviewScope = $v.reviewScope;
       _doctorId = $v.doctorId;
+      _clinicId = $v.clinicId;
       _patientId = $v.patientId;
       _appointmentId = $v.appointmentId;
       _rating = $v.rating;
@@ -238,7 +398,11 @@ class ReviewBuilder implements Builder<Review, ReviewBuilder> {
         _$v ??
         _$Review._(
           id: id,
+          subjectType: subjectType,
+          subjectId: subjectId,
+          reviewScope: reviewScope,
           doctorId: doctorId,
+          clinicId: clinicId,
           patientId: patientId,
           appointmentId: appointmentId,
           rating: rating,

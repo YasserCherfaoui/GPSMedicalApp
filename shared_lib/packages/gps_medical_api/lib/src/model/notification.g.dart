@@ -28,6 +28,18 @@ const NotificationTypeEnum _$notificationTypeEnum_reviewRequest =
     const NotificationTypeEnum._('reviewRequest');
 const NotificationTypeEnum _$notificationTypeEnum_adminAnnouncement =
     const NotificationTypeEnum._('adminAnnouncement');
+const NotificationTypeEnum _$notificationTypeEnum_clinicMembershipInvited =
+    const NotificationTypeEnum._('clinicMembershipInvited');
+const NotificationTypeEnum _$notificationTypeEnum_clinicMembershipAccepted =
+    const NotificationTypeEnum._('clinicMembershipAccepted');
+const NotificationTypeEnum _$notificationTypeEnum_clinicMembershipRefused =
+    const NotificationTypeEnum._('clinicMembershipRefused');
+const NotificationTypeEnum _$notificationTypeEnum_clinicDetachRequested =
+    const NotificationTypeEnum._('clinicDetachRequested');
+const NotificationTypeEnum _$notificationTypeEnum_clinicDetachApproved =
+    const NotificationTypeEnum._('clinicDetachApproved');
+const NotificationTypeEnum _$notificationTypeEnum_clinicSpecialistAssigned =
+    const NotificationTypeEnum._('clinicSpecialistAssigned');
 
 NotificationTypeEnum _$notificationTypeEnumValueOf(String name) {
   switch (name) {
@@ -53,6 +65,18 @@ NotificationTypeEnum _$notificationTypeEnumValueOf(String name) {
       return _$notificationTypeEnum_reviewRequest;
     case 'adminAnnouncement':
       return _$notificationTypeEnum_adminAnnouncement;
+    case 'clinicMembershipInvited':
+      return _$notificationTypeEnum_clinicMembershipInvited;
+    case 'clinicMembershipAccepted':
+      return _$notificationTypeEnum_clinicMembershipAccepted;
+    case 'clinicMembershipRefused':
+      return _$notificationTypeEnum_clinicMembershipRefused;
+    case 'clinicDetachRequested':
+      return _$notificationTypeEnum_clinicDetachRequested;
+    case 'clinicDetachApproved':
+      return _$notificationTypeEnum_clinicDetachApproved;
+    case 'clinicSpecialistAssigned':
+      return _$notificationTypeEnum_clinicSpecialistAssigned;
     default:
       throw ArgumentError(name);
   }
@@ -71,6 +95,12 @@ final BuiltSet<NotificationTypeEnum> _$notificationTypeEnumValues =
       _$notificationTypeEnum_paymentFailed,
       _$notificationTypeEnum_reviewRequest,
       _$notificationTypeEnum_adminAnnouncement,
+      _$notificationTypeEnum_clinicMembershipInvited,
+      _$notificationTypeEnum_clinicMembershipAccepted,
+      _$notificationTypeEnum_clinicMembershipRefused,
+      _$notificationTypeEnum_clinicDetachRequested,
+      _$notificationTypeEnum_clinicDetachApproved,
+      _$notificationTypeEnum_clinicSpecialistAssigned,
     ]);
 
 Serializer<NotificationTypeEnum> _$notificationTypeEnumSerializer =
@@ -90,6 +120,12 @@ class _$NotificationTypeEnumSerializer
     'paymentFailed': 'payment_failed',
     'reviewRequest': 'review_request',
     'adminAnnouncement': 'admin_announcement',
+    'clinicMembershipInvited': 'clinic_membership_invited',
+    'clinicMembershipAccepted': 'clinic_membership_accepted',
+    'clinicMembershipRefused': 'clinic_membership_refused',
+    'clinicDetachRequested': 'clinic_detach_requested',
+    'clinicDetachApproved': 'clinic_detach_approved',
+    'clinicSpecialistAssigned': 'clinic_specialist_assigned',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'appointment_created': 'appointmentCreated',
@@ -103,6 +139,12 @@ class _$NotificationTypeEnumSerializer
     'payment_failed': 'paymentFailed',
     'review_request': 'reviewRequest',
     'admin_announcement': 'adminAnnouncement',
+    'clinic_membership_invited': 'clinicMembershipInvited',
+    'clinic_membership_accepted': 'clinicMembershipAccepted',
+    'clinic_membership_refused': 'clinicMembershipRefused',
+    'clinic_detach_requested': 'clinicDetachRequested',
+    'clinic_detach_approved': 'clinicDetachApproved',
+    'clinic_specialist_assigned': 'clinicSpecialistAssigned',
   };
 
   @override

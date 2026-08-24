@@ -2065,4 +2065,102 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get specialistStatsReviewsLoadError => 'تعذر تحميل التقييمات.';
+
+  @override
+  String get searchEntityDoctors => 'الأطباء';
+
+  @override
+  String get searchEntityClinics => 'العيادات';
+
+  @override
+  String get searchHintClinics => 'ابحث عن عيادة…';
+
+  @override
+  String get searchEmptyClinicsTitle => 'لا توجد عيادة مطابقة';
+
+  @override
+  String get searchEmptyClinicsMessage => 'وسّع المنطقة أو غيّر عوامل التصفية؟';
+
+  @override
+  String get searchSuggestionsClinics => 'العيادات';
+
+  @override
+  String get clinicCardBookCta => 'عرض العيادة';
+
+  @override
+  String get clinicCardTelehealth => 'استشارة عن بُعد';
+
+  @override
+  String clinicCardFromPrice(int price, String currency) {
+    return 'ابتداءً من $price $currency';
+  }
+
+  @override
+  String get clinicDetailTitle => 'العيادة';
+
+  @override
+  String get clinicDetailAboutTitle => 'نبذة';
+
+  @override
+  String get clinicDetailAboutEmpty => 'لا يوجد وصف متاح.';
+
+  @override
+  String get clinicDetailServicesTitle => 'الخدمات';
+
+  @override
+  String get clinicDetailServicesEmpty => 'لا توجد خدمات منشورة حالياً.';
+
+  @override
+  String get clinicDetailSpecialistsTitle => 'الممارسون';
+
+  @override
+  String get clinicDetailSpecialistsEmpty =>
+      'لا يوجد ممارس ظاهر على هذا الملف.';
+
+  @override
+  String get clinicDetailReviewsTitle => 'التقييمات';
+
+  @override
+  String get clinicDetailReviewsEmpty => 'لا توجد تقييمات عامة حالياً.';
+
+  @override
+  String get clinicDetailLoadError => 'تعذر تحميل العيادة.';
+
+  @override
+  String get clinicDetailNotFoundTitle => 'العيادة غير موجودة';
+
+  @override
+  String get clinicDetailNotFoundMessage => 'هذه العيادة غير متاحة.';
+
+  @override
+  String get clinicDetailMapUnavailable => 'الخريطة غير متاحة';
+
+  @override
+  String get clinicDetailAssignNotice => 'تحجز خدمة؛ والعيادة تكلّف الممارس.';
+
+  @override
+  String clinicDetailDurationMinutes(int minutes) {
+    return '$minutes د';
+  }
+
+  @override
+  String clinicDetailServicePrice(int price, String currency) {
+    return '$price $currency';
+  }
+
+  @override
+  String get clinicDetailVerifiedPatient => 'مريض موثّق';
+
+  @override
+  String get clinicDetailLoadMoreReviews => 'عرض المزيد من التقييمات';
+
+  @override
+  String get clinicDetailVerifiedBadge => 'عيادة موثّقة';
+
+  @override
+  String get discoveryClinicsEmptyTitle => 'لا توجد عيادات';
+
+  @override
+  String get discoveryClinicsEmptyMessage =>
+      'لا توجد عيادة موثّقة متاحة حالياً.';
 }

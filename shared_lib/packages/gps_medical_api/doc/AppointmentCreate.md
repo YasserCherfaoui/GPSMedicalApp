@@ -8,7 +8,10 @@ import 'package:gps_medical_api/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**doctorId** | **String** |  | 
+**origin** | **String** |  | [optional] [default to 'doctor_direct']
+**doctorId** | **String** |  | [optional] 
+**clinicId** | **String** |  | [optional] 
+**serviceId** | **String** |  | [optional] 
 **dependentId** | **String** |  | [optional] 
 **startAt** | [**DateTime**](DateTime.md) |  | 
 **mode** | **String** |  | 

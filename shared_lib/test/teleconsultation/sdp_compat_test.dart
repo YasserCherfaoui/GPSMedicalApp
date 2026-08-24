@@ -3,7 +3,8 @@ import 'package:gps_medical_shared/src/teleconsultation/sdp_compat.dart';
 
 void main() {
   test('strips Chrome two-token ssrc msid that Safari rejects', () {
-    const chrome = 'v=0\n'
+    const chrome =
+        'v=0\n'
         'a=ssrc:1443629567 msid:d7cd629c-5783-4c2e-84b6-33d6e3321c19 d45864aa-80fe-4643-b94a-147d1102c49e\n'
         'a=ssrc:1443629567 mslabel:d7cd629c-5783-4c2e-84b6-33d6e3321c19\n'
         'a=ssrc:1443629567 label:d45864aa-80fe-4643-b94a-147d1102c49e\n';

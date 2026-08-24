@@ -9,6 +9,7 @@ import 'package:gps_medical_api/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **weekday** | **int** |  | 
+**clinicId** | **String** |  | [optional] 
 **startTime** | **String** |  | 
 **endTime** | **String** |  | 
 **slotDurationMinutes** | **int** |  | 

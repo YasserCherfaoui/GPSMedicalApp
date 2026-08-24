@@ -3915,6 +3915,186 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Impossible de charger les avis.'**
   String get specialistStatsReviewsLoadError;
+
+  /// No description provided for @searchEntityDoctors.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médecins'**
+  String get searchEntityDoctors;
+
+  /// No description provided for @searchEntityClinics.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cliniques'**
+  String get searchEntityClinics;
+
+  /// No description provided for @searchHintClinics.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher une clinique…'**
+  String get searchHintClinics;
+
+  /// No description provided for @searchEmptyClinicsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune clinique ne correspond'**
+  String get searchEmptyClinicsTitle;
+
+  /// No description provided for @searchEmptyClinicsMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Élargir la zone ou modifier vos filtres ?'**
+  String get searchEmptyClinicsMessage;
+
+  /// No description provided for @searchSuggestionsClinics.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cliniques'**
+  String get searchSuggestionsClinics;
+
+  /// No description provided for @clinicCardBookCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir la clinique'**
+  String get clinicCardBookCta;
+
+  /// No description provided for @clinicCardTelehealth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléconsultation'**
+  String get clinicCardTelehealth;
+
+  /// No description provided for @clinicCardFromPrice.
+  ///
+  /// In fr, this message translates to:
+  /// **'À partir de {price} {currency}'**
+  String clinicCardFromPrice(int price, String currency);
+
+  /// No description provided for @clinicDetailTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Clinique'**
+  String get clinicDetailTitle;
+
+  /// No description provided for @clinicDetailAboutTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'À propos'**
+  String get clinicDetailAboutTitle;
+
+  /// No description provided for @clinicDetailAboutEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune description disponible.'**
+  String get clinicDetailAboutEmpty;
+
+  /// No description provided for @clinicDetailServicesTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Services'**
+  String get clinicDetailServicesTitle;
+
+  /// No description provided for @clinicDetailServicesEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun service publié pour le moment.'**
+  String get clinicDetailServicesEmpty;
+
+  /// No description provided for @clinicDetailSpecialistsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Praticiens'**
+  String get clinicDetailSpecialistsTitle;
+
+  /// No description provided for @clinicDetailSpecialistsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun praticien visible sur ce profil.'**
+  String get clinicDetailSpecialistsEmpty;
+
+  /// No description provided for @clinicDetailReviewsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avis'**
+  String get clinicDetailReviewsTitle;
+
+  /// No description provided for @clinicDetailReviewsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun avis public pour le moment.'**
+  String get clinicDetailReviewsEmpty;
+
+  /// No description provided for @clinicDetailLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger la clinique.'**
+  String get clinicDetailLoadError;
+
+  /// No description provided for @clinicDetailNotFoundTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Clinique introuvable'**
+  String get clinicDetailNotFoundTitle;
+
+  /// No description provided for @clinicDetailNotFoundMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette clinique n\'est pas disponible.'**
+  String get clinicDetailNotFoundMessage;
+
+  /// No description provided for @clinicDetailMapUnavailable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Carte indisponible'**
+  String get clinicDetailMapUnavailable;
+
+  /// No description provided for @clinicDetailAssignNotice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous réservez un service ; la clinique attribue le praticien.'**
+  String get clinicDetailAssignNotice;
+
+  /// No description provided for @clinicDetailDurationMinutes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{minutes} min'**
+  String clinicDetailDurationMinutes(int minutes);
+
+  /// No description provided for @clinicDetailServicePrice.
+  ///
+  /// In fr, this message translates to:
+  /// **'{price} {currency}'**
+  String clinicDetailServicePrice(int price, String currency);
+
+  /// No description provided for @clinicDetailVerifiedPatient.
+  ///
+  /// In fr, this message translates to:
+  /// **'Patient vérifié'**
+  String get clinicDetailVerifiedPatient;
+
+  /// No description provided for @clinicDetailLoadMoreReviews.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir plus d\'avis'**
+  String get clinicDetailLoadMoreReviews;
+
+  /// No description provided for @clinicDetailVerifiedBadge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Clinique vérifiée'**
+  String get clinicDetailVerifiedBadge;
+
+  /// No description provided for @discoveryClinicsEmptyTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune clinique trouvée'**
+  String get discoveryClinicsEmptyTitle;
+
+  /// No description provided for @discoveryClinicsEmptyMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune clinique vérifiée n\'est disponible pour le moment.'**
+  String get discoveryClinicsEmptyMessage;
 }
 
 class _AppLocalizationsDelegate

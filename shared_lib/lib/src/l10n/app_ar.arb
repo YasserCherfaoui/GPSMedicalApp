@@ -672,5 +672,52 @@
   "specialistStatsChartEmpty": "لا توجد بيانات كافية للرسم.",
   "specialistStatsReviewsTitle": "تقييماتي",
   "specialistStatsReviewsEmpty": "لا توجد تقييمات منشورة",
-  "specialistStatsReviewsLoadError": "تعذر تحميل التقييمات."
+  "specialistStatsReviewsLoadError": "تعذر تحميل التقييمات.",
+  "searchEntityDoctors": "الأطباء",
+  "searchEntityClinics": "العيادات",
+  "searchHintClinics": "ابحث عن عيادة…",
+  "searchEmptyClinicsTitle": "لا توجد عيادة مطابقة",
+  "searchEmptyClinicsMessage": "وسّع المنطقة أو غيّر عوامل التصفية؟",
+  "searchSuggestionsClinics": "العيادات",
+  "clinicCardBookCta": "عرض العيادة",
+  "clinicCardTelehealth": "استشارة عن بُعد",
+  "clinicCardFromPrice": "ابتداءً من {price} {currency}",
+  "@clinicCardFromPrice": {
+    "placeholders": {
+      "price": { "type": "int" },
+      "currency": { "type": "String" }
+    }
+  },
+  "clinicDetailTitle": "العيادة",
+  "clinicDetailAboutTitle": "نبذة",
+  "clinicDetailAboutEmpty": "لا يوجد وصف متاح.",
+  "clinicDetailServicesTitle": "الخدمات",
+  "clinicDetailServicesEmpty": "لا توجد خدمات منشورة حالياً.",
+  "clinicDetailSpecialistsTitle": "الممارسون",
+  "clinicDetailSpecialistsEmpty": "لا يوجد ممارس ظاهر على هذا الملف.",
+  "clinicDetailReviewsTitle": "التقييمات",
+  "clinicDetailReviewsEmpty": "لا توجد تقييمات عامة حالياً.",
+  "clinicDetailLoadError": "تعذر تحميل العيادة.",
+  "clinicDetailNotFoundTitle": "العيادة غير موجودة",
+  "clinicDetailNotFoundMessage": "هذه العيادة غير متاحة.",
+  "clinicDetailMapUnavailable": "الخريطة غير متاحة",
+  "clinicDetailAssignNotice": "تحجز خدمة؛ والعيادة تكلّف الممارس.",
+  "clinicDetailDurationMinutes": "{minutes} د",
+  "@clinicDetailDurationMinutes": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
+  "clinicDetailServicePrice": "{price} {currency}",
+  "@clinicDetailServicePrice": {
+    "placeholders": {
+      "price": { "type": "int" },
+      "currency": { "type": "String" }
+    }
+  },
+  "clinicDetailVerifiedPatient": "مريض موثّق",
+  "clinicDetailLoadMoreReviews": "عرض المزيد من التقييمات",
+  "clinicDetailVerifiedBadge": "عيادة موثّقة",
+  "discoveryClinicsEmptyTitle": "لا توجد عيادات",
+  "discoveryClinicsEmptyMessage": "لا توجد عيادة موثّقة متاحة حالياً."
 }

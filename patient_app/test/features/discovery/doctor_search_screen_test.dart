@@ -104,6 +104,47 @@ void main() {
 
     expect(find.text('Dr. Karim Benali'), findsOneWidget);
   });
+
+  testWidgets('clinic tab lists clinic cards from GET /search/clinics', (
+    tester,
+  ) async {
+    mockSearch();
+    dioAdapter.onGet('/search/clinics', (server) {
+      return server.reply(200, {
+        'data': [
+          {
+            'id': 'clinic-1',
+            'name': 'Clinique El Shifa',
+            'verified': true,
+            'rating_average': 4.6,
+            'rating_count': 48,
+            'offers_telehealth': true,
+            'address': {'commune_name': 'Hydra', 'wilaya_name': 'Alger'},
+            'service_teasers': [
+              {
+                'id': 'svc-1',
+                'name': 'Consultation',
+                'price_amount': 3500,
+                'currency': 'DZD',
+                'duration_minutes': 30,
+              },
+            ],
+          },
+        ],
+        'meta': {'page': 1, 'page_size': 20, 'total': 1, 'total_pages': 1},
+      });
+    });
+
+    await tester.pumpWidget(wrap(const DoctorSearchScreen()));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Cliniques'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Clinique El Shifa'), findsOneWidget);
+    expect(find.text('Voir la clinique'), findsOneWidget);
+    expect(find.text('À partir de 3500 DZD'), findsOneWidget);
+  });
 }
 
 class _PrefilledSearchFilters extends SearchFiltersNotifier {

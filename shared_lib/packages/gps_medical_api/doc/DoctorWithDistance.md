@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **ratingAverage** | **double** |  | [optional] 
 **ratingCount** | **int** |  | [optional] 
 **verified** | **bool** |  | [optional] 
+**clinicAffiliations** | [**BuiltList&lt;ClinicSpecialistAffiliation&gt;**](ClinicSpecialistAffiliation.md) |  | [optional] 
 **distanceKm** | **double** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,5 +22,10 @@ void main() {
       // TODO
     });
 
+    // BuiltList<SuggestItem> clinics
+    test('to test the property `clinics`', () async {
+      // TODO
+    });
+
   });
 }

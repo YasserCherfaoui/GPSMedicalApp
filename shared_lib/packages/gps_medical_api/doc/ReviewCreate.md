@@ -8,7 +8,10 @@ import 'package:gps_medical_api/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**appointmentId** | **String** |  | 
+**subjectType** | **String** |  | [optional] [default to 'doctor']
+**reviewScope** | **String** |  | [optional] [default to 'appointment']
+**appointmentId** | **String** |  | [optional] 
+**clinicId** | **String** |  | [optional] 
 **rating** | **int** |  | 
 **comment** | **String** |  | [optional] 
 

@@ -33,10 +33,7 @@ class MessagingRealtimeEvent {
   Message? toMessage() {
     if (type != 'message.new') return null;
     try {
-      return standardSerializers.deserializeWith(
-        Message.serializer,
-        payload,
-      );
+      return standardSerializers.deserializeWith(Message.serializer, payload);
     } catch (_) {
       return null;
     }
@@ -75,7 +72,8 @@ class MessagingWebSocketClient {
   final String v1BaseUrl;
   final String accessToken;
 
-  final _eventsController = StreamController<MessagingRealtimeEvent>.broadcast();
+  final _eventsController =
+      StreamController<MessagingRealtimeEvent>.broadcast();
   WebSocketChannel? _channel;
   StreamSubscription<dynamic>? _subscription;
   Timer? _reconnectTimer;
@@ -141,9 +139,7 @@ class MessagingWebSocketClient {
     unawaited(_disconnectChannel());
     _reconnectTimer?.cancel();
     _attempt++;
-    final delay = Duration(
-      seconds: (_attempt.clamp(1, 6) * 2).clamp(2, 30),
-    );
+    final delay = Duration(seconds: (_attempt.clamp(1, 6) * 2).clamp(2, 30));
     _reconnectTimer = Timer(delay, () {
       unawaited(connect().catchError((_) {}));
     });

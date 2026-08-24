@@ -12,6 +12,11 @@ void main() {
       // TODO
     });
 
+    // String clinicId
+    test('to test the property `clinicId`', () async {
+      // TODO
+    });
+
     // String startTime
     test('to test the property `startTime`', () async {
       // TODO

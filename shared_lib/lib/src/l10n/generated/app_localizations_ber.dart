@@ -2089,4 +2089,103 @@ class AppLocalizationsBer extends AppLocalizations {
   @override
   String get specialistStatsReviewsLoadError =>
       'Ur izmir ara ad d-alin iɣallen.';
+
+  @override
+  String get searchEntityDoctors => 'Imsujjiyen';
+
+  @override
+  String get searchEntityClinics => 'Tigunatin';
+
+  @override
+  String get searchHintClinics => 'Nadi-d tagunit…';
+
+  @override
+  String get searchEmptyClinicsTitle => 'Ulac tagunit i d-yemṣadan';
+
+  @override
+  String get searchEmptyClinicsMessage =>
+      'Snerni tamnaḍt neɣ beddel imzizdigen?';
+
+  @override
+  String get searchSuggestionsClinics => 'Tigunatin';
+
+  @override
+  String get clinicCardBookCta => 'Wali tagunit';
+
+  @override
+  String get clinicCardTelehealth => 'Asesteqs s uselkim';
+
+  @override
+  String clinicCardFromPrice(int price, String currency) {
+    return 'Seg $price $currency';
+  }
+
+  @override
+  String get clinicDetailTitle => 'Tagunit';
+
+  @override
+  String get clinicDetailAboutTitle => 'Ɣef';
+
+  @override
+  String get clinicDetailAboutEmpty => 'Ulac aglam yellan.';
+
+  @override
+  String get clinicDetailServicesTitle => 'Imeẓlan';
+
+  @override
+  String get clinicDetailServicesEmpty => 'Ulac ameẓlu yettwaseklens tura.';
+
+  @override
+  String get clinicDetailSpecialistsTitle => 'Imsujjiyen';
+
+  @override
+  String get clinicDetailSpecialistsEmpty =>
+      'Ulac amsujji yettbanen ɣef uɣmis-a.';
+
+  @override
+  String get clinicDetailReviewsTitle => 'Iɣallen';
+
+  @override
+  String get clinicDetailReviewsEmpty => 'Ulac iɣallen izuyaz tura.';
+
+  @override
+  String get clinicDetailLoadError => 'Ur izmir ara ad d-tali tagunit.';
+
+  @override
+  String get clinicDetailNotFoundTitle => 'Tagunit ur tettwaf ara';
+
+  @override
+  String get clinicDetailNotFoundMessage => 'Tagunit-a ur tella ara.';
+
+  @override
+  String get clinicDetailMapUnavailable => 'Takarḍa ur tella ara';
+
+  @override
+  String get clinicDetailAssignNotice =>
+      'Ad tgeḍ ameẓlu; tagunit ad tefk amsujji.';
+
+  @override
+  String clinicDetailDurationMinutes(int minutes) {
+    return '$minutes tsq';
+  }
+
+  @override
+  String clinicDetailServicePrice(int price, String currency) {
+    return '$price $currency';
+  }
+
+  @override
+  String get clinicDetailVerifiedPatient => 'Amusnaw yettwasneqden';
+
+  @override
+  String get clinicDetailLoadMoreReviews => 'Wali ugar n iɣallen';
+
+  @override
+  String get clinicDetailVerifiedBadge => 'Tagunit yettwasneqden';
+
+  @override
+  String get discoveryClinicsEmptyTitle => 'Ulac tigunatin';
+
+  @override
+  String get discoveryClinicsEmptyMessage => 'Ulac tagunit yettwasneqden tura.';
 }

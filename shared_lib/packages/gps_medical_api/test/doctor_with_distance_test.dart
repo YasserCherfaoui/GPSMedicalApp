@@ -87,6 +87,11 @@ void main() {
       // TODO
     });
 
+    // BuiltList<ClinicSpecialistAffiliation> clinicAffiliations
+    test('to test the property `clinicAffiliations`', () async {
+      // TODO
+    });
+
     // double distanceKm
     test('to test the property `distanceKm`', () async {
       // TODO

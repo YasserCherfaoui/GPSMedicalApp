@@ -6,9 +6,14 @@ part of 'gps_medical_client.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$gpsMedicalClientHash() => r'8fdf22186cd8ca9617eb63f511b4f68b25ad9790';
+String _$gpsMedicalClientHash() => r'92f95d675cc196755ab242664a32d984f129a01d';
 
 /// Shared API client wired to the session [TokenStore] and expiry handler.
+///
+/// Do not [Ref.watch] [authSessionProvider]. Token refresh notifies that
+/// ChangeNotifier; rebuilding this client would create a second Dio stack and
+/// a second refresh interceptor. Refresh JWTs are single-use, so a parallel
+/// refresh returns 401 and signs the user out.
 ///
 /// Copied from [gpsMedicalClient].
 @ProviderFor(gpsMedicalClient)

@@ -18,7 +18,7 @@ void main() {
       // TODO
     });
 
-    // `dashboard` — connexion réservée au tableau de bord admin (`admin` / `moderator` uniquement). 
+    // `dashboard` — connexion réservée au tableau de bord (`admin` / `moderator` / `clinic_owner` / `clinic_admin`). 
     // String client (default value: 'mobile')
     test('to test the property `client`', () async {
       // TODO

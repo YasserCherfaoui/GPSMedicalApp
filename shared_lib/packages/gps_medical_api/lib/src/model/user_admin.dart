@@ -307,6 +307,10 @@ class UserAdminRoleEnum extends EnumClass {
   static const UserAdminRoleEnum patient = _$userAdminRoleEnum_patient;
   @BuiltValueEnumConst(wireName: r'specialist')
   static const UserAdminRoleEnum specialist = _$userAdminRoleEnum_specialist;
+  @BuiltValueEnumConst(wireName: r'clinic_owner')
+  static const UserAdminRoleEnum clinicOwner = _$userAdminRoleEnum_clinicOwner;
+  @BuiltValueEnumConst(wireName: r'clinic_admin')
+  static const UserAdminRoleEnum clinicAdmin = _$userAdminRoleEnum_clinicAdmin;
   @BuiltValueEnumConst(wireName: r'concierge')
   static const UserAdminRoleEnum concierge = _$userAdminRoleEnum_concierge;
   @BuiltValueEnumConst(wireName: r'admin')

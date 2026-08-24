@@ -1,0 +1,315 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+
+// ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:gps_medical_api/src/model/currency_code.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'clinic_service.g.dart';
+
+/// ClinicService
+///
+/// Properties:
+/// * [id] 
+/// * [clinicId] 
+/// * [name] 
+/// * [description] 
+/// * [durationMinutes] 
+/// * [priceAmount] 
+/// * [currency] 
+/// * [offersTelehealth] 
+/// * [acceptsCnas] 
+/// * [acceptsCasnos] 
+/// * [active] 
+@BuiltValue()
+abstract class ClinicService implements Built<ClinicService, ClinicServiceBuilder> {
+  @BuiltValueField(wireName: r'id')
+  String? get id;
+
+  @BuiltValueField(wireName: r'clinic_id')
+  String? get clinicId;
+
+  @BuiltValueField(wireName: r'name')
+  String? get name;
+
+  @BuiltValueField(wireName: r'description')
+  String? get description;
+
+  @BuiltValueField(wireName: r'duration_minutes')
+  ClinicServiceDurationMinutesEnum? get durationMinutes;
+  // enum durationMinutesEnum {  10,  15,  20,  30,  45,  60,  };
+
+  @BuiltValueField(wireName: r'price_amount')
+  int? get priceAmount;
+
+  @BuiltValueField(wireName: r'currency')
+  CurrencyCode? get currency;
+  // enum currencyEnum {  DZD,  TND,  EUR,  };
+
+  @BuiltValueField(wireName: r'offers_telehealth')
+  bool? get offersTelehealth;
+
+  @BuiltValueField(wireName: r'accepts_cnas')
+  bool? get acceptsCnas;
+
+  @BuiltValueField(wireName: r'accepts_casnos')
+  bool? get acceptsCasnos;
+
+  @BuiltValueField(wireName: r'active')
+  bool? get active;
+
+  ClinicService._();
+
+  factory ClinicService([void updates(ClinicServiceBuilder b)]) = _$ClinicService;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(ClinicServiceBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<ClinicService> get serializer => _$ClinicServiceSerializer();
+}
+
+class _$ClinicServiceSerializer implements PrimitiveSerializer<ClinicService> {
+  @override
+  final Iterable<Type> types = const [ClinicService, _$ClinicService];
+
+  @override
+  final String wireName = r'ClinicService';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    ClinicService object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.clinicId != null) {
+      yield r'clinic_id';
+      yield serializers.serialize(
+        object.clinicId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.name != null) {
+      yield r'name';
+      yield serializers.serialize(
+        object.name,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.description != null) {
+      yield r'description';
+      yield serializers.serialize(
+        object.description,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.durationMinutes != null) {
+      yield r'duration_minutes';
+      yield serializers.serialize(
+        object.durationMinutes,
+        specifiedType: const FullType(ClinicServiceDurationMinutesEnum),
+      );
+    }
+    if (object.priceAmount != null) {
+      yield r'price_amount';
+      yield serializers.serialize(
+        object.priceAmount,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.currency != null) {
+      yield r'currency';
+      yield serializers.serialize(
+        object.currency,
+        specifiedType: const FullType(CurrencyCode),
+      );
+    }
+    if (object.offersTelehealth != null) {
+      yield r'offers_telehealth';
+      yield serializers.serialize(
+        object.offersTelehealth,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.acceptsCnas != null) {
+      yield r'accepts_cnas';
+      yield serializers.serialize(
+        object.acceptsCnas,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.acceptsCasnos != null) {
+      yield r'accepts_casnos';
+      yield serializers.serialize(
+        object.acceptsCasnos,
+        specifiedType: const FullType(bool),
+      );
+    }
+    if (object.active != null) {
+      yield r'active';
+      yield serializers.serialize(
+        object.active,
+        specifiedType: const FullType(bool),
+      );
+    }
+  }
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    ClinicService object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required ClinicServiceBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'clinic_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.clinicId = valueDes;
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
+          break;
+        case r'description':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.description = valueDes;
+          break;
+        case r'duration_minutes':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ClinicServiceDurationMinutesEnum),
+          ) as ClinicServiceDurationMinutesEnum;
+          result.durationMinutes = valueDes;
+          break;
+        case r'price_amount':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.priceAmount = valueDes;
+          break;
+        case r'currency':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CurrencyCode),
+          ) as CurrencyCode;
+          result.currency = valueDes;
+          break;
+        case r'offers_telehealth':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.offersTelehealth = valueDes;
+          break;
+        case r'accepts_cnas':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.acceptsCnas = valueDes;
+          break;
+        case r'accepts_casnos':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.acceptsCasnos = valueDes;
+          break;
+        case r'active':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.active = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  ClinicService deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = ClinicServiceBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
+}
+
+class ClinicServiceDurationMinutesEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireNumber: 10)
+  static const ClinicServiceDurationMinutesEnum number10 = _$clinicServiceDurationMinutesEnum_number10;
+  @BuiltValueEnumConst(wireNumber: 15)
+  static const ClinicServiceDurationMinutesEnum number15 = _$clinicServiceDurationMinutesEnum_number15;
+  @BuiltValueEnumConst(wireNumber: 20)
+  static const ClinicServiceDurationMinutesEnum number20 = _$clinicServiceDurationMinutesEnum_number20;
+  @BuiltValueEnumConst(wireNumber: 30)
+  static const ClinicServiceDurationMinutesEnum number30 = _$clinicServiceDurationMinutesEnum_number30;
+  @BuiltValueEnumConst(wireNumber: 45)
+  static const ClinicServiceDurationMinutesEnum number45 = _$clinicServiceDurationMinutesEnum_number45;
+  @BuiltValueEnumConst(wireNumber: 60)
+  static const ClinicServiceDurationMinutesEnum number60 = _$clinicServiceDurationMinutesEnum_number60;
+
+  static Serializer<ClinicServiceDurationMinutesEnum> get serializer => _$clinicServiceDurationMinutesEnumSerializer;
+
+  const ClinicServiceDurationMinutesEnum._(String name): super(name);
+
+  static BuiltSet<ClinicServiceDurationMinutesEnum> get values => _$clinicServiceDurationMinutesEnumValues;
+  static ClinicServiceDurationMinutesEnum valueOf(String name) => _$clinicServiceDurationMinutesEnumValueOf(name);
+}
+

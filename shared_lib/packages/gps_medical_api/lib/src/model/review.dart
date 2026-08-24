@@ -13,7 +13,11 @@ part 'review.g.dart';
 ///
 /// Properties:
 /// * [id] 
+/// * [subjectType] 
+/// * [subjectId] 
+/// * [reviewScope] 
 /// * [doctorId] 
+/// * [clinicId] 
 /// * [patientId] 
 /// * [appointmentId] 
 /// * [rating] 
@@ -25,8 +29,22 @@ abstract class Review implements Built<Review, ReviewBuilder> {
   @BuiltValueField(wireName: r'id')
   String? get id;
 
+  @BuiltValueField(wireName: r'subject_type')
+  ReviewSubjectTypeEnum? get subjectType;
+  // enum subjectTypeEnum {  doctor,  clinic,  };
+
+  @BuiltValueField(wireName: r'subject_id')
+  String? get subjectId;
+
+  @BuiltValueField(wireName: r'review_scope')
+  ReviewReviewScopeEnum? get reviewScope;
+  // enum reviewScopeEnum {  appointment,  profile,  };
+
   @BuiltValueField(wireName: r'doctor_id')
   String? get doctorId;
+
+  @BuiltValueField(wireName: r'clinic_id')
+  String? get clinicId;
 
   @BuiltValueField(wireName: r'patient_id')
   String? get patientId;
@@ -77,11 +95,39 @@ class _$ReviewSerializer implements PrimitiveSerializer<Review> {
         specifiedType: const FullType(String),
       );
     }
+    if (object.subjectType != null) {
+      yield r'subject_type';
+      yield serializers.serialize(
+        object.subjectType,
+        specifiedType: const FullType(ReviewSubjectTypeEnum),
+      );
+    }
+    if (object.subjectId != null) {
+      yield r'subject_id';
+      yield serializers.serialize(
+        object.subjectId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.reviewScope != null) {
+      yield r'review_scope';
+      yield serializers.serialize(
+        object.reviewScope,
+        specifiedType: const FullType(ReviewReviewScopeEnum),
+      );
+    }
     if (object.doctorId != null) {
       yield r'doctor_id';
       yield serializers.serialize(
         object.doctorId,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.clinicId != null) {
+      yield r'clinic_id';
+      yield serializers.serialize(
+        object.clinicId,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.patientId != null) {
@@ -95,7 +141,7 @@ class _$ReviewSerializer implements PrimitiveSerializer<Review> {
       yield r'appointment_id';
       yield serializers.serialize(
         object.appointmentId,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.rating != null) {
@@ -156,12 +202,42 @@ class _$ReviewSerializer implements PrimitiveSerializer<Review> {
           ) as String;
           result.id = valueDes;
           break;
-        case r'doctor_id':
+        case r'subject_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ReviewSubjectTypeEnum),
+          ) as ReviewSubjectTypeEnum;
+          result.subjectType = valueDes;
+          break;
+        case r'subject_id':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
+          result.subjectId = valueDes;
+          break;
+        case r'review_scope':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(ReviewReviewScopeEnum),
+          ) as ReviewReviewScopeEnum;
+          result.reviewScope = valueDes;
+          break;
+        case r'doctor_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.doctorId = valueDes;
+          break;
+        case r'clinic_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.clinicId = valueDes;
           break;
         case r'patient_id':
           final valueDes = serializers.deserialize(
@@ -173,8 +249,9 @@ class _$ReviewSerializer implements PrimitiveSerializer<Review> {
         case r'appointment_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.appointmentId = valueDes;
           break;
         case r'rating':
@@ -232,6 +309,36 @@ class _$ReviewSerializer implements PrimitiveSerializer<Review> {
     );
     return result.build();
   }
+}
+
+class ReviewSubjectTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'doctor')
+  static const ReviewSubjectTypeEnum doctor = _$reviewSubjectTypeEnum_doctor;
+  @BuiltValueEnumConst(wireName: r'clinic')
+  static const ReviewSubjectTypeEnum clinic = _$reviewSubjectTypeEnum_clinic;
+
+  static Serializer<ReviewSubjectTypeEnum> get serializer => _$reviewSubjectTypeEnumSerializer;
+
+  const ReviewSubjectTypeEnum._(String name): super(name);
+
+  static BuiltSet<ReviewSubjectTypeEnum> get values => _$reviewSubjectTypeEnumValues;
+  static ReviewSubjectTypeEnum valueOf(String name) => _$reviewSubjectTypeEnumValueOf(name);
+}
+
+class ReviewReviewScopeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'appointment')
+  static const ReviewReviewScopeEnum appointment = _$reviewReviewScopeEnum_appointment;
+  @BuiltValueEnumConst(wireName: r'profile')
+  static const ReviewReviewScopeEnum profile = _$reviewReviewScopeEnum_profile;
+
+  static Serializer<ReviewReviewScopeEnum> get serializer => _$reviewReviewScopeEnumSerializer;
+
+  const ReviewReviewScopeEnum._(String name): super(name);
+
+  static BuiltSet<ReviewReviewScopeEnum> get values => _$reviewReviewScopeEnumValues;
+  static ReviewReviewScopeEnum valueOf(String name) => _$reviewReviewScopeEnumValueOf(name);
 }
 
 class ReviewStatusEnum extends EnumClass {

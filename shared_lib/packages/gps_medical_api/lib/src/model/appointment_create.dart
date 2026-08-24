@@ -12,7 +12,10 @@ part 'appointment_create.g.dart';
 /// AppointmentCreate
 ///
 /// Properties:
+/// * [origin] 
 /// * [doctorId] 
+/// * [clinicId] 
+/// * [serviceId] 
 /// * [dependentId] 
 /// * [startAt] 
 /// * [mode] 
@@ -20,8 +23,18 @@ part 'appointment_create.g.dart';
 /// * [slotLockToken] - Jeton de verrou optimiste obtenu via /availability
 @BuiltValue()
 abstract class AppointmentCreate implements Built<AppointmentCreate, AppointmentCreateBuilder> {
+  @BuiltValueField(wireName: r'origin')
+  AppointmentCreateOriginEnum? get origin;
+  // enum originEnum {  doctor_direct,  clinic_service,  };
+
   @BuiltValueField(wireName: r'doctor_id')
-  String get doctorId;
+  String? get doctorId;
+
+  @BuiltValueField(wireName: r'clinic_id')
+  String? get clinicId;
+
+  @BuiltValueField(wireName: r'service_id')
+  String? get serviceId;
 
   @BuiltValueField(wireName: r'dependent_id')
   String? get dependentId;
@@ -45,7 +58,8 @@ abstract class AppointmentCreate implements Built<AppointmentCreate, Appointment
   factory AppointmentCreate([void updates(AppointmentCreateBuilder b)]) = _$AppointmentCreate;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(AppointmentCreateBuilder b) => b;
+  static void _defaults(AppointmentCreateBuilder b) => b
+      ..origin = AppointmentCreateOriginEnum.valueOf('doctor_direct');
 
   @BuiltValueSerializer(custom: true)
   static Serializer<AppointmentCreate> get serializer => _$AppointmentCreateSerializer();
@@ -63,11 +77,34 @@ class _$AppointmentCreateSerializer implements PrimitiveSerializer<AppointmentCr
     AppointmentCreate object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    yield r'doctor_id';
-    yield serializers.serialize(
-      object.doctorId,
-      specifiedType: const FullType(String),
-    );
+    if (object.origin != null) {
+      yield r'origin';
+      yield serializers.serialize(
+        object.origin,
+        specifiedType: const FullType(AppointmentCreateOriginEnum),
+      );
+    }
+    if (object.doctorId != null) {
+      yield r'doctor_id';
+      yield serializers.serialize(
+        object.doctorId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.clinicId != null) {
+      yield r'clinic_id';
+      yield serializers.serialize(
+        object.clinicId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.serviceId != null) {
+      yield r'service_id';
+      yield serializers.serialize(
+        object.serviceId,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.dependentId != null) {
       yield r'dependent_id';
       yield serializers.serialize(
@@ -122,12 +159,33 @@ class _$AppointmentCreateSerializer implements PrimitiveSerializer<AppointmentCr
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
+        case r'origin':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(AppointmentCreateOriginEnum),
+          ) as AppointmentCreateOriginEnum;
+          result.origin = valueDes;
+          break;
         case r'doctor_id':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(String),
           ) as String;
           result.doctorId = valueDes;
+          break;
+        case r'clinic_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.clinicId = valueDes;
+          break;
+        case r'service_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.serviceId = valueDes;
           break;
         case r'dependent_id':
           final valueDes = serializers.deserialize(
@@ -192,6 +250,21 @@ class _$AppointmentCreateSerializer implements PrimitiveSerializer<AppointmentCr
     );
     return result.build();
   }
+}
+
+class AppointmentCreateOriginEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'doctor_direct')
+  static const AppointmentCreateOriginEnum doctorDirect = _$appointmentCreateOriginEnum_doctorDirect;
+  @BuiltValueEnumConst(wireName: r'clinic_service')
+  static const AppointmentCreateOriginEnum clinicService = _$appointmentCreateOriginEnum_clinicService;
+
+  static Serializer<AppointmentCreateOriginEnum> get serializer => _$appointmentCreateOriginEnumSerializer;
+
+  const AppointmentCreateOriginEnum._(String name): super(name);
+
+  static BuiltSet<AppointmentCreateOriginEnum> get values => _$appointmentCreateOriginEnumValues;
+  static AppointmentCreateOriginEnum valueOf(String name) => _$appointmentCreateOriginEnumValueOf(name);
 }
 
 class AppointmentCreateModeEnum extends EnumClass {

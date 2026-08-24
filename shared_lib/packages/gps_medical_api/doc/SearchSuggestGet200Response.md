@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **doctors** | [**BuiltList&lt;SuggestItem&gt;**](SuggestItem.md) |  | [optional] 
 **specialties** | [**BuiltList&lt;SuggestItem&gt;**](SuggestItem.md) |  | [optional] 
 **locations** | [**BuiltList&lt;SuggestItem&gt;**](SuggestItem.md) |  | [optional] 
+**clinics** | [**BuiltList&lt;SuggestItem&gt;**](SuggestItem.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

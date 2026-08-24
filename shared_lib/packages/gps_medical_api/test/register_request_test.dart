@@ -30,7 +30,7 @@ void main() {
       // TODO
     });
 
-    // `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
+    // `patient`, `specialist`, ou `clinic_owner`. `clinic_owner` peut aussi être accordé à `POST /clinics`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
     // String role
     test('to test the property `role`', () async {
       // TODO

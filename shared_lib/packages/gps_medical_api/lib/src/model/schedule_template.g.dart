@@ -173,6 +173,8 @@ class _$ScheduleTemplate extends ScheduleTemplate {
   @override
   final String? id;
   @override
+  final String? clinicId;
+  @override
   final int? weekday;
   @override
   final String? startTime;
@@ -191,6 +193,7 @@ class _$ScheduleTemplate extends ScheduleTemplate {
 
   _$ScheduleTemplate._({
     this.id,
+    this.clinicId,
     this.weekday,
     this.startTime,
     this.endTime,
@@ -211,6 +214,7 @@ class _$ScheduleTemplate extends ScheduleTemplate {
     if (identical(other, this)) return true;
     return other is ScheduleTemplate &&
         id == other.id &&
+        clinicId == other.clinicId &&
         weekday == other.weekday &&
         startTime == other.startTime &&
         endTime == other.endTime &&
@@ -223,6 +227,7 @@ class _$ScheduleTemplate extends ScheduleTemplate {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, clinicId.hashCode);
     _$hash = $jc(_$hash, weekday.hashCode);
     _$hash = $jc(_$hash, startTime.hashCode);
     _$hash = $jc(_$hash, endTime.hashCode);
@@ -237,6 +242,7 @@ class _$ScheduleTemplate extends ScheduleTemplate {
   String toString() {
     return (newBuiltValueToStringHelper(r'ScheduleTemplate')
           ..add('id', id)
+          ..add('clinicId', clinicId)
           ..add('weekday', weekday)
           ..add('startTime', startTime)
           ..add('endTime', endTime)
@@ -254,6 +260,10 @@ class ScheduleTemplateBuilder
   String? _id;
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
+
+  String? _clinicId;
+  String? get clinicId => _$this._clinicId;
+  set clinicId(String? clinicId) => _$this._clinicId = clinicId;
 
   int? _weekday;
   int? get weekday => _$this._weekday;
@@ -290,6 +300,7 @@ class ScheduleTemplateBuilder
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
+      _clinicId = $v.clinicId;
       _weekday = $v.weekday;
       _startTime = $v.startTime;
       _endTime = $v.endTime;
@@ -319,6 +330,7 @@ class ScheduleTemplateBuilder
         _$v ??
         _$ScheduleTemplate._(
           id: id,
+          clinicId: clinicId,
           weekday: weekday,
           startTime: startTime,
           endTime: endTime,

@@ -37,7 +37,7 @@ abstract class User  {
 
   @BuiltValueField(wireName: r'role')
   UserRoleEnum? get role;
-  // enum roleEnum {  patient,  specialist,  concierge,  admin,  moderator,  };
+  // enum roleEnum {  patient,  specialist,  clinic_owner,  clinic_admin,  concierge,  admin,  moderator,  };
 
   @BuiltValueField(wireName: r'full_name')
   String? get fullName;
@@ -299,6 +299,10 @@ class UserRoleEnum extends EnumClass {
   static const UserRoleEnum patient = _$userRoleEnum_patient;
   @BuiltValueEnumConst(wireName: r'specialist')
   static const UserRoleEnum specialist = _$userRoleEnum_specialist;
+  @BuiltValueEnumConst(wireName: r'clinic_owner')
+  static const UserRoleEnum clinicOwner = _$userRoleEnum_clinicOwner;
+  @BuiltValueEnumConst(wireName: r'clinic_admin')
+  static const UserRoleEnum clinicAdmin = _$userRoleEnum_clinicAdmin;
   @BuiltValueEnumConst(wireName: r'concierge')
   static const UserRoleEnum concierge = _$userRoleEnum_concierge;
   @BuiltValueEnumConst(wireName: r'admin')

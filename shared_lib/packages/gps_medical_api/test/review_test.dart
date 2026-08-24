@@ -12,8 +12,28 @@ void main() {
       // TODO
     });
 
+    // String subjectType
+    test('to test the property `subjectType`', () async {
+      // TODO
+    });
+
+    // String subjectId
+    test('to test the property `subjectId`', () async {
+      // TODO
+    });
+
+    // String reviewScope
+    test('to test the property `reviewScope`', () async {
+      // TODO
+    });
+
     // String doctorId
     test('to test the property `doctorId`', () async {
+      // TODO
+    });
+
+    // String clinicId
+    test('to test the property `clinicId`', () async {
       // TODO
     });
 

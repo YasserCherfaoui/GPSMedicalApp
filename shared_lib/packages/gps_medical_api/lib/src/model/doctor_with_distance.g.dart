@@ -181,6 +181,8 @@ class _$DoctorWithDistance extends DoctorWithDistance {
   final int? ratingCount;
   @override
   final bool? verified;
+  @override
+  final BuiltList<ClinicSpecialistAffiliation>? clinicAffiliations;
 
   factory _$DoctorWithDistance([
     void Function(DoctorWithDistanceBuilder)? updates,
@@ -204,6 +206,7 @@ class _$DoctorWithDistance extends DoctorWithDistance {
     this.ratingAverage,
     this.ratingCount,
     this.verified,
+    this.clinicAffiliations,
   }) : super._();
   @override
   DoctorWithDistance rebuild(
@@ -234,7 +237,8 @@ class _$DoctorWithDistance extends DoctorWithDistance {
         practiceAddress == other.practiceAddress &&
         ratingAverage == other.ratingAverage &&
         ratingCount == other.ratingCount &&
-        verified == other.verified;
+        verified == other.verified &&
+        clinicAffiliations == other.clinicAffiliations;
   }
 
   @override
@@ -257,6 +261,7 @@ class _$DoctorWithDistance extends DoctorWithDistance {
     _$hash = $jc(_$hash, ratingAverage.hashCode);
     _$hash = $jc(_$hash, ratingCount.hashCode);
     _$hash = $jc(_$hash, verified.hashCode);
+    _$hash = $jc(_$hash, clinicAffiliations.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -280,7 +285,8 @@ class _$DoctorWithDistance extends DoctorWithDistance {
           ..add('practiceAddress', practiceAddress)
           ..add('ratingAverage', ratingAverage)
           ..add('ratingCount', ratingCount)
-          ..add('verified', verified))
+          ..add('verified', verified)
+          ..add('clinicAffiliations', clinicAffiliations))
         .toString();
   }
 }
@@ -372,6 +378,13 @@ class DoctorWithDistanceBuilder
   bool? get verified => _$this._verified;
   set verified(covariant bool? verified) => _$this._verified = verified;
 
+  ListBuilder<ClinicSpecialistAffiliation>? _clinicAffiliations;
+  ListBuilder<ClinicSpecialistAffiliation> get clinicAffiliations =>
+      _$this._clinicAffiliations ??= ListBuilder<ClinicSpecialistAffiliation>();
+  set clinicAffiliations(
+    covariant ListBuilder<ClinicSpecialistAffiliation>? clinicAffiliations,
+  ) => _$this._clinicAffiliations = clinicAffiliations;
+
   DoctorWithDistanceBuilder() {
     DoctorWithDistance._defaults(this);
   }
@@ -396,6 +409,7 @@ class DoctorWithDistanceBuilder
       _ratingAverage = $v.ratingAverage;
       _ratingCount = $v.ratingCount;
       _verified = $v.verified;
+      _clinicAffiliations = $v.clinicAffiliations?.toBuilder();
       _$v = null;
     }
     return this;
@@ -437,6 +451,7 @@ class DoctorWithDistanceBuilder
             ratingAverage: ratingAverage,
             ratingCount: ratingCount,
             verified: verified,
+            clinicAffiliations: _clinicAffiliations?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -448,6 +463,9 @@ class DoctorWithDistanceBuilder
 
         _$failedField = 'practiceAddress';
         _practiceAddress?.build();
+
+        _$failedField = 'clinicAffiliations';
+        _clinicAffiliations?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
           r'DoctorWithDistance',

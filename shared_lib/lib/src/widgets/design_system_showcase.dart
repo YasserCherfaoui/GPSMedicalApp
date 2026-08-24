@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
 import '../theme/gps_theme.dart';
+import 'clinic_card.dart';
 import 'doctor_card.dart';
 import 'empty_state.dart';
 import 'error_state.dart';
@@ -151,6 +152,29 @@ class _DesignSystemShowcaseScreenState
                 isVerified: true,
                 matchPercentage: 96,
                 onBookPressed: () {},
+                onTap: () {},
+              ),
+              const SizedBox(height: GpsSpacing.md),
+              ClinicCard(
+                name: 'Clinique El Shifa',
+                serviceSummary: 'Consultation · Échographie',
+                rating: 4.6,
+                reviewCount: 48,
+                city: 'Alger',
+                startingFee: 3500,
+                isVerified: true,
+                offersTelehealth: true,
+                onTap: () {},
+              ),
+              const SizedBox(height: GpsSpacing.md),
+              ClinicCard(
+                variant: ClinicCardVariant.map,
+                name: 'Polyclinique Hydra',
+                rating: 4.4,
+                reviewCount: 19,
+                city: 'Alger',
+                distanceKm: 1.4,
+                isVerified: true,
                 onTap: () {},
               ),
               const SizedBox(height: GpsSpacing.lg),

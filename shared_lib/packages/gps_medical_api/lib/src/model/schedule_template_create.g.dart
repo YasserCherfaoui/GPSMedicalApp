@@ -181,6 +181,8 @@ class _$ScheduleTemplateCreate extends ScheduleTemplateCreate {
   @override
   final int weekday;
   @override
+  final String? clinicId;
+  @override
   final String startTime;
   @override
   final String endTime;
@@ -195,6 +197,7 @@ class _$ScheduleTemplateCreate extends ScheduleTemplateCreate {
 
   _$ScheduleTemplateCreate._({
     required this.weekday,
+    this.clinicId,
     required this.startTime,
     required this.endTime,
     required this.slotDurationMinutes,
@@ -214,6 +217,7 @@ class _$ScheduleTemplateCreate extends ScheduleTemplateCreate {
     if (identical(other, this)) return true;
     return other is ScheduleTemplateCreate &&
         weekday == other.weekday &&
+        clinicId == other.clinicId &&
         startTime == other.startTime &&
         endTime == other.endTime &&
         slotDurationMinutes == other.slotDurationMinutes &&
@@ -224,6 +228,7 @@ class _$ScheduleTemplateCreate extends ScheduleTemplateCreate {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, weekday.hashCode);
+    _$hash = $jc(_$hash, clinicId.hashCode);
     _$hash = $jc(_$hash, startTime.hashCode);
     _$hash = $jc(_$hash, endTime.hashCode);
     _$hash = $jc(_$hash, slotDurationMinutes.hashCode);
@@ -236,6 +241,7 @@ class _$ScheduleTemplateCreate extends ScheduleTemplateCreate {
   String toString() {
     return (newBuiltValueToStringHelper(r'ScheduleTemplateCreate')
           ..add('weekday', weekday)
+          ..add('clinicId', clinicId)
           ..add('startTime', startTime)
           ..add('endTime', endTime)
           ..add('slotDurationMinutes', slotDurationMinutes)
@@ -251,6 +257,10 @@ class ScheduleTemplateCreateBuilder
   int? _weekday;
   int? get weekday => _$this._weekday;
   set weekday(int? weekday) => _$this._weekday = weekday;
+
+  String? _clinicId;
+  String? get clinicId => _$this._clinicId;
+  set clinicId(String? clinicId) => _$this._clinicId = clinicId;
 
   String? _startTime;
   String? get startTime => _$this._startTime;
@@ -279,6 +289,7 @@ class ScheduleTemplateCreateBuilder
     final $v = _$v;
     if ($v != null) {
       _weekday = $v.weekday;
+      _clinicId = $v.clinicId;
       _startTime = $v.startTime;
       _endTime = $v.endTime;
       _slotDurationMinutes = $v.slotDurationMinutes;
@@ -310,6 +321,7 @@ class ScheduleTemplateCreateBuilder
             r'ScheduleTemplateCreate',
             'weekday',
           ),
+          clinicId: clinicId,
           startTime: BuiltValueNullFieldError.checkNotNull(
             startTime,
             r'ScheduleTemplateCreate',

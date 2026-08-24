@@ -16,6 +16,7 @@ part 'search_suggest_get200_response.g.dart';
 /// * [doctors] 
 /// * [specialties] 
 /// * [locations] 
+/// * [clinics] 
 @BuiltValue()
 abstract class SearchSuggestGet200Response implements Built<SearchSuggestGet200Response, SearchSuggestGet200ResponseBuilder> {
   @BuiltValueField(wireName: r'doctors')
@@ -26,6 +27,9 @@ abstract class SearchSuggestGet200Response implements Built<SearchSuggestGet200R
 
   @BuiltValueField(wireName: r'locations')
   BuiltList<SuggestItem>? get locations;
+
+  @BuiltValueField(wireName: r'clinics')
+  BuiltList<SuggestItem>? get clinics;
 
   SearchSuggestGet200Response._();
 
@@ -68,6 +72,13 @@ class _$SearchSuggestGet200ResponseSerializer implements PrimitiveSerializer<Sea
       yield r'locations';
       yield serializers.serialize(
         object.locations,
+        specifiedType: const FullType(BuiltList, [FullType(SuggestItem)]),
+      );
+    }
+    if (object.clinics != null) {
+      yield r'clinics';
+      yield serializers.serialize(
+        object.clinics,
         specifiedType: const FullType(BuiltList, [FullType(SuggestItem)]),
       );
     }
@@ -114,6 +125,13 @@ class _$SearchSuggestGet200ResponseSerializer implements PrimitiveSerializer<Sea
             specifiedType: const FullType(BuiltList, [FullType(SuggestItem)]),
           ) as BuiltList<SuggestItem>;
           result.locations.replace(valueDes);
+          break;
+        case r'clinics':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(SuggestItem)]),
+          ) as BuiltList<SuggestItem>;
+          result.clinics.replace(valueDes);
           break;
         default:
           unhandled.add(key);

@@ -27,6 +27,21 @@ void main() {
       // TODO
     });
 
+    // String clinicId
+    test('to test the property `clinicId`', () async {
+      // TODO
+    });
+
+    // String serviceId
+    test('to test the property `serviceId`', () async {
+      // TODO
+    });
+
+    // String origin
+    test('to test the property `origin`', () async {
+      // TODO
+    });
+
     // DateTime startAt
     test('to test the property `startAt`', () async {
       // TODO

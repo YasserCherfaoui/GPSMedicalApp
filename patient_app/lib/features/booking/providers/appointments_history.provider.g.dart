@@ -7,7 +7,7 @@ part of 'appointments_history.provider.dart';
 // **************************************************************************
 
 String _$appointmentsHistoryHash() =>
-    r'26f3457166c1515109587872d3a547c8efbc133d';
+    r'b0ba7205b231848aeeb9522a8f7c6211a16d716d';
 
 /// See also [AppointmentsHistory].
 @ProviderFor(AppointmentsHistory)

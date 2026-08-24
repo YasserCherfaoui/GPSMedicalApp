@@ -10,14 +10,20 @@ All URIs are relative to *https://api.gpsmedical.dz/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**adminAuditLogGet**](AdminApi.md#adminauditlogget) | **GET** /admin/audit-log | Journal d&#39;audit
+[**adminDeleteClinic**](AdminApi.md#admindeleteclinic) | **DELETE** /admin/clinics/{clinicId} | Soft-delete
 [**adminExportUserConsents**](AdminApi.md#adminexportuserconsents) | **GET** /admin/users/{userId}/consents | Export ANPDP — historique complet des consentements (Phase 1)
+[**adminGetClinic**](AdminApi.md#admingetclinic) | **GET** /admin/clinics/{clinicId} | Détail admin d&#39;une clinique
+[**adminListClinics**](AdminApi.md#adminlistclinics) | **GET** /admin/clinics | Liste admin des cliniques
+[**adminListPendingClinics**](AdminApi.md#adminlistpendingclinics) | **GET** /admin/clinics/pending | File de vérification clinique
 [**adminListPendingDoctors**](AdminApi.md#adminlistpendingdoctors) | **GET** /admin/doctors/pending | Médecins en attente de vérification
 [**adminListUsers**](AdminApi.md#adminlistusers) | **GET** /admin/users | Liste paginée des utilisateurs (vue admin)
+[**adminPatchClinic**](AdminApi.md#adminpatchclinic) | **PATCH** /admin/clinics/{clinicId} | Éditer / suspendre une clinique
 [**adminReviewsQueueGet**](AdminApi.md#adminreviewsqueueget) | **GET** /admin/reviews/queue | File de modération des avis signalés
 [**adminReviewsReviewIdModeratePost**](AdminApi.md#adminreviewsreviewidmoderatepost) | **POST** /admin/reviews/{reviewId}/moderate | Décision de modération
 [**adminSpecialtiesPost**](AdminApi.md#adminspecialtiespost) | **POST** /admin/specialties | Création d&#39;une spécialité (référentiel)
 [**adminUsersUserIdGet**](AdminApi.md#adminusersuseridget) | **GET** /admin/users/{userId} | Détail d&#39;un utilisateur (vue admin)
 [**adminUsersUserIdPatch**](AdminApi.md#adminusersuseridpatch) | **PATCH** /admin/users/{userId} | Suspension / réactivation / changement de rôle
+[**adminVerifyClinic**](AdminApi.md#adminverifyclinic) | **POST** /admin/clinics/{clinicId}/verify | Décision de vérification clinique
 [**adminVerifyDoctor**](AdminApi.md#adminverifydoctor) | **POST** /admin/doctors/{doctorId}/verify | Validation d&#39;un dossier médecin
 
 
@@ -72,6 +78,46 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **adminDeleteClinic**
+> adminDeleteClinic(clinicId)
+
+Soft-delete
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAdminApi();
+final String clinicId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    api.adminDeleteClinic(clinicId);
+} on DioException catch (e) {
+    print('Exception when calling AdminApi->adminDeleteClinic: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clinicId** | **String**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **adminExportUserConsents**
 > BuiltList<ConsentGrant> adminExportUserConsents(userId)
 
@@ -103,6 +149,147 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BuiltList&lt;ConsentGrant&gt;**](ConsentGrant.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminGetClinic**
+> ClinicPrivate adminGetClinic(clinicId)
+
+Détail admin d'une clinique
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAdminApi();
+final String clinicId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.adminGetClinic(clinicId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AdminApi->adminGetClinic: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clinicId** | **String**|  | 
+
+### Return type
+
+[**ClinicPrivate**](ClinicPrivate.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminListClinics**
+> PaginatedClinicsPrivate adminListClinics(page, pageSize, q, status, verificationStatus, countryCode, verified)
+
+Liste admin des cliniques
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAdminApi();
+final int page = 56; // int | 
+final int pageSize = 56; // int | 
+final String q = q_example; // String | 
+final ClinicStatus status = ; // ClinicStatus | 
+final ClinicVerificationStatus verificationStatus = ; // ClinicVerificationStatus | 
+final String countryCode = countryCode_example; // String | 
+final bool verified = true; // bool | 
+
+try {
+    final response = api.adminListClinics(page, pageSize, q, status, verificationStatus, countryCode, verified);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AdminApi->adminListClinics: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**|  | [optional] [default to 1]
+ **pageSize** | **int**|  | [optional] [default to 20]
+ **q** | **String**|  | [optional] 
+ **status** | [**ClinicStatus**](.md)|  | [optional] 
+ **verificationStatus** | [**ClinicVerificationStatus**](.md)|  | [optional] 
+ **countryCode** | **String**|  | [optional] 
+ **verified** | **bool**|  | [optional] 
+
+### Return type
+
+[**PaginatedClinicsPrivate**](PaginatedClinicsPrivate.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminListPendingClinics**
+> PaginatedClinicsPrivate adminListPendingClinics(page, pageSize, countryCode)
+
+File de vérification clinique
+
+Dossiers `pending` et `in_review` uniquement.
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAdminApi();
+final int page = 56; // int | 
+final int pageSize = 56; // int | 
+final String countryCode = countryCode_example; // String | 
+
+try {
+    final response = api.adminListPendingClinics(page, pageSize, countryCode);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AdminApi->adminListPendingClinics: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**|  | [optional] [default to 1]
+ **pageSize** | **int**|  | [optional] [default to 20]
+ **countryCode** | **String**|  | [optional] 
+
+### Return type
+
+[**PaginatedClinicsPrivate**](PaginatedClinicsPrivate.md)
 
 ### Authorization
 
@@ -211,6 +398,49 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminPatchClinic**
+> ClinicPrivate adminPatchClinic(clinicId, clinicAdminUpdate)
+
+Éditer / suspendre une clinique
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAdminApi();
+final String clinicId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final ClinicAdminUpdate clinicAdminUpdate = ; // ClinicAdminUpdate | 
+
+try {
+    final response = api.adminPatchClinic(clinicId, clinicAdminUpdate);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AdminApi->adminPatchClinic: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clinicId** | **String**|  | 
+ **clinicAdminUpdate** | [**ClinicAdminUpdate**](ClinicAdminUpdate.md)|  | 
+
+### Return type
+
+[**ClinicPrivate**](ClinicPrivate.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -423,6 +653,51 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adminVerifyClinic**
+> ClinicPrivate adminVerifyClinic(clinicId, verifyClinicRequest)
+
+Décision de vérification clinique
+
+`approved` + `country_code=DZ` → `verified=true`. `approved` + TN/UE → `approved_pending_activation` / `verified=false` (G-3). 
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAdminApi();
+final String clinicId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final VerifyClinicRequest verifyClinicRequest = ; // VerifyClinicRequest | 
+
+try {
+    final response = api.adminVerifyClinic(clinicId, verifyClinicRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AdminApi->adminVerifyClinic: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clinicId** | **String**|  | 
+ **verifyClinicRequest** | [**VerifyClinicRequest**](VerifyClinicRequest.md)|  | 
+
+### Return type
+
+[**ClinicPrivate**](ClinicPrivate.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

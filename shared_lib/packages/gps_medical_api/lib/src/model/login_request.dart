@@ -14,7 +14,7 @@ part 'login_request.g.dart';
 /// Properties:
 /// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
 /// * [password] 
-/// * [client] - `dashboard` — connexion réservée au tableau de bord admin (`admin` / `moderator` uniquement). 
+/// * [client] - `dashboard` — connexion réservée au tableau de bord (`admin` / `moderator` / `clinic_owner` / `clinic_admin`). 
 @BuiltValue()
 abstract class LoginRequest implements Built<LoginRequest, LoginRequestBuilder> {
   /// Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
@@ -24,7 +24,7 @@ abstract class LoginRequest implements Built<LoginRequest, LoginRequestBuilder> 
   @BuiltValueField(wireName: r'password')
   String get password;
 
-  /// `dashboard` — connexion réservée au tableau de bord admin (`admin` / `moderator` uniquement). 
+  /// `dashboard` — connexion réservée au tableau de bord (`admin` / `moderator` / `clinic_owner` / `clinic_admin`). 
   @BuiltValueField(wireName: r'client')
   LoginRequestClientEnum? get client;
   // enum clientEnum {  mobile,  dashboard,  };
@@ -145,10 +145,10 @@ class _$LoginRequestSerializer implements PrimitiveSerializer<LoginRequest> {
 
 class LoginRequestClientEnum extends EnumClass {
 
-  /// `dashboard` — connexion réservée au tableau de bord admin (`admin` / `moderator` uniquement). 
+  /// `dashboard` — connexion réservée au tableau de bord (`admin` / `moderator` / `clinic_owner` / `clinic_admin`). 
   @BuiltValueEnumConst(wireName: r'mobile')
   static const LoginRequestClientEnum mobile = _$loginRequestClientEnum_mobile;
-  /// `dashboard` — connexion réservée au tableau de bord admin (`admin` / `moderator` uniquement). 
+  /// `dashboard` — connexion réservée au tableau de bord (`admin` / `moderator` / `clinic_owner` / `clinic_admin`). 
   @BuiltValueEnumConst(wireName: r'dashboard')
   static const LoginRequestClientEnum dashboard = _$loginRequestClientEnum_dashboard;
 

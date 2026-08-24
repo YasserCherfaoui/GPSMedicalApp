@@ -47,6 +47,29 @@ class SearchRepository {
     }
   }
 
+  Future<({List<Clinic> clinics, int total})> searchClinics({
+    required SearchFilters filters,
+    required int page,
+    required int pageSize,
+  }) async {
+    try {
+      final response = await _client.v1.getSearchApi().searchClinics(
+        q: filters.query.isNotEmpty ? filters.query : null,
+        wilayaCode: filters.wilayaCode,
+        communeId: filters.communeCode,
+        page: page,
+        pageSize: pageSize,
+      );
+      final paginated = response.data;
+      return (
+        clinics: paginated?.data?.toList() ?? [],
+        total: paginated?.meta?.total ?? 0,
+      );
+    } catch (e) {
+      rethrowDiscoveryApiError(e);
+    }
+  }
+
   Future<SearchSuggestGet200Response?> suggest(String query) async {
     if (query.trim().length < 2) return null;
     final response = await _client.v1.getSearchApi().searchSuggestGet(q: query);

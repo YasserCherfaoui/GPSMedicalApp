@@ -2,7 +2,7 @@
 library;
 
 export 'package:gps_medical_api/gps_medical_api.dart'
-    hide MessagingRealtimeEvent;
+    hide MessagingRealtimeEvent, TeleconsultIceCandidate, TeleconsultSignal;
 
 export 'src/auth/auth_repository.dart';
 export 'src/auth/auth_repository.provider.dart';

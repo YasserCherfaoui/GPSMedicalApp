@@ -32,6 +32,10 @@ const UserAdminUpdateRoleEnum _$userAdminUpdateRoleEnum_patient =
     const UserAdminUpdateRoleEnum._('patient');
 const UserAdminUpdateRoleEnum _$userAdminUpdateRoleEnum_specialist =
     const UserAdminUpdateRoleEnum._('specialist');
+const UserAdminUpdateRoleEnum _$userAdminUpdateRoleEnum_clinicOwner =
+    const UserAdminUpdateRoleEnum._('clinicOwner');
+const UserAdminUpdateRoleEnum _$userAdminUpdateRoleEnum_clinicAdmin =
+    const UserAdminUpdateRoleEnum._('clinicAdmin');
 const UserAdminUpdateRoleEnum _$userAdminUpdateRoleEnum_concierge =
     const UserAdminUpdateRoleEnum._('concierge');
 const UserAdminUpdateRoleEnum _$userAdminUpdateRoleEnum_admin =
@@ -45,6 +49,10 @@ UserAdminUpdateRoleEnum _$userAdminUpdateRoleEnumValueOf(String name) {
       return _$userAdminUpdateRoleEnum_patient;
     case 'specialist':
       return _$userAdminUpdateRoleEnum_specialist;
+    case 'clinicOwner':
+      return _$userAdminUpdateRoleEnum_clinicOwner;
+    case 'clinicAdmin':
+      return _$userAdminUpdateRoleEnum_clinicAdmin;
     case 'concierge':
       return _$userAdminUpdateRoleEnum_concierge;
     case 'admin':
@@ -60,6 +68,8 @@ final BuiltSet<UserAdminUpdateRoleEnum> _$userAdminUpdateRoleEnumValues =
     BuiltSet<UserAdminUpdateRoleEnum>(const <UserAdminUpdateRoleEnum>[
       _$userAdminUpdateRoleEnum_patient,
       _$userAdminUpdateRoleEnum_specialist,
+      _$userAdminUpdateRoleEnum_clinicOwner,
+      _$userAdminUpdateRoleEnum_clinicAdmin,
       _$userAdminUpdateRoleEnum_concierge,
       _$userAdminUpdateRoleEnum_admin,
       _$userAdminUpdateRoleEnum_moderator,
@@ -108,6 +118,8 @@ class _$UserAdminUpdateRoleEnumSerializer
   static const Map<String, Object> _toWire = const <String, Object>{
     'patient': 'patient',
     'specialist': 'specialist',
+    'clinicOwner': 'clinic_owner',
+    'clinicAdmin': 'clinic_admin',
     'concierge': 'concierge',
     'admin': 'admin',
     'moderator': 'moderator',
@@ -115,6 +127,8 @@ class _$UserAdminUpdateRoleEnumSerializer
   static const Map<Object, String> _fromWire = const <Object, String>{
     'patient': 'patient',
     'specialist': 'specialist',
+    'clinic_owner': 'clinicOwner',
+    'clinic_admin': 'clinicAdmin',
     'concierge': 'concierge',
     'admin': 'admin',
     'moderator': 'moderator',

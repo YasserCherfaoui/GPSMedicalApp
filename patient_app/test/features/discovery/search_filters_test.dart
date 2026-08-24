@@ -54,8 +54,30 @@ void main() {
       notifier.reset();
 
       final state = container.read(searchFiltersNotifierProvider);
-      expect(state, const SearchFilters());
       expect(state.query, isEmpty);
+      expect(state.specialtyId, isNull);
+      expect(state.wilayaCode, isNull);
+      expect(state.acceptsCnas, isFalse);
+      expect(state.sort, 'relevance');
+      expect(state.entity, DiscoveryEntity.doctors);
+      expect(state.activeFiltersCount, 0);
+    });
+
+    test('reset preserves the selected discovery entity', () {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final notifier = container.read(searchFiltersNotifierProvider.notifier);
+      notifier.selectEntity(DiscoveryEntity.clinics);
+      notifier.updateQuery('Shifa');
+      notifier.selectWilaya('16');
+
+      notifier.reset();
+
+      final state = container.read(searchFiltersNotifierProvider);
+      expect(state.entity, DiscoveryEntity.clinics);
+      expect(state.query, isEmpty);
+      expect(state.wilayaCode, isNull);
       expect(state.activeFiltersCount, 0);
     });
 

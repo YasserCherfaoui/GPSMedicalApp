@@ -17,7 +17,7 @@ part 'register_request.g.dart';
 /// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
 /// * [nin] - Obligatoire si `country=DZ` (`422 nin_required` si absent). Doit être absent si `country=TN` (`422 nin_not_applicable` sinon). 
 /// * [password] 
-/// * [role] - `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
+/// * [role] - `patient`, `specialist`, ou `clinic_owner`. `clinic_owner` peut aussi être accordé à `POST /clinics`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
 /// * [fullName] 
 /// * [email] 
 /// * [consentDataProcessing] - Consentement obligatoire au traitement des données personnelles (termes légaux du pays).
@@ -42,10 +42,10 @@ abstract class RegisterRequest implements Built<RegisterRequest, RegisterRequest
   @BuiltValueField(wireName: r'password')
   String get password;
 
-  /// `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
+  /// `patient`, `specialist`, ou `clinic_owner`. `clinic_owner` peut aussi être accordé à `POST /clinics`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
   @BuiltValueField(wireName: r'role')
   RegisterRequestRoleEnum get role;
-  // enum roleEnum {  patient,  specialist,  };
+  // enum roleEnum {  patient,  specialist,  clinic_owner,  };
 
   @BuiltValueField(wireName: r'full_name')
   String get fullName;
@@ -284,12 +284,15 @@ class _$RegisterRequestSerializer implements PrimitiveSerializer<RegisterRequest
 
 class RegisterRequestRoleEnum extends EnumClass {
 
-  /// `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
+  /// `patient`, `specialist`, ou `clinic_owner`. `clinic_owner` peut aussi être accordé à `POST /clinics`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
   @BuiltValueEnumConst(wireName: r'patient')
   static const RegisterRequestRoleEnum patient = _$registerRequestRoleEnum_patient;
-  /// `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
+  /// `patient`, `specialist`, ou `clinic_owner`. `clinic_owner` peut aussi être accordé à `POST /clinics`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
   @BuiltValueEnumConst(wireName: r'specialist')
   static const RegisterRequestRoleEnum specialist = _$registerRequestRoleEnum_specialist;
+  /// `patient`, `specialist`, ou `clinic_owner`. `clinic_owner` peut aussi être accordé à `POST /clinics`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée. 
+  @BuiltValueEnumConst(wireName: r'clinic_owner')
+  static const RegisterRequestRoleEnum clinicOwner = _$registerRequestRoleEnum_clinicOwner;
 
   static Serializer<RegisterRequestRoleEnum> get serializer => _$registerRequestRoleEnumSerializer;
 

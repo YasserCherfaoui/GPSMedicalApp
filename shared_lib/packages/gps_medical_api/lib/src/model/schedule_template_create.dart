@@ -13,6 +13,7 @@ part 'schedule_template_create.g.dart';
 ///
 /// Properties:
 /// * [weekday] 
+/// * [clinicId] 
 /// * [startTime] 
 /// * [endTime] 
 /// * [slotDurationMinutes] 
@@ -21,6 +22,9 @@ part 'schedule_template_create.g.dart';
 abstract class ScheduleTemplateCreate implements Built<ScheduleTemplateCreate, ScheduleTemplateCreateBuilder> {
   @BuiltValueField(wireName: r'weekday')
   int get weekday;
+
+  @BuiltValueField(wireName: r'clinic_id')
+  String? get clinicId;
 
   @BuiltValueField(wireName: r'start_time')
   String get startTime;
@@ -64,6 +68,13 @@ class _$ScheduleTemplateCreateSerializer implements PrimitiveSerializer<Schedule
       object.weekday,
       specifiedType: const FullType(int),
     );
+    if (object.clinicId != null) {
+      yield r'clinic_id';
+      yield serializers.serialize(
+        object.clinicId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
     yield r'start_time';
     yield serializers.serialize(
       object.startTime,
@@ -113,6 +124,14 @@ class _$ScheduleTemplateCreateSerializer implements PrimitiveSerializer<Schedule
             specifiedType: const FullType(int),
           ) as int;
           result.weekday = valueDes;
+          break;
+        case r'clinic_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.clinicId = valueDes;
           break;
         case r'start_time':
           final valueDes = serializers.deserialize(

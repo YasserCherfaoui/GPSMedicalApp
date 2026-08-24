@@ -9,9 +9,12 @@ import 'user_location.provider.dart';
 
 part 'doctor_search.provider.g.dart';
 
+enum DiscoveryEntity { doctors, clinics }
+
 class SearchFilters {
   const SearchFilters({
     this.query = '',
+    this.entity = DiscoveryEntity.doctors,
     this.specialtyId,
     this.wilayaCode,
     this.communeCode,
@@ -27,6 +30,7 @@ class SearchFilters {
   });
 
   final String query;
+  final DiscoveryEntity entity;
   final String? specialtyId;
   final String? wilayaCode;
   final String? communeCode;
@@ -58,6 +62,7 @@ class SearchFilters {
 
   SearchFilters copyWith({
     String? query,
+    DiscoveryEntity? entity,
     String? specialtyId,
     String? wilayaCode,
     String? communeCode,
@@ -79,6 +84,7 @@ class SearchFilters {
   }) {
     return SearchFilters(
       query: query ?? this.query,
+      entity: entity ?? this.entity,
       specialtyId: clearSpecialty ? null : (specialtyId ?? this.specialtyId),
       wilayaCode: clearWilaya ? null : (wilayaCode ?? this.wilayaCode),
       communeCode: clearCommune ? null : (communeCode ?? this.communeCode),
@@ -105,6 +111,9 @@ class SearchFiltersNotifier extends _$SearchFiltersNotifier {
   SearchFilters build() => const SearchFilters();
 
   void updateQuery(String query) => state = state.copyWith(query: query);
+
+  void selectEntity(DiscoveryEntity entity) =>
+      state = state.copyWith(entity: entity);
 
   void selectSpecialty(String? specialtyId) {
     state = specialtyId == null
@@ -200,7 +209,7 @@ class SearchFiltersNotifier extends _$SearchFiltersNotifier {
 
   void updateSort(String sort) => state = state.copyWith(sort: sort);
 
-  void reset() => state = const SearchFilters();
+  void reset() => state = SearchFilters(entity: state.entity);
 }
 
 class SearchResultState {
@@ -240,6 +249,13 @@ class DoctorSearch extends _$DoctorSearch {
   @override
   Future<SearchResultState> build() async {
     final filters = ref.watch(searchFiltersNotifierProvider);
+    if (filters.entity != DiscoveryEntity.doctors) {
+      return const SearchResultState(
+        doctors: [],
+        currentPage: 1,
+        hasMore: false,
+      );
+    }
     return _fetchPage(filters, 1);
   }
 

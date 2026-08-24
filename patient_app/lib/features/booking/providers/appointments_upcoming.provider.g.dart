@@ -7,7 +7,7 @@ part of 'appointments_upcoming.provider.dart';
 // **************************************************************************
 
 String _$appointmentsUpcomingHash() =>
-    r'f79d9e26ed4526f61f75a14a4d0d582b6e0b87f3';
+    r'6d697705eae318befea81d7a48133789ebc29604';
 
 /// See also [AppointmentsUpcoming].
 @ProviderFor(AppointmentsUpcoming)

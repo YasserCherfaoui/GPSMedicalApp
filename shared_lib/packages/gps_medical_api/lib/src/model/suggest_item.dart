@@ -25,7 +25,7 @@ abstract class SuggestItem implements Built<SuggestItem, SuggestItemBuilder> {
 
   @BuiltValueField(wireName: r'kind')
   SuggestItemKindEnum? get kind;
-  // enum kindEnum {  doctor,  specialty,  location,  };
+  // enum kindEnum {  doctor,  specialty,  location,  clinic,  };
 
   SuggestItem._();
 
@@ -152,6 +152,8 @@ class SuggestItemKindEnum extends EnumClass {
   static const SuggestItemKindEnum specialty = _$suggestItemKindEnum_specialty;
   @BuiltValueEnumConst(wireName: r'location')
   static const SuggestItemKindEnum location = _$suggestItemKindEnum_location;
+  @BuiltValueEnumConst(wireName: r'clinic')
+  static const SuggestItemKindEnum clinic = _$suggestItemKindEnum_clinic;
 
   static Serializer<SuggestItemKindEnum> get serializer => _$suggestItemKindEnumSerializer;
 

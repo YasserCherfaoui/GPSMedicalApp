@@ -11,10 +11,15 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_api/src/api_util.dart';
 import 'package:gps_medical_api/src/model/admin_reviews_review_id_moderate_post_request.dart';
+import 'package:gps_medical_api/src/model/clinic_admin_update.dart';
+import 'package:gps_medical_api/src/model/clinic_private.dart';
+import 'package:gps_medical_api/src/model/clinic_status.dart';
+import 'package:gps_medical_api/src/model/clinic_verification_status.dart';
 import 'package:gps_medical_api/src/model/consent_grant.dart';
 import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:gps_medical_api/src/model/doctor_private.dart';
 import 'package:gps_medical_api/src/model/paginated_audit_entries.dart';
+import 'package:gps_medical_api/src/model/paginated_clinics_private.dart';
 import 'package:gps_medical_api/src/model/paginated_doctors_private.dart';
 import 'package:gps_medical_api/src/model/paginated_reviews.dart';
 import 'package:gps_medical_api/src/model/paginated_user_admin.dart';
@@ -24,6 +29,8 @@ import 'package:gps_medical_api/src/model/specialty.dart';
 import 'package:gps_medical_api/src/model/specialty_create.dart';
 import 'package:gps_medical_api/src/model/user_admin.dart';
 import 'package:gps_medical_api/src/model/user_admin_update.dart';
+import 'package:gps_medical_api/src/model/validation_problem.dart';
+import 'package:gps_medical_api/src/model/verify_clinic_request.dart';
 import 'package:gps_medical_api/src/model/verify_doctor_request.dart';
 
 class AdminApi {
@@ -135,6 +142,59 @@ class AdminApi {
     );
   }
 
+  /// Soft-delete
+  /// 
+  ///
+  /// Parameters:
+  /// * [clinicId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future]
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<void>> adminDeleteClinic({ 
+    required String clinicId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/clinics/{clinicId}'.replaceAll('{' r'clinicId' '}', encodeQueryParameter(_serializers, clinicId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'DELETE',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    return _response;
+  }
+
   /// Export ANPDP — historique complet des consentements (Phase 1)
   /// Réservé aux administrateurs. Retourne l&#39;historique brut des lignes &#x60;consent_grants&#x60; pour audit et conformité. Implémentation complète des exports signés / filtres en Phase 4. 
   ///
@@ -205,6 +265,283 @@ class AdminApi {
     }
 
     return Response<BuiltList<ConsentGrant>>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Détail admin d&#39;une clinique
+  /// 
+  ///
+  /// Parameters:
+  /// * [clinicId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ClinicPrivate] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<ClinicPrivate>> adminGetClinic({ 
+    required String clinicId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/clinics/{clinicId}'.replaceAll('{' r'clinicId' '}', encodeQueryParameter(_serializers, clinicId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    ClinicPrivate? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ClinicPrivate),
+      ) as ClinicPrivate;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ClinicPrivate>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Liste admin des cliniques
+  /// 
+  ///
+  /// Parameters:
+  /// * [page] 
+  /// * [pageSize] 
+  /// * [q] 
+  /// * [status] 
+  /// * [verificationStatus] 
+  /// * [countryCode] 
+  /// * [verified] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [PaginatedClinicsPrivate] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<PaginatedClinicsPrivate>> adminListClinics({ 
+    int? page = 1,
+    int? pageSize = 20,
+    String? q,
+    ClinicStatus? status,
+    ClinicVerificationStatus? verificationStatus,
+    String? countryCode,
+    bool? verified,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/clinics';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (q != null) r'q': encodeQueryParameter(_serializers, q, const FullType(String)),
+      if (status != null) r'status': encodeQueryParameter(_serializers, status, const FullType(ClinicStatus)),
+      if (verificationStatus != null) r'verification_status': encodeQueryParameter(_serializers, verificationStatus, const FullType(ClinicVerificationStatus)),
+      if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
+      if (verified != null) r'verified': encodeQueryParameter(_serializers, verified, const FullType(bool)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    PaginatedClinicsPrivate? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedClinicsPrivate),
+      ) as PaginatedClinicsPrivate;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PaginatedClinicsPrivate>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// File de vérification clinique
+  /// Dossiers &#x60;pending&#x60; et &#x60;in_review&#x60; uniquement.
+  ///
+  /// Parameters:
+  /// * [page] 
+  /// * [pageSize] 
+  /// * [countryCode] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [PaginatedClinicsPrivate] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<PaginatedClinicsPrivate>> adminListPendingClinics({ 
+    int? page = 1,
+    int? pageSize = 20,
+    String? countryCode,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/clinics/pending';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    PaginatedClinicsPrivate? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedClinicsPrivate),
+      ) as PaginatedClinicsPrivate;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PaginatedClinicsPrivate>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -398,6 +735,109 @@ class AdminApi {
     }
 
     return Response<PaginatedUserAdmin>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Éditer / suspendre une clinique
+  /// 
+  ///
+  /// Parameters:
+  /// * [clinicId] 
+  /// * [clinicAdminUpdate] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ClinicPrivate] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<ClinicPrivate>> adminPatchClinic({ 
+    required String clinicId,
+    required ClinicAdminUpdate clinicAdminUpdate,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/clinics/{clinicId}'.replaceAll('{' r'clinicId' '}', encodeQueryParameter(_serializers, clinicId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'PATCH',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(ClinicAdminUpdate);
+      _bodyData = _serializers.serialize(clinicAdminUpdate, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    ClinicPrivate? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ClinicPrivate),
+      ) as ClinicPrivate;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ClinicPrivate>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -875,6 +1315,109 @@ class AdminApi {
     }
 
     return Response<UserAdmin>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Décision de vérification clinique
+  /// &#x60;approved&#x60; + &#x60;country_code&#x3D;DZ&#x60; → &#x60;verified&#x3D;true&#x60;. &#x60;approved&#x60; + TN/UE → &#x60;approved_pending_activation&#x60; / &#x60;verified&#x3D;false&#x60; (G-3). 
+  ///
+  /// Parameters:
+  /// * [clinicId] 
+  /// * [verifyClinicRequest] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ClinicPrivate] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<ClinicPrivate>> adminVerifyClinic({ 
+    required String clinicId,
+    required VerifyClinicRequest verifyClinicRequest,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/admin/clinics/{clinicId}/verify'.replaceAll('{' r'clinicId' '}', encodeQueryParameter(_serializers, clinicId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(VerifyClinicRequest);
+      _bodyData = _serializers.serialize(verifyClinicRequest, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    ClinicPrivate? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ClinicPrivate),
+      ) as ClinicPrivate;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ClinicPrivate>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

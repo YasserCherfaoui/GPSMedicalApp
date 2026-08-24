@@ -21,6 +21,20 @@ void main() {
       // TODO
     });
 
+    // Avis au niveau rendez-vous (privés, staff clinique)
+    //
+    //Future<PaginatedAppointmentReviewsForClinic> listClinicAppointmentReviews({ int page, int pageSize }) async
+    test('test listClinicAppointmentReviews', () async {
+      // TODO
+    });
+
+    // Avis publics de profil clinique
+    //
+    //Future<PaginatedClinicReviews> listClinicPublicReviews(String clinicId, { int page, int pageSize }) async
+    test('test listClinicPublicReviews', () async {
+      // TODO
+    });
+
     // Avis publics d'un médecin
     //
     //Future<PaginatedReviews> listDoctorReviews(String doctorId, { int page, int pageSize }) async

@@ -7,6 +7,13 @@ void main() {
   final instance = GpsMedicalApi().getSearchApi();
 
   group(SearchApi, () {
+    // Recherche de cliniques
+    //
+    //Future<PaginatedClinics> searchClinics({ String q, String wilayaCode, String communeId, int page, int pageSize }) async
+    test('test searchClinics', () async {
+      // TODO
+    });
+
     // Recherche multicritères de médecins
     //
     // Uniquement des médecins `verified=true`. Les dossiers `approved_pending_activation` sont exclus. 

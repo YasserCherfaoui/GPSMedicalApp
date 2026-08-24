@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**geoDoctorsNearbyGet**](GeolocationApi.md#geodoctorsnearbyget) | **GET** /geo/doctors/nearby | Médecins à proximité d&#39;un point GPS
 [**geoWilayasGet**](GeolocationApi.md#geowilayasget) | **GET** /geo/wilayas | Liste des 58 wilayas algériennes
 [**geoWilayasWilayaCodeCommunesGet**](GeolocationApi.md#geowilayaswilayacodecommunesget) | **GET** /geo/wilayas/{wilayaCode}/communes | Communes d&#39;une wilaya donnée
+[**listNearbyClinics**](GeolocationApi.md#listnearbyclinics) | **GET** /geo/clinics/nearby | Cliniques à proximité (PostGIS)
 
 
 # **geoDoctorsNearbyGet**
@@ -142,6 +143,57 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listNearbyClinics**
+> PaginatedClinicsWithDistance listNearbyClinics(lat, lng, radiusKm, page, pageSize)
+
+Cliniques à proximité (PostGIS)
+
+Uniquement `verified=true`, non suspendues. Tri par distance.
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getGeolocationApi();
+final double lat = 1.2; // double | 
+final double lng = 1.2; // double | 
+final num radiusKm = 8.14; // num | 
+final int page = 56; // int | 
+final int pageSize = 56; // int | 
+
+try {
+    final response = api.listNearbyClinics(lat, lng, radiusKm, page, pageSize);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling GeolocationApi->listNearbyClinics: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **lat** | **double**|  | 
+ **lng** | **double**|  | 
+ **radiusKm** | **num**|  | [optional] [default to 5]
+ **page** | **int**|  | [optional] [default to 1]
+ **pageSize** | **int**|  | [optional] [default to 20]
+
+### Return type
+
+[**PaginatedClinicsWithDistance**](PaginatedClinicsWithDistance.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

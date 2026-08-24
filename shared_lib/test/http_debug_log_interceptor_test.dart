@@ -37,10 +37,7 @@ void main() {
     dio.httpClientAdapter = adapter;
     dio.interceptors.add(HttpDebugLogInterceptor(label: 'v1', log: lines.add));
 
-    adapter.onGet(
-      '/patients/me',
-      (server) => server.reply(200, {'ok': true}),
-    );
+    adapter.onGet('/patients/me', (server) => server.reply(200, {'ok': true}));
     await dio.get<void>('/patients/me');
 
     expect(lines, hasLength(2));

@@ -10,6 +10,8 @@ const RegisterRequestRoleEnum _$registerRequestRoleEnum_patient =
     const RegisterRequestRoleEnum._('patient');
 const RegisterRequestRoleEnum _$registerRequestRoleEnum_specialist =
     const RegisterRequestRoleEnum._('specialist');
+const RegisterRequestRoleEnum _$registerRequestRoleEnum_clinicOwner =
+    const RegisterRequestRoleEnum._('clinicOwner');
 
 RegisterRequestRoleEnum _$registerRequestRoleEnumValueOf(String name) {
   switch (name) {
@@ -17,6 +19,8 @@ RegisterRequestRoleEnum _$registerRequestRoleEnumValueOf(String name) {
       return _$registerRequestRoleEnum_patient;
     case 'specialist':
       return _$registerRequestRoleEnum_specialist;
+    case 'clinicOwner':
+      return _$registerRequestRoleEnum_clinicOwner;
     default:
       throw ArgumentError(name);
   }
@@ -26,6 +30,7 @@ final BuiltSet<RegisterRequestRoleEnum> _$registerRequestRoleEnumValues =
     BuiltSet<RegisterRequestRoleEnum>(const <RegisterRequestRoleEnum>[
       _$registerRequestRoleEnum_patient,
       _$registerRequestRoleEnum_specialist,
+      _$registerRequestRoleEnum_clinicOwner,
     ]);
 
 Serializer<RegisterRequestRoleEnum> _$registerRequestRoleEnumSerializer =
@@ -36,10 +41,12 @@ class _$RegisterRequestRoleEnumSerializer
   static const Map<String, Object> _toWire = const <String, Object>{
     'patient': 'patient',
     'specialist': 'specialist',
+    'clinicOwner': 'clinic_owner',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'patient': 'patient',
     'specialist': 'specialist',
+    'clinic_owner': 'clinicOwner',
   };
 
   @override

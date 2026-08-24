@@ -2114,4 +2114,106 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get specialistStatsReviewsLoadError =>
       'Impossible de charger les avis.';
+
+  @override
+  String get searchEntityDoctors => 'Médecins';
+
+  @override
+  String get searchEntityClinics => 'Cliniques';
+
+  @override
+  String get searchHintClinics => 'Rechercher une clinique…';
+
+  @override
+  String get searchEmptyClinicsTitle => 'Aucune clinique ne correspond';
+
+  @override
+  String get searchEmptyClinicsMessage =>
+      'Élargir la zone ou modifier vos filtres ?';
+
+  @override
+  String get searchSuggestionsClinics => 'Cliniques';
+
+  @override
+  String get clinicCardBookCta => 'Voir la clinique';
+
+  @override
+  String get clinicCardTelehealth => 'Téléconsultation';
+
+  @override
+  String clinicCardFromPrice(int price, String currency) {
+    return 'À partir de $price $currency';
+  }
+
+  @override
+  String get clinicDetailTitle => 'Clinique';
+
+  @override
+  String get clinicDetailAboutTitle => 'À propos';
+
+  @override
+  String get clinicDetailAboutEmpty => 'Aucune description disponible.';
+
+  @override
+  String get clinicDetailServicesTitle => 'Services';
+
+  @override
+  String get clinicDetailServicesEmpty =>
+      'Aucun service publié pour le moment.';
+
+  @override
+  String get clinicDetailSpecialistsTitle => 'Praticiens';
+
+  @override
+  String get clinicDetailSpecialistsEmpty =>
+      'Aucun praticien visible sur ce profil.';
+
+  @override
+  String get clinicDetailReviewsTitle => 'Avis';
+
+  @override
+  String get clinicDetailReviewsEmpty => 'Aucun avis public pour le moment.';
+
+  @override
+  String get clinicDetailLoadError => 'Impossible de charger la clinique.';
+
+  @override
+  String get clinicDetailNotFoundTitle => 'Clinique introuvable';
+
+  @override
+  String get clinicDetailNotFoundMessage =>
+      'Cette clinique n\'est pas disponible.';
+
+  @override
+  String get clinicDetailMapUnavailable => 'Carte indisponible';
+
+  @override
+  String get clinicDetailAssignNotice =>
+      'Vous réservez un service ; la clinique attribue le praticien.';
+
+  @override
+  String clinicDetailDurationMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String clinicDetailServicePrice(int price, String currency) {
+    return '$price $currency';
+  }
+
+  @override
+  String get clinicDetailVerifiedPatient => 'Patient vérifié';
+
+  @override
+  String get clinicDetailLoadMoreReviews => 'Voir plus d\'avis';
+
+  @override
+  String get clinicDetailVerifiedBadge => 'Clinique vérifiée';
+
+  @override
+  String get discoveryClinicsEmptyTitle => 'Aucune clinique trouvée';
+
+  @override
+  String get discoveryClinicsEmptyMessage =>
+      'Aucune clinique vérifiée n\'est disponible pour le moment.';
 }

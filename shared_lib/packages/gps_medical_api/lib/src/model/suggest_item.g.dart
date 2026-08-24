@@ -12,6 +12,8 @@ const SuggestItemKindEnum _$suggestItemKindEnum_specialty =
     const SuggestItemKindEnum._('specialty');
 const SuggestItemKindEnum _$suggestItemKindEnum_location =
     const SuggestItemKindEnum._('location');
+const SuggestItemKindEnum _$suggestItemKindEnum_clinic =
+    const SuggestItemKindEnum._('clinic');
 
 SuggestItemKindEnum _$suggestItemKindEnumValueOf(String name) {
   switch (name) {
@@ -21,6 +23,8 @@ SuggestItemKindEnum _$suggestItemKindEnumValueOf(String name) {
       return _$suggestItemKindEnum_specialty;
     case 'location':
       return _$suggestItemKindEnum_location;
+    case 'clinic':
+      return _$suggestItemKindEnum_clinic;
     default:
       throw ArgumentError(name);
   }
@@ -31,6 +35,7 @@ final BuiltSet<SuggestItemKindEnum> _$suggestItemKindEnumValues =
       _$suggestItemKindEnum_doctor,
       _$suggestItemKindEnum_specialty,
       _$suggestItemKindEnum_location,
+      _$suggestItemKindEnum_clinic,
     ]);
 
 Serializer<SuggestItemKindEnum> _$suggestItemKindEnumSerializer =
@@ -42,11 +47,13 @@ class _$SuggestItemKindEnumSerializer
     'doctor': 'doctor',
     'specialty': 'specialty',
     'location': 'location',
+    'clinic': 'clinic',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'doctor': 'doctor',
     'specialty': 'specialty',
     'location': 'location',
+    'clinic': 'clinic',
   };
 
   @override

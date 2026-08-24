@@ -10,6 +10,12 @@ const UserRoleEnum _$userRoleEnum_patient = const UserRoleEnum._('patient');
 const UserRoleEnum _$userRoleEnum_specialist = const UserRoleEnum._(
   'specialist',
 );
+const UserRoleEnum _$userRoleEnum_clinicOwner = const UserRoleEnum._(
+  'clinicOwner',
+);
+const UserRoleEnum _$userRoleEnum_clinicAdmin = const UserRoleEnum._(
+  'clinicAdmin',
+);
 const UserRoleEnum _$userRoleEnum_concierge = const UserRoleEnum._('concierge');
 const UserRoleEnum _$userRoleEnum_admin = const UserRoleEnum._('admin');
 const UserRoleEnum _$userRoleEnum_moderator = const UserRoleEnum._('moderator');
@@ -20,6 +26,10 @@ UserRoleEnum _$userRoleEnumValueOf(String name) {
       return _$userRoleEnum_patient;
     case 'specialist':
       return _$userRoleEnum_specialist;
+    case 'clinicOwner':
+      return _$userRoleEnum_clinicOwner;
+    case 'clinicAdmin':
+      return _$userRoleEnum_clinicAdmin;
     case 'concierge':
       return _$userRoleEnum_concierge;
     case 'admin':
@@ -35,6 +45,8 @@ final BuiltSet<UserRoleEnum> _$userRoleEnumValues =
     BuiltSet<UserRoleEnum>(const <UserRoleEnum>[
       _$userRoleEnum_patient,
       _$userRoleEnum_specialist,
+      _$userRoleEnum_clinicOwner,
+      _$userRoleEnum_clinicAdmin,
       _$userRoleEnum_concierge,
       _$userRoleEnum_admin,
       _$userRoleEnum_moderator,
@@ -81,6 +93,8 @@ class _$UserRoleEnumSerializer implements PrimitiveSerializer<UserRoleEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
     'patient': 'patient',
     'specialist': 'specialist',
+    'clinicOwner': 'clinic_owner',
+    'clinicAdmin': 'clinic_admin',
     'concierge': 'concierge',
     'admin': 'admin',
     'moderator': 'moderator',
@@ -88,6 +102,8 @@ class _$UserRoleEnumSerializer implements PrimitiveSerializer<UserRoleEnum> {
   static const Map<Object, String> _fromWire = const <Object, String>{
     'patient': 'patient',
     'specialist': 'specialist',
+    'clinic_owner': 'clinicOwner',
+    'clinic_admin': 'clinicAdmin',
     'concierge': 'concierge',
     'admin': 'admin',
     'moderator': 'moderator',

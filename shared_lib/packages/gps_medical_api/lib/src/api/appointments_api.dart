@@ -14,6 +14,7 @@ import 'package:gps_medical_api/src/model/appointment_create.dart';
 import 'package:gps_medical_api/src/model/appointment_update.dart';
 import 'package:gps_medical_api/src/model/appointments_appointment_id_cancel_post_request.dart';
 import 'package:gps_medical_api/src/model/date.dart';
+import 'package:gps_medical_api/src/model/invite_clinic_membership_request.dart';
 import 'package:gps_medical_api/src/model/paginated_appointments.dart';
 import 'package:gps_medical_api/src/model/problem.dart';
 import 'package:gps_medical_api/src/model/validation_problem.dart';
@@ -574,7 +575,7 @@ class AppointmentsApi {
   }
 
   /// Création d&#39;un rendez-vous
-  /// Le créneau doit être disponible. Verrou optimiste sur le slot. Un médecin qui n&#39;est pas &#x60;verified&#x3D;true&#x60; (y compris &#x60;approved_pending_activation&#x60;) n&#39;est pas réservable → &#x60;404&#x60; ou &#x60;422&#x60;. 
+  /// Le créneau doit être disponible. Verrou optimiste sur le slot. &#x60;origin&#x3D;doctor_direct&#x60; (défaut) : un médecin qui n&#39;est pas &#x60;verified&#x3D;true&#x60; n&#39;est pas réservable → &#x60;404&#x60; ou &#x60;422&#x60;. &#x60;origin&#x3D;clinic_service&#x60; : &#x60;clinic_id&#x60; + &#x60;service_id&#x60; + slot token ; &#x60;doctor_id&#x60; reste null jusqu&#39;à &#x60;assign-specialist&#x60;. 
   ///
   /// Parameters:
   /// * [appointmentCreate] 
@@ -663,6 +664,201 @@ class AppointmentsApi {
     }
 
     return Response<Appointment>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Assigner un spécialiste à une session clinique
+  /// Réservé au staff de la clinique. Le spécialiste doit être &#x60;active&#x60; au roster. Conflit d&#39;agenda (RDV direct ou autre session) → &#x60;409&#x60;. 
+  ///
+  /// Parameters:
+  /// * [appointmentId] 
+  /// * [inviteClinicMembershipRequest] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [Appointment] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<Appointment>> assignAppointmentSpecialist({ 
+    required String appointmentId,
+    required InviteClinicMembershipRequest inviteClinicMembershipRequest,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/appointments/{appointmentId}/assign-specialist'.replaceAll('{' r'appointmentId' '}', encodeQueryParameter(_serializers, appointmentId, const FullType(String)).toString());
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(InviteClinicMembershipRequest);
+      _bodyData = _serializers.serialize(inviteClinicMembershipRequest, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    Appointment? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(Appointment),
+      ) as Appointment;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<Appointment>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Boîte de réception des sessions cliniques
+  /// 
+  ///
+  /// Parameters:
+  /// * [status] 
+  /// * [page] 
+  /// * [pageSize] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [PaginatedAppointments] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<PaginatedAppointments>> listClinicAppointments({ 
+    String? status,
+    int? page = 1,
+    int? pageSize = 20,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/clinics/me/appointments';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (status != null) r'status': encodeQueryParameter(_serializers, status, const FullType(String)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    PaginatedAppointments? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedAppointments),
+      ) as PaginatedAppointments;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PaginatedAppointments>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

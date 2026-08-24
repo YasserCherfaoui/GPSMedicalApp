@@ -43,6 +43,16 @@ void main() {
       // TODO
     });
 
+    // String payeeType
+    test('to test the property `payeeType`', () async {
+      // TODO
+    });
+
+    // String payeeId
+    test('to test the property `payeeId`', () async {
+      // TODO
+    });
+
     // String redirectUrl
     test('to test the property `redirectUrl`', () async {
       // TODO

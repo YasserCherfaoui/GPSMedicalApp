@@ -30,5 +30,14 @@ void main() {
       // TODO
     });
 
+    // Cliniques à proximité (PostGIS)
+    //
+    // Uniquement `verified=true`, non suspendues. Tri par distance.
+    //
+    //Future<PaginatedClinicsWithDistance> listNearbyClinics(double lat, double lng, { num radiusKm, int page, int pageSize }) async
+    test('test listNearbyClinics', () async {
+      // TODO
+    });
+
   });
 }

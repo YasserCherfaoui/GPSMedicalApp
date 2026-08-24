@@ -7,6 +7,7 @@ import 'package:gps_medical_api/src/model/specialty.dart';
 import 'package:gps_medical_api/src/model/address.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_api/src/model/doctor.dart';
+import 'package:gps_medical_api/src/model/clinic_specialist_affiliation.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -31,6 +32,7 @@ part 'doctor_with_distance.g.dart';
 /// * [ratingAverage] 
 /// * [ratingCount] 
 /// * [verified] 
+/// * [clinicAffiliations] 
 /// * [distanceKm] 
 @BuiltValue()
 abstract class DoctorWithDistance implements Doctor, Built<DoctorWithDistance, DoctorWithDistanceBuilder> {
@@ -72,6 +74,13 @@ class _$DoctorWithDistanceSerializer implements PrimitiveSerializer<DoctorWithDi
       yield serializers.serialize(
         object.acceptsCasnos,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.clinicAffiliations != null) {
+      yield r'clinic_affiliations';
+      yield serializers.serialize(
+        object.clinicAffiliations,
+        specifiedType: const FullType(BuiltList, [FullType(ClinicSpecialistAffiliation)]),
       );
     }
     if (object.gender != null) {
@@ -215,6 +224,13 @@ class _$DoctorWithDistanceSerializer implements PrimitiveSerializer<DoctorWithDi
             specifiedType: const FullType(bool),
           ) as bool;
           result.acceptsCasnos = valueDes;
+          break;
+        case r'clinic_affiliations':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ClinicSpecialistAffiliation)]),
+          ) as BuiltList<ClinicSpecialistAffiliation>;
+          result.clinicAffiliations.replace(valueDes);
           break;
         case r'gender':
           final valueDes = serializers.deserialize(

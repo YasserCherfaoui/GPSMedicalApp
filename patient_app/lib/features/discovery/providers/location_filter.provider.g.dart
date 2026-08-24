@@ -38,7 +38,7 @@ final communesFetchProvider =
     );
 
 typedef _$CommunesFetch = AsyncNotifier<Map<String, List<Commune>>>;
-String _$locationFilterHash() => r'ce556592458b4933692291152c98e44eb24bd83d';
+String _$locationFilterHash() => r'6f08a022a26694a6d060eda8ffd5164e7ca54df8';
 
 /// See also [LocationFilter].
 @ProviderFor(LocationFilter)

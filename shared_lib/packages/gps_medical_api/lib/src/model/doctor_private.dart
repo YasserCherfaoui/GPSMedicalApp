@@ -10,6 +10,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_api/src/model/credential.dart';
 import 'package:gps_medical_api/src/model/doctor.dart';
 import 'package:gps_medical_api/src/model/country_code.dart';
+import 'package:gps_medical_api/src/model/clinic_specialist_affiliation.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -34,6 +35,7 @@ part 'doctor_private.g.dart';
 /// * [ratingAverage] 
 /// * [ratingCount] 
 /// * [verified] 
+/// * [clinicAffiliations] 
 /// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
 /// * [email] 
 /// * [country] - Pays du compte médecin (lecture seule, issu de `auth.users`). 
@@ -205,6 +207,13 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
       yield serializers.serialize(
         object.acceptsCasnos,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.clinicAffiliations != null) {
+      yield r'clinic_affiliations';
+      yield serializers.serialize(
+        object.clinicAffiliations,
+        specifiedType: const FullType(BuiltList, [FullType(ClinicSpecialistAffiliation)]),
       );
     }
     if (object.languages != null) {
@@ -404,6 +413,13 @@ class _$DoctorPrivateSerializer implements PrimitiveSerializer<DoctorPrivate> {
             specifiedType: const FullType(bool),
           ) as bool;
           result.acceptsCasnos = valueDes;
+          break;
+        case r'clinic_affiliations':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(ClinicSpecialistAffiliation)]),
+          ) as BuiltList<ClinicSpecialistAffiliation>;
+          result.clinicAffiliations.replace(valueDes);
           break;
         case r'languages':
           final valueDes = serializers.deserialize(

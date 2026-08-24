@@ -853,5 +853,52 @@
   "specialistStatsChartEmpty": "Pas assez de données pour afficher le graphique.",
   "specialistStatsReviewsTitle": "Mes avis",
   "specialistStatsReviewsEmpty": "Aucun avis publié",
-  "specialistStatsReviewsLoadError": "Impossible de charger les avis."
+  "specialistStatsReviewsLoadError": "Impossible de charger les avis.",
+  "searchEntityDoctors": "Médecins",
+  "searchEntityClinics": "Cliniques",
+  "searchHintClinics": "Rechercher une clinique…",
+  "searchEmptyClinicsTitle": "Aucune clinique ne correspond",
+  "searchEmptyClinicsMessage": "Élargir la zone ou modifier vos filtres ?",
+  "searchSuggestionsClinics": "Cliniques",
+  "clinicCardBookCta": "Voir la clinique",
+  "clinicCardTelehealth": "Téléconsultation",
+  "clinicCardFromPrice": "À partir de {price} {currency}",
+  "@clinicCardFromPrice": {
+    "placeholders": {
+      "price": { "type": "int" },
+      "currency": { "type": "String" }
+    }
+  },
+  "clinicDetailTitle": "Clinique",
+  "clinicDetailAboutTitle": "À propos",
+  "clinicDetailAboutEmpty": "Aucune description disponible.",
+  "clinicDetailServicesTitle": "Services",
+  "clinicDetailServicesEmpty": "Aucun service publié pour le moment.",
+  "clinicDetailSpecialistsTitle": "Praticiens",
+  "clinicDetailSpecialistsEmpty": "Aucun praticien visible sur ce profil.",
+  "clinicDetailReviewsTitle": "Avis",
+  "clinicDetailReviewsEmpty": "Aucun avis public pour le moment.",
+  "clinicDetailLoadError": "Impossible de charger la clinique.",
+  "clinicDetailNotFoundTitle": "Clinique introuvable",
+  "clinicDetailNotFoundMessage": "Cette clinique n'est pas disponible.",
+  "clinicDetailMapUnavailable": "Carte indisponible",
+  "clinicDetailAssignNotice": "Vous réservez un service ; la clinique attribue le praticien.",
+  "clinicDetailDurationMinutes": "{minutes} min",
+  "@clinicDetailDurationMinutes": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
+  "clinicDetailServicePrice": "{price} {currency}",
+  "@clinicDetailServicePrice": {
+    "placeholders": {
+      "price": { "type": "int" },
+      "currency": { "type": "String" }
+    }
+  },
+  "clinicDetailVerifiedPatient": "Patient vérifié",
+  "clinicDetailLoadMoreReviews": "Voir plus d'avis",
+  "clinicDetailVerifiedBadge": "Clinique vérifiée",
+  "discoveryClinicsEmptyTitle": "Aucune clinique trouvée",
+  "discoveryClinicsEmptyMessage": "Aucune clinique vérifiée n'est disponible pour le moment."
 }

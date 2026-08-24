@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**confirmPaymentIntent**](PaymentsApi.md#confirmpaymentintent) | **POST** /payments/intents/{intentId}/confirm | Confirmation côté client (token gateway)
 [**createPaymentIntent**](PaymentsApi.md#createpaymentintent) | **POST** /payments/intents | Création d&#39;une intention de paiement (acompte ou téléconsultation)
 [**createRefund**](PaymentsApi.md#createrefund) | **POST** /payments/refunds | Demande de remboursement
+[**getClinicEarnings**](PaymentsApi.md#getclinicearnings) | **GET** /clinics/me/earnings | Gains métadonnées (aucun paiement réel)
 [**getPaymentIntent**](PaymentsApi.md#getpaymentintent) | **GET** /payments/intents/{intentId} | État d&#39;une intention
 [**paymentWebhook**](PaymentsApi.md#paymentwebhook) | **POST** /payments/webhooks/{provider} | Webhook entrant des prestataires de paiement
 
@@ -137,6 +138,51 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getClinicEarnings**
+> ClinicEarnings getClinicEarnings(from, to)
+
+Gains métadonnées (aucun paiement réel)
+
+Sessions `completed` × montants. Ledger non implémenté (ADR 0016).
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getPaymentsApi();
+final Date from = 2013-10-20; // Date | 
+final Date to = 2013-10-20; // Date | 
+
+try {
+    final response = api.getClinicEarnings(from, to);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling PaymentsApi->getClinicEarnings: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **from** | **Date**|  | [optional] 
+ **to** | **Date**|  | [optional] 
+
+### Return type
+
+[**ClinicEarnings**](ClinicEarnings.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

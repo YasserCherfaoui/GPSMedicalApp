@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **phone** | **String** | Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`.  | 
 **nin** | **String** | Obligatoire si `country=DZ` (`422 nin_required` si absent). Doit être absent si `country=TN` (`422 nin_not_applicable` sinon).  | [optional] 
 **password** | **String** |  | 
-**role** | **String** | `patient` ou `specialist`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée.  | 
+**role** | **String** | `patient`, `specialist`, ou `clinic_owner`. `clinic_owner` peut aussi être accordé à `POST /clinics`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée.  | 
 **fullName** | **String** |  | 
 **email** | **String** |  | [optional] 
 **consentDataProcessing** | **bool** | Consentement obligatoire au traitement des données personnelles (termes légaux du pays). | 

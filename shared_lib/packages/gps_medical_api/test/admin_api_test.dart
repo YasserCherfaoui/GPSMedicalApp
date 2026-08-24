@@ -14,12 +14,42 @@ void main() {
       // TODO
     });
 
+    // Soft-delete
+    //
+    //Future adminDeleteClinic(String clinicId) async
+    test('test adminDeleteClinic', () async {
+      // TODO
+    });
+
     // Export ANPDP — historique complet des consentements (Phase 1)
     //
     // Réservé aux administrateurs. Retourne l'historique brut des lignes `consent_grants` pour audit et conformité. Implémentation complète des exports signés / filtres en Phase 4. 
     //
     //Future<BuiltList<ConsentGrant>> adminExportUserConsents(String userId) async
     test('test adminExportUserConsents', () async {
+      // TODO
+    });
+
+    // Détail admin d'une clinique
+    //
+    //Future<ClinicPrivate> adminGetClinic(String clinicId) async
+    test('test adminGetClinic', () async {
+      // TODO
+    });
+
+    // Liste admin des cliniques
+    //
+    //Future<PaginatedClinicsPrivate> adminListClinics({ int page, int pageSize, String q, ClinicStatus status, ClinicVerificationStatus verificationStatus, String countryCode, bool verified }) async
+    test('test adminListClinics', () async {
+      // TODO
+    });
+
+    // File de vérification clinique
+    //
+    // Dossiers `pending` et `in_review` uniquement.
+    //
+    //Future<PaginatedClinicsPrivate> adminListPendingClinics({ int page, int pageSize, String countryCode }) async
+    test('test adminListPendingClinics', () async {
       // TODO
     });
 
@@ -38,6 +68,13 @@ void main() {
     //
     //Future<PaginatedUserAdmin> adminListUsers({ String role, String status, CountryCode country, String q, int page, int pageSize }) async
     test('test adminListUsers', () async {
+      // TODO
+    });
+
+    // Éditer / suspendre une clinique
+    //
+    //Future<ClinicPrivate> adminPatchClinic(String clinicId, ClinicAdminUpdate clinicAdminUpdate) async
+    test('test adminPatchClinic', () async {
       // TODO
     });
 
@@ -73,6 +110,15 @@ void main() {
     //
     //Future<UserAdmin> adminUsersUserIdPatch(String userId, UserAdminUpdate userAdminUpdate) async
     test('test adminUsersUserIdPatch', () async {
+      // TODO
+    });
+
+    // Décision de vérification clinique
+    //
+    // `approved` + `country_code=DZ` → `verified=true`. `approved` + TN/UE → `approved_pending_activation` / `verified=false` (G-3). 
+    //
+    //Future<ClinicPrivate> adminVerifyClinic(String clinicId, VerifyClinicRequest verifyClinicRequest) async
+    test('test adminVerifyClinic', () async {
       // TODO
     });
 

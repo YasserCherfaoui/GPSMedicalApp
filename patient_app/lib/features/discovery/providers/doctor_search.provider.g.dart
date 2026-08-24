@@ -155,7 +155,7 @@ class _SearchSuggestionsProviderElement
 }
 
 String _$searchFiltersNotifierHash() =>
-    r'b842cbf341c7cea8241d251e1e5d7bd6d3bf32f9';
+    r'748bf774095b1dcfc26cec3232c560298016ee3e';
 
 /// See also [SearchFiltersNotifier].
 @ProviderFor(SearchFiltersNotifier)
@@ -171,7 +171,7 @@ final searchFiltersNotifierProvider =
     );
 
 typedef _$SearchFiltersNotifier = Notifier<SearchFilters>;
-String _$doctorSearchHash() => r'265e3552c970a4a25a72014573c69133f329fa3c';
+String _$doctorSearchHash() => r'045a9af08d6b47fcf949ff4786ad3133af39f102';
 
 /// See also [DoctorSearch].
 @ProviderFor(DoctorSearch)

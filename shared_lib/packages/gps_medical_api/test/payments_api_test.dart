@@ -28,6 +28,15 @@ void main() {
       // TODO
     });
 
+    // Gains métadonnées (aucun paiement réel)
+    //
+    // Sessions `completed` × montants. Ledger non implémenté (ADR 0016).
+    //
+    //Future<ClinicEarnings> getClinicEarnings({ Date from, Date to }) async
+    test('test getClinicEarnings', () async {
+      // TODO
+    });
+
     // État d'une intention
     //
     //Future<PaymentIntent> getPaymentIntent(String intentId) async

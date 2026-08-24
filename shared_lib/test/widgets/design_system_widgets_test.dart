@@ -296,4 +296,75 @@ void main() {
       expect(find.byIcon(Icons.favorite_border), findsNothing);
     });
   });
+
+  group('ClinicCard', () {
+    testWidgets('list variant renders clinic details and handles tap', (
+      tester,
+    ) async {
+      var tapped = false;
+      await tester.pumpWidget(
+        _wrap(
+          ClinicCard(
+            name: 'Clinique El Shifa',
+            city: 'Alger',
+            rating: 4.6,
+            reviewCount: 48,
+            serviceSummary: 'Consultation · Échographie',
+            startingFee: 3500,
+            isVerified: true,
+            offersTelehealth: true,
+            onTap: () => tapped = true,
+          ),
+        ),
+      );
+
+      expect(find.text('Clinique El Shifa'), findsOneWidget);
+      expect(find.text('Consultation · Échographie'), findsOneWidget);
+      expect(find.text('À partir de 3500 DZD'), findsOneWidget);
+      expect(find.text('Téléconsultation'), findsOneWidget);
+      expect(find.text('Voir la clinique'), findsOneWidget);
+      expect(find.byIcon(Icons.verified), findsOneWidget);
+
+      await tester.tap(find.text('Voir la clinique'));
+      expect(tapped, isTrue);
+    });
+
+    testWidgets('map variant renders compact card', (tester) async {
+      await tester.pumpWidget(
+        _wrap(
+          ClinicCard(
+            variant: ClinicCardVariant.map,
+            name: 'Polyclinique Hydra',
+            city: 'Alger',
+            rating: 4.4,
+            reviewCount: 19,
+            distanceKm: 1.4,
+            isVerified: true,
+            onTap: () {},
+          ),
+        ),
+      );
+
+      expect(find.text('Polyclinique Hydra'), findsOneWidget);
+      expect(find.text('1.4 km'), findsOneWidget);
+      expect(find.text('Voir la clinique'), findsOneWidget);
+    });
+
+    testWidgets('renders Arabic CTA under RTL locale', (tester) async {
+      await tester.pumpWidget(
+        _wrap(
+          ClinicCard(
+            name: 'عيادة الشفاء',
+            city: 'الجزائر',
+            rating: 4.5,
+            reviewCount: 10,
+            onTap: () {},
+          ),
+          locale: const Locale('ar'),
+        ),
+      );
+
+      expect(find.text('عرض العيادة'), findsOneWidget);
+    });
+  });
 }

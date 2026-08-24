@@ -13,6 +13,8 @@ class _$SearchSuggestGet200Response extends SearchSuggestGet200Response {
   final BuiltList<SuggestItem>? specialties;
   @override
   final BuiltList<SuggestItem>? locations;
+  @override
+  final BuiltList<SuggestItem>? clinics;
 
   factory _$SearchSuggestGet200Response([
     void Function(SearchSuggestGet200ResponseBuilder)? updates,
@@ -22,6 +24,7 @@ class _$SearchSuggestGet200Response extends SearchSuggestGet200Response {
     this.doctors,
     this.specialties,
     this.locations,
+    this.clinics,
   }) : super._();
   @override
   SearchSuggestGet200Response rebuild(
@@ -38,7 +41,8 @@ class _$SearchSuggestGet200Response extends SearchSuggestGet200Response {
     return other is SearchSuggestGet200Response &&
         doctors == other.doctors &&
         specialties == other.specialties &&
-        locations == other.locations;
+        locations == other.locations &&
+        clinics == other.clinics;
   }
 
   @override
@@ -47,6 +51,7 @@ class _$SearchSuggestGet200Response extends SearchSuggestGet200Response {
     _$hash = $jc(_$hash, doctors.hashCode);
     _$hash = $jc(_$hash, specialties.hashCode);
     _$hash = $jc(_$hash, locations.hashCode);
+    _$hash = $jc(_$hash, clinics.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -56,7 +61,8 @@ class _$SearchSuggestGet200Response extends SearchSuggestGet200Response {
     return (newBuiltValueToStringHelper(r'SearchSuggestGet200Response')
           ..add('doctors', doctors)
           ..add('specialties', specialties)
-          ..add('locations', locations))
+          ..add('locations', locations)
+          ..add('clinics', clinics))
         .toString();
   }
 }
@@ -86,6 +92,11 @@ class SearchSuggestGet200ResponseBuilder
   set locations(ListBuilder<SuggestItem>? locations) =>
       _$this._locations = locations;
 
+  ListBuilder<SuggestItem>? _clinics;
+  ListBuilder<SuggestItem> get clinics =>
+      _$this._clinics ??= ListBuilder<SuggestItem>();
+  set clinics(ListBuilder<SuggestItem>? clinics) => _$this._clinics = clinics;
+
   SearchSuggestGet200ResponseBuilder() {
     SearchSuggestGet200Response._defaults(this);
   }
@@ -96,6 +107,7 @@ class SearchSuggestGet200ResponseBuilder
       _doctors = $v.doctors?.toBuilder();
       _specialties = $v.specialties?.toBuilder();
       _locations = $v.locations?.toBuilder();
+      _clinics = $v.clinics?.toBuilder();
       _$v = null;
     }
     return this;
@@ -123,6 +135,7 @@ class SearchSuggestGet200ResponseBuilder
             doctors: _doctors?.build(),
             specialties: _specialties?.build(),
             locations: _locations?.build(),
+            clinics: _clinics?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -133,6 +146,8 @@ class SearchSuggestGet200ResponseBuilder
         _specialties?.build();
         _$failedField = 'locations';
         _locations?.build();
+        _$failedField = 'clinics';
+        _clinics?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
           r'SearchSuggestGet200Response',

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../repositories/clinic_repository.dart';
 import '../repositories/doctor_repository.dart';
 import '../repositories/geo_repository.dart';
 import '../repositories/search_repository.dart';
@@ -16,6 +17,10 @@ final geoRepositoryProvider = Provider<GeoRepository>((ref) {
 
 final doctorRepositoryProvider = Provider<DoctorRepository>((ref) {
   return DoctorRepository(ref.watch(gpsMedicalClientProvider));
+});
+
+final clinicRepositoryProvider = Provider<ClinicRepository>((ref) {
+  return ClinicRepository(ref.watch(gpsMedicalClientProvider));
 });
 
 final searchRepositoryProvider = Provider<SearchRepository>((ref) {

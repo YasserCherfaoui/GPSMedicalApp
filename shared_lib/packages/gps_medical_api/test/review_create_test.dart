@@ -7,8 +7,23 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ReviewCreate, () {
+    // String subjectType (default value: 'doctor')
+    test('to test the property `subjectType`', () async {
+      // TODO
+    });
+
+    // String reviewScope (default value: 'appointment')
+    test('to test the property `reviewScope`', () async {
+      // TODO
+    });
+
     // String appointmentId
     test('to test the property `appointmentId`', () async {
+      // TODO
+    });
+
+    // String clinicId
+    test('to test the property `clinicId`', () async {
       // TODO
     });
 

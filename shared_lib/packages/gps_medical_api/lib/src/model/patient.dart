@@ -371,6 +371,10 @@ class PatientRoleEnum extends EnumClass {
   static const PatientRoleEnum patient = _$patientRoleEnum_patient;
   @BuiltValueEnumConst(wireName: r'specialist')
   static const PatientRoleEnum specialist = _$patientRoleEnum_specialist;
+  @BuiltValueEnumConst(wireName: r'clinic_owner')
+  static const PatientRoleEnum clinicOwner = _$patientRoleEnum_clinicOwner;
+  @BuiltValueEnumConst(wireName: r'clinic_admin')
+  static const PatientRoleEnum clinicAdmin = _$patientRoleEnum_clinicAdmin;
   @BuiltValueEnumConst(wireName: r'concierge')
   static const PatientRoleEnum concierge = _$patientRoleEnum_concierge;
   @BuiltValueEnumConst(wireName: r'admin')

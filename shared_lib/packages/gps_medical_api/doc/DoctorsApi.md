@@ -9,14 +9,62 @@ All URIs are relative to *https://api.gpsmedical.dz/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**acceptClinicMembership**](DoctorsApi.md#acceptclinicmembership) | **POST** /doctors/me/memberships/{membershipId}/accept | Accepter une invitation
 [**doctorsDoctorIdGet**](DoctorsApi.md#doctorsdoctoridget) | **GET** /doctors/{doctorId} | Fiche publique d&#39;un médecin
 [**doctorsGet**](DoctorsApi.md#doctorsget) | **GET** /doctors | Liste publique des médecins (annuaire)
 [**doctorsMeCredentialsPost**](DoctorsApi.md#doctorsmecredentialspost) | **POST** /doctors/me/credentials | Téléversement d&#39;un diplôme ou justificatif (PDF/image)
 [**doctorsMeGet**](DoctorsApi.md#doctorsmeget) | **GET** /doctors/me | Profil du médecin connecté (vue privée)
 [**doctorsMePatch**](DoctorsApi.md#doctorsmepatch) | **PATCH** /doctors/me | Mise à jour du profil médecin
 [**getDoctorCredentialFile**](DoctorsApi.md#getdoctorcredentialfile) | **GET** /doctors/me/credentials/{credentialId}/file | Aperçu du justificatif déchiffré (lien signé)
+[**listDoctorMemberships**](DoctorsApi.md#listdoctormemberships) | **GET** /doctors/me/memberships | Affiliations cliniques du spécialiste
+[**patchDoctorMembership**](DoctorsApi.md#patchdoctormembership) | **PATCH** /doctors/me/memberships/{membershipId} | Basculer la visibilité sur le profil public
+[**refuseClinicMembership**](DoctorsApi.md#refuseclinicmembership) | **POST** /doctors/me/memberships/{membershipId}/refuse | Refuser une invitation
+[**requestClinicDetach**](DoctorsApi.md#requestclinicdetach) | **POST** /doctors/me/memberships/{membershipId}/request-detach | Demander un détachement
 [**specialtiesGet**](DoctorsApi.md#specialtiesget) | **GET** /specialties | Référentiel des spécialités médicales
 
+
+# **acceptClinicMembership**
+> ClinicMembership acceptClinicMembership(membershipId)
+
+Accepter une invitation
+
+invited -> active. Autre etat -> 409.
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getDoctorsApi();
+final String membershipId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.acceptClinicMembership(membershipId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling DoctorsApi->acceptClinicMembership: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **membershipId** | **String**|  | 
+
+### Return type
+
+[**ClinicMembership**](ClinicMembership.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **doctorsDoctorIdGet**
 > Doctor doctorsDoctorIdGet(doctorId)
@@ -277,6 +325,172 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/octet-stream, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listDoctorMemberships**
+> BuiltList<ClinicMembership> listDoctorMemberships()
+
+Affiliations cliniques du spécialiste
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getDoctorsApi();
+
+try {
+    final response = api.listDoctorMemberships();
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling DoctorsApi->listDoctorMemberships: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BuiltList&lt;ClinicMembership&gt;**](ClinicMembership.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patchDoctorMembership**
+> ClinicMembership patchDoctorMembership(membershipId, patchDoctorMembershipRequest)
+
+Basculer la visibilité sur le profil public
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getDoctorsApi();
+final String membershipId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final PatchDoctorMembershipRequest patchDoctorMembershipRequest = ; // PatchDoctorMembershipRequest | 
+
+try {
+    final response = api.patchDoctorMembership(membershipId, patchDoctorMembershipRequest);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling DoctorsApi->patchDoctorMembership: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **membershipId** | **String**|  | 
+ **patchDoctorMembershipRequest** | [**PatchDoctorMembershipRequest**](PatchDoctorMembershipRequest.md)|  | 
+
+### Return type
+
+[**ClinicMembership**](ClinicMembership.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **refuseClinicMembership**
+> ClinicMembership refuseClinicMembership(membershipId)
+
+Refuser une invitation
+
+invited -> refused. Autre etat -> 409.
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getDoctorsApi();
+final String membershipId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.refuseClinicMembership(membershipId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling DoctorsApi->refuseClinicMembership: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **membershipId** | **String**|  | 
+
+### Return type
+
+[**ClinicMembership**](ClinicMembership.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **requestClinicDetach**
+> ClinicMembership requestClinicDetach(membershipId)
+
+Demander un détachement
+
+active -> detach_requested. Pas de detachement unilateral.
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getDoctorsApi();
+final String membershipId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final response = api.requestClinicDetach(membershipId);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling DoctorsApi->requestClinicDetach: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **membershipId** | **String**|  | 
+
+### Return type
+
+[**ClinicMembership**](ClinicMembership.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

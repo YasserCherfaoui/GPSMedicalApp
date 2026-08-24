@@ -10,8 +10,10 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_api/src/api_util.dart';
+import 'package:gps_medical_api/src/model/paginated_clinics.dart';
 import 'package:gps_medical_api/src/model/paginated_doctors.dart';
 import 'package:gps_medical_api/src/model/search_suggest_get200_response.dart';
+import 'package:gps_medical_api/src/model/validation_problem.dart';
 
 class SearchApi {
 
@@ -20,6 +22,98 @@ class SearchApi {
   final Serializers _serializers;
 
   const SearchApi(this._dio, this._serializers);
+
+  /// Recherche de cliniques
+  /// 
+  ///
+  /// Parameters:
+  /// * [q] 
+  /// * [wilayaCode] 
+  /// * [communeId] 
+  /// * [page] 
+  /// * [pageSize] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [PaginatedClinics] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<PaginatedClinics>> searchClinics({ 
+    String? q,
+    String? wilayaCode,
+    String? communeId,
+    int? page = 1,
+    int? pageSize = 20,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/search/clinics';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (q != null) r'q': encodeQueryParameter(_serializers, q, const FullType(String)),
+      if (wilayaCode != null) r'wilaya_code': encodeQueryParameter(_serializers, wilayaCode, const FullType(String)),
+      if (communeId != null) r'commune_id': encodeQueryParameter(_serializers, communeId, const FullType(String)),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    PaginatedClinics? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PaginatedClinics),
+      ) as PaginatedClinics;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PaginatedClinics>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
 
   /// Recherche multicritères de médecins
   /// Uniquement des médecins &#x60;verified&#x3D;true&#x60;. Les dossiers &#x60;approved_pending_activation&#x60; sont exclus. 

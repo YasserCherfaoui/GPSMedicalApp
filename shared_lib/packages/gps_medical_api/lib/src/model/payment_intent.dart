@@ -19,6 +19,8 @@ part 'payment_intent.g.dart';
 /// * [provider] 
 /// * [status] 
 /// * [clientSecret] - Secret transmis au SDK gateway
+/// * [payeeType] 
+/// * [payeeId] 
 /// * [redirectUrl] 
 /// * [createdAt] 
 @BuiltValue()
@@ -45,6 +47,13 @@ abstract class PaymentIntent implements Built<PaymentIntent, PaymentIntentBuilde
   /// Secret transmis au SDK gateway
   @BuiltValueField(wireName: r'client_secret')
   String? get clientSecret;
+
+  @BuiltValueField(wireName: r'payee_type')
+  PaymentIntentPayeeTypeEnum? get payeeType;
+  // enum payeeTypeEnum {  specialist,  clinic,  };
+
+  @BuiltValueField(wireName: r'payee_id')
+  String? get payeeId;
 
   @BuiltValueField(wireName: r'redirect_url')
   String? get redirectUrl;
@@ -122,6 +131,20 @@ class _$PaymentIntentSerializer implements PrimitiveSerializer<PaymentIntent> {
       yield serializers.serialize(
         object.clientSecret,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.payeeType != null) {
+      yield r'payee_type';
+      yield serializers.serialize(
+        object.payeeType,
+        specifiedType: const FullType.nullable(PaymentIntentPayeeTypeEnum),
+      );
+    }
+    if (object.payeeId != null) {
+      yield r'payee_id';
+      yield serializers.serialize(
+        object.payeeId,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.redirectUrl != null) {
@@ -210,6 +233,22 @@ class _$PaymentIntentSerializer implements PrimitiveSerializer<PaymentIntent> {
           ) as String;
           result.clientSecret = valueDes;
           break;
+        case r'payee_type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(PaymentIntentPayeeTypeEnum),
+          ) as PaymentIntentPayeeTypeEnum?;
+          if (valueDes == null) continue;
+          result.payeeType = valueDes;
+          break;
+        case r'payee_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.payeeId = valueDes;
+          break;
         case r'redirect_url':
           final valueDes = serializers.deserialize(
             value,
@@ -275,5 +314,20 @@ class PaymentIntentStatusEnum extends EnumClass {
 
   static BuiltSet<PaymentIntentStatusEnum> get values => _$paymentIntentStatusEnumValues;
   static PaymentIntentStatusEnum valueOf(String name) => _$paymentIntentStatusEnumValueOf(name);
+}
+
+class PaymentIntentPayeeTypeEnum extends EnumClass {
+
+  @BuiltValueEnumConst(wireName: r'specialist')
+  static const PaymentIntentPayeeTypeEnum specialist = _$paymentIntentPayeeTypeEnum_specialist;
+  @BuiltValueEnumConst(wireName: r'clinic')
+  static const PaymentIntentPayeeTypeEnum clinic = _$paymentIntentPayeeTypeEnum_clinic;
+
+  static Serializer<PaymentIntentPayeeTypeEnum> get serializer => _$paymentIntentPayeeTypeEnumSerializer;
+
+  const PaymentIntentPayeeTypeEnum._(String name): super(name);
+
+  static BuiltSet<PaymentIntentPayeeTypeEnum> get values => _$paymentIntentPayeeTypeEnumValues;
+  static PaymentIntentPayeeTypeEnum valueOf(String name) => _$paymentIntentPayeeTypeEnumValueOf(name);
 }
 

@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **provider** | **String** |  | [optional] 
 **status** | **String** |  | [optional] 
 **clientSecret** | **String** | Secret transmis au SDK gateway | [optional] 
+**payeeType** | **String** |  | [optional] 
+**payeeId** | **String** |  | [optional] 
 **redirectUrl** | **String** |  | [optional] 
 **createdAt** | [**DateTime**](DateTime.md) |  | [optional] 
 

@@ -672,5 +672,52 @@
   "specialistStatsChartEmpty": "Ulac isefka i usenqed n ugrudem.",
   "specialistStatsReviewsTitle": "Iɣallen-iw",
   "specialistStatsReviewsEmpty": "Ulac iɣallen yettwaseklen",
-  "specialistStatsReviewsLoadError": "Ur izmir ara ad d-alin iɣallen."
+  "specialistStatsReviewsLoadError": "Ur izmir ara ad d-alin iɣallen.",
+  "searchEntityDoctors": "Imsujjiyen",
+  "searchEntityClinics": "Tigunatin",
+  "searchHintClinics": "Nadi-d tagunit…",
+  "searchEmptyClinicsTitle": "Ulac tagunit i d-yemṣadan",
+  "searchEmptyClinicsMessage": "Snerni tamnaḍt neɣ beddel imzizdigen?",
+  "searchSuggestionsClinics": "Tigunatin",
+  "clinicCardBookCta": "Wali tagunit",
+  "clinicCardTelehealth": "Asesteqs s uselkim",
+  "clinicCardFromPrice": "Seg {price} {currency}",
+  "@clinicCardFromPrice": {
+    "placeholders": {
+      "price": { "type": "int" },
+      "currency": { "type": "String" }
+    }
+  },
+  "clinicDetailTitle": "Tagunit",
+  "clinicDetailAboutTitle": "Ɣef",
+  "clinicDetailAboutEmpty": "Ulac aglam yellan.",
+  "clinicDetailServicesTitle": "Imeẓlan",
+  "clinicDetailServicesEmpty": "Ulac ameẓlu yettwaseklens tura.",
+  "clinicDetailSpecialistsTitle": "Imsujjiyen",
+  "clinicDetailSpecialistsEmpty": "Ulac amsujji yettbanen ɣef uɣmis-a.",
+  "clinicDetailReviewsTitle": "Iɣallen",
+  "clinicDetailReviewsEmpty": "Ulac iɣallen izuyaz tura.",
+  "clinicDetailLoadError": "Ur izmir ara ad d-tali tagunit.",
+  "clinicDetailNotFoundTitle": "Tagunit ur tettwaf ara",
+  "clinicDetailNotFoundMessage": "Tagunit-a ur tella ara.",
+  "clinicDetailMapUnavailable": "Takarḍa ur tella ara",
+  "clinicDetailAssignNotice": "Ad tgeḍ ameẓlu; tagunit ad tefk amsujji.",
+  "clinicDetailDurationMinutes": "{minutes} tsq",
+  "@clinicDetailDurationMinutes": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
+  "clinicDetailServicePrice": "{price} {currency}",
+  "@clinicDetailServicePrice": {
+    "placeholders": {
+      "price": { "type": "int" },
+      "currency": { "type": "String" }
+    }
+  },
+  "clinicDetailVerifiedPatient": "Amusnaw yettwasneqden",
+  "clinicDetailLoadMoreReviews": "Wali ugar n iɣallen",
+  "clinicDetailVerifiedBadge": "Tagunit yettwasneqden",
+  "discoveryClinicsEmptyTitle": "Ulac tigunatin",
+  "discoveryClinicsEmptyMessage": "Ulac tagunit yettwasneqden tura."
 }

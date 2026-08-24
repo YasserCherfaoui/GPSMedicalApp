@@ -87,5 +87,10 @@ void main() {
       // TODO
     });
 
+    // BuiltList<ClinicSpecialistAffiliation> clinicAffiliations
+    test('to test the property `clinicAffiliations`', () async {
+      // TODO
+    });
+
   });
 }

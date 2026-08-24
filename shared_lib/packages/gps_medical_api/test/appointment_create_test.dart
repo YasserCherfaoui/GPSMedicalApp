@@ -7,8 +7,23 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(AppointmentCreate, () {
+    // String origin (default value: 'doctor_direct')
+    test('to test the property `origin`', () async {
+      // TODO
+    });
+
     // String doctorId
     test('to test the property `doctorId`', () async {
+      // TODO
+    });
+
+    // String clinicId
+    test('to test the property `clinicId`', () async {
+      // TODO
+    });
+
+    // String serviceId
+    test('to test the property `serviceId`', () async {
       // TODO
     });
 

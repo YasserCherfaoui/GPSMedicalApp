@@ -1,5 +1,6 @@
 export 'algerian_phone_field.dart';
 export 'auth_flow_scaffold.dart';
+export 'clinic_card.dart';
 export 'country_phone_field.dart';
 export 'design_system_showcase.dart';
 export 'doctor_card.dart';

@@ -108,6 +108,8 @@ class GpsMedicalClient {
 
   DoctorsApi get doctors => _v1.getDoctorsApi();
 
+  ClinicsApi get clinics => _v1.getClinicsApi();
+
   MedicalRecordsApi get medicalRecords => _v1.getMedicalRecordsApi();
 
   PatientsApi get patients => _v1.getPatientsApi();

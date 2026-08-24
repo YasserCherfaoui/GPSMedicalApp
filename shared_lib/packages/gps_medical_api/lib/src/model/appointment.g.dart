@@ -6,6 +6,28 @@ part of 'appointment.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const AppointmentOriginEnum _$appointmentOriginEnum_doctorDirect =
+    const AppointmentOriginEnum._('doctorDirect');
+const AppointmentOriginEnum _$appointmentOriginEnum_clinicService =
+    const AppointmentOriginEnum._('clinicService');
+
+AppointmentOriginEnum _$appointmentOriginEnumValueOf(String name) {
+  switch (name) {
+    case 'doctorDirect':
+      return _$appointmentOriginEnum_doctorDirect;
+    case 'clinicService':
+      return _$appointmentOriginEnum_clinicService;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<AppointmentOriginEnum> _$appointmentOriginEnumValues =
+    BuiltSet<AppointmentOriginEnum>(const <AppointmentOriginEnum>[
+      _$appointmentOriginEnum_doctorDirect,
+      _$appointmentOriginEnum_clinicService,
+    ]);
+
 const AppointmentModeEnum _$appointmentModeEnum_inPerson =
     const AppointmentModeEnum._('inPerson');
 const AppointmentModeEnum _$appointmentModeEnum_telehealth =
@@ -100,6 +122,8 @@ _$appointmentPaymentStatusEnumValues =
       _$appointmentPaymentStatusEnum_refunded,
     ]);
 
+Serializer<AppointmentOriginEnum> _$appointmentOriginEnumSerializer =
+    _$AppointmentOriginEnumSerializer();
 Serializer<AppointmentModeEnum> _$appointmentModeEnumSerializer =
     _$AppointmentModeEnumSerializer();
 Serializer<AppointmentStatusEnum> _$appointmentStatusEnumSerializer =
@@ -107,6 +131,39 @@ Serializer<AppointmentStatusEnum> _$appointmentStatusEnumSerializer =
 Serializer<AppointmentPaymentStatusEnum>
 _$appointmentPaymentStatusEnumSerializer =
     _$AppointmentPaymentStatusEnumSerializer();
+
+class _$AppointmentOriginEnumSerializer
+    implements PrimitiveSerializer<AppointmentOriginEnum> {
+  static const Map<String, Object> _toWire = const <String, Object>{
+    'doctorDirect': 'doctor_direct',
+    'clinicService': 'clinic_service',
+  };
+  static const Map<Object, String> _fromWire = const <Object, String>{
+    'doctor_direct': 'doctorDirect',
+    'clinic_service': 'clinicService',
+  };
+
+  @override
+  final Iterable<Type> types = const <Type>[AppointmentOriginEnum];
+  @override
+  final String wireName = 'AppointmentOriginEnum';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    AppointmentOriginEnum object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => _toWire[object.name] ?? object.name;
+
+  @override
+  AppointmentOriginEnum deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => AppointmentOriginEnum.valueOf(
+    _fromWire[serialized] ?? (serialized is String ? serialized : ''),
+  );
+}
 
 class _$AppointmentModeEnumSerializer
     implements PrimitiveSerializer<AppointmentModeEnum> {
@@ -227,6 +284,12 @@ class _$Appointment extends Appointment {
   @override
   final String? doctorId;
   @override
+  final String? clinicId;
+  @override
+  final String? serviceId;
+  @override
+  final AppointmentOriginEnum? origin;
+  @override
   final DateTime? startAt;
   @override
   final DateTime? endAt;
@@ -253,6 +316,9 @@ class _$Appointment extends Appointment {
     this.patientId,
     this.dependentId,
     this.doctorId,
+    this.clinicId,
+    this.serviceId,
+    this.origin,
     this.startAt,
     this.endAt,
     this.mode,
@@ -278,6 +344,9 @@ class _$Appointment extends Appointment {
         patientId == other.patientId &&
         dependentId == other.dependentId &&
         doctorId == other.doctorId &&
+        clinicId == other.clinicId &&
+        serviceId == other.serviceId &&
+        origin == other.origin &&
         startAt == other.startAt &&
         endAt == other.endAt &&
         mode == other.mode &&
@@ -296,6 +365,9 @@ class _$Appointment extends Appointment {
     _$hash = $jc(_$hash, patientId.hashCode);
     _$hash = $jc(_$hash, dependentId.hashCode);
     _$hash = $jc(_$hash, doctorId.hashCode);
+    _$hash = $jc(_$hash, clinicId.hashCode);
+    _$hash = $jc(_$hash, serviceId.hashCode);
+    _$hash = $jc(_$hash, origin.hashCode);
     _$hash = $jc(_$hash, startAt.hashCode);
     _$hash = $jc(_$hash, endAt.hashCode);
     _$hash = $jc(_$hash, mode.hashCode);
@@ -316,6 +388,9 @@ class _$Appointment extends Appointment {
           ..add('patientId', patientId)
           ..add('dependentId', dependentId)
           ..add('doctorId', doctorId)
+          ..add('clinicId', clinicId)
+          ..add('serviceId', serviceId)
+          ..add('origin', origin)
           ..add('startAt', startAt)
           ..add('endAt', endAt)
           ..add('mode', mode)
@@ -347,6 +422,18 @@ class AppointmentBuilder implements Builder<Appointment, AppointmentBuilder> {
   String? _doctorId;
   String? get doctorId => _$this._doctorId;
   set doctorId(String? doctorId) => _$this._doctorId = doctorId;
+
+  String? _clinicId;
+  String? get clinicId => _$this._clinicId;
+  set clinicId(String? clinicId) => _$this._clinicId = clinicId;
+
+  String? _serviceId;
+  String? get serviceId => _$this._serviceId;
+  set serviceId(String? serviceId) => _$this._serviceId = serviceId;
+
+  AppointmentOriginEnum? _origin;
+  AppointmentOriginEnum? get origin => _$this._origin;
+  set origin(AppointmentOriginEnum? origin) => _$this._origin = origin;
 
   DateTime? _startAt;
   DateTime? get startAt => _$this._startAt;
@@ -396,6 +483,9 @@ class AppointmentBuilder implements Builder<Appointment, AppointmentBuilder> {
       _patientId = $v.patientId;
       _dependentId = $v.dependentId;
       _doctorId = $v.doctorId;
+      _clinicId = $v.clinicId;
+      _serviceId = $v.serviceId;
+      _origin = $v.origin;
       _startAt = $v.startAt;
       _endAt = $v.endAt;
       _mode = $v.mode;
@@ -431,6 +521,9 @@ class AppointmentBuilder implements Builder<Appointment, AppointmentBuilder> {
           patientId: patientId,
           dependentId: dependentId,
           doctorId: doctorId,
+          clinicId: clinicId,
+          serviceId: serviceId,
+          origin: origin,
           startAt: startAt,
           endAt: endAt,
           mode: mode,
