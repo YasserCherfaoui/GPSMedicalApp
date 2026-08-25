@@ -188,8 +188,7 @@ class _HistoryTabState extends ConsumerState<_HistoryTab> {
       error: (e, _) => _AppointmentsError(
         l10n: widget.l10n,
         error: e,
-        onRetry: () =>
-            ref.read(appointmentsHistoryProvider.notifier).refresh(),
+        onRetry: () => ref.read(appointmentsHistoryProvider.notifier).refresh(),
       ),
     );
   }

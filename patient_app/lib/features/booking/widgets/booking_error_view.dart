@@ -27,8 +27,9 @@ class BookingErrorView extends StatelessWidget {
         onRetry: onRetry,
       );
     }
-    final resolvedMessage =
-        isBookingNetworkError(error) ? l10n.networkError : message;
+    final resolvedMessage = isBookingNetworkError(error)
+        ? l10n.networkError
+        : message;
     return ErrorState(
       title: l10n.errorGenericTitle,
       message: resolvedMessage,

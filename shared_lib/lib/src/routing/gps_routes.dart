@@ -60,6 +60,8 @@ abstract final class GpsRoutes {
   static String appointmentDetail(String id) => '/appointments/$id';
   static String appointmentReview(String appointmentId) =>
       '/appointments/$appointmentId/review';
+  static String clinicProfileReview(String appointmentId, String clinicId) =>
+      '/appointments/$appointmentId/review/clinic-profile/$clinicId';
   static String reviewConfirmation(String appointmentId) =>
       '/appointments/$appointmentId/review/confirmation';
   static String appointmentPaymentDeposit(String appointmentId) =>

@@ -733,5 +733,13 @@
   "clinicMembershipsDetachPending": "Tukksa tettraqab aqbal",
   "clinicMembershipsVisibleOnProfile": "Yettban ɣef uɣmis-iw azayez",
   "clinicMembershipsLoadError": "Ur izmir ara ad d-talin timellit.",
-  "clinicMembershipsActionError": "Ulac tigawt. Ɛreḍ tikkelt-nniḍen."
+  "clinicMembershipsActionError": "Ulac tigawt. Ɛreḍ tikkelt-nniḍen.",
+  "appointmentDetailClinicBooking": "Aseglem n tagunit",
+  "appointmentDetailClinicService": "Ameẓlu",
+  "appointmentDetailAwaitingSpecialist": "Yettraǧu abaḍni seg tagunit.",
+  "appointmentDetailAssignedSpecialist": "Amsujji yettwafken",
+  "appointmentReviewSession": "Aɣennuɣ n umeẓlu",
+  "appointmentReviewClinicProfile": "Aɣennuɣ n tagunit",
+  "reviewClinicProfileCreateTitle": "Aɣennuɣ n tagunit",
+  "reviewClinicAlreadySubmitted": "Tgeḍ yakan aɣennuɣ ɣef tagunit-a."
 }

@@ -2206,4 +2206,29 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get clinicMembershipsActionError =>
       'تعذر تنفيذ الإجراء. أعد المحاولة.';
+
+  @override
+  String get appointmentDetailClinicBooking => 'حجز عيادة';
+
+  @override
+  String get appointmentDetailClinicService => 'الخدمة';
+
+  @override
+  String get appointmentDetailAwaitingSpecialist =>
+      'في انتظار تعيين الممارس من قبل العيادة.';
+
+  @override
+  String get appointmentDetailAssignedSpecialist => 'الممارس المعيّن';
+
+  @override
+  String get appointmentReviewSession => 'تقييم الاستشارة';
+
+  @override
+  String get appointmentReviewClinicProfile => 'تقييم العيادة';
+
+  @override
+  String get reviewClinicProfileCreateTitle => 'تقييم العيادة';
+
+  @override
+  String get reviewClinicAlreadySubmitted => 'لقد قيّمت هذه العيادة مسبقاً.';
 }

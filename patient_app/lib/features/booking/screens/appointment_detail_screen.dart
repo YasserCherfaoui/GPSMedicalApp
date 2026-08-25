@@ -9,6 +9,7 @@ import '../../discovery/utils/specialty_display.dart';
 import '../../payments/utils/deposit_eligibility.dart';
 import '../../payments/widgets/appointment_payment_section.dart';
 import '../../reviews/widgets/appointment_review_section.dart';
+import '../../reviews/widgets/clinic_appointment_review_section.dart';
 import '../providers/appointment_detail.provider.dart';
 import '../providers/booking_draft.provider.dart';
 import '../utils/address_launcher.dart';
@@ -91,18 +92,21 @@ class _DetailBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final appointment = state.appointment;
     final doctor = state.doctor;
+    final clinic = state.clinic;
     final theme = Theme.of(context);
     final locale = Localizations.localeOf(context).languageCode;
     final start = appointment.startAt?.toLocal();
     final status = appointment.status;
     final statusWire = appointmentStatusWire(status);
-    final canModify =
+    final canCancel =
         start != null &&
         (status == AppointmentStatusEnum.pending ||
             status == AppointmentStatusEnum.confirmed) &&
         canPatientModifyAppointment(start);
+    final canReschedule = canCancel && !state.isClinicBooking && doctor != null;
     final end = appointment.endAt?.toLocal();
     final showJoin =
+        doctor != null &&
         start != null &&
         end != null &&
         appointment.mode == AppointmentModeEnum.telehealth &&
@@ -110,10 +114,13 @@ class _DetailBody extends ConsumerWidget {
     final relative = start != null
         ? formatReviewRelativeTime(start, locale)
         : '';
-    final specialty = doctor.specialties?.isNotEmpty == true
-        ? specialtyDisplayName(doctor.specialties!.first, locale)
+    final specialty = doctor?.specialties?.isNotEmpty == true
+        ? specialtyDisplayName(doctor!.specialties!.first, locale)
         : '';
-    final addressLine = formatPracticeAddress(doctor.practiceAddress);
+    final practiceAddress = state.isClinicBooking
+        ? clinic?.address
+        : doctor?.practiceAddress;
+    final addressLine = formatPracticeAddress(practiceAddress);
 
     return SingleChildScrollView(
       physics: const AlwaysScrollableScrollPhysics(),
@@ -126,44 +133,108 @@ class _DetailBody extends ConsumerWidget {
               padding: const EdgeInsets.only(bottom: GpsSpacing.md),
               child: StatusPill(status: statusWire),
             ),
+          if (state.isClinicBooking) ...[
+            GpsCard(
+              showAccentBorder: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.appointmentDetailClinicBooking,
+                    style: theme.textTheme.labelMedium,
+                  ),
+                  const SizedBox(height: GpsSpacing.xs),
+                  Text(clinic?.name ?? '', style: theme.textTheme.titleLarge),
+                  if (state.serviceName != null &&
+                      state.serviceName!.isNotEmpty) ...[
+                    const SizedBox(height: GpsSpacing.sm),
+                    Text(
+                      l10n.appointmentDetailClinicService,
+                      style: theme.textTheme.labelMedium,
+                    ),
+                    Text(state.serviceName!, style: theme.textTheme.bodyLarge),
+                  ],
+                  const SizedBox(height: GpsSpacing.sm),
+                  Text(
+                    l10n.clinicDetailAssignNotice,
+                    style: theme.textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: GpsSpacing.md),
+          ],
+          if (state.awaitingSpecialistAssignment)
+            GpsCard(
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.hourglass_top_outlined,
+                    color: theme.colorScheme.primary,
+                  ),
+                  const SizedBox(width: GpsSpacing.sm),
+                  Expanded(
+                    child: Text(
+                      l10n.appointmentDetailAwaitingSpecialist,
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          else if (doctor != null)
+            GpsCard(
+              showAccentBorder: !state.isClinicBooking,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (state.isClinicBooking) ...[
+                    Text(
+                      l10n.appointmentDetailAssignedSpecialist,
+                      style: theme.textTheme.labelMedium,
+                    ),
+                    const SizedBox(height: GpsSpacing.sm),
+                  ],
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GpsDoctorPhoto(
+                        size: 64,
+                        imageUrl: doctor.photoUrl,
+                        shape: GpsDoctorPhotoShape.circle,
+                      ),
+                      const SizedBox(width: GpsSpacing.md),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${doctor.title ?? 'Dr.'} ${doctor.fullName ?? ''}',
+                              style: theme.textTheme.headlineSmall,
+                            ),
+                            if (specialty.isNotEmpty) ...[
+                              const SizedBox(height: GpsSpacing.xs),
+                              Text(
+                                specialty,
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: theme.colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          const SizedBox(height: GpsSpacing.md),
           GpsCard(
-            showAccentBorder: true,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GpsDoctorPhoto(
-                      size: 64,
-                      imageUrl: doctor.photoUrl,
-                      shape: GpsDoctorPhotoShape.circle,
-                    ),
-                    const SizedBox(width: GpsSpacing.md),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${doctor.title ?? 'Dr.'} ${doctor.fullName ?? ''}',
-                            style: theme.textTheme.headlineSmall,
-                          ),
-                          if (specialty.isNotEmpty) ...[
-                            const SizedBox(height: GpsSpacing.xs),
-                            Text(
-                              specialty,
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.colorScheme.onSurfaceVariant,
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
                 if (start != null) ...[
-                  const SizedBox(height: GpsSpacing.sm),
                   Text(
                     DateFormat.yMMMEd(locale).add_Hm().format(start),
                     style: theme.textTheme.bodyLarge,
@@ -181,7 +252,7 @@ class _DetailBody extends ConsumerWidget {
                   ModeBadge(mode: appointmentModeWire(appointment.mode)),
                 const SizedBox(height: GpsSpacing.sm),
                 Text(
-                  '${l10n.bookingFeeLabel}: ${appointment.feeDzd ?? doctor.consultationFeeDzd ?? '—'} DZD',
+                  '${l10n.bookingFeeLabel}: ${appointment.feeDzd ?? doctor?.consultationFeeDzd ?? '—'} DZD',
                 ),
                 if (appointment.paymentStatus != null) ...[
                   const SizedBox(height: GpsSpacing.xs),
@@ -202,7 +273,7 @@ class _DetailBody extends ConsumerWidget {
             ),
           ),
           if (appointment.mode == AppointmentModeEnum.inPerson &&
-              doctor.practiceAddress != null) ...[
+              practiceAddress != null) ...[
             const SizedBox(height: GpsSpacing.md),
             GpsCard(
               child: Column(
@@ -218,8 +289,7 @@ class _DetailBody extends ConsumerWidget {
                     const SizedBox(height: GpsSpacing.md),
                   ],
                   OutlinedButton.icon(
-                    onPressed: () =>
-                        openDirections(address: doctor.practiceAddress),
+                    onPressed: () => openDirections(address: practiceAddress),
                     icon: const Icon(Icons.directions_outlined),
                     label: Text(l10n.appointmentDirections),
                   ),
@@ -239,7 +309,8 @@ class _DetailBody extends ConsumerWidget {
               ),
             ),
           ],
-          if (canPayAppointmentDeposit(appointment)) ...[
+          if (canPayAppointmentDeposit(appointment) &&
+              (doctor != null || appointment.feeDzd != null)) ...[
             const SizedBox(height: GpsSpacing.md),
             AppointmentPaymentSection(
               appointment: appointment,
@@ -249,9 +320,16 @@ class _DetailBody extends ConsumerWidget {
           ],
           if (status == AppointmentStatusEnum.completed) ...[
             const SizedBox(height: GpsSpacing.md),
-            AppointmentReviewSection(appointmentId: appointmentId),
+            if (state.isClinicBooking && appointment.clinicId != null)
+              ClinicAppointmentReviewSection(
+                appointmentId: appointmentId,
+                clinicId: appointment.clinicId!,
+                clinicName: clinic?.name,
+              )
+            else
+              AppointmentReviewSection(appointmentId: appointmentId),
           ],
-          if (canModify) ...[
+          if (canReschedule) ...[
             const SizedBox(height: GpsSpacing.lg),
             Row(
               children: [
@@ -280,6 +358,12 @@ class _DetailBody extends ConsumerWidget {
                   ),
                 ),
               ],
+            ),
+          ] else if (canCancel) ...[
+            const SizedBox(height: GpsSpacing.lg),
+            OutlinedButton(
+              onPressed: () => _showCancelSheet(context, ref),
+              child: Text(l10n.appointmentCancel),
             ),
           ],
         ],

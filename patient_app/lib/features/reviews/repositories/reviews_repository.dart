@@ -12,11 +12,22 @@ class ReviewsRepository {
     required String appointmentId,
     required int rating,
     String? comment,
+    ReviewCreateReviewScopeEnum reviewScope =
+        ReviewCreateReviewScopeEnum.appointment,
+    ReviewCreateSubjectTypeEnum subjectType =
+        ReviewCreateSubjectTypeEnum.doctor,
+    String? clinicId,
   }) async {
     try {
       final body = ReviewCreate(
         (b) => b
-          ..appointmentId = appointmentId
+          ..appointmentId =
+              reviewScope == ReviewCreateReviewScopeEnum.appointment
+              ? appointmentId
+              : null
+          ..clinicId = clinicId
+          ..subjectType = subjectType
+          ..reviewScope = reviewScope
           ..rating = rating
           ..comment = comment?.trim().isEmpty == true ? null : comment?.trim(),
       );

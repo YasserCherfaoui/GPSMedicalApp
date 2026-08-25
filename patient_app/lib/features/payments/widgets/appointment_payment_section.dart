@@ -13,7 +13,7 @@ class AppointmentPaymentSection extends StatelessWidget {
   });
 
   final Appointment appointment;
-  final Doctor doctor;
+  final Doctor? doctor;
   final String appointmentId;
 
   @override
@@ -22,7 +22,11 @@ class AppointmentPaymentSection extends StatelessWidget {
       return const SizedBox.shrink();
     }
     final l10n = AppLocalizations.of(context)!;
-    final amount = appointmentDepositAmountDzd(appointment, doctor);
+    final amount =
+        appointment.feeDzd ??
+        (doctor != null
+            ? appointmentDepositAmountDzd(appointment, doctor!)
+            : null);
     if (amount == null) return const SizedBox.shrink();
 
     return GpsCard(

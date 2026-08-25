@@ -4179,6 +4179,54 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Action impossible. Réessayez.'**
   String get clinicMembershipsActionError;
+
+  /// No description provided for @appointmentDetailClinicBooking.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réservation clinique'**
+  String get appointmentDetailClinicBooking;
+
+  /// No description provided for @appointmentDetailClinicService.
+  ///
+  /// In fr, this message translates to:
+  /// **'Service'**
+  String get appointmentDetailClinicService;
+
+  /// No description provided for @appointmentDetailAwaitingSpecialist.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente d\'attribution d\'un praticien par la clinique.'**
+  String get appointmentDetailAwaitingSpecialist;
+
+  /// No description provided for @appointmentDetailAssignedSpecialist.
+  ///
+  /// In fr, this message translates to:
+  /// **'Praticien attribué'**
+  String get appointmentDetailAssignedSpecialist;
+
+  /// No description provided for @appointmentReviewSession.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avis sur la consultation'**
+  String get appointmentReviewSession;
+
+  /// No description provided for @appointmentReviewClinicProfile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avis sur la clinique'**
+  String get appointmentReviewClinicProfile;
+
+  /// No description provided for @reviewClinicProfileCreateTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avis sur la clinique'**
+  String get reviewClinicProfileCreateTitle;
+
+  /// No description provided for @reviewClinicAlreadySubmitted.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous avez déjà laissé un avis sur cette clinique.'**
+  String get reviewClinicAlreadySubmitted;
 }
 
 class _AppLocalizationsDelegate

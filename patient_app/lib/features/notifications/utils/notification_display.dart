@@ -26,6 +26,8 @@ IconData notificationTypeIcon(NotificationTypeEnum? type) {
     NotificationTypeEnum.paymentSucceeded ||
     NotificationTypeEnum.paymentFailed => Icons.payments_outlined,
     NotificationTypeEnum.reviewRequest => Icons.star_outline,
+    NotificationTypeEnum.clinicSpecialistAssigned =>
+      Icons.person_add_alt_1_outlined,
     NotificationTypeEnum.adminAnnouncement => Icons.campaign_outlined,
     _ => Icons.notifications_outlined,
   };

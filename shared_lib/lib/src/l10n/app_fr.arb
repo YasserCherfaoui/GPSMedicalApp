@@ -914,5 +914,13 @@
   "clinicMembershipsDetachPending": "Détachement en attente d'approbation",
   "clinicMembershipsVisibleOnProfile": "Visible sur mon profil public",
   "clinicMembershipsLoadError": "Impossible de charger les affiliations.",
-  "clinicMembershipsActionError": "Action impossible. Réessayez."
+  "clinicMembershipsActionError": "Action impossible. Réessayez.",
+  "appointmentDetailClinicBooking": "Réservation clinique",
+  "appointmentDetailClinicService": "Service",
+  "appointmentDetailAwaitingSpecialist": "En attente d'attribution d'un praticien par la clinique.",
+  "appointmentDetailAssignedSpecialist": "Praticien attribué",
+  "appointmentReviewSession": "Avis sur la consultation",
+  "appointmentReviewClinicProfile": "Avis sur la clinique",
+  "reviewClinicProfileCreateTitle": "Avis sur la clinique",
+  "reviewClinicAlreadySubmitted": "Vous avez déjà laissé un avis sur cette clinique."
 }

@@ -1,6 +1,7 @@
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../discovery/providers/discovery_repositories.provider.dart';
 import 'appointments_history.provider.dart';
 import 'appointments_upcoming.provider.dart';
 import 'booking_repositories.provider.dart';
@@ -11,11 +12,21 @@ part 'appointment_detail.provider.g.dart';
 class AppointmentDetailState {
   const AppointmentDetailState({
     required this.appointment,
-    required this.doctor,
+    this.doctor,
+    this.clinic,
+    this.serviceName,
   });
 
   final Appointment appointment;
-  final Doctor doctor;
+  final Doctor? doctor;
+  final Clinic? clinic;
+  final String? serviceName;
+
+  bool get isClinicBooking =>
+      appointment.origin == AppointmentOriginEnum.clinicService;
+
+  bool get awaitingSpecialistAssignment =>
+      isClinicBooking && appointment.doctorId == null;
 }
 
 @riverpod
@@ -24,12 +35,43 @@ class AppointmentDetail extends _$AppointmentDetail {
   Future<AppointmentDetailState> build(String appointmentId) async {
     final repo = ref.watch(appointmentRepositoryProvider);
     final appointment = await repo.fetchById(appointmentId);
+    return _loadContext(appointment);
+  }
+
+  Future<AppointmentDetailState> _loadContext(Appointment appointment) async {
+    final isClinic = appointment.origin == AppointmentOriginEnum.clinicService;
+    Clinic? clinic;
+    String? serviceName;
+    Doctor? doctor;
+
+    if (isClinic && appointment.clinicId != null) {
+      final clinicRepo = ref.read(clinicRepositoryProvider);
+      clinic = await clinicRepo.fetchById(appointment.clinicId!);
+      final serviceId = appointment.serviceId;
+      if (serviceId != null) {
+        final services = await clinicRepo.fetchServices(appointment.clinicId!);
+        for (final service in services) {
+          if (service.id == serviceId) {
+            serviceName = service.name;
+            break;
+          }
+        }
+      }
+    }
+
     final doctorId = appointment.doctorId;
-    if (doctorId == null) {
+    if (doctorId != null) {
+      doctor = await ref.read(cachedDoctorProvider(doctorId).future);
+    } else if (!isClinic) {
       throw StateError('Appointment missing doctor_id');
     }
-    final doctor = await ref.watch(cachedDoctorProvider(doctorId).future);
-    return AppointmentDetailState(appointment: appointment, doctor: doctor);
+
+    return AppointmentDetailState(
+      appointment: appointment,
+      doctor: doctor,
+      clinic: clinic,
+      serviceName: serviceName,
+    );
   }
 
   Future<void> refresh() async {
@@ -42,13 +84,7 @@ class AppointmentDetail extends _$AppointmentDetail {
       appointmentId: appointmentId,
       reason: reason,
     );
-    final doctorId = updated.doctorId;
-    if (doctorId != null) {
-      final doctor = await ref.read(cachedDoctorProvider(doctorId).future);
-      state = AsyncData(
-        AppointmentDetailState(appointment: updated, doctor: doctor),
-      );
-    }
+    state = AsyncData(await _loadContext(updated));
     ref.invalidate(appointmentsUpcomingProvider);
     ref.invalidate(appointmentsHistoryProvider);
     return updated;

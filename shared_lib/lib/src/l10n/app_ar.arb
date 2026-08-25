@@ -733,5 +733,13 @@
   "clinicMembershipsDetachPending": "فك الارتباط بانتظار الموافقة",
   "clinicMembershipsVisibleOnProfile": "ظاهر على ملفي العام",
   "clinicMembershipsLoadError": "تعذر تحميل الانتسابات.",
-  "clinicMembershipsActionError": "تعذر تنفيذ الإجراء. أعد المحاولة."
+  "clinicMembershipsActionError": "تعذر تنفيذ الإجراء. أعد المحاولة.",
+  "appointmentDetailClinicBooking": "حجز عيادة",
+  "appointmentDetailClinicService": "الخدمة",
+  "appointmentDetailAwaitingSpecialist": "في انتظار تعيين الممارس من قبل العيادة.",
+  "appointmentDetailAssignedSpecialist": "الممارس المعيّن",
+  "appointmentReviewSession": "تقييم الاستشارة",
+  "appointmentReviewClinicProfile": "تقييم العيادة",
+  "reviewClinicProfileCreateTitle": "تقييم العيادة",
+  "reviewClinicAlreadySubmitted": "لقد قيّمت هذه العيادة مسبقاً."
 }

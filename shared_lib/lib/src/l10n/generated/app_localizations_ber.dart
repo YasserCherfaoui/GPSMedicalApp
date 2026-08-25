@@ -2231,4 +2231,30 @@ class AppLocalizationsBer extends AppLocalizations {
   @override
   String get clinicMembershipsActionError =>
       'Ulac tigawt. Ɛreḍ tikkelt-nniḍen.';
+
+  @override
+  String get appointmentDetailClinicBooking => 'Aseglem n tagunit';
+
+  @override
+  String get appointmentDetailClinicService => 'Ameẓlu';
+
+  @override
+  String get appointmentDetailAwaitingSpecialist =>
+      'Yettraǧu abaḍni seg tagunit.';
+
+  @override
+  String get appointmentDetailAssignedSpecialist => 'Amsujji yettwafken';
+
+  @override
+  String get appointmentReviewSession => 'Aɣennuɣ n umeẓlu';
+
+  @override
+  String get appointmentReviewClinicProfile => 'Aɣennuɣ n tagunit';
+
+  @override
+  String get reviewClinicProfileCreateTitle => 'Aɣennuɣ n tagunit';
+
+  @override
+  String get reviewClinicAlreadySubmitted =>
+      'Tgeḍ yakan aɣennuɣ ɣef tagunit-a.';
 }

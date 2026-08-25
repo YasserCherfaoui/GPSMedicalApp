@@ -117,7 +117,7 @@ class _CreateReviewScreenState extends ConsumerState<CreateReviewScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  '${doctor.title ?? 'Dr.'} ${doctor.fullName ?? ''}',
+                  '${doctor?.title ?? 'Dr.'} ${doctor?.fullName ?? ''}',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: GpsSpacing.lg),

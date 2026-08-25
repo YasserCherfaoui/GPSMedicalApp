@@ -2262,4 +2262,30 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get clinicMembershipsActionError => 'Action impossible. Réessayez.';
+
+  @override
+  String get appointmentDetailClinicBooking => 'Réservation clinique';
+
+  @override
+  String get appointmentDetailClinicService => 'Service';
+
+  @override
+  String get appointmentDetailAwaitingSpecialist =>
+      'En attente d\'attribution d\'un praticien par la clinique.';
+
+  @override
+  String get appointmentDetailAssignedSpecialist => 'Praticien attribué';
+
+  @override
+  String get appointmentReviewSession => 'Avis sur la consultation';
+
+  @override
+  String get appointmentReviewClinicProfile => 'Avis sur la clinique';
+
+  @override
+  String get reviewClinicProfileCreateTitle => 'Avis sur la clinique';
+
+  @override
+  String get reviewClinicAlreadySubmitted =>
+      'Vous avez déjà laissé un avis sur cette clinique.';
 }

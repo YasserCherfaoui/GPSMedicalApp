@@ -62,8 +62,7 @@ bool isBookingNetworkError(Object error) {
     DioExceptionType.connectionError ||
     DioExceptionType.connectionTimeout ||
     DioExceptionType.sendTimeout ||
-    DioExceptionType.receiveTimeout =>
-      true,
+    DioExceptionType.receiveTimeout => true,
     _ => false,
   };
 }

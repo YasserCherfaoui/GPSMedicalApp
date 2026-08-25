@@ -28,6 +28,7 @@ import '../features/profile/screens/dependents_list_screen.dart';
 import '../features/profile/screens/patient_profile_edit_screen.dart';
 import '../features/profile/screens/patient_profile_screen.dart';
 import '../features/profile/screens/profile_account_screen.dart';
+import '../features/reviews/screens/create_clinic_profile_review_screen.dart';
 import '../features/reviews/screens/create_review_screen.dart';
 import '../features/reviews/screens/review_confirmation_screen.dart';
 import '../features/teleconsultation/screens/patient_teleconsultation_screen.dart';
@@ -250,6 +251,19 @@ GoRouter createPatientRouter({
           final id = state.pathParameters['id'] ?? '';
           final review = state.extra is Review ? state.extra as Review : null;
           return ReviewConfirmationScreen(appointmentId: id, review: review);
+        },
+      ),
+      GoRoute(
+        path: '/appointments/:id/review/clinic-profile/:clinicId',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final clinicId = state.pathParameters['clinicId'] ?? '';
+          final clinicName = state.uri.queryParameters['clinicName'];
+          return CreateClinicProfileReviewScreen(
+            appointmentId: id,
+            clinicId: clinicId,
+            clinicName: clinicName,
+          );
         },
       ),
       GoRoute(

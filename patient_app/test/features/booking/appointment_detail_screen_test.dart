@@ -17,6 +17,9 @@ void main() {
   const appointmentId = 'appt-detail-1';
   const doctorId = 'doc-detail-1';
 
+  const clinicId = 'clinic-detail-1';
+  const serviceId = 'svc-detail-1';
+
   setUp(() {
     SharedPreferences.setMockInitialValues({});
     dio = Dio(BaseOptions(baseUrl: kTestApiV1BaseUrl));
@@ -81,6 +84,64 @@ void main() {
         },
       });
     });
+  }
+
+  void mockClinicDetail({
+    required String status,
+    required String startAt,
+    String? assignedDoctorId,
+    String mode = 'in_person',
+  }) {
+    adapter.onGet('/appointments/$appointmentId', (server) {
+      return server.reply(200, {
+        'id': appointmentId,
+        'patient_id': 'pat-1',
+        if (assignedDoctorId != null) 'doctor_id': assignedDoctorId,
+        'clinic_id': clinicId,
+        'service_id': serviceId,
+        'origin': 'clinic_service',
+        'start_at': startAt,
+        'end_at': '2026-06-10T09:30:00Z',
+        'mode': mode,
+        'status': status,
+        'fee_dzd': 3500,
+        'payment_status': 'paid',
+        'created_at': '2026-06-01T00:00:00Z',
+        'updated_at': '2026-06-01T00:00:00Z',
+      });
+    });
+    adapter.onGet('/clinics/$clinicId', (server) {
+      return server.reply(200, {
+        'id': clinicId,
+        'name': 'Clinique El Shifa',
+        'verified': true,
+        'address': {
+          'line1': '10 Rue Larbi Ben Mhidi',
+          'commune_name': 'Hydra',
+          'wilaya_name': 'Alger',
+        },
+      });
+    });
+    adapter.onGet('/clinics/$clinicId/services', (server) {
+      return server.reply(200, [
+        {
+          'id': serviceId,
+          'name': 'Consultation générale',
+          'price_amount': 3500,
+          'currency': 'DZD',
+        },
+      ]);
+    });
+    if (assignedDoctorId != null) {
+      adapter.onGet('/doctors/$assignedDoctorId', (server) {
+        return server.reply(200, {
+          'id': assignedDoctorId,
+          'full_name': 'Karim Benali',
+          'title': 'Dr.',
+          'consultation_fee_dzd': 2500,
+        });
+      });
+    }
   }
 
   testWidgets('shows doctor card, schedule, mode, fee, and payment status', (
@@ -264,5 +325,67 @@ void main() {
     await tester.tap(joinButton);
     await tester.pumpAndSettle();
     expect(openedTeleconsult, isTrue);
+  });
+
+  testWidgets(
+    'clinic booking awaiting assignment shows pending specialist copy',
+    (tester) async {
+      mockClinicDetail(status: 'confirmed', startAt: '2027-06-10T09:00:00Z');
+
+      await tester.pumpWidget(
+        wrap(const AppointmentDetailScreen(appointmentId: appointmentId)),
+      );
+      await tester.pump();
+      await tester.pumpAndSettle();
+
+      expect(find.text('Réservation clinique'), findsOneWidget);
+      expect(find.text('Clinique El Shifa'), findsOneWidget);
+      expect(find.text('Consultation générale'), findsOneWidget);
+      expect(
+        find.text("En attente d'attribution d'un praticien par la clinique."),
+        findsOneWidget,
+      );
+      expect(find.text('Dr. Karim Benali'), findsNothing);
+    },
+  );
+
+  testWidgets(
+    'clinic booking with assigned specialist shows practitioner card',
+    (tester) async {
+      mockClinicDetail(
+        status: 'confirmed',
+        startAt: '2027-06-10T09:00:00Z',
+        assignedDoctorId: doctorId,
+      );
+
+      await tester.pumpWidget(
+        wrap(const AppointmentDetailScreen(appointmentId: appointmentId)),
+      );
+      await tester.pump();
+      await tester.pumpAndSettle();
+
+      expect(find.text('Praticien attribué'), findsOneWidget);
+      expect(find.text('Dr. Karim Benali'), findsOneWidget);
+      expect(find.text('Reporter'), findsNothing);
+    },
+  );
+
+  testWidgets('completed clinic booking shows dual review entry points', (
+    tester,
+  ) async {
+    mockClinicDetail(
+      status: 'completed',
+      startAt: '2026-01-10T09:00:00Z',
+      assignedDoctorId: doctorId,
+    );
+
+    await tester.pumpWidget(
+      wrap(const AppointmentDetailScreen(appointmentId: appointmentId)),
+    );
+    await tester.pump();
+    await tester.pumpAndSettle();
+
+    expect(find.text('Avis sur la consultation'), findsWidgets);
+    expect(find.text('Avis sur la clinique'), findsWidgets);
   });
 }
