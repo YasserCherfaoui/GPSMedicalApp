@@ -1869,11 +1869,11 @@ class AppLocalizationsBer extends AppLocalizations {
       'Tazmilt ur ilaq ad teɛeddi 200 n isekkilen.';
 
   @override
-  String get specialistScheduleLocation => 'Amḍiq';
+  String get specialistScheduleLocation => 'Asali';
 
   @override
   String get specialistScheduleLocationHint =>
-      'Aḥanu-k neɣ tasenselt yeddukklen.';
+      'Udmawan (aḥanu) neɣ tikliwin yettunefken i tesenselt.';
 
   @override
   String get specialistScheduleLocationCabinet => 'Aḥanu-iw';
@@ -1882,11 +1882,49 @@ class AppLocalizationsBer extends AppLocalizations {
   String get specialistScheduleLocationClinicFallback => 'Tasenselt';
 
   @override
+  String get specialistScheduleDonationPersonal => 'Udmawan (aḥanu-iw)';
+
+  @override
+  String specialistScheduleDonationClinicNamed(String clinicName) {
+    return 'Yettunefk i $clinicName';
+  }
+
+  @override
+  String get specialistScheduleDonationNotice =>
+      'Tasenselt tettwaɣer i yal abeddel n tikliwin-ik yettunefken.';
+
+  @override
+  String get specialistScheduleDonationNoticeTitle =>
+      'Tikliwin yettunefken i tesenselt';
+
+  @override
+  String get specialistScheduleDonationNoticeGotIt => 'Gziɣ';
+
+  @override
+  String get specialistScheduleDonationFilterClear => 'Akk tikliwin';
+
+  @override
+  String specialistScheduleDonationFilterBanner(String clinicName) {
+    return 'Askan n tikliwin yettunefken i $clinicName';
+  }
+
+  @override
   String get specialistScheduleConflictMessage =>
       'Akud-agi yemseḍfaṛ d umeẓlu nniḍen (aḥanu neɣ tasenselt).';
 
   @override
   String get specialistClinicSessionBadge => 'Tiɣri n tesenselt';
+
+  @override
+  String clinicMembershipsDonatedHours(String hours) {
+    return '$hours s / imalas yettunefken';
+  }
+
+  @override
+  String get clinicMembershipsDonatedHoursNone => 'Ulac tikliwin yettunefken';
+
+  @override
+  String get clinicMembershipsManageDonated => 'Sefrek tikliwin yettunefken';
 
   @override
   String get specialistProfileManageSchedule => 'Sefrek awitay-iw';

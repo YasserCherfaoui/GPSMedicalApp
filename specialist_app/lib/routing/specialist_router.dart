@@ -131,7 +131,13 @@ GoRouter createSpecialistRouter({
       ),
       GoRoute(
         path: SpecialistRoutes.scheduleEdit,
-        builder: (context, state) => const ScheduleEditorScreen(),
+        builder: (context, state) {
+          final clinicId = state.uri.queryParameters['clinicId']?.trim();
+          return ScheduleEditorScreen(
+            filterClinicId:
+                (clinicId == null || clinicId.isEmpty) ? null : clinicId,
+          );
+        },
       ),
       GoRoute(
         path: '/specialist/appointments/:id',

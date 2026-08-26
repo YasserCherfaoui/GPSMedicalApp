@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:specialist_app/features/schedule/screens/schedule_editor_screen.dart';
 
 import '../../support/specialist_test_harness.dart';
@@ -20,6 +21,9 @@ void main() {
       };
 
   setUp(() {
+    SharedPreferences.setMockInitialValues({
+      'gps.specialist.donated_schedule_notice_seen': true,
+    });
     harness = SpecialistTestHarness()..setUpClient();
     weekday = DateTime.now().weekday % 7;
     harness.adapter.onGet('/doctors/me/schedule/templates', (server) {
@@ -51,10 +55,12 @@ void main() {
     expect(find.text('Mon agenda'), findsOneWidget);
     expect(find.text('Horaires'), findsOneWidget);
     expect(find.textContaining('09:00'), findsWidgets);
+    expect(find.textContaining('Personnel (mon cabinet)'), findsOneWidget);
 
     await tester.tap(find.text('Ajouter une plage'));
     await tester.pumpAndSettle();
     expect(find.text('Mode de consultation'), findsOneWidget);
+    expect(find.text('Affectation'), findsOneWidget);
 
     harness.adapter.onPost('/doctors/me/schedule/templates', (server) {
       return server.reply(201, {
@@ -86,6 +92,55 @@ void main() {
     await tester.tap(find.text('Aperçu'));
     await tester.pumpAndSettle();
     expect(find.text('Aucun créneau'), findsOneWidget);
+  });
+
+  testWidgets('schedule editor filters donated templates by clinic', (
+    tester,
+  ) async {
+    const clinicId = 'clinic-filter-1';
+    harness.adapter.onGet('/doctors/me/memberships', (server) {
+      return server.reply(200, [
+        {
+          'id': 'mem-1',
+          'clinic_id': clinicId,
+          'specialist_id': '00000000-0000-4000-8000-000000000010',
+          'clinic_name': 'Clinique Hydra',
+          'status': 'active',
+          'visible_on_profile': true,
+        },
+      ]);
+    });
+    harness.adapter.onGet('/doctors/me/schedule/templates', (server) {
+      return server.reply(200, [
+        {
+          ...templateJson(),
+          'id': '00000000-0000-4000-8000-000000000210',
+          'clinic_id': clinicId,
+        },
+        {
+          ...templateJson(),
+          'id': '00000000-0000-4000-8000-000000000211',
+          'start_time': '14:00',
+          'end_time': '16:00',
+        },
+      ]);
+    });
+
+    harness.setLargeSurface(tester);
+    await tester.pumpWidget(
+      harness.wrapScreen(
+        const ScheduleEditorScreen(filterClinicId: clinicId),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(
+      find.textContaining('Affichage des créneaux donnés à Clinique Hydra'),
+      findsOneWidget,
+    );
+    expect(find.textContaining('09:00'), findsWidgets);
+    expect(find.textContaining('14:00'), findsNothing);
+    expect(find.textContaining('Donné à Clinique Hydra'), findsOneWidget);
   });
 
   testWidgets('schedule editor lists exception cards', (tester) async {

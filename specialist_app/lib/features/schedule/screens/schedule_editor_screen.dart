@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../profile/providers/clinic_memberships.provider.dart';
 import '../providers/schedule.provider.dart';
+import '../utils/donated_schedule_notice.dart';
 import '../utils/schedule_api_error.dart';
 import '../utils/schedule_display.dart';
 import '../utils/schedule_validation.dart';
@@ -13,7 +14,10 @@ import '../widgets/schedule_exception_calendar.dart';
 import '../widgets/schedule_template_editor_sheet.dart';
 
 class ScheduleEditorScreen extends ConsumerStatefulWidget {
-  const ScheduleEditorScreen({super.key});
+  const ScheduleEditorScreen({this.filterClinicId, super.key});
+
+  /// When set, templates tab shows only blocks donated to this clinic.
+  final String? filterClinicId;
 
   @override
   ConsumerState<ScheduleEditorScreen> createState() =>
@@ -25,10 +29,13 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
   late TabController _tabController;
   int _selectedWeekday = DateTime.now().weekday % 7;
   DateTime _focusedMonth = DateTime(DateTime.now().year, DateTime.now().month);
+  late String? _filterClinicId;
+  var _donationNoticeChecked = false;
 
   @override
   void initState() {
     super.initState();
+    _filterClinicId = widget.filterClinicId;
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(() => setState(() {}));
   }
@@ -37,6 +44,12 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
   void dispose() {
     _tabController.dispose();
     super.dispose();
+  }
+
+  List<ScheduleTemplate> _applyClinicFilter(List<ScheduleTemplate> templates) {
+    final clinicId = _filterClinicId;
+    if (clinicId == null || clinicId.isEmpty) return templates;
+    return templates.where((t) => t.clinicId == clinicId).toList();
   }
 
   Set<int> _weekdaysWithTemplates(List<ScheduleTemplate> templates) {
@@ -53,6 +66,59 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
     return templates.where((t) => t.weekday == weekday).toList();
   }
 
+  String? _clinicName(
+    List<ClinicMembership> memberships,
+    String clinicId,
+    AppLocalizations l10n,
+  ) {
+    for (final membership in memberships) {
+      if (membership.clinicId == clinicId) {
+        final name = membership.clinicName?.trim();
+        if (name != null && name.isNotEmpty) return name;
+        break;
+      }
+    }
+    return l10n.specialistScheduleLocationClinicFallback;
+  }
+
+  bool _touchesDonated({
+    String? clinicId,
+    String? previousClinicId,
+  }) {
+    return (clinicId != null && clinicId.isNotEmpty) ||
+        (previousClinicId != null && previousClinicId.isNotEmpty);
+  }
+
+  Future<void> _maybeShowFirstTimeDonationNotice(
+    List<ClinicMembership> memberships,
+  ) async {
+    if (_donationNoticeChecked || !mounted) return;
+    _donationNoticeChecked = true;
+    final hasActive = memberships.any(
+      (m) =>
+          m.status == ClinicMembershipStatus.active &&
+          (m.clinicId ?? '').isNotEmpty,
+    );
+    if (!hasActive) return;
+    if (await hasSeenDonatedScheduleNotice()) return;
+    if (!mounted) return;
+    final l10n = AppLocalizations.of(context)!;
+    await showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.specialistScheduleDonationNoticeTitle),
+        content: Text(l10n.specialistScheduleDonationNotice),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.specialistScheduleDonationNoticeGotIt),
+          ),
+        ],
+      ),
+    );
+    await markDonatedScheduleNoticeSeen();
+  }
+
   Future<void> _openTemplateEditor({
     ScheduleTemplate? template,
     required int weekday,
@@ -61,6 +127,7 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
       context,
       template: template,
       weekday: weekday,
+      preferredClinicId: _filterClinicId,
     );
     if (draft == null || !mounted) return;
 
@@ -78,9 +145,22 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
       );
       if (!mounted) return;
       final l10n = AppLocalizations.of(context)!;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.specialistScheduleSaveSuccess)),
+      final donatedTouch = _touchesDonated(
+        clinicId: draft.clinicId,
+        previousClinicId: draft.previousClinicId,
       );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            donatedTouch
+                ? l10n.specialistScheduleDonationNotice
+                : l10n.specialistScheduleSaveSuccess,
+          ),
+        ),
+      );
+      if (donatedTouch) {
+        await markDonatedScheduleNoticeSeen();
+      }
       _tabController.animateTo(2);
     } on ScheduleValidationException catch (e) {
       if (!mounted) return;
@@ -126,9 +206,16 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
       ),
     );
     if (confirmed != true || template.id == null) return;
+    final wasDonated =
+        template.clinicId != null && template.clinicId!.isNotEmpty;
     await ref.read(scheduleTemplatesProvider.notifier).deleteTemplate(
       template.id!,
     );
+    if (!mounted || !wasDonated) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(l10n.specialistScheduleDonationNotice)),
+    );
+    await markDonatedScheduleNoticeSeen();
   }
 
   Future<void> _openExceptionForm() async {
@@ -261,6 +348,22 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
     final locale = Localizations.localeOf(context).languageCode;
     final templatesAsync = ref.watch(scheduleTemplatesProvider);
     final exceptionsAsync = ref.watch(scheduleExceptionsProvider);
+    final memberships =
+        ref.watch(clinicMembershipsProvider).valueOrNull ??
+            const <ClinicMembership>[];
+
+    ref.listen(clinicMembershipsProvider, (previous, next) {
+      next.whenData((items) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _maybeShowFirstTimeDonationNotice(items);
+        });
+      });
+    });
+    if (!_donationNoticeChecked && memberships.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _maybeShowFirstTimeDonationNotice(memberships);
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -284,19 +387,41 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
               onRetry: () =>
                   ref.read(scheduleTemplatesProvider.notifier).refresh(),
             ),
-            data: (templates) {
+            data: (allTemplates) {
+              final templates = _applyClinicFilter(allTemplates);
               final weekdays = _weekdaysWithTemplates(templates);
               final dayTemplates = _templatesForWeekday(
                 templates,
                 _selectedWeekday,
               );
-              final memberships =
-                  ref.watch(clinicMembershipsProvider).valueOrNull ??
-                      const <ClinicMembership>[];
+              final filterId = _filterClinicId;
+              final filterName = filterId == null
+                  ? null
+                  : _clinicName(memberships, filterId, l10n);
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  if (filterId != null && filterName != null)
+                    Material(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondaryContainer
+                          .withValues(alpha: 0.5),
+                      child: ListTile(
+                        dense: true,
+                        title: Text(
+                          l10n.specialistScheduleDonationFilterBanner(
+                            filterName,
+                          ),
+                        ),
+                        trailing: TextButton(
+                          onPressed: () =>
+                              setState(() => _filterClinicId = null),
+                          child: Text(l10n.specialistScheduleDonationFilterClear),
+                        ),
+                      ),
+                    ),
                   const SizedBox(height: GpsSpacing.sm),
                   ScheduleWeekdayGrid(
                     selectedWeekday: _selectedWeekday,
@@ -347,7 +472,8 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
                               final start = template.startTime ?? '';
                               final end = template.endTime ?? '';
                               final mode = modeFromTemplate(template);
-                              final duration = slotDurationFromTemplate(template);
+                              final duration =
+                                  slotDurationFromTemplate(template);
                               final active = template.active ?? true;
 
                               final locationLabel = scheduleLocationLabel(
@@ -382,7 +508,9 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
                                       ),
                                       PopupMenuItem(
                                         value: 'delete',
-                                        child: Text(l10n.dependentsDeleteConfirm),
+                                        child: Text(
+                                          l10n.dependentsDeleteConfirm,
+                                        ),
                                       ),
                                     ],
                                   ),

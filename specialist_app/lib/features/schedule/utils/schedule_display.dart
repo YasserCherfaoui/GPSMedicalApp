@@ -18,16 +18,20 @@ String scheduleLocationLabel(
   List<ClinicMembership> memberships = const [],
 }) {
   if (clinicId == null || clinicId.isEmpty) {
-    return l10n.specialistScheduleLocationCabinet;
+    return l10n.specialistScheduleDonationPersonal;
   }
   for (final membership in memberships) {
     if (membership.clinicId == clinicId) {
       final name = membership.clinicName?.trim();
-      if (name != null && name.isNotEmpty) return name;
+      if (name != null && name.isNotEmpty) {
+        return l10n.specialistScheduleDonationClinicNamed(name);
+      }
       break;
     }
   }
-  return l10n.specialistScheduleLocationClinicFallback;
+  return l10n.specialistScheduleDonationClinicNamed(
+    l10n.specialistScheduleLocationClinicFallback,
+  );
 }
 
 String scheduleExceptionKindLabel(

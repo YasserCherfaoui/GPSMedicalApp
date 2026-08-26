@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../../routing/specialist_routes.dart';
+import '../../schedule/providers/schedule.provider.dart';
+import '../../schedule/utils/donated_hours.dart';
 import '../providers/clinic_memberships.provider.dart';
 
 class ClinicMembershipsScreen extends ConsumerStatefulWidget {
@@ -56,6 +60,9 @@ class _ClinicMembershipsScreenState
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final async = ref.watch(clinicMembershipsProvider);
+    final templates =
+        ref.watch(scheduleTemplatesProvider).valueOrNull ??
+            const <ScheduleTemplate>[];
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.clinicMembershipsTitle)),
@@ -82,8 +89,12 @@ class _ClinicMembershipsScreenState
             return Center(child: Text(l10n.clinicMembershipsEmpty));
           }
           return RefreshIndicator(
-            onRefresh: () =>
+            onRefresh: () async {
+              await Future.wait([
                 ref.read(clinicMembershipsProvider.notifier).refresh(),
+                ref.read(scheduleTemplatesProvider.notifier).refresh(),
+              ]);
+            },
             child: ListView(
               padding: const EdgeInsets.all(GpsSpacing.lg),
               children: [
@@ -122,6 +133,17 @@ class _ClinicMembershipsScreenState
                     _ActiveCard(
                       membership: membership,
                       busy: _busyIds.contains(membership.id),
+                      donatedHours: donatedHoursPerWeek(
+                        templates,
+                        clinicId: membership.clinicId ?? '',
+                      ),
+                      onManageDonated: (membership.clinicId ?? '').isEmpty
+                          ? null
+                          : () => context.push(
+                                SpecialistRoutes.scheduleEditForClinic(
+                                  membership.clinicId!,
+                                ),
+                              ),
                       onToggleVisible: (visible) => _runAction(
                         membership.id!,
                         () => ref
@@ -211,13 +233,17 @@ class _ActiveCard extends StatelessWidget {
   const _ActiveCard({
     required this.membership,
     required this.busy,
+    required this.donatedHours,
     required this.onToggleVisible,
+    this.onManageDonated,
     this.onDetach,
   });
 
   final ClinicMembership membership;
   final bool busy;
+  final double donatedHours;
   final ValueChanged<bool> onToggleVisible;
+  final VoidCallback? onManageDonated;
   final VoidCallback? onDetach;
 
   @override
@@ -225,6 +251,12 @@ class _ActiveCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final pendingDetach =
         membership.status == ClinicMembershipStatus.detachRequested;
+    final hoursLabel = donatedHours <= 0
+        ? l10n.clinicMembershipsDonatedHoursNone
+        : l10n.clinicMembershipsDonatedHours(
+            formatDonatedHoursLabel(donatedHours),
+          );
+
     return Padding(
       padding: const EdgeInsets.only(bottom: GpsSpacing.sm),
       child: GpsCard(
@@ -237,6 +269,17 @@ class _ActiveCard extends StatelessWidget {
                 membership.clinicName ?? '',
                 style: Theme.of(context).textTheme.titleSmall,
               ),
+              if (onManageDonated != null) ...[
+                const SizedBox(height: GpsSpacing.xs),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  dense: true,
+                  title: Text(hoursLabel),
+                  subtitle: Text(l10n.clinicMembershipsManageDonated),
+                  trailing: const Icon(Icons.arrow_forward),
+                  onTap: onManageDonated,
+                ),
+              ],
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(l10n.clinicMembershipsVisibleOnProfile),

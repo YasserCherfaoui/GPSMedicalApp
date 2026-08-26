@@ -480,6 +480,7 @@ class AdminApi {
   Future<Response<PaginatedClinicsPrivate>> adminListPendingClinics({ 
     int? page = 1,
     int? pageSize = 20,
+    String? q,
     String? countryCode,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -510,6 +511,7 @@ class AdminApi {
     final _queryParameters = <String, dynamic>{
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (q != null) r'q': encodeQueryParameter(_serializers, q, const FullType(String)),
       if (countryCode != null) r'country_code': encodeQueryParameter(_serializers, countryCode, const FullType(String)),
     };
 
@@ -572,6 +574,7 @@ class AdminApi {
   Future<Response<PaginatedDoctorsPrivate>> adminListPendingDoctors({ 
     int? page = 1,
     int? pageSize = 20,
+    String? q,
     CountryCode? country,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -602,6 +605,7 @@ class AdminApi {
     final _queryParameters = <String, dynamic>{
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (pageSize != null) r'page_size': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (q != null) r'q': encodeQueryParameter(_serializers, q, const FullType(String)),
       if (country != null) r'country': encodeQueryParameter(_serializers, country, const FullType(CountryCode)),
     };
 

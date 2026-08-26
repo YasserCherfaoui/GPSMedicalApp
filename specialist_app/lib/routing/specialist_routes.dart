@@ -8,6 +8,10 @@ abstract final class SpecialistRoutes {
   static const notifications = '/specialist/notifications';
   static const clinicMemberships = '/specialist/clinic-memberships';
 
+  /// Schedule editor filtered to donated blocks for [clinicId].
+  static String scheduleEditForClinic(String clinicId) =>
+      '$scheduleEdit?clinicId=${Uri.encodeComponent(clinicId)}';
+
   static String appointmentDetail(String id) => '/specialist/appointments/$id';
   static String appointmentReschedule(String id) =>
       '/specialist/appointments/$id/reschedule';

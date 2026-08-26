@@ -13,11 +13,15 @@ class ScheduleTemplateEditorSheet extends ConsumerStatefulWidget {
   const ScheduleTemplateEditorSheet({
     this.template,
     required this.weekday,
+    this.preferredClinicId,
     super.key,
   });
 
   final ScheduleTemplate? template;
   final int weekday;
+
+  /// When adding a window while filtered to a clinic, preselect that donation.
+  final String? preferredClinicId;
 
   @override
   ConsumerState<ScheduleTemplateEditorSheet> createState() =>
@@ -43,7 +47,15 @@ class _ScheduleTemplateEditorSheetState
     _slotDuration = template == null ? 30 : slotDurationFromTemplate(template);
     _mode = template == null ? 'both' : modeFromTemplate(template);
     _active = template?.active ?? true;
-    _locationKey = template?.clinicId ?? kScheduleLocationCabinet;
+    if (template?.clinicId != null && template!.clinicId!.isNotEmpty) {
+      _locationKey = template.clinicId!;
+    } else if (template == null &&
+        widget.preferredClinicId != null &&
+        widget.preferredClinicId!.isNotEmpty) {
+      _locationKey = widget.preferredClinicId!;
+    } else {
+      _locationKey = kScheduleLocationCabinet;
+    }
   }
 
   TimeOfDay? _parseTime(String? value) {
@@ -84,6 +96,16 @@ class _ScheduleTemplateEditorSheetState
         .toList();
   }
 
+  String _clinicDonationLabel(AppLocalizations l10n, ClinicMembership m) {
+    final name = m.clinicName?.trim();
+    if (name != null && name.isNotEmpty) {
+      return l10n.specialistScheduleDonationClinicNamed(name);
+    }
+    return l10n.specialistScheduleDonationClinicNamed(
+      l10n.specialistScheduleLocationClinicFallback,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -91,21 +113,18 @@ class _ScheduleTemplateEditorSheetState
     final bottomInset = MediaQuery.viewInsetsOf(context).bottom;
     final membershipsAsync = ref.watch(clinicMembershipsProvider);
     final activeMemberships = _activeMemberships(membershipsAsync.valueOrNull);
+    final isDonated = _locationKey != kScheduleLocationCabinet;
 
     // Keep a detached clinic id selectable so existing templates still edit.
     final locationItems = <DropdownMenuItem<String>>[
       DropdownMenuItem(
         value: kScheduleLocationCabinet,
-        child: Text(l10n.specialistScheduleLocationCabinet),
+        child: Text(l10n.specialistScheduleDonationPersonal),
       ),
       ...activeMemberships.map(
         (m) => DropdownMenuItem(
           value: m.clinicId!,
-          child: Text(
-            m.clinicName?.trim().isNotEmpty == true
-                ? m.clinicName!
-                : l10n.specialistScheduleLocationClinicFallback,
-          ),
+          child: Text(_clinicDonationLabel(l10n, m)),
         ),
       ),
     ];
@@ -114,7 +133,11 @@ class _ScheduleTemplateEditorSheetState
       locationItems.add(
         DropdownMenuItem(
           value: _locationKey,
-          child: Text(l10n.specialistScheduleLocationClinicFallback),
+          child: Text(
+            l10n.specialistScheduleDonationClinicNamed(
+              l10n.specialistScheduleLocationClinicFallback,
+            ),
+          ),
         ),
       );
     }
@@ -156,6 +179,15 @@ class _ScheduleTemplateEditorSheetState
               setState(() => _locationKey = value);
             },
           ),
+          if (isDonated) ...[
+            const SizedBox(height: GpsSpacing.sm),
+            Text(
+              l10n.specialistScheduleDonationNotice,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ],
           const SizedBox(height: GpsSpacing.sm),
           _TimePickerField(
             label: l10n.specialistScheduleStartTime,
@@ -346,6 +378,7 @@ Future<ScheduleTemplateDraft?> showScheduleTemplateEditor(
   BuildContext context, {
   ScheduleTemplate? template,
   required int weekday,
+  String? preferredClinicId,
 }) {
   return showModalBottomSheet<ScheduleTemplateDraft>(
     context: context,
@@ -354,6 +387,7 @@ Future<ScheduleTemplateDraft?> showScheduleTemplateEditor(
     builder: (context) => ScheduleTemplateEditorSheet(
       template: template,
       weekday: weekday,
+      preferredClinicId: preferredClinicId,
     ),
   );
 }

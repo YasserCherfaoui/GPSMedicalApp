@@ -607,12 +607,37 @@
   "specialistScheduleErrorEndDate": "تاريخ النهاية غير صالح.",
   "specialistScheduleErrorKind": "نوع الاستثناء غير صالح.",
   "specialistScheduleErrorNote": "يجب ألا تتجاوز الملاحظة 200 حرفًا.",
-  "specialistScheduleLocation": "المكان",
-  "specialistScheduleLocationHint": "عيادتك الخاصة أو عيادة مرتبطة.",
+  "specialistScheduleLocation": "التعيين",
+  "specialistScheduleLocationHint": "خاص (عيادتك) أو فترات ممنوحة لعيادة.",
   "specialistScheduleLocationCabinet": "عيادتي",
   "specialistScheduleLocationClinicFallback": "عيادة",
+  "specialistScheduleDonationPersonal": "خاص (عيادتي)",
+  "specialistScheduleDonationClinicNamed": "ممنوح لـ {clinicName}",
+  "@specialistScheduleDonationClinicNamed": {
+    "placeholders": {
+      "clinicName": { "type": "String" }
+    }
+  },
+  "specialistScheduleDonationNotice": "يتم إخطار العيادة بأي تعديل على فتراتك الممنوحة.",
+  "specialistScheduleDonationNoticeTitle": "فترات ممنوحة لعيادة",
+  "specialistScheduleDonationNoticeGotIt": "حسنًا",
+  "specialistScheduleDonationFilterClear": "كل الفترات",
+  "specialistScheduleDonationFilterBanner": "عرض الفترات الممنوحة لـ {clinicName}",
+  "@specialistScheduleDonationFilterBanner": {
+    "placeholders": {
+      "clinicName": { "type": "String" }
+    }
+  },
   "specialistScheduleConflictMessage": "هذا الموعد يتداخل مع موعد آخر (عيادتك أو عيادة).",
   "specialistClinicSessionBadge": "جلسة عيادة",
+  "clinicMembershipsDonatedHours": "{hours} س / أسبوع ممنوحة",
+  "@clinicMembershipsDonatedHours": {
+    "placeholders": {
+      "hours": { "type": "String" }
+    }
+  },
+  "clinicMembershipsDonatedHoursNone": "لا فترات ممنوحة",
+  "clinicMembershipsManageDonated": "إدارة الفترات الممنوحة",
   "specialistProfileManageSchedule": "إدارة أجندتي",
   "specialistInboxTabRequests": "الطلبات",
   "specialistInboxTabConfirmed": "المؤكدة",

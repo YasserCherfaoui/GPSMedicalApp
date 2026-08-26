@@ -41,8 +41,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Ajouter une plage'), findsOneWidget);
-    expect(find.text('Lieu'), findsOneWidget);
-    expect(find.text('Mon cabinet'), findsOneWidget);
+    expect(find.text('Affectation'), findsOneWidget);
+    expect(find.text('Personnel (mon cabinet)'), findsOneWidget);
     expect(find.text('Mode de consultation'), findsOneWidget);
     expect(find.text('Les deux'), findsOneWidget);
 

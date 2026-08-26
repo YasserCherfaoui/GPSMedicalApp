@@ -48,7 +48,7 @@ void main() {
     //
     // Dossiers `pending` et `in_review` uniquement.
     //
-    //Future<PaginatedClinicsPrivate> adminListPendingClinics({ int page, int pageSize, String countryCode }) async
+    //Future<PaginatedClinicsPrivate> adminListPendingClinics({ int page, int pageSize, String q, String countryCode }) async
     test('test adminListPendingClinics', () async {
       // TODO
     });
@@ -57,7 +57,7 @@ void main() {
     //
     // Dossiers `pending` et `in_review` uniquement. Les médecins en `approved_pending_activation` ont quitté cette file ; leur effectif est `AdminOverview.doctors_approved_pending_activation`. 
     //
-    //Future<PaginatedDoctorsPrivate> adminListPendingDoctors({ int page, int pageSize, CountryCode country }) async
+    //Future<PaginatedDoctorsPrivate> adminListPendingDoctors({ int page, int pageSize, String q, CountryCode country }) async
     test('test adminListPendingDoctors', () async {
       // TODO
     });

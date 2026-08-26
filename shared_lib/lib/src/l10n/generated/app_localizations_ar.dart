@@ -1849,10 +1849,11 @@ class AppLocalizationsAr extends AppLocalizations {
       'يجب ألا تتجاوز الملاحظة 200 حرفًا.';
 
   @override
-  String get specialistScheduleLocation => 'المكان';
+  String get specialistScheduleLocation => 'التعيين';
 
   @override
-  String get specialistScheduleLocationHint => 'عيادتك الخاصة أو عيادة مرتبطة.';
+  String get specialistScheduleLocationHint =>
+      'خاص (عيادتك) أو فترات ممنوحة لعيادة.';
 
   @override
   String get specialistScheduleLocationCabinet => 'عيادتي';
@@ -1861,11 +1862,48 @@ class AppLocalizationsAr extends AppLocalizations {
   String get specialistScheduleLocationClinicFallback => 'عيادة';
 
   @override
+  String get specialistScheduleDonationPersonal => 'خاص (عيادتي)';
+
+  @override
+  String specialistScheduleDonationClinicNamed(String clinicName) {
+    return 'ممنوح لـ $clinicName';
+  }
+
+  @override
+  String get specialistScheduleDonationNotice =>
+      'يتم إخطار العيادة بأي تعديل على فتراتك الممنوحة.';
+
+  @override
+  String get specialistScheduleDonationNoticeTitle => 'فترات ممنوحة لعيادة';
+
+  @override
+  String get specialistScheduleDonationNoticeGotIt => 'حسنًا';
+
+  @override
+  String get specialistScheduleDonationFilterClear => 'كل الفترات';
+
+  @override
+  String specialistScheduleDonationFilterBanner(String clinicName) {
+    return 'عرض الفترات الممنوحة لـ $clinicName';
+  }
+
+  @override
   String get specialistScheduleConflictMessage =>
       'هذا الموعد يتداخل مع موعد آخر (عيادتك أو عيادة).';
 
   @override
   String get specialistClinicSessionBadge => 'جلسة عيادة';
+
+  @override
+  String clinicMembershipsDonatedHours(String hours) {
+    return '$hours س / أسبوع ممنوحة';
+  }
+
+  @override
+  String get clinicMembershipsDonatedHoursNone => 'لا فترات ممنوحة';
+
+  @override
+  String get clinicMembershipsManageDonated => 'إدارة الفترات الممنوحة';
 
   @override
   String get specialistProfileManageSchedule => 'إدارة أجندتي';

@@ -775,12 +775,37 @@
   "specialistScheduleErrorEndDate": "Date de fin invalide.",
   "specialistScheduleErrorKind": "Type d'exception invalide.",
   "specialistScheduleErrorNote": "La note ne doit pas dépasser 200 caractères.",
-  "specialistScheduleLocation": "Lieu",
-  "specialistScheduleLocationHint": "Cabinet privé ou clinique affiliée.",
+  "specialistScheduleLocation": "Affectation",
+  "specialistScheduleLocationHint": "Personnel (cabinet) ou créneaux donnés à une clinique.",
   "specialistScheduleLocationCabinet": "Mon cabinet",
   "specialistScheduleLocationClinicFallback": "Clinique",
+  "specialistScheduleDonationPersonal": "Personnel (mon cabinet)",
+  "specialistScheduleDonationClinicNamed": "Donné à {clinicName}",
+  "@specialistScheduleDonationClinicNamed": {
+    "placeholders": {
+      "clinicName": { "type": "String" }
+    }
+  },
+  "specialistScheduleDonationNotice": "La clinique est notifiée de toute modification de vos créneaux donnés.",
+  "specialistScheduleDonationNoticeTitle": "Créneaux donnés à une clinique",
+  "specialistScheduleDonationNoticeGotIt": "Compris",
+  "specialistScheduleDonationFilterClear": "Tous les créneaux",
+  "specialistScheduleDonationFilterBanner": "Affichage des créneaux donnés à {clinicName}",
+  "@specialistScheduleDonationFilterBanner": {
+    "placeholders": {
+      "clinicName": { "type": "String" }
+    }
+  },
   "specialistScheduleConflictMessage": "Ce créneau chevauche déjà un rendez-vous (cabinet ou clinique).",
   "specialistClinicSessionBadge": "Séance clinique",
+  "clinicMembershipsDonatedHours": "{hours} h / semaine données",
+  "@clinicMembershipsDonatedHours": {
+    "placeholders": {
+      "hours": { "type": "String" }
+    }
+  },
+  "clinicMembershipsDonatedHoursNone": "Aucun créneau donné",
+  "clinicMembershipsManageDonated": "Gérer les créneaux donnés",
   "specialistProfileManageSchedule": "Gérer mon agenda",
   "specialistInboxTabRequests": "Demandes",
   "specialistInboxTabConfirmed": "Confirmés",

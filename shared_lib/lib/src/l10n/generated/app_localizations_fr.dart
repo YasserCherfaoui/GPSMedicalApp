@@ -1888,11 +1888,11 @@ class AppLocalizationsFr extends AppLocalizations {
       'La note ne doit pas dépasser 200 caractères.';
 
   @override
-  String get specialistScheduleLocation => 'Lieu';
+  String get specialistScheduleLocation => 'Affectation';
 
   @override
   String get specialistScheduleLocationHint =>
-      'Cabinet privé ou clinique affiliée.';
+      'Personnel (cabinet) ou créneaux donnés à une clinique.';
 
   @override
   String get specialistScheduleLocationCabinet => 'Mon cabinet';
@@ -1901,11 +1901,49 @@ class AppLocalizationsFr extends AppLocalizations {
   String get specialistScheduleLocationClinicFallback => 'Clinique';
 
   @override
+  String get specialistScheduleDonationPersonal => 'Personnel (mon cabinet)';
+
+  @override
+  String specialistScheduleDonationClinicNamed(String clinicName) {
+    return 'Donné à $clinicName';
+  }
+
+  @override
+  String get specialistScheduleDonationNotice =>
+      'La clinique est notifiée de toute modification de vos créneaux donnés.';
+
+  @override
+  String get specialistScheduleDonationNoticeTitle =>
+      'Créneaux donnés à une clinique';
+
+  @override
+  String get specialistScheduleDonationNoticeGotIt => 'Compris';
+
+  @override
+  String get specialistScheduleDonationFilterClear => 'Tous les créneaux';
+
+  @override
+  String specialistScheduleDonationFilterBanner(String clinicName) {
+    return 'Affichage des créneaux donnés à $clinicName';
+  }
+
+  @override
   String get specialistScheduleConflictMessage =>
       'Ce créneau chevauche déjà un rendez-vous (cabinet ou clinique).';
 
   @override
   String get specialistClinicSessionBadge => 'Séance clinique';
+
+  @override
+  String clinicMembershipsDonatedHours(String hours) {
+    return '$hours h / semaine données';
+  }
+
+  @override
+  String get clinicMembershipsDonatedHoursNone => 'Aucun créneau donné';
+
+  @override
+  String get clinicMembershipsManageDonated => 'Gérer les créneaux donnés';
 
   @override
   String get specialistProfileManageSchedule => 'Gérer mon agenda';

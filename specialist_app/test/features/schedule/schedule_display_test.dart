@@ -18,11 +18,17 @@ void main() {
   });
 
   test('scheduleLocationLabel covers cabinet and clinic names', () {
-    expect(scheduleLocationLabel(l10n, clinicId: null), 'Mon cabinet');
-    expect(scheduleLocationLabel(l10n, clinicId: ''), 'Mon cabinet');
+    expect(
+      scheduleLocationLabel(l10n, clinicId: null),
+      'Personnel (mon cabinet)',
+    );
+    expect(
+      scheduleLocationLabel(l10n, clinicId: ''),
+      'Personnel (mon cabinet)',
+    );
     expect(
       scheduleLocationLabel(l10n, clinicId: '00000000-0000-4000-8000-000000000001'),
-      'Clinique',
+      'Donné à Clinique',
     );
     final membership = ClinicMembership(
       (b) => b
@@ -36,7 +42,7 @@ void main() {
         clinicId: '00000000-0000-4000-8000-000000000001',
         memberships: [membership],
       ),
-      'Clinique El Amel',
+      'Donné à Clinique El Amel',
     );
   });
 

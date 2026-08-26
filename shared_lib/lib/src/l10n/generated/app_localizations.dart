@@ -3493,13 +3493,13 @@ abstract class AppLocalizations {
   /// No description provided for @specialistScheduleLocation.
   ///
   /// In fr, this message translates to:
-  /// **'Lieu'**
+  /// **'Affectation'**
   String get specialistScheduleLocation;
 
   /// No description provided for @specialistScheduleLocationHint.
   ///
   /// In fr, this message translates to:
-  /// **'Cabinet privé ou clinique affiliée.'**
+  /// **'Personnel (cabinet) ou créneaux donnés à une clinique.'**
   String get specialistScheduleLocationHint;
 
   /// No description provided for @specialistScheduleLocationCabinet.
@@ -3514,6 +3514,48 @@ abstract class AppLocalizations {
   /// **'Clinique'**
   String get specialistScheduleLocationClinicFallback;
 
+  /// No description provided for @specialistScheduleDonationPersonal.
+  ///
+  /// In fr, this message translates to:
+  /// **'Personnel (mon cabinet)'**
+  String get specialistScheduleDonationPersonal;
+
+  /// No description provided for @specialistScheduleDonationClinicNamed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Donné à {clinicName}'**
+  String specialistScheduleDonationClinicNamed(String clinicName);
+
+  /// No description provided for @specialistScheduleDonationNotice.
+  ///
+  /// In fr, this message translates to:
+  /// **'La clinique est notifiée de toute modification de vos créneaux donnés.'**
+  String get specialistScheduleDonationNotice;
+
+  /// No description provided for @specialistScheduleDonationNoticeTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créneaux donnés à une clinique'**
+  String get specialistScheduleDonationNoticeTitle;
+
+  /// No description provided for @specialistScheduleDonationNoticeGotIt.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compris'**
+  String get specialistScheduleDonationNoticeGotIt;
+
+  /// No description provided for @specialistScheduleDonationFilterClear.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous les créneaux'**
+  String get specialistScheduleDonationFilterClear;
+
+  /// No description provided for @specialistScheduleDonationFilterBanner.
+  ///
+  /// In fr, this message translates to:
+  /// **'Affichage des créneaux donnés à {clinicName}'**
+  String specialistScheduleDonationFilterBanner(String clinicName);
+
   /// No description provided for @specialistScheduleConflictMessage.
   ///
   /// In fr, this message translates to:
@@ -3525,6 +3567,24 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Séance clinique'**
   String get specialistClinicSessionBadge;
+
+  /// No description provided for @clinicMembershipsDonatedHours.
+  ///
+  /// In fr, this message translates to:
+  /// **'{hours} h / semaine données'**
+  String clinicMembershipsDonatedHours(String hours);
+
+  /// No description provided for @clinicMembershipsDonatedHoursNone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun créneau donné'**
+  String get clinicMembershipsDonatedHoursNone;
+
+  /// No description provided for @clinicMembershipsManageDonated.
+  ///
+  /// In fr, this message translates to:
+  /// **'Gérer les créneaux donnés'**
+  String get clinicMembershipsManageDonated;
 
   /// No description provided for @specialistProfileManageSchedule.
   ///
