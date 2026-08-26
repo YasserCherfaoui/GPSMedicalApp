@@ -9,12 +9,14 @@ class AppointmentPaymentSection extends StatelessWidget {
     required this.appointment,
     required this.doctor,
     required this.appointmentId,
+    this.clinicName,
     super.key,
   });
 
   final Appointment appointment;
   final Doctor? doctor;
   final String appointmentId;
+  final String? clinicName;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +24,9 @@ class AppointmentPaymentSection extends StatelessWidget {
       return const SizedBox.shrink();
     }
     final l10n = AppLocalizations.of(context)!;
-    final amount =
-        appointment.feeDzd ??
-        (doctor != null
-            ? appointmentDepositAmountDzd(appointment, doctor!)
-            : null);
+    final amount = appointmentDepositAmountDzd(appointment, doctor);
     if (amount == null) return const SizedBox.shrink();
+    final clinicPayee = isClinicBookingPayment(appointment);
 
     return GpsCard(
       child: Column(
@@ -39,6 +38,17 @@ class AppointmentPaymentSection extends StatelessWidget {
           ),
           const SizedBox(height: GpsSpacing.xs),
           Text(l10n.paymentDepositBody(amount)),
+          if (clinicPayee) ...[
+            const SizedBox(height: GpsSpacing.xs),
+            Text(
+              clinicName != null && clinicName!.trim().isNotEmpty
+                  ? l10n.paymentDepositPayeeClinicNamed(clinicName!.trim())
+                  : l10n.paymentDepositPayeeClinicHint,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ],
           const SizedBox(height: GpsSpacing.md),
           PrimaryButton(
             label: l10n.paymentDepositCta,

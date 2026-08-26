@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
+import 'package:specialist_app/features/appointments/utils/appointment_api_error.dart';
 import 'package:specialist_app/features/appointments/utils/appointment_display.dart';
 
 void main() {
@@ -42,5 +43,36 @@ void main() {
     final truncated = reasonSnippet(long, maxLength: 20);
     expect(truncated.length, 20);
     expect(truncated.endsWith('…'), isTrue);
+  });
+
+  test('isClinicAssignedSession detects clinic_service origin', () {
+    final clinic = Appointment(
+      (b) => b..origin = AppointmentOriginEnum.clinicService,
+    );
+    final direct = Appointment(
+      (b) => b..origin = AppointmentOriginEnum.doctorDirect,
+    );
+    expect(isClinicAssignedSession(clinic), isTrue);
+    expect(isClinicAssignedSession(direct), isFalse);
+  });
+
+  test('appointmentActionMessage maps schedule conflict code', () {
+    expect(
+      appointmentActionMessage(
+        l10n,
+        const AppointmentActionException(
+          'server',
+          code: 'SPECIALIST_SCHEDULE_CONFLICT',
+        ),
+      ),
+      l10n.specialistScheduleConflictMessage,
+    );
+    expect(
+      appointmentActionMessage(
+        l10n,
+        const AppointmentActionException('autre erreur'),
+      ),
+      'autre erreur',
+    );
   });
 }

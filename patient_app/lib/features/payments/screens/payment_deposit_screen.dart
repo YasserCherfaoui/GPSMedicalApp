@@ -98,6 +98,12 @@ class _PaymentDepositScreenState extends ConsumerState<PaymentDepositScreen> {
           if (amount == null) {
             return Center(child: Text(l10n.paymentDepositNotEligible));
           }
+          final clinicPayee = isClinicBookingPayment(appointment);
+          final payeeTitle = clinicPayee
+              ? (state.clinic?.name?.trim().isNotEmpty == true
+                    ? state.clinic!.name!.trim()
+                    : l10n.paymentDepositPayeeClinicFallback)
+              : '${doctor?.title ?? 'Dr.'} ${doctor?.fullName ?? ''}'.trim();
 
           return Padding(
             padding: const EdgeInsets.all(GpsSpacing.md),
@@ -109,9 +115,20 @@ class _PaymentDepositScreenState extends ConsumerState<PaymentDepositScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${doctor.title ?? 'Dr.'} ${doctor.fullName ?? ''}',
+                        payeeTitle,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
+                      if (clinicPayee) ...[
+                        const SizedBox(height: GpsSpacing.xs),
+                        Text(
+                          l10n.paymentDepositPayeeClinicHint,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ],
                       const SizedBox(height: GpsSpacing.sm),
                       Text(
                         l10n.paymentDepositAmountLabel(amount),

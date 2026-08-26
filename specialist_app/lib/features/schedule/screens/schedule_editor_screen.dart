@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:intl/intl.dart';
 
+import '../../profile/providers/clinic_memberships.provider.dart';
 import '../providers/schedule.provider.dart';
 import '../utils/schedule_api_error.dart';
 import '../utils/schedule_display.dart';
@@ -72,6 +73,8 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
         slotDurationMinutes: draft.slotDurationMinutes,
         mode: draft.mode,
         active: draft.active,
+        clinicId: draft.clinicId,
+        previousClinicId: draft.previousClinicId,
       );
       if (!mounted) return;
       final l10n = AppLocalizations.of(context)!;
@@ -87,6 +90,18 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
           .join('\n');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(message)),
+      );
+    } on ScheduleConflictException catch (e) {
+      if (!mounted) return;
+      final l10n = AppLocalizations.of(context)!;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.code == 'SPECIALIST_SCHEDULE_CONFLICT'
+                ? l10n.specialistScheduleConflictMessage
+                : (e.message ?? l10n.specialistScheduleLoadError),
+          ),
+        ),
       );
     }
   }
@@ -275,6 +290,9 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
                 templates,
                 _selectedWeekday,
               );
+              final memberships =
+                  ref.watch(clinicMembershipsProvider).valueOrNull ??
+                      const <ClinicMembership>[];
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -332,13 +350,19 @@ class _ScheduleEditorScreenState extends ConsumerState<ScheduleEditorScreen>
                               final duration = slotDurationFromTemplate(template);
                               final active = template.active ?? true;
 
+                              final locationLabel = scheduleLocationLabel(
+                                l10n,
+                                clinicId: template.clinicId,
+                                memberships: memberships,
+                              );
+
                               return GpsCard(
                                 child: ListTile(
                                   title: Text(
                                     formatScheduleWindow(start, end, locale),
                                   ),
                                   subtitle: Text(
-                                    '${scheduleModeLabel(l10n, mode)} · ${l10n.specialistScheduleSlotMinutes(duration)}${active ? '' : ' · ${l10n.specialistScheduleInactive}'}',
+                                    '$locationLabel · ${scheduleModeLabel(l10n, mode)} · ${l10n.specialistScheduleSlotMinutes(duration)}${active ? '' : ' · ${l10n.specialistScheduleInactive}'}',
                                   ),
                                   trailing: PopupMenuButton<String>(
                                     onSelected: (value) {

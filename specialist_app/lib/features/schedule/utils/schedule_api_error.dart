@@ -6,14 +6,29 @@ class ScheduleValidationException implements Exception {
   final Map<String, String> fieldErrors;
 }
 
+/// Thrown when the API rejects a schedule write with 409 (C-17.5 overlap).
+class ScheduleConflictException implements Exception {
+  const ScheduleConflictException({this.message, this.code});
+
+  final String? message;
+  final String? code;
+}
+
 Never rethrowScheduleApiError(Object error) {
-  if (error is ScheduleValidationException) {
+  if (error is ScheduleValidationException ||
+      error is ScheduleConflictException) {
     throw error;
   }
   if (error is DioException) {
     final status = error.response?.statusCode;
     final data = error.response?.data;
     final map = _asJsonMap(data);
+    if (status == 409) {
+      throw ScheduleConflictException(
+        message: map?['detail'] as String? ?? map?['title'] as String?,
+        code: map?['code'] as String?,
+      );
+    }
     if (status == 422 && map != null) {
       final errors = map['errors'];
       if (errors is List) {

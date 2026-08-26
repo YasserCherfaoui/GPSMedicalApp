@@ -1470,6 +1470,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get paymentDepositNotEligible => 'هذا الموعد غير مؤهل للدفع.';
 
   @override
+  String get paymentDepositPayeeClinicHint =>
+      'الدفع موجه للعيادة (وليس للطبيب).';
+
+  @override
+  String paymentDepositPayeeClinicNamed(String clinicName) {
+    return 'الدفع موجه إلى $clinicName.';
+  }
+
+  @override
+  String get paymentDepositPayeeClinicFallback => 'عيادة';
+
+  @override
   String get specialistVerificationPendingTitle => 'الملف قيد المراجعة';
 
   @override
@@ -1819,6 +1831,25 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get specialistScheduleErrorNote =>
       'يجب ألا تتجاوز الملاحظة 200 حرفًا.';
+
+  @override
+  String get specialistScheduleLocation => 'المكان';
+
+  @override
+  String get specialistScheduleLocationHint => 'عيادتك الخاصة أو عيادة مرتبطة.';
+
+  @override
+  String get specialistScheduleLocationCabinet => 'عيادتي';
+
+  @override
+  String get specialistScheduleLocationClinicFallback => 'عيادة';
+
+  @override
+  String get specialistScheduleConflictMessage =>
+      'هذا الموعد يتداخل مع موعد آخر (عيادتك أو عيادة).';
+
+  @override
+  String get specialistClinicSessionBadge => 'جلسة عيادة';
 
   @override
   String get specialistProfileManageSchedule => 'إدارة أجندتي';

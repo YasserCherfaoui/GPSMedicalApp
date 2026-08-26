@@ -1481,6 +1481,18 @@ class AppLocalizationsBer extends AppLocalizations {
       'Amarur-a ur yettak ara ad yettwaxelleṣ.';
 
   @override
+  String get paymentDepositPayeeClinicHint =>
+      'Asefru yettwazzen ɣer tesenselt (mačči ɣer umsawad).';
+
+  @override
+  String paymentDepositPayeeClinicNamed(String clinicName) {
+    return 'Asefru yettwazzen ɣer $clinicName.';
+  }
+
+  @override
+  String get paymentDepositPayeeClinicFallback => 'Tasenselt';
+
+  @override
   String get specialistVerificationPendingTitle => 'Aseɣwen yettwaseɣreg';
 
   @override
@@ -1839,6 +1851,26 @@ class AppLocalizationsBer extends AppLocalizations {
   @override
   String get specialistScheduleErrorNote =>
       'Tazmilt ur ilaq ad teɛeddi 200 n isekkilen.';
+
+  @override
+  String get specialistScheduleLocation => 'Amḍiq';
+
+  @override
+  String get specialistScheduleLocationHint =>
+      'Aḥanu-k neɣ tasenselt yeddukklen.';
+
+  @override
+  String get specialistScheduleLocationCabinet => 'Aḥanu-iw';
+
+  @override
+  String get specialistScheduleLocationClinicFallback => 'Tasenselt';
+
+  @override
+  String get specialistScheduleConflictMessage =>
+      'Akud-agi yemseḍfaṛ d umeẓlu nniḍen (aḥanu neɣ tasenselt).';
+
+  @override
+  String get specialistClinicSessionBadge => 'Tiɣri n tesenselt';
 
   @override
   String get specialistProfileManageSchedule => 'Sefrek awitay-iw';

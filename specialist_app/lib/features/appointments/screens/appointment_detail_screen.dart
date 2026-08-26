@@ -114,8 +114,9 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
       await action();
     } on AppointmentActionException catch (e) {
       if (!mounted) return;
+      final l10n = AppLocalizations.of(context)!;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message)),
+        SnackBar(content: Text(appointmentActionMessage(l10n, e))),
       );
     } finally {
       if (mounted) setState(() => _busy = false);

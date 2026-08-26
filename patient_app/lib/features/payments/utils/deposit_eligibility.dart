@@ -11,10 +11,20 @@ bool canPayAppointmentDeposit(Appointment appointment) {
 }
 
 /// Deposit amount in DZD (minimum 100 per API); null when not payable.
-int? appointmentDepositAmountDzd(Appointment appointment, Doctor doctor) {
-  final fee = appointment.feeDzd ?? doctor.consultationFeeDzd;
+///
+/// For clinic_service bookings, [doctor] may be null — [Appointment.feeDzd] is
+/// enough. Doctor fee is a fallback for doctor_direct bookings.
+int? appointmentDepositAmountDzd(
+  Appointment appointment, [
+  Doctor? doctor,
+]) {
+  final fee = appointment.feeDzd ?? doctor?.consultationFeeDzd;
   if (fee == null || fee < 100) return null;
   return fee;
+}
+
+bool isClinicBookingPayment(Appointment appointment) {
+  return appointment.origin == AppointmentOriginEnum.clinicService;
 }
 
 bool isPaymentIntentTerminal(PaymentIntentStatusEnum? status) {

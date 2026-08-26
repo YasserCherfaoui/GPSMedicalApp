@@ -41,4 +41,21 @@ void main() {
     final lowFee = Appointment((b) => b..feeDzd = 50);
     expect(appointmentDepositAmountDzd(lowFee, doctor), isNull);
   });
+
+  test('appointmentDepositAmountDzd works without doctor for clinic fees', () {
+    final clinicAppt = Appointment(
+      (b) => b
+        ..origin = AppointmentOriginEnum.clinicService
+        ..feeDzd = 4500
+        ..status = AppointmentStatusEnum.pending
+        ..paymentStatus = AppointmentPaymentStatusEnum.unpaid,
+    );
+    expect(appointmentDepositAmountDzd(clinicAppt), 4500);
+    expect(isClinicBookingPayment(clinicAppt), isTrue);
+
+    final noFee = Appointment(
+      (b) => b..origin = AppointmentOriginEnum.clinicService,
+    );
+    expect(appointmentDepositAmountDzd(noFee), isNull);
+  });
 }

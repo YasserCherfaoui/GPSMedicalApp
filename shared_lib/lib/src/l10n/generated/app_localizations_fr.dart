@@ -1501,6 +1501,18 @@ class AppLocalizationsFr extends AppLocalizations {
       'Ce rendez-vous n\'est pas éligible au paiement.';
 
   @override
+  String get paymentDepositPayeeClinicHint =>
+      'Le paiement est destiné à la clinique (pas au spécialiste).';
+
+  @override
+  String paymentDepositPayeeClinicNamed(String clinicName) {
+    return 'Le paiement est destiné à $clinicName.';
+  }
+
+  @override
+  String get paymentDepositPayeeClinicFallback => 'Clinique';
+
+  @override
   String get specialistVerificationPendingTitle => 'Dossier en cours d\'examen';
 
   @override
@@ -1858,6 +1870,26 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get specialistScheduleErrorNote =>
       'La note ne doit pas dépasser 200 caractères.';
+
+  @override
+  String get specialistScheduleLocation => 'Lieu';
+
+  @override
+  String get specialistScheduleLocationHint =>
+      'Cabinet privé ou clinique affiliée.';
+
+  @override
+  String get specialistScheduleLocationCabinet => 'Mon cabinet';
+
+  @override
+  String get specialistScheduleLocationClinicFallback => 'Clinique';
+
+  @override
+  String get specialistScheduleConflictMessage =>
+      'Ce créneau chevauche déjà un rendez-vous (cabinet ou clinique).';
+
+  @override
+  String get specialistClinicSessionBadge => 'Séance clinique';
 
   @override
   String get specialistProfileManageSchedule => 'Gérer mon agenda';

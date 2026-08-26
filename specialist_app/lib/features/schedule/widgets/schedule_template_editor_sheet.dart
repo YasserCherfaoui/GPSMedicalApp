@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
-import 'package:intl/intl.dart';
 
-import '../providers/schedule.provider.dart';
-import '../utils/schedule_api_error.dart';
+import '../../profile/providers/clinic_memberships.provider.dart';
 import '../utils/schedule_display.dart';
 import '../utils/schedule_validation.dart';
 
-class ScheduleTemplateEditorSheet extends StatefulWidget {
+/// Sentinel for private cabinet (no `clinic_id` on the template).
+const kScheduleLocationCabinet = '';
+
+class ScheduleTemplateEditorSheet extends ConsumerStatefulWidget {
   const ScheduleTemplateEditorSheet({
     this.template,
     required this.weekday,
@@ -19,17 +20,18 @@ class ScheduleTemplateEditorSheet extends StatefulWidget {
   final int weekday;
 
   @override
-  State<ScheduleTemplateEditorSheet> createState() =>
+  ConsumerState<ScheduleTemplateEditorSheet> createState() =>
       _ScheduleTemplateEditorSheetState();
 }
 
 class _ScheduleTemplateEditorSheetState
-    extends State<ScheduleTemplateEditorSheet> {
+    extends ConsumerState<ScheduleTemplateEditorSheet> {
   late TimeOfDay _start;
   late TimeOfDay _end;
   late int _slotDuration;
   late String _mode;
   late bool _active;
+  late String _locationKey;
   Map<String, String> _errors = {};
 
   @override
@@ -41,6 +43,7 @@ class _ScheduleTemplateEditorSheetState
     _slotDuration = template == null ? 30 : slotDurationFromTemplate(template);
     _mode = template == null ? 'both' : modeFromTemplate(template);
     _active = template?.active ?? true;
+    _locationKey = template?.clinicId ?? kScheduleLocationCabinet;
   }
 
   TimeOfDay? _parseTime(String? value) {
@@ -73,11 +76,48 @@ class _ScheduleTemplateEditorSheetState
     });
   }
 
+  List<ClinicMembership> _activeMemberships(List<ClinicMembership>? all) {
+    if (all == null) return const [];
+    return all
+        .where((m) => m.status == ClinicMembershipStatus.active)
+        .where((m) => (m.clinicId ?? '').isNotEmpty)
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final locale = Localizations.localeOf(context).languageCode;
     final bottomInset = MediaQuery.viewInsetsOf(context).bottom;
+    final membershipsAsync = ref.watch(clinicMembershipsProvider);
+    final activeMemberships = _activeMemberships(membershipsAsync.valueOrNull);
+
+    // Keep a detached clinic id selectable so existing templates still edit.
+    final locationItems = <DropdownMenuItem<String>>[
+      DropdownMenuItem(
+        value: kScheduleLocationCabinet,
+        child: Text(l10n.specialistScheduleLocationCabinet),
+      ),
+      ...activeMemberships.map(
+        (m) => DropdownMenuItem(
+          value: m.clinicId!,
+          child: Text(
+            m.clinicName?.trim().isNotEmpty == true
+                ? m.clinicName!
+                : l10n.specialistScheduleLocationClinicFallback,
+          ),
+        ),
+      ),
+    ];
+    if (_locationKey != kScheduleLocationCabinet &&
+        locationItems.every((item) => item.value != _locationKey)) {
+      locationItems.add(
+        DropdownMenuItem(
+          value: _locationKey,
+          child: Text(l10n.specialistScheduleLocationClinicFallback),
+        ),
+      );
+    }
 
     return Padding(
       padding: EdgeInsets.fromLTRB(
@@ -104,6 +144,19 @@ class _ScheduleTemplateEditorSheetState
             ),
           ),
           const SizedBox(height: GpsSpacing.lg),
+          DropdownButtonFormField<String>(
+            value: _locationKey,
+            decoration: InputDecoration(
+              labelText: l10n.specialistScheduleLocation,
+              helperText: l10n.specialistScheduleLocationHint,
+            ),
+            items: locationItems,
+            onChanged: (value) {
+              if (value == null) return;
+              setState(() => _locationKey = value);
+            },
+          ),
+          const SizedBox(height: GpsSpacing.sm),
           _TimePickerField(
             label: l10n.specialistScheduleStartTime,
             timeLabel: formatScheduleTime(_formatTime(_start), locale),
@@ -203,6 +256,10 @@ class _ScheduleTemplateEditorSheetState
                   slotDurationMinutes: _slotDuration,
                   mode: _mode,
                   active: _active,
+                  clinicId: _locationKey == kScheduleLocationCabinet
+                      ? null
+                      : _locationKey,
+                  previousClinicId: widget.template?.clinicId,
                 ),
               );
             },
@@ -270,6 +327,8 @@ class ScheduleTemplateDraft {
     required this.slotDurationMinutes,
     required this.mode,
     required this.active,
+    this.clinicId,
+    this.previousClinicId,
   });
 
   final String? templateId;
@@ -279,6 +338,8 @@ class ScheduleTemplateDraft {
   final int slotDurationMinutes;
   final String mode;
   final bool active;
+  final String? clinicId;
+  final String? previousClinicId;
 }
 
 Future<ScheduleTemplateDraft?> showScheduleTemplateEditor(

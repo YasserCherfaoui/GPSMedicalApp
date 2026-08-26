@@ -9,6 +9,9 @@ void main() {
 
   setUp(() {
     harness = SpecialistTestHarness()..setUpClient();
+    harness.adapter.onGet('/doctors/me/memberships', (server) {
+      return server.reply(200, <Map<String, dynamic>>[]);
+    });
   });
 
   testWidgets('template editor sheet shows time and mode fields', (
@@ -38,6 +41,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Ajouter une plage'), findsOneWidget);
+    expect(find.text('Lieu'), findsOneWidget);
+    expect(find.text('Mon cabinet'), findsOneWidget);
     expect(find.text('Mode de consultation'), findsOneWidget);
     expect(find.text('Les deux'), findsOneWidget);
 

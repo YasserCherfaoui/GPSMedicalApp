@@ -91,6 +91,35 @@ void main() {
         ),
       );
     });
+
+    test('reschedule maps 409 SPECIALIST_SCHEDULE_CONFLICT code', () async {
+      adapter.onPatch(
+        '/appointments/00000000-0000-4000-8000-000000000001',
+        (server) {
+          server.reply(409, {
+            'title': 'Conflict',
+            'detail': 'Ce spécialiste a déjà un rendez-vous sur ce créneau.',
+            'code': 'SPECIALIST_SCHEDULE_CONFLICT',
+          });
+        },
+      );
+
+      expect(
+        () => repository.reschedule(
+          appointmentId: '00000000-0000-4000-8000-000000000001',
+          startAt: DateTime.parse('2026-06-21T10:00:00Z'),
+        ),
+        throwsA(
+          isA<AppointmentActionException>()
+              .having(
+                (e) => e.code,
+                'code',
+                'SPECIALIST_SCHEDULE_CONFLICT',
+              )
+              .having((e) => e.statusCode, 'statusCode', 409),
+        ),
+      );
+    });
   });
 
   group('appointment_display', () {

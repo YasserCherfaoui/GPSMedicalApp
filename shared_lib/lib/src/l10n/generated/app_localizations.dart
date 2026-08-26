@@ -2794,6 +2794,24 @@ abstract class AppLocalizations {
   /// **'Ce rendez-vous n\'est pas éligible au paiement.'**
   String get paymentDepositNotEligible;
 
+  /// No description provided for @paymentDepositPayeeClinicHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le paiement est destiné à la clinique (pas au spécialiste).'**
+  String get paymentDepositPayeeClinicHint;
+
+  /// No description provided for @paymentDepositPayeeClinicNamed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le paiement est destiné à {clinicName}.'**
+  String paymentDepositPayeeClinicNamed(String clinicName);
+
+  /// No description provided for @paymentDepositPayeeClinicFallback.
+  ///
+  /// In fr, this message translates to:
+  /// **'Clinique'**
+  String get paymentDepositPayeeClinicFallback;
+
   /// No description provided for @specialistVerificationPendingTitle.
   ///
   /// In fr, this message translates to:
@@ -3447,6 +3465,42 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'La note ne doit pas dépasser 200 caractères.'**
   String get specialistScheduleErrorNote;
+
+  /// No description provided for @specialistScheduleLocation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lieu'**
+  String get specialistScheduleLocation;
+
+  /// No description provided for @specialistScheduleLocationHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cabinet privé ou clinique affiliée.'**
+  String get specialistScheduleLocationHint;
+
+  /// No description provided for @specialistScheduleLocationCabinet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon cabinet'**
+  String get specialistScheduleLocationCabinet;
+
+  /// No description provided for @specialistScheduleLocationClinicFallback.
+  ///
+  /// In fr, this message translates to:
+  /// **'Clinique'**
+  String get specialistScheduleLocationClinicFallback;
+
+  /// No description provided for @specialistScheduleConflictMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce créneau chevauche déjà un rendez-vous (cabinet ou clinique).'**
+  String get specialistScheduleConflictMessage;
+
+  /// No description provided for @specialistClinicSessionBadge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Séance clinique'**
+  String get specialistClinicSessionBadge;
 
   /// No description provided for @specialistProfileManageSchedule.
   ///

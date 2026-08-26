@@ -42,6 +42,33 @@ class AppointmentModeBadge extends StatelessWidget {
   }
 }
 
+class ClinicSessionBadge extends StatelessWidget {
+  const ClinicSessionBadge({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final colorScheme = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: GpsSpacing.sm,
+        vertical: GpsSpacing.xs,
+      ),
+      decoration: BoxDecoration(
+        color: colorScheme.tertiaryContainer,
+        borderRadius: BorderRadius.circular(GpsRadii.full),
+      ),
+      child: Text(
+        l10n.specialistClinicSessionBadge,
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+          fontWeight: FontWeight.w600,
+          color: colorScheme.onTertiaryContainer,
+        ),
+      ),
+    );
+  }
+}
+
 class AppointmentStatusPill extends StatelessWidget {
   const AppointmentStatusPill({required this.status, super.key});
 
@@ -159,6 +186,8 @@ class SpecialistAppointmentRowTile extends StatelessWidget {
                       spacing: GpsSpacing.xs,
                       runSpacing: GpsSpacing.xs,
                       children: [
+                        if (isClinicAssignedSession(appointment))
+                          const ClinicSessionBadge(),
                         if (appointment.mode != null)
                           AppointmentModeBadge(
                             mode: appointmentModeWire(appointment.mode),

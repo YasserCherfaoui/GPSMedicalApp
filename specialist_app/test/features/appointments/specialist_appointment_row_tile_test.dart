@@ -77,4 +77,34 @@ void main() {
     expect(find.text('Téléconsultation'), findsOneWidget);
     expect(find.text('En attente'), findsOneWidget);
   });
+
+  testWidgets('clinic-origin appointment shows clinic session badge', (
+    tester,
+  ) async {
+    final appointment = Appointment((b) {
+      b
+        ..id = '00000000-0000-4000-8000-000000000097'
+        ..patientId = '00000000-0000-4000-8000-000000000050'
+        ..status = AppointmentStatusEnum.confirmed
+        ..mode = AppointmentModeEnum.inPerson
+        ..origin = AppointmentOriginEnum.clinicService
+        ..clinicId = '00000000-0000-4000-8000-000000000033'
+        ..startAt = DateTime.parse('2026-06-22T11:00:00Z')
+        ..feeDzd = 4000;
+    });
+
+    await tester.pumpWidget(
+      harness.wrapScreen(
+        Scaffold(
+          body: SpecialistAppointmentRowTile(
+            appointment: appointment,
+            onTap: () {},
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Séance clinique'), findsOneWidget);
+  });
 }

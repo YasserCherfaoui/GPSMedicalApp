@@ -1,5 +1,6 @@
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import 'appointment_api_error.dart';
 import 'appointment_enums.dart';
 
 String specialistPatientDisplayLabel(
@@ -24,4 +25,18 @@ String reasonSnippet(String? reason, {int maxLength = 80}) {
   if (text == null || text.isEmpty) return '';
   if (text.length <= maxLength) return text;
   return '${text.substring(0, maxLength - 1)}…';
+}
+
+bool isClinicAssignedSession(Appointment appointment) {
+  return appointment.origin == AppointmentOriginEnum.clinicService;
+}
+
+String appointmentActionMessage(
+  AppLocalizations l10n,
+  AppointmentActionException error,
+) {
+  if (error.code == 'SPECIALIST_SCHEDULE_CONFLICT') {
+    return l10n.specialistScheduleConflictMessage;
+  }
+  return error.message;
 }

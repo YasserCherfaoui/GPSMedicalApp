@@ -24,15 +24,21 @@ class ScheduleRepository {
     required String endTime,
     required int slotDurationMinutes,
     required String mode,
+    String? clinicId,
   }) async {
     try {
       final body = ScheduleTemplateCreate(
-        (b) => b
-          ..weekday = weekday
-          ..startTime = startTime
-          ..endTime = endTime
-          ..slotDurationMinutes = slotDurationToCreateEnum(slotDurationMinutes)
-          ..mode = modeToCreateEnum(mode),
+        (b) {
+          b
+            ..weekday = weekday
+            ..startTime = startTime
+            ..endTime = endTime
+            ..slotDurationMinutes = slotDurationToCreateEnum(slotDurationMinutes)
+            ..mode = modeToCreateEnum(mode);
+          if (clinicId != null && clinicId.isNotEmpty) {
+            b.clinicId = clinicId;
+          }
+        },
       );
       final response = await _client.availability.doctorsMeScheduleTemplatesPost(
         scheduleTemplateCreate: body,
@@ -54,15 +60,21 @@ class ScheduleRepository {
     required String endTime,
     required int slotDurationMinutes,
     required String mode,
+    String? clinicId,
   }) async {
     try {
       final body = ScheduleTemplateCreate(
-        (b) => b
-          ..weekday = weekday
-          ..startTime = startTime
-          ..endTime = endTime
-          ..slotDurationMinutes = slotDurationToCreateEnum(slotDurationMinutes)
-          ..mode = modeToCreateEnum(mode),
+        (b) {
+          b
+            ..weekday = weekday
+            ..startTime = startTime
+            ..endTime = endTime
+            ..slotDurationMinutes = slotDurationToCreateEnum(slotDurationMinutes)
+            ..mode = modeToCreateEnum(mode);
+          if (clinicId != null && clinicId.isNotEmpty) {
+            b.clinicId = clinicId;
+          }
+        },
       );
       final response =
           await _client.availability.doctorsMeScheduleTemplatesTemplateIdPut(

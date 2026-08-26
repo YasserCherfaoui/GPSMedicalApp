@@ -479,6 +479,14 @@
   "paymentDepositSuccess": "تم الدفع بنجاح. تم تحديث موعدك.",
   "paymentDepositFailed": "فشل الدفع.",
   "paymentDepositNotEligible": "هذا الموعد غير مؤهل للدفع.",
+  "paymentDepositPayeeClinicHint": "الدفع موجه للعيادة (وليس للطبيب).",
+  "paymentDepositPayeeClinicNamed": "الدفع موجه إلى {clinicName}.",
+  "@paymentDepositPayeeClinicNamed": {
+    "placeholders": {
+      "clinicName": { "type": "String" }
+    }
+  },
+  "paymentDepositPayeeClinicFallback": "عيادة",
   "specialistVerificationPendingTitle": "الملف قيد المراجعة",
   "specialistVerificationPendingBody": "ملفك قيد التحقق من قبل فريقنا. ستتلقى إشعارًا عند اتخاذ القرار.",
   "specialistVerificationMoreInfoTitle": "معلومات إضافية مطلوبة",
@@ -595,6 +603,12 @@
   "specialistScheduleErrorEndDate": "تاريخ النهاية غير صالح.",
   "specialistScheduleErrorKind": "نوع الاستثناء غير صالح.",
   "specialistScheduleErrorNote": "يجب ألا تتجاوز الملاحظة 200 حرفًا.",
+  "specialistScheduleLocation": "المكان",
+  "specialistScheduleLocationHint": "عيادتك الخاصة أو عيادة مرتبطة.",
+  "specialistScheduleLocationCabinet": "عيادتي",
+  "specialistScheduleLocationClinicFallback": "عيادة",
+  "specialistScheduleConflictMessage": "هذا الموعد يتداخل مع موعد آخر (عيادتك أو عيادة).",
+  "specialistClinicSessionBadge": "جلسة عيادة",
   "specialistProfileManageSchedule": "إدارة أجندتي",
   "specialistInboxTabRequests": "الطلبات",
   "specialistInboxTabConfirmed": "المؤكدة",

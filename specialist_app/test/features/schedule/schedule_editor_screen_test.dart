@@ -30,6 +30,9 @@ void main() {
     });
     harness.mockEmptyAppointments();
     harness.mockDoctorMe();
+    harness.adapter.onGet('/doctors/me/memberships', (server) {
+      return server.reply(200, <Map<String, dynamic>>[]);
+    });
     harness.adapter.onGet(
       '/doctors/00000000-0000-4000-8000-000000000010/availability',
       (server) => server.reply(200, <Map<String, dynamic>>[]),

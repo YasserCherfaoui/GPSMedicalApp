@@ -1,10 +1,15 @@
 import 'package:dio/dio.dart';
 
 class AppointmentActionException implements Exception {
-  const AppointmentActionException(this.message, {this.statusCode});
+  const AppointmentActionException(
+    this.message, {
+    this.statusCode,
+    this.code,
+  });
 
   final String message;
   final int? statusCode;
+  final String? code;
 }
 
 Never rethrowAppointmentApiError(Object error) {
@@ -16,10 +21,12 @@ Never rethrowAppointmentApiError(Object error) {
     final data = error.response?.data;
     final map = _asJsonMap(data);
     final detail = map?['detail'] as String? ?? map?['title'] as String?;
+    final code = map?['code'] as String?;
     if (status == 409 || status == 422 || status == 400) {
       throw AppointmentActionException(
         detail ?? 'Operation impossible',
         statusCode: status,
+        code: code,
       );
     }
   }

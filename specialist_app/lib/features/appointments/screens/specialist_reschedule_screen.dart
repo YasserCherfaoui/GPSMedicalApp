@@ -8,6 +8,7 @@ import '../../profile/providers/specialist_profile.provider.dart';
 import '../providers/appointments.provider.dart';
 import '../utils/appointment_api_error.dart';
 import '../utils/appointment_dates.dart';
+import '../utils/appointment_display.dart';
 import 'appointment_detail_screen.dart';
 
 final _rescheduleSlotsProvider = FutureProvider.family<
@@ -73,8 +74,9 @@ class _SpecialistRescheduleScreenState
       context.pop();
     } on AppointmentActionException catch (e) {
       if (!mounted) return;
+      final l10n = AppLocalizations.of(context)!;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message)),
+        SnackBar(content: Text(appointmentActionMessage(l10n, e))),
       );
     } finally {
       if (mounted) setState(() => _saving = false);

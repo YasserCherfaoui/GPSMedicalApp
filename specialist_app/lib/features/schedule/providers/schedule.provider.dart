@@ -38,6 +38,8 @@ class ScheduleTemplatesNotifier extends AsyncNotifier<List<ScheduleTemplate>> {
     required int slotDurationMinutes,
     required String mode,
     required bool active,
+    String? clinicId,
+    String? previousClinicId,
   }) async {
     final repo = ref.read(scheduleRepositoryProvider);
     final clientErrors = ScheduleValidation.validateTemplate(
@@ -51,8 +53,28 @@ class ScheduleTemplatesNotifier extends AsyncNotifier<List<ScheduleTemplate>> {
       throw ScheduleValidationException(clientErrors);
     }
 
+    final nextClinicId =
+        (clinicId == null || clinicId.isEmpty) ? null : clinicId;
+    final priorClinicId =
+        (previousClinicId == null || previousClinicId.isEmpty)
+            ? null
+            : previousClinicId;
+    // Backend COALESCE cannot clear clinic_id; recreate when moving clinic → cabinet.
+    final clearingClinicLocation =
+        templateId != null && priorClinicId != null && nextClinicId == null;
+
     if (!active && templateId != null) {
       await repo.deleteTemplate(templateId);
+    } else if (active && templateId != null && clearingClinicLocation) {
+      await repo.deleteTemplate(templateId);
+      await repo.createTemplate(
+        weekday: weekday,
+        startTime: startTime,
+        endTime: endTime,
+        slotDurationMinutes: slotDurationMinutes,
+        mode: mode,
+        clinicId: nextClinicId,
+      );
     } else if (active && templateId != null) {
       await repo.updateTemplate(
         templateId: templateId,
@@ -61,6 +83,7 @@ class ScheduleTemplatesNotifier extends AsyncNotifier<List<ScheduleTemplate>> {
         endTime: endTime,
         slotDurationMinutes: slotDurationMinutes,
         mode: mode,
+        clinicId: nextClinicId,
       );
     } else if (active) {
       await repo.createTemplate(
@@ -69,6 +92,7 @@ class ScheduleTemplatesNotifier extends AsyncNotifier<List<ScheduleTemplate>> {
         endTime: endTime,
         slotDurationMinutes: slotDurationMinutes,
         mode: mode,
+        clinicId: nextClinicId,
       );
     }
 

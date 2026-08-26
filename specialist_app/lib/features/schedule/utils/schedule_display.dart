@@ -12,6 +12,24 @@ String scheduleModeLabel(AppLocalizations l10n, String mode) {
   }
 }
 
+String scheduleLocationLabel(
+  AppLocalizations l10n, {
+  String? clinicId,
+  List<ClinicMembership> memberships = const [],
+}) {
+  if (clinicId == null || clinicId.isEmpty) {
+    return l10n.specialistScheduleLocationCabinet;
+  }
+  for (final membership in memberships) {
+    if (membership.clinicId == clinicId) {
+      final name = membership.clinicName?.trim();
+      if (name != null && name.isNotEmpty) return name;
+      break;
+    }
+  }
+  return l10n.specialistScheduleLocationClinicFallback;
+}
+
 String scheduleExceptionKindLabel(
   AppLocalizations l10n,
   ScheduleExceptionKindEnum? kind,

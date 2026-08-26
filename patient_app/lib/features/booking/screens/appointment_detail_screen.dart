@@ -310,12 +310,13 @@ class _DetailBody extends ConsumerWidget {
             ),
           ],
           if (canPayAppointmentDeposit(appointment) &&
-              (doctor != null || appointment.feeDzd != null)) ...[
+              appointmentDepositAmountDzd(appointment, doctor) != null) ...[
             const SizedBox(height: GpsSpacing.md),
             AppointmentPaymentSection(
               appointment: appointment,
               doctor: doctor,
               appointmentId: appointmentId,
+              clinicName: clinic?.name,
             ),
           ],
           if (status == AppointmentStatusEnum.completed) ...[
