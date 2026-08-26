@@ -67,7 +67,7 @@ class ScheduleExceptionCalendar extends StatelessWidget {
               ),
               IconButton(
                 onPressed: onNextMonth,
-                icon: const Icon(Icons.chevron_right_rounded),
+                icon: const Icon(Icons.arrow_forward_rounded),
               ),
             ],
           ),

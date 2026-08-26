@@ -6,6 +6,7 @@ import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/discovery/providers/nearby_doctors.provider.dart';
+import 'package:patient_app/features/discovery/providers/doctor_search.provider.dart';
 import 'package:patient_app/features/discovery/screens/nearby_doctors_map_screen.dart';
 import 'package:patient_app/features/notifications/providers/notifications_unread_count.provider.dart';
 
@@ -148,6 +149,69 @@ void main() {
       find.textContaining('MedNavigator utilise votre position'),
       findsOneWidget,
     );
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('clinics entity shows clinics title and toggle', (tester) async {
+    const state = NearbyDoctorsState(
+      doctors: <DoctorWithDistance>[],
+      clinics: <ClinicWithDistance>[],
+      entity: DiscoveryEntity.clinics,
+      lat: 36.7538,
+      lng: 3.0588,
+      radiusKm: 5,
+      permissionGranted: false,
+    );
+
+    await tester.pumpWidget(
+      wrap(state: state, child: const NearbyDoctorsMapScreen()),
+    );
+    await tester.pump();
+
+    expect(find.text('Cliniques à proximité'), findsOneWidget);
+    expect(find.text('Cliniques'), findsOneWidget);
+    expect(
+      find.text(
+        'Autoriser la localisation pour voir les cliniques autour de vous.',
+      ),
+      findsOneWidget,
+    );
+    expect(find.byIcon(Icons.filter_alt_outlined), findsNothing);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('Arabic locale uses RTL directionality on map screen', (
+    tester,
+  ) async {
+    const state = NearbyDoctorsState(
+      doctors: <DoctorWithDistance>[],
+      lat: 36.7538,
+      lng: 3.0588,
+      radiusKm: 5,
+      permissionGranted: false,
+    );
+
+    await tester.pumpWidget(
+      wrap(
+        state: state,
+        locale: const Locale('ar'),
+        child: const NearbyDoctorsMapScreen(),
+      ),
+    );
+    await tester.pump();
+
+    expect(find.text('الأطباء القريبون'), findsOneWidget);
+    final directionality = tester.widget<Directionality>(
+      find.descendant(
+        of: find.byType(MaterialApp),
+        matching: find.byType(Directionality).first,
+      ),
+    );
+    expect(directionality.textDirection, TextDirection.rtl);
 
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pumpAndSettle();

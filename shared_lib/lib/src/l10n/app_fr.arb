@@ -320,11 +320,14 @@
   "doctorDetailNotFoundMessage": "Le profil de ce spécialiste n'est pas disponible.",
   "doctorDetailLoadError": "Impossible de charger le profil de ce spécialiste.",
   "mapNearbyTitle": "Médecins à proximité",
+  "mapNearbyClinicsTitle": "Cliniques à proximité",
   "mapNearbyLoadErrorTitle": "Erreur de chargement",
   "mapNearbyLoadErrorMessage": "Une erreur s'est produite sur la carte.",
   "mapNearbyPermissionBanner": "Autoriser la localisation pour voir les médecins autour de vous.",
+  "mapNearbyClinicsPermissionBanner": "Autoriser la localisation pour voir les cliniques autour de vous.",
   "mapNearbyPermissionRationaleTitle": "Accès à la localisation",
   "mapNearbyPermissionRationaleBody": "MedNavigator utilise votre position pour afficher les spécialistes à proximité. Vous pouvez aussi choisir une wilaya manuellement.",
+  "mapNearbyClinicsPermissionRationaleBody": "MedNavigator utilise votre position pour afficher les cliniques à proximité. Vous pouvez aussi choisir une wilaya manuellement.",
   "mapNearbyPermissionRationaleContinue": "Continuer",
   "mapNearbyPermissionRationaleCancel": "Annuler",
   "mapNearbyPermissionAllow": "Autoriser",
@@ -362,6 +365,14 @@
   },
   "mapNearbyClusterCount": "{count} médecins",
   "@mapNearbyClusterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mapNearbyClinicClusterCount": "{count} cliniques",
+  "@mapNearbyClinicClusterCount": {
     "placeholders": {
       "count": {
         "type": "int"

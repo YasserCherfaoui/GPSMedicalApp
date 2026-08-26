@@ -798,6 +798,9 @@ class AppLocalizationsBer extends AppLocalizations {
   String get mapNearbyTitle => 'Imsaɣyaden iqriben';
 
   @override
+  String get mapNearbyClinicsTitle => 'Tisensalin iqriben';
+
+  @override
   String get mapNearbyLoadErrorTitle => 'Tuccḍa deg uɣer';
 
   @override
@@ -808,11 +811,19 @@ class AppLocalizationsBer extends AppLocalizations {
       'Sireg ad d-yekker wadig iwakken ad twaliḍ imsaɣyaden iqriben.';
 
   @override
+  String get mapNearbyClinicsPermissionBanner =>
+      'Sireg ad d-yekker wadig iwakken ad twaliḍ tisensalin iqriben.';
+
+  @override
   String get mapNearbyPermissionRationaleTitle => 'Anekcum ɣer wadig';
 
   @override
   String get mapNearbyPermissionRationaleBody =>
       'MedNavigator iseqdec wadig-ik iwakken ad d-yesken imsaɣyaden iqriben. Tzemreḍ daɣen tferḥ wilaya s ufus.';
+
+  @override
+  String get mapNearbyClinicsPermissionRationaleBody =>
+      'MedNavigator iseqdec wadig-ik iwakken ad d-yesken tisensalin iqriben. Tzemreḍ daɣen tferḥ wilaya s ufus.';
 
   @override
   String get mapNearbyPermissionRationaleContinue => 'Kemmel';
@@ -856,6 +867,11 @@ class AppLocalizationsBer extends AppLocalizations {
   @override
   String mapNearbyClusterCount(int count) {
     return '$count imsaɣyad';
+  }
+
+  @override
+  String mapNearbyClinicClusterCount(int count) {
+    return '$count tisensalin';
   }
 
   @override

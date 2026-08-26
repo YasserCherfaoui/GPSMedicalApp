@@ -214,7 +214,7 @@ class _MonthView extends StatelessWidget {
               ),
               IconButton(
                 onPressed: onNextMonth,
-                icon: const Icon(Icons.chevron_right_rounded),
+                icon: const Icon(Icons.arrow_forward_rounded),
               ),
             ],
           ),
@@ -366,7 +366,7 @@ class _WeekView extends StatelessWidget {
               ),
               IconButton(
                 onPressed: onNextWeek,
-                icon: const Icon(Icons.chevron_right_rounded),
+                icon: const Icon(Icons.arrow_forward_rounded),
               ),
             ],
           ),

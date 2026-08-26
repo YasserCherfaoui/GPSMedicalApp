@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../booking/widgets/offline_banner.dart';
 import '../../notifications/widgets/notifications_bell_button.dart';
 import '../providers/clinic_list.provider.dart';
 import '../providers/doctor_list.provider.dart';
@@ -82,14 +83,18 @@ class DoctorListScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: RefreshIndicator(
-        onRefresh: () {
-          if (showingClinics) {
-            return ref.read(clinicListProvider.notifier).refresh();
-          }
-          return ref.read(doctorListProvider.notifier).refresh();
-        },
-        child: CustomScrollView(
+      body: Column(
+        children: [
+          const OfflineBanner(),
+          Expanded(
+            child: RefreshIndicator(
+              onRefresh: () {
+                if (showingClinics) {
+                  return ref.read(clinicListProvider.notifier).refresh();
+                }
+                return ref.read(doctorListProvider.notifier).refresh();
+              },
+              child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
               child: Padding(
@@ -379,6 +384,9 @@ class DoctorListScreen extends ConsumerWidget {
               ),
           ],
         ),
+            ),
+          ),
+        ],
       ),
     );
   }

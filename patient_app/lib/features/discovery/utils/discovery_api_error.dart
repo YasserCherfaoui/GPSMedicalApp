@@ -39,3 +39,14 @@ int? parseRetryAfterSeconds(Object error) {
   }
   return null;
 }
+
+bool isDiscoveryNetworkError(Object error) {
+  if (error is! DioException) return false;
+  return switch (error.type) {
+    DioExceptionType.connectionError ||
+    DioExceptionType.connectionTimeout ||
+    DioExceptionType.sendTimeout ||
+    DioExceptionType.receiveTimeout => true,
+    _ => false,
+  };
+}

@@ -4,10 +4,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../notifications/widgets/notifications_bell_button.dart';
+import '../providers/doctor_search.provider.dart';
 import '../providers/nearby_doctors.provider.dart';
 import '../utils/geo_display.dart';
 import '../utils/map_marker_cluster.dart';
 import '../utils/map_zoom_for_radius.dart';
+import '../widgets/clinic_card_tile.dart';
+import '../widgets/discovery_entity_toggle.dart';
 import '../widgets/discovery_error_view.dart';
 import '../widgets/doctor_card_tile.dart';
 import '../widgets/specialties_picker.dart';
@@ -25,6 +28,7 @@ class _NearbyDoctorsMapScreenState
     extends ConsumerState<NearbyDoctorsMapScreen> {
   GoogleMapController? _mapController;
   DoctorWithDistance? _selectedDoctor;
+  ClinicWithDistance? _selectedClinic;
   double _mapZoom = zoomLevelForRadiusKm(5);
   double? _sliderRadiusKm;
 
@@ -54,13 +58,18 @@ class _NearbyDoctorsMapScreenState
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.mapNearbyTitle),
+        title: Text(
+          geoStateAsync.valueOrNull?.showingClinics == true
+              ? l10n.mapNearbyClinicsTitle
+              : l10n.mapNearbyTitle,
+        ),
         actions: [
           const NotificationsBellButton(),
-          IconButton(
-            icon: const Icon(Icons.filter_alt_outlined),
-            onPressed: _openSpecialtyFilter,
-          ),
+          if (geoStateAsync.valueOrNull?.showingClinics != true)
+            IconButton(
+              icon: const Icon(Icons.filter_alt_outlined),
+              onPressed: _openSpecialtyFilter,
+            ),
         ],
       ),
       body: geoStateAsync.when(
@@ -114,38 +123,81 @@ class _NearbyDoctorsMapScreenState
   }) {
     final displayRadius = _sliderRadiusKm ?? geoState.radiusKm;
     final mapZoomForRadius = zoomLevelForRadiusKm(displayRadius);
+    final showingClinics = geoState.showingClinics;
+    final hasSelection =
+        _selectedDoctor != null || _selectedClinic != null;
 
-    final clusters = clusterNearbyDoctors(
-      doctors: geoState.doctors,
-      zoom: _mapZoom,
-    );
-
-    final markers = clusters.map((cluster) {
-      if (cluster.isCluster) {
+    final Set<Marker> markers;
+    if (showingClinics) {
+      final clusters = clusterNearbyClinics(
+        clinics: geoState.clinics,
+        zoom: _mapZoom,
+      );
+      markers = clusters.map((cluster) {
+        if (cluster.isCluster) {
+          return Marker(
+            markerId: MarkerId('clinic-cluster-${cluster.id}'),
+            position: cluster.position,
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueAzure,
+            ),
+            infoWindow: InfoWindow(
+              title: l10n.mapNearbyClinicClusterCount(cluster.clinics.length),
+            ),
+            onTap: () {
+              _mapController?.animateCamera(
+                CameraUpdate.newLatLngZoom(cluster.position, 13),
+              );
+            },
+          );
+        }
+        final clinic = cluster.clinics.first;
         return Marker(
-          markerId: MarkerId('cluster-${cluster.id}'),
+          markerId: MarkerId(clinic.id ?? cluster.id),
           position: cluster.position,
           icon: BitmapDescriptor.defaultMarkerWithHue(
-            BitmapDescriptor.hueAzure,
+            BitmapDescriptor.hueOrange,
           ),
-          infoWindow: InfoWindow(
-            title: l10n.mapNearbyClusterCount(cluster.doctors.length),
-          ),
-          onTap: () {
-            _mapController?.animateCamera(
-              CameraUpdate.newLatLngZoom(cluster.position, 13),
-            );
-          },
+          onTap: () => setState(() {
+            _selectedClinic = clinic;
+            _selectedDoctor = null;
+          }),
         );
-      }
-
-      final doc = cluster.doctors.first;
-      return Marker(
-        markerId: MarkerId(doc.id ?? cluster.id),
-        position: cluster.position,
-        onTap: () => setState(() => _selectedDoctor = doc),
+      }).toSet();
+    } else {
+      final clusters = clusterNearbyDoctors(
+        doctors: geoState.doctors,
+        zoom: _mapZoom,
       );
-    }).toSet();
+      markers = clusters.map((cluster) {
+        if (cluster.isCluster) {
+          return Marker(
+            markerId: MarkerId('cluster-${cluster.id}'),
+            position: cluster.position,
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueAzure,
+            ),
+            infoWindow: InfoWindow(
+              title: l10n.mapNearbyClusterCount(cluster.doctors.length),
+            ),
+            onTap: () {
+              _mapController?.animateCamera(
+                CameraUpdate.newLatLngZoom(cluster.position, 13),
+              );
+            },
+          );
+        }
+        final doc = cluster.doctors.first;
+        return Marker(
+          markerId: MarkerId(doc.id ?? cluster.id),
+          position: cluster.position,
+          onTap: () => setState(() {
+            _selectedDoctor = doc;
+            _selectedClinic = null;
+          }),
+        );
+      }).toSet();
+    }
 
     return Stack(
       children: [
@@ -178,12 +230,42 @@ class _NearbyDoctorsMapScreenState
               setState(() => _mapZoom = zoom);
             }
           },
-          onTap: (_) => setState(() => _selectedDoctor = null),
+          onTap: (_) => setState(() {
+            _selectedDoctor = null;
+            _selectedClinic = null;
+          }),
+        ),
+
+        Positioned.directional(
+          top: GpsSpacing.md,
+          start: GpsSpacing.md,
+          end: GpsSpacing.md,
+          textDirection: Directionality.of(context),
+          child: Material(
+            elevation: 2,
+            borderRadius: BorderRadius.circular(GpsRadii.md),
+            color: colorScheme.surface.withValues(alpha: 0.96),
+            child: Padding(
+              padding: const EdgeInsets.all(GpsSpacing.sm),
+              child: DiscoveryEntityToggle(
+                value: geoState.entity,
+                onChanged: (entity) async {
+                  setState(() {
+                    _selectedDoctor = null;
+                    _selectedClinic = null;
+                  });
+                  await ref
+                      .read(nearbyDoctorsProvider.notifier)
+                      .setEntity(entity);
+                },
+              ),
+            ),
+          ),
         ),
 
         if (geoState.usesManualLocation)
           Positioned.directional(
-            top: GpsSpacing.md,
+            top: GpsSpacing.md + 56,
             start: GpsSpacing.md,
             end: GpsSpacing.md,
             textDirection: Directionality.of(context),
@@ -246,7 +328,7 @@ class _NearbyDoctorsMapScreenState
 
         if (!geoState.permissionGranted && !geoState.usesManualLocation)
           Positioned.directional(
-            top: GpsSpacing.md,
+            top: GpsSpacing.md + 56,
             start: GpsSpacing.md,
             end: GpsSpacing.md,
             textDirection: Directionality.of(context),
@@ -259,7 +341,9 @@ class _NearbyDoctorsMapScreenState
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      l10n.mapNearbyPermissionBanner,
+                      showingClinics
+                          ? l10n.mapNearbyClinicsPermissionBanner
+                          : l10n.mapNearbyPermissionBanner,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -295,7 +379,7 @@ class _NearbyDoctorsMapScreenState
           ),
 
         Positioned.directional(
-          bottom: _selectedDoctor != null ? 220 : 100,
+          bottom: hasSelection ? 220 : 100,
           start: GpsSpacing.md,
           end: GpsSpacing.md,
           textDirection: Directionality.of(context),
@@ -431,6 +515,23 @@ class _NearbyDoctorsMapScreenState
             ),
           ),
 
+        if (_selectedClinic != null)
+          Positioned.directional(
+            bottom: GpsSpacing.md,
+            start: GpsSpacing.md,
+            end: GpsSpacing.md,
+            textDirection: Directionality.of(context),
+            child: Material(
+              elevation: 8,
+              borderRadius: BorderRadius.circular(GpsRadii.lg),
+              child: buildClinicCardTile(
+                context: context,
+                clinic: _selectedClinic!,
+                variant: ClinicCardVariant.map,
+              ),
+            ),
+          ),
+
         if (isRefetching)
           Positioned.directional(
             top: GpsSpacing.md,
@@ -453,11 +554,17 @@ class _NearbyDoctorsMapScreenState
 
   Future<void> _requestLocationWithRationale() async {
     final l10n = AppLocalizations.of(context)!;
+    final showingClinics =
+        ref.read(nearbyDoctorsProvider).valueOrNull?.showingClinics == true;
     final shouldRequest = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
         title: Text(l10n.mapNearbyPermissionRationaleTitle),
-        content: Text(l10n.mapNearbyPermissionRationaleBody),
+        content: Text(
+          showingClinics
+              ? l10n.mapNearbyClinicsPermissionRationaleBody
+              : l10n.mapNearbyPermissionRationaleBody,
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(dialogContext).pop(false),

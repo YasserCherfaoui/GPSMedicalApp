@@ -1558,6 +1558,12 @@ abstract class AppLocalizations {
   /// **'Médecins à proximité'**
   String get mapNearbyTitle;
 
+  /// No description provided for @mapNearbyClinicsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cliniques à proximité'**
+  String get mapNearbyClinicsTitle;
+
   /// No description provided for @mapNearbyLoadErrorTitle.
   ///
   /// In fr, this message translates to:
@@ -1576,6 +1582,12 @@ abstract class AppLocalizations {
   /// **'Autoriser la localisation pour voir les médecins autour de vous.'**
   String get mapNearbyPermissionBanner;
 
+  /// No description provided for @mapNearbyClinicsPermissionBanner.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autoriser la localisation pour voir les cliniques autour de vous.'**
+  String get mapNearbyClinicsPermissionBanner;
+
   /// No description provided for @mapNearbyPermissionRationaleTitle.
   ///
   /// In fr, this message translates to:
@@ -1587,6 +1599,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'MedNavigator utilise votre position pour afficher les spécialistes à proximité. Vous pouvez aussi choisir une wilaya manuellement.'**
   String get mapNearbyPermissionRationaleBody;
+
+  /// No description provided for @mapNearbyClinicsPermissionRationaleBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'MedNavigator utilise votre position pour afficher les cliniques à proximité. Vous pouvez aussi choisir une wilaya manuellement.'**
+  String get mapNearbyClinicsPermissionRationaleBody;
 
   /// No description provided for @mapNearbyPermissionRationaleContinue.
   ///
@@ -1659,6 +1677,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{count} médecins'**
   String mapNearbyClusterCount(int count);
+
+  /// No description provided for @mapNearbyClinicClusterCount.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} cliniques'**
+  String mapNearbyClinicClusterCount(int count);
 
   /// No description provided for @mapNearbyChooseWilayaTooltip.
   ///

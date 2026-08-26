@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../booking/widgets/offline_banner.dart';
 import '../providers/clinic_search.provider.dart';
 import '../providers/doctor_search.provider.dart';
 import '../providers/user_location.provider.dart';
@@ -165,6 +166,7 @@ class _DoctorSearchScreenState extends ConsumerState<DoctorSearchScreen> {
       ),
       body: Column(
         children: [
+          const OfflineBanner(),
           Padding(
             padding: const EdgeInsets.fromLTRB(
               GpsSpacing.md,

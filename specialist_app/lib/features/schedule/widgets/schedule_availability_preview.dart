@@ -85,7 +85,7 @@ class _ScheduleAvailabilityPreviewState
               ),
               IconButton(
                 onPressed: () => _shiftWeek(1),
-                icon: const Icon(Icons.chevron_right_rounded),
+                icon: const Icon(Icons.arrow_forward_rounded),
               ),
             ],
           ),

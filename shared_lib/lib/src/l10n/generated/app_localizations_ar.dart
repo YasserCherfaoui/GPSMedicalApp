@@ -790,6 +790,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mapNearbyTitle => 'الأطباء القريبون';
 
   @override
+  String get mapNearbyClinicsTitle => 'العيادات القريبة';
+
+  @override
   String get mapNearbyLoadErrorTitle => 'خطأ في التحميل';
 
   @override
@@ -800,11 +803,19 @@ class AppLocalizationsAr extends AppLocalizations {
       'اسمح بالوصول إلى موقعك لعرض الأطباء من حولك.';
 
   @override
+  String get mapNearbyClinicsPermissionBanner =>
+      'اسمح بالوصول إلى موقعك لعرض العيادات من حولك.';
+
+  @override
   String get mapNearbyPermissionRationaleTitle => 'الوصول إلى الموقع';
 
   @override
   String get mapNearbyPermissionRationaleBody =>
       'يستخدم MedNavigator موقعك لعرض الأخصائيين القريبين. يمكنك أيضاً اختيار ولاية يدوياً.';
+
+  @override
+  String get mapNearbyClinicsPermissionRationaleBody =>
+      'يستخدم MedNavigator موقعك لعرض العيادات القريبة. يمكنك أيضاً اختيار ولاية يدوياً.';
 
   @override
   String get mapNearbyPermissionRationaleContinue => 'متابعة';
@@ -848,6 +859,11 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String mapNearbyClusterCount(int count) {
     return '$count طبيب';
+  }
+
+  @override
+  String mapNearbyClinicClusterCount(int count) {
+    return '$count عيادة';
   }
 
   @override

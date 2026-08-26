@@ -329,7 +329,7 @@ class _SpecialistProfileEditScreenState
                 contentPadding: EdgeInsets.zero,
                 title: Text(l10n.specialistProfileSelectSpecialty),
                 subtitle: Text(selectedSpecialtyName),
-                trailing: const Icon(Icons.chevron_right),
+                trailing: const Icon(Icons.arrow_forward),
                 onTap: () => _openSpecialtyPicker(l10n),
               ),
               if (_fieldErrors['specialty_ids'] != null)

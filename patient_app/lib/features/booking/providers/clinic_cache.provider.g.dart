@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'clinic_detail.provider.dart';
+part of 'clinic_cache.provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$clinicDetailHash() => r'e971ee1bc9662b4b91205c36ec25b0d06512e51a';
+String _$cachedClinicHash() => r'a4ee53b9c55846c74c84e2ce3bee3fa39ed15234';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,30 +29,31 @@ class _SystemHash {
   }
 }
 
-abstract class _$ClinicDetail
-    extends BuildlessAutoDisposeAsyncNotifier<ClinicDetailState> {
-  late final String clinicId;
+/// Session-scoped clinic lookup (mirrors [cachedDoctor] for clinic bookings).
+///
+/// Copied from [cachedClinic].
+@ProviderFor(cachedClinic)
+const cachedClinicProvider = CachedClinicFamily();
 
-  FutureOr<ClinicDetailState> build(String clinicId);
-}
+/// Session-scoped clinic lookup (mirrors [cachedDoctor] for clinic bookings).
+///
+/// Copied from [cachedClinic].
+class CachedClinicFamily extends Family<AsyncValue<Clinic>> {
+  /// Session-scoped clinic lookup (mirrors [cachedDoctor] for clinic bookings).
+  ///
+  /// Copied from [cachedClinic].
+  const CachedClinicFamily();
 
-/// See also [ClinicDetail].
-@ProviderFor(ClinicDetail)
-const clinicDetailProvider = ClinicDetailFamily();
-
-/// See also [ClinicDetail].
-class ClinicDetailFamily extends Family<AsyncValue<ClinicDetailState>> {
-  /// See also [ClinicDetail].
-  const ClinicDetailFamily();
-
-  /// See also [ClinicDetail].
-  ClinicDetailProvider call(String clinicId) {
-    return ClinicDetailProvider(clinicId);
+  /// Session-scoped clinic lookup (mirrors [cachedDoctor] for clinic bookings).
+  ///
+  /// Copied from [cachedClinic].
+  CachedClinicProvider call(String clinicId) {
+    return CachedClinicProvider(clinicId);
   }
 
   @override
-  ClinicDetailProvider getProviderOverride(
-    covariant ClinicDetailProvider provider,
+  CachedClinicProvider getProviderOverride(
+    covariant CachedClinicProvider provider,
   ) {
     return call(provider.clinicId);
   }
@@ -69,29 +70,31 @@ class ClinicDetailFamily extends Family<AsyncValue<ClinicDetailState>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'clinicDetailProvider';
+  String? get name => r'cachedClinicProvider';
 }
 
-/// See also [ClinicDetail].
-class ClinicDetailProvider
-    extends
-        AutoDisposeAsyncNotifierProviderImpl<ClinicDetail, ClinicDetailState> {
-  /// See also [ClinicDetail].
-  ClinicDetailProvider(String clinicId)
+/// Session-scoped clinic lookup (mirrors [cachedDoctor] for clinic bookings).
+///
+/// Copied from [cachedClinic].
+class CachedClinicProvider extends FutureProvider<Clinic> {
+  /// Session-scoped clinic lookup (mirrors [cachedDoctor] for clinic bookings).
+  ///
+  /// Copied from [cachedClinic].
+  CachedClinicProvider(String clinicId)
     : this._internal(
-        () => ClinicDetail()..clinicId = clinicId,
-        from: clinicDetailProvider,
-        name: r'clinicDetailProvider',
+        (ref) => cachedClinic(ref as CachedClinicRef, clinicId),
+        from: cachedClinicProvider,
+        name: r'cachedClinicProvider',
         debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
             ? null
-            : _$clinicDetailHash,
-        dependencies: ClinicDetailFamily._dependencies,
+            : _$cachedClinicHash,
+        dependencies: CachedClinicFamily._dependencies,
         allTransitiveDependencies:
-            ClinicDetailFamily._allTransitiveDependencies,
+            CachedClinicFamily._allTransitiveDependencies,
         clinicId: clinicId,
       );
 
-  ClinicDetailProvider._internal(
+  CachedClinicProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -104,18 +107,13 @@ class ClinicDetailProvider
   final String clinicId;
 
   @override
-  FutureOr<ClinicDetailState> runNotifierBuild(
-    covariant ClinicDetail notifier,
+  Override overrideWith(
+    FutureOr<Clinic> Function(CachedClinicRef provider) create,
   ) {
-    return notifier.build(clinicId);
-  }
-
-  @override
-  Override overrideWith(ClinicDetail Function() create) {
     return ProviderOverride(
       origin: this,
-      override: ClinicDetailProvider._internal(
-        () => create()..clinicId = clinicId,
+      override: CachedClinicProvider._internal(
+        (ref) => create(ref as CachedClinicRef),
         from: from,
         name: null,
         dependencies: null,
@@ -127,14 +125,13 @@ class ClinicDetailProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<ClinicDetail, ClinicDetailState>
-  createElement() {
-    return _ClinicDetailProviderElement(this);
+  FutureProviderElement<Clinic> createElement() {
+    return _CachedClinicProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is ClinicDetailProvider && other.clinicId == clinicId;
+    return other is CachedClinicProvider && other.clinicId == clinicId;
   }
 
   @override
@@ -148,20 +145,17 @@ class ClinicDetailProvider
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin ClinicDetailRef
-    on AutoDisposeAsyncNotifierProviderRef<ClinicDetailState> {
+mixin CachedClinicRef on FutureProviderRef<Clinic> {
   /// The parameter `clinicId` of this provider.
   String get clinicId;
 }
 
-class _ClinicDetailProviderElement
-    extends
-        AutoDisposeAsyncNotifierProviderElement<ClinicDetail, ClinicDetailState>
-    with ClinicDetailRef {
-  _ClinicDetailProviderElement(super.provider);
+class _CachedClinicProviderElement extends FutureProviderElement<Clinic>
+    with CachedClinicRef {
+  _CachedClinicProviderElement(super.provider);
 
   @override
-  String get clinicId => (origin as ClinicDetailProvider).clinicId;
+  String get clinicId => (origin as CachedClinicProvider).clinicId;
 }
 
 // ignore_for_file: type=lint

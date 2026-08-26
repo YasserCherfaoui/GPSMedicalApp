@@ -137,7 +137,7 @@ class _SpecialistRescheduleScreenState
                 ),
                 IconButton(
                   onPressed: () => _shiftWeek(1),
-                  icon: const Icon(Icons.chevron_right_rounded),
+                  icon: const Icon(Icons.arrow_forward_rounded),
                 ),
               ],
             ),
@@ -181,7 +181,7 @@ class _SpecialistRescheduleScreenState
                                 height: 24,
                                 child: CircularProgressIndicator(strokeWidth: 2),
                               )
-                            : const Icon(Icons.chevron_right_rounded),
+                            : const Icon(Icons.arrow_forward_rounded),
                         onTap: _saving ? null : () => _pickSlot(slot),
                       ),
                     );

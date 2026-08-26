@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
+import 'package:patient_app/features/booking/providers/connectivity.provider.dart';
 import 'package:patient_app/features/discovery/screens/clinic_detail_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../test_api_constants.dart';
 
@@ -14,6 +16,7 @@ void main() {
   late GpsMedicalClient client;
 
   setUp(() {
+    SharedPreferences.setMockInitialValues({});
     dio = Dio(BaseOptions(baseUrl: kTestApiV1BaseUrl));
     dioAdapter = DioAdapter(dio: dio);
     dio.httpClientAdapter = dioAdapter;
@@ -23,7 +26,10 @@ void main() {
 
   Widget wrap(Widget child) {
     return ProviderScope(
-      overrides: [gpsMedicalClientProvider.overrideWithValue(client)],
+      overrides: [
+        gpsMedicalClientProvider.overrideWithValue(client),
+        isOnlineProvider.overrideWith((ref) => Stream.value(true)),
+      ],
       child: MaterialApp(
         theme: GpsTheme.light(),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -135,5 +141,60 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Clinique introuvable'), findsOneWidget);
+  });
+
+  testWidgets('Arabic locale renders RTL clinic title', (tester) async {
+    const clinicId = 'c1000000-0000-4000-8000-000000000002';
+
+    dioAdapter.onGet(
+      '/clinics/$clinicId',
+      (server) => server.reply(200, {
+        'id': clinicId,
+        'name': 'عيادة الشفاء',
+        'verified': true,
+        'description': 'عيادة في حيدرة',
+        'rating_average': 4.5,
+        'rating_count': 10,
+      }),
+    );
+    dioAdapter.onGet(
+      '/clinics/$clinicId/services',
+      (server) => server.reply(200, <Map<String, dynamic>>[]),
+    );
+    dioAdapter.onGet(
+      '/clinics/$clinicId/specialists',
+      (server) => server.reply(200, <Map<String, dynamic>>[]),
+    );
+    dioAdapter.onGet(
+      '/clinics/$clinicId/reviews',
+      (server) => server.reply(200, {
+        'data': <Map<String, dynamic>>[],
+        'meta': {'page': 1, 'page_size': 10, 'total': 0, 'total_pages': 0},
+      }),
+    );
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          gpsMedicalClientProvider.overrideWithValue(client),
+          isOnlineProvider.overrideWith((ref) => Stream.value(true)),
+        ],
+        child: MaterialApp(
+          theme: GpsTheme.light(),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: const Locale('ar'),
+          home: const ClinicDetailScreen(clinicId: clinicId),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('العيادة'), findsOneWidget);
+    expect(find.text('عيادة الشفاء'), findsOneWidget);
+    expect(
+      Directionality.of(tester.element(find.text('عيادة الشفاء'))),
+      TextDirection.rtl,
+    );
   });
 }

@@ -115,4 +115,18 @@ class GeoRepository {
     );
     return response.data?.data?.toList() ?? [];
   }
+
+  Future<List<ClinicWithDistance>> fetchNearbyClinics({
+    required double lat,
+    required double lng,
+    required double radiusKm,
+  }) async {
+    final response = await _client.geolocation.listNearbyClinics(
+      lat: lat,
+      lng: lng,
+      radiusKm: radiusKm,
+      pageSize: 50,
+    );
+    return response.data?.data?.toList() ?? [];
+  }
 }

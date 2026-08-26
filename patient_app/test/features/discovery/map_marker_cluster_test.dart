@@ -20,6 +20,24 @@ DoctorWithDistance doctorAt({
   );
 }
 
+ClinicWithDistance clinicAt({
+  required String id,
+  required double lat,
+  required double lng,
+}) {
+  return ClinicWithDistance(
+    (b) => b
+      ..id = id
+      ..name = 'Clinic $id'
+      ..verified = true
+      ..address = (Address(
+        (a) => a
+          ..latitude = lat
+          ..longitude = lng,
+      ).toBuilder()),
+  );
+}
+
 void main() {
   test('returns individual markers when zoom is 12 or above', () {
     final doctors = [
@@ -63,5 +81,21 @@ void main() {
 
     expect(clusters, hasLength(1));
     expect(clusters.first.id, 'd1');
+  });
+
+  test('clusters nearby clinics with the same grid rules', () {
+    final clinics = [
+      clinicAt(id: 'c1', lat: 36.7500, lng: 3.0500),
+      clinicAt(id: 'c2', lat: 36.7501, lng: 3.0501),
+      clinicAt(id: 'c3', lat: 37.5000, lng: 4.0000),
+    ];
+
+    final zoomed = clusterNearbyClinics(clinics: clinics, zoom: 13);
+    expect(zoomed, hasLength(3));
+    expect(zoomed.every((c) => !c.isCluster), isTrue);
+
+    final clustered = clusterNearbyClinics(clinics: clinics, zoom: 10);
+    expect(clustered.length, lessThan(3));
+    expect(clustered.firstWhere((c) => c.isCluster).clinics, hasLength(2));
   });
 }

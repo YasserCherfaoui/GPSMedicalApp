@@ -67,6 +67,12 @@ class ClinicDetail extends _$ClinicDetail {
       final hasMore =
           reviews.length == _reviewsPageSize && reviews.length < total;
 
+      await repo.persistDetailSnapshot(
+        clinic: clinic,
+        services: services,
+        specialists: specialists,
+      ).catchError((_) {});
+
       return ClinicDetailState(
         clinic: clinic,
         services: services,

@@ -5,6 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../utils/location_permission.dart';
 import '../utils/wilaya_centroids.dart';
 import 'discovery_repositories.provider.dart';
+import 'doctor_search.provider.dart';
 
 part 'nearby_doctors.provider.g.dart';
 
@@ -14,6 +15,8 @@ class NearbyDoctorsState {
     required this.lat,
     required this.lng,
     required this.radiusKm,
+    this.clinics = const [],
+    this.entity = DiscoveryEntity.doctors,
     this.permissionGranted = false,
     this.specialtyId,
     this.manualWilaya,
@@ -21,6 +24,8 @@ class NearbyDoctorsState {
   });
 
   final List<DoctorWithDistance> doctors;
+  final List<ClinicWithDistance> clinics;
+  final DiscoveryEntity entity;
   final double lat;
   final double lng;
   final double radiusKm;
@@ -34,8 +39,12 @@ class NearbyDoctorsState {
 
   String? get manualWilayaCode => manualWilaya?.code;
 
+  bool get showingClinics => entity == DiscoveryEntity.clinics;
+
   NearbyDoctorsState copyWith({
     List<DoctorWithDistance>? doctors,
+    List<ClinicWithDistance>? clinics,
+    DiscoveryEntity? entity,
     double? lat,
     double? lng,
     double? radiusKm,
@@ -48,6 +57,8 @@ class NearbyDoctorsState {
   }) {
     return NearbyDoctorsState(
       doctors: doctors ?? this.doctors,
+      clinics: clinics ?? this.clinics,
+      entity: entity ?? this.entity,
       lat: lat ?? this.lat,
       lng: lng ?? this.lng,
       radiusKm: radiusKm ?? this.radiusKm,
@@ -88,17 +99,28 @@ class NearbyDoctors extends _$NearbyDoctors {
 
     final stateObj = NearbyDoctorsState(
       doctors: [],
+      clinics: [],
       lat: lat,
       lng: lng,
       radiusKm: 5,
       permissionGranted: granted,
     );
 
-    final doctors = await _fetchNearby(stateObj);
-    return stateObj.copyWith(doctors: doctors);
+    return _withFetchedResults(stateObj);
   }
 
-  Future<List<DoctorWithDistance>> _fetchNearby(
+  Future<NearbyDoctorsState> _withFetchedResults(
+    NearbyDoctorsState current,
+  ) async {
+    if (current.showingClinics) {
+      final clinics = await _fetchNearbyClinics(current);
+      return current.copyWith(clinics: clinics);
+    }
+    final doctors = await _fetchNearbyDoctors(current);
+    return current.copyWith(doctors: doctors);
+  }
+
+  Future<List<DoctorWithDistance>> _fetchNearbyDoctors(
     NearbyDoctorsState current,
   ) async {
     return ref
@@ -111,16 +133,38 @@ class NearbyDoctors extends _$NearbyDoctors {
         );
   }
 
-  /// Refetches doctors while keeping the map mounted (no [AsyncLoading] flash).
+  Future<List<ClinicWithDistance>> _fetchNearbyClinics(
+    NearbyDoctorsState current,
+  ) async {
+    return ref
+        .read(geoRepositoryProvider)
+        .fetchNearbyClinics(
+          lat: current.lat,
+          lng: current.lng,
+          radiusKm: current.radiusKm,
+        );
+  }
+
+  /// Refetches markers while keeping the map mounted (no [AsyncLoading] flash).
   Future<void> _refetch(NearbyDoctorsState next) async {
     final current = state.value;
     if (current == null) return;
 
-    state = AsyncValue.data(next.copyWith(doctors: current.doctors));
-    state = await AsyncValue.guard(() async {
-      final docs = await _fetchNearby(next);
-      return next.copyWith(doctors: docs);
-    });
+    state = AsyncValue.data(
+      next.copyWith(doctors: current.doctors, clinics: current.clinics),
+    );
+    state = await AsyncValue.guard(() => _withFetchedResults(next));
+  }
+
+  Future<void> setEntity(DiscoveryEntity entity) async {
+    final current = state.value;
+    if (current == null || current.entity == entity) return;
+    await _refetch(
+      current.copyWith(
+        entity: entity,
+        clearSpecialty: entity == DiscoveryEntity.clinics,
+      ),
+    );
   }
 
   Future<void> requestLocationPermission() async {
@@ -135,6 +179,8 @@ class NearbyDoctors extends _$NearbyDoctors {
       final current = state.value;
       final updated = NearbyDoctorsState(
         doctors: current?.doctors ?? [],
+        clinics: current?.clinics ?? [],
+        entity: current?.entity ?? DiscoveryEntity.doctors,
         lat: position.latitude,
         lng: position.longitude,
         radiusKm: current?.radiusKm ?? 5,
@@ -214,7 +260,7 @@ class NearbyDoctors extends _$NearbyDoctors {
 
   Future<void> filterBySpecialty(String? specialtyId) async {
     final current = state.value;
-    if (current == null) return;
+    if (current == null || current.showingClinics) return;
 
     final updated = specialtyId == null
         ? current.copyWith(clearSpecialty: true)

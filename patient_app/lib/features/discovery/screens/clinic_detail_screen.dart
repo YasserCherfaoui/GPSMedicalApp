@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../booking/providers/booking_draft.provider.dart';
+import '../../booking/widgets/offline_banner.dart';
 import '../providers/clinic_detail.provider.dart';
 import '../repositories/clinic_repository.dart';
 import '../utils/clinic_display.dart';
@@ -25,40 +26,48 @@ class ClinicDetailScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.clinicDetailTitle)),
-      body: detailAsync.when(
-        data: (detail) => _ClinicDetailBody(
-          detail: detail,
-          languageCode: languageCode,
-          onLoadMoreReviews: () => ref
-              .read(clinicDetailProvider(clinicId).notifier)
-              .loadMoreReviews(),
-        ),
-        loading: () => const DoctorDetailShimmer(),
-        error: (error, stack) {
-          if (error is ClinicNotFoundException) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(GpsSpacing.md),
-                child: ErrorState(
-                  title: l10n.clinicDetailNotFoundTitle,
-                  message: l10n.clinicDetailNotFoundMessage,
-                  onRetry: () => context.pop(),
-                ),
+      body: Column(
+        children: [
+          const OfflineBanner(),
+          Expanded(
+            child: detailAsync.when(
+              data: (detail) => _ClinicDetailBody(
+                detail: detail,
+                languageCode: languageCode,
+                onLoadMoreReviews: () => ref
+                    .read(clinicDetailProvider(clinicId).notifier)
+                    .loadMoreReviews(),
               ),
-            );
-          }
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(GpsSpacing.md),
-              child: DiscoveryErrorView(
-                error: error,
-                defaultTitle: l10n.errorGenericTitle,
-                defaultMessage: l10n.clinicDetailLoadError,
-                onRetry: () => ref.refresh(clinicDetailProvider(clinicId)),
-              ),
+              loading: () => const DoctorDetailShimmer(),
+              error: (error, stack) {
+                if (error is ClinicNotFoundException) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(GpsSpacing.md),
+                      child: ErrorState(
+                        title: l10n.clinicDetailNotFoundTitle,
+                        message: l10n.clinicDetailNotFoundMessage,
+                        onRetry: () => context.pop(),
+                      ),
+                    ),
+                  );
+                }
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(GpsSpacing.md),
+                    child: DiscoveryErrorView(
+                      error: error,
+                      defaultTitle: l10n.errorGenericTitle,
+                      defaultMessage: l10n.clinicDetailLoadError,
+                      onRetry: () =>
+                          ref.refresh(clinicDetailProvider(clinicId)),
+                    ),
+                  ),
+                );
+              },
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
@@ -437,7 +446,9 @@ class _SpecialistTile extends StatelessWidget {
                   color: colorScheme.onSurfaceVariant,
                 ),
               ),
-        trailing: id.isEmpty ? null : const Icon(Icons.chevron_right),
+        trailing: id.isEmpty
+            ? null
+            : const Icon(Icons.arrow_forward),
         onTap: id.isEmpty
             ? null
             : () => context.push(GpsRoutes.doctorDetail(id)),
