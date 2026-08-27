@@ -25,9 +25,16 @@ void main() {
     {'wrist_l': 'المعصم الأيسر'},
   );
 
-  test('catalog prefers AR then FR then code', () {
+  test('catalog prefers AR then FR then EN then code', () {
+    const labels = PainLabelCatalog(
+      {'wrist_l': 'Poignet gauche'},
+      {'wrist_l': 'المعصم الأيسر'},
+      {'l_supinator': 'supinator'},
+    );
     expect(labels.labelFor('wrist_l', 'fr'), 'Poignet gauche');
     expect(labels.labelFor('wrist_l', 'ar'), 'المعصم الأيسر');
+    expect(labels.labelFor('l_supinator', 'fr'), 'supinator');
+    expect(labels.labelFor('l_supinator', 'ar'), 'supinator');
     expect(labels.labelFor('unknown', 'fr'), 'unknown');
   });
 
@@ -151,5 +158,34 @@ void main() {
     expect(find.textContaining('Touchez le modèle'), findsOneWidget);
     final button = tester.widget<FilledButton>(find.byType(FilledButton));
     expect(button.onPressed, isNull);
+  });
+
+  testWidgets('Arabic review bar is RTL', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: GpsTheme.light(),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: const Locale('ar'),
+        home: Scaffold(
+          body: SizedBox(
+            width: 400,
+            child: PainSelectionReviewBar(
+              selections: const [],
+              languageCode: 'ar',
+              labels: labels,
+              onRemove: (_) {},
+              onConfirm: () {},
+              onClearAll: () {},
+            ),
+          ),
+        ),
+      ),
+    );
+    expect(
+      Directionality.of(tester.element(find.byType(PainSelectionReviewBar))),
+      TextDirection.rtl,
+    );
+    expect(find.text('تأكيد'), findsOneWidget);
   });
 }

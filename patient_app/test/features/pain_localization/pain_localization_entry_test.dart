@@ -38,14 +38,18 @@ void main() {
     expect(analytics.events.last.properties['model'], 'male');
   });
 
-  Widget wrap(Widget home, {List<Override> overrides = const []}) {
+  Widget wrap(
+    Widget home, {
+    List<Override> overrides = const [],
+    Locale locale = const Locale('fr'),
+  }) {
     return ProviderScope(
       overrides: overrides,
       child: MaterialApp(
         theme: GpsTheme.light(),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        locale: const Locale('fr'),
+        locale: locale,
         home: home,
       ),
     );
@@ -86,5 +90,29 @@ void main() {
     await tester.pump();
     await tester.pump();
     expect(find.text('Quel modèle afficher ?'), findsOneWidget);
+  });
+
+  testWidgets('Arabic chrome is RTL on chooser and home card', (tester) async {
+    await tester.pumpWidget(
+      wrap(const PainBodyChooserScreen(), locale: const Locale('ar')),
+    );
+    expect(
+      Directionality.of(tester.element(find.byType(PainBodyChooserScreen))),
+      TextDirection.rtl,
+    );
+    expect(find.text('رجل'), findsOneWidget);
+    expect(find.text('امرأة'), findsOneWidget);
+
+    await tester.pumpWidget(
+      wrap(
+        const Scaffold(body: PainLocalizationHomeCard()),
+        locale: const Locale('ar'),
+      ),
+    );
+    expect(find.text('أين تشعر بالألم؟'), findsOneWidget);
+    expect(
+      Directionality.of(tester.element(find.byType(PainLocalizationHomeCard))),
+      TextDirection.rtl,
+    );
   });
 }

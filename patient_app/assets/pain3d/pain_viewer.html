@@ -161,6 +161,13 @@ function loadMask(file, key) {
 
 // ---------- résolution zone / structure ----------
 const baseName = (o) => o.name.replace(/-Mesh$/, '').replace(/_\d+$/g, (m,i)=>m); // node name as-is
+function structureByCode(code) {
+  if (!structuresDoc) return null;
+  const s = structuresDoc.structures;
+  if (s[code]) return s[code];
+  if (s[code + '-Mesh']) return s[code + '-Mesh'];
+  return Object.values(s).find(e => e.structure_code === code) || null;
+}
 function structureOf(objName) {
   if (!structuresDoc) return null;
   const s = structuresDoc.structures;
@@ -310,8 +317,7 @@ function setLanguage(l) {
   if (selected) $('chip').innerHTML = '<b>' + (labelOf(
     selected.kind === 'zone'
       ? Object.values(zonesDoc.zones).find(z => z.zone_code === selected.code)
-      : structuresDoc.structures[selected.code] ||
-        structuresDoc.structures[selected.code + '-Mesh']) || selected.code) + '</b>';
+      : structureByCode(selected.code)) || selected.code) + '</b>';
 }
 
 // ---------- scène ----------
@@ -378,7 +384,7 @@ function restoreSelection(payload) {
       m2.emissive = HIGHLIGHT.clone(); m2.emissiveIntensity = 0.45;
       mesh.material = m2;
     }
-    $('chip').innerHTML = '<b>' + code + '</b>';
+    $('chip').innerHTML = '<b>' + (labelOf(structureByCode(code)) || code) + '</b>';
     $('chip').style.display = 'block';
   }
   if (payload.point) {
