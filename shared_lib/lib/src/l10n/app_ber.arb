@@ -784,5 +784,20 @@
   "appointmentReviewSession": "Aɣennuɣ n umeẓlu",
   "appointmentReviewClinicProfile": "Aɣennuɣ n tagunit",
   "reviewClinicProfileCreateTitle": "Aɣennuɣ n tagunit",
-  "reviewClinicAlreadySubmitted": "Tgeḍ yakan aɣennuɣ ɣef tagunit-a."
+  "reviewClinicAlreadySubmitted": "Tgeḍ yakan aɣennuɣ ɣef tagunit-a.",
+  "painLocalizationTitle": "Anda i tesɛiḍ aqeṛṛu?",
+  "painLocalizationDownloadProgress": "Asider n tneɣruft ({percent}%)",
+  "painLocalizationOfflineTitle": "Ulac taneɣruft war aẓeṭṭa",
+  "painLocalizationOfflineMessage": "Qqen ɣer uẓeṭṭa i usider n tneɣruft 3D (azal n 12 Mo). Seld, ad teddu war aẓeṭṭa.",
+  "painLocalizationRetry": "Ɛreḍ tikkelt-nniḍen",
+  "painLocalizationWebGlTitle": "Ulac askan 3D",
+  "painLocalizationWebGlMessage": "Allal-agi ur yezmir ara ad d-yesken taneɣruft 3D. Tamahilt tettwaffer da.",
+  "painLocalizationErrorTitle": "Ur yezmir ara ad d-yali taneɣruft",
+  "painLocalizationErrorMessage": "Yecceḍ usider. Ɛreḍ tikkelt-nniḍen.",
+  "painLocalizationCardSubtitle": "Af-d tamnaḍt ɣef tneɣruft 3D. D afecku n usnirem: ulac ayen yettwazen i umsujji.",
+  "painLocalizationChooserTitle": "Anta taneɣruft i tebɣiḍ?",
+  "painLocalizationChooserDisclaimer": "Afran n tfekka d ayla-k; ur d-yettwaffa ara seg umeɣnu-k. D afecku n usnirem: afran yeqqim ɣef yibenk, ur yettwazen ara i umsujji.",
+  "painLocalizationChooserMale": "Argaz",
+  "painLocalizationChooserFemale": "Tameṭṭut",
+  "painLocalizationSwitchBody": "Beddel taneɣruft"
 }

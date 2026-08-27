@@ -20,3 +20,17 @@ Uri pain3dGlbUri(String fileName, {String? baseUrl}) {
   final origin = baseUrl ?? pain3dAssetsBaseUrl();
   return Uri.parse('$origin/pain3d/$pain3dAssetVersion/$fileName');
 }
+
+/// Viewer JS only has `fr` | `ar`. Tamazight uses French in the WebView.
+String pain3dViewerLanguageCode(String languageCode) {
+  return languageCode == 'ar' ? 'ar' : 'fr';
+}
+
+/// Compile-time flag (`--dart-define=PAIN_LOCALIZATION=true`). Default **off**.
+bool painLocalizationEnabledFromEnv() {
+  const raw = String.fromEnvironment(
+    'PAIN_LOCALIZATION',
+    defaultValue: 'false',
+  );
+  return raw == 'true' || raw == '1';
+}

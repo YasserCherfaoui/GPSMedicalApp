@@ -2343,4 +2343,56 @@ class AppLocalizationsBer extends AppLocalizations {
   @override
   String get reviewClinicAlreadySubmitted =>
       'Tgeḍ yakan aɣennuɣ ɣef tagunit-a.';
+
+  @override
+  String get painLocalizationTitle => 'Anda i tesɛiḍ aqeṛṛu?';
+
+  @override
+  String painLocalizationDownloadProgress(int percent) {
+    return 'Asider n tneɣruft ($percent%)';
+  }
+
+  @override
+  String get painLocalizationOfflineTitle => 'Ulac taneɣruft war aẓeṭṭa';
+
+  @override
+  String get painLocalizationOfflineMessage =>
+      'Qqen ɣer uẓeṭṭa i usider n tneɣruft 3D (azal n 12 Mo). Seld, ad teddu war aẓeṭṭa.';
+
+  @override
+  String get painLocalizationRetry => 'Ɛreḍ tikkelt-nniḍen';
+
+  @override
+  String get painLocalizationWebGlTitle => 'Ulac askan 3D';
+
+  @override
+  String get painLocalizationWebGlMessage =>
+      'Allal-agi ur yezmir ara ad d-yesken taneɣruft 3D. Tamahilt tettwaffer da.';
+
+  @override
+  String get painLocalizationErrorTitle => 'Ur yezmir ara ad d-yali taneɣruft';
+
+  @override
+  String get painLocalizationErrorMessage =>
+      'Yecceḍ usider. Ɛreḍ tikkelt-nniḍen.';
+
+  @override
+  String get painLocalizationCardSubtitle =>
+      'Af-d tamnaḍt ɣef tneɣruft 3D. D afecku n usnirem: ulac ayen yettwazen i umsujji.';
+
+  @override
+  String get painLocalizationChooserTitle => 'Anta taneɣruft i tebɣiḍ?';
+
+  @override
+  String get painLocalizationChooserDisclaimer =>
+      'Afran n tfekka d ayla-k; ur d-yettwaffa ara seg umeɣnu-k. D afecku n usnirem: afran yeqqim ɣef yibenk, ur yettwazen ara i umsujji.';
+
+  @override
+  String get painLocalizationChooserMale => 'Argaz';
+
+  @override
+  String get painLocalizationChooserFemale => 'Tameṭṭut';
+
+  @override
+  String get painLocalizationSwitchBody => 'Beddel taneɣruft';
 }

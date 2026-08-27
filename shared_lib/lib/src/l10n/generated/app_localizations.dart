@@ -4365,6 +4365,96 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Vous avez déjà laissé un avis sur cette clinique.'**
   String get reviewClinicAlreadySubmitted;
+
+  /// No description provided for @painLocalizationTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Où avez-vous mal ?'**
+  String get painLocalizationTitle;
+
+  /// No description provided for @painLocalizationDownloadProgress.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléchargement du modèle ({percent}%)'**
+  String painLocalizationDownloadProgress(int percent);
+
+  /// No description provided for @painLocalizationOfflineTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modèle indisponible hors ligne'**
+  String get painLocalizationOfflineTitle;
+
+  /// No description provided for @painLocalizationOfflineMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connectez-vous pour télécharger le modèle 3D (environ 12 Mo). Ensuite, l’outil fonctionnera sans réseau.'**
+  String get painLocalizationOfflineMessage;
+
+  /// No description provided for @painLocalizationRetry.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réessayer'**
+  String get painLocalizationRetry;
+
+  /// No description provided for @painLocalizationWebGlTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Visualisation 3D indisponible'**
+  String get painLocalizationWebGlTitle;
+
+  /// No description provided for @painLocalizationWebGlMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cet appareil ne peut pas afficher le modèle 3D. La fonctionnalité est masquée ici.'**
+  String get painLocalizationWebGlMessage;
+
+  /// No description provided for @painLocalizationErrorTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger le modèle'**
+  String get painLocalizationErrorTitle;
+
+  /// No description provided for @painLocalizationErrorMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le téléchargement a échoué. Réessayez.'**
+  String get painLocalizationErrorMessage;
+
+  /// No description provided for @painLocalizationCardSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Repérez la zone sur un modèle 3D. Outil exploratoire : rien n\'est transmis à un médecin.'**
+  String get painLocalizationCardSubtitle;
+
+  /// No description provided for @painLocalizationChooserTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quel modèle afficher ?'**
+  String get painLocalizationChooserTitle;
+
+  /// No description provided for @painLocalizationChooserDisclaimer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le choix du corps est le vôtre ; il n\'est pas déduit de votre profil. Cet outil est exploratoire : la sélection reste sur l\'appareil et n\'est pas envoyée à un médecin.'**
+  String get painLocalizationChooserDisclaimer;
+
+  /// No description provided for @painLocalizationChooserMale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Homme'**
+  String get painLocalizationChooserMale;
+
+  /// No description provided for @painLocalizationChooserFemale.
+  ///
+  /// In fr, this message translates to:
+  /// **'Femme'**
+  String get painLocalizationChooserFemale;
+
+  /// No description provided for @painLocalizationSwitchBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer de modèle'**
+  String get painLocalizationSwitchBody;
 }
 
 class _AppLocalizationsDelegate

@@ -18,10 +18,16 @@ class Pain3dAssetException implements Exception {
   String toString() => 'Pain3dAssetException: $message';
 }
 
+/// Cache + download surface used by the WebView host (A-19.2).
+abstract class Pain3dGlbStore {
+  Future<File?> verifiedFile(Pain3dBody body, {String? expectedSha256});
+  Stream<Pain3dDownloadProgress> ensureBody(Pain3dBody body);
+}
+
 /// Fetches the versioned R2 manifest, downloads a body GLB with progress,
 /// verifies SHA-256, and only then exposes the file under
 /// `<cacheRoot>/<version>/`.
-class AssetDownloadService {
+class AssetDownloadService implements Pain3dGlbStore {
   AssetDownloadService({
     required Dio dio,
     required Directory cacheRoot,
@@ -49,8 +55,7 @@ class AssetDownloadService {
   File _tempFile(Pain3dBody body) =>
       File('${_tmpDir.path}/${body.glbFileName}');
 
-  /// Returns [file] only if it exists and matches [expectedSha256].
-  /// A mismatched file is deleted and this returns null.
+  @override
   Future<File?> verifiedFile(Pain3dBody body, {String? expectedSha256}) async {
     final dest = _destFile(body);
     if (!await dest.exists()) return null;
@@ -60,6 +65,7 @@ class AssetDownloadService {
     return null;
   }
 
+  @override
   Stream<Pain3dDownloadProgress> ensureBody(Pain3dBody body) async* {
     yield const Pain3dDownloadProgress.fetchingManifest();
     final manifest = await fetchManifest();

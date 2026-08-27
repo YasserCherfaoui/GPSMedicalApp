@@ -2374,4 +2374,56 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get reviewClinicAlreadySubmitted =>
       'Vous avez déjà laissé un avis sur cette clinique.';
+
+  @override
+  String get painLocalizationTitle => 'Où avez-vous mal ?';
+
+  @override
+  String painLocalizationDownloadProgress(int percent) {
+    return 'Téléchargement du modèle ($percent%)';
+  }
+
+  @override
+  String get painLocalizationOfflineTitle => 'Modèle indisponible hors ligne';
+
+  @override
+  String get painLocalizationOfflineMessage =>
+      'Connectez-vous pour télécharger le modèle 3D (environ 12 Mo). Ensuite, l’outil fonctionnera sans réseau.';
+
+  @override
+  String get painLocalizationRetry => 'Réessayer';
+
+  @override
+  String get painLocalizationWebGlTitle => 'Visualisation 3D indisponible';
+
+  @override
+  String get painLocalizationWebGlMessage =>
+      'Cet appareil ne peut pas afficher le modèle 3D. La fonctionnalité est masquée ici.';
+
+  @override
+  String get painLocalizationErrorTitle => 'Impossible de charger le modèle';
+
+  @override
+  String get painLocalizationErrorMessage =>
+      'Le téléchargement a échoué. Réessayez.';
+
+  @override
+  String get painLocalizationCardSubtitle =>
+      'Repérez la zone sur un modèle 3D. Outil exploratoire : rien n\'est transmis à un médecin.';
+
+  @override
+  String get painLocalizationChooserTitle => 'Quel modèle afficher ?';
+
+  @override
+  String get painLocalizationChooserDisclaimer =>
+      'Le choix du corps est le vôtre ; il n\'est pas déduit de votre profil. Cet outil est exploratoire : la sélection reste sur l\'appareil et n\'est pas envoyée à un médecin.';
+
+  @override
+  String get painLocalizationChooserMale => 'Homme';
+
+  @override
+  String get painLocalizationChooserFemale => 'Femme';
+
+  @override
+  String get painLocalizationSwitchBody => 'Changer de modèle';
 }

@@ -68,6 +68,9 @@ abstract final class GpsRoutes {
       '/appointments/$appointmentId/payment-deposit';
   static String appointmentTeleconsultation(String appointmentId) =>
       '/appointments/$appointmentId/teleconsultation';
+  static const painLocalization = '/pain-localization';
+  static String painLocalizationBody(String model) =>
+      '$painLocalization?model=$model';
 
   /// Debug-only design system QA (see [createGpsRouter]).
   static const designSystemShowcase = '/dev/design-system';

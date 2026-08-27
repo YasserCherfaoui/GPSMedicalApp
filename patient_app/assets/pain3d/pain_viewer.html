@@ -409,9 +409,15 @@ function bindPicking() {
       });
       buildLayers(); frameModel(); bindPicking();
       $('load').style.display = 'none';
+      if (window.flutter_inappwebview)
+        window.flutter_inappwebview.callHandler('viewerReady');
     },
     (ev) => { if (ev.total) progress(0.15 + 0.85*ev.loaded/ev.total); },
-    (err) => { $('loadtxt').textContent = 'Erreur : ' + err.message; });
+    (err) => {
+      $('loadtxt').textContent = 'Erreur : ' + err.message;
+      if (window.flutter_inappwebview)
+        window.flutter_inappwebview.callHandler('viewerError', String(err && err.message || err));
+    });
 
     $('btnfr').onclick = () => setLanguage('fr');
     $('btnar').onclick = () => setLanguage('ar');
@@ -422,7 +428,11 @@ function bindPicking() {
     window.setLanguage = setLanguage;
     window.resetView = resetView;
     window.setModel = setModel;
-  } catch (e) { $('loadtxt').textContent = 'Erreur : ' + e.message; }
+  } catch (e) {
+    $('loadtxt').textContent = 'Erreur : ' + e.message;
+    if (window.flutter_inappwebview)
+      window.flutter_inappwebview.callHandler('viewerError', String(e && e.message || e));
+  }
 })();
 </script>
 </body>

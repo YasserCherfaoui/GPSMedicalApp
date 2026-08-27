@@ -20,6 +20,8 @@ import '../features/messaging/screens/messaging_thread_screen.dart';
 import '../features/messaging/screens/messaging_threads_list_screen.dart';
 import '../features/notifications/screens/notification_preferences_screen.dart';
 import '../features/notifications/screens/notifications_list_screen.dart';
+import '../features/pain_localization/pain3d_constants.dart';
+import '../features/pain_localization/screens/pain_localization_gate.dart';
 import '../features/payments/screens/payment_deposit_screen.dart';
 import '../features/profile/screens/consent_management_screen.dart';
 import '../features/profile/screens/consent_revoked_screen.dart';
@@ -41,19 +43,27 @@ GoRouter createPatientRouter({
   required AuthSessionNotifier authListenable,
   required GpsMedicalAppInfo appInfo,
   required AppLaunchPreferences launchPreferences,
+  bool? painLocalizationEnabled,
 }) {
   AuthSession sessionOf() => authListenable.session;
+  final painEnabled =
+      painLocalizationEnabled ?? painLocalizationEnabledFromEnv();
 
   return GoRouter(
     navigatorKey: patientRootNavigatorKey,
     initialLocation: GpsRoutes.splash,
     refreshListenable: authListenable,
     redirect: (context, state) {
-      return resolveGpsRedirect(
+      final authRedirect = resolveGpsRedirect(
         session: sessionOf(),
         matchedLocation: state.matchedLocation,
         onboardingCompleted: launchPreferences.onboardingCompleted,
       );
+      if (authRedirect != null) return authRedirect;
+      if (state.matchedLocation == GpsRoutes.painLocalization && !painEnabled) {
+        return GpsRoutes.discover;
+      }
+      return null;
     },
     routes: [
       GoRoute(
@@ -285,6 +295,14 @@ GoRouter createPatientRouter({
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
           return AppointmentDetailScreen(appointmentId: id);
+        },
+      ),
+      GoRoute(
+        path: GpsRoutes.painLocalization,
+        builder: (context, state) {
+          return PainLocalizationGate(
+            modelQuery: state.uri.queryParameters['model'],
+          );
         },
       ),
 

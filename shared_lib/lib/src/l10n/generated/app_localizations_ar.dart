@@ -2316,4 +2316,55 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reviewClinicAlreadySubmitted => 'لقد قيّمت هذه العيادة مسبقاً.';
+
+  @override
+  String get painLocalizationTitle => 'أين تشعر بالألم؟';
+
+  @override
+  String painLocalizationDownloadProgress(int percent) {
+    return 'جاري تنزيل النموذج ($percent%)';
+  }
+
+  @override
+  String get painLocalizationOfflineTitle => 'النموذج غير متاح دون إنترنت';
+
+  @override
+  String get painLocalizationOfflineMessage =>
+      'اتصل بالشبكة لتنزيل النموذج ثلاثي الأبعاد (حوالي 12 ميغابايت). بعد ذلك تعمل الأداة دون اتصال.';
+
+  @override
+  String get painLocalizationRetry => 'إعادة المحاولة';
+
+  @override
+  String get painLocalizationWebGlTitle => 'العرض ثلاثي الأبعاد غير متاح';
+
+  @override
+  String get painLocalizationWebGlMessage =>
+      'هذا الجهاز لا يستطيع عرض النموذج ثلاثي الأبعاد. الميزة مخفية هنا.';
+
+  @override
+  String get painLocalizationErrorTitle => 'تعذر تحميل النموذج';
+
+  @override
+  String get painLocalizationErrorMessage => 'فشل التنزيل. أعد المحاولة.';
+
+  @override
+  String get painLocalizationCardSubtitle =>
+      'حدّد المنطقة على نموذج ثلاثي الأبعاد. أداة استكشافية: لا يُرسل شيء إلى الطبيب.';
+
+  @override
+  String get painLocalizationChooserTitle => 'أي نموذج تريد عرضه؟';
+
+  @override
+  String get painLocalizationChooserDisclaimer =>
+      'اختيار الجسم يعود إليك ولا يُستنتج من ملفك. الأداة استكشافية: يبقى الاختيار على الجهاز ولا يُرسل إلى طبيب.';
+
+  @override
+  String get painLocalizationChooserMale => 'رجل';
+
+  @override
+  String get painLocalizationChooserFemale => 'امرأة';
+
+  @override
+  String get painLocalizationSwitchBody => 'تغيير النموذج';
 }

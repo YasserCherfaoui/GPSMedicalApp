@@ -784,5 +784,20 @@
   "appointmentReviewSession": "تقييم الاستشارة",
   "appointmentReviewClinicProfile": "تقييم العيادة",
   "reviewClinicProfileCreateTitle": "تقييم العيادة",
-  "reviewClinicAlreadySubmitted": "لقد قيّمت هذه العيادة مسبقاً."
+  "reviewClinicAlreadySubmitted": "لقد قيّمت هذه العيادة مسبقاً.",
+  "painLocalizationTitle": "أين تشعر بالألم؟",
+  "painLocalizationDownloadProgress": "جاري تنزيل النموذج ({percent}%)",
+  "painLocalizationOfflineTitle": "النموذج غير متاح دون إنترنت",
+  "painLocalizationOfflineMessage": "اتصل بالشبكة لتنزيل النموذج ثلاثي الأبعاد (حوالي 12 ميغابايت). بعد ذلك تعمل الأداة دون اتصال.",
+  "painLocalizationRetry": "إعادة المحاولة",
+  "painLocalizationWebGlTitle": "العرض ثلاثي الأبعاد غير متاح",
+  "painLocalizationWebGlMessage": "هذا الجهاز لا يستطيع عرض النموذج ثلاثي الأبعاد. الميزة مخفية هنا.",
+  "painLocalizationErrorTitle": "تعذر تحميل النموذج",
+  "painLocalizationErrorMessage": "فشل التنزيل. أعد المحاولة.",
+  "painLocalizationCardSubtitle": "حدّد المنطقة على نموذج ثلاثي الأبعاد. أداة استكشافية: لا يُرسل شيء إلى الطبيب.",
+  "painLocalizationChooserTitle": "أي نموذج تريد عرضه؟",
+  "painLocalizationChooserDisclaimer": "اختيار الجسم يعود إليك ولا يُستنتج من ملفك. الأداة استكشافية: يبقى الاختيار على الجهاز ولا يُرسل إلى طبيب.",
+  "painLocalizationChooserMale": "رجل",
+  "painLocalizationChooserFemale": "امرأة",
+  "painLocalizationSwitchBody": "تغيير النموذج"
 }
