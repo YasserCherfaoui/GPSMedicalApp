@@ -799,5 +799,13 @@
   "painLocalizationChooserDisclaimer": "اختيار الجسم يعود إليك ولا يُستنتج من ملفك. الأداة استكشافية: يبقى الاختيار على الجهاز ولا يُرسل إلى طبيب.",
   "painLocalizationChooserMale": "رجل",
   "painLocalizationChooserFemale": "امرأة",
-  "painLocalizationSwitchBody": "تغيير النموذج"
+  "painLocalizationSwitchBody": "تغيير النموذج",
+  "painLocalizationConfirm": "تأكيد",
+  "painLocalizationCancel": "إلغاء",
+  "painLocalizationClearAll": "مسح الكل",
+  "painLocalizationClearAllTitle": "مسح التحديدات؟",
+  "painLocalizationClearAllMessage": "ستُحذف كل المناطق المحددة من هذا الجهاز.",
+  "painLocalizationEmpty": "المس النموذج لتحديد منطقة. لا يُرسل شيء إلى الطبيب.",
+  "painLocalizationRemoveChip": "إزالة",
+  "painLocalizationConfirmedSnackbar": "تم حفظ التحديدات على هذا الجهاز."
 }

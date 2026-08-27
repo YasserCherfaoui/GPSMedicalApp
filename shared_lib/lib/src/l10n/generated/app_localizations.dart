@@ -4455,6 +4455,54 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Changer de modèle'**
   String get painLocalizationSwitchBody;
+
+  /// No description provided for @painLocalizationConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer'**
+  String get painLocalizationConfirm;
+
+  /// No description provided for @painLocalizationCancel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get painLocalizationCancel;
+
+  /// No description provided for @painLocalizationClearAll.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tout effacer'**
+  String get painLocalizationClearAll;
+
+  /// No description provided for @painLocalizationClearAllTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Effacer les sélections ?'**
+  String get painLocalizationClearAllTitle;
+
+  /// No description provided for @painLocalizationClearAllMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toutes les zones indiquées seront retirées de cet appareil.'**
+  String get painLocalizationClearAllMessage;
+
+  /// No description provided for @painLocalizationEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Touchez le modèle pour indiquer une zone. Rien n\'est envoyé à un médecin.'**
+  String get painLocalizationEmpty;
+
+  /// No description provided for @painLocalizationRemoveChip.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer'**
+  String get painLocalizationRemoveChip;
+
+  /// No description provided for @painLocalizationConfirmedSnackbar.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sélections enregistrées sur cet appareil.'**
+  String get painLocalizationConfirmedSnackbar;
 }
 
 class _AppLocalizationsDelegate

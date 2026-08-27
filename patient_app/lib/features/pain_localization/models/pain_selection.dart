@@ -12,6 +12,8 @@ class PainPoint {
       z: (json['z'] as num).toDouble(),
     );
   }
+
+  Map<String, dynamic> toJson() => {'x': x, 'y': y, 'z': z};
 }
 
 class PainUv {
@@ -26,6 +28,8 @@ class PainUv {
       v: (json['v'] as num).toDouble(),
     );
   }
+
+  Map<String, dynamic> toJson() => {'u': u, 'v': v};
 }
 
 /// A tap from the sealed viewer. Persist [code] + [model], never [label].
@@ -81,6 +85,26 @@ class PainSelection {
           ? PainUv.fromJson(Map<String, dynamic>.from(uvRaw))
           : null,
       selectedAt: selectedAt ?? DateTime.now().toUtc(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'model': model,
+      'kind': kind,
+      'code': code,
+      if (side != null) 'side': side,
+      if (system != null) 'system': system,
+      if (point != null) 'point': point!.toJson(),
+      if (uv != null) 'uv': uv!.toJson(),
+      'selectedAt': selectedAt.toUtc().toIso8601String(),
+    };
+  }
+
+  factory PainSelection.fromPersisted(Map<String, dynamic> json) {
+    return PainSelection.fromJs(
+      json,
+      selectedAt: DateTime.parse(json['selectedAt'] as String).toUtc(),
     );
   }
 }

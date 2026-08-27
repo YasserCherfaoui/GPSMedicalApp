@@ -2426,4 +2426,31 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get painLocalizationSwitchBody => 'Changer de modèle';
+
+  @override
+  String get painLocalizationConfirm => 'Confirmer';
+
+  @override
+  String get painLocalizationCancel => 'Annuler';
+
+  @override
+  String get painLocalizationClearAll => 'Tout effacer';
+
+  @override
+  String get painLocalizationClearAllTitle => 'Effacer les sélections ?';
+
+  @override
+  String get painLocalizationClearAllMessage =>
+      'Toutes les zones indiquées seront retirées de cet appareil.';
+
+  @override
+  String get painLocalizationEmpty =>
+      'Touchez le modèle pour indiquer une zone. Rien n\'est envoyé à un médecin.';
+
+  @override
+  String get painLocalizationRemoveChip => 'Retirer';
+
+  @override
+  String get painLocalizationConfirmedSnackbar =>
+      'Sélections enregistrées sur cet appareil.';
 }

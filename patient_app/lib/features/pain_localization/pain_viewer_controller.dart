@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'models/pain_selection.dart';
+
 /// Outbound JS API for the sealed pain viewer. No-ops until [markReady].
 class PainViewerController {
   PainViewerController({
@@ -29,6 +33,19 @@ class PainViewerController {
   }
 
   Future<void> resetView() => _run('resetView();');
+
+  Future<void> restoreSelection({
+    required String kind,
+    required String code,
+    PainPoint? point,
+  }) {
+    final payload = <String, Object?>{
+      'kind': kind,
+      'code': code,
+      if (point != null) 'point': point.toJson(),
+    };
+    return _run('restoreSelection(${jsonEncode(payload)});');
+  }
 
   Future<void> _run(String source) async {
     if (!_ready) return;

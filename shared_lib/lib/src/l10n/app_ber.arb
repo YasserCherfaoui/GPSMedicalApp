@@ -799,5 +799,13 @@
   "painLocalizationChooserDisclaimer": "Afran n tfekka d ayla-k; ur d-yettwaffa ara seg umeɣnu-k. D afecku n usnirem: afran yeqqim ɣef yibenk, ur yettwazen ara i umsujji.",
   "painLocalizationChooserMale": "Argaz",
   "painLocalizationChooserFemale": "Tameṭṭut",
-  "painLocalizationSwitchBody": "Beddel taneɣruft"
+  "painLocalizationSwitchBody": "Beddel taneɣruft",
+  "painLocalizationConfirm": "Sentem",
+  "painLocalizationCancel": "Sefsex",
+  "painLocalizationClearAll": "Kkes akk",
+  "painLocalizationClearAllTitle": "Kkes ifrannen?",
+  "painLocalizationClearAllMessage": "Akk timnaḍin yettwafernen ad ttwakksent seg yibenk-agi.",
+  "painLocalizationEmpty": "Toučč a-t-id-tesmektiḍ tamnaḍt. Ulac ayen yettwazen i umsujji.",
+  "painLocalizationRemoveChip": "Kkes",
+  "painLocalizationConfirmedSnackbar": "Ifrannen ttwasekelsen ɣef yibenk-agi."
 }

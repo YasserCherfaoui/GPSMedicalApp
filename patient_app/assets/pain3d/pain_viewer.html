@@ -342,6 +342,53 @@ function frameModel() {
   camera.near = size.y/100; camera.far = size.y*10; camera.updateProjectionMatrix();
   controls.update();
 }
+function restoreSelection(payload) {
+  if (!payload || !payload.code || !root) return;
+  clearSelection();
+  const kind = payload.kind;
+  const code = payload.code;
+  if (kind === 'zone' && zonesDoc) {
+    const rgbKey = Object.keys(zonesDoc.zones).find(k => zonesDoc.zones[k].zone_code === code);
+    const z = rgbKey && zonesDoc.zones[rgbKey];
+    if (z) {
+      const color = rgbKey.split(',').map(Number);
+      let maskKey = null;
+      if (masksDoc) {
+        Object.keys(masksDoc.surfaces).forEach(k => {
+          if (masksDoc.surfaces[k].method === 'uv_mask') {
+            setSkinHighlight(k, color);
+            maskKey = maskKey || k;
+          }
+        });
+      }
+      selected = { kind:'zone', code, color, mask: maskKey };
+      $('chip').innerHTML = '<b>' + (labelOf(z) || code) + '</b>';
+      $('chip').style.display = 'block';
+    }
+  } else if (kind === 'structure') {
+    let mesh = null;
+    root.traverse(o => {
+      if (mesh || !o.isMesh) return;
+      const st = structureOf(o.name);
+      if (st && st.structure_code === code) mesh = o;
+    });
+    if (mesh) {
+      selected = { kind:'structure', code, meshRef: mesh, origMat: mesh.material };
+      const m2 = mesh.material.clone();
+      m2.emissive = HIGHLIGHT.clone(); m2.emissiveIntensity = 0.45;
+      mesh.material = m2;
+    }
+    $('chip').innerHTML = '<b>' + code + '</b>';
+    $('chip').style.display = 'block';
+  }
+  if (payload.point) {
+    marker = new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 12),
+      new THREE.MeshBasicMaterial({ color: 0xFF7A45 }));
+    marker.position.set(payload.point.x, payload.point.y, payload.point.z);
+    scene.add(marker);
+  }
+}
+
 function resetView(){ frameModel(); clearSelection(); }
 function setModel(m) {                    // rechargement propre de la page
   if (!MODELS[m] || m === model) return;
@@ -428,6 +475,7 @@ function bindPicking() {
     window.setLanguage = setLanguage;
     window.resetView = resetView;
     window.setModel = setModel;
+    window.restoreSelection = restoreSelection;
   } catch (e) {
     $('loadtxt').textContent = 'Erreur : ' + e.message;
     if (window.flutter_inappwebview)

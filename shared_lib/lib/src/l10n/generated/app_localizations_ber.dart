@@ -2395,4 +2395,31 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get painLocalizationSwitchBody => 'Beddel taneɣruft';
+
+  @override
+  String get painLocalizationConfirm => 'Sentem';
+
+  @override
+  String get painLocalizationCancel => 'Sefsex';
+
+  @override
+  String get painLocalizationClearAll => 'Kkes akk';
+
+  @override
+  String get painLocalizationClearAllTitle => 'Kkes ifrannen?';
+
+  @override
+  String get painLocalizationClearAllMessage =>
+      'Akk timnaḍin yettwafernen ad ttwakksent seg yibenk-agi.';
+
+  @override
+  String get painLocalizationEmpty =>
+      'Toučč a-t-id-tesmektiḍ tamnaḍt. Ulac ayen yettwazen i umsujji.';
+
+  @override
+  String get painLocalizationRemoveChip => 'Kkes';
+
+  @override
+  String get painLocalizationConfirmedSnackbar =>
+      'Ifrannen ttwasekelsen ɣef yibenk-agi.';
 }

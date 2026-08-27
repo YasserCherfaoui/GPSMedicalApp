@@ -11,6 +11,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../../booking/providers/connectivity.provider.dart';
 import '../models/pain3d_body.dart';
 import '../models/pain3d_download_progress.dart';
+import '../models/pain_selection.dart';
 import '../pain3d_constants.dart';
 import '../pain3d_host_prep.dart';
 import '../pain_viewer_controller.dart';
@@ -20,6 +21,8 @@ import '../providers/pain_selection.provider.dart';
 import '../services/asset_download_service.dart';
 import '../services/pain3d_analytics.dart';
 import '../services/pain3d_www_root.dart';
+import '../services/pain_label_catalog.dart';
+import '../widgets/pain_selection_review_bar.dart';
 
 class PainLocalizationScreen extends ConsumerStatefulWidget {
   const PainLocalizationScreen({
@@ -62,9 +65,10 @@ class _PainLocalizationScreenState
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => unawaited(_bootstrap()),
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await ref.read(painSelectionProvider.notifier).hydrate();
+      if (mounted) unawaited(_bootstrap());
+    });
   }
 
   @override
@@ -214,6 +218,58 @@ class _PainLocalizationScreenState
       ref.read(appLocaleProvider).locale.languageCode,
     );
     unawaited(_viewer?.setLanguage(lang));
+    _restoreHighlight();
+  }
+
+  void _restoreHighlight() {
+    PainSelection? match;
+    for (final item in ref.read(painSelectionProvider)) {
+      if (item.model == widget.body.name) match = item;
+    }
+    if (match == null) return;
+    unawaited(
+      _viewer?.restoreSelection(
+        kind: match.kind,
+        code: match.code,
+        point: match.point,
+      ),
+    );
+  }
+
+  Future<void> _confirmSelections() async {
+    if (ref.read(painSelectionProvider).isEmpty) return;
+    await ref.read(painSelectionProvider.notifier).confirm();
+    if (!mounted) return;
+    final messenger = ScaffoldMessenger.of(context);
+    final message = AppLocalizations.of(
+      context,
+    )!.painLocalizationConfirmedSnackbar;
+    messenger.showSnackBar(SnackBar(content: Text(message)));
+    context.go(GpsRoutes.discover);
+  }
+
+  Future<void> _confirmClearAll() async {
+    final l10n = AppLocalizations.of(context)!;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.painLocalizationClearAllTitle),
+        content: Text(l10n.painLocalizationClearAllMessage),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(l10n.painLocalizationCancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(l10n.painLocalizationClearAll),
+          ),
+        ],
+      ),
+    );
+    if (confirmed == true) {
+      ref.read(painSelectionProvider.notifier).clear();
+    }
   }
 
   Future<void> _onLoadStop(
@@ -286,8 +342,32 @@ class _PainLocalizationScreenState
           retryLabel: l10n.painLocalizationRetry,
           onRetry: () => unawaited(_bootstrap()),
         ),
-        _Phase.ready => _buildReady(context),
+        _Phase.ready => Column(
+          children: [
+            Expanded(child: _buildReady(context)),
+            _buildReviewBar(context),
+          ],
+        ),
       },
+    );
+  }
+
+  Widget _buildReviewBar(BuildContext context) {
+    final selections = ref.watch(painSelectionProvider);
+    final catalog =
+        ref.watch(painLabelCatalogProvider).valueOrNull ??
+        const PainLabelCatalog({});
+    return PainSelectionReviewBar(
+      selections: selections,
+      languageCode: Localizations.localeOf(context).languageCode,
+      labels: catalog,
+      onRemove: (item) {
+        ref
+            .read(painSelectionProvider.notifier)
+            .remove(code: item.code, model: item.model);
+      },
+      onConfirm: () => unawaited(_confirmSelections()),
+      onClearAll: () => unawaited(_confirmClearAll()),
     );
   }
 

@@ -2367,4 +2367,31 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get painLocalizationSwitchBody => 'تغيير النموذج';
+
+  @override
+  String get painLocalizationConfirm => 'تأكيد';
+
+  @override
+  String get painLocalizationCancel => 'إلغاء';
+
+  @override
+  String get painLocalizationClearAll => 'مسح الكل';
+
+  @override
+  String get painLocalizationClearAllTitle => 'مسح التحديدات؟';
+
+  @override
+  String get painLocalizationClearAllMessage =>
+      'ستُحذف كل المناطق المحددة من هذا الجهاز.';
+
+  @override
+  String get painLocalizationEmpty =>
+      'المس النموذج لتحديد منطقة. لا يُرسل شيء إلى الطبيب.';
+
+  @override
+  String get painLocalizationRemoveChip => 'إزالة';
+
+  @override
+  String get painLocalizationConfirmedSnackbar =>
+      'تم حفظ التحديدات على هذا الجهاز.';
 }

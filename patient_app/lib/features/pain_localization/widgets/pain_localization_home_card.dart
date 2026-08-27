@@ -36,10 +36,7 @@ class PainLocalizationHomeCard extends StatelessWidget {
               ],
             ),
           ),
-          Icon(
-            Icons.chevron_right,
-            color: theme.colorScheme.onSurfaceVariant,
-          ),
+          Icon(Icons.chevron_right, color: theme.colorScheme.onSurfaceVariant),
         ],
       ),
     );

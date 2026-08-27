@@ -992,5 +992,13 @@
   "painLocalizationChooserDisclaimer": "Le choix du corps est le vôtre ; il n'est pas déduit de votre profil. Cet outil est exploratoire : la sélection reste sur l'appareil et n'est pas envoyée à un médecin.",
   "painLocalizationChooserMale": "Homme",
   "painLocalizationChooserFemale": "Femme",
-  "painLocalizationSwitchBody": "Changer de modèle"
+  "painLocalizationSwitchBody": "Changer de modèle",
+  "painLocalizationConfirm": "Confirmer",
+  "painLocalizationCancel": "Annuler",
+  "painLocalizationClearAll": "Tout effacer",
+  "painLocalizationClearAllTitle": "Effacer les sélections ?",
+  "painLocalizationClearAllMessage": "Toutes les zones indiquées seront retirées de cet appareil.",
+  "painLocalizationEmpty": "Touchez le modèle pour indiquer une zone. Rien n'est envoyé à un médecin.",
+  "painLocalizationRemoveChip": "Retirer",
+  "painLocalizationConfirmedSnackbar": "Sélections enregistrées sur cet appareil."
 }
