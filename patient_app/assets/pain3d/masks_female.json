@@ -1,0 +1,29 @@
+{
+ "surfaces": {
+  "skin-Mesh": {
+   "method": "uv_mask",
+   "mask": "zone_mask_f_body.png",
+   "size": 1024
+  },
+  "skin_1-Mesh": {
+   "method": "uv_mask",
+   "mask": "zone_mask_f_head.png",
+   "size": 1024
+  },
+  "clothes-Mesh": {
+   "method": "uv_mask",
+   "mask": "zone_mask_f_clothes.png",
+   "size": 512
+  },
+  "clothes_1-Mesh": {
+   "method": "uv_mask",
+   "mask": "zone_mask_f_clothes1.png",
+   "size": 512
+  },
+  "hair-Mesh": {
+   "method": "face_index",
+   "file": "hair_faces_female.json"
+  }
+ },
+ "uv_note": "UV glTF origine HAUT-gauche : pixel = (u*W, v*H)"
+}

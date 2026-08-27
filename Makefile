@@ -10,7 +10,7 @@ OPENAPI_SPEC := $(abspath ../docs/api/openapi.yaml)
 API_PKG := shared_lib/packages/gps_medical_api
 API_PUBSPEC := shared_lib/tool/gps_medical_api.pubspec.yaml
 
-.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models gen-providers configure-firebase-patient configure-firebase-specialist setup-maps-secrets test-cover-features test-cover-specialist-features
+.PHONY: pub-get analyze format format-check test ci build-apk build-ios gen-models gen-providers configure-firebase-patient configure-firebase-specialist setup-maps-secrets test-cover-features test-cover-specialist-features check-pain3d
 
 gen-providers:
 	cd shared_lib && dart pub get && dart run build_runner build --delete-conflicting-outputs
@@ -85,7 +85,10 @@ test-cover-features:
 test-cover-specialist-features:
 	bash specialist_app/scripts/check_features_coverage.sh
 
-ci: format-check analyze test test-cover-features test-cover-specialist-features
+check-pain3d:
+	bash patient_app/scripts/check_pain3d_assets.sh
+
+ci: format-check analyze check-pain3d test test-cover-features test-cover-specialist-features
 
 build-apk: pub-get
 	@for d in patient_app specialist_app; do \

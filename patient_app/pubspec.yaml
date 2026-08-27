@@ -10,6 +10,7 @@ dependencies:
   built_collection: ^5.1.1
   built_value: ^8.9.5
   connectivity_plus: ^6.1.4
+  crypto: ^3.0.6
   cupertino_icons: ^1.0.8
   dio: ^5.7.0
   file_picker: ^8.1.7
@@ -52,3 +53,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/pain3d/
+    - assets/pain3d/draco/
+    - assets/pain3d/draco/gltf/

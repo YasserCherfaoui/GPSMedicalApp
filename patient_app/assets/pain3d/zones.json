@@ -1,0 +1,253 @@
+{
+  "version": "1.1.0",
+  "atlas": "m_body.jpg",
+  "background": "0,0,0",
+  "comment": "0,0,0 = hors zone (fond du masque). Peindre au crayon dur, sans anti-aliasing, PNG uniquement.",
+  "zones": {
+    "230,25,75": {
+      "zone_code": "head",
+      "label_fr": "Tête",
+      "label_ar": "الرأس",
+      "side": "central",
+      "region": "head_neck"
+    },
+    "60,180,75": {
+      "zone_code": "neck",
+      "label_fr": "Cou",
+      "label_ar": "الرقبة",
+      "side": "central",
+      "region": "head_neck"
+    },
+    "255,225,25": {
+      "zone_code": "shoulder_l",
+      "label_fr": "Épaule gauche",
+      "label_ar": "الكتف الأيسر",
+      "side": "left",
+      "region": "upper_limb"
+    },
+    "0,130,200": {
+      "zone_code": "shoulder_r",
+      "label_fr": "Épaule droite",
+      "label_ar": "الكتف الأيمن",
+      "side": "right",
+      "region": "upper_limb"
+    },
+    "245,130,48": {
+      "zone_code": "arm_upper_l",
+      "label_fr": "Bras gauche",
+      "label_ar": "العضد الأيسر",
+      "side": "left",
+      "region": "upper_limb"
+    },
+    "145,30,180": {
+      "zone_code": "arm_upper_r",
+      "label_fr": "Bras droit",
+      "label_ar": "العضد الأيمن",
+      "side": "right",
+      "region": "upper_limb"
+    },
+    "70,240,240": {
+      "zone_code": "elbow_l",
+      "label_fr": "Coude gauche",
+      "label_ar": "المرفق الأيسر",
+      "side": "left",
+      "region": "upper_limb"
+    },
+    "240,50,230": {
+      "zone_code": "elbow_r",
+      "label_fr": "Coude droit",
+      "label_ar": "المرفق الأيمن",
+      "side": "right",
+      "region": "upper_limb"
+    },
+    "210,245,60": {
+      "zone_code": "forearm_l",
+      "label_fr": "Avant-bras gauche",
+      "label_ar": "الساعد الأيسر",
+      "side": "left",
+      "region": "upper_limb"
+    },
+    "250,190,212": {
+      "zone_code": "forearm_r",
+      "label_fr": "Avant-bras droit",
+      "label_ar": "الساعد الأيمن",
+      "side": "right",
+      "region": "upper_limb"
+    },
+    "0,128,128": {
+      "zone_code": "hand_l",
+      "label_fr": "Main gauche",
+      "label_ar": "اليد اليسرى",
+      "side": "left",
+      "region": "upper_limb"
+    },
+    "220,190,255": {
+      "zone_code": "hand_r",
+      "label_fr": "Main droite",
+      "label_ar": "اليد اليمنى",
+      "side": "right",
+      "region": "upper_limb"
+    },
+    "170,110,40": {
+      "zone_code": "chest",
+      "label_fr": "Poitrine",
+      "label_ar": "الصدر",
+      "side": "central",
+      "region": "trunk_front"
+    },
+    "255,250,200": {
+      "zone_code": "abdomen",
+      "label_fr": "Abdomen",
+      "label_ar": "البطن",
+      "side": "central",
+      "region": "trunk_front"
+    },
+    "128,0,0": {
+      "zone_code": "back_upper",
+      "label_fr": "Haut du dos",
+      "label_ar": "أعلى الظهر",
+      "side": "central",
+      "region": "trunk_back"
+    },
+    "170,255,195": {
+      "zone_code": "back_lower",
+      "label_fr": "Bas du dos",
+      "label_ar": "أسفل الظهر",
+      "side": "central",
+      "region": "trunk_back"
+    },
+    "128,128,0": {
+      "zone_code": "hip_l",
+      "label_fr": "Hanche gauche",
+      "label_ar": "الورك الأيسر",
+      "side": "left",
+      "region": "lower_limb"
+    },
+    "255,215,180": {
+      "zone_code": "hip_r",
+      "label_fr": "Hanche droite",
+      "label_ar": "الورك الأيمن",
+      "side": "right",
+      "region": "lower_limb"
+    },
+    "0,0,128": {
+      "zone_code": "thigh_l",
+      "label_fr": "Cuisse gauche",
+      "label_ar": "الفخذ الأيسر",
+      "side": "left",
+      "region": "lower_limb"
+    },
+    "128,128,128": {
+      "zone_code": "thigh_r",
+      "label_fr": "Cuisse droite",
+      "label_ar": "الفخذ الأيمن",
+      "side": "right",
+      "region": "lower_limb"
+    },
+    "255,99,71": {
+      "zone_code": "knee_l",
+      "label_fr": "Genou gauche",
+      "label_ar": "الركبة اليسرى",
+      "side": "left",
+      "region": "lower_limb"
+    },
+    "46,139,87": {
+      "zone_code": "knee_r",
+      "label_fr": "Genou droit",
+      "label_ar": "الركبة اليمنى",
+      "side": "right",
+      "region": "lower_limb"
+    },
+    "218,112,214": {
+      "zone_code": "leg_lower_l",
+      "label_fr": "Jambe gauche",
+      "label_ar": "الساق اليسرى",
+      "side": "left",
+      "region": "lower_limb"
+    },
+    "100,149,237": {
+      "zone_code": "leg_lower_r",
+      "label_fr": "Jambe droite",
+      "label_ar": "الساق اليمنى",
+      "side": "right",
+      "region": "lower_limb"
+    },
+    "189,183,107": {
+      "zone_code": "foot_l",
+      "label_fr": "Pied gauche",
+      "label_ar": "القدم اليسرى",
+      "side": "left",
+      "region": "lower_limb"
+    },
+    "205,92,92": {
+      "zone_code": "foot_r",
+      "label_fr": "Pied droit",
+      "label_ar": "القدم اليمنى",
+      "side": "right",
+      "region": "lower_limb"
+    },
+    "255,0,255": {
+      "zone_code": "genitalia",
+      "label_fr": "Parties génitales",
+      "label_ar": "الأعضاء التناسلية",
+      "side": "central",
+      "region": "pelvis"
+    },
+    "0,255,0": {
+      "zone_code": "buttock_l",
+      "label_fr": "Fesse gauche",
+      "label_ar": "الردف الأيسر",
+      "side": "left",
+      "region": "pelvis"
+    },
+    "75,0,130": {
+      "zone_code": "buttock_r",
+      "label_fr": "Fesse droite",
+      "label_ar": "الردف الأيمن",
+      "side": "right",
+      "region": "pelvis"
+    },
+    "255,140,0": {
+      "zone_code": "groin_l",
+      "label_fr": "Aine gauche",
+      "label_ar": "أصل الفخذ الأيسر",
+      "side": "left",
+      "region": "pelvis"
+    },
+    "0,206,209": {
+      "zone_code": "groin_r",
+      "label_fr": "Aine droite",
+      "label_ar": "أصل الفخذ الأيمن",
+      "side": "right",
+      "region": "pelvis"
+    },
+    "154,205,50": {
+      "zone_code": "wrist_l",
+      "label_fr": "Poignet gauche",
+      "label_ar": "المعصم الأيسر",
+      "side": "left",
+      "region": "upper_limb"
+    },
+    "219,112,147": {
+      "zone_code": "wrist_r",
+      "label_fr": "Poignet droit",
+      "label_ar": "المعصم الأيمن",
+      "side": "right",
+      "region": "upper_limb"
+    },
+    "72,61,139": {
+      "zone_code": "ankle_l",
+      "label_fr": "Cheville gauche",
+      "label_ar": "الكاحل الأيسر",
+      "side": "left",
+      "region": "lower_limb"
+    },
+    "244,164,96": {
+      "zone_code": "ankle_r",
+      "label_fr": "Cheville droite",
+      "label_ar": "الكاحل الأيمن",
+      "side": "right",
+      "region": "lower_limb"
+    }
+  }
+}

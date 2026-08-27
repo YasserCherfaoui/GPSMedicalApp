@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>GPS Médical — Localisation de la douleur</title>
+<style>
+  :root { --navy:#0A2540; --blue:#2D6CDF; --orange:#FF7A45; }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { width:100%; height:100%; overflow:hidden;
+    font-family:Manrope,system-ui,sans-serif; background:#f4f7fb; }
+  #c { position:absolute; inset:0; touch-action:none; }
+  #panel { position:absolute; left:0; right:0; bottom:0; background:#fff;
+    border-radius:16px 16px 0 0; box-shadow:0 -4px 24px rgba(10,37,64,.12);
+    padding:10px 16px 14px; max-height:45%; overflow-y:auto; z-index:2; }
+  #panel h2 { font-size:13px; color:var(--navy); margin-bottom:6px; }
+  .layer { display:flex; align-items:center; gap:10px; margin:7px 0; }
+  .layer label { flex:0 0 96px; font-size:12px; color:var(--navy); }
+  .layer input[type=range] { flex:1; accent-color:var(--blue); height:22px; }
+  #chip { position:absolute; top:12px; left:50%; transform:translateX(-50%);
+    background:var(--navy); color:#fff; padding:8px 16px; border-radius:999px;
+    font-size:14px; display:none; z-index:3; max-width:86%; text-align:center; }
+  #chip b { color:var(--orange); }
+  #topbar { position:absolute; top:12px; right:12px; display:flex; gap:6px; z-index:3; }
+  #topbar button { background:#fff; border:1px solid #dde5f0; color:var(--navy);
+    border-radius:8px; padding:7px 11px; font-size:12px; font-weight:600; }
+  #topbar button.on { background:var(--blue); color:#fff; border-color:var(--blue); }
+  #load { position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:12px; background:#f4f7fb;
+    z-index:9; color:var(--navy); font-size:14px; }
+  #bar { width:180px; height:6px; background:#dde5f0; border-radius:3px; overflow:hidden; }
+  #bar i { display:block; height:100%; width:0%; background:var(--blue); }
+  html[dir=rtl] .layer label { text-align:right; }
+</style>
+</head>
+<body>
+<div id="load"><div id="bar"><i></i></div><span id="loadtxt">Chargement du modèle…</span></div>
+<canvas id="c"></canvas>
+<div id="chip"></div>
+<div id="topbar">
+  <button id="btnmodel" title="Changer de modèle">♀</button>
+  <button id="btnfr" class="on">FR</button>
+  <button id="btnar">ع</button>
+  <button id="btnhome">⌂</button>
+</div>
+<div id="panel"><h2 id="paneltitle">Calques anatomiques</h2><div id="layers"></div></div>
+
+<script src="three.min.js"></script>
+<script src="GLTFLoader.js"></script>
+<script src="OrbitControls.js"></script>
+<script src="DRACOLoader.js"></script>
+<script>
+'use strict';
+/* ============================================================
+   GPS Médical — visionneuse 3D de localisation de la douleur
+   Surfaces tappables (cf. masks.json) :
+     skin_1  -> masque UV corps    (zone_mask_body.png)
+     skin    -> masque UV tête     (zone_mask_head.png)
+     shorts  -> lookup par face    (shorts_faces.json)
+     autres  -> structures.json par nom de maillage
+   API exposée à Flutter : setLayerOpacity, setLanguage, resetView
+   Événement sortant : zoneSelected (flutter_inappwebview handler)
+   ============================================================ */
+
+const ASSET_DIR = './';                    // tout dans le même dossier
+// -------- modèles disponibles --------
+const MODELS = {
+  male:   { glb:'full_male_body.glb',   masks:'masks.json',
+            shorts:'shorts_faces.json', structures:'structures.json' },
+  female: { glb:'full_female_body.glb', masks:'masks_female.json',
+            shorts:'hair_faces_female.json', structures:'structures_female.json' },
+};
+let model = new URLSearchParams(location.search).get('model');
+if (!MODELS[model]) model = 'male';
+const CFG = MODELS[model];
+const GLB = ASSET_DIR + CFG.glb;
+
+// matériau -> système (mêmes groupes que structures.json)
+const MAT_SYSTEM = (m) => {
+  if (!m) return 'Autres';
+  if (/^lambert[389]|final_lambert3/.test(m)) return 'Peau';
+  if (/^(arma|arme|back2|elbo|foot_sg|heada|headb|hip2|hip_sg|knee2|knee_hip|leg_sg|neckb|torso_side|bursa)/.test(m)) return 'Muscles';
+  if (/^(skeleton|cranium)/.test(m)) return 'Squelette';
+  if (/^(transfer_arteries|transfer_heart)/.test(m)) return 'Cardiovasculaire';
+  if (/nerves/.test(m)) return 'Nerfs';
+  if (/brain|cerebellum|dura/.test(m)) return 'Cerveau';
+  if (/lymphatic/.test(m)) return 'Lymphatique';
+  if (/lambert10/.test(m)) return 'Muscles';
+  if (/iris|pupil|lash/.test(m)) return 'Peau';
+  return 'Organes';
+};
+const LAYER_ORDER = ['Peau','Muscles','Squelette','Organes',
+                     'Cardiovasculaire','Nerfs','Cerveau','Lymphatique','Autres'];
+const LAYER_LABELS = {
+  fr: {Peau:'Peau', Muscles:'Muscles', Squelette:'Squelette', Organes:'Organes',
+       Cardiovasculaire:'Vaisseaux', Nerfs:'Nerfs', Cerveau:'Cerveau',
+       Lymphatique:'Lymphatique', Autres:'Autres', title:'Calques anatomiques'},
+  ar: {Peau:'الجلد', Muscles:'العضلات', Squelette:'الهيكل العظمي', Organes:'الأعضاء',
+       Cardiovasculaire:'الأوعية', Nerfs:'الأعصاب', Cerveau:'الدماغ',
+       Lymphatique:'اللمفاوي', Autres:'أخرى', title:'الطبقات التشريحية'},
+};
+// female : matériaux par-structure -> classification par NOM de maillage
+const NAME_SYSTEM = [
+  [/skin|clothes|hair|iris|pupil|eyelash|lacrimal|breast_fat/, 'Peau'],
+  [/vertebra|skull|mandible|maxilla|rib|sternum|clavicle|scapula|humerus|radius|ulna|carpal|metacarp|phalan|pelvis|ilium|ischium|pubis|sacrum|coccyx|femur|patella|tibia|fibula|talus|calcaneus|navicular|cuboid|cuneiform|metatars|costal_cartilage|hyoid|_bone/, 'Squelette'],
+  [/arter|vein|heart|aorta|atrium|ventricle|capillar/, 'Cardiovasculaire'],
+  [/nerve|plexus|ganglion/, 'Nerfs'],
+  [/cerebrum|cerebell|brain|dura|spinal_cord|aqueduct|pituitary/, 'Cerveau'],
+  [/lymph|thymus|tonsil|spleen/, 'Lymphatique'],
+  [/lung|pleura|bronch|trachea|liver|gallbladder|stomach|intestin|colon|pancreas|kidney|ureter|bladder|urethra|uterus|ovar|vagina|prostate|testis|esophag|pharynx|larynx|thyroid|salivary|sinus|diaphragm_center/, 'Organes'],
+  [/ligament|tendon|capsule|bursa|membrane|labrum|meniscus|disc|retinacul|fascia|aponeurosis/, 'Muscles'],
+  [/muscle|_major|_minor|deltoid|biceps|triceps|brachi|pector|abdominis|oblique|trapezius|latissimus|gluteus|quadriceps|vastus|sartorius|gracilis|adductor|semitendin|semimembran|gastrocnem|soleus|tibialis|perone|flexor|extensor|abductor|pronator|supinator|serratus|rhomboid|scalene|sternocleid|masseter|temporalis|orbicularis|rectus_|erector|multifid|psoas|iliacus|piriformis|obturator|levator|splenius|platysma|mylohyoid|nasalis/, 'Muscles'],
+];
+const systemOfName = (n) => {
+  const s = n.toLowerCase();
+  for (const [re, sys] of NAME_SYSTEM) if (re.test(s)) return sys;
+  return 'Autres';
+};
+// female : label lisible dérivé du nom du nœud
+function parseFemaleName(n) {
+  let s = n.replace(/-Mesh$/,'').replace(/sg\d*$/,'')
+           .replace(/^f_allsystems_20u_/,'').replace(/^f_new_[a-z_]*?_f_allsystems_20u_/,'')
+           .replace(/^z\d+_/,'').replace(/^hair_/,'').replace(/^elbo_/,'');
+  const m = s.match(/^([lr])_/);
+  const side = m ? (m[1]==='l' ? 'left' : 'right') : 'central';
+  s = s.replace(/^[lr]_/,'');
+  return { code: s, label: s.replace(/_/g,' '), side };
+}
+const HIGHLIGHT = new THREE.Color('#FF7A45');
+
+let scene, camera, renderer, controls, root;
+let zonesDoc, structuresDoc, masksDoc, shortsFaces;
+const maskCtx = {};                 // meshBaseName -> canvas 2d context
+const layers = {};                  // system -> { meshes:[], materials:Set }
+let lang = 'fr';
+let marker = null, selected = null; // sélection courante
+
+// ---------- chargement des assets ----------
+const $ = (id) => document.getElementById(id);
+const progress = (p, txt) => { $('bar').firstElementChild.style.width = (p*100)+'%';
+                               if (txt) $('loadtxt').textContent = txt; };
+
+async function loadJSON(f) { const r = await fetch(ASSET_DIR+f);
+  if (!r.ok) throw new Error(f+' introuvable'); return r.json(); }
+
+function loadMask(file, key) {
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.onload = () => {
+      const cv = document.createElement('canvas');
+      cv.width = img.width; cv.height = img.height;
+      const ctx = cv.getContext('2d', { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0);
+      maskCtx[key] = { ctx, w: img.width, h: img.height, img };
+      res();
+    };
+    img.onerror = () => rej(new Error(file+' introuvable'));
+    img.src = ASSET_DIR + file;
+  });
+}
+
+// ---------- résolution zone / structure ----------
+const baseName = (o) => o.name.replace(/-Mesh$/, '').replace(/_\d+$/g, (m,i)=>m); // node name as-is
+function structureOf(objName) {
+  if (!structuresDoc) return null;
+  const s = structuresDoc.structures;
+  return s[objName] || s[objName+'-Mesh'] || s[objName.replace(/-Mesh$/,'')] || null;
+}
+function zoneFromMask(key, uv) {
+  const m = maskCtx[key]; if (!m || !uv) return null;
+  const px = Math.min(m.w-1, Math.max(0, Math.floor((uv.x % 1 + 1) % 1 * m.w)));
+  const py = Math.min(m.h-1, Math.max(0, Math.floor(((uv.y % 1 + 1) % 1) * m.h)));
+  const d = m.ctx.getImageData(px, py, 1, 1).data;
+  const zone = zonesDoc.zones[d[0]+','+d[1]+','+d[2]];
+  return zone ? { ...zone, _color: [d[0],d[1],d[2]] } : null;
+}
+function labelOf(entry) {
+  if (!entry) return null;
+  if (lang === 'ar') return entry.label_ar || entry.label_fr || entry.label_en || entry.zone_code || entry.structure_code;
+  return entry.label_fr || entry.label_en || entry.zone_code || entry.structure_code;
+}
+
+function resolveHit(hit) {
+  const n = hit.object.name;
+  const surf = masksDoc ? masksDoc.surfaces : {};
+  const cfgKey = surf[n] ? n : (surf[n+'-Mesh'] ? n+'-Mesh' : null);
+  if (cfgKey) {
+    const cfg = surf[cfgKey];
+    if (cfg.method === 'uv_mask') {
+      const z = zoneFromMask(cfgKey, hit.uv);
+      return z && { kind:'zone', code:z.zone_code, label:labelOf(z),
+                    side:z.side, system:'Peau', color:z._color, mask:cfgKey };
+    }
+    if (cfg.method === 'face_index' && shortsFaces) {
+      const code = shortsFaces.face_zones[hit.faceIndex];
+      const z = Object.values(zonesDoc.zones).find(v => v.zone_code === code);
+      return z && { kind:'zone', code, label:labelOf(z), side:z.side, system:'Peau' };
+    }
+  }
+  const st = structuresDoc && structureOf(n);
+  if (st) return { kind:'structure', code:st.structure_code, label:labelOf(st),
+                   side:st.side, system:st.system };
+  if (model === 'female') {              // pas encore de structures.json féminin :
+    const p = parseFemaleName(n);        // label dérivé du nom du maillage
+    const sys = systemOfName(n);
+    if (sys === 'Peau') return null;     // zones peau : en attente du bake féminin
+    return { kind:'structure', code:p.code, label:p.label, side:p.side, system:sys };
+  }
+  return null;
+}
+
+// ---------- surbrillance ----------
+function patchSkinMaterial(mat, maskKey) {   // shader : teinte les fragments de la zone choisie
+  const m = maskCtx[maskKey];
+  const tex = new THREE.Texture(m.img);
+  tex.minFilter = tex.magFilter = THREE.NearestFilter;
+  tex.generateMipmaps = false; tex.flipY = false; tex.needsUpdate = true;
+  mat.defines = Object.assign({}, mat.defines, { USE_UV: '' });  // vUv garanti
+                                    // même sans texture (vêtements unis)
+  mat.userData.sel = { value: new THREE.Vector3(-1,-1,-1) };
+  mat.onBeforeCompile = (sh) => {
+    sh.uniforms.uZoneMask = { value: tex };
+    sh.uniforms.uSelColor = mat.userData.sel;
+    sh.fragmentShader = sh.fragmentShader
+      .replace('#include <common>',
+        '#include <common>\nuniform sampler2D uZoneMask;\nuniform vec3 uSelColor;')
+      .replace('#include <dithering_fragment>',
+        `#include <dithering_fragment>
+         vec3 zc = texture2D(uZoneMask, vUv).rgb;
+         if (uSelColor.x >= 0.0 && distance(zc, uSelColor) < 0.02)
+           gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(1.0,0.478,0.271), 0.45);`);
+  };
+  mat.needsUpdate = true;
+}
+function setSkinHighlight(maskKey, color) {  // color = [r,g,b] 0-255 ou null
+  (layers['Peau'] ? layers['Peau'].meshes : []).forEach(mesh => {
+    const sel = mesh.material.userData.sel;
+    if (!sel || mesh.userData.maskKey !== maskKey) return;
+    sel.value.set(...(color ? color.map(c=>c/255) : [-1,-1,-1]));
+  });
+}
+function clearSelection() {
+  if (selected) {
+    if (selected.mask) setSkinHighlight(selected.mask, null);
+    if (selected.meshRef && selected.origMat) selected.meshRef.material = selected.origMat;
+  }
+  if (marker) { scene.remove(marker); marker = null; }
+  selected = null; $('chip').style.display = 'none';
+}
+function showSelection(res, hit) {
+  clearSelection();
+  selected = res;
+  if (res.kind === 'zone' && res.color && res.mask) setSkinHighlight(res.mask, res.color);
+  if (res.kind === 'structure') {                       // teinte émissive du maillage
+    selected.meshRef = hit.object; selected.origMat = hit.object.material;
+    const m2 = hit.object.material.clone();
+    m2.emissive = HIGHLIGHT.clone(); m2.emissiveIntensity = 0.45;
+    hit.object.material = m2;
+  }
+  marker = new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 12),
+    new THREE.MeshBasicMaterial({ color: 0xFF7A45 }));
+  marker.position.copy(hit.point); scene.add(marker);
+  $('chip').innerHTML = '<b>' + (res.label || res.code) + '</b>';
+  $('chip').style.display = 'block';
+
+  const local = hit.object.worldToLocal(hit.point.clone());
+  const payload = { model, kind: res.kind, code: res.code, label: res.label,
+    side: res.side || null, system: res.system,
+    point: { x:+local.x.toFixed(3), y:+local.y.toFixed(3), z:+local.z.toFixed(3) },
+    uv: hit.uv ? { u:+hit.uv.x.toFixed(5), v:+hit.uv.y.toFixed(5) } : null };
+  if (window.flutter_inappwebview)
+    window.flutter_inappwebview.callHandler('zoneSelected', payload);
+  else console.log('zoneSelected', payload);
+}
+
+// ---------- calques ----------
+function buildLayers() {
+  const box = $('layers'); box.innerHTML = '';
+  LAYER_ORDER.filter(s => layers[s]).forEach(sys => {
+    const row = document.createElement('div'); row.className = 'layer';
+    const lab = document.createElement('label');
+    lab.textContent = LAYER_LABELS[lang][sys] || sys; lab.dataset.sys = sys;
+    const rng = document.createElement('input');
+    rng.type = 'range'; rng.min = 0; rng.max = 100;
+    rng.value = sys === 'Peau' ? 100 : 0;
+    rng.oninput = () => setLayerOpacity(sys, rng.value / 100);
+    row.append(lab, rng); box.append(row);
+    setLayerOpacity(sys, rng.value / 100);
+  });
+}
+function setLayerOpacity(sys, v) {
+  const L = layers[sys]; if (!L) return;
+  L.materials.forEach(m => {
+    m.transparent = true; m.opacity = v;
+    m.depthWrite = v > 0.95;
+  });
+  L.meshes.forEach(o => o.visible = v > 0.02);
+}
+
+// ---------- langue ----------
+function setLanguage(l) {
+  lang = l;
+  document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.lang = l;
+  $('btnfr').classList.toggle('on', l === 'fr');
+  $('btnar').classList.toggle('on', l === 'ar');
+  $('paneltitle').textContent = LAYER_LABELS[l].title;
+  document.querySelectorAll('#layers label').forEach(lab =>
+    lab.textContent = LAYER_LABELS[l][lab.dataset.sys] || lab.dataset.sys);
+  if (selected) $('chip').innerHTML = '<b>' + (labelOf(
+    selected.kind === 'zone'
+      ? Object.values(zonesDoc.zones).find(z => z.zone_code === selected.code)
+      : structuresDoc.structures[selected.code] ||
+        structuresDoc.structures[selected.code + '-Mesh']) || selected.code) + '</b>';
+}
+
+// ---------- scène ----------
+function initScene() {
+  renderer = new THREE.WebGLRenderer({ canvas: $('c'), antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(45, 1, 1, 3000);
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x8899aa, 0.95));
+  const dir = new THREE.DirectionalLight(0xffffff, 0.55);
+  dir.position.set(120, 220, 160); scene.add(dir);
+  controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.dampingFactor = 0.08;
+  const resize = () => {
+    const w = innerWidth, h = innerHeight;
+    renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
+  };
+  addEventListener('resize', resize); resize();
+  (function loop(){ requestAnimationFrame(loop); controls.update();
+                    renderer.render(scene, camera); })();
+}
+function frameModel() {
+  const b = new THREE.Box3().setFromObject(root);
+  const size = b.getSize(new THREE.Vector3()), c = b.getCenter(new THREE.Vector3());
+  controls.target.copy(c);
+  camera.position.set(c.x, c.y + size.y*0.05, c.z + size.y*1.15);
+  camera.near = size.y/100; camera.far = size.y*10; camera.updateProjectionMatrix();
+  controls.update();
+}
+function resetView(){ frameModel(); clearSelection(); }
+function setModel(m) {                    // rechargement propre de la page
+  if (!MODELS[m] || m === model) return;
+  const q = new URLSearchParams(location.search); q.set('model', m);
+  location.search = q.toString();
+}
+
+// ---------- tap vs drag ----------
+const ray = new THREE.Raycaster(); const ndc = new THREE.Vector2();
+let downPos = null;
+function bindPicking() {
+  const el = renderer.domElement;
+  el.addEventListener('pointerdown', e => downPos = [e.clientX, e.clientY]);
+  el.addEventListener('pointerup', e => {
+    if (!downPos) return;
+    const moved = Math.hypot(e.clientX-downPos[0], e.clientY-downPos[1]);
+    downPos = null; if (moved > 8) return;              // drag = rotation
+    const r = el.getBoundingClientRect();
+    ndc.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+    ndc.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+    ray.setFromCamera(ndc, camera);
+    const hits = ray.intersectObjects(root.children, true)
+                    .filter(h => h.object.visible && h.object.material.opacity > 0.05);
+    if (!hits.length) { clearSelection(); return; }
+    const res = resolveHit(hits[0]);
+    if (res) showSelection(res, hits[0]); else clearSelection();
+  });
+}
+
+// ---------- boot ----------
+(async function boot() {
+  try {
+    initScene();
+    progress(0.05, 'Chargement des données…');
+    zonesDoc = await loadJSON('zones.json');
+    structuresDoc = CFG.structures ? await loadJSON(CFG.structures) : null;
+    masksDoc      = CFG.masks      ? await loadJSON(CFG.masks)      : null;
+    shortsFaces   = CFG.shorts     ? await loadJSON(CFG.shorts)     : null;
+    if (masksDoc) await Promise.all(Object.entries(masksDoc.surfaces)
+      .filter(([,cfg]) => cfg.method === 'uv_mask')
+      .map(([key,cfg]) => loadMask(cfg.mask, key)));
+    progress(0.15, 'Chargement du modèle 3D…');
+
+    const gl = new THREE.GLTFLoader();
+    const draco = new THREE.DRACOLoader();
+    draco.setDecoderPath('./draco/');
+    gl.setDRACOLoader(draco);
+    gl.load(GLB, (gltf) => {
+      root = gltf.scene; scene.add(root);
+      root.traverse(o => {
+        if (!o.isMesh) return;
+        const matName = o.material && o.material.name;
+        const sys = model === 'female' ? systemOfName(o.name) : MAT_SYSTEM(matName);
+        (layers[sys] = layers[sys] || { meshes:[], materials:new Set() });
+        layers[sys].meshes.push(o); layers[sys].materials.add(o.material);
+        const surf = masksDoc &&
+          (masksDoc.surfaces[o.name] || masksDoc.surfaces[o.name+'-Mesh']);
+        if (surf && surf.method === 'uv_mask') {
+          const key = masksDoc.surfaces[o.name] ? o.name : o.name+'-Mesh';
+          o.userData.maskKey = key;
+          o.material = o.material.clone();          // shader patché par surface
+          layers[sys].materials.add(o.material);
+          patchSkinMaterial(o.material, key);
+        }
+      });
+      buildLayers(); frameModel(); bindPicking();
+      $('load').style.display = 'none';
+    },
+    (ev) => { if (ev.total) progress(0.15 + 0.85*ev.loaded/ev.total); },
+    (err) => { $('loadtxt').textContent = 'Erreur : ' + err.message; });
+
+    $('btnfr').onclick = () => setLanguage('fr');
+    $('btnar').onclick = () => setLanguage('ar');
+    $('btnhome').onclick = resetView;
+    $('btnmodel').textContent = model === 'male' ? '\u2640' : '\u2642';
+    $('btnmodel').onclick = () => setModel(model === 'male' ? 'female' : 'male');
+    window.setLayerOpacity = setLayerOpacity;   // API Flutter
+    window.setLanguage = setLanguage;
+    window.resetView = resetView;
+    window.setModel = setModel;
+  } catch (e) { $('loadtxt').textContent = 'Erreur : ' + e.message; }
+})();
+</script>
+</body>
+</html>

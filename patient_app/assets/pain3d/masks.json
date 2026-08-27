@@ -1,0 +1,20 @@
+{
+ "surfaces": {
+  "skin_1-Mesh": {
+   "method": "uv_mask",
+   "mask": "zone_mask_body.png",
+   "size": 1024
+  },
+  "skin-Mesh": {
+   "method": "uv_mask",
+   "mask": "zone_mask_head.png",
+   "size": 1024
+  },
+  "shorts-Mesh": {
+   "method": "face_index",
+   "file": "shorts_faces.json"
+  }
+ },
+ "fallback": "structures.json (hit.object.name) pour tout autre maillage",
+ "uv_note": "UV glTF origine HAUT-gauche : pixel = (u*W, v*H) \u2014 pas de 1-v cote runtime"
+}
