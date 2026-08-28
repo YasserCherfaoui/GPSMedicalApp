@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'models/pain3d_body.dart';
 import 'models/pain3d_download_progress.dart';
+import 'pain3d_log.dart';
 import 'services/asset_download_service.dart';
 
 enum Pain3dHostPrepStatus { offline, ready, missing }
@@ -30,19 +31,26 @@ class Pain3dHostPrep {
     required Pain3dBody body,
     void Function(Pain3dDownloadProgress progress)? onProgress,
   }) async {
+    pain3dLog('prep start body=${body.name}');
     var glb = await store.verifiedFile(body);
+    pain3dLog('cache ${glb == null ? 'miss' : 'hit'} path=${glb?.path}');
     if (glb == null) {
-      if (!await isOnline()) return const Pain3dHostPrepResult.offline();
+      final online = await isOnline();
+      pain3dLog('online=$online');
+      if (!online) return const Pain3dHostPrepResult.offline();
       await for (final progress in store.ensureBody(body)) {
         onProgress?.call(progress);
         if (progress.phase == Pain3dDownloadPhase.ready) {
           glb = progress.file;
+          pain3dLog('download ready path=${glb?.path}');
         }
       }
     }
     if (glb == null || !glb.existsSync()) {
+      pain3dLog('prep missing after download exists=${glb?.existsSync()}');
       return const Pain3dHostPrepResult.missing();
     }
+    pain3dLog('prep ready path=${glb.path}');
     return Pain3dHostPrepResult.ready(glb);
   }
 }

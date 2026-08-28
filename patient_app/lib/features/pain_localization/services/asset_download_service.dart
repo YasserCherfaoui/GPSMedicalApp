@@ -9,6 +9,7 @@ import '../models/pain3d_body.dart';
 import '../models/pain3d_download_progress.dart';
 import '../models/pain3d_manifest.dart';
 import '../pain3d_constants.dart';
+import '../pain3d_log.dart';
 
 class Pain3dAssetException implements Exception {
   const Pain3dAssetException(this.message);
@@ -58,18 +59,32 @@ class AssetDownloadService implements Pain3dGlbStore {
   @override
   Future<File?> verifiedFile(Pain3dBody body, {String? expectedSha256}) async {
     final dest = _destFile(body);
-    if (!await dest.exists()) return null;
+    if (!await dest.exists()) {
+      pain3dLog('verifiedFile miss ${body.glbFileName}');
+      return null;
+    }
+    if (expectedSha256 == null) {
+      pain3dLog('verifiedFile ${dest.path} exists — fetching manifest for SHA');
+    }
     final sha = expectedSha256 ?? (await fetchManifest()).fileFor(body).sha256;
-    if (await _sha256Hex(dest) == sha) return dest;
+    final actual = await _sha256Hex(dest);
+    if (actual == sha) return dest;
+    pain3dLog(
+      'cache SHA mismatch for ${body.glbFileName} expected=$sha actual=$actual — deleting',
+    );
     await dest.delete();
     return null;
   }
 
   @override
   Stream<Pain3dDownloadProgress> ensureBody(Pain3dBody body) async* {
+    pain3dLog('ensureBody ${body.glbFileName} origin=$_assetsBaseUrl');
     yield const Pain3dDownloadProgress.fetchingManifest();
     final manifest = await fetchManifest();
     if (manifest.version != pain3dAssetVersion) {
+      pain3dLog(
+        'manifest version ${manifest.version} != pinned $pain3dAssetVersion',
+      );
       throw Pain3dAssetException(
         'manifest version ${manifest.version} != pinned $pain3dAssetVersion',
       );
@@ -98,9 +113,14 @@ class AssetDownloadService implements Pain3dGlbStore {
       if (hex == entry.sha256) {
         await _versionDir.create(recursive: true);
         await _tempFile(body).rename(dest.path);
+        pain3dLog('GLB stored ${dest.path} bytes=${entry.bytes} sha=$hex');
         yield Pain3dDownloadProgress.ready(dest, entry.bytes);
         return;
       }
+      pain3dLog(
+        'SHA-256 mismatch attempt=$attempt/$maxChecksumRetries '
+        'file=${body.glbFileName} expected=${entry.sha256} actual=$hex',
+      );
       final temp = _tempFile(body);
       if (await temp.exists()) await temp.delete();
       if (attempt >= maxChecksumRetries) {
@@ -113,6 +133,7 @@ class AssetDownloadService implements Pain3dGlbStore {
 
   Future<Pain3dManifest> fetchManifest() async {
     final uri = pain3dManifestUri(baseUrl: _assetsBaseUrl);
+    pain3dLog('GET manifest $uri');
     try {
       final response = await _dio.get<dynamic>(
         uri.toString(),
@@ -120,6 +141,9 @@ class AssetDownloadService implements Pain3dGlbStore {
           responseType: ResponseType.plain,
           validateStatus: (status) => status == 200,
         ),
+      );
+      pain3dLog(
+        'manifest ${response.statusCode} bytes=${response.data?.toString().length}',
       );
       final data = response.data;
       final decoded = data is String
@@ -131,10 +155,9 @@ class AssetDownloadService implements Pain3dGlbStore {
         throw const FormatException('assets_manifest.json: expected object');
       }
       return Pain3dManifest.fromJson(decoded);
-    } on DioException catch (error) {
-      throw Pain3dAssetException(
-        'manifest GET failed: ${error.message ?? error.type}',
-      );
+    } on DioException catch (error, stack) {
+      pain3dLog('manifest GET failed ${_dioDetail(error)}', error, stack);
+      throw Pain3dAssetException('manifest GET failed: ${_dioDetail(error)}');
     }
   }
 
@@ -154,6 +177,9 @@ class AssetDownloadService implements Pain3dGlbStore {
     }
 
     late Response<ResponseBody> response;
+    pain3dLog(
+      'GET GLB $uri resumeFrom=$resumeFrom expectedBytes=$expectedBytes',
+    );
     try {
       response = await _dio.get<ResponseBody>(
         uri.toString(),
@@ -166,13 +192,15 @@ class AssetDownloadService implements Pain3dGlbStore {
           },
         ),
       );
-    } on DioException catch (error) {
-      throw Pain3dAssetException(
-        'GLB GET failed: ${error.message ?? error.type}',
-      );
+    } on DioException catch (error, stack) {
+      pain3dLog('GLB GET failed ${_dioDetail(error)}', error, stack);
+      throw Pain3dAssetException('GLB GET failed: ${_dioDetail(error)}');
     }
 
     final status = response.statusCode ?? 0;
+    pain3dLog(
+      'GLB response status=$status contentLength=${_contentLength(response)}',
+    );
     final append = status == 206 && resumeFrom > 0;
     if (!append && await temp.exists()) {
       await temp.delete();
@@ -203,11 +231,19 @@ class AssetDownloadService implements Pain3dGlbStore {
         );
       }
       await sink.flush();
-    } catch (error) {
+    } catch (error, stack) {
       await sink.close();
+      pain3dLog('GLB download interrupted', error, stack);
       throw Pain3dAssetException('GLB download interrupted: $error');
     }
     await sink.close();
+    pain3dLog('GLB stream done received=$received total=$total');
+  }
+
+  static String _dioDetail(DioException error) {
+    final status = error.response?.statusCode;
+    return '${error.type} status=$status uri=${error.requestOptions.uri} '
+        'message=${error.message} inner=${error.error}';
   }
 
   static int? _contentLength(Response<ResponseBody> response) {

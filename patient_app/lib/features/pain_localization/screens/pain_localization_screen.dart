@@ -14,12 +14,14 @@ import '../models/pain3d_download_progress.dart';
 import '../models/pain_selection.dart';
 import '../pain3d_constants.dart';
 import '../pain3d_host_prep.dart';
+import '../pain3d_log.dart';
 import '../pain_viewer_controller.dart';
 import '../providers/pain3d_download.provider.dart';
 import '../providers/pain_localization_flag.provider.dart';
 import '../providers/pain_selection.provider.dart';
 import '../services/asset_download_service.dart';
 import '../services/pain3d_analytics.dart';
+import '../services/pain3d_localhost_server.dart';
 import '../services/pain3d_www_root.dart';
 import '../services/pain_label_catalog.dart';
 import '../widgets/pain_selection_review_bar.dart';
@@ -58,7 +60,7 @@ class _PainLocalizationScreenState
   _Phase _phase = _Phase.preparing;
   Pain3dDownloadProgress? _download;
   PainViewerController? _viewer;
-  InAppLocalhostServer? _server;
+  Pain3dLocalhostServer? _server;
   bool _serverStarted = false;
   String? _wwwPath;
 
@@ -87,6 +89,10 @@ class _PainLocalizationScreenState
       _phase = _Phase.preparing;
       _download = null;
     });
+    pain3dLog(
+      'bootstrap body=${widget.body.name} version=$pain3dAssetVersion '
+      'origin=${pain3dAssetsBaseUrl()} hostWebView=${widget.hostWebView}',
+    );
     final downloadWatch = Stopwatch()..start();
     var downloaded = false;
     try {
@@ -110,12 +116,14 @@ class _PainLocalizationScreenState
       );
       switch (prep.status) {
         case Pain3dHostPrepStatus.offline:
+          pain3dLog('bootstrap → offline');
           if (!mounted) return;
           setState(() => _phase = _Phase.offline);
           return;
         case Pain3dHostPrepStatus.missing:
           throw const Pain3dBootstrapException('GLB missing after download');
         case Pain3dHostPrepStatus.ready:
+          pain3dLog('bootstrap prep ready');
           break;
       }
       if (downloaded) {
@@ -135,6 +143,7 @@ class _PainLocalizationScreenState
         throw const Pain3dBootstrapException('GLB missing after download');
       }
       if (!widget.hostWebView) {
+        pain3dLog('bootstrap skip WebView (test seam)');
         if (!mounted) return;
         setState(() => _phase = _Phase.ready);
         return;
@@ -149,7 +158,9 @@ class _PainLocalizationScreenState
         _wwwPath = www.path;
         _phase = _Phase.ready;
       });
-    } catch (_) {
+      pain3dLog('bootstrap ready www=${www.path}');
+    } catch (error, stack) {
+      pain3dLog('bootstrap failed', error, stack);
       if (downloaded) {
         ref
             .read(pain3dAnalyticsProvider)
@@ -173,14 +184,16 @@ class _PainLocalizationScreenState
       await existing.close();
       _serverStarted = false;
     }
-    final server = InAppLocalhostServer(
-      documentRoot: www.path,
+    final server = Pain3dLocalhostServer(
+      documentRoot: www,
       port: _localhostPort,
       directoryIndex: 'pain_viewer.html',
     );
     _server = server;
+    pain3dLog('localhost start port=$_localhostPort root=${www.path}');
     await server.start();
     _serverStarted = true;
+    pain3dLog('localhost started');
   }
 
   void _onWebViewCreated(InAppWebViewController controller) {
@@ -205,6 +218,7 @@ class _PainLocalizationScreenState
     controller.addJavaScriptHandler(
       handlerName: 'viewerError',
       callback: (args) {
+        pain3dLog('viewerError args=$args');
         if (!mounted) return null;
         setState(() => _phase = _Phase.webglUnsupported);
         return null;
@@ -287,6 +301,7 @@ class _PainLocalizationScreenState
         })();
       ''',
     );
+    pain3dLog('loadStop url=$url webgl=$gl');
     if (gl != 'ok') {
       if (!mounted) return;
       setState(() => _phase = _Phase.webglUnsupported);
@@ -395,9 +410,26 @@ class _PainLocalizationScreenState
       ),
       onWebViewCreated: _onWebViewCreated,
       onLoadStop: _onLoadStop,
+      onConsoleMessage: (controller, consoleMessage) {
+        pain3dLog(
+          'webview console ${consoleMessage.messageLevel} ${consoleMessage.message}',
+        );
+      },
+      onReceivedError: (controller, request, error) {
+        pain3dLog(
+          'webview error type=${error.type} desc=${error.description} '
+          'url=${request.url}',
+        );
+      },
+      onReceivedHttpError: (controller, request, errorResponse) {
+        pain3dLog(
+          'webview HTTP ${errorResponse.statusCode} url=${request.url}',
+        );
+      },
       shouldInterceptRequest: (controller, action) async {
         final host = action.url.host;
         if (host == 'localhost' || host == '127.0.0.1') return null;
+        pain3dLog('blocked request ${action.url}');
         return WebResourceResponse(
           statusCode: 403,
           reasonPhrase: 'blocked',

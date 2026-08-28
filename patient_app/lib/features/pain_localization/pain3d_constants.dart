@@ -13,12 +13,12 @@ String pain3dAssetsBaseUrl() {
 
 Uri pain3dManifestUri({String? baseUrl}) {
   final origin = baseUrl ?? pain3dAssetsBaseUrl();
-  return Uri.parse('$origin/pain3d/$pain3dAssetVersion/assets_manifest.json');
+  return Uri.parse('$origin/pain3d/v$pain3dAssetVersion/assets_manifest.json');
 }
 
 Uri pain3dGlbUri(String fileName, {String? baseUrl}) {
   final origin = baseUrl ?? pain3dAssetsBaseUrl();
-  return Uri.parse('$origin/pain3d/$pain3dAssetVersion/$fileName');
+  return Uri.parse('$origin/pain3d/v$pain3dAssetVersion/$fileName');
 }
 
 /// Viewer JS only has `fr` | `ar`. Tamazight uses French in the WebView.
