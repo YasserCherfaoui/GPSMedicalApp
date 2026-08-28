@@ -2445,7 +2445,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get painLocalizationEmpty =>
-      'Touchez le modèle pour indiquer une zone. Rien n\'est envoyé à un médecin.';
+      'Touchez le modèle pour explorer une zone, puis ajoutez-la si besoin. Rien n\'est envoyé à un médecin.';
+
+  @override
+  String get painLocalizationAddSelection => 'Ajouter cette zone';
+
+  @override
+  String get painLocalizationSelectionAlreadyAdded =>
+      'Cette zone est déjà dans votre liste';
 
   @override
   String get painLocalizationRemoveChip => 'Retirer';

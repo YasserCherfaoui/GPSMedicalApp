@@ -2386,7 +2386,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get painLocalizationEmpty =>
-      'المس النموذج لتحديد منطقة. لا يُرسل شيء إلى الطبيب.';
+      'المس النموذج لاستكشاف منطقة، ثم أضفها إن لزم. لا يُرسل شيء إلى الطبيب.';
+
+  @override
+  String get painLocalizationAddSelection => 'إضافة هذه المنطقة';
+
+  @override
+  String get painLocalizationSelectionAlreadyAdded =>
+      'هذه المنطقة موجودة بالفعل في قائمتك';
 
   @override
   String get painLocalizationRemoveChip => 'إزالة';

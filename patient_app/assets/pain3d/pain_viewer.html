@@ -24,14 +24,19 @@
   .layer { display:flex; align-items:center; gap:10px; margin:7px 0; }
   .layer label { flex:0 0 96px; font-size:12px; color:var(--navy); }
   .layer input[type=range] { flex:1; accent-color:var(--blue); height:22px; }
-  #chip { position:absolute; top:12px; left:50%; transform:translateX(-50%);
-    background:var(--navy); color:#fff; padding:8px 16px; border-radius:999px;
-    font-size:14px; display:none; z-index:3; max-width:86%; text-align:center; }
+  #chip { position:absolute; top:12px; left:12px; right:56px;
+    background:var(--navy); color:#fff; padding:8px 12px; border-radius:999px;
+    font-size:14px; display:none; z-index:3; text-align:center;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   #chip b { color:var(--orange); }
-  #topbar { position:absolute; top:12px; right:12px; display:flex; gap:6px; z-index:3; }
+  #topbar { position:absolute; top:12px; right:12px; display:flex;
+    flex-direction:column; gap:6px; z-index:3; }
   #topbar button { background:#fff; border:1px solid #dde5f0; color:var(--navy);
-    border-radius:8px; padding:7px 11px; font-size:12px; font-weight:600; }
+    border-radius:8px; width:40px; min-height:36px; padding:6px 0;
+    font-size:12px; font-weight:600; line-height:1; }
   #topbar button.on { background:var(--blue); color:#fff; border-color:var(--blue); }
+  html[dir=rtl] #topbar { right:auto; left:12px; }
+  html[dir=rtl] #chip { left:56px; right:12px; }
   #load { position:absolute; inset:0; display:flex; flex-direction:column;
     align-items:center; justify-content:center; gap:12px; background:#f4f7fb;
     z-index:9; color:var(--navy); font-size:14px; }
@@ -74,7 +79,7 @@
      shorts  -> lookup par face    (shorts_faces.json)
      autres  -> structures.json par nom de maillage
    API exposée à Flutter : setLayerOpacity, setLanguage, resetView
-   Événement sortant : zoneSelected (flutter_inappwebview handler)
+   Événement sortant : zonePreviewed / zoneCleared (flutter_inappwebview handlers)
    ============================================================ */
 
 const ASSET_DIR = './';                    // tout dans le même dossier
@@ -265,16 +270,18 @@ function setSkinHighlight(maskKey, color) {  // color = [r,g,b] 0-255 ou null
     sel.value.set(...(color ? color.map(c=>c/255) : [-1,-1,-1]));
   });
 }
-function clearSelection() {
+function clearSelection(notifyFlutter) {
   if (selected) {
     if (selected.mask) setSkinHighlight(selected.mask, null);
     if (selected.meshRef && selected.origMat) selected.meshRef.material = selected.origMat;
   }
   if (marker) { scene.remove(marker); marker = null; }
   selected = null; $('chip').style.display = 'none';
+  if (notifyFlutter && window.flutter_inappwebview)
+    window.flutter_inappwebview.callHandler('zoneCleared');
 }
 function showSelection(res, hit) {
-  clearSelection();
+  clearSelection(false);
   selected = res;
   if (res.kind === 'zone' && res.color && res.mask) setSkinHighlight(res.mask, res.color);
   if (res.kind === 'structure') {                       // teinte émissive du maillage
@@ -295,8 +302,8 @@ function showSelection(res, hit) {
     point: { x:+local.x.toFixed(3), y:+local.y.toFixed(3), z:+local.z.toFixed(3) },
     uv: hit.uv ? { u:+hit.uv.x.toFixed(5), v:+hit.uv.y.toFixed(5) } : null };
   if (window.flutter_inappwebview)
-    window.flutter_inappwebview.callHandler('zoneSelected', payload);
-  else console.log('zoneSelected', payload);
+    window.flutter_inappwebview.callHandler('zonePreviewed', payload);
+  else console.log('zonePreviewed', payload);
 }
 
 // ---------- calques ----------
@@ -457,7 +464,7 @@ function restoreSelection(payload) {
   }
 }
 
-function resetView(){ frameModel(); clearSelection(); }
+function resetView(){ frameModel(); clearSelection(true); }
 function setModel(m) {                    // rechargement propre de la page
   if (!MODELS[m] || m === model) return;
   const q = new URLSearchParams(location.search); q.set('model', m);
@@ -480,9 +487,9 @@ function bindPicking() {
     ray.setFromCamera(ndc, camera);
     const hits = ray.intersectObjects(root.children, true)
                     .filter(h => h.object.visible && h.object.material.opacity > 0.05);
-    if (!hits.length) { clearSelection(); return; }
+    if (!hits.length) { clearSelection(true); return; }
     const res = resolveHit(hits[0]);
-    if (res) showSelection(res, hits[0]); else clearSelection();
+    if (res) showSelection(res, hits[0]); else clearSelection(true);
   });
 }
 

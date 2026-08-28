@@ -805,7 +805,9 @@
   "painLocalizationClearAll": "مسح الكل",
   "painLocalizationClearAllTitle": "مسح التحديدات؟",
   "painLocalizationClearAllMessage": "ستُحذف كل المناطق المحددة من هذا الجهاز.",
-  "painLocalizationEmpty": "المس النموذج لتحديد منطقة. لا يُرسل شيء إلى الطبيب.",
+  "painLocalizationEmpty": "المس النموذج لاستكشاف منطقة، ثم أضفها إن لزم. لا يُرسل شيء إلى الطبيب.",
+  "painLocalizationAddSelection": "إضافة هذه المنطقة",
+  "painLocalizationSelectionAlreadyAdded": "هذه المنطقة موجودة بالفعل في قائمتك",
   "painLocalizationRemoveChip": "إزالة",
   "painLocalizationConfirmedSnackbar": "تم حفظ التحديدات على هذا الجهاز."
 }

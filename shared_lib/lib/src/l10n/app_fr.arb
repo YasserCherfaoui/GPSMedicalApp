@@ -998,7 +998,9 @@
   "painLocalizationClearAll": "Tout effacer",
   "painLocalizationClearAllTitle": "Effacer les sélections ?",
   "painLocalizationClearAllMessage": "Toutes les zones indiquées seront retirées de cet appareil.",
-  "painLocalizationEmpty": "Touchez le modèle pour indiquer une zone. Rien n'est envoyé à un médecin.",
+  "painLocalizationEmpty": "Touchez le modèle pour explorer une zone, puis ajoutez-la si besoin. Rien n'est envoyé à un médecin.",
+  "painLocalizationAddSelection": "Ajouter cette zone",
+  "painLocalizationSelectionAlreadyAdded": "Cette zone est déjà dans votre liste",
   "painLocalizationRemoveChip": "Retirer",
   "painLocalizationConfirmedSnackbar": "Sélections enregistrées sur cet appareil."
 }

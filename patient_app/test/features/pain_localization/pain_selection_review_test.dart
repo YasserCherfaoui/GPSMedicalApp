@@ -133,6 +133,70 @@ void main() {
     expect(removed, isNotEmpty);
   });
 
+  testWidgets('pending selection shows add button without committing', (
+    tester,
+  ) async {
+    var added = false;
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: GpsTheme.light(),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: const Locale('fr'),
+        home: Scaffold(
+          body: SizedBox(
+            width: 400,
+            child: PainSelectionReviewBar(
+              selections: const [],
+              pendingSelection: _sel(model: 'male', code: 'wrist_l'),
+              languageCode: 'fr',
+              labels: labels,
+              onRemove: (_) {},
+              onAddPending: () => added = true,
+              onConfirm: () {},
+              onClearAll: () {},
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('♂ Poignet gauche'), findsOneWidget);
+    expect(find.text('Ajouter cette zone'), findsOneWidget);
+    expect(find.textContaining('Touchez le modèle'), findsNothing);
+    await tester.tap(find.text('Ajouter cette zone'));
+    expect(added, isTrue);
+  });
+
+  testWidgets('pending duplicate shows already-added copy', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: GpsTheme.light(),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        locale: const Locale('fr'),
+        home: Scaffold(
+          body: SizedBox(
+            width: 400,
+            child: PainSelectionReviewBar(
+              selections: [_sel(model: 'male', code: 'wrist_l')],
+              pendingSelection: _sel(model: 'male', code: 'wrist_l'),
+              languageCode: 'fr',
+              labels: labels,
+              onRemove: (_) {},
+              onAddPending: () {},
+              onConfirm: () {},
+              onClearAll: () {},
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Cette zone est déjà dans votre liste'), findsOneWidget);
+    expect(find.text('Ajouter cette zone'), findsNothing);
+  });
+
   testWidgets('empty review bar disables confirm', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
@@ -155,7 +219,7 @@ void main() {
         ),
       ),
     );
-    expect(find.textContaining('Touchez le modèle'), findsOneWidget);
+    expect(find.textContaining('explorer une zone'), findsOneWidget);
     final button = tester.widget<FilledButton>(find.byType(FilledButton));
     expect(button.onPressed, isNull);
   });

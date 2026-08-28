@@ -2,7 +2,7 @@
 const pain3dAssetVersion = '1.1.0';
 
 /// Bump when bundled viewer assets change so [Pain3dWwwRoot] re-syncs www.
-const pain3dViewerBundleRevision = '2';
+const pain3dViewerBundleRevision = '4';
 
 /// Default public origin (custom domain on the `gpsmedical-assets` R2 bucket).
 const pain3dAssetsBaseUrlDefault = 'https://assets.medora-corporate.com';

@@ -2414,7 +2414,14 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get painLocalizationEmpty =>
-      'Toučč a-t-id-tesmektiḍ tamnaḍt. Ulac ayen yettwazen i umsujji.';
+      'Toučč a-t-id-tesmektiḍ tamnaḍt, sakin rnu-t ma yella ṣṣeḥḥa. Ulac ayen yettwazen i umsujji.';
+
+  @override
+  String get painLocalizationAddSelection => 'Rnu tamnaḍt-a';
+
+  @override
+  String get painLocalizationSelectionAlreadyAdded =>
+      'Tamnaḍt-a yella yakan deg tebdart-ik';
 
   @override
   String get painLocalizationRemoveChip => 'Kkes';

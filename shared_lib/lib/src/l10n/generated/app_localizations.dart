@@ -4489,8 +4489,20 @@ abstract class AppLocalizations {
   /// No description provided for @painLocalizationEmpty.
   ///
   /// In fr, this message translates to:
-  /// **'Touchez le modèle pour indiquer une zone. Rien n\'est envoyé à un médecin.'**
+  /// **'Touchez le modèle pour explorer une zone, puis ajoutez-la si besoin. Rien n\'est envoyé à un médecin.'**
   String get painLocalizationEmpty;
+
+  /// No description provided for @painLocalizationAddSelection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter cette zone'**
+  String get painLocalizationAddSelection;
+
+  /// No description provided for @painLocalizationSelectionAlreadyAdded.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette zone est déjà dans votre liste'**
+  String get painLocalizationSelectionAlreadyAdded;
 
   /// No description provided for @painLocalizationRemoveChip.
   ///

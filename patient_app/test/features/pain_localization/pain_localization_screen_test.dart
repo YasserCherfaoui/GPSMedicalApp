@@ -205,7 +205,7 @@ void main() {
     await tester.tap(find.widgetWithText(FilledButton, 'Tout effacer'));
     await tester.pump();
     expect(find.text('Poignet gauche'), findsNothing);
-    expect(find.textContaining('Touchez le modèle'), findsOneWidget);
+    expect(find.textContaining('explorer une zone'), findsOneWidget);
     expect(await selStore.read(), isEmpty);
   });
 }

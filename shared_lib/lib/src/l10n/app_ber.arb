@@ -805,7 +805,9 @@
   "painLocalizationClearAll": "Kkes akk",
   "painLocalizationClearAllTitle": "Kkes ifrannen?",
   "painLocalizationClearAllMessage": "Akk timnaḍin yettwafernen ad ttwakksent seg yibenk-agi.",
-  "painLocalizationEmpty": "Toučč a-t-id-tesmektiḍ tamnaḍt. Ulac ayen yettwazen i umsujji.",
+  "painLocalizationEmpty": "Toučč a-t-id-tesmektiḍ tamnaḍt, sakin rnu-t ma yella ṣṣeḥḥa. Ulac ayen yettwazen i umsujji.",
+  "painLocalizationAddSelection": "Rnu tamnaḍt-a",
+  "painLocalizationSelectionAlreadyAdded": "Tamnaḍt-a yella yakan deg tebdart-ik",
   "painLocalizationRemoveChip": "Kkes",
   "painLocalizationConfirmedSnackbar": "Ifrannen ttwasekelsen ɣef yibenk-agi."
 }

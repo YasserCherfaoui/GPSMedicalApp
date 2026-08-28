@@ -63,6 +63,7 @@ class _PainLocalizationScreenState
   Pain3dLocalhostServer? _server;
   bool _serverStarted = false;
   String? _wwwPath;
+  PainSelection? _pendingSelection;
 
   @override
   void initState() {
@@ -201,10 +202,22 @@ class _PainLocalizationScreenState
       evaluate: (source) => controller.evaluateJavascript(source: source),
     );
     controller.addJavaScriptHandler(
-      handlerName: 'zoneSelected',
+      handlerName: 'zonePreviewed',
       callback: (args) {
         if (args.isEmpty) return null;
-        ref.read(painSelectionProvider.notifier).addFromJs(args.first);
+        if (!mounted) return null;
+        setState(() {
+          _pendingSelection = PainSelection.fromJs(args.first);
+        });
+        return null;
+      },
+    );
+    controller.addJavaScriptHandler(
+      handlerName: 'zoneCleared',
+      callback: (args) {
+        if (!mounted) return null;
+        if (_pendingSelection == null) return null;
+        setState(() => _pendingSelection = null);
         return null;
       },
     );
@@ -283,7 +296,15 @@ class _PainLocalizationScreenState
     );
     if (confirmed == true) {
       ref.read(painSelectionProvider.notifier).clear();
+      setState(() => _pendingSelection = null);
     }
+  }
+
+  void _addPendingSelection() {
+    final pending = _pendingSelection;
+    if (pending == null) return;
+    ref.read(painSelectionProvider.notifier).add(pending);
+    setState(() => _pendingSelection = null);
   }
 
   Future<void> _onLoadStop(
@@ -374,6 +395,7 @@ class _PainLocalizationScreenState
         const PainLabelCatalog({});
     return PainSelectionReviewBar(
       selections: selections,
+      pendingSelection: _pendingSelection,
       languageCode: Localizations.localeOf(context).languageCode,
       labels: catalog,
       onRemove: (item) {
@@ -381,6 +403,7 @@ class _PainLocalizationScreenState
             .read(painSelectionProvider.notifier)
             .remove(code: item.code, model: item.model);
       },
+      onAddPending: _addPendingSelection,
       onConfirm: () => unawaited(_confirmSelections()),
       onClearAll: () => unawaited(_confirmClearAll()),
     );
