@@ -12,8 +12,15 @@
   #c { position:absolute; inset:0; touch-action:none; }
   #panel { position:absolute; left:0; right:0; bottom:0; background:#fff;
     border-radius:16px 16px 0 0; box-shadow:0 -4px 24px rgba(10,37,64,.12);
-    padding:10px 16px 14px; max-height:45%; overflow-y:auto; z-index:2; }
-  #panel h2 { font-size:13px; color:var(--navy); margin-bottom:6px; }
+    padding:10px 16px 14px; max-height:45%; overflow-y:auto; z-index:2;
+    transition:max-height .2s ease; }
+  #panel.collapsed { max-height:52px; overflow:hidden; }
+  #panel.collapsed #layers { display:none; }
+  #panelToggle { display:flex; align-items:center; gap:8px; width:100%;
+    background:none; border:none; padding:0; margin:0 0 6px; color:var(--navy);
+    font:inherit; text-align:left; cursor:pointer; }
+  #panelChevron { font-size:14px; line-height:1; width:14px; flex:0 0 14px; }
+  #panel h2 { font-size:13px; color:var(--navy); margin:0; flex:1; }
   .layer { display:flex; align-items:center; gap:10px; margin:7px 0; }
   .layer label { flex:0 0 96px; font-size:12px; color:var(--navy); }
   .layer input[type=range] { flex:1; accent-color:var(--blue); height:22px; }
@@ -38,12 +45,20 @@
 <canvas id="c"></canvas>
 <div id="chip"></div>
 <div id="topbar">
+  <button id="btnUpper" title="Haut du corps">↑</button>
+  <button id="btnLower" title="Bas du corps">↓</button>
   <button id="btnmodel" title="Changer de modèle">♀</button>
   <button id="btnfr" class="on">FR</button>
   <button id="btnar">ع</button>
   <button id="btnhome">⌂</button>
 </div>
-<div id="panel"><h2 id="paneltitle">Calques anatomiques</h2><div id="layers"></div></div>
+<div id="panel" class="collapsed">
+  <button type="button" id="panelToggle" aria-expanded="false">
+    <span id="panelChevron">▸</span>
+    <h2 id="paneltitle">Calques anatomiques</h2>
+  </button>
+  <div id="layers"></div>
+</div>
 
 <script src="three.min.js"></script>
 <script src="GLTFLoader.js"></script>
@@ -98,6 +113,10 @@ const LAYER_LABELS = {
   ar: {Peau:'الجلد', Muscles:'العضلات', Squelette:'الهيكل العظمي', Organes:'الأعضاء',
        Cardiovasculaire:'الأوعية', Nerfs:'الأعصاب', Cerveau:'الدماغ',
        Lymphatique:'اللمفاوي', Autres:'أخرى', title:'الطبقات التشريحية'},
+};
+const UI_LABELS = {
+  fr: { upper:'Haut du corps', lower:'Bas du corps' },
+  ar: { upper:'أعلى الجسم', lower:'أسفل الجسم' },
 };
 // female : matériaux par-structure -> classification par NOM de maillage
 const NAME_SYSTEM = [
@@ -312,6 +331,8 @@ function setLanguage(l) {
   $('btnfr').classList.toggle('on', l === 'fr');
   $('btnar').classList.toggle('on', l === 'ar');
   $('paneltitle').textContent = LAYER_LABELS[l].title;
+  $('btnUpper').title = UI_LABELS[l].upper;
+  $('btnLower').title = UI_LABELS[l].lower;
   document.querySelectorAll('#layers label').forEach(lab =>
     lab.textContent = LAYER_LABELS[l][lab.dataset.sys] || lab.dataset.sys);
   if (selected) $('chip').innerHTML = '<b>' + (labelOf(
@@ -332,6 +353,8 @@ function initScene() {
   dir.position.set(120, 220, 160); scene.add(dir);
   controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true; controls.dampingFactor = 0.08;
+  controls.enablePan = true;
+  controls.screenSpacePanning = true;
   const resize = () => {
     const w = innerWidth, h = innerHeight;
     renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix();
@@ -340,13 +363,52 @@ function initScene() {
   (function loop(){ requestAnimationFrame(loop); controls.update();
                     renderer.render(scene, camera); })();
 }
+function panelOccupiedHeight() {
+  const panel = $('panel');
+  if (!panel) return 0;
+  return panel.classList.contains('collapsed') ? 52 : Math.min(panel.offsetHeight, innerHeight * 0.45);
+}
+function visibleHeightFraction() {
+  return Math.max(0.42, (innerHeight - panelOccupiedHeight()) / innerHeight);
+}
 function frameModel() {
   const b = new THREE.Box3().setFromObject(root);
   const size = b.getSize(new THREE.Vector3()), c = b.getCenter(new THREE.Vector3());
+  const visibleFrac = visibleHeightFraction();
+  const distance = size.y * 1.15 / visibleFrac;
   controls.target.copy(c);
-  camera.position.set(c.x, c.y + size.y*0.05, c.z + size.y*1.15);
+  camera.position.set(c.x, c.y + size.y*0.05, c.z + distance);
   camera.near = size.y/100; camera.far = size.y*10; camera.updateProjectionMatrix();
   controls.update();
+}
+function focusBodyRegion(region) {
+  if (!root) return;
+  const b = new THREE.Box3().setFromObject(root);
+  const size = b.getSize(new THREE.Vector3()), c = b.getCenter(new THREE.Vector3());
+  const visibleFrac = visibleHeightFraction();
+  let targetY = c.y;
+  let distance = size.y * 1.15 / visibleFrac;
+  if (region === 'lower') {
+    targetY = b.min.y + size.y * 0.24;
+    distance = size.y * 0.82 / visibleFrac;
+  } else if (region === 'upper') {
+    targetY = b.max.y - size.y * 0.24;
+    distance = size.y * 0.82 / visibleFrac;
+  }
+  controls.target.set(c.x, targetY, c.z);
+  camera.position.set(c.x, targetY + size.y * 0.04, c.z + distance);
+  camera.near = size.y/100; camera.far = size.y*10; camera.updateProjectionMatrix();
+  controls.update();
+}
+function setPanelExpanded(expanded) {
+  const panel = $('panel');
+  panel.classList.toggle('collapsed', !expanded);
+  $('panelChevron').textContent = expanded ? '▾' : '▸';
+  $('panelToggle').setAttribute('aria-expanded', expanded ? 'true' : 'false');
+  frameModel();
+}
+function togglePanel() {
+  setPanelExpanded($('panel').classList.contains('collapsed'));
 }
 function restoreSelection(payload) {
   if (!payload || !payload.code || !root) return;
@@ -475,13 +537,18 @@ function bindPicking() {
     $('btnfr').onclick = () => setLanguage('fr');
     $('btnar').onclick = () => setLanguage('ar');
     $('btnhome').onclick = resetView;
+    $('btnUpper').onclick = () => focusBodyRegion('upper');
+    $('btnLower').onclick = () => focusBodyRegion('lower');
+    $('panelToggle').onclick = togglePanel;
     $('btnmodel').textContent = model === 'male' ? '\u2640' : '\u2642';
     $('btnmodel').onclick = () => setModel(model === 'male' ? 'female' : 'male');
+    setLanguage(lang);
     window.setLayerOpacity = setLayerOpacity;   // API Flutter
     window.setLanguage = setLanguage;
     window.resetView = resetView;
     window.setModel = setModel;
     window.restoreSelection = restoreSelection;
+    window.focusBodyRegion = focusBodyRegion;
   } catch (e) {
     $('loadtxt').textContent = 'Erreur : ' + e.message;
     if (window.flutter_inappwebview)

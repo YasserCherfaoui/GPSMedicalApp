@@ -35,8 +35,9 @@ class Pain3dWwwRoot {
   Future<void> _syncBundledAssets() async {
     final stamp = File('${www.path}/.bundle_version');
     final viewer = File('${www.path}/pain_viewer.html');
+    const stampValue = '$pain3dAssetVersion+$pain3dViewerBundleRevision';
     if (await stamp.exists() &&
-        (await stamp.readAsString()).trim() == pain3dAssetVersion &&
+        (await stamp.readAsString()).trim() == stampValue &&
         await viewer.exists()) {
       pain3dLog('www bundle up-to-date (${viewer.path})');
       return;
@@ -58,7 +59,7 @@ class Pain3dWwwRoot {
       );
       copied++;
     }
-    await stamp.writeAsString(pain3dAssetVersion, flush: true);
+    await stamp.writeAsString(stampValue, flush: true);
     pain3dLog('www synced $copied files');
     if (!await viewer.exists()) {
       throw StateError('pain_viewer.html missing after www sync');
