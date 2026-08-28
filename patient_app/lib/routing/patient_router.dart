@@ -38,6 +38,17 @@ import '../features/teleconsultation/screens/patient_teleconsultation_screen.dar
 /// Root navigator for app-wide overlays (e.g. offline draft resume snackbar).
 final patientRootNavigatorKey = GlobalKey<NavigatorState>();
 
+/// Flag-off guard: `/pain-localization` is not a public surface.
+String? painLocalizationRouteRedirect({
+  required String matchedLocation,
+  required bool enabled,
+}) {
+  if (enabled) return null;
+  final path = matchedLocation.split('?').first;
+  if (path == GpsRoutes.painLocalization) return GpsRoutes.discover;
+  return null;
+}
+
 /// Configures GoRouter for the Patient Application, embedding Shell and Discovery routes.
 GoRouter createPatientRouter({
   required AuthSessionNotifier authListenable,
@@ -60,10 +71,10 @@ GoRouter createPatientRouter({
         onboardingCompleted: launchPreferences.onboardingCompleted,
       );
       if (authRedirect != null) return authRedirect;
-      if (state.matchedLocation == GpsRoutes.painLocalization && !painEnabled) {
-        return GpsRoutes.discover;
-      }
-      return null;
+      return painLocalizationRouteRedirect(
+        matchedLocation: state.matchedLocation,
+        enabled: painEnabled,
+      );
     },
     routes: [
       GoRoute(

@@ -7,6 +7,8 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:patient_app/features/discovery/screens/doctor_list_screen.dart';
 import 'package:patient_app/features/discovery/utils/discovery_api_error.dart';
 import 'package:patient_app/features/discovery/widgets/discovery_error_view.dart';
+import 'package:patient_app/features/pain_localization/providers/pain_localization_flag.provider.dart';
+import 'package:patient_app/features/pain_localization/widgets/pain_localization_home_card.dart';
 import '../../test_api_constants.dart';
 
 void main() {
@@ -22,9 +24,12 @@ void main() {
     client = GpsMedicalClient(tokenStore: InMemoryTokenStore(), v1Dio: dio);
   });
 
-  Widget wrap(Widget child) {
+  Widget wrap(Widget child, {List<Override> overrides = const []}) {
     return ProviderScope(
-      overrides: [gpsMedicalClientProvider.overrideWithValue(client)],
+      overrides: [
+        gpsMedicalClientProvider.overrideWithValue(client),
+        ...overrides,
+      ],
       child: MaterialApp(
         theme: GpsTheme.light(),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -94,6 +99,7 @@ void main() {
     expect(find.text('Dr. Benali'), findsOneWidget);
     expect(find.text('Cardiologie'), findsWidgets);
     expect(find.text('Prendre RDV'), findsOneWidget);
+    expect(find.text('Où avez-vous mal ?'), findsNothing);
   });
 
   testWidgets('shows empty state when no doctors returned', (tester) async {
@@ -110,6 +116,28 @@ void main() {
 
     expect(find.text('Aucun médecin trouvé'), findsOneWidget);
     expect(find.text('Rechercher'), findsOneWidget);
+  });
+
+  testWidgets('pain localization card appears only when the flag is on', (
+    tester,
+  ) async {
+    mockSpecialties();
+    dioAdapter.onGet('/doctors', (server) {
+      return server.reply(200, {
+        'data': <Map<String, dynamic>>[],
+        'meta': {'page': 1, 'page_size': 20, 'total': 0, 'total_pages': 0},
+      });
+    });
+
+    await tester.pumpWidget(
+      wrap(
+        const DoctorListScreen(),
+        overrides: [painLocalizationEnabledProvider.overrideWithValue(true)],
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.byType(PainLocalizationHomeCard), findsOneWidget);
+    expect(find.text('Où avez-vous mal ?'), findsOneWidget);
   });
 
   testWidgets('DiscoveryErrorView shows localized rate-limit countdown', (

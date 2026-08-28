@@ -177,6 +177,26 @@ void main() {
       expect(ar[key], isA<String>().having((s) => s.isNotEmpty, 'copy', true));
     }
   });
+
+  test('flavor configs keep the feature flag off', () {
+    for (final name in ['dev', 'staging', 'prod']) {
+      final raw = File('config/$name.json').readAsStringSync();
+      final json = jsonDecode(raw) as Map<String, dynamic>;
+      expect(json['PAIN_LOCALIZATION'], 'false', reason: name);
+    }
+  });
+
+  test('viewer has no CDN; OpenAPI has no pain-localization surface', () {
+    final html = File('assets/pain3d/pain_viewer.html').readAsStringSync();
+    expect(html.contains('cdn.jsdelivr'), isFalse);
+    expect(html.contains('unpkg.com'), isFalse);
+    expect(html.contains("setDecoderPath('./draco/')"), isTrue);
+
+    final spec = File('../../docs/api/openapi.yaml').readAsStringSync();
+    expect(spec.contains('pain-localization'), isFalse);
+    expect(spec.contains('zone_code'), isFalse);
+    expect(spec.contains('structure_code'), isFalse);
+  });
 }
 
 Set<String> _loadFrozenCodes(String fileName) {

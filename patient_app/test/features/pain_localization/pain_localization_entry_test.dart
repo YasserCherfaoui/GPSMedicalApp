@@ -10,6 +10,7 @@ import 'package:patient_app/features/pain_localization/screens/pain_localization
 import 'package:patient_app/features/pain_localization/services/pain3d_analytics.dart';
 import 'package:patient_app/features/pain_localization/services/pain3d_body_store.dart';
 import 'package:patient_app/features/pain_localization/widgets/pain_localization_home_card.dart';
+import 'package:patient_app/routing/patient_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -19,6 +20,37 @@ void main() {
 
   test('flag defaults off', () {
     expect(painLocalizationEnabledFromEnv(), isFalse);
+  });
+
+  test('flag-off redirects /pain-localization to Discover', () {
+    expect(
+      painLocalizationRouteRedirect(
+        matchedLocation: GpsRoutes.painLocalization,
+        enabled: false,
+      ),
+      GpsRoutes.discover,
+    );
+    expect(
+      painLocalizationRouteRedirect(
+        matchedLocation: GpsRoutes.painLocalizationBody('female'),
+        enabled: false,
+      ),
+      GpsRoutes.discover,
+    );
+    expect(
+      painLocalizationRouteRedirect(
+        matchedLocation: GpsRoutes.painLocalization,
+        enabled: true,
+      ),
+      isNull,
+    );
+    expect(
+      painLocalizationRouteRedirect(
+        matchedLocation: GpsRoutes.discover,
+        enabled: false,
+      ),
+      isNull,
+    );
   });
 
   test('Pain3dBodyStore remembers an explicit choice, not a profile', () async {
