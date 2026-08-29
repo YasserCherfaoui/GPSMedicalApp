@@ -12,6 +12,9 @@ abstract final class SpecialistRoutes {
   static String scheduleEditForClinic(String clinicId) =>
       '$scheduleEdit?clinicId=${Uri.encodeComponent(clinicId)}';
 
+  static String incomingBilanDetail(String transmissionId) =>
+      '/specialist/incoming-bilans/$transmissionId';
+
   static String appointmentDetail(String id) => '/specialist/appointments/$id';
   static String appointmentReschedule(String id) =>
       '/specialist/appointments/$id/reschedule';

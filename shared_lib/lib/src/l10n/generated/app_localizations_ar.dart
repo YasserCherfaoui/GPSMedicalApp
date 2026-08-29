@@ -2582,11 +2582,103 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get anamnesisRegenerativeMessage =>
-      'يمكن متابعة مسارك نحو ميزانية شخصية. المسار التفصيلي قريباً (W26).';
+      'يمكن متابعة مسارك نحو bilan شخصي تجديدي.';
 
   @override
-  String get anamnesisParcoursCta => 'عرض مساري';
+  String get anamnesisParcoursCta => 'إنشاء bilan';
 
   @override
-  String get anamnesisParcoursSoon => 'المسار التجديدي سيكون متاحاً قريباً.';
+  String get anamnesisParcoursSoon => 'جاري إنشاء bilan…';
+
+  @override
+  String get bilanListTitle => 'bilan الخاص بي';
+
+  @override
+  String get bilanDetailTitle => 'bilan مفصل';
+
+  @override
+  String get bilanLoadError => 'تعذر تحميل bilan.';
+
+  @override
+  String get bilanListEmpty => 'لا يوجد bilan حالياً.';
+
+  @override
+  String bilanListItemTitle(String zone) {
+    return 'منطقة $zone';
+  }
+
+  @override
+  String bilanListItemSubtitle(int score, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMMMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'النتيجة $score % · $dateString';
+  }
+
+  @override
+  String bilanScoreLabel(int score) {
+    return 'نتيجة الملاءمة: $score %';
+  }
+
+  @override
+  String get bilanSummarySection => 'الملخص';
+
+  @override
+  String get bilanOrientationSection => 'التوجيه';
+
+  @override
+  String get bilanExportPdf => 'تصدير PDF';
+
+  @override
+  String get bilanPdfOpenError => 'تعذر فتح PDF.';
+
+  @override
+  String get bilanTransmitCta => 'إرسال إلى أخصائي';
+
+  @override
+  String get bilanTransmitTitle => 'إرسال bilan';
+
+  @override
+  String get bilanTransmitHelp => 'أدخل معرف الأخصائي المستلم (UUID).';
+
+  @override
+  String get bilanTransmitSpecialistId => 'معرف الأخصائي';
+
+  @override
+  String get bilanTransmitSpecialistRequired => 'معرف الأخصائي مطلوب.';
+
+  @override
+  String get bilanTransmitConfirm => 'إرسال';
+
+  @override
+  String get bilanTransmitSuccess => 'تم إرسال bilan إلى الأخصائي.';
+
+  @override
+  String get profileBilanTile => 'bilan الخاص بي';
+
+  @override
+  String get specialistIncomingBilansTab => 'الbilans';
+
+  @override
+  String get specialistIncomingBilansEmpty => 'لا bilans واردة.';
+
+  @override
+  String get specialistIncomingBilansError => 'تعذر تحميل bilans الواردة.';
+
+  @override
+  String specialistIncomingBilanItem(String id) {
+    return 'Bilan $id';
+  }
+
+  @override
+  String get specialistIncomingBilanDetailTitle => 'Bilan وارد';
+
+  @override
+  String get specialistIncomingBilanMarkReviewed => 'تحديد كمراجع';
+
+  @override
+  String get specialistIncomingBilanReviewed => 'تم تحديد bilan كمراجع.';
+
+  @override
+  String get specialistIncomingBilanOpenAgenda => 'فتح الأجندة';
 }

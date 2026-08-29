@@ -6,6 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../bilan/providers/bilan_providers.dart';
+import '../../bilan/repositories/bilan_repository.dart';
 import '../../pain_localization/models/pain_selection.dart';
 import '../models/anamnesis_models.dart';
 import '../providers/anamnesis_providers.dart';
@@ -27,6 +29,7 @@ class AnamnesisQcmScreen extends ConsumerStatefulWidget {
 
 class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
   AnamnesisSession? _session;
+  bool _generatingBilan = false;
   AnamnesisQuestion? _question;
   var _loading = true;
   var _submitting = false;
@@ -407,12 +410,16 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
             const SizedBox(height: GpsSpacing.lg),
             if (regenerative) ...[
               FilledButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(l10n.anamnesisParcoursSoon)),
-                  );
-                },
-                child: Text(l10n.anamnesisParcoursCta),
+                onPressed: _generatingBilan || _session == null
+                    ? null
+                    : () => _generateBilan(context),
+                child: _generatingBilan
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : Text(l10n.anamnesisParcoursCta),
               ),
               const SizedBox(height: GpsSpacing.sm),
             ],
@@ -483,5 +490,34 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
         ),
       ],
     );
+  }
+
+  Future<void> _generateBilan(BuildContext context) async {
+    final sessionId = _session?.id;
+    if (sessionId == null) return;
+    final l10n = AppLocalizations.of(context)!;
+    setState(() => _generatingBilan = true);
+    try {
+      final repo = ref.read(bilanRepositoryProvider);
+      final bilan = await repo.createBilan(sessionId: sessionId);
+      ref.invalidate(bilanListProvider);
+      if (mounted) {
+        context.push(GpsRoutes.bilanDetail(bilan.id));
+      }
+    } on BilanApiException catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.message)),
+        );
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.bilanLoadError)),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _generatingBilan = false);
+    }
   }
 }

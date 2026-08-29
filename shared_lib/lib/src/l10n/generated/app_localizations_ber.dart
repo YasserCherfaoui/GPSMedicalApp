@@ -2613,11 +2613,104 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get anamnesisRegenerativeMessage =>
-      'Abrid-ik yezmer ad ikemmel ɣer ubilan uslig. Abrid d-iteddu (W26).';
+      'Abrid-ik yezmer ad ikemmel ɣer ubilan udmawan n usnerni.';
 
   @override
-  String get anamnesisParcoursCta => 'Wali abrid-iw';
+  String get anamnesisParcoursCta => 'Snulfu-d ubilan-iw';
 
   @override
-  String get anamnesisParcoursSoon => 'Abrid n usnerni ad yili qrib.';
+  String get anamnesisParcoursSoon => 'Asnulfu n ubilan iteddu…';
+
+  @override
+  String get bilanListTitle => 'Ubilan-iw';
+
+  @override
+  String get bilanDetailTitle => 'Ubilan udrig';
+
+  @override
+  String get bilanLoadError => 'Ur yezmir ara ad d-yali ubilan.';
+
+  @override
+  String get bilanListEmpty => 'Ulac ubilan akka tura.';
+
+  @override
+  String bilanListItemTitle(String zone) {
+    return 'Tamnaḍt $zone';
+  }
+
+  @override
+  String bilanListItemSubtitle(int score, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMMMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Aktaz $score % · $dateString';
+  }
+
+  @override
+  String bilanScoreLabel(int score) {
+    return 'Aktaz n umsaɣ: $score %';
+  }
+
+  @override
+  String get bilanSummarySection => 'Tajmilt';
+
+  @override
+  String get bilanOrientationSection => 'Asenfel';
+
+  @override
+  String get bilanExportPdf => 'Sifeḍ PDF';
+
+  @override
+  String get bilanPdfOpenError => 'Ur yezmir ara ad yeldi PDF.';
+
+  @override
+  String get bilanTransmitCta => 'Azen i uḥbas';
+
+  @override
+  String get bilanTransmitTitle => 'Tuzna n ubilan';
+
+  @override
+  String get bilanTransmitHelp => 'Sekcem ID n uḥbas (UUID).';
+
+  @override
+  String get bilanTransmitSpecialistId => 'ID n uḥbas';
+
+  @override
+  String get bilanTransmitSpecialistRequired => 'ID n uḥbas yettwasra.';
+
+  @override
+  String get bilanTransmitConfirm => 'Azen';
+
+  @override
+  String get bilanTransmitSuccess => 'Ubilan yettwazen i uḥbas.';
+
+  @override
+  String get profileBilanTile => 'Ubilan-iw';
+
+  @override
+  String get specialistIncomingBilansTab => 'Ibilans';
+
+  @override
+  String get specialistIncomingBilansEmpty => 'Ulac ibilans i d-ekken.';
+
+  @override
+  String get specialistIncomingBilansError =>
+      'Ur yezmir ara ad d-yalent ibilans.';
+
+  @override
+  String specialistIncomingBilanItem(String id) {
+    return 'Ubilan $id';
+  }
+
+  @override
+  String get specialistIncomingBilanDetailTitle => 'Ubilan i d-yekka';
+
+  @override
+  String get specialistIncomingBilanMarkReviewed => 'Creḍ yettwaseklen';
+
+  @override
+  String get specialistIncomingBilanReviewed => 'Ubilan yettwaseklen.';
+
+  @override
+  String get specialistIncomingBilanOpenAgenda => 'Ldi ajenda';
 }

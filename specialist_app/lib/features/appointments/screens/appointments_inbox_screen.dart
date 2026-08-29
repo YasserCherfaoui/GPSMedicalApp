@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../../routing/specialist_routes.dart';
+import '../../incoming_bilans/screens/incoming_bilans_list_screen.dart';
 import '../providers/appointments.provider.dart';
 import '../widgets/specialist_appointment_row_tile.dart';
 
@@ -23,7 +24,7 @@ class _AppointmentsInboxScreenState extends ConsumerState<AppointmentsInboxScree
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     _historyScrollController.addListener(_onHistoryScroll);
   }
 
@@ -55,6 +56,7 @@ class _AppointmentsInboxScreenState extends ConsumerState<AppointmentsInboxScree
           controller: _tabController,
           tabs: [
             Tab(text: l10n.specialistInboxTabRequests),
+            Tab(text: l10n.specialistIncomingBilansTab),
             Tab(text: l10n.specialistInboxTabConfirmed),
             Tab(text: l10n.specialistInboxTabHistory),
           ],
@@ -74,6 +76,7 @@ class _AppointmentsInboxScreenState extends ConsumerState<AppointmentsInboxScree
                 },
                 onTap: _openDetail,
               ),
+              const IncomingBilansListScreen(),
               _AppointmentTab(
                 asyncValue: ref.watch(specialistConfirmedAppointmentsProvider),
                 emptyTitle: l10n.specialistInboxEmptyConfirmed,

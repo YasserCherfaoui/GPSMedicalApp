@@ -865,7 +865,40 @@
   "anamnesisUrgenceNumbersLabel": "Uṭṭunen n tezgentin",
   "anamnesisUrgenceAck": "Gziɣ",
   "anamnesisRegenerativeTitle": "Asenfel n usnerni",
-  "anamnesisRegenerativeMessage": "Abrid-ik yezmer ad ikemmel ɣer ubilan uslig. Abrid d-iteddu (W26).",
-  "anamnesisParcoursCta": "Wali abrid-iw",
-  "anamnesisParcoursSoon": "Abrid n usnerni ad yili qrib."
+  "anamnesisRegenerativeMessage": "Abrid-ik yezmer ad ikemmel ɣer ubilan udmawan n usnerni.",
+  "anamnesisParcoursCta": "Snulfu-d ubilan-iw",
+  "anamnesisParcoursSoon": "Asnulfu n ubilan iteddu…",
+  "bilanListTitle": "Ubilan-iw",
+  "bilanDetailTitle": "Ubilan udrig",
+  "bilanLoadError": "Ur yezmir ara ad d-yali ubilan.",
+  "bilanListEmpty": "Ulac ubilan akka tura.",
+  "bilanListItemTitle": "Tamnaḍt {zone}",
+  "bilanListItemSubtitle": "Aktaz {score} % · {date}",
+  "bilanScoreLabel": "Aktaz n umsaɣ: {score} %",
+  "bilanSummarySection": "Tajmilt",
+  "bilanOrientationSection": "Asenfel",
+  "bilanExportPdf": "Sifeḍ PDF",
+  "bilanPdfOpenError": "Ur yezmir ara ad yeldi PDF.",
+  "bilanTransmitCta": "Azen i uḥbas",
+  "bilanTransmitTitle": "Tuzna n ubilan",
+  "bilanTransmitHelp": "Sekcem ID n uḥbas (UUID).",
+  "bilanTransmitSpecialistId": "ID n uḥbas",
+  "bilanTransmitSpecialistRequired": "ID n uḥbas yettwasra.",
+  "bilanTransmitConfirm": "Azen",
+  "bilanTransmitSuccess": "Ubilan yettwazen i uḥbas.",
+  "profileBilanTile": "Ubilan-iw",
+  "specialistIncomingBilansTab": "Ibilans",
+  "specialistIncomingBilansEmpty": "Ulac ibilans i d-ekken.",
+  "specialistIncomingBilansError": "Ur yezmir ara ad d-yalent ibilans.",
+  "specialistIncomingBilanItem": "Ubilan {id}",
+  "specialistIncomingBilanDetailTitle": "Ubilan i d-yekka",
+  "specialistIncomingBilanMarkReviewed": "Creḍ yettwaseklen",
+  "specialistIncomingBilanReviewed": "Ubilan yettwaseklen.",
+  "specialistIncomingBilanOpenAgenda": "Ldi ajenda",
+  "@anamnesisProgressCount": {
+    "placeholders": {
+      "answered": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  }
 }

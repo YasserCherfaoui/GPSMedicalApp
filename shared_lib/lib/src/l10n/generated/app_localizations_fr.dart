@@ -2646,12 +2646,106 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get anamnesisRegenerativeMessage =>
-      'Votre parcours peut se poursuivre vers un bilan personnalisé. Le parcours détaillé arrive bientôt (W26).';
+      'Votre parcours peut se poursuivre vers un bilan personnalisé régénérative.';
 
   @override
-  String get anamnesisParcoursCta => 'Voir mon parcours';
+  String get anamnesisParcoursCta => 'Générer mon bilan';
 
   @override
-  String get anamnesisParcoursSoon =>
-      'Le parcours régénératif sera disponible prochainement.';
+  String get anamnesisParcoursSoon => 'Génération du bilan en cours…';
+
+  @override
+  String get bilanListTitle => 'Mon bilan';
+
+  @override
+  String get bilanDetailTitle => 'Bilan détaillé';
+
+  @override
+  String get bilanLoadError => 'Impossible de charger le bilan.';
+
+  @override
+  String get bilanListEmpty => 'Aucun bilan pour le moment.';
+
+  @override
+  String bilanListItemTitle(String zone) {
+    return 'Zone $zone';
+  }
+
+  @override
+  String bilanListItemSubtitle(int score, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMMMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Score $score % · $dateString';
+  }
+
+  @override
+  String bilanScoreLabel(int score) {
+    return 'Score de pertinence : $score %';
+  }
+
+  @override
+  String get bilanSummarySection => 'Synthèse';
+
+  @override
+  String get bilanOrientationSection => 'Orientation';
+
+  @override
+  String get bilanExportPdf => 'Exporter le PDF';
+
+  @override
+  String get bilanPdfOpenError => 'Impossible d\'ouvrir le PDF.';
+
+  @override
+  String get bilanTransmitCta => 'Transmettre à un spécialiste';
+
+  @override
+  String get bilanTransmitTitle => 'Transmission du bilan';
+
+  @override
+  String get bilanTransmitHelp =>
+      'Saisissez l\'identifiant du spécialiste destinataire (UUID directory.specialists).';
+
+  @override
+  String get bilanTransmitSpecialistId => 'ID spécialiste';
+
+  @override
+  String get bilanTransmitSpecialistRequired =>
+      'L\'identifiant spécialiste est requis.';
+
+  @override
+  String get bilanTransmitConfirm => 'Transmettre';
+
+  @override
+  String get bilanTransmitSuccess => 'Bilan transmis au spécialiste.';
+
+  @override
+  String get profileBilanTile => 'Mon bilan';
+
+  @override
+  String get specialistIncomingBilansTab => 'Bilans';
+
+  @override
+  String get specialistIncomingBilansEmpty => 'Aucun bilan entrant.';
+
+  @override
+  String get specialistIncomingBilansError =>
+      'Impossible de charger les bilans entrants.';
+
+  @override
+  String specialistIncomingBilanItem(String id) {
+    return 'Bilan $id';
+  }
+
+  @override
+  String get specialistIncomingBilanDetailTitle => 'Bilan entrant';
+
+  @override
+  String get specialistIncomingBilanMarkReviewed => 'Marquer comme revu';
+
+  @override
+  String get specialistIncomingBilanReviewed => 'Bilan marqué comme revu.';
+
+  @override
+  String get specialistIncomingBilanOpenAgenda => 'Ouvrir l\'agenda';
 }

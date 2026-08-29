@@ -1067,9 +1067,51 @@
   "anamnesisUrgenceNumbersLabel": "Numéros d'urgence",
   "anamnesisUrgenceAck": "J'ai compris",
   "anamnesisRegenerativeTitle": "Orientation régénérative",
-  "anamnesisRegenerativeMessage": "Votre parcours peut se poursuivre vers un bilan personnalisé. Le parcours détaillé arrive bientôt (W26).",
-  "anamnesisParcoursCta": "Voir mon parcours",
-  "anamnesisParcoursSoon": "Le parcours régénératif sera disponible prochainement.",
+  "anamnesisRegenerativeMessage": "Votre parcours peut se poursuivre vers un bilan personnalisé régénérative.",
+  "anamnesisParcoursCta": "Générer mon bilan",
+  "anamnesisParcoursSoon": "Génération du bilan en cours…",
+  "bilanListTitle": "Mon bilan",
+  "bilanDetailTitle": "Bilan détaillé",
+  "bilanLoadError": "Impossible de charger le bilan.",
+  "bilanListEmpty": "Aucun bilan pour le moment.",
+  "bilanListItemTitle": "Zone {zone}",
+  "@bilanListItemTitle": {
+    "placeholders": { "zone": { "type": "String" } }
+  },
+  "bilanListItemSubtitle": "Score {score} % · {date}",
+  "@bilanListItemSubtitle": {
+    "placeholders": {
+      "score": { "type": "int" },
+      "date": { "type": "DateTime", "format": "yMMMd" }
+    }
+  },
+  "bilanScoreLabel": "Score de pertinence : {score} %",
+  "@bilanScoreLabel": {
+    "placeholders": { "score": { "type": "int" } }
+  },
+  "bilanSummarySection": "Synthèse",
+  "bilanOrientationSection": "Orientation",
+  "bilanExportPdf": "Exporter le PDF",
+  "bilanPdfOpenError": "Impossible d'ouvrir le PDF.",
+  "bilanTransmitCta": "Transmettre à un spécialiste",
+  "bilanTransmitTitle": "Transmission du bilan",
+  "bilanTransmitHelp": "Saisissez l'identifiant du spécialiste destinataire (UUID directory.specialists).",
+  "bilanTransmitSpecialistId": "ID spécialiste",
+  "bilanTransmitSpecialistRequired": "L'identifiant spécialiste est requis.",
+  "bilanTransmitConfirm": "Transmettre",
+  "bilanTransmitSuccess": "Bilan transmis au spécialiste.",
+  "profileBilanTile": "Mon bilan",
+  "specialistIncomingBilansTab": "Bilans",
+  "specialistIncomingBilansEmpty": "Aucun bilan entrant.",
+  "specialistIncomingBilansError": "Impossible de charger les bilans entrants.",
+  "specialistIncomingBilanItem": "Bilan {id}",
+  "@specialistIncomingBilanItem": {
+    "placeholders": { "id": { "type": "String" } }
+  },
+  "specialistIncomingBilanDetailTitle": "Bilan entrant",
+  "specialistIncomingBilanMarkReviewed": "Marquer comme revu",
+  "specialistIncomingBilanReviewed": "Bilan marqué comme revu.",
+  "specialistIncomingBilanOpenAgenda": "Ouvrir l'agenda",
   "@anamnesisProgressCount": {
     "placeholders": {
       "answered": { "type": "int" },

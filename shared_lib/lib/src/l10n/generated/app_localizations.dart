@@ -4849,20 +4849,182 @@ abstract class AppLocalizations {
   /// No description provided for @anamnesisRegenerativeMessage.
   ///
   /// In fr, this message translates to:
-  /// **'Votre parcours peut se poursuivre vers un bilan personnalisé. Le parcours détaillé arrive bientôt (W26).'**
+  /// **'Votre parcours peut se poursuivre vers un bilan personnalisé régénérative.'**
   String get anamnesisRegenerativeMessage;
 
   /// No description provided for @anamnesisParcoursCta.
   ///
   /// In fr, this message translates to:
-  /// **'Voir mon parcours'**
+  /// **'Générer mon bilan'**
   String get anamnesisParcoursCta;
 
   /// No description provided for @anamnesisParcoursSoon.
   ///
   /// In fr, this message translates to:
-  /// **'Le parcours régénératif sera disponible prochainement.'**
+  /// **'Génération du bilan en cours…'**
   String get anamnesisParcoursSoon;
+
+  /// No description provided for @bilanListTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon bilan'**
+  String get bilanListTitle;
+
+  /// No description provided for @bilanDetailTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bilan détaillé'**
+  String get bilanDetailTitle;
+
+  /// No description provided for @bilanLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger le bilan.'**
+  String get bilanLoadError;
+
+  /// No description provided for @bilanListEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun bilan pour le moment.'**
+  String get bilanListEmpty;
+
+  /// No description provided for @bilanListItemTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Zone {zone}'**
+  String bilanListItemTitle(String zone);
+
+  /// No description provided for @bilanListItemSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Score {score} % · {date}'**
+  String bilanListItemSubtitle(int score, DateTime date);
+
+  /// No description provided for @bilanScoreLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Score de pertinence : {score} %'**
+  String bilanScoreLabel(int score);
+
+  /// No description provided for @bilanSummarySection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Synthèse'**
+  String get bilanSummarySection;
+
+  /// No description provided for @bilanOrientationSection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Orientation'**
+  String get bilanOrientationSection;
+
+  /// No description provided for @bilanExportPdf.
+  ///
+  /// In fr, this message translates to:
+  /// **'Exporter le PDF'**
+  String get bilanExportPdf;
+
+  /// No description provided for @bilanPdfOpenError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible d\'ouvrir le PDF.'**
+  String get bilanPdfOpenError;
+
+  /// No description provided for @bilanTransmitCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmettre à un spécialiste'**
+  String get bilanTransmitCta;
+
+  /// No description provided for @bilanTransmitTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmission du bilan'**
+  String get bilanTransmitTitle;
+
+  /// No description provided for @bilanTransmitHelp.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisissez l\'identifiant du spécialiste destinataire (UUID directory.specialists).'**
+  String get bilanTransmitHelp;
+
+  /// No description provided for @bilanTransmitSpecialistId.
+  ///
+  /// In fr, this message translates to:
+  /// **'ID spécialiste'**
+  String get bilanTransmitSpecialistId;
+
+  /// No description provided for @bilanTransmitSpecialistRequired.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'identifiant spécialiste est requis.'**
+  String get bilanTransmitSpecialistRequired;
+
+  /// No description provided for @bilanTransmitConfirm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Transmettre'**
+  String get bilanTransmitConfirm;
+
+  /// No description provided for @bilanTransmitSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bilan transmis au spécialiste.'**
+  String get bilanTransmitSuccess;
+
+  /// No description provided for @profileBilanTile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon bilan'**
+  String get profileBilanTile;
+
+  /// No description provided for @specialistIncomingBilansTab.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bilans'**
+  String get specialistIncomingBilansTab;
+
+  /// No description provided for @specialistIncomingBilansEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun bilan entrant.'**
+  String get specialistIncomingBilansEmpty;
+
+  /// No description provided for @specialistIncomingBilansError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les bilans entrants.'**
+  String get specialistIncomingBilansError;
+
+  /// No description provided for @specialistIncomingBilanItem.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bilan {id}'**
+  String specialistIncomingBilanItem(String id);
+
+  /// No description provided for @specialistIncomingBilanDetailTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bilan entrant'**
+  String get specialistIncomingBilanDetailTitle;
+
+  /// No description provided for @specialistIncomingBilanMarkReviewed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Marquer comme revu'**
+  String get specialistIncomingBilanMarkReviewed;
+
+  /// No description provided for @specialistIncomingBilanReviewed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bilan marqué comme revu.'**
+  String get specialistIncomingBilanReviewed;
+
+  /// No description provided for @specialistIncomingBilanOpenAgenda.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ouvrir l\'agenda'**
+  String get specialistIncomingBilanOpenAgenda;
 }
 
 class _AppLocalizationsDelegate

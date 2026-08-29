@@ -865,7 +865,40 @@
   "anamnesisUrgenceNumbersLabel": "أرقام الطوارئ",
   "anamnesisUrgenceAck": "فهمت",
   "anamnesisRegenerativeTitle": "توجيه تجديدي",
-  "anamnesisRegenerativeMessage": "يمكن متابعة مسارك نحو ميزانية شخصية. المسار التفصيلي قريباً (W26).",
-  "anamnesisParcoursCta": "عرض مساري",
-  "anamnesisParcoursSoon": "المسار التجديدي سيكون متاحاً قريباً."
+  "anamnesisRegenerativeMessage": "يمكن متابعة مسارك نحو bilan شخصي تجديدي.",
+  "anamnesisParcoursCta": "إنشاء bilan",
+  "anamnesisParcoursSoon": "جاري إنشاء bilan…",
+  "bilanListTitle": "bilan الخاص بي",
+  "bilanDetailTitle": "bilan مفصل",
+  "bilanLoadError": "تعذر تحميل bilan.",
+  "bilanListEmpty": "لا يوجد bilan حالياً.",
+  "bilanListItemTitle": "منطقة {zone}",
+  "bilanListItemSubtitle": "النتيجة {score} % · {date}",
+  "bilanScoreLabel": "نتيجة الملاءمة: {score} %",
+  "bilanSummarySection": "الملخص",
+  "bilanOrientationSection": "التوجيه",
+  "bilanExportPdf": "تصدير PDF",
+  "bilanPdfOpenError": "تعذر فتح PDF.",
+  "bilanTransmitCta": "إرسال إلى أخصائي",
+  "bilanTransmitTitle": "إرسال bilan",
+  "bilanTransmitHelp": "أدخل معرف الأخصائي المستلم (UUID).",
+  "bilanTransmitSpecialistId": "معرف الأخصائي",
+  "bilanTransmitSpecialistRequired": "معرف الأخصائي مطلوب.",
+  "bilanTransmitConfirm": "إرسال",
+  "bilanTransmitSuccess": "تم إرسال bilan إلى الأخصائي.",
+  "profileBilanTile": "bilan الخاص بي",
+  "specialistIncomingBilansTab": "الbilans",
+  "specialistIncomingBilansEmpty": "لا bilans واردة.",
+  "specialistIncomingBilansError": "تعذر تحميل bilans الواردة.",
+  "specialistIncomingBilanItem": "Bilan {id}",
+  "specialistIncomingBilanDetailTitle": "Bilan وارد",
+  "specialistIncomingBilanMarkReviewed": "تحديد كمراجع",
+  "specialistIncomingBilanReviewed": "تم تحديد bilan كمراجع.",
+  "specialistIncomingBilanOpenAgenda": "فتح الأجندة",
+  "@anamnesisProgressCount": {
+    "placeholders": {
+      "answered": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  }
 }

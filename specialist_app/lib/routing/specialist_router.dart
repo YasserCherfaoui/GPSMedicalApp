@@ -17,6 +17,7 @@ import '../features/prescriptions/screens/specialist_prescription_compose_screen
 import '../features/profile/screens/clinic_memberships_screen.dart';
 import '../features/profile/screens/specialist_profile_edit_screen.dart';
 import '../features/schedule/screens/schedule_editor_screen.dart';
+import '../features/incoming_bilans/screens/incoming_bilan_detail_screen.dart';
 import '../screens/specialist_shell_screen.dart';
 import '../screens/verification_pending_screen.dart';
 import 'specialist_redirect.dart';
@@ -189,6 +190,12 @@ GoRouter createSpecialistRouter({
       GoRoute(
         path: SpecialistRoutes.clinicMemberships,
         builder: (context, state) => const ClinicMembershipsScreen(),
+      ),
+      GoRoute(
+        path: '/specialist/incoming-bilans/:transmissionId',
+        builder: (context, state) => IncomingBilanDetailScreen(
+          transmissionId: state.pathParameters['transmissionId']!,
+        ),
       ),
       GoRoute(
         path: SpecialistRoutes.shell,
