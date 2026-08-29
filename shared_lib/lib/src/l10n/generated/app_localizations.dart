@@ -4599,6 +4599,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{answered} / {total}'**
   String anamnesisProgressCount(int answered, int total);
+
+  /// No description provided for @anamnesisScoreLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Score de pertinence régénérative'**
+  String get anamnesisScoreLabel;
 }
 
 class _AppLocalizationsDelegate

@@ -823,5 +823,6 @@
   "anamnesisUnsupportedQuestion": "Anaw n usteqsi ur yettwasefrak ara.",
   "anamnesisDurationValue": "Azman",
   "anamnesisProgressOpen": "{answered} tiririt",
-  "anamnesisProgressCount": "{answered} / {total}"
+  "anamnesisProgressCount": "{answered} / {total}",
+  "anamnesisScoreLabel": "Aɣan n umeslay alemmas"
 }

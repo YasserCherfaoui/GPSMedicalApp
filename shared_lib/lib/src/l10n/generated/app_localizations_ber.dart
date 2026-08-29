@@ -2478,4 +2478,7 @@ class AppLocalizationsBer extends AppLocalizations {
   String anamnesisProgressCount(int answered, int total) {
     return '$answered / $total';
   }
+
+  @override
+  String get anamnesisScoreLabel => 'Aɣan n umeslay alemmas';
 }

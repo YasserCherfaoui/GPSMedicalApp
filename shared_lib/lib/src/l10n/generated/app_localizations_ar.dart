@@ -2448,4 +2448,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String anamnesisProgressCount(int answered, int total) {
     return '$answered / $total';
   }
+
+  @override
+  String get anamnesisScoreLabel => 'نقاط الملاءمة التجديدية';
 }

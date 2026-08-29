@@ -823,5 +823,6 @@
   "anamnesisUnsupportedQuestion": "نوع السؤال غير مدعوم.",
   "anamnesisDurationValue": "المدة",
   "anamnesisProgressOpen": "{answered} إجابة",
-  "anamnesisProgressCount": "{answered} / {total}"
+  "anamnesisProgressCount": "{answered} / {total}",
+  "anamnesisScoreLabel": "نقاط الملاءمة التجديدية"
 }

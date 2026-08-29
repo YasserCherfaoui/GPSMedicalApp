@@ -13,6 +13,7 @@ import '../repositories/anamnesis_repository.dart';
 import '../services/anamnesis_answer_queue.dart';
 import '../widgets/anamnesis_progress_bar.dart';
 import '../widgets/anamnesis_question_view.dart';
+import '../widgets/anamnesis_score_banner.dart';
 
 class AnamnesisQcmScreen extends ConsumerStatefulWidget {
   const AnamnesisQcmScreen({required this.selection, super.key});
@@ -30,6 +31,7 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
   var _submitting = false;
   String? _error;
   var _complete = false;
+  AnamnesisSessionScore? _score;
 
   @override
   void initState() {
@@ -133,6 +135,7 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
         _session = result.session;
         _question = result.nextQuestion;
         _complete = result.sessionComplete;
+        _score = result.score;
         _submitting = false;
       });
     } on AnamnesisApiException catch (e) {
@@ -228,6 +231,13 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: GpsSpacing.sm),
+            if (_score != null) ...[
+              AnamnesisScoreBanner(
+                score: _score!,
+                scoreLabel: l10n.anamnesisScoreLabel,
+              ),
+              const SizedBox(height: GpsSpacing.md),
+            ],
             Text(l10n.anamnesisCompleteMessage, textAlign: TextAlign.center),
             const SizedBox(height: GpsSpacing.lg),
             FilledButton(
@@ -244,6 +254,13 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AnamnesisProgressBar(progress: session.progress),
+        if (_score != null) ...[
+          const SizedBox(height: GpsSpacing.sm),
+          AnamnesisScoreBanner(
+            score: _score!,
+            scoreLabel: l10n.anamnesisScoreLabel,
+          ),
+        ],
         const SizedBox(height: GpsSpacing.sm),
         Text(
           l10n.anamnesisDisclaimer,

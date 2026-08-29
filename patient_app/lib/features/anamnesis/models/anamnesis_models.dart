@@ -152,16 +152,51 @@ class AnamnesisQuestion {
   }
 }
 
+class AnamnesisSessionScore {
+  const AnamnesisSessionScore({
+    required this.finalScore,
+    required this.deterministicScore,
+    required this.llmAdjustment,
+    required this.rationaleFr,
+    required this.legalBannerFr,
+  });
+
+  final double finalScore;
+  final double deterministicScore;
+  final double llmAdjustment;
+  final String rationaleFr;
+  final String legalBannerFr;
+
+  factory AnamnesisSessionScore.fromJson(Map<String, dynamic> json) {
+    double numField(String key) {
+      final v = json[key];
+      if (v is num) return v.toDouble();
+      if (v is String) return double.tryParse(v) ?? 0;
+      return 0;
+    }
+
+    return AnamnesisSessionScore(
+      finalScore: numField('final_score'),
+      deterministicScore: numField('deterministic_score'),
+      llmAdjustment: numField('llm_adjustment'),
+      rationaleFr: json['rationale_fr'] as String? ?? '',
+      legalBannerFr: json['legal_banner_fr'] as String? ?? '',
+    );
+  }
+}
+
 class AnamnesisAnswerResult {
   const AnamnesisAnswerResult({
     required this.session,
     required this.sessionComplete,
     this.nextQuestion,
+    this.score,
   });
 
   final AnamnesisSession session;
   final bool sessionComplete;
   final AnamnesisQuestion? nextQuestion;
+  final AnamnesisSessionScore? score;
 
   factory AnamnesisAnswerResult.fromJson(Map<String, dynamic> json) {
     return AnamnesisAnswerResult(
@@ -173,6 +208,11 @@ class AnamnesisAnswerResult {
           ? null
           : AnamnesisQuestion.fromJson(
               Map<String, dynamic>.from(json['next_question'] as Map),
+            ),
+      score: json['score'] == null
+          ? null
+          : AnamnesisSessionScore.fromJson(
+              Map<String, dynamic>.from(json['score'] as Map),
             ),
     );
   }

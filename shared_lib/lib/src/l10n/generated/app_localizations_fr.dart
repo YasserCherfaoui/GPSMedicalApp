@@ -2509,4 +2509,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String anamnesisProgressCount(int answered, int total) {
     return '$answered / $total';
   }
+
+  @override
+  String get anamnesisScoreLabel => 'Score de pertinence régénérative';
 }

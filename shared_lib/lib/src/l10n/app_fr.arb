@@ -1020,6 +1020,7 @@
     "placeholders": { "answered": { "type": "int" } }
   },
   "anamnesisProgressCount": "{answered} / {total}",
+  "anamnesisScoreLabel": "Score de pertinence régénérative",
   "@anamnesisProgressCount": {
     "placeholders": {
       "answered": { "type": "int" },
