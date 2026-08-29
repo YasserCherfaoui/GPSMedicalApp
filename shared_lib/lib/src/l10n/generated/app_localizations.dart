@@ -4515,6 +4515,90 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Sélections enregistrées sur cet appareil.'**
   String get painLocalizationConfirmedSnackbar;
+
+  /// No description provided for @anamnesisTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Questionnaire'**
+  String get anamnesisTitle;
+
+  /// No description provided for @anamnesisLoading.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chargement du questionnaire…'**
+  String get anamnesisLoading;
+
+  /// No description provided for @anamnesisError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger le questionnaire.'**
+  String get anamnesisError;
+
+  /// No description provided for @anamnesisRetry.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réessayer'**
+  String get anamnesisRetry;
+
+  /// No description provided for @anamnesisContinue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer'**
+  String get anamnesisContinue;
+
+  /// No description provided for @anamnesisDone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminer'**
+  String get anamnesisDone;
+
+  /// No description provided for @anamnesisCompleteTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Questionnaire terminé'**
+  String get anamnesisCompleteTitle;
+
+  /// No description provided for @anamnesisCompleteMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos réponses ont été enregistrées.'**
+  String get anamnesisCompleteMessage;
+
+  /// No description provided for @anamnesisOfflineQueued.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réponse enregistrée localement — synchronisation à la reconnexion.'**
+  String get anamnesisOfflineQueued;
+
+  /// No description provided for @anamnesisDisclaimer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aide à l\'orientation — pas un diagnostic médical.'**
+  String get anamnesisDisclaimer;
+
+  /// No description provided for @anamnesisUnsupportedQuestion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type de question non pris en charge.'**
+  String get anamnesisUnsupportedQuestion;
+
+  /// No description provided for @anamnesisDurationValue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée'**
+  String get anamnesisDurationValue;
+
+  /// No description provided for @anamnesisProgressOpen.
+  ///
+  /// In fr, this message translates to:
+  /// **'{answered} question(s) répondue(s)'**
+  String anamnesisProgressOpen(int answered);
+
+  /// No description provided for @anamnesisProgressCount.
+  ///
+  /// In fr, this message translates to:
+  /// **'{answered} / {total}'**
+  String anamnesisProgressCount(int answered, int total);
 }
 
 class _AppLocalizationsDelegate

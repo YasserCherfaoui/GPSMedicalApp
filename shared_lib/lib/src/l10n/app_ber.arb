@@ -809,5 +809,19 @@
   "painLocalizationAddSelection": "Rnu tamnaḍt-a",
   "painLocalizationSelectionAlreadyAdded": "Tamnaḍt-a yella yakan deg tebdart-ik",
   "painLocalizationRemoveChip": "Kkes",
-  "painLocalizationConfirmedSnackbar": "Ifrannen ttwasekelsen ɣef yibenk-agi."
+  "painLocalizationConfirmedSnackbar": "Ifrannen ttwasekelsen ɣef yibenk-agi.",
+  "anamnesisTitle": "Asteqsi",
+  "anamnesisLoading": "Asali n usteqsi…",
+  "anamnesisError": "Ur yezmir ara ad d-yali usteqsi.",
+  "anamnesisRetry": "Ɛreḍ tikkelt-nniḍen",
+  "anamnesisContinue": "Kemmel",
+  "anamnesisDone": "Fakk",
+  "anamnesisCompleteTitle": "Asteqsi yemmed",
+  "anamnesisCompleteMessage": "Tiririyin-ik ttwasekelsent.",
+  "anamnesisOfflineQueued": "Tiririt ttwaseklesent s wudem adigan — ad ttwamselent mi ara teqqen.",
+  "anamnesisDisclaimer": "Tallelt n usenfel — mačči d tagnit tafelsast.",
+  "anamnesisUnsupportedQuestion": "Anaw n usteqsi ur yettwasefrak ara.",
+  "anamnesisDurationValue": "Azman",
+  "anamnesisProgressOpen": "{answered} tiririt",
+  "anamnesisProgressCount": "{answered} / {total}"
 }

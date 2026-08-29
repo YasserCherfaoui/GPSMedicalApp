@@ -1002,5 +1002,28 @@
   "painLocalizationAddSelection": "Ajouter cette zone",
   "painLocalizationSelectionAlreadyAdded": "Cette zone est déjà dans votre liste",
   "painLocalizationRemoveChip": "Retirer",
-  "painLocalizationConfirmedSnackbar": "Sélections enregistrées sur cet appareil."
+  "painLocalizationConfirmedSnackbar": "Sélections enregistrées sur cet appareil.",
+  "anamnesisTitle": "Questionnaire",
+  "anamnesisLoading": "Chargement du questionnaire…",
+  "anamnesisError": "Impossible de charger le questionnaire.",
+  "anamnesisRetry": "Réessayer",
+  "anamnesisContinue": "Continuer",
+  "anamnesisDone": "Terminer",
+  "anamnesisCompleteTitle": "Questionnaire terminé",
+  "anamnesisCompleteMessage": "Vos réponses ont été enregistrées.",
+  "anamnesisOfflineQueued": "Réponse enregistrée localement — synchronisation à la reconnexion.",
+  "anamnesisDisclaimer": "Aide à l'orientation — pas un diagnostic médical.",
+  "anamnesisUnsupportedQuestion": "Type de question non pris en charge.",
+  "anamnesisDurationValue": "Durée",
+  "anamnesisProgressOpen": "{answered} question(s) répondue(s)",
+  "@anamnesisProgressOpen": {
+    "placeholders": { "answered": { "type": "int" } }
+  },
+  "anamnesisProgressCount": "{answered} / {total}",
+  "@anamnesisProgressCount": {
+    "placeholders": {
+      "answered": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  }
 }

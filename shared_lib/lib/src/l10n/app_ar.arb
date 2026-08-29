@@ -809,5 +809,19 @@
   "painLocalizationAddSelection": "إضافة هذه المنطقة",
   "painLocalizationSelectionAlreadyAdded": "هذه المنطقة موجودة بالفعل في قائمتك",
   "painLocalizationRemoveChip": "إزالة",
-  "painLocalizationConfirmedSnackbar": "تم حفظ التحديدات على هذا الجهاز."
+  "painLocalizationConfirmedSnackbar": "تم حفظ التحديدات على هذا الجهاز.",
+  "anamnesisTitle": "استبيان",
+  "anamnesisLoading": "جاري تحميل الاستبيان…",
+  "anamnesisError": "تعذر تحميل الاستبيان.",
+  "anamnesisRetry": "إعادة المحاولة",
+  "anamnesisContinue": "متابعة",
+  "anamnesisDone": "إنهاء",
+  "anamnesisCompleteTitle": "اكتمل الاستبيان",
+  "anamnesisCompleteMessage": "تم حفظ إجاباتك.",
+  "anamnesisOfflineQueued": "تم حفظ الإجابة محلياً — ستُزامَن عند الاتصال.",
+  "anamnesisDisclaimer": "مساعدة في التوجيه — ليس تشخيصاً طبياً.",
+  "anamnesisUnsupportedQuestion": "نوع السؤال غير مدعوم.",
+  "anamnesisDurationValue": "المدة",
+  "anamnesisProgressOpen": "{answered} إجابة",
+  "anamnesisProgressCount": "{answered} / {total}"
 }

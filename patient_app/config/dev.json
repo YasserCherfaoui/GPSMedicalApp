@@ -1,7 +1,8 @@
 {
-  "API_ROOT_URL": "https://medora-app.up.railway.app",
+  "API_ROOT_URL": "http://localhost:8080",
   "SENTRY_DSN": "https://9c72e2dfeb8d4f40a1b63574c8bc23ab@o0.ingest.sentry.io/0",
   "FLAVOR": "dev",
   "PAIN3D_ASSETS_BASE_URL": "https://pub-ed7f36d2196341beb74c5c7075fb6c5e.r2.dev",
-  "PAIN_LOCALIZATION": "false"
+  "PAIN_LOCALIZATION": "false",
+  "ANAMNESIS": "false"
 }

@@ -16,6 +16,7 @@ import '../pain3d_constants.dart';
 import '../pain3d_host_prep.dart';
 import '../pain3d_log.dart';
 import '../pain_viewer_controller.dart';
+import '../../anamnesis/anamnesis_constants.dart';
 import '../providers/pain3d_download.provider.dart';
 import '../providers/pain_localization_flag.provider.dart';
 import '../providers/pain_selection.provider.dart';
@@ -267,6 +268,14 @@ class _PainLocalizationScreenState
     if (ref.read(painSelectionProvider).isEmpty) return;
     await ref.read(painSelectionProvider.notifier).confirm();
     if (!mounted) return;
+
+    final selections = ref.read(painSelectionProvider);
+    final anamnesisOn = anamnesisEnabledFromEnv();
+    if (anamnesisOn && selections.isNotEmpty) {
+      context.push(GpsRoutes.anamnesisQcm, extra: selections.first);
+      return;
+    }
+
     final messenger = ScaffoldMessenger.of(context);
     final message = AppLocalizations.of(
       context,

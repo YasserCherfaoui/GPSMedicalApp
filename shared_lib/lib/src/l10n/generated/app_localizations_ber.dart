@@ -2429,4 +2429,53 @@ class AppLocalizationsBer extends AppLocalizations {
   @override
   String get painLocalizationConfirmedSnackbar =>
       'Ifrannen ttwasekelsen ɣef yibenk-agi.';
+
+  @override
+  String get anamnesisTitle => 'Asteqsi';
+
+  @override
+  String get anamnesisLoading => 'Asali n usteqsi…';
+
+  @override
+  String get anamnesisError => 'Ur yezmir ara ad d-yali usteqsi.';
+
+  @override
+  String get anamnesisRetry => 'Ɛreḍ tikkelt-nniḍen';
+
+  @override
+  String get anamnesisContinue => 'Kemmel';
+
+  @override
+  String get anamnesisDone => 'Fakk';
+
+  @override
+  String get anamnesisCompleteTitle => 'Asteqsi yemmed';
+
+  @override
+  String get anamnesisCompleteMessage => 'Tiririyin-ik ttwasekelsent.';
+
+  @override
+  String get anamnesisOfflineQueued =>
+      'Tiririt ttwaseklesent s wudem adigan — ad ttwamselent mi ara teqqen.';
+
+  @override
+  String get anamnesisDisclaimer =>
+      'Tallelt n usenfel — mačči d tagnit tafelsast.';
+
+  @override
+  String get anamnesisUnsupportedQuestion =>
+      'Anaw n usteqsi ur yettwasefrak ara.';
+
+  @override
+  String get anamnesisDurationValue => 'Azman';
+
+  @override
+  String anamnesisProgressOpen(int answered) {
+    return '$answered tiririt';
+  }
+
+  @override
+  String anamnesisProgressCount(int answered, int total) {
+    return '$answered / $total';
+  }
 }

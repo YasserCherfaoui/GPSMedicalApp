@@ -2401,4 +2401,51 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get painLocalizationConfirmedSnackbar =>
       'تم حفظ التحديدات على هذا الجهاز.';
+
+  @override
+  String get anamnesisTitle => 'استبيان';
+
+  @override
+  String get anamnesisLoading => 'جاري تحميل الاستبيان…';
+
+  @override
+  String get anamnesisError => 'تعذر تحميل الاستبيان.';
+
+  @override
+  String get anamnesisRetry => 'إعادة المحاولة';
+
+  @override
+  String get anamnesisContinue => 'متابعة';
+
+  @override
+  String get anamnesisDone => 'إنهاء';
+
+  @override
+  String get anamnesisCompleteTitle => 'اكتمل الاستبيان';
+
+  @override
+  String get anamnesisCompleteMessage => 'تم حفظ إجاباتك.';
+
+  @override
+  String get anamnesisOfflineQueued =>
+      'تم حفظ الإجابة محلياً — ستُزامَن عند الاتصال.';
+
+  @override
+  String get anamnesisDisclaimer => 'مساعدة في التوجيه — ليس تشخيصاً طبياً.';
+
+  @override
+  String get anamnesisUnsupportedQuestion => 'نوع السؤال غير مدعوم.';
+
+  @override
+  String get anamnesisDurationValue => 'المدة';
+
+  @override
+  String anamnesisProgressOpen(int answered) {
+    return '$answered إجابة';
+  }
+
+  @override
+  String anamnesisProgressCount(int answered, int total) {
+    return '$answered / $total';
+  }
 }

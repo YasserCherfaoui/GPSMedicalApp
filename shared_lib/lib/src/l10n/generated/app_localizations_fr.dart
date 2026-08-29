@@ -2460,4 +2460,53 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get painLocalizationConfirmedSnackbar =>
       'Sélections enregistrées sur cet appareil.';
+
+  @override
+  String get anamnesisTitle => 'Questionnaire';
+
+  @override
+  String get anamnesisLoading => 'Chargement du questionnaire…';
+
+  @override
+  String get anamnesisError => 'Impossible de charger le questionnaire.';
+
+  @override
+  String get anamnesisRetry => 'Réessayer';
+
+  @override
+  String get anamnesisContinue => 'Continuer';
+
+  @override
+  String get anamnesisDone => 'Terminer';
+
+  @override
+  String get anamnesisCompleteTitle => 'Questionnaire terminé';
+
+  @override
+  String get anamnesisCompleteMessage => 'Vos réponses ont été enregistrées.';
+
+  @override
+  String get anamnesisOfflineQueued =>
+      'Réponse enregistrée localement — synchronisation à la reconnexion.';
+
+  @override
+  String get anamnesisDisclaimer =>
+      'Aide à l\'orientation — pas un diagnostic médical.';
+
+  @override
+  String get anamnesisUnsupportedQuestion =>
+      'Type de question non pris en charge.';
+
+  @override
+  String get anamnesisDurationValue => 'Durée';
+
+  @override
+  String anamnesisProgressOpen(int answered) {
+    return '$answered question(s) répondue(s)';
+  }
+
+  @override
+  String anamnesisProgressCount(int answered, int total) {
+    return '$answered / $total';
+  }
 }

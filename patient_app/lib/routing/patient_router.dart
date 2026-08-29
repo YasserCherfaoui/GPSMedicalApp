@@ -20,6 +20,9 @@ import '../features/messaging/screens/messaging_thread_screen.dart';
 import '../features/messaging/screens/messaging_threads_list_screen.dart';
 import '../features/notifications/screens/notification_preferences_screen.dart';
 import '../features/notifications/screens/notifications_list_screen.dart';
+import '../features/anamnesis/anamnesis_constants.dart';
+import '../features/anamnesis/screens/anamnesis_qcm_screen.dart';
+import '../features/pain_localization/models/pain_selection.dart';
 import '../features/pain_localization/pain3d_constants.dart';
 import '../features/pain_localization/screens/pain_localization_gate.dart';
 import '../features/payments/screens/payment_deposit_screen.dart';
@@ -49,16 +52,29 @@ String? painLocalizationRouteRedirect({
   return null;
 }
 
+/// Prototype-only anamnesis route (D-P6).
+String? anamnesisRouteRedirect({
+  required String matchedLocation,
+  required bool enabled,
+}) {
+  if (enabled) return null;
+  final path = matchedLocation.split('?').first;
+  if (path == GpsRoutes.anamnesisQcm) return GpsRoutes.discover;
+  return null;
+}
+
 /// Configures GoRouter for the Patient Application, embedding Shell and Discovery routes.
 GoRouter createPatientRouter({
   required AuthSessionNotifier authListenable,
   required GpsMedicalAppInfo appInfo,
   required AppLaunchPreferences launchPreferences,
   bool? painLocalizationEnabled,
+  bool? anamnesisEnabled,
 }) {
   AuthSession sessionOf() => authListenable.session;
   final painEnabled =
       painLocalizationEnabled ?? painLocalizationEnabledFromEnv();
+  final anamEnabled = anamnesisEnabled ?? anamnesisEnabledFromEnv();
 
   return GoRouter(
     navigatorKey: patientRootNavigatorKey,
@@ -74,7 +90,11 @@ GoRouter createPatientRouter({
       return painLocalizationRouteRedirect(
         matchedLocation: state.matchedLocation,
         enabled: painEnabled,
-      );
+      ) ??
+          anamnesisRouteRedirect(
+            matchedLocation: state.matchedLocation,
+            enabled: anamEnabled,
+          );
     },
     routes: [
       GoRoute(
@@ -314,6 +334,18 @@ GoRouter createPatientRouter({
           return PainLocalizationGate(
             modelQuery: state.uri.queryParameters['model'],
           );
+        },
+      ),
+      GoRoute(
+        path: GpsRoutes.anamnesisQcm,
+        builder: (context, state) {
+          final selection = state.extra;
+          if (selection is! PainSelection) {
+            return const Scaffold(
+              body: Center(child: Text('Missing pain selection')),
+            );
+          }
+          return AnamnesisQcmScreen(selection: selection);
         },
       ),
 
