@@ -2563,4 +2563,30 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get anamnesisDocsCorrectionsSaved => 'تم حفظ التصحيحات.';
+
+  @override
+  String get anamnesisUrgenceTitle => 'طوارئ — راجع فوراً';
+
+  @override
+  String get anamnesisUrgenceFallback =>
+      'تم رصد علامات تحذيرية. توجّه إلى الطوارئ أو اتصل بالإسعاف فوراً. هذه الرسالة ليست تشخيصاً طبياً.';
+
+  @override
+  String get anamnesisUrgenceNumbersLabel => 'أرقام الطوارئ';
+
+  @override
+  String get anamnesisUrgenceAck => 'فهمت';
+
+  @override
+  String get anamnesisRegenerativeTitle => 'توجيه تجديدي';
+
+  @override
+  String get anamnesisRegenerativeMessage =>
+      'يمكن متابعة مسارك نحو ميزانية شخصية. المسار التفصيلي قريباً (W26).';
+
+  @override
+  String get anamnesisParcoursCta => 'عرض مساري';
+
+  @override
+  String get anamnesisParcoursSoon => 'المسار التجديدي سيكون متاحاً قريباً.';
 }

@@ -14,6 +14,7 @@ import '../services/anamnesis_answer_queue.dart';
 import '../widgets/anamnesis_progress_bar.dart';
 import '../widgets/anamnesis_question_view.dart';
 import '../widgets/anamnesis_score_banner.dart';
+import 'anamnesis_urgence_screen.dart';
 
 class AnamnesisQcmScreen extends ConsumerStatefulWidget {
   const AnamnesisQcmScreen({required this.selection, super.key});
@@ -35,6 +36,8 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
   int? _followUpIndex;
   int? _followUpMax;
   AnamnesisSessionScore? _score;
+  AnamnesisRedFlag? _redFlag;
+  var _urgent = false;
 
   @override
   void initState() {
@@ -200,6 +203,18 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
         clientNonce: nonce,
       );
       if (!mounted) return;
+      if (result.redFlag != null || result.session.status == 'urgent') {
+        setState(() {
+          _session = result.session;
+          _score = result.score;
+          _redFlag = result.redFlag;
+          _urgent = true;
+          _question = null;
+          _complete = true;
+          _submitting = false;
+        });
+        return;
+      }
       if (result.sessionComplete) {
         setState(() {
           _session = result.session;
@@ -354,14 +369,24 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
       );
     }
 
+    if (_urgent && _redFlag != null) {
+      return AnamnesisUrgenceScreen(
+        redFlag: _redFlag!,
+        onDismiss: () => context.go(GpsRoutes.discover),
+      );
+    }
+
     if (_complete || _question == null) {
+      final regenerative = _session?.status == 'regenerative';
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              l10n.anamnesisCompleteTitle,
+              regenerative
+                  ? l10n.anamnesisRegenerativeTitle
+                  : l10n.anamnesisCompleteTitle,
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -373,8 +398,24 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
               ),
               const SizedBox(height: GpsSpacing.md),
             ],
-            Text(l10n.anamnesisCompleteMessage, textAlign: TextAlign.center),
+            Text(
+              regenerative
+                  ? l10n.anamnesisRegenerativeMessage
+                  : l10n.anamnesisCompleteMessage,
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(height: GpsSpacing.lg),
+            if (regenerative) ...[
+              FilledButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(l10n.anamnesisParcoursSoon)),
+                  );
+                },
+                child: Text(l10n.anamnesisParcoursCta),
+              ),
+              const SizedBox(height: GpsSpacing.sm),
+            ],
             if (_session != null) ...[
               FilledButton.tonal(
                 onPressed: () => context.push(

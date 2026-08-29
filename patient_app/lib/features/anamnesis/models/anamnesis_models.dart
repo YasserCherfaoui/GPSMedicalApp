@@ -244,12 +244,14 @@ class AnamnesisAnswerResult {
     required this.sessionComplete,
     this.nextQuestion,
     this.score,
+    this.redFlag,
   });
 
   final AnamnesisSession session;
   final bool sessionComplete;
   final AnamnesisQuestion? nextQuestion;
   final AnamnesisSessionScore? score;
+  final AnamnesisRedFlag? redFlag;
 
   factory AnamnesisAnswerResult.fromJson(Map<String, dynamic> json) {
     return AnamnesisAnswerResult(
@@ -267,6 +269,40 @@ class AnamnesisAnswerResult {
           : AnamnesisSessionScore.fromJson(
               Map<String, dynamic>.from(json['score'] as Map),
             ),
+      redFlag: json['red_flag'] == null
+          ? null
+          : AnamnesisRedFlag.fromJson(
+              Map<String, dynamic>.from(json['red_flag'] as Map),
+            ),
+    );
+  }
+}
+
+class AnamnesisRedFlag {
+  const AnamnesisRedFlag({
+    required this.ruleId,
+    required this.ruleVersion,
+    required this.severityFr,
+    required this.instructionFr,
+    this.emergencyNumbers = const [],
+  });
+
+  final String ruleId;
+  final String ruleVersion;
+  final String severityFr;
+  final String instructionFr;
+  final List<String> emergencyNumbers;
+
+  factory AnamnesisRedFlag.fromJson(Map<String, dynamic> json) {
+    final nums = json['emergency_numbers'];
+    return AnamnesisRedFlag(
+      ruleId: json['rule_id'] as String? ?? '',
+      ruleVersion: json['rule_version'] as String? ?? '',
+      severityFr: json['severity_fr'] as String? ?? '',
+      instructionFr: json['instruction_fr'] as String? ?? '',
+      emergencyNumbers: nums is List
+          ? nums.map((e) => e.toString()).toList()
+          : const [],
     );
   }
 }

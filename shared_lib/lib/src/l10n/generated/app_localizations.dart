@@ -4815,6 +4815,54 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Corrections enregistrées.'**
   String get anamnesisDocsCorrectionsSaved;
+
+  /// No description provided for @anamnesisUrgenceTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Urgence — consultez immédiatement'**
+  String get anamnesisUrgenceTitle;
+
+  /// No description provided for @anamnesisUrgenceFallback.
+  ///
+  /// In fr, this message translates to:
+  /// **'Des signes d\'alerte ont été détectés. Rendez-vous aux urgences ou appelez le SAMU sans délai. Ce message n\'est pas un diagnostic.'**
+  String get anamnesisUrgenceFallback;
+
+  /// No description provided for @anamnesisUrgenceNumbersLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Numéros d\'urgence'**
+  String get anamnesisUrgenceNumbersLabel;
+
+  /// No description provided for @anamnesisUrgenceAck.
+  ///
+  /// In fr, this message translates to:
+  /// **'J\'ai compris'**
+  String get anamnesisUrgenceAck;
+
+  /// No description provided for @anamnesisRegenerativeTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Orientation régénérative'**
+  String get anamnesisRegenerativeTitle;
+
+  /// No description provided for @anamnesisRegenerativeMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre parcours peut se poursuivre vers un bilan personnalisé. Le parcours détaillé arrive bientôt (W26).'**
+  String get anamnesisRegenerativeMessage;
+
+  /// No description provided for @anamnesisParcoursCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir mon parcours'**
+  String get anamnesisParcoursCta;
+
+  /// No description provided for @anamnesisParcoursSoon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le parcours régénératif sera disponible prochainement.'**
+  String get anamnesisParcoursSoon;
 }
 
 class _AppLocalizationsDelegate

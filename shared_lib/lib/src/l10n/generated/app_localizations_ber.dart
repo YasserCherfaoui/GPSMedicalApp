@@ -2594,4 +2594,30 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get anamnesisDocsCorrectionsSaved => 'Iseggimen ttwasekelsen.';
+
+  @override
+  String get anamnesisUrgenceTitle => 'Tazɣent — wali imir-a';
+
+  @override
+  String get anamnesisUrgenceFallback =>
+      'Ttwafan isallen n uɣelluy. Rzu ɣer tezgentin neɣ nadi SAMU war tura. Izli-a mačči d tagnit tafelsast.';
+
+  @override
+  String get anamnesisUrgenceNumbersLabel => 'Uṭṭunen n tezgentin';
+
+  @override
+  String get anamnesisUrgenceAck => 'Gziɣ';
+
+  @override
+  String get anamnesisRegenerativeTitle => 'Asenfel n usnerni';
+
+  @override
+  String get anamnesisRegenerativeMessage =>
+      'Abrid-ik yezmer ad ikemmel ɣer ubilan uslig. Abrid d-iteddu (W26).';
+
+  @override
+  String get anamnesisParcoursCta => 'Wali abrid-iw';
+
+  @override
+  String get anamnesisParcoursSoon => 'Abrid n usnerni ad yili qrib.';
 }

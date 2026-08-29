@@ -859,5 +859,13 @@
   "anamnesisDocsFieldNotes": "ملاحظات",
   "anamnesisDocsRawOcr": "نص OCR الخام",
   "anamnesisDocsSaveCorrections": "حفظ التصحيحات",
-  "anamnesisDocsCorrectionsSaved": "تم حفظ التصحيحات."
+  "anamnesisDocsCorrectionsSaved": "تم حفظ التصحيحات.",
+  "anamnesisUrgenceTitle": "طوارئ — راجع فوراً",
+  "anamnesisUrgenceFallback": "تم رصد علامات تحذيرية. توجّه إلى الطوارئ أو اتصل بالإسعاف فوراً. هذه الرسالة ليست تشخيصاً طبياً.",
+  "anamnesisUrgenceNumbersLabel": "أرقام الطوارئ",
+  "anamnesisUrgenceAck": "فهمت",
+  "anamnesisRegenerativeTitle": "توجيه تجديدي",
+  "anamnesisRegenerativeMessage": "يمكن متابعة مسارك نحو ميزانية شخصية. المسار التفصيلي قريباً (W26).",
+  "anamnesisParcoursCta": "عرض مساري",
+  "anamnesisParcoursSoon": "المسار التجديدي سيكون متاحاً قريباً."
 }

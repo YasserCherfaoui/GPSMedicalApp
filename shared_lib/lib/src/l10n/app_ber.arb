@@ -859,5 +859,13 @@
   "anamnesisDocsFieldNotes": "Iwenniten",
   "anamnesisDocsRawOcr": "Aḍris OCR amezwaru",
   "anamnesisDocsSaveCorrections": "Sekles iseggimen",
-  "anamnesisDocsCorrectionsSaved": "Iseggimen ttwasekelsen."
+  "anamnesisDocsCorrectionsSaved": "Iseggimen ttwasekelsen.",
+  "anamnesisUrgenceTitle": "Tazɣent — wali imir-a",
+  "anamnesisUrgenceFallback": "Ttwafan isallen n uɣelluy. Rzu ɣer tezgentin neɣ nadi SAMU war tura. Izli-a mačči d tagnit tafelsast.",
+  "anamnesisUrgenceNumbersLabel": "Uṭṭunen n tezgentin",
+  "anamnesisUrgenceAck": "Gziɣ",
+  "anamnesisRegenerativeTitle": "Asenfel n usnerni",
+  "anamnesisRegenerativeMessage": "Abrid-ik yezmer ad ikemmel ɣer ubilan uslig. Abrid d-iteddu (W26).",
+  "anamnesisParcoursCta": "Wali abrid-iw",
+  "anamnesisParcoursSoon": "Abrid n usnerni ad yili qrib."
 }

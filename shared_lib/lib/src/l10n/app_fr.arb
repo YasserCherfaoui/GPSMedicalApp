@@ -1062,6 +1062,14 @@
   "anamnesisDocsRawOcr": "Texte OCR brut",
   "anamnesisDocsSaveCorrections": "Enregistrer les corrections",
   "anamnesisDocsCorrectionsSaved": "Corrections enregistrées.",
+  "anamnesisUrgenceTitle": "Urgence — consultez immédiatement",
+  "anamnesisUrgenceFallback": "Des signes d'alerte ont été détectés. Rendez-vous aux urgences ou appelez le SAMU sans délai. Ce message n'est pas un diagnostic.",
+  "anamnesisUrgenceNumbersLabel": "Numéros d'urgence",
+  "anamnesisUrgenceAck": "J'ai compris",
+  "anamnesisRegenerativeTitle": "Orientation régénérative",
+  "anamnesisRegenerativeMessage": "Votre parcours peut se poursuivre vers un bilan personnalisé. Le parcours détaillé arrive bientôt (W26).",
+  "anamnesisParcoursCta": "Voir mon parcours",
+  "anamnesisParcoursSoon": "Le parcours régénératif sera disponible prochainement.",
   "@anamnesisProgressCount": {
     "placeholders": {
       "answered": { "type": "int" },

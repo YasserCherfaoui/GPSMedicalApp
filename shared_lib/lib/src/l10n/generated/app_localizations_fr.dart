@@ -2627,4 +2627,31 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get anamnesisDocsCorrectionsSaved => 'Corrections enregistrées.';
+
+  @override
+  String get anamnesisUrgenceTitle => 'Urgence — consultez immédiatement';
+
+  @override
+  String get anamnesisUrgenceFallback =>
+      'Des signes d\'alerte ont été détectés. Rendez-vous aux urgences ou appelez le SAMU sans délai. Ce message n\'est pas un diagnostic.';
+
+  @override
+  String get anamnesisUrgenceNumbersLabel => 'Numéros d\'urgence';
+
+  @override
+  String get anamnesisUrgenceAck => 'J\'ai compris';
+
+  @override
+  String get anamnesisRegenerativeTitle => 'Orientation régénérative';
+
+  @override
+  String get anamnesisRegenerativeMessage =>
+      'Votre parcours peut se poursuivre vers un bilan personnalisé. Le parcours détaillé arrive bientôt (W26).';
+
+  @override
+  String get anamnesisParcoursCta => 'Voir mon parcours';
+
+  @override
+  String get anamnesisParcoursSoon =>
+      'Le parcours régénératif sera disponible prochainement.';
 }
