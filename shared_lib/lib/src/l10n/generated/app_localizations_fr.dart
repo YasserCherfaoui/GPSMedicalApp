@@ -2512,4 +2512,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get anamnesisScoreLabel => 'Score de pertinence régénérative';
+
+  @override
+  String get anamnesisFollowUpTitle => 'Questions complémentaires';
+
+  @override
+  String get anamnesisFollowUpHint =>
+      'Quelques précisions pour affiner l\'orientation — pas un diagnostic.';
+
+  @override
+  String get anamnesisFollowUpLoading =>
+      'Préparation des questions complémentaires…';
+
+  @override
+  String anamnesisFollowUpProgress(int current, int total) {
+    return 'Question $current / $total';
+  }
 }

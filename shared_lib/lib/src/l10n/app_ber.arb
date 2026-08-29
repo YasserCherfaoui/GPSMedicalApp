@@ -824,5 +824,9 @@
   "anamnesisDurationValue": "Azman",
   "anamnesisProgressOpen": "{answered} tiririt",
   "anamnesisProgressCount": "{answered} / {total}",
-  "anamnesisScoreLabel": "Aɣan n umeslay alemmas"
+  "anamnesisScoreLabel": "Aɣan n umeslay alemmas",
+  "anamnesisFollowUpTitle": "Isteqsiyen imernan",
+  "anamnesisFollowUpHint": "Kra n usfehem i usenfel — mačči d tagnit tafelsast.",
+  "anamnesisFollowUpLoading": "Aheggi n isteqsiyen imernan…",
+  "anamnesisFollowUpProgress": "Asteqsi {current} / {total}"
 }

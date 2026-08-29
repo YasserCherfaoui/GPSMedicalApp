@@ -2451,4 +2451,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get anamnesisScoreLabel => 'نقاط الملاءمة التجديدية';
+
+  @override
+  String get anamnesisFollowUpTitle => 'أسئلة تكميلية';
+
+  @override
+  String get anamnesisFollowUpHint =>
+      'بعض التوضيحات لتحسين التوجيه — ليس تشخيصاً.';
+
+  @override
+  String get anamnesisFollowUpLoading => 'جاري إعداد الأسئلة التكميلية…';
+
+  @override
+  String anamnesisFollowUpProgress(int current, int total) {
+    return 'سؤال $current / $total';
+  }
 }

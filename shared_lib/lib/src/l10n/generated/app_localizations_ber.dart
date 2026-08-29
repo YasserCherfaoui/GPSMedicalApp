@@ -2481,4 +2481,19 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get anamnesisScoreLabel => 'Aɣan n umeslay alemmas';
+
+  @override
+  String get anamnesisFollowUpTitle => 'Isteqsiyen imernan';
+
+  @override
+  String get anamnesisFollowUpHint =>
+      'Kra n usfehem i usenfel — mačči d tagnit tafelsast.';
+
+  @override
+  String get anamnesisFollowUpLoading => 'Aheggi n isteqsiyen imernan…';
+
+  @override
+  String anamnesisFollowUpProgress(int current, int total) {
+    return 'Asteqsi $current / $total';
+  }
 }

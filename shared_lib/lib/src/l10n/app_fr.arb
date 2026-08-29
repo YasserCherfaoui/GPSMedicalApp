@@ -1021,6 +1021,16 @@
   },
   "anamnesisProgressCount": "{answered} / {total}",
   "anamnesisScoreLabel": "Score de pertinence régénérative",
+  "anamnesisFollowUpTitle": "Questions complémentaires",
+  "anamnesisFollowUpHint": "Quelques précisions pour affiner l'orientation — pas un diagnostic.",
+  "anamnesisFollowUpLoading": "Préparation des questions complémentaires…",
+  "anamnesisFollowUpProgress": "Question {current} / {total}",
+  "@anamnesisFollowUpProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
   "@anamnesisProgressCount": {
     "placeholders": {
       "answered": { "type": "int" },

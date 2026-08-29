@@ -88,6 +88,60 @@ class AnamnesisRepository {
     }
   }
 
+  Future<AnamnesisFollowUpNext?> fetchFollowUpNext(String sessionId) async {
+    try {
+      final response = await _dio.get<Map<String, dynamic>>(
+        '/anamnesis/sessions/$sessionId/follow-ups/next',
+      );
+      if (response.statusCode == 204) return null;
+      final data = response.data;
+      if (data == null) return null;
+      return AnamnesisFollowUpNext.fromJson(data);
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 204) return null;
+      throw _mapDio(e);
+    }
+  }
+
+  Future<AnamnesisFollowUpAnswerResult> submitFollowUpAnswer({
+    required String sessionId,
+    required String questionId,
+    required Map<String, dynamic> value,
+    DateTime? answeredAt,
+  }) async {
+    try {
+      final response = await _dio.post<Map<String, dynamic>>(
+        '/anamnesis/sessions/$sessionId/follow-ups/answers',
+        data: {
+          'question_id': questionId,
+          'value': value,
+          if (answeredAt != null)
+            'answered_at': answeredAt.toUtc().toIso8601String(),
+        },
+      );
+      final data = response.data;
+      if (data == null) {
+        throw StateError('Empty follow-up answer response');
+      }
+      return AnamnesisFollowUpAnswerResult.fromJson(data);
+    } on DioException catch (e) {
+      throw _mapDio(e);
+    }
+  }
+
+  Future<AnamnesisSessionScore?> fetchScore(String sessionId) async {
+    try {
+      final response = await _dio.get<Map<String, dynamic>>(
+        '/anamnesis/sessions/$sessionId/score',
+      );
+      final data = response.data;
+      if (data == null) return null;
+      return AnamnesisSessionScore.fromJson(data);
+    } on DioException catch (e) {
+      throw _mapDio(e);
+    }
+  }
+
   AnamnesisApiException _mapDio(DioException e) {
     final status = e.response?.statusCode;
     final data = e.response?.data;

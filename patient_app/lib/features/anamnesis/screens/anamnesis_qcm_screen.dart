@@ -31,6 +31,9 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
   var _submitting = false;
   String? _error;
   var _complete = false;
+  var _followUpMode = false;
+  int? _followUpIndex;
+  int? _followUpMax;
   AnamnesisSessionScore? _score;
 
   @override
@@ -54,10 +57,19 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
       await _flushQueue(repo, session.id);
       final question = await repo.fetchNextQuestion(session.id);
       if (!mounted) return;
+      if (question == null) {
+        setState(() {
+          _session = session;
+          _loading = false;
+        });
+        await _enterFollowUpOrFinish(repo, session.id);
+        return;
+      }
       setState(() {
         _session = session;
         _question = question;
-        _complete = question == null;
+        _complete = false;
+        _followUpMode = false;
         _loading = false;
       });
     } catch (e) {
@@ -87,10 +99,67 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
     }
   }
 
+  Future<void> _enterFollowUpOrFinish(
+    AnamnesisRepository repo,
+    String sessionId,
+  ) async {
+    setState(() => _loading = true);
+    try {
+      final next = await repo.fetchFollowUpNext(sessionId);
+      if (!mounted) return;
+      if (next == null) {
+        final score = await repo.fetchScore(sessionId);
+        if (!mounted) return;
+        setState(() {
+          _followUpMode = false;
+          _question = null;
+          _complete = true;
+          _score = score ?? _score;
+          _loading = false;
+        });
+        return;
+      }
+      setState(() {
+        _followUpMode = true;
+        _question = next.question;
+        _followUpIndex = next.index;
+        _followUpMax = next.maxQuestions;
+        _complete = false;
+        _loading = false;
+      });
+    } catch (_) {
+      // AI down → finish with tree score only.
+      try {
+        final score = await repo.fetchScore(sessionId);
+        if (!mounted) return;
+        setState(() {
+          _score = score ?? _score;
+          _followUpMode = false;
+          _question = null;
+          _complete = true;
+          _loading = false;
+        });
+      } catch (e) {
+        if (!mounted) return;
+        setState(() {
+          _followUpMode = false;
+          _question = null;
+          _complete = true;
+          _loading = false;
+        });
+      }
+    }
+  }
+
   Future<void> _submitAnswer(Map<String, dynamic> value) async {
     final session = _session;
     final question = _question;
     if (session == null || question == null) return;
+
+    if (_followUpMode) {
+      await _submitFollowUp(value);
+      return;
+    }
 
     setState(() => _submitting = true);
     final repo = ref.read(anamnesisRepositoryProvider);
@@ -131,10 +200,19 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
         clientNonce: nonce,
       );
       if (!mounted) return;
+      if (result.sessionComplete) {
+        setState(() {
+          _session = result.session;
+          _score = result.score;
+          _submitting = false;
+        });
+        await _enterFollowUpOrFinish(repo, session.id);
+        return;
+      }
       setState(() {
         _session = result.session;
         _question = result.nextQuestion;
-        _complete = result.sessionComplete;
+        _complete = false;
         _score = result.score;
         _submitting = false;
       });
@@ -172,6 +250,59 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
     }
   }
 
+  Future<void> _submitFollowUp(Map<String, dynamic> value) async {
+    final session = _session;
+    final question = _question;
+    if (session == null || question == null) return;
+
+    setState(() => _submitting = true);
+    final repo = ref.read(anamnesisRepositoryProvider);
+    try {
+      final result = await repo.submitFollowUpAnswer(
+        sessionId: session.id,
+        questionId: question.id,
+        value: value,
+        answeredAt: DateTime.now().toUtc(),
+      );
+      if (!mounted) return;
+      if (result.followUpComplete || result.nextQuestion == null) {
+        setState(() {
+          _score = result.score ?? _score;
+          _question = null;
+          _followUpMode = false;
+          _complete = true;
+          _submitting = false;
+        });
+        return;
+      }
+      setState(() {
+        _question = result.nextQuestion;
+        _followUpIndex = (_followUpIndex ?? 1) + 1;
+        _score = result.score ?? _score;
+        _submitting = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      // Skip remaining follow-ups on error; still show score.
+      try {
+        final score = await repo.fetchScore(session.id);
+        if (!mounted) return;
+        setState(() {
+          _score = score ?? _score;
+          _question = null;
+          _followUpMode = false;
+          _complete = true;
+          _submitting = false;
+        });
+      } catch (_) {
+        setState(() {
+          _error = e.toString();
+          _submitting = false;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -195,7 +326,11 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
           children: [
             const CircularProgressIndicator(),
             const SizedBox(height: GpsSpacing.md),
-            Text(l10n.anamnesisLoading),
+            Text(
+              _followUpMode
+                  ? l10n.anamnesisFollowUpLoading
+                  : l10n.anamnesisLoading,
+            ),
           ],
         ),
       );
@@ -253,7 +388,25 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        AnamnesisProgressBar(progress: session.progress),
+        if (!_followUpMode) AnamnesisProgressBar(progress: session.progress),
+        if (_followUpMode) ...[
+          Text(
+            l10n.anamnesisFollowUpTitle,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          if (_followUpIndex != null && _followUpMax != null)
+            Text(
+              l10n.anamnesisFollowUpProgress(_followUpIndex!, _followUpMax!),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          const SizedBox(height: GpsSpacing.xs),
+          Text(
+            l10n.anamnesisFollowUpHint,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+          ),
+        ],
         if (_score != null) ...[
           const SizedBox(height: GpsSpacing.sm),
           AnamnesisScoreBanner(

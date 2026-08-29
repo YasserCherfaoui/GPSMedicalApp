@@ -185,6 +185,59 @@ class AnamnesisSessionScore {
   }
 }
 
+class AnamnesisFollowUpNext {
+  const AnamnesisFollowUpNext({
+    required this.question,
+    required this.index,
+    required this.maxQuestions,
+  });
+
+  final AnamnesisQuestion question;
+  final int index;
+  final int maxQuestions;
+
+  factory AnamnesisFollowUpNext.fromJson(Map<String, dynamic> json) {
+    return AnamnesisFollowUpNext(
+      question: AnamnesisQuestion.fromJson(
+        Map<String, dynamic>.from(json['question'] as Map),
+      ),
+      index: json['index'] as int? ?? 1,
+      maxQuestions: json['max_questions'] as int? ?? 3,
+    );
+  }
+}
+
+class AnamnesisFollowUpAnswerResult {
+  const AnamnesisFollowUpAnswerResult({
+    required this.followUpComplete,
+    required this.answeredCount,
+    this.nextQuestion,
+    this.score,
+  });
+
+  final bool followUpComplete;
+  final int answeredCount;
+  final AnamnesisQuestion? nextQuestion;
+  final AnamnesisSessionScore? score;
+
+  factory AnamnesisFollowUpAnswerResult.fromJson(Map<String, dynamic> json) {
+    return AnamnesisFollowUpAnswerResult(
+      followUpComplete: json['follow_up_complete'] as bool? ?? true,
+      answeredCount: json['answered_count'] as int? ?? 0,
+      nextQuestion: json['next_question'] == null
+          ? null
+          : AnamnesisQuestion.fromJson(
+              Map<String, dynamic>.from(json['next_question'] as Map),
+            ),
+      score: json['score'] == null
+          ? null
+          : AnamnesisSessionScore.fromJson(
+              Map<String, dynamic>.from(json['score'] as Map),
+            ),
+    );
+  }
+}
+
 class AnamnesisAnswerResult {
   const AnamnesisAnswerResult({
     required this.session,

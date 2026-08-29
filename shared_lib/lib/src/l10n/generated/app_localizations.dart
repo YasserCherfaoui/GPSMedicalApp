@@ -4605,6 +4605,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Score de pertinence régénérative'**
   String get anamnesisScoreLabel;
+
+  /// No description provided for @anamnesisFollowUpTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Questions complémentaires'**
+  String get anamnesisFollowUpTitle;
+
+  /// No description provided for @anamnesisFollowUpHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quelques précisions pour affiner l\'orientation — pas un diagnostic.'**
+  String get anamnesisFollowUpHint;
+
+  /// No description provided for @anamnesisFollowUpLoading.
+  ///
+  /// In fr, this message translates to:
+  /// **'Préparation des questions complémentaires…'**
+  String get anamnesisFollowUpLoading;
+
+  /// No description provided for @anamnesisFollowUpProgress.
+  ///
+  /// In fr, this message translates to:
+  /// **'Question {current} / {total}'**
+  String anamnesisFollowUpProgress(int current, int total);
 }
 
 class _AppLocalizationsDelegate

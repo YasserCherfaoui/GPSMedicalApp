@@ -824,5 +824,9 @@
   "anamnesisDurationValue": "المدة",
   "anamnesisProgressOpen": "{answered} إجابة",
   "anamnesisProgressCount": "{answered} / {total}",
-  "anamnesisScoreLabel": "نقاط الملاءمة التجديدية"
+  "anamnesisScoreLabel": "نقاط الملاءمة التجديدية",
+  "anamnesisFollowUpTitle": "أسئلة تكميلية",
+  "anamnesisFollowUpHint": "بعض التوضيحات لتحسين التوجيه — ليس تشخيصاً.",
+  "anamnesisFollowUpLoading": "جاري إعداد الأسئلة التكميلية…",
+  "anamnesisFollowUpProgress": "سؤال {current} / {total}"
 }
