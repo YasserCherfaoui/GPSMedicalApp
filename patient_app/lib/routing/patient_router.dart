@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../features/anamnesis/anamnesis_constants.dart';
+import '../features/anamnesis/screens/anamnesis_documents_screen.dart';
+import '../features/anamnesis/screens/anamnesis_qcm_screen.dart';
 import '../features/booking/screens/appointment_detail_screen.dart';
 import '../features/booking/screens/appointments_list_screen.dart';
 import '../features/booking/screens/availability_calendar_screen.dart';
@@ -13,6 +16,7 @@ import '../features/discovery/screens/doctor_detail_screen.dart';
 import '../features/discovery/screens/doctor_list_screen.dart';
 import '../features/discovery/screens/doctor_search_screen.dart';
 import '../features/discovery/screens/nearby_doctors_map_screen.dart';
+import '../features/medical_records/models/medical_record_upload_draft.dart';
 import '../features/medical_records/screens/medical_record_upload_screen.dart';
 import '../features/medical_records/screens/medical_record_viewer_screen.dart';
 import '../features/medical_records/screens/medical_records_list_screen.dart';
@@ -20,8 +24,6 @@ import '../features/messaging/screens/messaging_thread_screen.dart';
 import '../features/messaging/screens/messaging_threads_list_screen.dart';
 import '../features/notifications/screens/notification_preferences_screen.dart';
 import '../features/notifications/screens/notifications_list_screen.dart';
-import '../features/anamnesis/anamnesis_constants.dart';
-import '../features/anamnesis/screens/anamnesis_qcm_screen.dart';
 import '../features/pain_localization/models/pain_selection.dart';
 import '../features/pain_localization/pain3d_constants.dart';
 import '../features/pain_localization/screens/pain_localization_gate.dart';
@@ -59,7 +61,10 @@ String? anamnesisRouteRedirect({
 }) {
   if (enabled) return null;
   final path = matchedLocation.split('?').first;
-  if (path == GpsRoutes.anamnesisQcm) return GpsRoutes.discover;
+  if (path == GpsRoutes.anamnesisQcm ||
+      path.startsWith('${GpsRoutes.anamnesisDocuments}/')) {
+    return GpsRoutes.discover;
+  }
   return null;
 }
 
@@ -250,7 +255,12 @@ GoRouter createPatientRouter({
       ),
       GoRoute(
         path: GpsRoutes.medicalRecordsUpload,
-        builder: (context, state) => const MedicalRecordUploadScreen(),
+        builder: (context, state) {
+          final draft = state.extra;
+          return MedicalRecordUploadScreen(
+            draft: draft is MedicalRecordUploadDraft ? draft : null,
+          );
+        },
       ),
       GoRoute(
         path: '/medical-records/:id',
@@ -346,6 +356,13 @@ GoRouter createPatientRouter({
             );
           }
           return AnamnesisQcmScreen(selection: selection);
+        },
+      ),
+      GoRoute(
+        path: '${GpsRoutes.anamnesisDocuments}/:sessionId',
+        builder: (context, state) {
+          final sessionId = state.pathParameters['sessionId'] ?? '';
+          return AnamnesisDocumentsScreen(sessionId: sessionId);
         },
       ),
 

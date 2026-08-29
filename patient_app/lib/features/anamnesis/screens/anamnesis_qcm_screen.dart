@@ -375,6 +375,15 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
             ],
             Text(l10n.anamnesisCompleteMessage, textAlign: TextAlign.center),
             const SizedBox(height: GpsSpacing.lg),
+            if (_session != null) ...[
+              FilledButton.tonal(
+                onPressed: () => context.push(
+                  '${GpsRoutes.anamnesisDocuments}/${_session!.id}',
+                ),
+                child: Text(l10n.anamnesisDocsCta),
+              ),
+              const SizedBox(height: GpsSpacing.sm),
+            ],
             FilledButton(
               onPressed: () => context.go(GpsRoutes.discover),
               child: Text(l10n.anamnesisDone),

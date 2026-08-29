@@ -303,3 +303,103 @@ Map<String, dynamic> buildAnswerValue({
     _ => {'type': type},
   };
 }
+
+class AnamnesisSessionDocument {
+  const AnamnesisSessionDocument({
+    required this.documentId,
+    required this.sessionId,
+    required this.extractionStatus,
+    required this.attachedAt,
+    this.mimeType,
+    this.title,
+  });
+
+  final String documentId;
+  final String sessionId;
+  final String extractionStatus;
+  final DateTime attachedAt;
+  final String? mimeType;
+  final String? title;
+
+  factory AnamnesisSessionDocument.fromJson(Map<String, dynamic> json) {
+    return AnamnesisSessionDocument(
+      documentId: json['document_id'] as String,
+      sessionId: json['session_id'] as String,
+      extractionStatus: json['extraction_status'] as String? ?? 'queued',
+      attachedAt: DateTime.parse(json['attached_at'] as String),
+      mimeType: json['mime_type'] as String?,
+      title: json['title'] as String?,
+    );
+  }
+
+  bool get isTerminal =>
+      extractionStatus == 'extracted' || extractionStatus == 'failed';
+}
+
+class AnamnesisStructuredExtraction {
+  const AnamnesisStructuredExtraction({
+    this.examType,
+    this.examDate,
+    this.bodyRegion,
+    this.keyFindings = const [],
+    this.facility,
+  });
+
+  final String? examType;
+  final String? examDate;
+  final String? bodyRegion;
+  final List<String> keyFindings;
+  final String? facility;
+
+  factory AnamnesisStructuredExtraction.fromJson(Map<String, dynamic> json) {
+    return AnamnesisStructuredExtraction(
+      examType: json['exam_type'] as String?,
+      examDate: json['exam_date'] as String?,
+      bodyRegion: json['body_region'] as String?,
+      keyFindings: (json['key_findings'] as List<dynamic>? ?? const [])
+          .map((e) => e as String)
+          .toList(),
+      facility: json['facility'] as String?,
+    );
+  }
+}
+
+class AnamnesisDocumentExtraction {
+  const AnamnesisDocumentExtraction({
+    required this.documentId,
+    required this.status,
+    this.rawOcrText,
+    this.structured,
+    this.corrections,
+    this.errorMessage,
+    this.updatedAt,
+  });
+
+  final String documentId;
+  final String status;
+  final String? rawOcrText;
+  final AnamnesisStructuredExtraction? structured;
+  final Map<String, dynamic>? corrections;
+  final String? errorMessage;
+  final DateTime? updatedAt;
+
+  factory AnamnesisDocumentExtraction.fromJson(Map<String, dynamic> json) {
+    return AnamnesisDocumentExtraction(
+      documentId: json['document_id'] as String,
+      status: json['status'] as String? ?? 'queued',
+      rawOcrText: json['raw_ocr_text'] as String?,
+      structured: json['structured'] == null
+          ? null
+          : AnamnesisStructuredExtraction.fromJson(
+              Map<String, dynamic>.from(json['structured'] as Map),
+            ),
+      corrections: json['corrections'] == null
+          ? null
+          : Map<String, dynamic>.from(json['corrections'] as Map),
+      errorMessage: json['error_message'] as String?,
+      updatedAt: json['updated_at'] == null
+          ? null
+          : DateTime.tryParse(json['updated_at'] as String),
+    );
+  }
+}

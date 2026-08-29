@@ -1223,6 +1223,30 @@ class AppLocalizationsBer extends AppLocalizations {
   String get medicalRecordsUploadAddFiles => 'Isemliyen PDF';
 
   @override
+  String get medicalRecordsUploadForm => 'Tiferkit tummidt';
+
+  @override
+  String get medicalRecordsOcrGalleryHint =>
+      'Tugna seg tɣzut — asexter n isefka';
+
+  @override
+  String get medicalRecordsOcrTitle => 'Asexter OCR';
+
+  @override
+  String get medicalRecordsOcrHint =>
+      'Yeṭṭaf anaw, azemz d iɣawwaḍen — war tagnit tafelsast.';
+
+  @override
+  String get medicalRecordsOcrStart => 'Bdu asexter';
+
+  @override
+  String get medicalRecordsOcrRetry => 'Ɛiwed asexter';
+
+  @override
+  String get medicalRecordsOcrStarted =>
+      'Isemli yettwasekles — asexter OCR iteddu.';
+
+  @override
   String get medicalRecordUploadType => 'Anaw n usmeli';
 
   @override
@@ -2496,4 +2520,78 @@ class AppLocalizationsBer extends AppLocalizations {
   String anamnesisFollowUpProgress(int current, int total) {
     return 'Asteqsi $current / $total';
   }
+
+  @override
+  String get anamnesisDocsCta => 'Rnu isemli (IRM / radio / bilan)';
+
+  @override
+  String get anamnesisDocsTitle => 'Isemliyen n usenqed';
+
+  @override
+  String get anamnesisDocsHint =>
+      'Seddu aneqqis n tugna neɣ n tẓuri. Asexter yeṭṭaf isefka kan — war tagnit tafelsast.';
+
+  @override
+  String get anamnesisDocsCamera => 'Takamiṛa';
+
+  @override
+  String get anamnesisDocsGallery => 'Taɣzut';
+
+  @override
+  String get anamnesisDocsPickFile => 'Afaylu';
+
+  @override
+  String get anamnesisDocsEmpty => 'Ulac isemli i tɣimit-a.';
+
+  @override
+  String get anamnesisDocsUntitled => 'Isemli';
+
+  @override
+  String get anamnesisDocsReview => 'Senqed';
+
+  @override
+  String get anamnesisDocsReviewTitle => 'Asexter OCR';
+
+  @override
+  String get anamnesisDocsReviewHint =>
+      'Seggem ma yella. Aḍris OCR ur yettwasekles ara.';
+
+  @override
+  String get anamnesisDocsStatusQueued => 'Deg udrar';
+
+  @override
+  String get anamnesisDocsStatusProcessing => 'Asexter iteddu…';
+
+  @override
+  String get anamnesisDocsStatusExtracted => 'Yettwassexter — i usenqed';
+
+  @override
+  String get anamnesisDocsStatusFailed => 'Asexter yecceḍ';
+
+  @override
+  String get anamnesisDocsFieldExamType => 'Anaw n usenqed';
+
+  @override
+  String get anamnesisDocsFieldExamDate => 'Azemz n usenqed';
+
+  @override
+  String get anamnesisDocsFieldBodyRegion => 'Tamnaḍt n tfekka';
+
+  @override
+  String get anamnesisDocsFieldFacility => 'Aɣerbaz';
+
+  @override
+  String get anamnesisDocsFieldFindings => 'Iɣawwaḍen (yizir i yal yiwen)';
+
+  @override
+  String get anamnesisDocsFieldNotes => 'Iwenniten';
+
+  @override
+  String get anamnesisDocsRawOcr => 'Aḍris OCR amezwaru';
+
+  @override
+  String get anamnesisDocsSaveCorrections => 'Sekles iseggimen';
+
+  @override
+  String get anamnesisDocsCorrectionsSaved => 'Iseggimen ttwasekelsen.';
 }

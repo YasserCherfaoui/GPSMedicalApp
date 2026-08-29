@@ -14,6 +14,7 @@ import '../providers/medical_record_viewer.provider.dart';
 import '../providers/medical_records_list.provider.dart';
 import '../providers/medical_records_repositories.provider.dart';
 import '../utils/medical_record_download.dart';
+import '../widgets/medical_record_ocr_section.dart';
 
 class MedicalRecordViewerScreen extends ConsumerWidget {
   const MedicalRecordViewerScreen({
@@ -152,7 +153,26 @@ class MedicalRecordViewerScreen extends ConsumerWidget {
                 ),
             ],
           ),
-          body: _DocumentBody(mimeType: document.mimeType, bytes: state.bytes),
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  GpsSpacing.md,
+                  GpsSpacing.md,
+                  GpsSpacing.md,
+                  GpsSpacing.sm,
+                ),
+                child: MedicalRecordOcrSection(documentId: documentId),
+              ),
+              Expanded(
+                child: _DocumentBody(
+                  mimeType: document.mimeType,
+                  bytes: state.bytes,
+                ),
+              ),
+            ],
+          ),
         );
       },
     );

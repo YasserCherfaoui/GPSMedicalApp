@@ -72,6 +72,7 @@ abstract final class GpsRoutes {
   static String painLocalizationBody(String model) =>
       '$painLocalization?model=$model';
   static const anamnesisQcm = '/anamnesis/qcm';
+  static const anamnesisDocuments = '/anamnesis/documents';
 
   /// Debug-only design system QA (see [createGpsRouter]).
   static const designSystemShowcase = '/dev/design-system';

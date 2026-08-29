@@ -8,7 +8,9 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../anamnesis/providers/anamnesis_providers.dart';
 import '../../booking/providers/dependents_list.provider.dart';
+import '../models/medical_record_upload_draft.dart';
 import '../providers/medical_records_list.provider.dart';
 import '../providers/medical_records_repositories.provider.dart';
 import '../utils/medical_record_display.dart';
@@ -36,7 +38,9 @@ class _PendingUploadFile {
 }
 
 class MedicalRecordUploadScreen extends ConsumerStatefulWidget {
-  const MedicalRecordUploadScreen({super.key});
+  const MedicalRecordUploadScreen({this.draft, super.key});
+
+  final MedicalRecordUploadDraft? draft;
 
   @override
   ConsumerState<MedicalRecordUploadScreen> createState() =>
@@ -54,6 +58,28 @@ class _MedicalRecordUploadScreenState
   Map<String, String> _fieldErrors = {};
   bool _submitting = false;
   int _nextFileId = 0;
+  final _uploadedIds = <String>[];
+
+  @override
+  void initState() {
+    super.initState();
+    final draft = widget.draft;
+    if (draft != null) {
+      _type = draft.preferredType;
+      for (final file in draft.files) {
+        final mime = detectMedicalRecordMimeType(file.bytes);
+        if (mime == null) continue;
+        _pendingFiles.add(
+          _PendingUploadFile(
+            id: 'local-${_nextFileId++}',
+            fileName: file.fileName,
+            bytes: file.bytes,
+            mimeType: mime,
+          ),
+        );
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -201,6 +227,10 @@ class _MedicalRecordUploadScreenState
           },
         );
         ref.read(medicalRecordsListProvider.notifier).prependDocument(document);
+        final id = document.id;
+        if (id != null && id.isNotEmpty) {
+          _uploadedIds.add(id);
+        }
         _setStateSafe(() {
           file.status = _UploadFileStatus.done;
           file.progress = 1;
@@ -256,9 +286,33 @@ class _MedicalRecordUploadScreenState
               f.status == _UploadFileStatus.done ||
               f.status == _UploadFileStatus.cancelled,
         )) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(l10n.medicalRecordUploadSuccess)));
+      final shouldOcr = _type == MedicalDocumentTypeEnum.imaging ||
+          _type == MedicalDocumentTypeEnum.labResult ||
+          _type == MedicalDocumentTypeEnum.report;
+      if (shouldOcr && _uploadedIds.isNotEmpty) {
+        final anam = ref.read(anamnesisRepositoryProvider);
+        for (final id in _uploadedIds) {
+          try {
+            await anam.enqueueMedicalDocumentExtraction(id);
+          } catch (_) {
+            // OCR is best-effort; upload already succeeded.
+          }
+        }
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.medicalRecordsOcrStarted)),
+        );
+        if (_uploadedIds.length == 1) {
+          context.pushReplacement(
+            GpsRoutes.medicalRecordDetail(_uploadedIds.first),
+          );
+          return;
+        }
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.medicalRecordUploadSuccess)),
+        );
+      }
       context.pop();
     }
   }

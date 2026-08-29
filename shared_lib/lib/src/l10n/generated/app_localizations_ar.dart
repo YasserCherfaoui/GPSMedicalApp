@@ -1214,6 +1214,29 @@ class AppLocalizationsAr extends AppLocalizations {
   String get medicalRecordsUploadAddFiles => 'ملفات PDF';
 
   @override
+  String get medicalRecordsUploadForm => 'النموذج الكامل';
+
+  @override
+  String get medicalRecordsOcrGalleryHint =>
+      'صورة من المعرض — استخراج البيانات الأساسية';
+
+  @override
+  String get medicalRecordsOcrTitle => 'استخراج OCR';
+
+  @override
+  String get medicalRecordsOcrHint =>
+      'يقرأ نوع الفحص والتاريخ والعناصر الأساسية — دون تفسير سريري.';
+
+  @override
+  String get medicalRecordsOcrStart => 'بدء الاستخراج';
+
+  @override
+  String get medicalRecordsOcrRetry => 'إعادة الاستخراج';
+
+  @override
+  String get medicalRecordsOcrStarted => 'تم حفظ المستند — جاري استخراج OCR.';
+
+  @override
   String get medicalRecordUploadType => 'نوع الوثيقة';
 
   @override
@@ -2466,4 +2489,78 @@ class AppLocalizationsAr extends AppLocalizations {
   String anamnesisFollowUpProgress(int current, int total) {
     return 'سؤال $current / $total';
   }
+
+  @override
+  String get anamnesisDocsCta => 'إضافة مستند (تصوير / تحليل)';
+
+  @override
+  String get anamnesisDocsTitle => 'مستندات الفحص';
+
+  @override
+  String get anamnesisDocsHint =>
+      'أرفق تقرير تصوير أو تحليل. الاستخراج يقرأ البيانات الأساسية فقط — دون تفسير سريري.';
+
+  @override
+  String get anamnesisDocsCamera => 'كاميرا';
+
+  @override
+  String get anamnesisDocsGallery => 'المعرض';
+
+  @override
+  String get anamnesisDocsPickFile => 'ملف';
+
+  @override
+  String get anamnesisDocsEmpty => 'لا مستندات لهذه الجلسة.';
+
+  @override
+  String get anamnesisDocsUntitled => 'مستند';
+
+  @override
+  String get anamnesisDocsReview => 'مراجعة';
+
+  @override
+  String get anamnesisDocsReviewTitle => 'استخراج OCR';
+
+  @override
+  String get anamnesisDocsReviewHint =>
+      'صحّح إن لزم. نص OCR الخام لا يُستبدل أبداً.';
+
+  @override
+  String get anamnesisDocsStatusQueued => 'في الانتظار';
+
+  @override
+  String get anamnesisDocsStatusProcessing => 'جاري الاستخراج…';
+
+  @override
+  String get anamnesisDocsStatusExtracted => 'مستخرج — للمراجعة';
+
+  @override
+  String get anamnesisDocsStatusFailed => 'فشل الاستخراج';
+
+  @override
+  String get anamnesisDocsFieldExamType => 'نوع الفحص';
+
+  @override
+  String get anamnesisDocsFieldExamDate => 'تاريخ الفحص';
+
+  @override
+  String get anamnesisDocsFieldBodyRegion => 'المنطقة التشريحية';
+
+  @override
+  String get anamnesisDocsFieldFacility => 'المنشأة';
+
+  @override
+  String get anamnesisDocsFieldFindings => 'عناصر أساسية (سطر لكل عنصر)';
+
+  @override
+  String get anamnesisDocsFieldNotes => 'ملاحظات';
+
+  @override
+  String get anamnesisDocsRawOcr => 'نص OCR الخام';
+
+  @override
+  String get anamnesisDocsSaveCorrections => 'حفظ التصحيحات';
+
+  @override
+  String get anamnesisDocsCorrectionsSaved => 'تم حفظ التصحيحات.';
 }

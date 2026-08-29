@@ -1235,6 +1235,30 @@ class AppLocalizationsFr extends AppLocalizations {
   String get medicalRecordsUploadAddFiles => 'Fichiers PDF';
 
   @override
+  String get medicalRecordsUploadForm => 'Formulaire complet';
+
+  @override
+  String get medicalRecordsOcrGalleryHint =>
+      'Photo depuis la galerie — OCR des données clés';
+
+  @override
+  String get medicalRecordsOcrTitle => 'Extraction OCR';
+
+  @override
+  String get medicalRecordsOcrHint =>
+      'Lit le type d\'examen, la date et les éléments clés — sans interprétation clinique.';
+
+  @override
+  String get medicalRecordsOcrStart => 'Lancer l\'extraction';
+
+  @override
+  String get medicalRecordsOcrRetry => 'Relancer l\'extraction';
+
+  @override
+  String get medicalRecordsOcrStarted =>
+      'Document enregistré — extraction OCR en cours.';
+
+  @override
   String get medicalRecordUploadType => 'Type de document';
 
   @override
@@ -2528,4 +2552,79 @@ class AppLocalizationsFr extends AppLocalizations {
   String anamnesisFollowUpProgress(int current, int total) {
     return 'Question $current / $total';
   }
+
+  @override
+  String get anamnesisDocsCta => 'Ajouter un document (IRM / radio / bilan)';
+
+  @override
+  String get anamnesisDocsTitle => 'Documents d\'examen';
+
+  @override
+  String get anamnesisDocsHint =>
+      'Joignez un compte-rendu d\'imagerie ou de biologie. L\'extraction lit les données clés — sans interprétation clinique.';
+
+  @override
+  String get anamnesisDocsCamera => 'Photo';
+
+  @override
+  String get anamnesisDocsGallery => 'Galerie';
+
+  @override
+  String get anamnesisDocsPickFile => 'Fichier';
+
+  @override
+  String get anamnesisDocsEmpty => 'Aucun document pour cette session.';
+
+  @override
+  String get anamnesisDocsUntitled => 'Document';
+
+  @override
+  String get anamnesisDocsReview => 'Vérifier';
+
+  @override
+  String get anamnesisDocsReviewTitle => 'Extraction OCR';
+
+  @override
+  String get anamnesisDocsReviewHint =>
+      'Corrigez si besoin. Le texte OCR brut n\'est jamais écrasé.';
+
+  @override
+  String get anamnesisDocsStatusQueued => 'En file d\'attente';
+
+  @override
+  String get anamnesisDocsStatusProcessing => 'Extraction en cours…';
+
+  @override
+  String get anamnesisDocsStatusExtracted => 'Extrait — à vérifier';
+
+  @override
+  String get anamnesisDocsStatusFailed => 'Échec de l\'extraction';
+
+  @override
+  String get anamnesisDocsFieldExamType => 'Type d\'examen';
+
+  @override
+  String get anamnesisDocsFieldExamDate => 'Date d\'examen';
+
+  @override
+  String get anamnesisDocsFieldBodyRegion => 'Région anatomique';
+
+  @override
+  String get anamnesisDocsFieldFacility => 'Établissement';
+
+  @override
+  String get anamnesisDocsFieldFindings =>
+      'Éléments clés (une ligne par élément)';
+
+  @override
+  String get anamnesisDocsFieldNotes => 'Notes';
+
+  @override
+  String get anamnesisDocsRawOcr => 'Texte OCR brut';
+
+  @override
+  String get anamnesisDocsSaveCorrections => 'Enregistrer les corrections';
+
+  @override
+  String get anamnesisDocsCorrectionsSaved => 'Corrections enregistrées.';
 }

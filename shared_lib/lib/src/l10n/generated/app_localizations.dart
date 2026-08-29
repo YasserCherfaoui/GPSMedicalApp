@@ -2332,6 +2332,48 @@ abstract class AppLocalizations {
   /// **'Fichiers PDF'**
   String get medicalRecordsUploadAddFiles;
 
+  /// No description provided for @medicalRecordsUploadForm.
+  ///
+  /// In fr, this message translates to:
+  /// **'Formulaire complet'**
+  String get medicalRecordsUploadForm;
+
+  /// No description provided for @medicalRecordsOcrGalleryHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Photo depuis la galerie — OCR des données clés'**
+  String get medicalRecordsOcrGalleryHint;
+
+  /// No description provided for @medicalRecordsOcrTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Extraction OCR'**
+  String get medicalRecordsOcrTitle;
+
+  /// No description provided for @medicalRecordsOcrHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lit le type d\'examen, la date et les éléments clés — sans interprétation clinique.'**
+  String get medicalRecordsOcrHint;
+
+  /// No description provided for @medicalRecordsOcrStart.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lancer l\'extraction'**
+  String get medicalRecordsOcrStart;
+
+  /// No description provided for @medicalRecordsOcrRetry.
+  ///
+  /// In fr, this message translates to:
+  /// **'Relancer l\'extraction'**
+  String get medicalRecordsOcrRetry;
+
+  /// No description provided for @medicalRecordsOcrStarted.
+  ///
+  /// In fr, this message translates to:
+  /// **'Document enregistré — extraction OCR en cours.'**
+  String get medicalRecordsOcrStarted;
+
   /// No description provided for @medicalRecordUploadType.
   ///
   /// In fr, this message translates to:
@@ -4629,6 +4671,150 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Question {current} / {total}'**
   String anamnesisFollowUpProgress(int current, int total);
+
+  /// No description provided for @anamnesisDocsCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un document (IRM / radio / bilan)'**
+  String get anamnesisDocsCta;
+
+  /// No description provided for @anamnesisDocsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Documents d\'examen'**
+  String get anamnesisDocsTitle;
+
+  /// No description provided for @anamnesisDocsHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Joignez un compte-rendu d\'imagerie ou de biologie. L\'extraction lit les données clés — sans interprétation clinique.'**
+  String get anamnesisDocsHint;
+
+  /// No description provided for @anamnesisDocsCamera.
+  ///
+  /// In fr, this message translates to:
+  /// **'Photo'**
+  String get anamnesisDocsCamera;
+
+  /// No description provided for @anamnesisDocsGallery.
+  ///
+  /// In fr, this message translates to:
+  /// **'Galerie'**
+  String get anamnesisDocsGallery;
+
+  /// No description provided for @anamnesisDocsPickFile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichier'**
+  String get anamnesisDocsPickFile;
+
+  /// No description provided for @anamnesisDocsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun document pour cette session.'**
+  String get anamnesisDocsEmpty;
+
+  /// No description provided for @anamnesisDocsUntitled.
+  ///
+  /// In fr, this message translates to:
+  /// **'Document'**
+  String get anamnesisDocsUntitled;
+
+  /// No description provided for @anamnesisDocsReview.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérifier'**
+  String get anamnesisDocsReview;
+
+  /// No description provided for @anamnesisDocsReviewTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Extraction OCR'**
+  String get anamnesisDocsReviewTitle;
+
+  /// No description provided for @anamnesisDocsReviewHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Corrigez si besoin. Le texte OCR brut n\'est jamais écrasé.'**
+  String get anamnesisDocsReviewHint;
+
+  /// No description provided for @anamnesisDocsStatusQueued.
+  ///
+  /// In fr, this message translates to:
+  /// **'En file d\'attente'**
+  String get anamnesisDocsStatusQueued;
+
+  /// No description provided for @anamnesisDocsStatusProcessing.
+  ///
+  /// In fr, this message translates to:
+  /// **'Extraction en cours…'**
+  String get anamnesisDocsStatusProcessing;
+
+  /// No description provided for @anamnesisDocsStatusExtracted.
+  ///
+  /// In fr, this message translates to:
+  /// **'Extrait — à vérifier'**
+  String get anamnesisDocsStatusExtracted;
+
+  /// No description provided for @anamnesisDocsStatusFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Échec de l\'extraction'**
+  String get anamnesisDocsStatusFailed;
+
+  /// No description provided for @anamnesisDocsFieldExamType.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type d\'examen'**
+  String get anamnesisDocsFieldExamType;
+
+  /// No description provided for @anamnesisDocsFieldExamDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date d\'examen'**
+  String get anamnesisDocsFieldExamDate;
+
+  /// No description provided for @anamnesisDocsFieldBodyRegion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Région anatomique'**
+  String get anamnesisDocsFieldBodyRegion;
+
+  /// No description provided for @anamnesisDocsFieldFacility.
+  ///
+  /// In fr, this message translates to:
+  /// **'Établissement'**
+  String get anamnesisDocsFieldFacility;
+
+  /// No description provided for @anamnesisDocsFieldFindings.
+  ///
+  /// In fr, this message translates to:
+  /// **'Éléments clés (une ligne par élément)'**
+  String get anamnesisDocsFieldFindings;
+
+  /// No description provided for @anamnesisDocsFieldNotes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notes'**
+  String get anamnesisDocsFieldNotes;
+
+  /// No description provided for @anamnesisDocsRawOcr.
+  ///
+  /// In fr, this message translates to:
+  /// **'Texte OCR brut'**
+  String get anamnesisDocsRawOcr;
+
+  /// No description provided for @anamnesisDocsSaveCorrections.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer les corrections'**
+  String get anamnesisDocsSaveCorrections;
+
+  /// No description provided for @anamnesisDocsCorrectionsSaved.
+  ///
+  /// In fr, this message translates to:
+  /// **'Corrections enregistrées.'**
+  String get anamnesisDocsCorrectionsSaved;
 }
 
 class _AppLocalizationsDelegate

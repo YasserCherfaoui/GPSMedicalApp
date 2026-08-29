@@ -142,6 +142,100 @@ class AnamnesisRepository {
     }
   }
 
+  Future<List<AnamnesisSessionDocument>> listSessionDocuments(
+    String sessionId,
+  ) async {
+    try {
+      final response = await _dio.get<Map<String, dynamic>>(
+        '/anamnesis/sessions/$sessionId/documents',
+      );
+      final data = response.data;
+      if (data == null) return const [];
+      final items = data['data'] as List<dynamic>? ?? const [];
+      return items
+          .map(
+            (e) => AnamnesisSessionDocument.fromJson(
+              Map<String, dynamic>.from(e as Map),
+            ),
+          )
+          .toList();
+    } on DioException catch (e) {
+      throw _mapDio(e);
+    }
+  }
+
+  Future<AnamnesisSessionDocument> attachSessionDocument({
+    required String sessionId,
+    required String documentId,
+  }) async {
+    try {
+      final response = await _dio.post<Map<String, dynamic>>(
+        '/anamnesis/sessions/$sessionId/documents',
+        data: {'document_id': documentId},
+      );
+      final data = response.data;
+      if (data == null) {
+        throw StateError('Empty attach document response');
+      }
+      return AnamnesisSessionDocument.fromJson(data);
+    } on DioException catch (e) {
+      throw _mapDio(e);
+    }
+  }
+
+  Future<AnamnesisDocumentExtraction> fetchDocumentExtraction(
+    String documentId,
+  ) async {
+    try {
+      final response = await _dio.get<Map<String, dynamic>>(
+        '/medical-records/$documentId/extraction',
+      );
+      final data = response.data;
+      if (data == null) {
+        throw StateError('Empty extraction response');
+      }
+      return AnamnesisDocumentExtraction.fromJson(data);
+    } on DioException catch (e) {
+      throw _mapDio(e);
+    }
+  }
+
+  Future<AnamnesisDocumentExtraction> enqueueMedicalDocumentExtraction(
+    String documentId,
+  ) async {
+    try {
+      final response = await _dio.post<Map<String, dynamic>>(
+        '/medical-records/$documentId/extraction',
+      );
+      final data = response.data;
+      if (data == null) {
+        throw StateError('Empty extraction enqueue response');
+      }
+      return AnamnesisDocumentExtraction.fromJson(data);
+    } on DioException catch (e) {
+      throw _mapDio(e);
+    }
+  }
+
+  Future<AnamnesisDocumentExtraction> patchDocumentExtraction({
+    required String documentId,
+    required Map<String, dynamic> corrections,
+  }) async {
+    try {
+      final response = await _dio.patch<Map<String, dynamic>>(
+        '/medical-records/$documentId/extraction',
+        data: corrections,
+      );
+      final data = response.data;
+      if (data == null) {
+        throw StateError('Empty extraction patch response');
+      }
+      return AnamnesisDocumentExtraction.fromJson(data);
+    } on DioException catch (e) {
+      throw _mapDio(e);
+    }
+  }
+
   AnamnesisApiException _mapDio(DioException e) {
     final status = e.response?.statusCode;
     final data = e.response?.data;

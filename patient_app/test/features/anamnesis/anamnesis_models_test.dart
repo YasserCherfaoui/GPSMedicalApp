@@ -39,4 +39,28 @@ void main() {
     final value = buildAnswerValue(type: 'single_choice', optionId: 'mechanical');
     expect(value['option_id'], 'mechanical');
   });
+
+  test('AnamnesisSessionDocument and extraction parse', () {
+    final doc = AnamnesisSessionDocument.fromJson({
+      'document_id': '22222222-2222-2222-2222-222222222222',
+      'session_id': '11111111-1111-1111-1111-111111111111',
+      'extraction_status': 'extracted',
+      'attached_at': '2026-08-29T12:00:00Z',
+      'title': 'IRM genou',
+    });
+    expect(doc.isTerminal, isTrue);
+    expect(doc.title, 'IRM genou');
+
+    final ext = AnamnesisDocumentExtraction.fromJson({
+      'document_id': doc.documentId,
+      'status': 'extracted',
+      'raw_ocr_text': 'MOCK OCR',
+      'structured': {
+        'exam_type': 'IRM',
+        'key_findings': ['menisque'],
+      },
+    });
+    expect(ext.structured?.examType, 'IRM');
+    expect(ext.structured?.keyFindings, ['menisque']);
+  });
 }
