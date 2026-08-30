@@ -1101,6 +1101,15 @@
   "bilanTransmitConfirm": "Transmettre",
   "bilanTransmitSuccess": "Bilan transmis au spécialiste.",
   "profileBilanTile": "Mon bilan",
+  "referralMatchesTitle": "Spécialistes recommandés",
+  "referralMatchesEmpty": "Aucun spécialiste recommandé pour le moment. Réessayez après validation concierge.",
+  "referralMatchScore": "Pertinence {score} %",
+  "@referralMatchScore": {
+    "placeholders": { "score": { "type": "int" } }
+  },
+  "referralMatchSpecialistFallback": "Spécialiste",
+  "referralLoadError": "Impossible de charger les recommandations.",
+  "referralSelectSuccess": "Spécialiste sélectionné — vous pouvez prendre rendez-vous.",
   "specialistIncomingBilansTab": "Bilans",
   "specialistIncomingBilansEmpty": "Aucun bilan entrant.",
   "specialistIncomingBilansError": "Impossible de charger les bilans entrants.",

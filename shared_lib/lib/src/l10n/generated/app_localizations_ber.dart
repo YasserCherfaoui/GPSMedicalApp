@@ -2688,6 +2688,26 @@ class AppLocalizationsBer extends AppLocalizations {
   String get profileBilanTile => 'Ubilan-iw';
 
   @override
+  String get referralMatchesTitle => 'Ispecialist-it yettwaslen';
+
+  @override
+  String get referralMatchesEmpty => 'Ulac ispecialist yettwaslen.';
+
+  @override
+  String referralMatchScore(int score) {
+    return 'Amahil $score %';
+  }
+
+  @override
+  String get referralMatchSpecialistFallback => 'Aspecialist';
+
+  @override
+  String get referralLoadError => 'Ur tizmir ad d-yali tiwaslin.';
+
+  @override
+  String get referralSelectSuccess => 'Aspecialist yettufren.';
+
+  @override
   String get specialistIncomingBilansTab => 'Ibilans';
 
   @override

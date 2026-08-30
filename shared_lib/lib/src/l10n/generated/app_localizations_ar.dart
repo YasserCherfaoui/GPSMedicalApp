@@ -2657,6 +2657,26 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profileBilanTile => 'bilan الخاص بي';
 
   @override
+  String get referralMatchesTitle => 'الاختصاصيون الموصى بهم';
+
+  @override
+  String get referralMatchesEmpty => 'لا توصيات متاحة حالياً.';
+
+  @override
+  String referralMatchScore(int score) {
+    return 'الملاءمة $score %';
+  }
+
+  @override
+  String get referralMatchSpecialistFallback => 'اختصاصي';
+
+  @override
+  String get referralLoadError => 'تعذر تحميل التوصيات.';
+
+  @override
+  String get referralSelectSuccess => 'تم اختيار الاختصاصي.';
+
+  @override
   String get specialistIncomingBilansTab => 'الbilans';
 
   @override

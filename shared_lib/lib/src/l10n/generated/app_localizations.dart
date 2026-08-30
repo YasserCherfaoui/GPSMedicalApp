@@ -4978,6 +4978,42 @@ abstract class AppLocalizations {
   /// **'Mon bilan'**
   String get profileBilanTile;
 
+  /// No description provided for @referralMatchesTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Spécialistes recommandés'**
+  String get referralMatchesTitle;
+
+  /// No description provided for @referralMatchesEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun spécialiste recommandé pour le moment. Réessayez après validation concierge.'**
+  String get referralMatchesEmpty;
+
+  /// No description provided for @referralMatchScore.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pertinence {score} %'**
+  String referralMatchScore(int score);
+
+  /// No description provided for @referralMatchSpecialistFallback.
+  ///
+  /// In fr, this message translates to:
+  /// **'Spécialiste'**
+  String get referralMatchSpecialistFallback;
+
+  /// No description provided for @referralLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger les recommandations.'**
+  String get referralLoadError;
+
+  /// No description provided for @referralSelectSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Spécialiste sélectionné — vous pouvez prendre rendez-vous.'**
+  String get referralSelectSuccess;
+
   /// No description provided for @specialistIncomingBilansTab.
   ///
   /// In fr, this message translates to:

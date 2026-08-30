@@ -76,6 +76,11 @@ abstract final class GpsRoutes {
   static const bilans = '/bilans';
   static String bilanDetail(String id) => '/bilans/$id';
   static String bilanTransmit(String id) => '/bilans/$id/transmit';
+  static String referralMatches(String sessionId, {String? bilanId}) {
+    final base = '/referral/matches?session_id=${Uri.encodeComponent(sessionId)}';
+    if (bilanId == null || bilanId.isEmpty) return base;
+    return '$base&bilan_id=${Uri.encodeComponent(bilanId)}';
+  }
 
   /// Debug-only design system QA (see [createGpsRouter]).
   static const designSystemShowcase = '/dev/design-system';

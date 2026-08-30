@@ -59,8 +59,12 @@ class BilanDetailScreen extends ConsumerWidget {
                 ),
               const SizedBox(height: GpsSpacing.sm),
               FilledButton(
-                onPressed: () =>
-                    context.push(GpsRoutes.bilanTransmit(bilanId)),
+                onPressed: () => context.push(
+                  GpsRoutes.referralMatches(
+                    bilan.sessionId,
+                    bilanId: bilanId,
+                  ),
+                ),
                 child: Text(l10n.bilanTransmitCta),
               ),
             ],

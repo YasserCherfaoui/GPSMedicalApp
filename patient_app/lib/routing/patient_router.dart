@@ -8,6 +8,7 @@ import '../features/anamnesis/screens/anamnesis_qcm_screen.dart';
 import '../features/bilan/screens/bilan_detail_screen.dart';
 import '../features/bilan/screens/bilan_list_screen.dart';
 import '../features/bilan/screens/bilan_transmit_screen.dart';
+import '../features/referral/screens/referral_matches_screen.dart';
 import '../features/booking/screens/appointment_detail_screen.dart';
 import '../features/booking/screens/appointments_list_screen.dart';
 import '../features/booking/screens/availability_calendar_screen.dart';
@@ -266,7 +267,22 @@ GoRouter createPatientRouter({
         path: '/bilans/:id/transmit',
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
+          final sessionId = state.uri.queryParameters['session_id'];
+          if (sessionId != null && sessionId.isNotEmpty) {
+            return ReferralMatchesScreen(sessionId: sessionId, bilanId: id);
+          }
           return BilanTransmitScreen(bilanId: id);
+        },
+      ),
+      GoRoute(
+        path: '/referral/matches',
+        builder: (context, state) {
+          final sessionId = state.uri.queryParameters['session_id'] ?? '';
+          final bilanId = state.uri.queryParameters['bilan_id'];
+          return ReferralMatchesScreen(
+            sessionId: sessionId,
+            bilanId: bilanId,
+          );
         },
       ),
       GoRoute(
@@ -386,24 +402,6 @@ GoRouter createPatientRouter({
         builder: (context, state) {
           final sessionId = state.pathParameters['sessionId'] ?? '';
           return AnamnesisDocumentsScreen(sessionId: sessionId);
-        },
-      ),
-      GoRoute(
-        path: GpsRoutes.bilans,
-        builder: (context, state) => const BilanListScreen(),
-      ),
-      GoRoute(
-        path: '/bilans/:id',
-        builder: (context, state) {
-          final id = state.pathParameters['id'] ?? '';
-          return BilanDetailScreen(bilanId: id);
-        },
-      ),
-      GoRoute(
-        path: '/bilans/:id/transmit',
-        builder: (context, state) {
-          final id = state.pathParameters['id'] ?? '';
-          return BilanTransmitScreen(bilanId: id);
         },
       ),
 

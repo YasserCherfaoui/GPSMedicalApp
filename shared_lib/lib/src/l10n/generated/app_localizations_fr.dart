@@ -2723,6 +2723,28 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profileBilanTile => 'Mon bilan';
 
   @override
+  String get referralMatchesTitle => 'Spécialistes recommandés';
+
+  @override
+  String get referralMatchesEmpty =>
+      'Aucun spécialiste recommandé pour le moment. Réessayez après validation concierge.';
+
+  @override
+  String referralMatchScore(int score) {
+    return 'Pertinence $score %';
+  }
+
+  @override
+  String get referralMatchSpecialistFallback => 'Spécialiste';
+
+  @override
+  String get referralLoadError => 'Impossible de charger les recommandations.';
+
+  @override
+  String get referralSelectSuccess =>
+      'Spécialiste sélectionné — vous pouvez prendre rendez-vous.';
+
+  @override
   String get specialistIncomingBilansTab => 'Bilans';
 
   @override
