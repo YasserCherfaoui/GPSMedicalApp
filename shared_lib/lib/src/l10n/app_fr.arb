@@ -1110,6 +1110,58 @@
   "referralMatchSpecialistFallback": "Spécialiste",
   "referralLoadError": "Impossible de charger les recommandations.",
   "referralSelectSuccess": "Spécialiste sélectionné — vous pouvez prendre rendez-vous.",
+  "profileCoachingTile": "Mon coaching",
+  "bilanCoachingCta": "Mon coaching biologique",
+  "coachingListTitle": "Mon coaching",
+  "coachingPlanTitle": "Plan de coaching",
+  "coachingLoadError": "Impossible de charger le coaching.",
+  "coachingListEmpty": "Aucun plan de coaching pour le moment.",
+  "coachingGenerating": "Génération du plan en cours…",
+  "coachingListItemTitle": "Session {sessionId}",
+  "@coachingListItemTitle": {
+    "placeholders": { "sessionId": { "type": "String" } }
+  },
+  "coachingListItemSubtitle": "Objectif hydratation {goalMl} ml · {date}",
+  "@coachingListItemSubtitle": {
+    "placeholders": {
+      "goalMl": { "type": "int" },
+      "date": { "type": "DateTime", "format": "yMMMd" }
+    }
+  },
+  "coachingProgressLabel": "Optimisation biologique",
+  "coachingProgressError": "Impossible de charger la progression.",
+  "coachingHydrationTitle": "Hydratation",
+  "coachingHydrationError": "Impossible de charger l'hydratation.",
+  "coachingHydrationMlGoal": "/ {goalMl} ml",
+  "@coachingHydrationMlGoal": {
+    "placeholders": { "goalMl": { "type": "int" } }
+  },
+  "coachingHydrationAdd": "+ {amountMl} ml",
+  "@coachingHydrationAdd": {
+    "placeholders": { "amountMl": { "type": "int" } }
+  },
+  "coachingHydrationLogged": "Hydratation enregistrée.",
+  "coachingSleepTitle": "Sommeil",
+  "coachingSleepError": "Impossible de charger le sommeil.",
+  "coachingSleepEmpty": "Aucun enregistrement récent.",
+  "coachingSleepHoursLabel": "Durée : {hours} h",
+  "@coachingSleepHoursLabel": {
+    "placeholders": { "hours": { "type": "String" } }
+  },
+  "coachingSleepQualityLabel": "Qualité (1 à 5)",
+  "coachingSleepLogCta": "Enregistrer la nuit",
+  "coachingSleepLogged": "Sommeil enregistré.",
+  "coachingSleepLastEntry": "Dernier : {date} — {hours} h, qualité {quality}/5",
+  "@coachingSleepLastEntry": {
+    "placeholders": {
+      "date": { "type": "String" },
+      "hours": { "type": "double" },
+      "quality": { "type": "int" }
+    }
+  },
+  "coachingSectionNutrition": "Nutrition",
+  "coachingSectionMobility": "Mobilité",
+  "coachingSectionPosture": "Postures",
   "specialistIncomingBilansTab": "Bilans",
   "specialistIncomingBilansEmpty": "Aucun bilan entrant.",
   "specialistIncomingBilansError": "Impossible de charger les bilans entrants.",

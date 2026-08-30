@@ -8,12 +8,12 @@ import '../features/anamnesis/screens/anamnesis_qcm_screen.dart';
 import '../features/bilan/screens/bilan_detail_screen.dart';
 import '../features/bilan/screens/bilan_list_screen.dart';
 import '../features/bilan/screens/bilan_transmit_screen.dart';
-import '../features/referral/screens/referral_matches_screen.dart';
 import '../features/booking/screens/appointment_detail_screen.dart';
 import '../features/booking/screens/appointments_list_screen.dart';
 import '../features/booking/screens/availability_calendar_screen.dart';
 import '../features/booking/screens/booking_flow_screen.dart';
 import '../features/booking/screens/clinic_availability_calendar_screen.dart';
+import '../features/coaching/screens/coaching_plan_screen.dart';
 import '../features/dashboard/screens/patient_dashboard_screen.dart';
 import '../features/discovery/screens/clinic_detail_screen.dart';
 import '../features/discovery/screens/doctor_detail_screen.dart';
@@ -39,6 +39,7 @@ import '../features/profile/screens/dependents_list_screen.dart';
 import '../features/profile/screens/patient_profile_edit_screen.dart';
 import '../features/profile/screens/patient_profile_screen.dart';
 import '../features/profile/screens/profile_account_screen.dart';
+import '../features/referral/screens/referral_matches_screen.dart';
 import '../features/reviews/screens/create_clinic_profile_review_screen.dart';
 import '../features/reviews/screens/create_review_screen.dart';
 import '../features/reviews/screens/review_confirmation_screen.dart';
@@ -68,7 +69,9 @@ String? anamnesisRouteRedirect({
   if (path == GpsRoutes.anamnesisQcm ||
       path.startsWith('${GpsRoutes.anamnesisDocuments}/') ||
       path == GpsRoutes.bilans ||
-      path.startsWith('${GpsRoutes.bilans}/')) {
+      path.startsWith('${GpsRoutes.bilans}/') ||
+      path == GpsRoutes.coachingPlans ||
+      path.startsWith('${GpsRoutes.coachingPlans}/')) {
     return GpsRoutes.discover;
   }
   return null;
@@ -290,6 +293,23 @@ GoRouter createPatientRouter({
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
           return BilanDetailScreen(bilanId: id);
+        },
+      ),
+      GoRoute(
+        path: GpsRoutes.coachingPlans,
+        builder: (context, state) {
+          final sessionId = state.uri.queryParameters['session_id'];
+          if (sessionId != null && sessionId.isNotEmpty) {
+            return CoachingSessionLoaderScreen(sessionId: sessionId);
+          }
+          return const CoachingPlansScreen();
+        },
+      ),
+      GoRoute(
+        path: '/coaching/:id',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          return CoachingPlanScreen(planId: id);
         },
       ),
       GoRoute(

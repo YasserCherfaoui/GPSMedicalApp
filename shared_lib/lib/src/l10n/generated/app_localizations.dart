@@ -5014,6 +5014,168 @@ abstract class AppLocalizations {
   /// **'Spécialiste sélectionné — vous pouvez prendre rendez-vous.'**
   String get referralSelectSuccess;
 
+  /// No description provided for @profileCoachingTile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon coaching'**
+  String get profileCoachingTile;
+
+  /// No description provided for @bilanCoachingCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon coaching biologique'**
+  String get bilanCoachingCta;
+
+  /// No description provided for @coachingListTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon coaching'**
+  String get coachingListTitle;
+
+  /// No description provided for @coachingPlanTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plan de coaching'**
+  String get coachingPlanTitle;
+
+  /// No description provided for @coachingLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger le coaching.'**
+  String get coachingLoadError;
+
+  /// No description provided for @coachingListEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun plan de coaching pour le moment.'**
+  String get coachingListEmpty;
+
+  /// No description provided for @coachingGenerating.
+  ///
+  /// In fr, this message translates to:
+  /// **'Génération du plan en cours…'**
+  String get coachingGenerating;
+
+  /// No description provided for @coachingListItemTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Session {sessionId}'**
+  String coachingListItemTitle(String sessionId);
+
+  /// No description provided for @coachingListItemSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Objectif hydratation {goalMl} ml · {date}'**
+  String coachingListItemSubtitle(int goalMl, DateTime date);
+
+  /// No description provided for @coachingProgressLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Optimisation biologique'**
+  String get coachingProgressLabel;
+
+  /// No description provided for @coachingProgressError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger la progression.'**
+  String get coachingProgressError;
+
+  /// No description provided for @coachingHydrationTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Hydratation'**
+  String get coachingHydrationTitle;
+
+  /// No description provided for @coachingHydrationError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger l\'hydratation.'**
+  String get coachingHydrationError;
+
+  /// No description provided for @coachingHydrationMlGoal.
+  ///
+  /// In fr, this message translates to:
+  /// **'/ {goalMl} ml'**
+  String coachingHydrationMlGoal(int goalMl);
+
+  /// No description provided for @coachingHydrationAdd.
+  ///
+  /// In fr, this message translates to:
+  /// **'+ {amountMl} ml'**
+  String coachingHydrationAdd(int amountMl);
+
+  /// No description provided for @coachingHydrationLogged.
+  ///
+  /// In fr, this message translates to:
+  /// **'Hydratation enregistrée.'**
+  String get coachingHydrationLogged;
+
+  /// No description provided for @coachingSleepTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sommeil'**
+  String get coachingSleepTitle;
+
+  /// No description provided for @coachingSleepError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger le sommeil.'**
+  String get coachingSleepError;
+
+  /// No description provided for @coachingSleepEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun enregistrement récent.'**
+  String get coachingSleepEmpty;
+
+  /// No description provided for @coachingSleepHoursLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée : {hours} h'**
+  String coachingSleepHoursLabel(String hours);
+
+  /// No description provided for @coachingSleepQualityLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Qualité (1 à 5)'**
+  String get coachingSleepQualityLabel;
+
+  /// No description provided for @coachingSleepLogCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer la nuit'**
+  String get coachingSleepLogCta;
+
+  /// No description provided for @coachingSleepLogged.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sommeil enregistré.'**
+  String get coachingSleepLogged;
+
+  /// No description provided for @coachingSleepLastEntry.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dernier : {date} — {hours} h, qualité {quality}/5'**
+  String coachingSleepLastEntry(String date, double hours, int quality);
+
+  /// No description provided for @coachingSectionNutrition.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nutrition'**
+  String get coachingSectionNutrition;
+
+  /// No description provided for @coachingSectionMobility.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mobilité'**
+  String get coachingSectionMobility;
+
+  /// No description provided for @coachingSectionPosture.
+  ///
+  /// In fr, this message translates to:
+  /// **'Postures'**
+  String get coachingSectionPosture;
+
   /// No description provided for @specialistIncomingBilansTab.
   ///
   /// In fr, this message translates to:

@@ -2677,6 +2677,102 @@ class AppLocalizationsAr extends AppLocalizations {
   String get referralSelectSuccess => 'تم اختيار الاختصاصي.';
 
   @override
+  String get profileCoachingTile => 'تدريبي';
+
+  @override
+  String get bilanCoachingCta => 'التدريب البيولوجي';
+
+  @override
+  String get coachingListTitle => 'تدريبي';
+
+  @override
+  String get coachingPlanTitle => 'خطة التدريب';
+
+  @override
+  String get coachingLoadError => 'تعذر تحميل التدريب.';
+
+  @override
+  String get coachingListEmpty => 'لا توجد خطة تدريب حالياً.';
+
+  @override
+  String get coachingGenerating => 'جاري إنشاء الخطة…';
+
+  @override
+  String coachingListItemTitle(String sessionId) {
+    return 'جلسة $sessionId';
+  }
+
+  @override
+  String coachingListItemSubtitle(int goalMl, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMMMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'هدف الترطيب $goalMl مل · $dateString';
+  }
+
+  @override
+  String get coachingProgressLabel => 'التحسين البيولوجي';
+
+  @override
+  String get coachingProgressError => 'تعذر تحميل التقدم.';
+
+  @override
+  String get coachingHydrationTitle => 'الترطيب';
+
+  @override
+  String get coachingHydrationError => 'تعذر تحميل الترطيب.';
+
+  @override
+  String coachingHydrationMlGoal(int goalMl) {
+    return '/ $goalMl مل';
+  }
+
+  @override
+  String coachingHydrationAdd(int amountMl) {
+    return '+ $amountMl مل';
+  }
+
+  @override
+  String get coachingHydrationLogged => 'تم تسجيل الترطيب.';
+
+  @override
+  String get coachingSleepTitle => 'النوم';
+
+  @override
+  String get coachingSleepError => 'تعذر تحميل النوم.';
+
+  @override
+  String get coachingSleepEmpty => 'لا سجلات حديثة.';
+
+  @override
+  String coachingSleepHoursLabel(String hours) {
+    return 'المدة: $hours س';
+  }
+
+  @override
+  String get coachingSleepQualityLabel => 'الجودة (1 إلى 5)';
+
+  @override
+  String get coachingSleepLogCta => 'تسجيل الليلة';
+
+  @override
+  String get coachingSleepLogged => 'تم تسجيل النوم.';
+
+  @override
+  String coachingSleepLastEntry(String date, double hours, int quality) {
+    return 'آخر: $date — $hours س، جودة $quality/5';
+  }
+
+  @override
+  String get coachingSectionNutrition => 'التغذية';
+
+  @override
+  String get coachingSectionMobility => 'الحركة';
+
+  @override
+  String get coachingSectionPosture => 'الوضعيات';
+
+  @override
   String get specialistIncomingBilansTab => 'الbilans';
 
   @override

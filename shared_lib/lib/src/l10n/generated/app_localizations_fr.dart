@@ -2745,6 +2745,102 @@ class AppLocalizationsFr extends AppLocalizations {
       'Spécialiste sélectionné — vous pouvez prendre rendez-vous.';
 
   @override
+  String get profileCoachingTile => 'Mon coaching';
+
+  @override
+  String get bilanCoachingCta => 'Mon coaching biologique';
+
+  @override
+  String get coachingListTitle => 'Mon coaching';
+
+  @override
+  String get coachingPlanTitle => 'Plan de coaching';
+
+  @override
+  String get coachingLoadError => 'Impossible de charger le coaching.';
+
+  @override
+  String get coachingListEmpty => 'Aucun plan de coaching pour le moment.';
+
+  @override
+  String get coachingGenerating => 'Génération du plan en cours…';
+
+  @override
+  String coachingListItemTitle(String sessionId) {
+    return 'Session $sessionId';
+  }
+
+  @override
+  String coachingListItemSubtitle(int goalMl, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMMMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Objectif hydratation $goalMl ml · $dateString';
+  }
+
+  @override
+  String get coachingProgressLabel => 'Optimisation biologique';
+
+  @override
+  String get coachingProgressError => 'Impossible de charger la progression.';
+
+  @override
+  String get coachingHydrationTitle => 'Hydratation';
+
+  @override
+  String get coachingHydrationError => 'Impossible de charger l\'hydratation.';
+
+  @override
+  String coachingHydrationMlGoal(int goalMl) {
+    return '/ $goalMl ml';
+  }
+
+  @override
+  String coachingHydrationAdd(int amountMl) {
+    return '+ $amountMl ml';
+  }
+
+  @override
+  String get coachingHydrationLogged => 'Hydratation enregistrée.';
+
+  @override
+  String get coachingSleepTitle => 'Sommeil';
+
+  @override
+  String get coachingSleepError => 'Impossible de charger le sommeil.';
+
+  @override
+  String get coachingSleepEmpty => 'Aucun enregistrement récent.';
+
+  @override
+  String coachingSleepHoursLabel(String hours) {
+    return 'Durée : $hours h';
+  }
+
+  @override
+  String get coachingSleepQualityLabel => 'Qualité (1 à 5)';
+
+  @override
+  String get coachingSleepLogCta => 'Enregistrer la nuit';
+
+  @override
+  String get coachingSleepLogged => 'Sommeil enregistré.';
+
+  @override
+  String coachingSleepLastEntry(String date, double hours, int quality) {
+    return 'Dernier : $date — $hours h, qualité $quality/5';
+  }
+
+  @override
+  String get coachingSectionNutrition => 'Nutrition';
+
+  @override
+  String get coachingSectionMobility => 'Mobilité';
+
+  @override
+  String get coachingSectionPosture => 'Postures';
+
+  @override
   String get specialistIncomingBilansTab => 'Bilans';
 
   @override

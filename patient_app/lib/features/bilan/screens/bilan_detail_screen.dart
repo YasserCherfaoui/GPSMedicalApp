@@ -67,6 +67,13 @@ class BilanDetailScreen extends ConsumerWidget {
                 ),
                 child: Text(l10n.bilanTransmitCta),
               ),
+              const SizedBox(height: GpsSpacing.sm),
+              FilledButton.tonal(
+                onPressed: () => context.push(
+                  GpsRoutes.coachingPlanForSession(bilan.sessionId),
+                ),
+                child: Text(l10n.bilanCoachingCta),
+              ),
             ],
           );
         },

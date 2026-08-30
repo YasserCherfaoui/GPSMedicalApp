@@ -82,6 +82,11 @@ abstract final class GpsRoutes {
     return '$base&bilan_id=${Uri.encodeComponent(bilanId)}';
   }
 
+  static const coachingPlans = '/coaching';
+  static String coachingPlanDetail(String id) => '/coaching/$id';
+  static String coachingPlanForSession(String sessionId) =>
+      '/coaching?session_id=${Uri.encodeComponent(sessionId)}';
+
   /// Debug-only design system QA (see [createGpsRouter]).
   static const designSystemShowcase = '/dev/design-system';
 

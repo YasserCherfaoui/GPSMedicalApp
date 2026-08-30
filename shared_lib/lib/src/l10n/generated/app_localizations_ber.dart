@@ -2708,6 +2708,102 @@ class AppLocalizationsBer extends AppLocalizations {
   String get referralSelectSuccess => 'Aspecialist yettufren.';
 
   @override
+  String get profileCoachingTile => 'Acoaching-iw';
+
+  @override
+  String get bilanCoachingCta => 'Acoaching abilogik';
+
+  @override
+  String get coachingListTitle => 'Acoaching-iw';
+
+  @override
+  String get coachingPlanTitle => 'Aɣawas n ucoaching';
+
+  @override
+  String get coachingLoadError => 'Ur yezmir ara ad d-yali ucoaching.';
+
+  @override
+  String get coachingListEmpty => 'Ulac aɣawas n ucoaching.';
+
+  @override
+  String get coachingGenerating => 'Asirew n uɣawas…';
+
+  @override
+  String coachingListItemTitle(String sessionId) {
+    return 'Tasultant $sessionId';
+  }
+
+  @override
+  String coachingListItemSubtitle(int goalMl, DateTime date) {
+    final intl.DateFormat dateDateFormat = intl.DateFormat.yMMMd(localeName);
+    final String dateString = dateDateFormat.format(date);
+
+    return 'Aswi n teskla $goalMl ml · $dateString';
+  }
+
+  @override
+  String get coachingProgressLabel => 'Asnerni abilogik';
+
+  @override
+  String get coachingProgressError => 'Ur yezmir ara ad d-yali asfari.';
+
+  @override
+  String get coachingHydrationTitle => 'Teskla';
+
+  @override
+  String get coachingHydrationError => 'Ur yezmir ara ad d-yali teskla.';
+
+  @override
+  String coachingHydrationMlGoal(int goalMl) {
+    return '/ $goalMl ml';
+  }
+
+  @override
+  String coachingHydrationAdd(int amountMl) {
+    return '+ $amountMl ml';
+  }
+
+  @override
+  String get coachingHydrationLogged => 'Teskla tettwasekles.';
+
+  @override
+  String get coachingSleepTitle => 'Taseddast';
+
+  @override
+  String get coachingSleepError => 'Ur yezmir ara ad d-yali taseddast.';
+
+  @override
+  String get coachingSleepEmpty => 'Ulac asekles amaynut.';
+
+  @override
+  String coachingSleepHoursLabel(String hours) {
+    return 'Akud: $hours h';
+  }
+
+  @override
+  String get coachingSleepQualityLabel => 'Taɣara (1 ar 5)';
+
+  @override
+  String get coachingSleepLogCta => 'Sekles taseddast';
+
+  @override
+  String get coachingSleepLogged => 'Taseddast tettwasekles.';
+
+  @override
+  String coachingSleepLastEntry(String date, double hours, int quality) {
+    return 'Amagnu: $date — $hours h, taɣara $quality/5';
+  }
+
+  @override
+  String get coachingSectionNutrition => 'Tameslayt';
+
+  @override
+  String get coachingSectionMobility => 'Tarrayut';
+
+  @override
+  String get coachingSectionPosture => 'Iɣewwaren';
+
+  @override
   String get specialistIncomingBilansTab => 'Ibilans';
 
   @override
