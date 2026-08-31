@@ -98,3 +98,4 @@ Project settings → Cloud Messaging → upload your **APNs authentication key**
 ### Backend (Week 9)
 
 Server-side FCM uses a service account from the same Firebase project. See `backend/.env.example` (`FCM_*`).
+Set `FCM_PROJECT_ID` (and ADC / `GOOGLE_APPLICATION_CREDENTIALS` locally) to enable real sends; when unset, the API uses MockFCM.

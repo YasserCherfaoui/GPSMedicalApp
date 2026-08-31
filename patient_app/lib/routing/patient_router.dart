@@ -60,6 +60,9 @@ String? painLocalizationRouteRedirect({
 }
 
 /// Prototype-only anamnesis route (D-P6).
+///
+/// Gates the QCM / document upload surfaces only. Bilans and coaching remain
+/// reachable from Profile even when the anamnesis prototype flag is off.
 String? anamnesisRouteRedirect({
   required String matchedLocation,
   required bool enabled,
@@ -67,11 +70,7 @@ String? anamnesisRouteRedirect({
   if (enabled) return null;
   final path = matchedLocation.split('?').first;
   if (path == GpsRoutes.anamnesisQcm ||
-      path.startsWith('${GpsRoutes.anamnesisDocuments}/') ||
-      path == GpsRoutes.bilans ||
-      path.startsWith('${GpsRoutes.bilans}/') ||
-      path == GpsRoutes.coachingPlans ||
-      path.startsWith('${GpsRoutes.coachingPlans}/')) {
+      path.startsWith('${GpsRoutes.anamnesisDocuments}/')) {
     return GpsRoutes.discover;
   }
   return null;
