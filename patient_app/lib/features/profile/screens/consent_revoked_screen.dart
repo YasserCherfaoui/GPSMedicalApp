@@ -18,6 +18,13 @@ class ConsentRevokedScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Spacer(),
+              const Center(
+                child: GpsLogo(
+                  size: 48,
+                  variant: GpsLogoVariant.iconPrimary,
+                ),
+              ),
+              const SizedBox(height: GpsSpacing.lg),
               Icon(
                 Icons.gpp_maybe_outlined,
                 size: 64,

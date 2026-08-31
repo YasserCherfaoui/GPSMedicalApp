@@ -4,7 +4,7 @@ import '../theme/gps_colors.dart';
 import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 
-/// Primary CTA with teal gradient per brand guidelines.
+/// Primary CTA with Medora blue gradient per brand guidelines.
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     required this.label,

@@ -61,18 +61,12 @@ class PatientProfileScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(GpsSpacing.md),
             children: [
               const DeviceVaultWarningBanner(),
+              _ProfileHeader(patient: patient),
+              const SizedBox(height: GpsSpacing.md),
               GpsCard(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    ProfileFieldRow(
-                      label: l10n.profileFullName,
-                      value: patient.fullName ?? '',
-                    ),
-                    ProfileFieldRow(
-                      label: l10n.profilePhone,
-                      value: patient.phone ?? '',
-                    ),
                     ProfileFieldRow(
                       label: l10n.profileEmail,
                       value: patient.email ?? '',
@@ -209,6 +203,80 @@ class PatientProfileScreen extends ConsumerWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ProfileHeader extends StatelessWidget {
+  const _ProfileHeader({required this.patient});
+
+  final Patient patient;
+
+  String _initials(String? fullName) {
+    final parts = (fullName ?? '').trim().split(RegExp(r'\s+'));
+    if (parts.isEmpty || parts.first.isEmpty) return '?';
+    if (parts.length == 1) return parts.first[0].toUpperCase();
+    return '${parts.first[0]}${parts.last[0]}'.toUpperCase();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final name = patient.fullName ?? '';
+
+    return GpsCard(
+      showAccentBorder: true,
+      child: Row(
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: [
+                  colorScheme.primaryContainer,
+                  colorScheme.primary,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              _initials(name),
+              style: theme.textTheme.titleLarge?.copyWith(
+                color: colorScheme.onPrimary,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          const SizedBox(width: GpsSpacing.md),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                if (patient.phone != null && patient.phone!.isNotEmpty) ...[
+                  const SizedBox(height: GpsSpacing.xs),
+                  Text(
+                    patient.phone!,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -34,16 +34,13 @@ class AppointmentRowTile extends StatelessWidget {
         : '';
     final fee = appointment.feeDzd ?? doctor.consultationFeeDzd;
 
-    return Card(
-      margin: const EdgeInsets.only(bottom: GpsSpacing.sm),
-      child: InkWell(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: GpsSpacing.sm),
+      child: GpsCard(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(GpsRadii.md),
-        child: Padding(
-          padding: const EdgeInsets.all(GpsSpacing.md),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
               GpsDoctorPhoto(
                 size: 56,
                 imageUrl: doctor.photoUrl,
@@ -98,7 +95,6 @@ class AppointmentRowTile extends StatelessWidget {
                   ),
                 ),
             ],
-          ),
         ),
       ),
     );

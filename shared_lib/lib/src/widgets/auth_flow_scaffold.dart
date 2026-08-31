@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+
+import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 import 'gps_blur_background.dart';
+import 'gps_logo.dart';
 
 /// Shared layout for registration and auth steps.
 class AuthFlowScaffold extends StatelessWidget {
@@ -21,6 +24,7 @@ class AuthFlowScaffold extends StatelessWidget {
     /// previous step; set this only on entry screens (welcome, login, …).
     this.fallbackPopLocation,
     this.floatingActionButton,
+    this.showBrandMark = false,
   });
 
   final String title;
@@ -34,6 +38,9 @@ class AuthFlowScaffold extends StatelessWidget {
   /// See [AuthFlowScaffold.fallbackPopLocation] constructor param.
   final String? fallbackPopLocation;
   final Widget? floatingActionButton;
+
+  /// Shows the Medora icon above the body on entry screens (login, success, …).
+  final bool showBrandMark;
 
   void _onLeadingPressed(BuildContext context) {
     final router = GoRouter.maybeOf(context);
@@ -93,7 +100,7 @@ class AuthFlowScaffold extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.secondaryContainer,
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: GpsRadii.input,
                     ),
                     child: Text(
                       '$step/$totalSteps',
@@ -133,6 +140,15 @@ class AuthFlowScaffold extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    if (showBrandMark) ...[
+                      const Center(
+                        child: GpsLogo(
+                          size: 48,
+                          variant: GpsLogoVariant.iconPrimary,
+                        ),
+                      ),
+                      const SizedBox(height: GpsSpacing.md),
+                    ],
                     if (subtitle != null) ...[
                       const SizedBox(height: GpsSpacing.md),
                       Text(

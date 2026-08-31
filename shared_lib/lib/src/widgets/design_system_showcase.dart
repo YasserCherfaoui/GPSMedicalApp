@@ -79,11 +79,11 @@ class _DesignSystemShowcaseScreenState
                 style: Theme.of(innerContext).textTheme.headlineMedium,
               ),
               Text(
-                'Body large — Inter. Medical clarity and generous whitespace.',
+                'Body large — Founders Grotesk. Medical clarity and generous whitespace.',
                 style: Theme.of(innerContext).textTheme.bodyLarge,
               ),
               Text(
-                'Body medium — Inter.',
+                'Body medium — Founders Grotesk.',
                 style: Theme.of(innerContext).textTheme.bodyMedium,
               ),
               Text(

@@ -29,7 +29,7 @@ class SpecialtyChip extends StatelessWidget {
         label,
         style: theme.textTheme.labelSmall?.copyWith(
           color: colorScheme.brightness == Brightness.dark
-              ? const Color(0xFF7AD7C6)
+              ? GpsColors.greenLight
               : GpsColors.primary,
           fontWeight: FontWeight.w600,
           letterSpacing: 0.4,

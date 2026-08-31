@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../theme/gps_spacing.dart';
 
-/// Chip/tag for specialties or status (light blue fill, teal label).
+/// Chip/tag for specialties or status (light green fill, primary label).
 class GpsBadge extends StatelessWidget {
   const GpsBadge({required this.label, super.key, this.icon});
 

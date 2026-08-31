@@ -79,6 +79,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     return AuthFlowScaffold(
       fallbackPopLocation: GpsRoutes.authWelcome,
+      showBrandMark: true,
       title: strings.loginTitle,
       subtitle: strings.loginSubtitle,
       body: Column(
@@ -90,8 +91,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             padding: const EdgeInsets.all(GpsSpacing.lg),
             decoration: BoxDecoration(
               color: colorScheme.surfaceContainerLowest.withOpacity(0.8),
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: Colors.white, width: 1.5),
+              borderRadius: GpsRadii.card,
+              border: Border.all(
+                color: colorScheme.outlineVariant.withOpacity(0.5),
+                width: 1.5,
+              ),
               boxShadow: [
                 BoxShadow(
                   color: colorScheme.primary.withOpacity(0.04),
@@ -216,7 +220,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: colorScheme.primary,
-        child: const Icon(Icons.help_outline, color: Colors.white),
+        child: Icon(Icons.help_outline, color: colorScheme.onPrimary),
       ),
     );
   }

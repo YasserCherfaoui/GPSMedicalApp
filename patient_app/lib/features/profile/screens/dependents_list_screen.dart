@@ -97,12 +97,18 @@ class DependentsListScreen extends ConsumerWidget {
                 final dependent = dependents[index];
                 final age = dependentAgeYears(dependent.birthDate);
 
-                return GpsCard(
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: CircleAvatar(
-                      child: Icon(dependentGenderIcon(dependent.gender)),
-                    ),
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: GpsSpacing.sm),
+                  child: GpsCard(
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: CircleAvatar(
+                        backgroundColor:
+                            Theme.of(context).colorScheme.primaryContainer,
+                        foregroundColor:
+                            Theme.of(context).colorScheme.onPrimaryContainer,
+                        child: Icon(dependentGenderIcon(dependent.gender)),
+                      ),
                     title: Text(dependent.fullName ?? ''),
                     subtitle: Text(
                       '${dependentRelationLabel(dependent.relation, l10n)} · ${l10n.dependentAgeYears(age)}',
@@ -138,6 +144,7 @@ class DependentsListScreen extends ConsumerWidget {
                         : () => context.push(
                             GpsRoutes.profileDependentEdit(dependent.id!),
                           ),
+                    ),
                   ),
                 );
               },

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../theme/gps_spacing.dart';
 
-/// Design-system text field — 48px min height, soft fill, teal focus ring.
+/// Design-system text field — 48px min height, soft fill, primary focus ring.
 class GpsTextField extends StatelessWidget {
   const GpsTextField({
     super.key,

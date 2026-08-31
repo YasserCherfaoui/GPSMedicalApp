@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../l10n/auth_strings.dart';
+import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 import '../validation/password_strength.dart';
 import 'gps_text_field.dart';
@@ -62,7 +63,7 @@ class _PasswordStrengthFieldState extends State<PasswordStrengthField> {
           padding: const EdgeInsets.all(GpsSpacing.md),
           decoration: BoxDecoration(
             color: colorScheme.surfaceContainerLow,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: GpsRadii.button,
             border: Border.all(
               color: colorScheme.outlineVariant.withOpacity(0.3),
             ),

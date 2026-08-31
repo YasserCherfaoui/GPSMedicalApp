@@ -16,6 +16,7 @@ import '../l10n/auth_strings.dart';
 import '../models/app_info.dart';
 import '../models/app_info.provider.dart';
 import '../routing/gps_routes.dart';
+import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 import '../validation/nin.dart';
 import '../validation/password_strength.dart';
@@ -24,6 +25,7 @@ import '../widgets/auth_flow_scaffold.dart';
 import '../widgets/auth_toast.dart';
 import '../widgets/country_phone_field.dart';
 import '../widgets/gps_text_field.dart';
+import '../widgets/gps_logo.dart';
 import '../widgets/otp_pin_input.dart';
 import '../widgets/password_strength_field.dart';
 import '../widgets/primary_button.dart';
@@ -155,14 +157,14 @@ class _CountryOptionCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: GpsRadii.card,
         child: Ink(
           padding: const EdgeInsets.all(GpsSpacing.md),
           decoration: BoxDecoration(
             color: selected
                 ? colorScheme.primary.withOpacity(0.08)
                 : colorScheme.surfaceContainerLowest.withOpacity(0.8),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: GpsRadii.card,
             border: Border.all(
               color: selected
                   ? colorScheme.primary
@@ -297,7 +299,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
             padding: const EdgeInsets.all(GpsSpacing.md),
             decoration: BoxDecoration(
               color: colorScheme.surfaceContainerLow,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: GpsRadii.card,
               border: Border.all(
                 color: colorScheme.outlineVariant.withOpacity(0.3),
               ),
@@ -315,7 +317,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
                   padding: const EdgeInsets.all(GpsSpacing.sm),
                   decoration: BoxDecoration(
                     color: colorScheme.primary.withOpacity(0.08),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: GpsRadii.button,
                   ),
                   child: Icon(
                     Icons.badge,
@@ -926,7 +928,7 @@ class _ConsentCard extends StatelessWidget {
       padding: const EdgeInsets.all(GpsSpacing.md),
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerLowest.withOpacity(0.8),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: GpsRadii.card,
         border: Border.all(color: colorScheme.outlineVariant.withOpacity(0.3)),
       ),
       child: Row(
@@ -1148,7 +1150,7 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
             padding: const EdgeInsets.all(GpsSpacing.md),
             decoration: BoxDecoration(
               color: colorScheme.surfaceContainerLowest.withOpacity(0.8),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: GpsRadii.card,
               border: Border.all(
                 color: colorScheme.outlineVariant.withOpacity(0.3),
               ),
@@ -1160,7 +1162,7 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     color: colorScheme.secondaryContainer.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: GpsRadii.input,
                   ),
                   child: Icon(
                     Icons.info_outline,
@@ -1253,6 +1255,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
 
     return AuthFlowScaffold(
       fallbackPopLocation: GpsRoutes.login,
+      showBrandMark: true,
       title: strings.forgotTitle,
       subtitle: strings.forgotTitle,
       body: CountryPhoneField(
@@ -1403,6 +1406,7 @@ class BiometricSetupScreen extends StatelessWidget {
     return AuthFlowScaffold(
       title: strings.biometricTitle,
       showBack: false,
+      showBrandMark: true,
       body: Column(
         children: [
           const SizedBox(height: GpsSpacing.lg),
@@ -1413,13 +1417,13 @@ class BiometricSetupScreen extends StatelessWidget {
               height: 140,
               decoration: BoxDecoration(
                 color: colorScheme.surfaceContainerLowest,
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(GpsRadii.xxl),
                 border: Border.all(
                   color: colorScheme.outlineVariant.withOpacity(0.3),
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: colorScheme.tertiary.withOpacity(0.08),
+                    color: colorScheme.primary.withOpacity(0.08),
                     blurRadius: 40,
                     offset: const Offset(0, 15),
                   ),
@@ -1430,13 +1434,13 @@ class BiometricSetupScreen extends StatelessWidget {
                   width: 96,
                   height: 96,
                   decoration: BoxDecoration(
-                    color: colorScheme.tertiary.withOpacity(0.1),
+                    color: colorScheme.primaryContainer.withOpacity(0.15),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
                     Icons.fingerprint,
                     size: 64,
-                    color: colorScheme.tertiary,
+                    color: colorScheme.primary,
                   ),
                 ),
               ),
@@ -1468,7 +1472,7 @@ class BiometricSetupScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(GpsSpacing.md),
                   decoration: BoxDecoration(
                     color: colorScheme.surfaceContainerLow,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: GpsRadii.button,
                     border: Border.all(
                       color: colorScheme.outlineVariant.withOpacity(0.2),
                     ),
@@ -1499,7 +1503,7 @@ class BiometricSetupScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(GpsSpacing.md),
                   decoration: BoxDecoration(
                     color: colorScheme.surfaceContainerLow,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: GpsRadii.button,
                     border: Border.all(
                       color: colorScheme.outlineVariant.withOpacity(0.2),
                     ),
@@ -1536,9 +1540,7 @@ class BiometricSetupScreen extends StatelessWidget {
             onPressed: () => context.go(GpsRoutes.registrationSuccess),
             style: OutlinedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
+              shape: RoundedRectangleBorder(borderRadius: GpsRadii.button),
               side: BorderSide(color: colorScheme.primary),
             ),
             child: Text(
@@ -1567,21 +1569,26 @@ class RegistrationSuccessScreen extends StatelessWidget {
 
     return AuthFlowScaffold(
       showBack: false,
+      showBrandMark: true,
       title: 'GPS Médical Algérie',
       body: Column(
         children: [
           const SizedBox(height: GpsSpacing.lg),
-          // Celebratory green check orange glow container
+          const Center(
+            child: GpsLogo(size: 56, variant: GpsLogoVariant.iconGradient),
+          ),
+          const SizedBox(height: GpsSpacing.lg),
+          // Celebratory success check with brand green accent
           Center(
             child: Container(
               width: 140,
               height: 140,
               decoration: BoxDecoration(
-                color: colorScheme.tertiary.withOpacity(0.1),
+                color: colorScheme.secondaryContainer.withOpacity(0.35),
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: colorScheme.tertiary.withOpacity(0.15),
+                    color: colorScheme.secondary.withOpacity(0.15),
                     blurRadius: 30,
                   ),
                 ],
@@ -1591,13 +1598,13 @@ class RegistrationSuccessScreen extends StatelessWidget {
                   width: 96,
                   height: 96,
                   decoration: BoxDecoration(
-                    color: colorScheme.tertiary.withOpacity(0.2),
+                    color: colorScheme.secondary.withOpacity(0.2),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
                     Icons.check_circle,
                     size: 64,
-                    color: colorScheme.tertiary,
+                    color: colorScheme.secondary,
                   ),
                 ),
               ),
@@ -1629,7 +1636,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(GpsSpacing.md),
                   decoration: BoxDecoration(
                     color: colorScheme.surfaceContainerLow,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: GpsRadii.button,
                     border: Border.all(
                       color: colorScheme.outlineVariant.withOpacity(0.2),
                     ),
@@ -1665,7 +1672,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(GpsSpacing.md),
                   decoration: BoxDecoration(
                     color: colorScheme.surfaceContainerLow,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: GpsRadii.button,
                     border: Border.all(
                       color: colorScheme.outlineVariant.withOpacity(0.2),
                     ),
@@ -1751,7 +1758,7 @@ class _NinVerificationBanner extends StatelessWidget {
       padding: const EdgeInsets.all(GpsSpacing.md),
       decoration: BoxDecoration(
         color: colorScheme.secondaryContainer.withOpacity(0.35),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: GpsRadii.button,
         border: Border.all(color: colorScheme.outlineVariant.withOpacity(0.4)),
       ),
       child: Row(
