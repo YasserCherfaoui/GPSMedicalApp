@@ -31,12 +31,16 @@ class ClinicDetailScreen extends ConsumerWidget {
           const OfflineBanner(),
           Expanded(
             child: detailAsync.when(
-              data: (detail) => _ClinicDetailBody(
-                detail: detail,
-                languageCode: languageCode,
-                onLoadMoreReviews: () => ref
-                    .read(clinicDetailProvider(clinicId).notifier)
-                    .loadMoreReviews(),
+              data: (detail) => RefreshIndicator(
+                onRefresh: () =>
+                    ref.refresh(clinicDetailProvider(clinicId).future),
+                child: _ClinicDetailBody(
+                  detail: detail,
+                  languageCode: languageCode,
+                  onLoadMoreReviews: () => ref
+                      .read(clinicDetailProvider(clinicId).notifier)
+                      .loadMoreReviews(),
+                ),
               ),
               loading: () => const DoctorDetailShimmer(),
               error: (error, stack) {
@@ -94,6 +98,7 @@ class _ClinicDetailBody extends StatelessWidget {
     final description = clinic.description?.trim() ?? '';
 
     return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.all(GpsSpacing.md),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
