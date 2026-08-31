@@ -32,8 +32,8 @@ class PrimaryButton extends StatelessWidget {
           gradient: enabled
               ? const LinearGradient(
                   colors: [GpsColors.primaryContainer, GpsColors.primary],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
                 )
               : null,
           color: enabled ? null : Theme.of(context).colorScheme.outlineVariant,

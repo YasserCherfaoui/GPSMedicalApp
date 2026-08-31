@@ -1,53 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'gps_colors.dart';
 
-/// Typography scale from `docs/DESIGN-GPS-Medical.md`.
+/// Typography from `branding/Typography` — Clash Display + Founders Grotesk.
 abstract final class GpsTypography {
+  static const String displayFamily = 'ClashDisplay';
+  static const String bodyFamily = 'FoundersGrotesk';
+
   static TextTheme textTheme({required bool isDark}) {
     final onSurface = isDark ? GpsColors.darkOnSurface : GpsColors.onSurface;
     final onSurfaceVariant = isDark
         ? GpsColors.darkOnSurfaceVariant
         : GpsColors.onSurfaceVariant;
 
-    final manrope = GoogleFonts.manropeTextTheme();
-    final inter = GoogleFonts.interTextTheme();
-
     return TextTheme(
-      displayLarge: manrope.displayLarge?.copyWith(
+      displayLarge: TextStyle(
+        fontFamily: displayFamily,
         fontSize: 40,
         fontWeight: FontWeight.w700,
         height: 1.2,
         letterSpacing: -0.8,
         color: onSurface,
       ),
-      displayMedium: manrope.displayMedium?.copyWith(
+      displayMedium: TextStyle(
+        fontFamily: displayFamily,
         fontSize: 32,
         fontWeight: FontWeight.w600,
         height: 1.3,
         letterSpacing: -0.32,
         color: onSurface,
       ),
-      headlineMedium: manrope.headlineMedium?.copyWith(
+      headlineMedium: TextStyle(
+        fontFamily: displayFamily,
         fontSize: 24,
         fontWeight: FontWeight.w600,
         height: 1.4,
         color: onSurface,
       ),
-      bodyLarge: inter.bodyLarge?.copyWith(
+      titleLarge: TextStyle(
+        fontFamily: displayFamily,
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        height: 1.35,
+        color: onSurface,
+      ),
+      bodyLarge: TextStyle(
+        fontFamily: bodyFamily,
         fontSize: 18,
         fontWeight: FontWeight.w400,
         height: 1.6,
         color: onSurface,
       ),
-      bodyMedium: inter.bodyMedium?.copyWith(
+      bodyMedium: TextStyle(
+        fontFamily: bodyFamily,
         fontSize: 16,
         fontWeight: FontWeight.w400,
         height: 1.5,
         color: onSurface,
       ),
-      labelSmall: inter.labelSmall?.copyWith(
+      labelLarge: TextStyle(
+        fontFamily: bodyFamily,
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        height: 1.2,
+        color: onSurface,
+      ),
+      labelSmall: TextStyle(
+        fontFamily: bodyFamily,
         fontSize: 12,
         fontWeight: FontWeight.w600,
         height: 1,

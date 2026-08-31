@@ -17,6 +17,25 @@ Widget _wrap(
 }
 
 void main() {
+  group('GpsLogo', () {
+    testWidgets('renders bundled brand asset', (tester) async {
+      await tester.pumpWidget(_wrap(const GpsLogo(size: 64)));
+
+      expect(find.byType(Image), findsOneWidget);
+      expect(find.bySemanticsLabel(GpsBrand.name), findsOneWidget);
+    });
+
+    testWidgets('wordmark variant uses wider layout', (tester) async {
+      await tester.pumpWidget(
+        _wrap(const GpsLogo(size: 40, variant: GpsLogoVariant.wordmark)),
+      );
+
+      final image = tester.widget<Image>(find.byType(Image));
+      expect(image.width, 104);
+      expect(image.height, 40);
+    });
+  });
+
   group('PrimaryButton', () {
     testWidgets('renders label and fires onPressed', (tester) async {
       var tapped = false;

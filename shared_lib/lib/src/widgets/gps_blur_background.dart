@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Renders the premium background with subtle, high-performance radial glows.
 /// Renders a top-right primary glow and bottom-left secondary/tertiary glow
-/// conforming to the brand design guidelines in `docs/DESIGN-GPS-Medical.md`.
+/// conforming to the Medora brand guidelines in `branding/`.
 class GpsBlurBackground extends StatelessWidget {
   const GpsBlurBackground({required this.child, super.key});
 

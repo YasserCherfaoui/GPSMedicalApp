@@ -106,10 +106,14 @@ class DoctorListScreen extends ConsumerWidget {
                         children: [
                           Text(
                             l10n.discoveryRecommendedTitle,
-                            style: theme.textTheme.displayMedium?.copyWith(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                            style: theme.textTheme.headlineMedium?.copyWith(
+                              fontWeight: FontWeight.w700,
                             ),
+                          ),
+                          const SizedBox(height: GpsSpacing.md),
+                          DiscoverySearchPromo(
+                            hint: l10n.searchHint,
+                            onTap: () => context.push(GpsRoutes.search),
                           ),
                           if (ref.watch(painLocalizationEnabledProvider)) ...[
                             const SizedBox(height: GpsSpacing.md),
@@ -123,43 +127,44 @@ class DoctorListScreen extends ConsumerWidget {
                               borderRadius: BorderRadius.circular(GpsRadii.xl),
                             ),
                             child: Row(
-                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: colorScheme.primary,
-                                    foregroundColor: colorScheme.onPrimary,
-                                    elevation: 0,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                        GpsRadii.lg,
+                                Expanded(
+                                  child: FilledButton(
+                                    style: FilledButton.styleFrom(
+                                      backgroundColor: colorScheme.primary,
+                                      foregroundColor: colorScheme.onPrimary,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(
+                                          GpsRadii.lg,
+                                        ),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: GpsSpacing.sm,
                                       ),
                                     ),
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: GpsSpacing.lg,
-                                      vertical: GpsSpacing.sm,
-                                    ),
+                                    onPressed: () {},
+                                    child: Text(l10n.discoveryViewList),
                                   ),
-                                  onPressed: () {},
-                                  child: Text(l10n.discoveryViewList),
                                 ),
                                 const SizedBox(width: 4),
-                                TextButton(
-                                  style: TextButton.styleFrom(
-                                    foregroundColor:
-                                        colorScheme.onSurfaceVariant,
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: GpsSpacing.lg,
-                                      vertical: GpsSpacing.sm,
+                                Expanded(
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      foregroundColor:
+                                          colorScheme.onSurfaceVariant,
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: GpsSpacing.sm,
+                                      ),
                                     ),
+                                    onPressed: () {
+                                      final shell = StatefulNavigationShell.of(
+                                        context,
+                                      );
+                                      shell.goBranch(1);
+                                    },
+                                    child: Text(l10n.discoveryViewMap),
                                   ),
-                                  onPressed: () {
-                                    final shell = StatefulNavigationShell.of(
-                                      context,
-                                    );
-                                    shell.goBranch(1);
-                                  },
-                                  child: Text(l10n.discoveryViewMap),
                                 ),
                               ],
                             ),

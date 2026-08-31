@@ -5,9 +5,10 @@ import 'package:go_router/go_router.dart';
 import '../bootstrap/app_launch_preferences.provider.dart';
 import '../l10n/auth_strings.dart';
 import '../routing/gps_routes.dart';
+import '../theme/gps_brand.dart';
 import '../theme/gps_spacing.dart';
 import '../widgets/gps_blur_background.dart';
-import '../widgets/gps_cached_network_image.dart';
+import '../widgets/onboarding_illustrations.dart';
 import '../widgets/primary_button.dart';
 
 class OnboardingScreen extends ConsumerWidget {
@@ -33,7 +34,7 @@ class OnboardingScreen extends ConsumerWidget {
           elevation: 0,
           scrolledUnderElevation: 0,
           title: Text(
-            'GPS Médical',
+            GpsBrand.name,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               color: colorScheme.primary,
               fontWeight: FontWeight.bold,
@@ -147,102 +148,7 @@ class OnboardingScreen extends ConsumerWidget {
     return Column(
       children: [
         // Illustration card with doctor & floating Status IA badge
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              height: 220,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: Colors.white, width: 4),
-                boxShadow: [
-                  BoxShadow(
-                    color: colorScheme.primary.withOpacity(0.06),
-                    blurRadius: 30,
-                    offset: const Offset(0, 10),
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: const GpsCachedNetworkImage(
-                  imageUrl:
-                      'https://lh3.googleusercontent.com/aida-public/AB6AXuByP-imNm4Utk0dUHuql4NcpRujn9neAuw6yrnrgi6yCv7bh8Bv68umCoiv1ID7zutCh44LMzClDIEE_liA05GvH1X9SbEY9LVPdB-dgrHL7YSDQs2cTsz7f6vZX7PfonI9H2yVmf07IC4u7fE7FcuWJQsIhf-0QsUsLgw3THn1NTRNIIvh2V1AZi4HFRmy1DFZLIiIYipvKZiopZ051FXIV3uqR0mCAVCQeDwecE3e_aN4XFoeYsg4e3_xIZKsxIe_Zwq8xf41qEg',
-                  fit: BoxFit.cover,
-                  memCacheWidth: 720,
-                  memCacheHeight: 480,
-                ),
-              ),
-            ),
-            // Floating Status IA Badge
-            Positioned(
-              bottom: -16,
-              right: 16,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: GpsSpacing.md,
-                  vertical: GpsSpacing.sm,
-                ),
-                decoration: BoxDecoration(
-                  color: colorScheme.surfaceContainerLowest.withOpacity(0.9),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: colorScheme.outlineVariant.withOpacity(0.5),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.08),
-                      blurRadius: 16,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: colorScheme.primaryContainer.withOpacity(0.2),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(
-                        Icons.psychology,
-                        size: 16,
-                        color: colorScheme.primary,
-                      ),
-                    ),
-                    const SizedBox(width: GpsSpacing.sm),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'STATUT IA',
-                          style: Theme.of(context).textTheme.labelSmall
-                              ?.copyWith(
-                                color: colorScheme.onSurfaceVariant,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1,
-                              ),
-                        ),
-                        Text(
-                          'Analyse Active',
-                          style: Theme.of(context).textTheme.labelMedium
-                              ?.copyWith(
-                                color: colorScheme.primary,
-                                fontWeight: FontWeight.w800,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+        const OnboardingSmartGuideIllustration(),
         const SizedBox(height: GpsSpacing.xl),
         // Title & Description
         Text(
@@ -255,7 +161,7 @@ class OnboardingScreen extends ConsumerWidget {
         ),
         const SizedBox(height: GpsSpacing.sm),
         Text(
-          "Naviguez sereinement dans le paysage médical Algérien. Santé DZ utilise l'IA pour vous guider vers les meilleurs soins et surveiller votre vitalité en temps réel.",
+          "Naviguez sereinement dans le paysage médical algérien. ${GpsBrand.name} utilise l'IA pour vous guider vers les meilleurs soins et surveiller votre vitalité en temps réel.",
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: colorScheme.onSurfaceVariant,
             height: 1.5,
@@ -470,33 +376,7 @@ class OnboardingScreen extends ConsumerWidget {
         ),
         const SizedBox(height: GpsSpacing.md),
         // Mini visual context image
-        Container(
-          height: 140,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: colorScheme.outlineVariant.withOpacity(0.3),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: colorScheme.primary.withOpacity(0.03),
-                blurRadius: 16,
-                offset: const Offset(0, 8),
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: const GpsCachedNetworkImage(
-              imageUrl:
-                  'https://lh3.googleusercontent.com/aida-public/AB6AXuDsEVjOGTDTRAVINDckDNgTV1H5miuVrMmSLFOvPw69N0mMVPSn17amGPzZcuAz1JZ74DyJDAylF_wgJmV0GUGdAXI4ovBFKeLdGN7Fk2_n9nXJ4XODtj7PsVEhaR5AAlxmXocnEEJlieVlzoWhgw0h4Rz3XQS5n0vykjp0I-JF2OTHZvPVBmXVvCSqmSG5hYUe6BEkesLfOfs6qpswom5MN0pPJaE5bEsK0pS0_LpnIDVdw91d1RZ9HtxdQNlVarcCxNLkgpqDMzo',
-              fit: BoxFit.cover,
-              memCacheWidth: 720,
-              memCacheHeight: 480,
-            ),
-          ),
-        ),
+        const OnboardingCarePathIllustration(),
       ],
     );
   }

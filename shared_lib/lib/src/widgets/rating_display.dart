@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/gps_colors.dart';
 import '../theme/gps_spacing.dart';
 
 /// Renders a star rating with average score and total review count.
@@ -20,8 +21,8 @@ class RatingDisplay extends StatelessWidget {
         Icon(
           Icons.star_rounded,
           color: colorScheme.brightness == Brightness.dark
-              ? const Color(0xFF7AD7C6)
-              : const Color(0xFF005E53),
+              ? GpsColors.greenLight
+              : GpsColors.green,
           size: 18,
         ),
         const SizedBox(width: GpsSpacing.unit),

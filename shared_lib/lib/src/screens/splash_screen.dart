@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../l10n/auth_strings.dart';
 import '../models/app_info.dart';
+import '../theme/gps_brand.dart';
+import '../theme/gps_colors.dart';
 import '../theme/gps_spacing.dart';
+import '../widgets/gps_logo.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({required this.appInfo, super.key});
@@ -28,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
             end: Alignment.bottomCenter,
             colors: [
               theme.colorScheme.surface,
-              theme.colorScheme.surfaceContainerLowest,
+              GpsColors.surfaceDim,
             ],
           ),
         ),
@@ -36,14 +39,10 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.medical_services_outlined,
-                size: 72,
-                color: theme.colorScheme.primary,
-              ),
+              const GpsLogo(size: 88),
               const SizedBox(height: GpsSpacing.md),
               Text(
-                'GPS MÉDICAL',
+                GpsBrand.splashTitle,
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.2,

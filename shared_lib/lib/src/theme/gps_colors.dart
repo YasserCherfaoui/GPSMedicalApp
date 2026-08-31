@@ -1,35 +1,55 @@
 import 'package:flutter/material.dart';
 
-/// Brand and semantic colors from `docs/DESIGN-GPS-Medical.md`.
+/// Brand colors from `branding/Color palette` (Medora 2026).
 abstract final class GpsColors {
-  static const Color primary = Color(0xFF005E53);
-  static const Color primaryContainer = Color(0xFF00796B);
+  // Primary blue palette
+  static const Color blueDarkest = Color(0xFF002432);
+  static const Color blueDark = Color(0xFF154C6A);
+  static const Color blue = Color(0xFF327BA7);
+  static const Color blueLight = Color(0xFF7BA4BD);
+
+  // Secondary green palette
+  static const Color greenDarkest = Color(0xFF0D3F42);
+  static const Color greenDark = Color(0xFF368766);
+  static const Color green = Color(0xFF5BB39B);
+  static const Color greenLight = Color(0xFFAEDACF);
+
+  // Semantic mappings (Material 3)
+  static const Color primary = blueDark;
+  static const Color primaryContainer = blue;
   static const Color onPrimary = Color(0xFFFFFFFF);
-  static const Color onPrimaryContainer = Color(0xFFA1FEEC);
+  static const Color onPrimaryContainer = Color(0xFFFFFFFF);
 
-  static const Color tertiary = Color(0xFF843F29);
-  static const Color tertiaryContainer = Color(0xFFA2563F);
-  static const Color onTertiary = Color(0xFFFFFFFF);
-  static const Color onTertiaryContainer = Color(0xFFFFE8E2);
+  static const Color secondary = greenDark;
+  static const Color secondaryContainer = greenLight;
+  static const Color onSecondary = Color(0xFFFFFFFF);
+  static const Color onSecondaryContainer = greenDarkest;
 
-  static const Color surface = Color(0xFFF6FAF8);
+  static const Color tertiary = blueLight;
+  static const Color tertiaryContainer = green;
+  static const Color onTertiary = blueDarkest;
+  static const Color onTertiaryContainer = Color(0xFFFFFFFF);
+
+  static const Color surface = Color(0xFFFFFFFF);
+  static const Color surfaceDim = Color(0xFFF5F8FA);
   static const Color surfaceContainerLowest = Color(0xFFFFFFFF);
-  static const Color surfaceContainer = Color(0xFFEBEFEC);
-  static const Color onSurface = Color(0xFF181D1B);
-  static const Color onSurfaceVariant = Color(0xFF3E4946);
-  static const Color outline = Color(0xFF6E7A76);
-  static const Color outlineVariant = Color(0xFFBDC9C5);
+  static const Color surfaceContainerLow = Color(0xFFF5F8FA);
+  static const Color surfaceContainer = Color(0xFFEBF2F6);
+  static const Color onSurface = blueDarkest;
+  static const Color onSurfaceVariant = Color(0xFF3E5563);
+  static const Color outline = Color(0xFF6E8A9A);
+  static const Color outlineVariant = Color(0xFFBDC9D3);
 
-  static const Color inputFill = Color(0xFFF7FAFC);
-  static const Color cardAccentBorder = Color(0xFFE3F2FD);
+  static const Color inputFill = Color(0xFFF5F8FA);
+  static const Color cardAccentBorder = greenLight;
 
   static const Color error = Color(0xFFBA1A1A);
   static const Color onError = Color(0xFFFFFFFF);
   static const Color errorContainer = Color(0xFFFFDAD6);
   static const Color onErrorContainer = Color(0xFF93000A);
 
-  static const Color darkSurface = Color(0xFF0F1412);
-  static const Color darkSurfaceContainer = Color(0xFF1B211F);
-  static const Color darkOnSurface = Color(0xFFEEF2EF);
-  static const Color darkOnSurfaceVariant = Color(0xFFBDC9C5);
+  static const Color darkSurface = blueDarkest;
+  static const Color darkSurfaceContainer = Color(0xFF0F2D3D);
+  static const Color darkOnSurface = Color(0xFFEEF4F7);
+  static const Color darkOnSurfaceVariant = Color(0xFFBDC9D3);
 }

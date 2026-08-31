@@ -1,4 +1,4 @@
-/// Spacing scale from `docs/DESIGN-GPS-Medical.md` (4px baseline).
+/// Spacing scale from Medora brand guidelines (`branding/`).
 abstract final class GpsSpacing {
   static const double unit = 4;
   static const double xs = 4;

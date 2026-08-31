@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Corner radii from `docs/DESIGN-GPS-Medical.md`.
+/// Corner radii aligned with Medora brand guidelines.
 abstract final class GpsRadii {
   static const double sm = 4;
   static const double md = 8;

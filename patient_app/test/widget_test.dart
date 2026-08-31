@@ -20,7 +20,7 @@ void main() {
     );
     await tester.pump();
 
-    expect(find.text('GPS MÉDICAL'), findsOneWidget);
+    expect(find.text(GpsBrand.splashTitle), findsOneWidget);
     expect(find.textContaining('orientation intelligente'), findsOneWidget);
   });
 }

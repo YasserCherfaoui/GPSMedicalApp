@@ -43,8 +43,8 @@ class _NearbyDoctorsMapScreenState
   {"featureType": "road", "elementType": "geometry", "stylers": [{"color": "#ffffff"}]},
   {"featureType": "road.arterial", "elementType": "labels.text.fill", "stylers": [{"color": "#757575"}]},
   {"featureType": "road.highway", "elementType": "geometry", "stylers": [{"color": "#dadada"}]},
-  {"featureType": "water", "elementType": "geometry", "stylers": [{"color": "#a1feec"}]},
-  {"featureType": "water", "elementType": "labels.text.fill", "stylers": [{"color": "#005e53"}]}
+  {"featureType": "water", "elementType": "geometry", "stylers": [{"color": "#aedacf"}]},
+  {"featureType": "water", "elementType": "labels.text.fill", "stylers": [{"color": "#154c6a"}]}
 ]
   ''';
 

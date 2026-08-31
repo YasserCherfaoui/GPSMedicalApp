@@ -26,7 +26,7 @@ abstract final class GpsTheme {
       appBarTheme: AppBarTheme(
         elevation: 0,
         scrolledUnderElevation: 0,
-        backgroundColor: colorScheme.surface.withValues(alpha: 0.8),
+        backgroundColor: colorScheme.surface.withValues(alpha: 0.92),
         foregroundColor: colorScheme.onSurface,
         systemOverlayStyle: isDark
             ? SystemUiOverlayStyle.light
@@ -105,6 +105,16 @@ abstract final class GpsTheme {
         color: colorScheme.outlineVariant,
         thickness: 1,
       ),
+      navigationBarTheme: NavigationBarThemeData(
+        indicatorColor: colorScheme.secondaryContainer.withValues(alpha: 0.6),
+        labelTextStyle: WidgetStateProperty.resolveWith((states) {
+          final selected = states.contains(WidgetState.selected);
+          return textTheme.labelSmall?.copyWith(
+            color: selected ? colorScheme.primary : colorScheme.onSurfaceVariant,
+            fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+          );
+        }),
+      ),
     );
   }
 
@@ -114,10 +124,10 @@ abstract final class GpsTheme {
     onPrimary: GpsColors.onPrimary,
     primaryContainer: GpsColors.primaryContainer,
     onPrimaryContainer: GpsColors.onPrimaryContainer,
-    secondary: Color(0xFF526069),
-    onSecondary: Color(0xFFFFFFFF),
-    secondaryContainer: Color(0xFFD3E2ED),
-    onSecondaryContainer: Color(0xFF56656E),
+    secondary: GpsColors.secondary,
+    onSecondary: GpsColors.onSecondary,
+    secondaryContainer: GpsColors.secondaryContainer,
+    onSecondaryContainer: GpsColors.onSecondaryContainer,
     tertiary: GpsColors.tertiary,
     onTertiary: GpsColors.onTertiary,
     tertiaryContainer: GpsColors.tertiaryContainer,
@@ -131,27 +141,27 @@ abstract final class GpsTheme {
     onSurfaceVariant: GpsColors.onSurfaceVariant,
     outline: GpsColors.outline,
     outlineVariant: GpsColors.outlineVariant,
-    surfaceContainerHighest: Color(0xFFDFE3E1),
-    surfaceContainerHigh: Color(0xFFE5E9E7),
+    surfaceContainerHighest: Color(0xFFDFE8EE),
+    surfaceContainerHigh: Color(0xFFE5EDF2),
     surfaceContainer: GpsColors.surfaceContainer,
-    surfaceContainerLow: Color(0xFFF0F4F2),
+    surfaceContainerLow: GpsColors.surfaceContainerLow,
     surfaceContainerLowest: GpsColors.surfaceContainerLowest,
   );
 
   static const ColorScheme _darkColorScheme = ColorScheme(
     brightness: Brightness.dark,
-    primary: Color(0xFF7AD7C6),
-    onPrimary: Color(0xFF00201B),
-    primaryContainer: Color(0xFF005047),
-    onPrimaryContainer: Color(0xFF97F3E2),
-    secondary: Color(0xFFBAC9D3),
-    onSecondary: Color(0xFF0F1D25),
-    secondaryContainer: Color(0xFF3B4951),
-    onSecondaryContainer: Color(0xFFD6E5EF),
-    tertiary: Color(0xFFFFB59F),
-    onTertiary: Color(0xFF3A0A00),
-    tertiaryContainer: Color(0xFF75331F),
-    onTertiaryContainer: Color(0xFFFFDBD1),
+    primary: GpsColors.blueLight,
+    onPrimary: GpsColors.blueDarkest,
+    primaryContainer: GpsColors.blueDark,
+    onPrimaryContainer: Color(0xFFE8F2F8),
+    secondary: GpsColors.green,
+    onSecondary: GpsColors.greenDarkest,
+    secondaryContainer: GpsColors.greenDark,
+    onSecondaryContainer: GpsColors.greenLight,
+    tertiary: GpsColors.blue,
+    onTertiary: Color(0xFFE8F2F8),
+    tertiaryContainer: GpsColors.greenDarkest,
+    onTertiaryContainer: GpsColors.greenLight,
     error: Color(0xFFFFB4AB),
     onError: Color(0xFF690005),
     errorContainer: Color(0xFF93000A),
@@ -159,12 +169,12 @@ abstract final class GpsTheme {
     surface: GpsColors.darkSurface,
     onSurface: GpsColors.darkOnSurface,
     onSurfaceVariant: GpsColors.darkOnSurfaceVariant,
-    outline: Color(0xFF889490),
-    outlineVariant: Color(0xFF3E4946),
-    surfaceContainerHighest: Color(0xFF2D3130),
-    surfaceContainerHigh: Color(0xFF252A28),
+    outline: Color(0xFF8898A5),
+    outlineVariant: Color(0xFF3E5563),
+    surfaceContainerHighest: Color(0xFF1A3A4D),
+    surfaceContainerHigh: Color(0xFF153345),
     surfaceContainer: GpsColors.darkSurfaceContainer,
-    surfaceContainerLow: Color(0xFF161B19),
-    surfaceContainerLowest: Color(0xFF0A0F0D),
+    surfaceContainerLow: Color(0xFF0A1F2A),
+    surfaceContainerLowest: Color(0xFF001820),
   );
 }

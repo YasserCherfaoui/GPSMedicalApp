@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'gps_colors.dart';
 
-/// Ambient elevation levels from `docs/DESIGN-GPS-Medical.md`.
+/// Ambient elevation levels for Medora brand surfaces.
 abstract final class GpsElevation {
   static List<BoxShadow> level1({Color? tint}) => [
     BoxShadow(

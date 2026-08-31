@@ -49,6 +49,7 @@ export 'src/teleconsultation/sdp_compat.dart';
 export 'src/teleconsultation/teleconsultation_call_controller.dart';
 export 'src/teleconsultation/teleconsultation_call_controls.dart';
 export 'src/teleconsultation/teleconsultation_signalling.dart';
+export 'src/theme/gps_brand.dart';
 export 'src/theme/gps_colors.dart';
 export 'src/theme/gps_elevation.dart';
 export 'src/theme/gps_radii.dart';

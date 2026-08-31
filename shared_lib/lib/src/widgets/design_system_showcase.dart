@@ -71,11 +71,11 @@ class _DesignSystemShowcaseScreenState
                 style: Theme.of(innerContext).textTheme.displayLarge,
               ),
               Text(
-                'H2 — Manrope',
+                'H2 — Clash Display',
                 style: Theme.of(innerContext).textTheme.displayMedium,
               ),
               Text(
-                'H3 — Manrope',
+                'H3 — Clash Display',
                 style: Theme.of(innerContext).textTheme.headlineMedium,
               ),
               Text(
