@@ -206,7 +206,7 @@ class _DesignSystemShowcaseScreenState
                   GpsModal.show<void>(
                     context: innerContext,
                     title: 'Confirmer',
-                    message: 'Exemple de dialogue GPS Médical.',
+                    message: 'Exemple de dialogue Medora.',
                     primaryActionLabel: 'Confirmer',
                     secondaryActionLabel: 'Annuler',
                   );

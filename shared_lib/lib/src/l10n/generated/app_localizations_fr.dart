@@ -170,7 +170,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get later => 'Plus tard';
 
   @override
-  String get successTitle => 'Bienvenue sur GPS Médical !';
+  String get successTitle => 'Bienvenue sur Medora !';
 
   @override
   String get successSubtitle => 'Votre compte a été créé avec succès.';
@@ -545,7 +545,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get geoUseWilayaCenter => 'Utiliser le centre de la wilaya';
 
   @override
-  String get discoveryAppBarTitle => 'MedNavigator';
+  String get discoveryAppBarTitle => 'Medora';
 
   @override
   String get discoveryRecommendedTitle => 'Spécialistes recommandés';
@@ -830,11 +830,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get mapNearbyPermissionRationaleBody =>
-      'MedNavigator utilise votre position pour afficher les spécialistes à proximité. Vous pouvez aussi choisir une wilaya manuellement.';
+      'Medora utilise votre position pour afficher les spécialistes à proximité. Vous pouvez aussi choisir une wilaya manuellement.';
 
   @override
   String get mapNearbyClinicsPermissionRationaleBody =>
-      'MedNavigator utilise votre position pour afficher les cliniques à proximité. Vous pouvez aussi choisir une wilaya manuellement.';
+      'Medora utilise votre position pour afficher les cliniques à proximité. Vous pouvez aussi choisir une wilaya manuellement.';
 
   @override
   String get mapNearbyPermissionRationaleContinue => 'Continuer';

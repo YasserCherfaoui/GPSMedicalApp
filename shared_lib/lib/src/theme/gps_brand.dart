@@ -1,8 +1,8 @@
 /// Brand naming and asset paths from `branding/`.
 abstract final class GpsBrand {
-  static const String name = 'GPS Médical';
-  static const String nameWithCountry = 'GPS Médical Algérie';
-  static const String splashTitle = 'GPS MÉDICAL';
+  static const String name = 'Medora';
+  static const String nameWithCountry = 'Medora';
+  static const String splashTitle = 'MEDORA';
 
   static const String iconGradientAsset =
       'packages/gps_medical_shared/assets/branding/medora_icon_gradient.png';

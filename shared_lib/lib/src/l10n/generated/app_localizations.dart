@@ -403,7 +403,7 @@ abstract class AppLocalizations {
   /// No description provided for @successTitle.
   ///
   /// In fr, this message translates to:
-  /// **'Bienvenue sur GPS Médical !'**
+  /// **'Bienvenue sur Medora !'**
   String get successTitle;
 
   /// No description provided for @successSubtitle.
@@ -1075,7 +1075,7 @@ abstract class AppLocalizations {
   /// No description provided for @discoveryAppBarTitle.
   ///
   /// In fr, this message translates to:
-  /// **'MedNavigator'**
+  /// **'Medora'**
   String get discoveryAppBarTitle;
 
   /// No description provided for @discoveryRecommendedTitle.
@@ -1597,13 +1597,13 @@ abstract class AppLocalizations {
   /// No description provided for @mapNearbyPermissionRationaleBody.
   ///
   /// In fr, this message translates to:
-  /// **'MedNavigator utilise votre position pour afficher les spécialistes à proximité. Vous pouvez aussi choisir une wilaya manuellement.'**
+  /// **'Medora utilise votre position pour afficher les spécialistes à proximité. Vous pouvez aussi choisir une wilaya manuellement.'**
   String get mapNearbyPermissionRationaleBody;
 
   /// No description provided for @mapNearbyClinicsPermissionRationaleBody.
   ///
   /// In fr, this message translates to:
-  /// **'MedNavigator utilise votre position pour afficher les cliniques à proximité. Vous pouvez aussi choisir une wilaya manuellement.'**
+  /// **'Medora utilise votre position pour afficher les cliniques à proximité. Vous pouvez aussi choisir une wilaya manuellement.'**
   String get mapNearbyClinicsPermissionRationaleBody;
 
   /// No description provided for @mapNearbyPermissionRationaleContinue.

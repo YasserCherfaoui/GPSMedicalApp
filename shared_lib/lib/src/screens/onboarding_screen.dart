@@ -152,7 +152,7 @@ class OnboardingScreen extends ConsumerWidget {
         const SizedBox(height: GpsSpacing.xl),
         // Title & Description
         Text(
-          'Votre GPS Médical intelligent',
+          'Votre Medora intelligent',
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
             color: colorScheme.onSurface,

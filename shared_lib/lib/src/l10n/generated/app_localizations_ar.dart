@@ -166,7 +166,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get later => 'لاحقاً';
 
   @override
-  String get successTitle => 'مرحباً بكم في GPS Médical !';
+  String get successTitle => 'مرحباً بكم في Medora !';
 
   @override
   String get successSubtitle => 'تم إنشاء حسابكم بنجاح.';
@@ -532,7 +532,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get geoUseWilayaCenter => 'استخدام مركز الولاية';
 
   @override
-  String get discoveryAppBarTitle => 'MedNavigator';
+  String get discoveryAppBarTitle => 'Medora';
 
   @override
   String get discoveryRecommendedTitle => 'أخصائيون موصى بهم';
@@ -811,11 +811,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get mapNearbyPermissionRationaleBody =>
-      'يستخدم MedNavigator موقعك لعرض الأخصائيين القريبين. يمكنك أيضاً اختيار ولاية يدوياً.';
+      'يستخدم Medora موقعك لعرض الأخصائيين القريبين. يمكنك أيضاً اختيار ولاية يدوياً.';
 
   @override
   String get mapNearbyClinicsPermissionRationaleBody =>
-      'يستخدم MedNavigator موقعك لعرض العيادات القريبة. يمكنك أيضاً اختيار ولاية يدوياً.';
+      'يستخدم Medora موقعك لعرض العيادات القريبة. يمكنك أيضاً اختيار ولاية يدوياً.';
 
   @override
   String get mapNearbyPermissionRationaleContinue => 'متابعة';

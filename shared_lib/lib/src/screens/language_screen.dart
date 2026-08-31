@@ -128,7 +128,7 @@ class LanguageScreen extends ConsumerWidget {
                       ),
                       const SizedBox(height: GpsSpacing.lg),
                       Text(
-                        'SanteDZ • GPS Médical',
+                        'SanteDZ • Medora',
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: Theme.of(context).colorScheme.outline,
                           letterSpacing: 1.5,

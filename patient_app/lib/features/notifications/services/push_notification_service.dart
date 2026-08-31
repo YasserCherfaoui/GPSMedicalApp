@@ -119,7 +119,7 @@ class PushNotificationService {
       const NotificationDetails(
         android: AndroidNotificationDetails(
           'gps_medical_default',
-          'GPS Médical',
+          'Medora',
           icon: '@mipmap/ic_launcher',
           largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
         ),

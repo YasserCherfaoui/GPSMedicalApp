@@ -9,7 +9,7 @@ import 'features/verification/specialist_verification_lifecycle.dart';
 import 'routing/specialist_router.provider.dart';
 
 const _appInfo = GpsMedicalAppInfo(
-  displayName: 'GPS Médical — Spécialiste',
+  displayName: 'Medora — Spécialiste',
   clientKind: GpsMedicalClientKind.specialist,
 );
 

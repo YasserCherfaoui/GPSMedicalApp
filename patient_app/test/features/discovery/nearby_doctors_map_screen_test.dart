@@ -146,7 +146,7 @@ void main() {
 
     expect(find.text('Accès à la localisation'), findsOneWidget);
     expect(
-      find.textContaining('MedNavigator utilise votre position'),
+      find.textContaining('Medora utilise votre position'),
       findsOneWidget,
     );
 

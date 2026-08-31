@@ -58,13 +58,12 @@
 		<key>NSLocalNetworkUsageDescription</key>
 		<string>Allow Flutter tools to connect to the app for debugging.</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>GPS Médical utilise votre position pour afficher les médecins à proximité sur la carte.</string>
+		<string>Medora utilise votre position pour afficher les médecins à proximité sur la carte.</string>
 		<key>NSCameraUsageDescription</key>
-		<string>GPS Médical a besoin de la caméra pour la téléconsultation et pour photographier vos documents médicaux.</string>
+		<string>Medora a besoin de la caméra pour la téléconsultation et pour photographier vos documents médicaux.</string>
 		<key>NSMicrophoneUsageDescription</key>
-		<string>GPS Médical a besoin du microphone pour la téléconsultation.</string>
+		<string>Medora a besoin du microphone pour la téléconsultation.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>GPS Médical a besoin d'accéder à vos photos pour joindre des documents médicaux.</string>
+		<string>Medora a besoin d'accéder à vos photos pour joindre des documents médicaux.</string>
 	</dict>
 </plist>
-

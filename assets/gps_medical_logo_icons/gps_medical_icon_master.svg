@@ -1,36 +1,18 @@
-<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1080">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#2E90E6"/>
-      <stop offset="100%" stop-color="#1565C0"/>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="180.77" y1="540" x2="899.23" y2="540" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c1c8ce"/>
+      <stop offset=".38" stop-color="#7ba4bd"/>
+      <stop offset=".56" stop-color="#327ba7"/>
+      <stop offset=".78" stop-color="#154c6a"/>
+      <stop offset="1" stop-color="#002432"/>
     </linearGradient>
   </defs>
-
-  <!-- Rounded-square background -->
-  <rect width="1024" height="1024" rx="225" ry="225" fill="url(#bg)"/>
-
-  <!-- ============ STETHOSCOPE — enlarged, centered ============ -->
-
-  <!-- Earpieces — bigger filled discs, wider apart for visual weight -->
-  <circle cx="340" cy="260" r="42" fill="#FFFFFF"/>
-  <circle cx="684" cy="260" r="42" fill="#FFFFFF"/>
-
-  <!-- Binaurals: tubes curve outward, then come together at junction -->
-  <path
-    d="M 340 260 C 260 380, 260 480, 512 555"
-    fill="none" stroke="#FFFFFF" stroke-width="48" stroke-linecap="round"/>
-  <path
-    d="M 684 260 C 764 380, 764 480, 512 555"
-    fill="none" stroke="#FFFFFF" stroke-width="48" stroke-linecap="round"/>
-
-  <!-- Stem from junction down to chest piece -->
-  <path
-    d="M 512 555 L 512 690"
-    stroke="#FFFFFF" stroke-width="48" stroke-linecap="round"/>
-
-  <!-- Chest piece — diaphragm disc, large for impact -->
-  <circle cx="512" cy="770" r="92" fill="#FFFFFF"/>
-
-  <!-- Small orange accent inside chest piece — brings brand DNA back -->
-  <circle cx="512" cy="770" r="44" fill="#FF6B47"/>
+  <path class="cls-1" d="M884.83,530.04h-195.28c-.22-.01-.44-.03-.66-.03l-75.36-.24c-4.18-.01-7.74-8.95-7.75-12.34l-.28-96.62c-.01-4.62-10.44-9.76-14.71-9.73l-72.7.5-88.88,112.09c-2.82,3.56-6.2,7.11-8.72,8.95-2.83,2.07-14.08.35-14.11-3.92l-.79-107.88c-1.9-6.16-13.3-9.81-19.48-9.73l-60.5.74c-5.45.07-13.12,10.63-16.42,14.8l-74.06,93.76-53.94,66.72-.4,70.77c-.25,4.66,4.38,10.64,9.59,10.66l77.73.17,56.79-69.62,38.25-47.25c1.18-1.46,5.95-4.37,7.58-3.43l9.49,5.52.09,103.67c0,6.67,6.19,11.38,12.09,11.32l74.13-.64,66.84-84.21c7.46-9.4,14.2-17.26,23.16-25.31l13.4,11.14-.17,55.82c-.06,19.69,13.34,40.6,34.73,41.92,25.35,1.56,49.6,1.15,75.05.94v.05h219.69v-124.19c0-7.95-6.45-14.4-14.4-14.4Z"/>
 </svg>

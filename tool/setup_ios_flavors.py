@@ -19,12 +19,12 @@ def process_app(app_dir, app_type):
         plist_content = f.read()
     
     # Make display name dynamic
-    if "GPS Médical" in plist_content:
+    if "Medora" in plist_content:
         plist_content = plist_content.replace(
-            "<string>GPS Médical Patient</string>",
+            "<string>Medora</string>",
             "<string>$(APP_DISPLAY_NAME)</string>"
         ).replace(
-            "<string>GPS Médical Spécialiste</string>",
+            "<string>Medora Spec</string>",
             "<string>$(APP_DISPLAY_NAME)</string>"
         )
         with open(info_plist_path, "w") as f:
@@ -69,19 +69,19 @@ def process_app(app_dir, app_type):
         "dev": {
             "prefix": "DE",
             "suffix": ".dev",
-            "app_name": "GPS Pat Dev" if app_type == "patient" else "GPS Spec Dev",
+            "app_name": "Medora Dev" if app_type == "patient" else "Medora Spec Dev",
             "app_icon": "AppIcon-dev"
         },
         "staging": {
             "prefix": "ST",
             "suffix": ".staging",
-            "app_name": "GPS Pat Stg" if app_type == "patient" else "GPS Spec Stg",
+            "app_name": "Medora Stg" if app_type == "patient" else "Medora Spec Stg",
             "app_icon": "AppIcon-staging"
         },
         "prod": {
             "prefix": "PR",
             "suffix": "",
-            "app_name": "GPS Patient" if app_type == "patient" else "GPS Spécialiste",
+            "app_name": "Medora" if app_type == "patient" else "Medora Spec",
             "app_icon": "AppIcon-prod"
         }
     }
@@ -286,17 +286,17 @@ def process_app(app_dir, app_type):
     # 4e. Update default Debug, Release, Profile configurations of target Runner
     default_mappings = {
         "97C147061CF9000F007C117D": { # Debug
-            "app_name": "GPS Pat Dev" if app_type == "patient" else "GPS Spec Dev",
+            "app_name": "Medora Dev" if app_type == "patient" else "Medora Spec Dev",
             "app_icon": "AppIcon-dev",
             "bundle_suffix": ".dev"
         },
         "97C147071CF9000F007C117D": { # Release
-            "app_name": "GPS Patient" if app_type == "patient" else "GPS Spécialiste",
+            "app_name": "Medora" if app_type == "patient" else "Medora Spec",
             "app_icon": "AppIcon-prod",
             "bundle_suffix": ""
         },
         "249021D4217E4FDB00AE95B9": { # Profile
-            "app_name": "GPS Patient" if app_type == "patient" else "GPS Spécialiste",
+            "app_name": "Medora" if app_type == "patient" else "Medora Spec",
             "app_icon": "AppIcon-prod",
             "bundle_suffix": ""
         }

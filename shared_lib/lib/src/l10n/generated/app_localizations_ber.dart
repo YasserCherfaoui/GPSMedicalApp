@@ -167,7 +167,7 @@ class AppLocalizationsBer extends AppLocalizations {
   String get later => 'Ticki';
 
   @override
-  String get successTitle => 'Ansuf ɣef GPS Médical !';
+  String get successTitle => 'Ansuf ɣef Medora !';
 
   @override
   String get successSubtitle => 'Amiḍan-ik yettwarnu akken iwata.';
@@ -539,7 +539,7 @@ class AppLocalizationsBer extends AppLocalizations {
   String get geoUseWilayaCenter => 'Seqdec alemmas n tmnaḍt';
 
   @override
-  String get discoveryAppBarTitle => 'MedNavigator';
+  String get discoveryAppBarTitle => 'Medora';
 
   @override
   String get discoveryRecommendedTitle => 'Iseɣyaden yettwassen';
@@ -819,11 +819,11 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get mapNearbyPermissionRationaleBody =>
-      'MedNavigator iseqdec wadig-ik iwakken ad d-yesken imsaɣyaden iqriben. Tzemreḍ daɣen tferḥ wilaya s ufus.';
+      'Medora iseqdec wadig-ik iwakken ad d-yesken imsaɣyaden iqriben. Tzemreḍ daɣen tferḥ wilaya s ufus.';
 
   @override
   String get mapNearbyClinicsPermissionRationaleBody =>
-      'MedNavigator iseqdec wadig-ik iwakken ad d-yesken tisensalin iqriben. Tzemreḍ daɣen tferḥ wilaya s ufus.';
+      'Medora iseqdec wadig-ik iwakken ad d-yesken tisensalin iqriben. Tzemreḍ daɣen tferḥ wilaya s ufus.';
 
   @override
   String get mapNearbyPermissionRationaleContinue => 'Kemmel';

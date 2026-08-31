@@ -39,16 +39,16 @@ android {
         create("dev") {
             dimension = "default"
             applicationIdSuffix = ".dev"
-            manifestPlaceholders["appName"] = "GPS Spec Dev"
+            manifestPlaceholders["appName"] = "Medora Spec Dev"
         }
         create("staging") {
             dimension = "default"
             applicationIdSuffix = ".staging"
-            manifestPlaceholders["appName"] = "GPS Spec Stg"
+            manifestPlaceholders["appName"] = "Medora Spec Stg"
         }
         create("prod") {
             dimension = "default"
-            manifestPlaceholders["appName"] = "GPS Spécialiste"
+            manifestPlaceholders["appName"] = "Medora Spec"
         }
     }
 

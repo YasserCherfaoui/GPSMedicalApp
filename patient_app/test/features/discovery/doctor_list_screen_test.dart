@@ -94,7 +94,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('MedNavigator'), findsOneWidget);
+    expect(find.text('Medora'), findsOneWidget);
     expect(find.text('Spécialistes recommandés'), findsOneWidget);
     expect(find.text('Dr. Benali'), findsOneWidget);
     expect(find.text('Cardiologie'), findsWidgets);

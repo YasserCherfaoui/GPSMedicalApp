@@ -5,7 +5,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 void main() {
   testWidgets('splash screen shows brand title', (WidgetTester tester) async {
     const appInfo = GpsMedicalAppInfo(
-      displayName: 'GPS Médical — Patient',
+      displayName: 'Medora — Patient',
       clientKind: GpsMedicalClientKind.patient,
     );
 

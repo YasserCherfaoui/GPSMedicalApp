@@ -12,7 +12,7 @@ import 'package:patient_app/routing/patient_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 const _appInfo = GpsMedicalAppInfo(
-  displayName: 'GPS Médical — Patient',
+  displayName: 'Medora — Patient',
   clientKind: GpsMedicalClientKind.patient,
 );
 

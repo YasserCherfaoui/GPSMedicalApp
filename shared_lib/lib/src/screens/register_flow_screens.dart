@@ -1570,7 +1570,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
     return AuthFlowScaffold(
       showBack: false,
       showBrandMark: true,
-      title: 'GPS Médical Algérie',
+      title: 'Medora',
       body: Column(
         children: [
           const SizedBox(height: GpsSpacing.lg),
@@ -1612,7 +1612,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
           ),
           const SizedBox(height: GpsSpacing.xl),
           Text(
-            'Bienvenue sur GPS Médical !',
+            'Bienvenue sur Medora !',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.w800,
               color: colorScheme.onSurface,
