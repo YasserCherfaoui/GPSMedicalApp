@@ -1,11 +1,16 @@
 plugins {
     id("com.android.application")
-    // START: FlutterFire Configuration
-    id("com.google.gms.google-services")
-    // END: FlutterFire Configuration
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+// Applied when FlutterFire config exists (see configure_firebase.sh).
+if (file("src/dev/google-services.json").exists()
+    || file("src/prod/google-services.json").exists()
+    || file("google-services.json").exists()
+) {
+    apply(plugin = "com.google.gms.google-services")
 }
 
 android {
@@ -14,6 +19,8 @@ android {
     ndkVersion = "27.0.12077973"
 
     compileOptions {
+        // Required by flutter_local_notifications (Java 8+ APIs on older Android).
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -63,4 +70,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }

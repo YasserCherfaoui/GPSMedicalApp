@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "647636807219",
+    "project_id": "gps-medical-dev",
+    "storage_bucket": "gps-medical-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647636807219:android:e38def5a9188fdf2393d46",
+        "android_client_info": {
+          "package_name": "com.gpsmedical.patientApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNcxkxBtjJCG89grIjYSUjtbjlvCjQfk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647636807219:android:9335a62b3f061172393d46",
+        "android_client_info": {
+          "package_name": "com.gpsmedical.specialistApp.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNcxkxBtjJCG89grIjYSUjtbjlvCjQfk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647636807219:android:905585dcf2fdc319393d46",
+        "android_client_info": {
+          "package_name": "com.gpsmedical.specialist_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNcxkxBtjJCG89grIjYSUjtbjlvCjQfk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647636807219:android:082b140e672cb527393d46",
+        "android_client_info": {
+          "package_name": "com.gpsmedical.test.connectivity"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNcxkxBtjJCG89grIjYSUjtbjlvCjQfk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
