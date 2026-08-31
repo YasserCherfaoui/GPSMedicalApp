@@ -1173,6 +1173,18 @@
   "specialistIncomingBilanMarkReviewed": "Marquer comme revu",
   "specialistIncomingBilanReviewed": "Bilan marqué comme revu.",
   "specialistIncomingBilanOpenAgenda": "Ouvrir l'agenda",
+  "freemiumUnlockCta": "Débloquer",
+  "freemiumUnlockSuccess": "Contenu débloqué avec succès.",
+  "freemiumUnlockFailed": "Le paiement a échoué.",
+  "freemiumAmountLabel": "{amount} DZD (sandbox)",
+  "@freemiumAmountLabel": {
+    "placeholders": { "amount": { "type": "int" } }
+  },
+  "freemiumBilanTitle": "Bilan détaillé",
+  "freemiumBilanBody": "Accédez aux sections complètes, documents et export PDF.",
+  "freemiumBilanPdfCta": "Débloquer le PDF",
+  "freemiumCoachingTitle": "Coaching premium",
+  "freemiumCoachingBody": "Débloquez le plan personnalisé et les trackers quotidiens.",
   "@anamnesisProgressCount": {
     "placeholders": {
       "answered": { "type": "int" },

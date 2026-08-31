@@ -2829,4 +2829,34 @@ class AppLocalizationsBer extends AppLocalizations {
 
   @override
   String get specialistIncomingBilanOpenAgenda => 'Ldi ajenda';
+
+  @override
+  String get freemiumUnlockCta => 'Sserreḥ';
+
+  @override
+  String get freemiumUnlockSuccess => 'Ilaḥ ussireḥ akken iwata.';
+
+  @override
+  String get freemiumUnlockFailed => 'Axelleṣ ur yeddi ara.';
+
+  @override
+  String freemiumAmountLabel(int amount) {
+    return '$amount DZD (sandbox)';
+  }
+
+  @override
+  String get freemiumBilanTitle => 'Aneggaru udrig';
+
+  @override
+  String get freemiumBilanBody => 'Kcem ɣer yigezman akk, isemliyen d PDF.';
+
+  @override
+  String get freemiumBilanPdfCta => 'Sserreḥ PDF';
+
+  @override
+  String get freemiumCoachingTitle => 'Coaching premium';
+
+  @override
+  String get freemiumCoachingBody =>
+      'Sserreḥ aɣawas udmawan d yimedyaten n wass.';
 }

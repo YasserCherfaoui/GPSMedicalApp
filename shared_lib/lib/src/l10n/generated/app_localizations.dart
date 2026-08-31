@@ -5223,6 +5223,60 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Ouvrir l\'agenda'**
   String get specialistIncomingBilanOpenAgenda;
+
+  /// No description provided for @freemiumUnlockCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Débloquer'**
+  String get freemiumUnlockCta;
+
+  /// No description provided for @freemiumUnlockSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Contenu débloqué avec succès.'**
+  String get freemiumUnlockSuccess;
+
+  /// No description provided for @freemiumUnlockFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le paiement a échoué.'**
+  String get freemiumUnlockFailed;
+
+  /// No description provided for @freemiumAmountLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'{amount} DZD (sandbox)'**
+  String freemiumAmountLabel(int amount);
+
+  /// No description provided for @freemiumBilanTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bilan détaillé'**
+  String get freemiumBilanTitle;
+
+  /// No description provided for @freemiumBilanBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accédez aux sections complètes, documents et export PDF.'**
+  String get freemiumBilanBody;
+
+  /// No description provided for @freemiumBilanPdfCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Débloquer le PDF'**
+  String get freemiumBilanPdfCta;
+
+  /// No description provided for @freemiumCoachingTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Coaching premium'**
+  String get freemiumCoachingTitle;
+
+  /// No description provided for @freemiumCoachingBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Débloquez le plan personnalisé et les trackers quotidiens.'**
+  String get freemiumCoachingBody;
 }
 
 class _AppLocalizationsDelegate

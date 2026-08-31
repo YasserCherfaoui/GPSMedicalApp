@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../payments/repositories/freemium_payments_repository.dart';
+import '../../payments/widgets/freemium_upgrade_sheet.dart';
 import '../providers/coaching_providers.dart';
 import '../repositories/coaching_repository.dart';
 import '../widgets/coaching_progress_bar.dart';
@@ -173,12 +175,29 @@ class _CoachingSessionLoaderScreenState
       if (!mounted) return;
       context.go(GpsRoutes.coachingPlanDetail(plan.id));
     } on CoachingApiException catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message)),
+      if (!mounted) return;
+      if (e.statusCode == 403) {
+        final l10n = AppLocalizations.of(context)!;
+        final ok = await showFreemiumUpgradeSheet(
+          context: context,
+          ref: ref,
+          sessionId: widget.sessionId,
+          purpose: 'coaching_premium',
+          amountDzd: FreemiumPaymentsRepository.coachingPremiumAmountDzd,
+          title: l10n.freemiumCoachingTitle,
+          body: l10n.freemiumCoachingBody,
         );
-        context.pop();
+        if (ok && mounted) {
+          await _loadPlan();
+        } else if (mounted) {
+          context.pop();
+        }
+        return;
       }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message)),
+      );
+      context.pop();
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

@@ -928,6 +928,15 @@
   "specialistIncomingBilanMarkReviewed": "Creḍ yettwaseklen",
   "specialistIncomingBilanReviewed": "Ubilan yettwaseklen.",
   "specialistIncomingBilanOpenAgenda": "Ldi ajenda",
+  "freemiumUnlockCta": "Sserreḥ",
+  "freemiumUnlockSuccess": "Ilaḥ ussireḥ akken iwata.",
+  "freemiumUnlockFailed": "Axelleṣ ur yeddi ara.",
+  "freemiumAmountLabel": "{amount} DZD (sandbox)",
+  "freemiumBilanTitle": "Aneggaru udrig",
+  "freemiumBilanBody": "Kcem ɣer yigezman akk, isemliyen d PDF.",
+  "freemiumBilanPdfCta": "Sserreḥ PDF",
+  "freemiumCoachingTitle": "Coaching premium",
+  "freemiumCoachingBody": "Sserreḥ aɣawas udmawan d yimedyaten n wass.",
   "@anamnesisProgressCount": {
     "placeholders": {
       "answered": { "type": "int" },

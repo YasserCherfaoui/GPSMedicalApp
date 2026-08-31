@@ -30,6 +30,26 @@ class BilanSummary {
   }
 }
 
+class BilanUpgradeHint {
+  const BilanUpgradeHint({
+    required this.feature,
+    required this.purpose,
+    required this.message,
+  });
+
+  final String feature;
+  final String purpose;
+  final String message;
+
+  factory BilanUpgradeHint.fromJson(Map<String, dynamic> json) {
+    return BilanUpgradeHint(
+      feature: json['feature'] as String? ?? 'bilan_detailed',
+      purpose: json['purpose'] as String? ?? 'bilan_detailed',
+      message: json['message'] as String? ?? '',
+    );
+  }
+}
+
 class BilanDetail {
   const BilanDetail({
     required this.id,
@@ -41,6 +61,7 @@ class BilanDetail {
     required this.sections,
     required this.createdAt,
     this.pdfDocumentId,
+    this.upgradeHint,
   });
 
   final String id;
@@ -52,6 +73,9 @@ class BilanDetail {
   final Map<String, dynamic> sections;
   final DateTime createdAt;
   final String? pdfDocumentId;
+  final BilanUpgradeHint? upgradeHint;
+
+  bool get isGated => upgradeHint != null;
 
   double get finalScore =>
       (sections['score']?['final_score'] as num?)?.toDouble() ?? 0;
@@ -75,6 +99,11 @@ class BilanDetail {
       ),
       createdAt: DateTime.parse(json['created_at'] as String),
       pdfDocumentId: json['pdf_document_id'] as String?,
+      upgradeHint: json['upgrade_hint'] is Map
+          ? BilanUpgradeHint.fromJson(
+              Map<String, dynamic>.from(json['upgrade_hint'] as Map),
+            )
+          : null,
     );
   }
 }

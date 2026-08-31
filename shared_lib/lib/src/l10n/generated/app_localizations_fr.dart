@@ -2866,4 +2866,35 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get specialistIncomingBilanOpenAgenda => 'Ouvrir l\'agenda';
+
+  @override
+  String get freemiumUnlockCta => 'Débloquer';
+
+  @override
+  String get freemiumUnlockSuccess => 'Contenu débloqué avec succès.';
+
+  @override
+  String get freemiumUnlockFailed => 'Le paiement a échoué.';
+
+  @override
+  String freemiumAmountLabel(int amount) {
+    return '$amount DZD (sandbox)';
+  }
+
+  @override
+  String get freemiumBilanTitle => 'Bilan détaillé';
+
+  @override
+  String get freemiumBilanBody =>
+      'Accédez aux sections complètes, documents et export PDF.';
+
+  @override
+  String get freemiumBilanPdfCta => 'Débloquer le PDF';
+
+  @override
+  String get freemiumCoachingTitle => 'Coaching premium';
+
+  @override
+  String get freemiumCoachingBody =>
+      'Débloquez le plan personnalisé et les trackers quotidiens.';
 }

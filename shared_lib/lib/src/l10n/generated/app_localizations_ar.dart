@@ -2797,4 +2797,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get specialistIncomingBilanOpenAgenda => 'فتح الأجندة';
+
+  @override
+  String get freemiumUnlockCta => 'فتح';
+
+  @override
+  String get freemiumUnlockSuccess => 'تم فتح المحتوى بنجاح.';
+
+  @override
+  String get freemiumUnlockFailed => 'فشل الدفع.';
+
+  @override
+  String freemiumAmountLabel(int amount) {
+    return '$amount دج (تجريبي)';
+  }
+
+  @override
+  String get freemiumBilanTitle => 'التقرير المفصل';
+
+  @override
+  String get freemiumBilanBody =>
+      'الوصول إلى الأقسام الكاملة والمستندات وتصدير PDF.';
+
+  @override
+  String get freemiumBilanPdfCta => 'فتح PDF';
+
+  @override
+  String get freemiumCoachingTitle => 'التدريب المميز';
+
+  @override
+  String get freemiumCoachingBody => 'افتح الخطة المخصصة والمتتبعات اليومية.';
 }

@@ -928,6 +928,15 @@
   "specialistIncomingBilanMarkReviewed": "تحديد كمراجع",
   "specialistIncomingBilanReviewed": "تم تحديد bilan كمراجع.",
   "specialistIncomingBilanOpenAgenda": "فتح الأجندة",
+  "freemiumUnlockCta": "فتح",
+  "freemiumUnlockSuccess": "تم فتح المحتوى بنجاح.",
+  "freemiumUnlockFailed": "فشل الدفع.",
+  "freemiumAmountLabel": "{amount} دج (تجريبي)",
+  "freemiumBilanTitle": "التقرير المفصل",
+  "freemiumBilanBody": "الوصول إلى الأقسام الكاملة والمستندات وتصدير PDF.",
+  "freemiumBilanPdfCta": "فتح PDF",
+  "freemiumCoachingTitle": "التدريب المميز",
+  "freemiumCoachingBody": "افتح الخطة المخصصة والمتتبعات اليومية.",
   "@anamnesisProgressCount": {
     "placeholders": {
       "answered": { "type": "int" },
