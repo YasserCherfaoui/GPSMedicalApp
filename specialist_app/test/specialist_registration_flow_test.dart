@@ -11,7 +11,7 @@ import 'package:specialist_app/routing/specialist_verification_status.dart';
 import 'package:specialist_app/screens/verification_pending_screen.dart';
 
 const _specialistAppInfo = GpsMedicalAppInfo(
-  displayName: 'GPS Médical — Spécialiste',
+  displayName: 'Medora — Spécialiste',
   clientKind: GpsMedicalClientKind.specialist,
 );
 

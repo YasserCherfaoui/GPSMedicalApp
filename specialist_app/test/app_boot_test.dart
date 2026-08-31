@@ -16,7 +16,7 @@ void main() {
         overrides: [
           appInfoProvider.overrideWithValue(
             const GpsMedicalAppInfo(
-              displayName: 'GPS Médical — Spécialiste',
+              displayName: 'Medora — Spécialiste',
               clientKind: GpsMedicalClientKind.specialist,
             ),
           ),

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 const _testAppInfo = GpsMedicalAppInfo(
-  displayName: 'GPS Médical — Test',
+  displayName: 'Medora — Test',
   clientKind: GpsMedicalClientKind.patient,
 );
 
