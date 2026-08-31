@@ -1,7 +1,8 @@
 {
-  "API_ROOT_URL": "https://api.gpsmedical.dz",
+  "API_ROOT_URL": "https://api.medora-corporate.com",
   "SENTRY_DSN": "https://9c72e2dfeb8d4f40a1b63574c8bc23ab@o0.ingest.sentry.io/0",
   "FLAVOR": "prod",
   "PAIN3D_ASSETS_BASE_URL": "https://assets.medora-corporate.com",
-  "PAIN_LOCALIZATION": "false"
+  "PAIN_LOCALIZATION": "true",
+  "ANAMNESIS": "true"
 }
