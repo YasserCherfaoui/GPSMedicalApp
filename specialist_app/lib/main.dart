@@ -6,6 +6,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../features/notifications/services/specialist_push_notification_service.dart';
 import 'features/verification/specialist_verification_lifecycle.dart';
+import 'firebase/init_firebase.dart';
 import 'routing/specialist_router.provider.dart';
 
 const _appInfo = GpsMedicalAppInfo(
@@ -18,7 +19,11 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   const sentryDsn = String.fromEnvironment('SENTRY_DSN');
-  final bootstrap = await bootstrapGpsMedicalApp();
+  final results = await Future.wait([
+    initSpecialistFirebase(),
+    bootstrapGpsMedicalApp(),
+  ]);
+  final bootstrap = results[1] as AppBootstrapData;
 
   final app = ProviderScope(
     overrides: [

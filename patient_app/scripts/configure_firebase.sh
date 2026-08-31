@@ -19,11 +19,12 @@ fi
 
 echo "Configuring FlutterFire for project gps-medical-dev..."
 flutterfire configure \
-  --project=gpsmedical \
+  --project=gps-medical-dev \
   --yes \
   --overwrite-firebase-options \
   --platforms=android,ios \
-  --ios-bundle-id=com.gpsmedical.patientApp \
+  --ios-bundle-id=com.gpsmedical.patientApp.dev \
+  --ios-build-config=Debug-dev \
   --android-package-name=com.gpsmedical.patient_app.dev \
   --android-out=android/app/src/dev \
   --ios-out=ios/Runner

@@ -23,13 +23,15 @@ cd shared_lib && flutter gen-l10n
 
 ## Firebase / FCM (dev)
 
-1. Register a distinct Android `applicationId` and iOS bundle ID in the Firebase console (`gpsmedical` project).
+1. Register a distinct Android `applicationId` and iOS bundle ID in the Firebase console (`gps-medical-dev` project).
 2. `firebase login --reauth`
 3. From repo root:
 
 ```bash
 make -C mobile configure-firebase-specialist
 ```
+
+4. The app calls `Firebase.initializeApp` at startup (`lib/firebase/init_firebase.dart`). After login it registers the FCM token via `POST /notifications/devices`. Watch debug logs for `Specialist push registration skipped` if registration fails.
 
 ## Run
 

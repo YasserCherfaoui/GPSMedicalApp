@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "32898565434",
-    "project_id": "gpsmedical",
-    "storage_bucket": "gpsmedical.firebasestorage.app"
+    "project_number": "647636807219",
+    "project_id": "gps-medical-dev",
+    "storage_bucket": "gps-medical-dev.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:32898565434:android:cbeac5cbd4304338a37c03",
+        "mobilesdk_app_id": "1:647636807219:android:04c529f9860f1897393d46",
         "android_client_info": {
           "package_name": "com.gpsmedical.patient_app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAZTeqlh2wWnnxwvWJXN3tJ-1Kh6K9K2es"
+          "current_key": "AIzaSyCNcxkxBtjJCG89grIjYSUjtbjlvCjQfk0"
         }
       ],
       "services": {
@@ -26,7 +26,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:32898565434:android:914d7760395c10a9a37c03",
+        "mobilesdk_app_id": "1:647636807219:android:35b41f6682c4a20d393d46",
         "android_client_info": {
           "package_name": "com.gpsmedical.patient_app.dev"
         }
@@ -34,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAZTeqlh2wWnnxwvWJXN3tJ-1Kh6K9K2es"
+          "current_key": "AIzaSyCNcxkxBtjJCG89grIjYSUjtbjlvCjQfk0"
         }
       ],
       "services": {

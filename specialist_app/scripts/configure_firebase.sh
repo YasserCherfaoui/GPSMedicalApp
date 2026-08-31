@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Registers Android/iOS apps in Firebase project gpsmedical and downloads config.
+# Registers Android/iOS apps in Firebase project gps-medical-dev and downloads config.
 # Requires: firebase CLI (logged in) + dart pub global activate flutterfire_cli
 set -euo pipefail
 
@@ -17,13 +17,14 @@ if ! firebase projects:list --json >/dev/null 2>&1; then
   exit 1
 fi
 
-echo "Configuring FlutterFire for specialist_app (project gpsmedical)..."
+echo "Configuring FlutterFire for specialist_app (project gps-medical-dev)..."
 flutterfire configure \
-  --project=gpsmedical \
+  --project=gps-medical-dev \
   --yes \
   --overwrite-firebase-options \
   --platforms=android,ios \
-  --ios-bundle-id=com.gpsmedical.specialistApp \
+  --ios-bundle-id=com.gpsmedical.specialistApp.dev \
+  --ios-build-config=Debug-dev \
   --android-package-name=com.gpsmedical.specialist_app.dev \
   --android-out=android/app/src/dev \
   --ios-out=ios/Runner
