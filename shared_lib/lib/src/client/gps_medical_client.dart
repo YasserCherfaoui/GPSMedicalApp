@@ -8,7 +8,7 @@ import 'auth_refresh_interceptor.dart';
 import 'http_debug_log_interceptor.dart';
 import 'phase1_api.dart';
 
-/// Configured HTTP client for GPS Médical (v1 API + root-level system routes).
+/// Configured HTTP client for Medora (v1 API + root-level system routes).
 class GpsMedicalClient {
   GpsMedicalClient({
     required this.tokenStore,

@@ -1,4 +1,4 @@
-/// Shared library for GPS Médical patient and specialist mobile apps.
+/// Shared library for Medora patient and specialist mobile apps.
 library;
 
 export 'package:gps_medical_api/gps_medical_api.dart'

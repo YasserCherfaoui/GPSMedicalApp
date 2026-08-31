@@ -5,7 +5,7 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-/// Default [FirebaseOptions] for the GPS Médical patient app.
+/// Default [FirebaseOptions] for the Medora patient app.
 class DefaultFirebaseOptions {
   static bool get isConfigured => true;
 

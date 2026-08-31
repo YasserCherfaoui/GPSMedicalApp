@@ -6,7 +6,7 @@ import 'gps_radii.dart';
 import 'gps_spacing.dart';
 import 'gps_typography.dart';
 
-/// Centralized [ThemeData] for GPS Médical mobile apps.
+/// Centralized [ThemeData] for Medora mobile apps.
 abstract final class GpsTheme {
   static ThemeData light() => _buildTheme(brightness: Brightness.light);
 
