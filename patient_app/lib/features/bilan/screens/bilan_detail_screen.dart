@@ -52,17 +52,25 @@ class BilanDetailScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(GpsSpacing.lg),
             children: [
               if (bilan.isGated) ...[
-                Card(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  child: ListTile(
-                    title: Text(l10n.freemiumBilanTitle),
-                    subtitle: Text(
-                      bilan.upgradeHint?.message ?? l10n.freemiumBilanBody,
-                    ),
-                    trailing: FilledButton(
-                      onPressed: () => _unlockDetailed(context, ref, bilan),
-                      child: Text(l10n.freemiumUnlockCta),
-                    ),
+                GpsCard(
+                  showAccentBorder: true,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        l10n.freemiumBilanTitle,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: GpsSpacing.xs),
+                      Text(
+                        bilan.upgradeHint?.message ?? l10n.freemiumBilanBody,
+                      ),
+                      const SizedBox(height: GpsSpacing.sm),
+                      PrimaryButton(
+                        label: l10n.freemiumUnlockCta,
+                        onPressed: () => _unlockDetailed(context, ref, bilan),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: GpsSpacing.md),
@@ -94,31 +102,31 @@ class BilanDetailScreen extends ConsumerWidget {
               ),
               const SizedBox(height: GpsSpacing.xl),
               if (bilan.pdfDocumentId != null)
-                FilledButton.tonal(
+                SecondaryButton(
+                  label: l10n.bilanExportPdf,
                   onPressed: () => _openPdf(context, ref, bilan),
-                  child: Text(l10n.bilanExportPdf),
                 )
               else if (bilan.isGated)
-                FilledButton.tonal(
+                SecondaryButton(
+                  label: l10n.freemiumBilanPdfCta,
                   onPressed: () => _unlockDetailed(context, ref, bilan),
-                  child: Text(l10n.freemiumBilanPdfCta),
                 ),
               const SizedBox(height: GpsSpacing.sm),
-              FilledButton(
+              PrimaryButton(
+                label: l10n.bilanTransmitCta,
                 onPressed: () => context.push(
                   GpsRoutes.referralMatches(
                     bilan.sessionId,
                     bilanId: bilanId,
                   ),
                 ),
-                child: Text(l10n.bilanTransmitCta),
               ),
               const SizedBox(height: GpsSpacing.sm),
-              FilledButton.tonal(
+              SecondaryButton(
+                label: l10n.bilanCoachingCta,
                 onPressed: () => context.push(
                   GpsRoutes.coachingPlanForSession(bilan.sessionId),
                 ),
-                child: Text(l10n.bilanCoachingCta),
               ),
             ],
           );

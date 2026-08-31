@@ -158,10 +158,9 @@ class _MedicalRecordOcrSectionState
           else if (_error != null)
             Text(_error!, style: TextStyle(color: theme.colorScheme.error))
           else if (_ext == null)
-            FilledButton.tonalIcon(
+            SecondaryButton(
+              label: l10n.medicalRecordsOcrStart,
               onPressed: _busy ? null : () => unawaited(_enqueue()),
-              icon: const Icon(Icons.document_scanner_outlined),
-              label: Text(l10n.medicalRecordsOcrStart),
             )
           else ...[
             Text(_statusLabel(l10n, _ext!.status)),
@@ -171,9 +170,9 @@ class _MedicalRecordOcrSectionState
             ],
             if (_ext!.status == 'extracted') ...[
               const SizedBox(height: GpsSpacing.sm),
-              FilledButton(
+              PrimaryButton(
+                label: l10n.anamnesisDocsReview,
                 onPressed: () => unawaited(_openReview()),
-                child: Text(l10n.anamnesisDocsReview),
               ),
             ],
             if (_ext!.status == 'failed') ...[
@@ -183,9 +182,9 @@ class _MedicalRecordOcrSectionState
                   _ext!.errorMessage!,
                   style: theme.textTheme.bodySmall,
                 ),
-              FilledButton.tonal(
+              SecondaryButton(
+                label: l10n.medicalRecordsOcrRetry,
                 onPressed: _busy ? null : () => unawaited(_enqueue()),
-                child: Text(l10n.medicalRecordsOcrRetry),
               ),
             ],
           ],

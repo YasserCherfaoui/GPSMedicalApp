@@ -296,9 +296,9 @@ class _PainLocalizationScreenState
             onPressed: () => Navigator.pop(ctx, false),
             child: Text(l10n.painLocalizationCancel),
           ),
-          FilledButton(
+          PrimaryButton(
+            label: l10n.painLocalizationClearAll,
             onPressed: () => Navigator.pop(ctx, true),
-            child: Text(l10n.painLocalizationClearAll),
           ),
         ],
       ),

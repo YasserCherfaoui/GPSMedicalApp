@@ -76,15 +76,10 @@ class _BilanTransmitScreenState extends ConsumerState<BilanTransmitScreen> {
               ),
             ),
             const SizedBox(height: GpsSpacing.xl),
-            FilledButton(
+            PrimaryButton(
+              label: l10n.bilanTransmitConfirm,
+              isLoading: _busy,
               onPressed: _busy ? null : _transmit,
-              child: _busy
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : Text(l10n.bilanTransmitConfirm),
             ),
           ],
         ),

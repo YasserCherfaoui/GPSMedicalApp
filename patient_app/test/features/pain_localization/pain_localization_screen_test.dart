@@ -202,7 +202,7 @@ void main() {
 
     await tester.tap(find.text('Tout effacer'));
     await tester.pump();
-    await tester.tap(find.widgetWithText(FilledButton, 'Tout effacer'));
+    await tester.tap(find.widgetWithText(PrimaryButton, 'Tout effacer'));
     await tester.pump();
     expect(find.text('Poignet gauche'), findsNothing);
     expect(find.textContaining('explorer une zone'), findsOneWidget);

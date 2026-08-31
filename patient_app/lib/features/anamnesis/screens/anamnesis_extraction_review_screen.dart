@@ -224,17 +224,10 @@ class _AnamnesisExtractionReviewScreenState
                         ),
                       ],
                       const SizedBox(height: GpsSpacing.lg),
-                      FilledButton(
+                      PrimaryButton(
+                        label: l10n.anamnesisDocsSaveCorrections,
+                        isLoading: _saving,
                         onPressed: _saving ? null : _save,
-                        child: _saving
-                            ? const SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                ),
-                              )
-                            : Text(l10n.anamnesisDocsSaveCorrections),
                       ),
                     ],
                   ),

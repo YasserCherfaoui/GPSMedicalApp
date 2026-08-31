@@ -223,7 +223,7 @@ class _AnamnesisDocumentsScreenState
                     icon: const Icon(Icons.photo_library_outlined),
                     label: Text(l10n.anamnesisDocsGallery),
                   ),
-                  FilledButton.tonalIcon(
+                  OutlinedButton.icon(
                     onPressed: _uploading
                         ? null
                         : () => unawaited(_pickAndUpload(fromCamera: false)),
@@ -238,9 +238,9 @@ class _AnamnesisDocumentsScreenState
               ],
               const SizedBox(height: GpsSpacing.lg),
               Expanded(child: _buildList(l10n)),
-              FilledButton(
+              PrimaryButton(
+                label: l10n.anamnesisDone,
                 onPressed: () => context.go(GpsRoutes.discover),
-                child: Text(l10n.anamnesisDone),
               ),
             ],
           ),
@@ -260,9 +260,9 @@ class _AnamnesisDocumentsScreenState
           children: [
             Text(_error!, textAlign: TextAlign.center),
             const SizedBox(height: GpsSpacing.md),
-            FilledButton(
+            SecondaryButton(
+              label: l10n.anamnesisRetry,
               onPressed: () => unawaited(_refresh()),
-              child: Text(l10n.anamnesisRetry),
             ),
           ],
         ),

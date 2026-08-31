@@ -52,10 +52,10 @@ class _MessagingThreadsListScreenState
             children: [
               Text(l10n.messagingLoadError),
               const SizedBox(height: GpsSpacing.md),
-              FilledButton(
+              SecondaryButton(
+                label: l10n.retry,
                 onPressed: () =>
                     ref.read(messagingThreadsListProvider.notifier).refresh(),
-                child: Text(l10n.retry),
               ),
             ],
           ),

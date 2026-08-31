@@ -83,9 +83,9 @@ class PainSelectionReviewBar extends StatelessWidget {
                     textAlign: TextAlign.center,
                   )
                 else
-                  FilledButton.tonal(
+                  SecondaryButton(
+                    label: l10n.painLocalizationAddSelection,
                     onPressed: onAddPending,
-                    child: Text(l10n.painLocalizationAddSelection),
                   ),
                 const SizedBox(height: GpsSpacing.sm),
               ] else if (selections.isEmpty)
@@ -118,9 +118,9 @@ class PainSelectionReviewBar extends StatelessWidget {
                   ),
                 ),
               if (selections.isNotEmpty) const SizedBox(height: GpsSpacing.sm),
-              FilledButton(
+              PrimaryButton(
+                label: l10n.painLocalizationConfirm,
                 onPressed: selections.isEmpty ? null : onConfirm,
-                child: Text(l10n.painLocalizationConfirm),
               ),
               if (selections.isNotEmpty)
                 TextButton(

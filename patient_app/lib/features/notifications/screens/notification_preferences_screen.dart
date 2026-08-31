@@ -23,10 +23,10 @@ class NotificationPreferencesScreen extends ConsumerWidget {
             children: [
               Text(l10n.notificationsLoadError),
               const SizedBox(height: GpsSpacing.md),
-              FilledButton(
+              SecondaryButton(
+                label: l10n.retry,
                 onPressed: () =>
                     ref.invalidate(notificationPreferencesControllerProvider),
-                child: Text(l10n.retry),
               ),
             ],
           ),
@@ -97,6 +97,9 @@ class NotificationPreferencesScreen extends ConsumerWidget {
                         l10n.notificationsPrefReminderHoursValue(hours),
                       ),
                       selected: reminderHours == hours,
+                      selectedColor: Theme.of(
+                        context,
+                      ).colorScheme.primaryContainer,
                       onSelected: (selected) {
                         if (!selected) return;
                         save(

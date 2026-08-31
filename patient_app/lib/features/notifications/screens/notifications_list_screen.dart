@@ -74,10 +74,10 @@ class _NotificationsListScreenState
             children: [
               Text(l10n.notificationsLoadError),
               const SizedBox(height: GpsSpacing.md),
-              FilledButton(
+              SecondaryButton(
+                label: l10n.retry,
                 onPressed: () =>
                     ref.read(notificationsListProvider.notifier).refresh(),
-                child: Text(l10n.retry),
               ),
             ],
           ),
@@ -127,38 +127,46 @@ class _NotificationsListScreenState
                               locale,
                             );
 
-                            return Card(
-                              color: isUnread
-                                  ? Theme.of(context)
-                                        .colorScheme
-                                        .primaryContainer
-                                        .withValues(alpha: 0.35)
-                                  : null,
-                              child: ListTile(
-                                leading: Icon(
-                                  notificationTypeIcon(notification.type),
-                                ),
-                                title: Text(notification.title ?? ''),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    if ((notification.body ?? '').isNotEmpty)
-                                      Text(notification.body!),
-                                    if (timestamp.isNotEmpty)
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: GpsSpacing.xs,
+                            return GpsCard(
+                              showAccentBorder: isUnread,
+                              onTap: () => _openNotification(notification),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Icon(notificationTypeIcon(notification.type)),
+                                  const SizedBox(width: GpsSpacing.md),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          notification.title ?? '',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleMedium,
                                         ),
-                                        child: Text(
-                                          timestamp,
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.bodySmall,
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                                onTap: () => _openNotification(notification),
+                                        if ((notification.body ?? '')
+                                            .isNotEmpty) ...[
+                                          const SizedBox(height: GpsSpacing.xs),
+                                          Text(notification.body!),
+                                        ],
+                                        if (timestamp.isNotEmpty)
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: GpsSpacing.xs,
+                                            ),
+                                            child: Text(
+                                              timestamp,
+                                              style: Theme.of(
+                                                context,
+                                              ).textTheme.bodySmall,
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                             );
                           },

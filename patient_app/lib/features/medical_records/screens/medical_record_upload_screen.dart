@@ -487,17 +487,12 @@ class _MedicalRecordUploadScreenState
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(GpsSpacing.md),
-          child: FilledButton(
+          child: PrimaryButton(
+            label: l10n.medicalRecordUploadSubmit,
+            isLoading: _submitting,
             onPressed: _submitting || _pendingFiles.isEmpty
                 ? null
                 : () => _submit(l10n),
-            child: _submitting
-                ? const SizedBox(
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : Text(l10n.medicalRecordUploadSubmit),
           ),
         ),
       ),

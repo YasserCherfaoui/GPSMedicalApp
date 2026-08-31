@@ -70,17 +70,18 @@ class AnamnesisUrgenceScreen extends StatelessWidget {
                   runSpacing: GpsSpacing.sm,
                   children: [
                     for (final n in redFlag.emergencyNumbers)
-                      FilledButton.tonal(
+                      SecondaryButton(
+                        label: n,
+                        expand: false,
                         onPressed: () => _dial(n),
-                        child: Text(n),
                       ),
                   ],
                 ),
                 const SizedBox(height: GpsSpacing.lg),
               ],
-              FilledButton(
+              PrimaryButton(
+                label: l10n.anamnesisUrgenceAck,
                 onPressed: onDismiss,
-                child: Text(l10n.anamnesisUrgenceAck),
               ),
             ],
           ),

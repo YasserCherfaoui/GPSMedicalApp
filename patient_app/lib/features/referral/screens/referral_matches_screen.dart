@@ -35,10 +35,10 @@ class ReferralMatchesScreen extends ConsumerWidget {
             children: [
               Text(l10n.referralLoadError),
               const SizedBox(height: GpsSpacing.md),
-              FilledButton(
+              SecondaryButton(
+                label: l10n.retry,
                 onPressed: () =>
                     ref.read(referralMatchesProvider(args).notifier).refresh(),
-                child: Text(l10n.retry),
               ),
             ],
           ),
@@ -57,34 +57,39 @@ class ReferralMatchesScreen extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final match = matches[index];
                 final spec = match.specialist;
-                return ListTile(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: BorderSide(color: Theme.of(context).dividerColor),
-                  ),
-                  title: Text(
-                    spec?.fullName.isNotEmpty == true
-                        ? spec!.fullName
-                        : l10n.referralMatchSpecialistFallback,
-                  ),
-                  subtitle: Column(
+                return GpsCard(
+                  onTap: () => _selectMatch(context, ref, match),
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (spec != null && spec.specialtyCode.isNotEmpty)
-                        Text(spec.specialtyCode),
-                      Text(
-                        l10n.referralMatchScore(match.matchScore.round()),
-                      ),
-                      if (match.rationaleFr.isNotEmpty)
-                        Text(
-                          match.rationaleFr,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              spec?.fullName.isNotEmpty == true
+                                  ? spec!.fullName
+                                  : l10n.referralMatchSpecialistFallback,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            if (spec != null && spec.specialtyCode.isNotEmpty)
+                              Text(spec.specialtyCode),
+                            Text(
+                              l10n.referralMatchScore(match.matchScore.round()),
+                            ),
+                            if (match.rationaleFr.isNotEmpty)
+                              Text(
+                                match.rationaleFr,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                          ],
                         ),
+                      ),
+                      const Icon(Icons.chevron_right),
                     ],
                   ),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () => _selectMatch(context, ref, match),
                 );
               },
             ),

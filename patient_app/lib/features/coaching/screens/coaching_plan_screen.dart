@@ -34,22 +34,29 @@ class CoachingPlansScreen extends ConsumerWidget {
             separatorBuilder: (_, __) => const SizedBox(height: GpsSpacing.sm),
             itemBuilder: (context, index) {
               final plan = plans[index];
-              return ListTile(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  side: BorderSide(
-                    color: Theme.of(context).colorScheme.outlineVariant,
-                  ),
-                ),
-                title: Text(l10n.coachingListItemTitle(plan.sessionId)),
-                subtitle: Text(
-                  l10n.coachingListItemSubtitle(
-                    plan.hydrationGoalMl,
-                    plan.createdAt,
-                  ),
-                ),
-                trailing: const Icon(Icons.chevron_right),
+              return GpsCard(
                 onTap: () => context.push(GpsRoutes.coachingPlanDetail(plan.id)),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(l10n.coachingListItemTitle(plan.sessionId)),
+                          const SizedBox(height: GpsSpacing.xs),
+                          Text(
+                            l10n.coachingListItemSubtitle(
+                              plan.hydrationGoalMl,
+                              plan.createdAt,
+                            ),
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Icon(Icons.chevron_right),
+                  ],
+                ),
               );
             },
           );
@@ -88,12 +95,16 @@ class CoachingPlanScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: GpsSpacing.xl),
-              HydrationTracker(
-                planId: planId,
-                goalMl: plan.hydrationGoalMl,
+              GpsCard(
+                child: HydrationTracker(
+                  planId: planId,
+                  goalMl: plan.hydrationGoalMl,
+                ),
               ),
               const SizedBox(height: GpsSpacing.xl),
-              SleepLogWidget(planId: planId),
+              GpsCard(
+                child: SleepLogWidget(planId: planId),
+              ),
               const SizedBox(height: GpsSpacing.xl),
               for (final section in plan.sections) ...[
                 Text(

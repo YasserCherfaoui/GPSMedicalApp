@@ -23,70 +23,66 @@ class ThreadRowTile extends StatelessWidget {
     final unread = thread.unreadCount ?? 0;
     final preview = messagePreviewLabel(item.lastMessagePreview, l10n);
     final timestamp = formatThreadTimestamp(thread.lastMessageAt, languageCode);
-    return Card(
-      margin: const EdgeInsets.only(bottom: GpsSpacing.sm),
-      child: InkWell(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: GpsSpacing.sm),
+      child: GpsCard(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(GpsRadii.md),
-        child: Padding(
-          padding: const EdgeInsets.all(GpsSpacing.md),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GpsDoctorPhoto(
-                size: 56,
-                imageUrl: doctor.photoUrl,
-                shape: GpsDoctorPhotoShape.circle,
-              ),
-              const SizedBox(width: GpsSpacing.md),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      doctorDisplayName(doctor),
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    if (preview.isNotEmpty) ...[
-                      const SizedBox(height: GpsSpacing.xs),
-                      Text(
-                        preview,
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: colorScheme.onSurfaceVariant,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ],
-                ),
-              ),
-              const SizedBox(width: GpsSpacing.sm),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GpsDoctorPhoto(
+              size: 56,
+              imageUrl: doctor.photoUrl,
+              shape: GpsDoctorPhotoShape.circle,
+            ),
+            const SizedBox(width: GpsSpacing.md),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (timestamp.isNotEmpty)
+                  Text(
+                    doctorDisplayName(doctor),
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  if (preview.isNotEmpty) ...[
+                    const SizedBox(height: GpsSpacing.xs),
                     Text(
-                      timestamp,
-                      style: theme.textTheme.bodySmall?.copyWith(
+                      preview,
+                      style: theme.textTheme.bodyMedium?.copyWith(
                         color: colorScheme.onSurfaceVariant,
                       ),
-                    ),
-                  if (unread > 0) ...[
-                    const SizedBox(height: GpsSpacing.xs),
-                    Badge(
-                      label: Text('$unread'),
-                      backgroundColor: colorScheme.primary,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ],
               ),
-            ],
-          ),
+            ),
+            const SizedBox(width: GpsSpacing.sm),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                if (timestamp.isNotEmpty)
+                  Text(
+                    timestamp,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                if (unread > 0) ...[
+                  const SizedBox(height: GpsSpacing.xs),
+                  Badge(
+                    label: Text('$unread'),
+                    backgroundColor: colorScheme.primary,
+                  ),
+                ],
+              ],
+            ),
+          ],
         ),
       ),
     );

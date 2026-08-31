@@ -113,11 +113,11 @@ class MedicalRecordViewerScreen extends ConsumerWidget {
             children: [
               Text(l10n.medicalRecordViewerLoadError),
               const SizedBox(height: GpsSpacing.md),
-              FilledButton(
+              SecondaryButton(
+                label: l10n.retry,
                 onPressed: () => ref
                     .read(medicalRecordViewerProvider(documentId).notifier)
                     .refresh(),
-                child: Text(l10n.retry),
               ),
             ],
           ),

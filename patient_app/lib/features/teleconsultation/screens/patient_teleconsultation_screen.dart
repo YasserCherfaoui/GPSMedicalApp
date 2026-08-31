@@ -242,11 +242,11 @@ class _PatientTeleconsultationScreenState
         unawaited(_requestHangup());
       },
       child: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: GpsColors.darkSurface,
         appBar: AppBar(
           title: Text(l10n.patientTeleconsultTitle),
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
+          backgroundColor: GpsColors.darkSurface,
+          foregroundColor: GpsColors.darkOnSurface,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             tooltip: MaterialLocalizations.of(context).backButtonTooltip,

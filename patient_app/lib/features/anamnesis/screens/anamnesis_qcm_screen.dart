@@ -363,9 +363,9 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
             const SizedBox(height: GpsSpacing.sm),
             Text(_error!, textAlign: TextAlign.center),
             const SizedBox(height: GpsSpacing.md),
-            FilledButton(
+            SecondaryButton(
+              label: l10n.anamnesisRetry,
               onPressed: () => unawaited(_bootstrap()),
-              child: Text(l10n.anamnesisRetry),
             ),
           ],
         ),
@@ -409,32 +409,27 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
             ),
             const SizedBox(height: GpsSpacing.lg),
             if (regenerative) ...[
-              FilledButton(
+              PrimaryButton(
+                label: l10n.anamnesisParcoursCta,
+                isLoading: _generatingBilan,
                 onPressed: _generatingBilan || _session == null
                     ? null
                     : () => _generateBilan(context),
-                child: _generatingBilan
-                    ? const SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : Text(l10n.anamnesisParcoursCta),
               ),
               const SizedBox(height: GpsSpacing.sm),
             ],
             if (_session != null) ...[
-              FilledButton.tonal(
+              SecondaryButton(
+                label: l10n.anamnesisDocsCta,
                 onPressed: () => context.push(
                   '${GpsRoutes.anamnesisDocuments}/${_session!.id}',
                 ),
-                child: Text(l10n.anamnesisDocsCta),
               ),
               const SizedBox(height: GpsSpacing.sm),
             ],
-            FilledButton(
+            PrimaryButton(
+              label: l10n.anamnesisDone,
               onPressed: () => context.go(GpsRoutes.discover),
-              child: Text(l10n.anamnesisDone),
             ),
           ],
         ),

@@ -16,55 +16,51 @@ class AnamnesisScoreBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Material(
-      color: theme.colorScheme.primaryContainer.withValues(alpha: 0.35),
-      borderRadius: BorderRadius.circular(GpsRadii.md),
-      child: Padding(
-        padding: const EdgeInsets.all(GpsSpacing.sm),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    scoreLabel,
-                    style: theme.textTheme.labelLarge,
-                  ),
+    return GpsCard(
+      showAccentBorder: true,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  scoreLabel,
+                  style: theme.textTheme.labelLarge,
                 ),
-                TweenAnimationBuilder<double>(
-                  tween: Tween<double>(end: score.finalScore),
-                  duration: const Duration(milliseconds: 450),
-                  curve: Curves.easeOutCubic,
-                  builder: (context, value, _) {
-                    return Text(
-                      '${value.round()} %',
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: theme.colorScheme.primary,
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-            if (score.rationaleFr.isNotEmpty) ...[
-              const SizedBox(height: GpsSpacing.xs),
-              Text(
-                score.rationaleFr,
-                style: theme.textTheme.bodySmall,
+              ),
+              TweenAnimationBuilder<double>(
+                tween: Tween<double>(end: score.finalScore),
+                duration: const Duration(milliseconds: 450),
+                curve: Curves.easeOutCubic,
+                builder: (context, value, _) {
+                  return Text(
+                    '${value.round()} %',
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.primary,
+                    ),
+                  );
+                },
               ),
             ],
+          ),
+          if (score.rationaleFr.isNotEmpty) ...[
             const SizedBox(height: GpsSpacing.xs),
             Text(
-              score.legalBannerFr,
-              style: theme.textTheme.bodySmall?.copyWith(
-                fontWeight: FontWeight.w600,
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
+              score.rationaleFr,
+              style: theme.textTheme.bodySmall,
             ),
           ],
-        ),
+          const SizedBox(height: GpsSpacing.xs),
+          Text(
+            score.legalBannerFr,
+            style: theme.textTheme.bodySmall?.copyWith(
+              fontWeight: FontWeight.w600,
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -88,11 +88,11 @@ class _MedicalRecordPickerSheetState
             ),
             Padding(
               padding: const EdgeInsets.all(GpsSpacing.md),
-              child: FilledButton(
+              child: PrimaryButton(
+                label: l10n.messagingAttachConfirm,
                 onPressed: _selected.isEmpty
                     ? null
                     : () => Navigator.pop(context, _selected.toList()),
-                child: Text(l10n.messagingAttachConfirm),
               ),
             ),
           ],

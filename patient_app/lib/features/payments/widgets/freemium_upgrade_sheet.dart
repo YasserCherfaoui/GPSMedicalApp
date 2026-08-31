@@ -39,9 +39,9 @@ Future<bool> showFreemiumUpgradeSheet({
               style: Theme.of(ctx).textTheme.titleMedium,
             ),
             const SizedBox(height: GpsSpacing.lg),
-            FilledButton(
+            PrimaryButton(
+              label: l10n.freemiumUnlockCta,
               onPressed: () => Navigator.of(ctx).pop(true),
-              child: Text(l10n.freemiumUnlockCta),
             ),
           ],
         ),

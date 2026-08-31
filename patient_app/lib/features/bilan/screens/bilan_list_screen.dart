@@ -23,10 +23,10 @@ class BilanListScreen extends ConsumerWidget {
             children: [
               Text(l10n.bilanLoadError),
               const SizedBox(height: GpsSpacing.md),
-              FilledButton(
+              SecondaryButton(
+                label: l10n.retry,
                 onPressed: () =>
                     ref.read(bilanListProvider.notifier).refresh(),
-                child: Text(l10n.retry),
               ),
             ],
           ),
@@ -43,20 +43,29 @@ class BilanListScreen extends ConsumerWidget {
               separatorBuilder: (_, __) => const SizedBox(height: GpsSpacing.sm),
               itemBuilder: (context, index) {
                 final item = items[index];
-                return ListTile(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    side: BorderSide(color: Theme.of(context).dividerColor),
-                  ),
-                  title: Text(l10n.bilanListItemTitle(item.zoneCode)),
-                  subtitle: Text(
-                    l10n.bilanListItemSubtitle(
-                      item.finalScore.round(),
-                      item.createdAt,
-                    ),
-                  ),
-                  trailing: const Icon(Icons.chevron_right),
+                return GpsCard(
                   onTap: () => context.push(GpsRoutes.bilanDetail(item.id)),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(l10n.bilanListItemTitle(item.zoneCode)),
+                            const SizedBox(height: GpsSpacing.xs),
+                            Text(
+                              l10n.bilanListItemSubtitle(
+                                item.finalScore.round(),
+                                item.createdAt,
+                              ),
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.chevron_right),
+                    ],
+                  ),
                 );
               },
             ),

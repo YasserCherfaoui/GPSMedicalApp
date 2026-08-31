@@ -115,10 +115,10 @@ class _MessagingThreadScreenState extends ConsumerState<MessagingThreadScreen> {
             children: [
               Text(l10n.messagingLoadMessagesError),
               const SizedBox(height: GpsSpacing.md),
-              FilledButton(
+              SecondaryButton(
+                label: l10n.retry,
                 onPressed: () =>
                     ref.invalidate(messagingThreadProvider(widget.threadId)),
-                child: Text(l10n.retry),
               ),
             ],
           ),

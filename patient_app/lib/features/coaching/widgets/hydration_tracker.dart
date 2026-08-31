@@ -84,7 +84,7 @@ class _HydrationTrackerState extends ConsumerState<HydrationTracker> {
           runSpacing: GpsSpacing.sm,
           children: [
             for (final amount in [250, 500, 750])
-              FilledButton.tonal(
+              OutlinedButton(
                 onPressed: _logging ? null : () => _log(amount),
                 child: Text(l10n.coachingHydrationAdd(amount)),
               ),

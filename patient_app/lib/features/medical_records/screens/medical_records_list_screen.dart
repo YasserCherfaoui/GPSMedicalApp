@@ -237,11 +237,11 @@ class _MedicalRecordsListScreenState
                   children: [
                     Text(l10n.medicalRecordsLoadError),
                     const SizedBox(height: GpsSpacing.md),
-                    FilledButton(
+                    SecondaryButton(
+                      label: l10n.retry,
                       onPressed: () => ref
                           .read(medicalRecordsListProvider.notifier)
                           .refresh(),
-                      child: Text(l10n.retry),
                     ),
                   ],
                 ),

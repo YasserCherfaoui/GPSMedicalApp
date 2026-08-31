@@ -150,15 +150,10 @@ class _AnamnesisQuestionViewState extends State<AnamnesisQuestionView> {
           _ => Text(l10n.anamnesisUnsupportedQuestion),
         },
         const SizedBox(height: GpsSpacing.lg),
-        FilledButton(
+        PrimaryButton(
+          label: l10n.anamnesisContinue,
+          isLoading: widget.submitting,
           onPressed: _canSubmit && !widget.submitting ? _submit : null,
-          child: widget.submitting
-              ? const SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                )
-              : Text(l10n.anamnesisContinue),
         ),
       ],
     );

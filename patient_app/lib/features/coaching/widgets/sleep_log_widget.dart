@@ -24,6 +24,8 @@ class _SleepLogWidgetState extends ConsumerState<SleepLogWidget> {
     final l10n = AppLocalizations.of(context)!;
     final sleepAsync = ref.watch(coachingSleepListProvider(widget.planId));
 
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -51,6 +53,7 @@ class _SleepLogWidgetState extends ConsumerState<SleepLogWidget> {
             return ChoiceChip(
               label: Text('$value'),
               selected: selected,
+              selectedColor: colorScheme.primaryContainer,
               onSelected: _logging
                   ? null
                   : (_) => setState(() => _quality = value),
@@ -58,9 +61,10 @@ class _SleepLogWidgetState extends ConsumerState<SleepLogWidget> {
           }),
         ),
         const SizedBox(height: GpsSpacing.md),
-        FilledButton(
+        PrimaryButton(
+          label: l10n.coachingSleepLogCta,
+          isLoading: _logging,
           onPressed: _logging ? null : _logSleep,
-          child: Text(l10n.coachingSleepLogCta),
         ),
         const SizedBox(height: GpsSpacing.md),
         sleepAsync.when(

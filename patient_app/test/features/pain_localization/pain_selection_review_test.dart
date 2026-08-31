@@ -220,7 +220,7 @@ void main() {
       ),
     );
     expect(find.textContaining('explorer une zone'), findsOneWidget);
-    final button = tester.widget<FilledButton>(find.byType(FilledButton));
+    final button = tester.widget<PrimaryButton>(find.byType(PrimaryButton));
     expect(button.onPressed, isNull);
   });
 
