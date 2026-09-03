@@ -1,0 +1,1318 @@
+{
+  "@@locale": "pt",
+  "splashSubtitle": "From wandering to smart guidance",
+  "chooseLanguage": "Escolha o seu idioma",
+  "continueLabel": "Continuar",
+  "skip": "Ignorar",
+  "next": "Próximo",
+  "start": "Começar",
+  "onboardingTitle1": "From wandering to smart guidance",
+  "onboardingTitle2": "How does it work?",
+  "onboardingTitle3": "Your data, protected in Algeria",
+  "onboardingBody1": "No more medical wandering. The right specialist, at the right time.",
+  "onboardingBody2": "4-step journey: location, screening, coaching, referral.",
+  "onboardingBody3": "Local ANPDP hosting, encryption, verified doctors.",
+  "welcomeTitle": "Bem-vindo",
+  "welcomeSubtitle": "Your health journey starts here",
+  "createAccount": "Criar conta",
+  "signIn": "Entrar",
+  "loginTitle": "Entrar",
+  "loginSubtitle": "Good to see you again",
+  "phoneLabel": "Telefone",
+  "passwordLabel": "Senha",
+  "confirmPasswordLabel": "Confirmar senha",
+  "forgotPassword": "Esqueceu a senha?",
+  "registration": "Registration",
+  "verification": "Verification",
+  "ninTitle": "Your identity",
+  "ninSubtitle": "National Identification Number (18 digits)",
+  "ninHint": "Found on your biometric ID card",
+  "phoneTitle": "Your phone number",
+  "phoneSubtitle": "We will send you a verification code by SMS",
+  "phoneFormatHint": "Format: +213 5XX, 6XX or 7XX",
+  "sendCode": "Enviar código",
+  "otpTitle": "Enter the code received",
+  "otpSubtitle": "6-digit code sent to {phone}",
+  "@otpSubtitle": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "ninVerificationPendingBanner": "Your identity is being verified. You can continue registration — no action is required from you.",
+  "resendCode": "Resend code",
+  "resendIn": "Resend in 0:{seconds}",
+  "@resendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "verify": "Verificar",
+  "passwordTitle": "Create your password",
+  "consentTitle": "Your consents",
+  "consentSubtitle": "In accordance with Algerian ANPDP law",
+  "consentHealth": "Processing of my health data",
+  "consentData": "Processing of my personal data",
+  "consentTerms": "ANPDP terms and policy",
+  "consentMarketing": "Marketing communications (optional)",
+  "acceptTerms": "I accept the Terms of Use and Privacy Policy",
+  "createMyAccount": "Create my account",
+  "biometricTitle": "Biometric login",
+  "biometricSubtitle": "Face ID or fingerprint to sign in faster",
+  "enable": "Ativar",
+  "later": "Mais tarde",
+  "successTitle": "Welcome to Medora!",
+  "successSubtitle": "Your account has been created successfully.",
+  "discoverApp": "Explore the app",
+  "forgotTitle": "Account recovery",
+  "resetTitle": "New password",
+  "resetAction": "Reset",
+  "invalidPhone": "Invalid number (+213 5/6/7 + 8 digits)",
+  "invalidNin": "Invalid NIN (18 digits)",
+  "passwordsMismatch": "Passwords do not match",
+  "requiredConsents": "Please accept all required consents",
+  "networkError": "Network error. Please try again.",
+  "fullNameTitle": "Your full name",
+  "fullNameSubtitle": "As shown on your official documents (2 to 120 characters).",
+  "fullNameHint": "First and last name",
+  "invalidFullName": "Invalid name (2 to 120 characters).",
+  "countryTitle": "Your country",
+  "countrySubtitle": "Choose your country of residence. This cannot be changed later.",
+  "countryImmutableNotice": "The chosen country is final. It cannot be changed after account creation.",
+  "countryAlgeria": "Algeria",
+  "countryTunisia": "Tunisia",
+  "phoneCountryMismatch": "This number does not match the chosen country.",
+  "countryNotSupportedForRole": "Specialist registration is not yet available in Tunisia.",
+  "consentSubtitleTn": "In accordance with Tunisian INPDP law (law 2004-63)",
+  "consentTermsTn": "INPDP terms and policy",
+  "consentLegalVersion": "Terms version: {version}",
+  "@consentLegalVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "invalidPhoneTn": "Invalid number (+216 2/4/5/9 + 7 digits)",
+  "phoneFormatHintTn": "Format: +216 2X, 4X, 5X or 9X",
+  "errorInvalidCredentials": "Invalid credentials. Please check your phone number and password.",
+  "errorAccessDenied": "Access denied. You do not have permission to access this application.",
+  "errorTooManyRequests": "Too many attempts. Please try again in a few minutes.",
+  "errorInternalServer": "Internal server error. Please try again later.",
+  "errorNetworkTimeout": "Connection timed out. Please check your internet connection and try again.",
+  "errorNetworkConnection": "Unable to connect to the server. Please check your internet connection.",
+  "errorPasswordRequired": "Please enter your password.",
+  "bookingAvailabilityTitle": "Choose a slot",
+  "bookingPreviousWeek": "Previous week",
+  "bookingNextWeek": "Next week",
+  "bookingSlotsCount": "{count, plural, =0{No slots} =1{1 slot} other{{count} slots}}",
+  "@bookingSlotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bookingReserve": "Reservar",
+  "bookingSlotDuration": "Duration: {minutes} min",
+  "@bookingSlotDuration": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "bookingModeInPerson": "In-person",
+  "bookingModeTelehealth": "Telehealth",
+  "bookingModeAll": "All",
+  "bookingWeekRange": "{from} – {to}",
+  "@bookingWeekRange": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "bookingSelectMode": "Select consultation mode",
+  "bookingLockExpires": "Slot reserved — expires in {time}",
+  "@bookingLockExpires": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "bookingLockExpired": "Your slot reservation has expired.",
+  "bookingBack": "Voltar",
+  "bookingStepConfirm": "Confirm slot",
+  "bookingStepPatient": "For whom?",
+  "bookingStepReview": "Summary",
+  "bookingForMe": "For me",
+  "bookingReasonHint": "Reason for visit (optional)",
+  "bookingSubmit": "Confirmar consulta",
+  "bookingRescheduleSubmit": "Reschedule appointment",
+  "bookingSlotTakenTitle": "Slot unavailable",
+  "bookingSlotTakenMessage": "This slot was just taken. Choose another slot?",
+  "bookingChooseAnotherSlot": "Choose another slot",
+  "bookingOfflineBanner": "Offline — booking requires a connection",
+  "bookingOfflineSubmit": "Connection required to confirm appointment",
+  "bookingResumeDraftTitle": "Resume your booking?",
+  "bookingResumeDraftMessage": "A booking in progress was saved. A connection is needed to confirm the slot.",
+  "bookingOnlineRestored": "Connection restored — you can confirm the appointment",
+  "bookingResume": "Resume",
+  "bookingDiscard": "Discard",
+  "appointmentsTitle": "Consultas",
+  "appointmentsUpcoming": "Próximas",
+  "appointmentsHistory": "Histórico",
+  "appointmentsEmptyUpcoming": "No upcoming appointments",
+  "appointmentsEmptyUpcomingCta": "Find a specialist",
+  "appointmentsEmptyHistory": "No past appointments",
+  "appointmentDetailTitle": "Appointment detail",
+  "appointmentCancel": "Cancelar",
+  "appointmentReschedule": "Reagendar",
+  "appointmentCancelReasonHint": "Cancellation reason (optional)",
+  "appointmentConfirmCancel": "Confirm cancellation",
+  "appointmentDirections": "Directions",
+  "appointmentJoinTelehealth": "Join",
+  "appointmentJoinTelehealthHint": "Available 15 minutes before the appointment.",
+  "appointmentLeaveReview": "Leave a review",
+  "appointmentStatusPending": "Pending",
+  "appointmentStatusConfirmed": "Confirmed",
+  "appointmentStatusCancelled": "Cancelled",
+  "appointmentStatusCompleted": "Completed",
+  "appointmentStatusNoShow": "No-show",
+  "appointmentPaymentUnpaid": "Unpaid",
+  "appointmentPaymentDeposit": "Deposit paid",
+  "appointmentPaymentPaid": "Paid",
+  "appointmentPaymentRefunded": "Refunded",
+  "bookingLoadError": "Unable to load slots.",
+  "appointmentsLoadError": "Unable to load appointments.",
+  "appointmentDetailLoadError": "Unable to load appointment.",
+  "bookingFeeLabel": "Fee",
+  "bookingSummaryDoctor": "Doctor",
+  "bookingSummarySlot": "Slot",
+  "bookingSummaryPatient": "Patient",
+  "bookingSummaryReason": "Reason",
+  "errorGenericTitle": "Erro",
+  "retry": "Tentar novamente",
+  "specialtiesEmpty": "No specialties found.",
+  "specialtiesLoadError": "Unable to load specialties.",
+  "specialtiesPickerParentAll": "All of specialty ({name})",
+  "@specialtiesPickerParentAll": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "geoWilayaPickerTitle": "Select wilaya",
+  "geoCommunePickerTitle": "Select commune",
+  "geoClear": "Clear",
+  "geoSearchWilayaHint": "Search for a wilaya…",
+  "geoSearchCommuneHint": "Search for a commune…",
+  "geoWilayaEmpty": "No wilaya found.",
+  "geoCommuneEmpty": "No commune found.",
+  "geoWilayasLoadError": "Unable to load wilayas.",
+  "geoCommunesLoadError": "Unable to load communes.",
+  "geoUseWilayaCenter": "Use wilaya center",
+  "discoveryAppBarTitle": "Medora",
+  "discoveryRecommendedTitle": "Recommended specialists",
+  "discoveryViewList": "List",
+  "discoveryViewMap": "Map",
+  "discoveryDoctorsEmptyTitle": "No doctors found",
+  "discoveryDoctorsEmptyMessage": "No specialists match at the moment.",
+  "discoverySearchAction": "Search",
+  "discoveryDoctorsLoadError": "Unable to load specialists.",
+  "discoveryRateLimitTitle": "Too many requests",
+  "discoveryRateLimitMessage": "{seconds, plural, =1{Please wait # second before retrying.} other{Please wait # seconds before retrying.}}",
+  "@discoveryRateLimitMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "doctorTitleDefault": "Dr.",
+  "doctorLanguageArabic": "Arabic",
+  "doctorLanguageFrench": "French",
+  "doctorLanguageEnglish": "English",
+  "doctorLanguageTamazight": "Tamazight",
+  "doctorCardBookCta": "Book",
+  "doctorCardTelehealth": "Telehealth",
+  "doctorCardVerifiedBadge": "Certified",
+  "doctorCardMatchPercent": "{percent}% match",
+  "@doctorCardMatchPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "searchHint": "Pesquisar médico, especialidade…",
+  "searchEmptyTitle": "No matching doctors",
+  "searchEmptyMessage": "Expand the area or change your filters?",
+  "searchClearFilters": "Clear filters",
+  "searchLoadError": "An error occurred during search.",
+  "searchSuggestionsEmpty": "No suggestions.",
+  "searchSuggestionsLoadError": "Error loading suggestions.",
+  "searchSuggestionsSpecialties": "Specialties",
+  "searchSuggestionsDoctors": "Doctors",
+  "searchSuggestionsLocations": "Locations",
+  "searchFiltersTitle": "Search filters",
+  "searchFiltersReset": "Reset",
+  "searchFiltersApply": "Apply filters",
+  "searchFilterSpecialty": "Specialty",
+  "searchFilterSpecialtyAll": "All specialties",
+  "searchFilterLocation": "Location (Wilaya / Commune)",
+  "searchFilterLocationAll": "All of Algeria",
+  "searchFilterGender": "Gender",
+  "searchFilterGenderAny": "Any",
+  "searchFilterGenderMale": "Male",
+  "searchFilterGenderFemale": "Female",
+  "searchFilterLanguages": "Spoken languages",
+  "searchFilterMaxFee": "Maximum fee",
+  "searchFilterMaxFeeValue": "{fee} DZD",
+  "@searchFilterMaxFeeValue": {
+    "placeholders": {
+      "fee": {
+        "type": "int"
+      }
+    }
+  },
+  "searchFilterAvailability": "Availability",
+  "searchFilterAvailabilityAll": "All",
+  "searchFilterAvailabilityToday": "Today",
+  "searchFilterAvailability3Days": "3 days",
+  "searchFilterAvailability1Week": "1 week",
+  "searchFilterAvailability1Month": "1 month",
+  "searchFilterTelehealth": "Telehealth available",
+  "searchFilterInsurance": "Accepted insurance",
+  "searchFilterInsuranceCnas": "CNAS approved",
+  "searchFilterInsuranceCasnos": "CASNOS approved",
+  "searchFilterSort": "Sort by",
+  "searchFilterSortRelevance": "Relevance",
+  "searchFilterSortRating": "Highest rating",
+  "searchFilterSortFeeAsc": "Fee ascending",
+  "searchFilterSortFeeDesc": "Fee descending",
+  "searchFilterSortDistance": "Distance ascending",
+  "doctorDetailTitle": "Specialist profile",
+  "doctorDetailBioTitle": "Biography",
+  "doctorDetailBioEmpty": "No biography available.",
+  "doctorDetailBioExpand": "Read more",
+  "doctorDetailBioCollapse": "Show less",
+  "doctorDetailFeeTitle": "Consultation fees",
+  "doctorDetailFeeInPerson": "In-office consultation",
+  "doctorDetailFeeValue": "{fee} DZD",
+  "@doctorDetailFeeValue": {
+    "placeholders": {
+      "fee": {
+        "type": "int"
+      }
+    }
+  },
+  "doctorDetailLanguagesTitle": "Spoken languages",
+  "doctorDetailLanguagesEmpty": "Not specified",
+  "doctorDetailAddressTitle": "Practice address",
+  "doctorDetailMapUnavailable": "Map unavailable",
+  "doctorDetailReviewsTitle": "Patient reviews",
+  "doctorDetailReviewsEmpty": "No reviews yet.",
+  "doctorDetailReviewsLoadMore": "Load more",
+  "doctorDetailVerifiedPatient": "Verified patient",
+  "doctorDetailBookCta": "Reservar",
+  "doctorDetailTelehealthCta": "Telehealth",
+  "doctorDetailNotFoundTitle": "Doctor not found",
+  "doctorDetailNotFoundMessage": "This specialist's profile is not available.",
+  "doctorDetailLoadError": "Unable to load this specialist's profile.",
+  "mapNearbyTitle": "Nearby doctors",
+  "mapNearbyClinicsTitle": "Nearby clinics",
+  "mapNearbyLoadErrorTitle": "Loading error",
+  "mapNearbyLoadErrorMessage": "An error occurred on the map.",
+  "mapNearbyPermissionBanner": "Allow location to see doctors near you.",
+  "mapNearbyClinicsPermissionBanner": "Allow location to see clinics near you.",
+  "mapNearbyPermissionRationaleTitle": "Location access",
+  "mapNearbyPermissionRationaleBody": "Medora uses your location to show nearby specialists. You can also choose a wilaya manually.",
+  "mapNearbyClinicsPermissionRationaleBody": "Medora uses your location to show nearby clinics. You can also choose a wilaya manually.",
+  "mapNearbyPermissionRationaleContinue": "Continue",
+  "mapNearbyPermissionRationaleCancel": "Cancel",
+  "mapNearbyPermissionAllow": "Allow",
+  "mapNearbyChooseWilaya": "Choose wilaya",
+  "mapNearbyMyLocation": "My location",
+  "mapNearbyEdit": "Edit",
+  "mapNearbyWilayaSearch": "Search by wilaya",
+  "mapNearbyWilayaSearchNamed": "Search by wilaya ({wilaya})",
+  "@mapNearbyWilayaSearchNamed": {
+    "placeholders": {
+      "wilaya": {
+        "type": "String"
+      }
+    }
+  },
+  "mapNearbyLocationComma": "{commune}, {wilaya}",
+  "@mapNearbyLocationComma": {
+    "placeholders": {
+      "commune": {
+        "type": "String"
+      },
+      "wilaya": {
+        "type": "String"
+      }
+    }
+  },
+  "mapNearbyRadiusLabel": "Radius:",
+  "mapNearbyRadiusValue": "{radius} km",
+  "@mapNearbyRadiusValue": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "mapNearbyClusterCount": "{count} doctors",
+  "@mapNearbyClusterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mapNearbyClinicClusterCount": "{count} clinics",
+  "@mapNearbyClinicClusterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mapNearbyChooseWilayaTooltip": "Choose wilaya",
+  "mapNearbySpecialtyTitle": "Select a specialty",
+  "mapNearbySpecialtyClear": "Clear",
+  "profileTitle": "O meu perfil",
+  "profileEdit": "Editar",
+  "profileSave": "Guardar",
+  "profileAccount": "Account",
+  "profileSignOut": "Sair",
+  "profileFullName": "Full name",
+  "profilePhone": "Phone",
+  "profileEmail": "Email",
+  "profileBirthDate": "Date of birth",
+  "profileGender": "Gender",
+  "profileBloodType": "Blood type",
+  "profileAddress": "Address",
+  "profileAddressLine1": "Street and number",
+  "profileAddressLine2": "Additional address",
+  "profilePostalCode": "Postal code",
+  "profileAllergies": "Allergies",
+  "profileChronicConditions": "Chronic conditions",
+  "profileInsurance": "Insurance",
+  "profileInsuranceProvider": "Provider",
+  "profileInsuranceNumber": "Member number",
+  "profileNotSet": "Not set",
+  "profileReadOnlyField": "Not editable",
+  "profileGenderMale": "Male",
+  "profileGenderFemale": "Female",
+  "profileGenderOther": "Other",
+  "profileInsuranceCnas": "CNAS",
+  "profileInsuranceCasnos": "CASNOS",
+  "profileInsuranceNone": "None",
+  "profileInsurancePrivate": "Private",
+  "profilePickBirthDate": "Choose a date",
+  "profilePickAddress": "Choose wilaya and commune",
+  "profileTagHint": "Type then Enter",
+  "profileAddTag": "Add",
+  "profileInvalidEmail": "Invalid email address",
+  "profileInvalidBirthDate": "Date of birth cannot be in the future",
+  "profileLoadError": "Unable to load profile",
+  "profileSaveError": "Unable to save",
+  "profileDeleteAccount": "Delete my account",
+  "profileDeleteTitle": "Delete your account?",
+  "profileDeleteWarning": "This action schedules the permanent deletion of your account and personal data.",
+  "profileDeleteGracePeriod": "You have 30 days to cancel the deletion by signing back in.",
+  "profileDeleteConfirm": "Yes, delete my account",
+  "profileDeleteFinalTitle": "Final confirmation",
+  "profileDeleteFinalMessage": "Are you absolutely sure? Your account will be scheduled for deletion.",
+  "profileDeleteSuccess": "Account scheduled for deletion",
+  "profileDeleteError": "Unable to delete",
+  "deviceVaultBannerTitle": "Data on this device only",
+  "deviceVaultBannerBody": "Your date of birth, blood type, address, medical history and documents stay on this device. Uninstalling the app or losing the phone deletes them permanently.",
+  "deviceVaultBannerDismiss": "Got it",
+  "deviceVaultSettingsTitle": "On-device vault",
+  "deviceVaultSettingsBody": "This data lives only on this device. Uninstalling the app or losing the phone deletes it. No backup is offered.",
+  "profileConsents": "ANPDP consents",
+  "consentManagementTitle": "My consents",
+  "consentVersionLabel": "Version {version}",
+  "@consentVersionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "consentGrantedAtLabel": "Granted on {date}",
+  "@consentGrantedAtLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "consentRevokedAtLabel": "Revoked on {date}",
+  "@consentRevokedAtLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "consentActive": "Active",
+  "consentRevoked": "Revoked",
+  "consentRevokeEssential": "Withdraw my consent",
+  "consentRevokeEssentialTitle": "Withdraw an essential consent?",
+  "consentRevokeEssentialMessage": "Withdrawing an essential consent will suspend your account. You will no longer be able to use the app until the account is reactivated.",
+  "consentRevokeEssentialConfirm": "Withdraw and suspend",
+  "consentRevokeError": "Unable to revoke consent",
+  "consentRevokedLandingTitle": "Account suspended",
+  "consentRevokedLandingMessage": "You have withdrawn an essential consent. Your account is suspended in accordance with ANPDP regulations.",
+  "consentRevokedLandingAction": "Back to home",
+  "dependentsTitle": "Dependents",
+  "dependentsAdd": "Add a dependent",
+  "dependentsEdit": "Edit dependent",
+  "dependentsEmpty": "No dependents registered",
+  "dependentsDeleteTitle": "Delete this dependent?",
+  "dependentsDeleteMessage": "This action is permanent. Past appointments remain linked to this person.",
+  "dependentsDeleteConfirm": "Delete",
+  "dependentFullName": "Full name",
+  "dependentRelation": "Relationship",
+  "dependentBirthDate": "Date of birth",
+  "dependentGender": "Gender",
+  "dependentRelationChild": "Child",
+  "dependentRelationSpouse": "Spouse",
+  "dependentRelationParent": "Parent",
+  "dependentRelationOther": "Other",
+  "dependentAgeYears": "{age} years",
+  "@dependentAgeYears": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "dependentSaveError": "Unable to save",
+  "dependentDeleteError": "Unable to delete",
+  "medicalRecordsTitle": "Prontuário médico",
+  "medicalRecordsEmpty": "No documents",
+  "medicalRecordsLoadError": "Unable to load documents",
+  "medicalRecordsFilterAll": "All",
+  "medicalRecordTypePrescription": "Prescription",
+  "medicalRecordTypeReport": "Report",
+  "medicalRecordTypeLabResult": "Lab result",
+  "medicalRecordTypeImaging": "Imaging",
+  "medicalRecordTypeCertificate": "Certificate",
+  "medicalRecordTypeOther": "Other",
+  "medicalRecordAuthorPatient": "Patient",
+  "medicalRecordAuthorSpecialist": "Doctor",
+  "medicalRecordAuthorConcierge": "Concierge",
+  "medicalRecordViewerPlaceholder": "Document preview will be available soon.",
+  "medicalRecordFileSizeBytes": "{size} B",
+  "@medicalRecordFileSizeBytes": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      }
+    }
+  },
+  "medicalRecordFileSizeKb": "{size} KB",
+  "@medicalRecordFileSizeKb": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "medicalRecordFileSizeMb": "{size} MB",
+  "@medicalRecordFileSizeMb": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "medicalRecordsUpload": "Add a document",
+  "medicalRecordsUploadAddCamera": "Camera",
+  "medicalRecordsUploadAddGallery": "Gallery",
+  "medicalRecordsUploadAddFiles": "PDF files",
+  "medicalRecordsUploadForm": "Full form",
+  "medicalRecordsOcrGalleryHint": "Photo from gallery — OCR of key data",
+  "medicalRecordsOcrTitle": "OCR extraction",
+  "medicalRecordsOcrHint": "Reads exam type, date and key elements — no clinical interpretation.",
+  "medicalRecordsOcrStart": "Start extraction",
+  "medicalRecordsOcrRetry": "Retry extraction",
+  "medicalRecordsOcrStarted": "Document saved — OCR extraction in progress.",
+  "medicalRecordUploadType": "Document type",
+  "medicalRecordUploadTitle": "Title (optional)",
+  "medicalRecordUploadNotes": "Notes (optional)",
+  "medicalRecordUploadPatient": "Concerned patient",
+  "medicalRecordUploadSubmit": "Upload",
+  "medicalRecordUploadMaxFiles": "{count, plural, =1{Maximum # file per upload} other{Maximum # files per upload}}",
+  "@medicalRecordUploadMaxFiles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "medicalRecordUploadFileTooLarge": "Each file must be 20 MB or less.",
+  "medicalRecordUploadInvalidMime": "Accepted formats: PDF, JPEG or PNG only.",
+  "medicalRecordUploadTypeRequired": "Select a document type.",
+  "medicalRecordUploadNoFiles": "Add at least one file.",
+  "medicalRecordUploadStorageUnavailable": "File service is temporarily unavailable. Try again later.",
+  "medicalRecordUploadCancel": "Cancel",
+  "medicalRecordUploadSuccess": "Document added",
+  "medicalRecordUploadFailed": "Upload failed",
+  "medicalRecordDownload": "Download",
+  "medicalRecordShare": "Share",
+  "medicalRecordDownloadSuccess": "File saved to Downloads",
+  "medicalRecordViewerLoadError": "Unable to open document",
+  "medicalRecordDeleteTitle": "Delete this document?",
+  "medicalRecordDeleteMessage": "This action is permanent. The file will be removed from your records.",
+  "medicalRecordDeleteConfirm": "Delete",
+  "medicalRecordDeleteError": "Unable to delete",
+  "messagingTitle": "Mensagens",
+  "messagingEmpty": "No conversations yet",
+  "messagingLoadError": "Unable to load conversations",
+  "messagingAttachmentPreview": "Attachment",
+  "messagingThreadPlaceholder": "Conversation — details coming soon",
+  "messagingComposerHint": "Write a message…",
+  "messagingSend": "Enviar",
+  "messagingAttach": "Attach a document",
+  "messagingPickAttachments": "Choose documents",
+  "messagingAttachConfirm": "Attach selection",
+  "messagingMessagePending": "Sending…",
+  "messagingMessageSent": "Sent",
+  "messagingMessageRead": "Read",
+  "messagingSendError": "Send failed",
+  "messagingLoadMessagesError": "Unable to load messages",
+  "notificationsTitle": "Notificações",
+  "notificationsEmpty": "No notifications",
+  "notificationsLoadError": "Unable to load notifications",
+  "notificationsMarkAllRead": "Mark all as read",
+  "notificationsPreferences": "Preferences",
+  "notificationsPreferencesTitle": "Notification preferences",
+  "notificationsPrefPush": "Push notifications",
+  "notificationsPrefSms": "SMS",
+  "notificationsPrefEmail": "Email",
+  "notificationsPrefAppointmentReminders": "Appointment reminders",
+  "notificationsPrefMarketing": "Offers and news",
+  "notificationsPrefReminderHours": "Reminder before appointment",
+  "notificationsPrefReminderHoursValue": "{hours} h before",
+  "@notificationsPrefReminderHoursValue": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationsPrefSaveError": "Unable to save",
+  "reviewCreateTitle": "Leave a review",
+  "reviewRatingLabel": "Rating",
+  "reviewCommentLabel": "Comment (optional)",
+  "reviewCommentHint": "Share your experience…",
+  "reviewSubmit": "Submit",
+  "reviewSubmitError": "Unable to submit review.",
+  "reviewRatingRequired": "Please select a rating.",
+  "reviewCommentTooLong": "Comment must not exceed {max} characters.",
+  "@reviewCommentTooLong": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "reviewConfirmationTitle": "Thank you for your review",
+  "reviewConfirmationBody": "Your review is pending moderation. It will be published after validation by our team, usually within 48 hours.",
+  "reviewConfirmationStatusPending": "Pending moderation",
+  "reviewAlreadySubmitted": "You have already left a review",
+  "reviewDelete": "Delete my review",
+  "reviewDeleteConfirm": "Delete this review?",
+  "reviewDeleteSuccess": "Review deleted.",
+  "reviewDeleteError": "Unable to delete review.",
+  "reviewDeleteExpired": "Deletion is no longer possible after 7 days.",
+  "reviewAlreadyExistsError": "A review already exists for this appointment.",
+  "reviewNotEligibleError": "This appointment does not allow publishing a review.",
+  "reviewBackToAppointment": "Back to appointment",
+  "reviewStarsLabel": "{count, plural, =1{1 star} other{{count} stars}}",
+  "@reviewStarsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentDepositTitle": "Pay deposit",
+  "paymentDepositBody": "A deposit of {amount} DZD is required to confirm this appointment.",
+  "@paymentDepositBody": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentDepositCta": "Pay deposit",
+  "paymentDepositAmountLabel": "{amount} DZD",
+  "@paymentDepositAmountLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentDepositProviderStripeTest": "Test mode (sandbox)",
+  "paymentDepositSandboxHint": "Payment is simulated in a test environment.",
+  "paymentDepositSuccess": "Payment successful. Your appointment is updated.",
+  "paymentDepositFailed": "Payment failed.",
+  "paymentDepositNotEligible": "This appointment is not eligible for payment.",
+  "paymentDepositPayeeClinicHint": "Payment goes to the clinic (not the specialist).",
+  "paymentDepositPayeeClinicNamed": "Payment goes to {clinicName}.",
+  "@paymentDepositPayeeClinicNamed": {
+    "placeholders": {
+      "clinicName": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentDepositPayeeClinicFallback": "Clinic",
+  "specialistVerificationPendingTitle": "File under review",
+  "specialistVerificationPendingBody": "Your file is being reviewed by our team. You will receive a notification once a decision is made.",
+  "specialistVerificationMoreInfoTitle": "Additional information required",
+  "specialistVerificationMoreInfoBody": "Our team needs additional documents or clarifications before validating your file.",
+  "specialistVerificationRejectedTitle": "File rejected",
+  "specialistVerificationRejectedBody": "Your file could not be validated. Review the message below and submit new documents if necessary.",
+  "specialistVerificationSubmitCta": "Submit my documents",
+  "specialistVerificationResubmitCta": "Resubmit my documents",
+  "specialistVerificationCompleteProfileCta": "Complete my profile",
+  "specialistVerificationRefreshCta": "Refresh status",
+  "specialistVerificationRefreshLoading": "Verifying…",
+  "specialistVerificationRefreshCompleted": "Verification complete",
+  "specialistVerificationRefreshFailed": "Verification failed. Try again.",
+  "specialistVerificationLastChecked": "Last checked: {timestamp}",
+  "@specialistVerificationLastChecked": {
+    "placeholders": {
+      "timestamp": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistProfileEditTitle": "Edit my profile",
+  "specialistProfileSaveChanges": "Save changes",
+  "specialistProfileSectionInfo": "Information",
+  "specialistProfileSectionSpecialties": "Specialties",
+  "specialistProfileSectionLanguages": "Spoken languages",
+  "specialistProfileSectionConsultation": "Consultation",
+  "specialistProfileSectionPractice": "Practice location",
+  "specialistProfileTitle": "Title",
+  "specialistProfileBio": "Biography",
+  "specialistProfilePhotoUrl": "Photo URL",
+  "specialistProfileSelectSpecialty": "Main specialty",
+  "specialistProfileFee": "Consultation fee (DZD)",
+  "specialistProfileCnas": "CNAS approved",
+  "specialistProfileCasnos": "CASNOS approved",
+  "specialistProfileTelehealth": "Telehealth available",
+  "specialistProfileConfirmationPolicy": "Confirmation policy",
+  "specialistProfilePolicyManual": "Manual",
+  "specialistProfilePolicyAuto": "Automatic",
+  "specialistProfileBookingWindow": "Booking window (days)",
+  "specialistProfileAddressLine1": "Address",
+  "specialistProfileAddressLine2": "Additional address",
+  "specialistProfileVerifiedBadge": "Verified account",
+  "specialistProfileUnverifiedBadge": "Not verified",
+  "specialistCredentialsTitle": "Professional credentials",
+  "specialistCredentialsSubtitle": "Enter your Medical Council number and upload your diplomas or cards (PDF, JPEG, PNG — 10 MB max).",
+  "specialistCredentialsCouncilNumber": "Medical Council number",
+  "specialistCredentialsCouncilRequired": "Medical Council number is required.",
+  "specialistCredentialsType": "Credential type",
+  "specialistCredentialsAddFile": "Add a file",
+  "specialistCredentialsNoFiles": "Add at least one credential.",
+  "specialistCredentialsSubmit": "Submit for verification",
+  "specialistCredentialsExisting": "Already submitted credentials",
+  "specialistCredentialsSubmitSuccess": "Credentials submitted. Your file is under review.",
+  "specialistCredentialsUploadFailed": "Upload failed. Try again.",
+  "specialistCredentialTypeDiploma": "Diploma",
+  "specialistCredentialTypeCouncilCard": "Medical Council card",
+  "specialistCredentialTypeSpecialtyCert": "Specialty certificate",
+  "specialistCredentialTypeOther": "Other",
+  "specialistCredentialStatusPending": "Pending",
+  "specialistCredentialStatusApproved": "Approved",
+  "specialistCredentialStatusRejected": "Rejected",
+  "specialistTabInbox": "Requests",
+  "specialistTabCalendar": "Calendar",
+  "specialistTabMessages": "Messages",
+  "specialistTabProfile": "Profile",
+  "specialistTabStats": "Statistics",
+  "specialistShellPlaceholder": "Coming soon",
+  "specialistScheduleTitle": "My schedule",
+  "specialistScheduleTabTemplates": "Hours",
+  "specialistScheduleTabExceptions": "Exceptions",
+  "specialistScheduleTabPreview": "Preview",
+  "specialistScheduleAddWindow": "Add a window",
+  "specialistScheduleEditWindow": "Edit window",
+  "specialistScheduleSaveWindow": "Save window",
+  "specialistScheduleSaveSuccess": "Schedule saved.",
+  "specialistScheduleStartTime": "Start time",
+  "specialistScheduleEndTime": "End time",
+  "specialistScheduleSlotDuration": "Slot duration",
+  "specialistScheduleSlotMinutes": "{minutes} min",
+  "@specialistScheduleSlotMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "specialistScheduleMode": "Consultation mode",
+  "specialistScheduleModeInPerson": "In-person",
+  "specialistScheduleModeTelehealth": "Telehealth",
+  "specialistScheduleModeBoth": "Both",
+  "specialistScheduleActive": "Active window",
+  "specialistScheduleActiveHint": "Disabling removes the window when saved.",
+  "specialistScheduleInactive": "Inactive",
+  "specialistScheduleNoWindowsTitle": "No windows",
+  "specialistScheduleNoWindowsBody": "Add your consultation hours for this day.",
+  "specialistScheduleDeleteWindowTitle": "Delete this window?",
+  "specialistScheduleDeleteWindowBody": "Slots generated from this window will no longer be available.",
+  "specialistScheduleAddException": "Add an exception",
+  "specialistScheduleExceptionDates": "Period",
+  "specialistSchedulePickDates": "Choose",
+  "specialistScheduleExceptionKind": "Type",
+  "specialistScheduleExceptionVacation": "Vacation",
+  "specialistScheduleExceptionSick": "Sick leave",
+  "specialistScheduleExceptionBlocked": "Unavailable",
+  "specialistScheduleExceptionExtra": "Exception",
+  "specialistScheduleExceptionNote": "Note (optional)",
+  "specialistScheduleExceptionSaved": "Exception saved.",
+  "specialistScheduleExceptionCount": "{count, plural, =1{1 exception} other{{count} exceptions}}",
+  "@specialistScheduleExceptionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "specialistScheduleNoExceptionsTitle": "No exceptions",
+  "specialistScheduleNoExceptionsBody": "Block days for vacation, sick leave or unavailability.",
+  "specialistSchedulePreviewEmptyTitle": "No slots",
+  "specialistSchedulePreviewEmptyBody": "Save your time windows then come back here to check the generated slots.",
+  "specialistScheduleLoadError": "Unable to load schedule.",
+  "specialistScheduleErrorWeekday": "Invalid weekday.",
+  "specialistScheduleErrorSlotDuration": "Invalid slot duration or interval.",
+  "specialistScheduleErrorMode": "Invalid consultation mode.",
+  "specialistScheduleErrorStartTime": "Invalid start time.",
+  "specialistScheduleErrorEndTime": "Invalid end time.",
+  "specialistScheduleErrorStartDate": "Invalid start date.",
+  "specialistScheduleErrorEndDate": "Invalid end date.",
+  "specialistScheduleErrorKind": "Invalid exception type.",
+  "specialistScheduleErrorNote": "Note must not exceed 200 characters.",
+  "specialistScheduleLocation": "Assignment",
+  "specialistScheduleLocationHint": "Personal (office) or slots given to a clinic.",
+  "specialistScheduleLocationCabinet": "My office",
+  "specialistScheduleLocationClinicFallback": "Clinic",
+  "specialistScheduleDonationPersonal": "Personal (my office)",
+  "specialistScheduleDonationClinicNamed": "Given to {clinicName}",
+  "@specialistScheduleDonationClinicNamed": {
+    "placeholders": {
+      "clinicName": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistScheduleDonationNotice": "The clinic is notified of any changes to your donated slots.",
+  "specialistScheduleDonationNoticeTitle": "Slots donated to a clinic",
+  "specialistScheduleDonationNoticeGotIt": "Got it",
+  "specialistScheduleDonationFilterClear": "All slots",
+  "specialistScheduleDonationFilterBanner": "Showing slots donated to {clinicName}",
+  "@specialistScheduleDonationFilterBanner": {
+    "placeholders": {
+      "clinicName": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistScheduleConflictMessage": "This slot overlaps an existing appointment (office or clinic).",
+  "specialistClinicSessionBadge": "Clinic session",
+  "clinicMembershipsDonatedHours": "{hours} h / week donated",
+  "@clinicMembershipsDonatedHours": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      }
+    }
+  },
+  "clinicMembershipsDonatedHoursNone": "No donated slots",
+  "clinicMembershipsManageDonated": "Manage donated slots",
+  "specialistProfileManageSchedule": "Manage my schedule",
+  "specialistInboxTabRequests": "Requests",
+  "specialistInboxTabConfirmed": "Confirmed",
+  "specialistInboxTabHistory": "History",
+  "specialistInboxEmptyRequests": "No pending requests",
+  "specialistInboxEmptyConfirmed": "No confirmed appointments",
+  "specialistInboxEmptyHistory": "No past appointments",
+  "specialistAppointmentDetailTitle": "Appointment detail",
+  "specialistAppointmentPatientAnonymous": "Patient (identity hidden)",
+  "specialistAppointmentPatientLabel": "Patient",
+  "specialistAppointmentPatientRef": "Patient ····{ref}",
+  "@specialistAppointmentPatientRef": {
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistAppointmentConfirmed": "Appointment confirmed",
+  "specialistAppointmentCancelTitle": "Cancel appointment",
+  "specialistAppointmentStartTelehealth": "Start telehealth",
+  "specialistTelehealthComingSoon": "Telehealth will be available soon.",
+  "specialistAppointmentViewRecords": "View medical records",
+  "specialistAppointmentIssuePrescription": "Issue prescription",
+  "specialistAppointmentConfirm": "Confirm appointment",
+  "specialistAppointmentMarkNoShow": "Mark as no-show",
+  "specialistCalendarMonthView": "Month",
+  "specialistCalendarWeekView": "Week",
+  "specialistCalendarDayAppointments": "Today's appointments",
+  "specialistCalendarEmptyDay": "No appointments today",
+  "specialistCalendarLoadError": "Unable to load schedule.",
+  "specialistPatientRecordsTitle": "Patient records",
+  "specialistPatientRecordsEmpty": "No shared documents",
+  "specialistPatientRecordsForbidden": "No documents shared with you for this patient",
+  "specialistPatientRecordsLoadError": "Unable to load records.",
+  "specialistPrescriptionTitle": "Prescription",
+  "specialistPrescriptionDiagnosis": "Diagnosis",
+  "specialistPrescriptionValidUntil": "Valid until",
+  "specialistPrescriptionDrugsSection": "Medications",
+  "specialistPrescriptionDrugNumber": "Medication {number}",
+  "@specialistPrescriptionDrugNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "specialistPrescriptionAddDrug": "Add medication",
+  "specialistPrescriptionDrugName": "Medication name",
+  "specialistPrescriptionDosage": "Dosage",
+  "specialistPrescriptionFrequency": "Frequency",
+  "specialistPrescriptionDurationDays": "Duration (days)",
+  "specialistPrescriptionInstructions": "Instructions",
+  "specialistPrescriptionSubmit": "Issue prescription",
+  "specialistPrescriptionSuccess": "Prescription issued successfully",
+  "specialistPrescriptionAtLeastOneDrug": "Add at least one medication",
+  "specialistTeleconsultTitle": "Teleconsultation",
+  "specialistTeleconsultWindowClosed": "The session is not yet open.",
+  "specialistTeleconsultOpensIn": "Opens in {time}",
+  "@specialistTeleconsultOpensIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistTeleconsultWaitingPatient": "Waiting for patient…",
+  "specialistTeleconsultConnectionError": "Unable to start teleconsultation.",
+  "patientTeleconsultTitle": "Teleconsultation",
+  "patientTeleconsultWindowClosed": "The session is not yet open.",
+  "patientTeleconsultOpensIn": "Opens in {time}",
+  "@patientTeleconsultOpensIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "patientTeleconsultWaitingDoctor": "Waiting for doctor…",
+  "patientTeleconsultConnectionError": "Unable to start teleconsultation.",
+  "teleconsultMicOn": "Microphone on",
+  "teleconsultMicOff": "Microphone off",
+  "teleconsultCameraOn": "Camera on",
+  "teleconsultCameraOff": "Camera off",
+  "teleconsultHangupTitle": "End call?",
+  "teleconsultHangupMessage": "The other participant will be disconnected.",
+  "teleconsultHangupConfirm": "Hang up",
+  "teleconsultHangupStay": "Stay in call",
+  "specialistStatsRatingTitle": "Average rating",
+  "specialistStatsAppointments": "Appointments",
+  "specialistStatsCompleted": "Completed",
+  "specialistStatsRevenue": "Revenue",
+  "specialistStatsNoShowRate": "No-show rate",
+  "specialistStatsTrendTitle": "Trend",
+  "specialistStatsMetricAppointments": "Appts",
+  "specialistStatsMetricRevenue": "Revenue",
+  "specialistStatsMetricNoShow": "No-shows",
+  "specialistStatsMetricNewPatients": "New patients",
+  "specialistStatsGranularityDay": "Day",
+  "specialistStatsGranularityWeek": "Week",
+  "specialistStatsGranularityMonth": "Month",
+  "specialistStatsLoadError": "Unable to load statistics.",
+  "specialistStatsChartEmpty": "Not enough data to display the chart.",
+  "specialistStatsReviewsTitle": "My reviews",
+  "specialistStatsReviewsEmpty": "No published reviews",
+  "specialistStatsReviewsLoadError": "Unable to load reviews.",
+  "searchEntityDoctors": "Doctors",
+  "searchEntityClinics": "Clinics",
+  "searchHintClinics": "Search for a clinic…",
+  "searchEmptyClinicsTitle": "No matching clinics",
+  "searchEmptyClinicsMessage": "Expand the area or change your filters?",
+  "searchSuggestionsClinics": "Clinics",
+  "clinicCardBookCta": "View clinic",
+  "clinicCardTelehealth": "Telehealth",
+  "clinicCardFromPrice": "From {price} {currency}",
+  "@clinicCardFromPrice": {
+    "placeholders": {
+      "price": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
+    }
+  },
+  "clinicDetailTitle": "Clinic",
+  "clinicDetailAboutTitle": "About",
+  "clinicDetailAboutEmpty": "No description available.",
+  "clinicDetailServicesTitle": "Services",
+  "clinicDetailServicesEmpty": "No services published yet.",
+  "clinicDetailSpecialistsTitle": "Practitioners",
+  "clinicDetailSpecialistsEmpty": "No practitioners visible on this profile.",
+  "clinicDetailReviewsTitle": "Reviews",
+  "clinicDetailReviewsEmpty": "No public reviews yet.",
+  "clinicDetailLoadError": "Unable to load clinic.",
+  "clinicDetailNotFoundTitle": "Clinic not found",
+  "clinicDetailNotFoundMessage": "This clinic is not available.",
+  "clinicDetailMapUnavailable": "Map unavailable",
+  "clinicDetailAssignNotice": "You are booking a service; the clinic assigns the practitioner.",
+  "clinicDetailDurationMinutes": "{minutes} min",
+  "@clinicDetailDurationMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "clinicDetailServicePrice": "{price} {currency}",
+  "@clinicDetailServicePrice": {
+    "placeholders": {
+      "price": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
+    }
+  },
+  "clinicDetailVerifiedPatient": "Verified patient",
+  "clinicDetailLoadMoreReviews": "Load more reviews",
+  "clinicDetailVerifiedBadge": "Verified clinic",
+  "discoveryClinicsEmptyTitle": "No clinics found",
+  "discoveryClinicsEmptyMessage": "No verified clinics are available at the moment.",
+  "clinicBookingCta": "Book",
+  "clinicBookingSummaryClinic": "Clinic",
+  "clinicBookingSummaryService": "Service",
+  "clinicMembershipsTitle": "Clinic affiliations",
+  "clinicMembershipsEmpty": "No invitations or affiliations at the moment.",
+  "clinicMembershipsInvitations": "Invitations",
+  "clinicMembershipsActive": "Active affiliations",
+  "clinicMembershipsAccept": "Accept",
+  "clinicMembershipsRefuse": "Decline",
+  "clinicMembershipsDetach": "Request detachment",
+  "clinicMembershipsDetachPending": "Detachment pending approval",
+  "clinicMembershipsVisibleOnProfile": "Visible on my public profile",
+  "clinicMembershipsLoadError": "Unable to load affiliations.",
+  "clinicMembershipsActionError": "Action failed. Try again.",
+  "appointmentDetailClinicBooking": "Clinic booking",
+  "appointmentDetailClinicService": "Service",
+  "appointmentDetailAwaitingSpecialist": "Awaiting practitioner assignment by the clinic.",
+  "appointmentDetailAssignedSpecialist": "Assigned practitioner",
+  "appointmentReviewSession": "Consultation review",
+  "appointmentReviewClinicProfile": "Clinic review",
+  "reviewClinicProfileCreateTitle": "Clinic review",
+  "reviewClinicAlreadySubmitted": "You have already left a review for this clinic.",
+  "painLocalizationTitle": "Where does it hurt?",
+  "painLocalizationDownloadProgress": "Downloading model ({percent}%)",
+  "@painLocalizationDownloadProgress": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "painLocalizationOfflineTitle": "Model unavailable offline",
+  "painLocalizationOfflineMessage": "Connect to download the 3D model (about 12 MB). Then the tool will work without network.",
+  "painLocalizationRetry": "Retry",
+  "painLocalizationWebGlTitle": "3D visualisation unavailable",
+  "painLocalizationWebGlMessage": "This device cannot display the 3D model. The feature is hidden here.",
+  "painLocalizationErrorTitle": "Unable to load model",
+  "painLocalizationErrorMessage": "Download failed. Try again.",
+  "painLocalizationCardSubtitle": "Locate the area on a 3D model. Exploratory tool: nothing is sent to a doctor.",
+  "painLocalizationChooserTitle": "Which model to display?",
+  "painLocalizationChooserDisclaimer": "The body choice is yours; it is not inferred from your profile. This tool is exploratory: the selection stays on the device and is not sent to a doctor.",
+  "painLocalizationChooserMale": "Male",
+  "painLocalizationChooserFemale": "Female",
+  "painLocalizationSwitchBody": "Switch model",
+  "painLocalizationConfirm": "Confirm",
+  "painLocalizationCancel": "Cancel",
+  "painLocalizationClearAll": "Clear all",
+  "painLocalizationClearAllTitle": "Clear selections?",
+  "painLocalizationClearAllMessage": "All indicated areas will be removed from this device.",
+  "painLocalizationEmpty": "Tap the model to explore an area, then add it if needed. Nothing is sent to a doctor.",
+  "painLocalizationAddSelection": "Add this area",
+  "painLocalizationSelectionAlreadyAdded": "This area is already in your list",
+  "painLocalizationRemoveChip": "Remove",
+  "painLocalizationConfirmedSnackbar": "Selections saved on this device.",
+  "anamnesisTitle": "Questionnaire",
+  "anamnesisLoading": "Loading questionnaire…",
+  "anamnesisError": "Unable to load questionnaire.",
+  "anamnesisRetry": "Retry",
+  "anamnesisContinue": "Continue",
+  "anamnesisDone": "Done",
+  "anamnesisCompleteTitle": "Questionnaire complete",
+  "anamnesisCompleteMessage": "Your answers have been saved.",
+  "anamnesisOfflineQueued": "Answer saved locally — will sync when reconnected.",
+  "anamnesisDisclaimer": "Helps with orientation — not a medical diagnosis.",
+  "anamnesisUnsupportedQuestion": "Unsupported question type.",
+  "anamnesisDurationValue": "Duration",
+  "anamnesisProgressOpen": "{answered} question(s) answered",
+  "@anamnesisProgressOpen": {
+    "placeholders": {
+      "answered": {
+        "type": "int"
+      }
+    }
+  },
+  "anamnesisProgressCount": "{answered} / {total}",
+  "anamnesisScoreLabel": "Regenerative relevance score",
+  "anamnesisFollowUpTitle": "Follow-up questions",
+  "anamnesisFollowUpHint": "A few more details to refine the orientation — not a diagnosis.",
+  "anamnesisFollowUpLoading": "Preparing follow-up questions…",
+  "anamnesisFollowUpProgress": "Question {current} / {total}",
+  "@anamnesisFollowUpProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "anamnesisDocsCta": "Add a document (MRI / X-ray / lab result)",
+  "anamnesisDocsTitle": "Exam documents",
+  "anamnesisDocsHint": "Attach an imaging or biology report. Extraction reads key data — no clinical interpretation.",
+  "anamnesisDocsCamera": "Photo",
+  "anamnesisDocsGallery": "Gallery",
+  "anamnesisDocsPickFile": "File",
+  "anamnesisDocsEmpty": "No documents for this session.",
+  "anamnesisDocsUntitled": "Document",
+  "anamnesisDocsReview": "Review",
+  "anamnesisDocsReviewTitle": "OCR extraction",
+  "anamnesisDocsReviewHint": "Correct if needed. The raw OCR text is never overwritten.",
+  "anamnesisDocsStatusQueued": "Queued",
+  "anamnesisDocsStatusProcessing": "Extracting…",
+  "anamnesisDocsStatusExtracted": "Extracted — to review",
+  "anamnesisDocsStatusFailed": "Extraction failed",
+  "anamnesisDocsFieldExamType": "Exam type",
+  "anamnesisDocsFieldExamDate": "Exam date",
+  "anamnesisDocsFieldBodyRegion": "Body region",
+  "anamnesisDocsFieldFacility": "Facility",
+  "anamnesisDocsFieldFindings": "Key findings (one per line)",
+  "anamnesisDocsFieldNotes": "Notes",
+  "anamnesisDocsRawOcr": "Raw OCR text",
+  "anamnesisDocsSaveCorrections": "Save corrections",
+  "anamnesisDocsCorrectionsSaved": "Corrections saved.",
+  "anamnesisUrgenceTitle": "Emergency — consult immediately",
+  "anamnesisUrgenceFallback": "Warning signs detected. Go to the emergency room or call emergency services immediately. This message is not a diagnosis.",
+  "anamnesisUrgenceNumbersLabel": "Emergency numbers",
+  "anamnesisUrgenceAck": "I understand",
+  "anamnesisRegenerativeTitle": "Regenerative orientation",
+  "anamnesisRegenerativeMessage": "Your journey can continue toward a personalised regenerative assessment.",
+  "anamnesisParcoursCta": "Generate my assessment",
+  "anamnesisParcoursSoon": "Generating assessment…",
+  "bilanListTitle": "My assessment",
+  "bilanDetailTitle": "Detailed assessment",
+  "bilanLoadError": "Unable to load assessment.",
+  "bilanListEmpty": "No assessments yet.",
+  "bilanListItemTitle": "Zone {zone}",
+  "@bilanListItemTitle": {
+    "placeholders": {
+      "zone": {
+        "type": "String"
+      }
+    }
+  },
+  "bilanListItemSubtitle": "Score {score} % · {date}",
+  "@bilanListItemSubtitle": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      },
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  },
+  "bilanScoreLabel": "Relevance score: {score} %",
+  "@bilanScoreLabel": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "bilanSummarySection": "Summary",
+  "bilanOrientationSection": "Orientation",
+  "bilanExportPdf": "Export PDF",
+  "bilanPdfOpenError": "Unable to open PDF.",
+  "bilanTransmitCta": "Send to specialist",
+  "bilanTransmitTitle": "Assessment transmission",
+  "bilanTransmitHelp": "Enter the target specialist's identifier (UUID directory.specialists).",
+  "bilanTransmitSpecialistId": "Specialist ID",
+  "bilanTransmitSpecialistRequired": "Specialist identifier is required.",
+  "bilanTransmitConfirm": "Send",
+  "bilanTransmitSuccess": "Assessment sent to specialist.",
+  "profileBilanTile": "My assessment",
+  "referralMatchesTitle": "Recommended specialists",
+  "referralMatchesEmpty": "No recommended specialists at the moment. Try again after concierge validation.",
+  "referralMatchScore": "Relevance {score} %",
+  "@referralMatchScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "referralMatchSpecialistFallback": "Specialist",
+  "referralLoadError": "Unable to load recommendations.",
+  "referralSelectSuccess": "Specialist selected — you can book an appointment.",
+  "profileCoachingTile": "My coaching",
+  "bilanCoachingCta": "My biological coaching",
+  "coachingListTitle": "My coaching",
+  "coachingPlanTitle": "Coaching plan",
+  "coachingLoadError": "Unable to load coaching.",
+  "coachingListEmpty": "No coaching plans yet.",
+  "coachingGenerating": "Generating plan…",
+  "coachingListItemTitle": "Session {sessionId}",
+  "@coachingListItemTitle": {
+    "placeholders": {
+      "sessionId": {
+        "type": "String"
+      }
+    }
+  },
+  "coachingListItemSubtitle": "Hydration goal {goalMl} ml · {date}",
+  "@coachingListItemSubtitle": {
+    "placeholders": {
+      "goalMl": {
+        "type": "int"
+      },
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  },
+  "coachingProgressLabel": "Biological optimisation",
+  "coachingProgressError": "Unable to load progress.",
+  "coachingHydrationTitle": "Hydration",
+  "coachingHydrationError": "Unable to load hydration.",
+  "coachingHydrationMlGoal": "/ {goalMl} ml",
+  "@coachingHydrationMlGoal": {
+    "placeholders": {
+      "goalMl": {
+        "type": "int"
+      }
+    }
+  },
+  "coachingHydrationAdd": "+ {amountMl} ml",
+  "@coachingHydrationAdd": {
+    "placeholders": {
+      "amountMl": {
+        "type": "int"
+      }
+    }
+  },
+  "coachingHydrationLogged": "Hydration logged.",
+  "coachingSleepTitle": "Sleep",
+  "coachingSleepError": "Unable to load sleep.",
+  "coachingSleepEmpty": "No recent entries.",
+  "coachingSleepHoursLabel": "Duration: {hours} h",
+  "@coachingSleepHoursLabel": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      }
+    }
+  },
+  "coachingSleepQualityLabel": "Quality (1 to 5)",
+  "coachingSleepLogCta": "Log night",
+  "coachingSleepLogged": "Sleep logged.",
+  "coachingSleepLastEntry": "Last: {date} — {hours} h, quality {quality}/5",
+  "@coachingSleepLastEntry": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "double"
+      },
+      "quality": {
+        "type": "int"
+      }
+    }
+  },
+  "coachingSectionNutrition": "Nutrition",
+  "coachingSectionMobility": "Mobility",
+  "coachingSectionPosture": "Posture",
+  "specialistIncomingBilansTab": "Assessments",
+  "specialistIncomingBilansEmpty": "No incoming assessments.",
+  "specialistIncomingBilansError": "Unable to load incoming assessments.",
+  "specialistIncomingBilanItem": "Assessment {id}",
+  "@specialistIncomingBilanItem": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistIncomingBilanDetailTitle": "Incoming assessment",
+  "specialistIncomingBilanMarkReviewed": "Mark as reviewed",
+  "specialistIncomingBilanReviewed": "Assessment marked as reviewed.",
+  "specialistIncomingBilanOpenAgenda": "Open schedule",
+  "freemiumUnlockCta": "Unlock",
+  "freemiumUnlockSuccess": "Content unlocked successfully.",
+  "freemiumUnlockFailed": "Payment failed.",
+  "freemiumAmountLabel": "{amount} DZD (sandbox)",
+  "@freemiumAmountLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "freemiumBilanTitle": "Detailed assessment",
+  "freemiumBilanBody": "Access full sections, documents and PDF export.",
+  "freemiumBilanPdfCta": "Unlock PDF",
+  "freemiumCoachingTitle": "Premium coaching",
+  "freemiumCoachingBody": "Unlock the personalised plan and daily trackers.",
+  "@anamnesisProgressCount": {
+    "placeholders": {
+      "answered": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
+}

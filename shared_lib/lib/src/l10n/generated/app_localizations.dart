@@ -7,7 +7,14 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_ar.dart';
 import 'app_localizations_ber.dart';
+import 'app_localizations_de.dart';
+import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
+import 'app_localizations_it.dart';
+import 'app_localizations_nl.dart';
+import 'app_localizations_pt.dart';
+import 'app_localizations_ru.dart';
 
 // ignore_for_file: type=lint
 
@@ -97,7 +104,14 @@ abstract class AppLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
     Locale('ber'),
+    Locale('de'),
+    Locale('en'),
+    Locale('es'),
     Locale('fr'),
+    Locale('it'),
+    Locale('nl'),
+    Locale('pt'),
+    Locale('ru'),
   ];
 
   /// No description provided for @splashSubtitle.
@@ -5289,8 +5303,18 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'ber', 'fr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+    'ar',
+    'ber',
+    'de',
+    'en',
+    'es',
+    'fr',
+    'it',
+    'nl',
+    'pt',
+    'ru',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -5303,8 +5327,22 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsAr();
     case 'ber':
       return AppLocalizationsBer();
+    case 'de':
+      return AppLocalizationsDe();
+    case 'en':
+      return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
     case 'fr':
       return AppLocalizationsFr();
+    case 'it':
+      return AppLocalizationsIt();
+    case 'nl':
+      return AppLocalizationsNl();
+    case 'pt':
+      return AppLocalizationsPt();
+    case 'ru':
+      return AppLocalizationsRu();
   }
 
   throw FlutterError(

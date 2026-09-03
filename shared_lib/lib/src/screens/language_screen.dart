@@ -17,11 +17,25 @@ class LanguageScreen extends ConsumerWidget {
   String _getLanguageDisplayLabel(AppLocale locale) {
     switch (locale) {
       case AppLocale.arabic:
-        return 'العربية — Arabe';
+        return 'العربية — Arabic';
       case AppLocale.french:
-        return 'Français';
+        return 'Français — French';
       case AppLocale.tamazight:
         return 'ⵜⴰⵎⴰⵣⵉⵖⵜ — Tamazight';
+      case AppLocale.english:
+        return 'English';
+      case AppLocale.spanish:
+        return 'Español — Spanish';
+      case AppLocale.italian:
+        return 'Italiano — Italian';
+      case AppLocale.german:
+        return 'Deutsch — German';
+      case AppLocale.dutch:
+        return 'Nederlands — Dutch';
+      case AppLocale.russian:
+        return 'Русский — Russian';
+      case AppLocale.portuguese:
+        return 'Português — Portuguese';
     }
   }
 
@@ -30,9 +44,23 @@ class LanguageScreen extends ConsumerWidget {
       case AppLocale.arabic:
         return Text('🇩🇿', style: TextStyle(fontSize: 20, color: color));
       case AppLocale.french:
-        return Icon(Icons.translate, color: color, size: 24);
+        return Text('🇫🇷', style: TextStyle(fontSize: 20, color: color));
       case AppLocale.tamazight:
         return Icon(Icons.auto_awesome, color: color, size: 24);
+      case AppLocale.english:
+        return Text('🇬🇧', style: TextStyle(fontSize: 20, color: color));
+      case AppLocale.spanish:
+        return Text('🇪🇸', style: TextStyle(fontSize: 20, color: color));
+      case AppLocale.italian:
+        return Text('🇮🇹', style: TextStyle(fontSize: 20, color: color));
+      case AppLocale.german:
+        return Text('🇩🇪', style: TextStyle(fontSize: 20, color: color));
+      case AppLocale.dutch:
+        return Text('🇳🇱', style: TextStyle(fontSize: 20, color: color));
+      case AppLocale.russian:
+        return Text('🇷🇺', style: TextStyle(fontSize: 20, color: color));
+      case AppLocale.portuguese:
+        return Text('🇵🇹', style: TextStyle(fontSize: 20, color: color));
     }
   }
 

@@ -57,6 +57,8 @@ class _SpecialistAppState extends ConsumerState<SpecialistApp> {
   @override
   void initState() {
     super.initState();
+    // Restore the locale the user last selected.
+    ref.read(appLocaleProvider.notifier).loadSavedLocale();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       FlutterNativeSplash.remove();
     });

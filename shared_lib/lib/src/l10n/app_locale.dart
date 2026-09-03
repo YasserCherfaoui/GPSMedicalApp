@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
-/// Supported app locales for Phase 1 auth (task 1.16 / 1.17).
+/// Supported app locales.
 enum AppLocale {
   french(Locale('fr'), 'Français', TextDirection.ltr),
   arabic(Locale('ar'), 'العربية', TextDirection.rtl),
-  tamazight(Locale('ber'), 'ⵜⴰⵎⴰⵣⵉⵖⵜ', TextDirection.ltr);
+  tamazight(Locale('ber'), 'ⵜⴰⵎⴰⵣⵉⵖⵜ', TextDirection.ltr),
+  english(Locale('en'), 'English', TextDirection.ltr),
+  spanish(Locale('es'), 'Español', TextDirection.ltr),
+  italian(Locale('it'), 'Italiano', TextDirection.ltr),
+  german(Locale('de'), 'Deutsch', TextDirection.ltr),
+  dutch(Locale('nl'), 'Nederlands', TextDirection.ltr),
+  russian(Locale('ru'), 'Русский', TextDirection.ltr),
+  portuguese(Locale('pt'), 'Português', TextDirection.ltr);
 
   const AppLocale(this.locale, this.label, this.textDirection);
 

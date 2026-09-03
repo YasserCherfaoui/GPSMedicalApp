@@ -1,0 +1,1318 @@
+{
+  "@@locale": "es",
+  "splashSubtitle": "Del desconcierto a la orientación inteligente",
+  "chooseLanguage": "Elige tu idioma",
+  "continueLabel": "Continuar",
+  "skip": "Omitir",
+  "next": "Siguiente",
+  "start": "Comenzar",
+  "onboardingTitle1": "Del desconcierto a la orientación inteligente",
+  "onboardingTitle2": "¿Cómo funciona?",
+  "onboardingTitle3": "Tus datos, protegidos en Argelia",
+  "onboardingBody1": "Se acabó el nomadismo médico. El especialista correcto, en el momento justo.",
+  "onboardingBody2": "Recorrido en 4 pasos: localización, cribado, coaching, derivación.",
+  "onboardingBody3": "Alojamiento local ANPDP, cifrado, médicos verificados.",
+  "welcomeTitle": "Bienvenido",
+  "welcomeSubtitle": "Tu camino hacia la salud empieza aquí",
+  "createAccount": "Crear una cuenta",
+  "signIn": "Iniciar sesión",
+  "loginTitle": "Iniciar sesión",
+  "loginSubtitle": "Qué bueno verte de nuevo",
+  "phoneLabel": "Teléfono",
+  "passwordLabel": "Contraseña",
+  "confirmPasswordLabel": "Confirmar contraseña",
+  "forgotPassword": "¿Olvidaste tu contraseña?",
+  "registration": "Registro",
+  "verification": "Verificación",
+  "ninTitle": "Tu identidad",
+  "ninSubtitle": "Número de Identificación Nacional (18 dígitos)",
+  "ninHint": "Se encuentra en tu documento de identidad biométrico",
+  "phoneTitle": "Tu número de teléfono",
+  "phoneSubtitle": "Te enviaremos un código de verificación por SMS",
+  "phoneFormatHint": "Formato: +213 5XX, 6XX o 7XX",
+  "sendCode": "Enviar código",
+  "otpTitle": "Introduce el código recibido",
+  "otpSubtitle": "Código de 6 dígitos enviado a {phone}",
+  "@otpSubtitle": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "ninVerificationPendingBanner": "Tu identidad está siendo verificada. Puedes continuar el registro; no se requiere ninguna acción de tu parte.",
+  "resendCode": "Reenviar código",
+  "resendIn": "Reenviar en 0:{seconds}",
+  "@resendIn": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "verify": "Verificar",
+  "passwordTitle": "Crea tu contraseña",
+  "consentTitle": "Tus consentimientos",
+  "consentSubtitle": "De conformidad con la ley argelina ANPDP",
+  "consentHealth": "Tratamiento de mis datos de salud",
+  "consentData": "Tratamiento de mis datos personales",
+  "consentTerms": "Términos y política ANPDP",
+  "consentMarketing": "Comunicaciones de marketing (opcional)",
+  "acceptTerms": "Acepto los Términos de uso y la Política de privacidad",
+  "createMyAccount": "Crear mi cuenta",
+  "biometricTitle": "Inicio de sesión biométrico",
+  "biometricSubtitle": "Face ID o huella dactilar para iniciar sesión más rápido",
+  "enable": "Activar",
+  "later": "Más tarde",
+  "successTitle": "¡Bienvenido a Medora!",
+  "successSubtitle": "Tu cuenta ha sido creada con éxito.",
+  "discoverApp": "Explorar la aplicación",
+  "forgotTitle": "Recuperación de cuenta",
+  "resetTitle": "Nueva contraseña",
+  "resetAction": "Restablecer",
+  "invalidPhone": "Número inválido (+213 5/6/7 + 8 dígitos)",
+  "invalidNin": "NIN inválido (18 dígitos)",
+  "passwordsMismatch": "Las contraseñas no coinciden",
+  "requiredConsents": "Acepta todos los consentimientos obligatorios",
+  "networkError": "Error de red. Inténtalo de nuevo.",
+  "fullNameTitle": "Tu nombre completo",
+  "fullNameSubtitle": "Tal como aparece en tus documentos oficiales (2 a 120 caracteres).",
+  "fullNameHint": "Nombre y apellidos",
+  "invalidFullName": "Nombre inválido (2 a 120 caracteres).",
+  "countryTitle": "Tu país",
+  "countrySubtitle": "Elige tu país de residencia. Esto no se puede cambiar más adelante.",
+  "countryImmutableNotice": "El país elegido es definitivo. No se puede cambiar tras la creación de la cuenta.",
+  "countryAlgeria": "Argelia",
+  "countryTunisia": "Túnez",
+  "phoneCountryMismatch": "Este número no corresponde al país elegido.",
+  "countryNotSupportedForRole": "El registro de especialistas no está disponible aún en Túnez.",
+  "consentSubtitleTn": "De conformidad con la ley tunecina INPDP (ley 2004-63)",
+  "consentTermsTn": "Términos y política INPDP",
+  "consentLegalVersion": "Versión de los términos: {version}",
+  "@consentLegalVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "invalidPhoneTn": "Número inválido (+216 2/4/5/9 + 7 dígitos)",
+  "phoneFormatHintTn": "Formato: +216 2X, 4X, 5X o 9X",
+  "errorInvalidCredentials": "Credenciales incorrectas. Verifica tu número de teléfono y contraseña.",
+  "errorAccessDenied": "Acceso denegado. No tienes permiso para acceder a esta aplicación.",
+  "errorTooManyRequests": "Demasiados intentos. Inténtalo de nuevo en unos minutos.",
+  "errorInternalServer": "Error interno del servidor. Inténtalo de nuevo más tarde.",
+  "errorNetworkTimeout": "Tiempo de conexión agotado. Comprueba tu conexión a Internet e inténtalo de nuevo.",
+  "errorNetworkConnection": "No se puede conectar al servidor. Comprueba tu conexión a Internet.",
+  "errorPasswordRequired": "Introduce tu contraseña.",
+  "bookingAvailabilityTitle": "Elegir una franja horaria",
+  "bookingPreviousWeek": "Semana anterior",
+  "bookingNextWeek": "Semana siguiente",
+  "bookingSlotsCount": "{count, plural, =0{Sin franjas} =1{1 franja} other{{count} franjas}}",
+  "@bookingSlotsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "bookingReserve": "Reservar",
+  "bookingSlotDuration": "Duración: {minutes} min",
+  "@bookingSlotDuration": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "bookingModeInPerson": "Presencial",
+  "bookingModeTelehealth": "Telesalud",
+  "bookingModeAll": "Todos",
+  "bookingWeekRange": "{from} – {to}",
+  "@bookingWeekRange": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "bookingSelectMode": "Seleccionar modo de consulta",
+  "bookingLockExpires": "Franja reservada — expira en {time}",
+  "@bookingLockExpires": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "bookingLockExpired": "Tu reserva de franja ha expirado.",
+  "bookingBack": "Volver",
+  "bookingStepConfirm": "Confirmar franja",
+  "bookingStepPatient": "¿Para quién?",
+  "bookingStepReview": "Resumen",
+  "bookingForMe": "Para mí",
+  "bookingReasonHint": "Motivo de la visita (opcional)",
+  "bookingSubmit": "Confirmar cita",
+  "bookingRescheduleSubmit": "Reprogramar cita",
+  "bookingSlotTakenTitle": "Franja no disponible",
+  "bookingSlotTakenMessage": "Esta franja acaba de ser tomada. ¿Elegir otra?",
+  "bookingChooseAnotherSlot": "Elegir otra franja",
+  "bookingOfflineBanner": "Sin conexión — la reserva requiere conexión",
+  "bookingOfflineSubmit": "Se requiere conexión para confirmar la cita",
+  "bookingResumeDraftTitle": "¿Reanudar tu reserva?",
+  "bookingResumeDraftMessage": "Se guardó una reserva en curso. Se necesita conexión para confirmar la franja.",
+  "bookingOnlineRestored": "Conexión restablecida — puedes confirmar la cita",
+  "bookingResume": "Reanudar",
+  "bookingDiscard": "Descartar",
+  "appointmentsTitle": "Citas",
+  "appointmentsUpcoming": "Próximas",
+  "appointmentsHistory": "Historial",
+  "appointmentsEmptyUpcoming": "Sin citas próximas",
+  "appointmentsEmptyUpcomingCta": "Encontrar un especialista",
+  "appointmentsEmptyHistory": "Sin citas pasadas",
+  "appointmentDetailTitle": "Detalle de la cita",
+  "appointmentCancel": "Cancelar",
+  "appointmentReschedule": "Reprogramar",
+  "appointmentCancelReasonHint": "Motivo de cancelación (opcional)",
+  "appointmentConfirmCancel": "Confirmar cancelación",
+  "appointmentDirections": "Indicaciones",
+  "appointmentJoinTelehealth": "Unirse",
+  "appointmentJoinTelehealthHint": "Disponible 15 minutos antes de la cita.",
+  "appointmentLeaveReview": "Dejar una reseña",
+  "appointmentStatusPending": "Pendiente",
+  "appointmentStatusConfirmed": "Confirmada",
+  "appointmentStatusCancelled": "Cancelada",
+  "appointmentStatusCompleted": "Completada",
+  "appointmentStatusNoShow": "No presentado",
+  "appointmentPaymentUnpaid": "Sin pagar",
+  "appointmentPaymentDeposit": "Depósito pagado",
+  "appointmentPaymentPaid": "Pagado",
+  "appointmentPaymentRefunded": "Reembolsado",
+  "bookingLoadError": "No se pueden cargar las franjas.",
+  "appointmentsLoadError": "No se pueden cargar las citas.",
+  "appointmentDetailLoadError": "No se puede cargar la cita.",
+  "bookingFeeLabel": "Honorario",
+  "bookingSummaryDoctor": "Médico",
+  "bookingSummarySlot": "Franja",
+  "bookingSummaryPatient": "Paciente",
+  "bookingSummaryReason": "Motivo",
+  "errorGenericTitle": "Error",
+  "retry": "Reintentar",
+  "specialtiesEmpty": "No se encontraron especialidades.",
+  "specialtiesLoadError": "No se pueden cargar las especialidades.",
+  "specialtiesPickerParentAll": "Toda la especialidad ({name})",
+  "@specialtiesPickerParentAll": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "geoWilayaPickerTitle": "Seleccionar wilaya",
+  "geoCommunePickerTitle": "Seleccionar comuna",
+  "geoClear": "Limpiar",
+  "geoSearchWilayaHint": "Buscar una wilaya…",
+  "geoSearchCommuneHint": "Buscar una comuna…",
+  "geoWilayaEmpty": "No se encontró ninguna wilaya.",
+  "geoCommuneEmpty": "No se encontró ninguna comuna.",
+  "geoWilayasLoadError": "No se pueden cargar las wilayas.",
+  "geoCommunesLoadError": "No se pueden cargar las comunas.",
+  "geoUseWilayaCenter": "Usar el centro de la wilaya",
+  "discoveryAppBarTitle": "Medora",
+  "discoveryRecommendedTitle": "Especialistas recomendados",
+  "discoveryViewList": "Lista",
+  "discoveryViewMap": "Mapa",
+  "discoveryDoctorsEmptyTitle": "No se encontraron médicos",
+  "discoveryDoctorsEmptyMessage": "Ningún especialista coincide en este momento.",
+  "discoverySearchAction": "Buscar",
+  "discoveryDoctorsLoadError": "No se pueden cargar los especialistas.",
+  "discoveryRateLimitTitle": "Demasiadas solicitudes",
+  "discoveryRateLimitMessage": "{seconds, plural, =1{Espera # segundo antes de reintentar.} other{Espera # segundos antes de reintentar.}}",
+  "@discoveryRateLimitMessage": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "doctorTitleDefault": "Dr.",
+  "doctorLanguageArabic": "Árabe",
+  "doctorLanguageFrench": "Francés",
+  "doctorLanguageEnglish": "Inglés",
+  "doctorLanguageTamazight": "Tamazight",
+  "doctorCardBookCta": "Reservar",
+  "doctorCardTelehealth": "Telesalud",
+  "doctorCardVerifiedBadge": "Certificado",
+  "doctorCardMatchPercent": "{percent}% de compatibilidad",
+  "@doctorCardMatchPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "searchHint": "Buscar médico, especialidad…",
+  "searchEmptyTitle": "Ningún médico coincide",
+  "searchEmptyMessage": "¿Ampliar la zona o cambiar filtros?",
+  "searchClearFilters": "Limpiar filtros",
+  "searchLoadError": "Ocurrió un error durante la búsqueda.",
+  "searchSuggestionsEmpty": "Sin sugerencias.",
+  "searchSuggestionsLoadError": "Error al cargar sugerencias.",
+  "searchSuggestionsSpecialties": "Especialidades",
+  "searchSuggestionsDoctors": "Médicos",
+  "searchSuggestionsLocations": "Ubicaciones",
+  "searchFiltersTitle": "Filtros de búsqueda",
+  "searchFiltersReset": "Restablecer",
+  "searchFiltersApply": "Aplicar filtros",
+  "searchFilterSpecialty": "Especialidad",
+  "searchFilterSpecialtyAll": "Todas las especialidades",
+  "searchFilterLocation": "Ubicación (Wilaya / Comuna)",
+  "searchFilterLocationAll": "Toda Argelia",
+  "searchFilterGender": "Género",
+  "searchFilterGenderAny": "Cualquiera",
+  "searchFilterGenderMale": "Masculino",
+  "searchFilterGenderFemale": "Femenino",
+  "searchFilterLanguages": "Idiomas hablados",
+  "searchFilterMaxFee": "Honorario máximo",
+  "searchFilterMaxFeeValue": "{fee} DZD",
+  "@searchFilterMaxFeeValue": {
+    "placeholders": {
+      "fee": {
+        "type": "int"
+      }
+    }
+  },
+  "searchFilterAvailability": "Disponibilidad",
+  "searchFilterAvailabilityAll": "Todas",
+  "searchFilterAvailabilityToday": "Hoy",
+  "searchFilterAvailability3Days": "3 días",
+  "searchFilterAvailability1Week": "1 semana",
+  "searchFilterAvailability1Month": "1 mes",
+  "searchFilterTelehealth": "Telesalud disponible",
+  "searchFilterInsurance": "Seguros aceptados",
+  "searchFilterInsuranceCnas": "Aprobado CNAS",
+  "searchFilterInsuranceCasnos": "Aprobado CASNOS",
+  "searchFilterSort": "Ordenar por",
+  "searchFilterSortRelevance": "Relevancia",
+  "searchFilterSortRating": "Mejor valoración",
+  "searchFilterSortFeeAsc": "Honorario ascendente",
+  "searchFilterSortFeeDesc": "Honorario descendente",
+  "searchFilterSortDistance": "Distancia ascendente",
+  "doctorDetailTitle": "Perfil del especialista",
+  "doctorDetailBioTitle": "Biografía",
+  "doctorDetailBioEmpty": "Sin biografía disponible.",
+  "doctorDetailBioExpand": "Leer más",
+  "doctorDetailBioCollapse": "Mostrar menos",
+  "doctorDetailFeeTitle": "Honorarios de consulta",
+  "doctorDetailFeeInPerson": "Consulta presencial",
+  "doctorDetailFeeValue": "{fee} DZD",
+  "@doctorDetailFeeValue": {
+    "placeholders": {
+      "fee": {
+        "type": "int"
+      }
+    }
+  },
+  "doctorDetailLanguagesTitle": "Idiomas hablados",
+  "doctorDetailLanguagesEmpty": "No especificado",
+  "doctorDetailAddressTitle": "Dirección del consultorio",
+  "doctorDetailMapUnavailable": "Mapa no disponible",
+  "doctorDetailReviewsTitle": "Reseñas de pacientes",
+  "doctorDetailReviewsEmpty": "Sin reseñas aún.",
+  "doctorDetailReviewsLoadMore": "Cargar más",
+  "doctorDetailVerifiedPatient": "Paciente verificado",
+  "doctorDetailBookCta": "Reservar",
+  "doctorDetailTelehealthCta": "Telesalud",
+  "doctorDetailNotFoundTitle": "Médico no encontrado",
+  "doctorDetailNotFoundMessage": "El perfil de este especialista no está disponible.",
+  "doctorDetailLoadError": "No se puede cargar el perfil de este especialista.",
+  "mapNearbyTitle": "Médicos cercanos",
+  "mapNearbyClinicsTitle": "Clínicas cercanas",
+  "mapNearbyLoadErrorTitle": "Error de carga",
+  "mapNearbyLoadErrorMessage": "Ocurrió un error en el mapa.",
+  "mapNearbyPermissionBanner": "Permite la ubicación para ver médicos cerca de ti.",
+  "mapNearbyClinicsPermissionBanner": "Permite la ubicación para ver clínicas cerca de ti.",
+  "mapNearbyPermissionRationaleTitle": "Acceso a la ubicación",
+  "mapNearbyPermissionRationaleBody": "Medora usa tu ubicación para mostrar especialistas cercanos. También puedes elegir una wilaya manualmente.",
+  "mapNearbyClinicsPermissionRationaleBody": "Medora usa tu ubicación para mostrar clínicas cercanas. También puedes elegir una wilaya manualmente.",
+  "mapNearbyPermissionRationaleContinue": "Continuar",
+  "mapNearbyPermissionRationaleCancel": "Cancelar",
+  "mapNearbyPermissionAllow": "Permitir",
+  "mapNearbyChooseWilaya": "Elegir wilaya",
+  "mapNearbyMyLocation": "Mi ubicación",
+  "mapNearbyEdit": "Editar",
+  "mapNearbyWilayaSearch": "Buscar por wilaya",
+  "mapNearbyWilayaSearchNamed": "Buscar por wilaya ({wilaya})",
+  "@mapNearbyWilayaSearchNamed": {
+    "placeholders": {
+      "wilaya": {
+        "type": "String"
+      }
+    }
+  },
+  "mapNearbyLocationComma": "{commune}, {wilaya}",
+  "@mapNearbyLocationComma": {
+    "placeholders": {
+      "commune": {
+        "type": "String"
+      },
+      "wilaya": {
+        "type": "String"
+      }
+    }
+  },
+  "mapNearbyRadiusLabel": "Radio:",
+  "mapNearbyRadiusValue": "{radius} km",
+  "@mapNearbyRadiusValue": {
+    "placeholders": {
+      "radius": {
+        "type": "String"
+      }
+    }
+  },
+  "mapNearbyClusterCount": "{count} médicos",
+  "@mapNearbyClusterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mapNearbyClinicClusterCount": "{count} clínicas",
+  "@mapNearbyClinicClusterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mapNearbyChooseWilayaTooltip": "Elegir wilaya",
+  "mapNearbySpecialtyTitle": "Seleccionar especialidad",
+  "mapNearbySpecialtyClear": "Limpiar",
+  "profileTitle": "Mi perfil",
+  "profileEdit": "Editar",
+  "profileSave": "Guardar",
+  "profileAccount": "Cuenta",
+  "profileSignOut": "Cerrar sesión",
+  "profileFullName": "Nombre completo",
+  "profilePhone": "Teléfono",
+  "profileEmail": "Correo electrónico",
+  "profileBirthDate": "Fecha de nacimiento",
+  "profileGender": "Género",
+  "profileBloodType": "Grupo sanguíneo",
+  "profileAddress": "Dirección",
+  "profileAddressLine1": "Calle y número",
+  "profileAddressLine2": "Dirección adicional",
+  "profilePostalCode": "Código postal",
+  "profileAllergies": "Alergias",
+  "profileChronicConditions": "Enfermedades crónicas",
+  "profileInsurance": "Seguro",
+  "profileInsuranceProvider": "Proveedor",
+  "profileInsuranceNumber": "Número de afiliado",
+  "profileNotSet": "No establecido",
+  "profileReadOnlyField": "No editable",
+  "profileGenderMale": "Masculino",
+  "profileGenderFemale": "Femenino",
+  "profileGenderOther": "Otro",
+  "profileInsuranceCnas": "CNAS",
+  "profileInsuranceCasnos": "CASNOS",
+  "profileInsuranceNone": "Ninguno",
+  "profileInsurancePrivate": "Privado",
+  "profilePickBirthDate": "Elegir fecha",
+  "profilePickAddress": "Elegir wilaya y comuna",
+  "profileTagHint": "Escribir y pulsar Enter",
+  "profileAddTag": "Agregar",
+  "profileInvalidEmail": "Correo electrónico inválido",
+  "profileInvalidBirthDate": "La fecha de nacimiento no puede ser en el futuro",
+  "profileLoadError": "No se puede cargar el perfil",
+  "profileSaveError": "No se puede guardar",
+  "profileDeleteAccount": "Eliminar mi cuenta",
+  "profileDeleteTitle": "¿Eliminar tu cuenta?",
+  "profileDeleteWarning": "Esta acción programa la eliminación permanente de tu cuenta y datos personales.",
+  "profileDeleteGracePeriod": "Tienes 30 días para cancelar la eliminación volviendo a iniciar sesión.",
+  "profileDeleteConfirm": "Sí, eliminar mi cuenta",
+  "profileDeleteFinalTitle": "Confirmación final",
+  "profileDeleteFinalMessage": "¿Estás absolutamente seguro? Tu cuenta será programada para eliminación.",
+  "profileDeleteSuccess": "Cuenta programada para eliminación",
+  "profileDeleteError": "No se puede eliminar",
+  "deviceVaultBannerTitle": "Datos solo en este dispositivo",
+  "deviceVaultBannerBody": "Tu fecha de nacimiento, grupo sanguíneo, dirección, historial médico y documentos permanecen en este dispositivo. Desinstalar la aplicación o perder el teléfono los elimina permanentemente.",
+  "deviceVaultBannerDismiss": "Entendido",
+  "deviceVaultSettingsTitle": "Bóveda en el dispositivo",
+  "deviceVaultSettingsBody": "Estos datos viven solo en este dispositivo. Desinstalar la aplicación o perder el teléfono los elimina. No se ofrece copia de seguridad.",
+  "profileConsents": "Consentimientos ANPDP",
+  "consentManagementTitle": "Mis consentimientos",
+  "consentVersionLabel": "Versión {version}",
+  "@consentVersionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "consentGrantedAtLabel": "Otorgado el {date}",
+  "@consentGrantedAtLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "consentRevokedAtLabel": "Revocado el {date}",
+  "@consentRevokedAtLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "consentActive": "Activo",
+  "consentRevoked": "Revocado",
+  "consentRevokeEssential": "Retirar mi consentimiento",
+  "consentRevokeEssentialTitle": "¿Retirar un consentimiento esencial?",
+  "consentRevokeEssentialMessage": "Retirar un consentimiento esencial suspenderá tu cuenta. No podrás usar la aplicación hasta que la cuenta sea reactivada.",
+  "consentRevokeEssentialConfirm": "Retirar y suspender",
+  "consentRevokeError": "No se puede revocar el consentimiento",
+  "consentRevokedLandingTitle": "Cuenta suspendida",
+  "consentRevokedLandingMessage": "Has retirado un consentimiento esencial. Tu cuenta está suspendida conforme a la normativa ANPDP.",
+  "consentRevokedLandingAction": "Volver al inicio",
+  "dependentsTitle": "Dependientes",
+  "dependentsAdd": "Agregar dependiente",
+  "dependentsEdit": "Editar dependiente",
+  "dependentsEmpty": "No hay dependientes registrados",
+  "dependentsDeleteTitle": "¿Eliminar este dependiente?",
+  "dependentsDeleteMessage": "Esta acción es permanente. Las citas pasadas permanecen vinculadas a esta persona.",
+  "dependentsDeleteConfirm": "Eliminar",
+  "dependentFullName": "Nombre completo",
+  "dependentRelation": "Relación",
+  "dependentBirthDate": "Fecha de nacimiento",
+  "dependentGender": "Género",
+  "dependentRelationChild": "Hijo/a",
+  "dependentRelationSpouse": "Cónyuge",
+  "dependentRelationParent": "Padre/Madre",
+  "dependentRelationOther": "Otro",
+  "dependentAgeYears": "{age} años",
+  "@dependentAgeYears": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "dependentSaveError": "No se puede guardar",
+  "dependentDeleteError": "No se puede eliminar",
+  "medicalRecordsTitle": "Expediente médico",
+  "medicalRecordsEmpty": "Sin documentos",
+  "medicalRecordsLoadError": "No se pueden cargar los documentos",
+  "medicalRecordsFilterAll": "Todos",
+  "medicalRecordTypePrescription": "Receta",
+  "medicalRecordTypeReport": "Informe",
+  "medicalRecordTypeLabResult": "Resultado de laboratorio",
+  "medicalRecordTypeImaging": "Imagen",
+  "medicalRecordTypeCertificate": "Certificado",
+  "medicalRecordTypeOther": "Otro",
+  "medicalRecordAuthorPatient": "Paciente",
+  "medicalRecordAuthorSpecialist": "Médico",
+  "medicalRecordAuthorConcierge": "Conserje",
+  "medicalRecordViewerPlaceholder": "La vista previa del documento estará disponible pronto.",
+  "medicalRecordFileSizeBytes": "{size} B",
+  "@medicalRecordFileSizeBytes": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      }
+    }
+  },
+  "medicalRecordFileSizeKb": "{size} KB",
+  "@medicalRecordFileSizeKb": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "medicalRecordFileSizeMb": "{size} MB",
+  "@medicalRecordFileSizeMb": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "medicalRecordsUpload": "Agregar documento",
+  "medicalRecordsUploadAddCamera": "Cámara",
+  "medicalRecordsUploadAddGallery": "Galería",
+  "medicalRecordsUploadAddFiles": "Archivos PDF",
+  "medicalRecordsUploadForm": "Formulario completo",
+  "medicalRecordsOcrGalleryHint": "Foto desde galería — OCR de datos clave",
+  "medicalRecordsOcrTitle": "Extracción OCR",
+  "medicalRecordsOcrHint": "Lee tipo de examen, fecha y elementos clave — sin interpretación clínica.",
+  "medicalRecordsOcrStart": "Iniciar extracción",
+  "medicalRecordsOcrRetry": "Reintentar extracción",
+  "medicalRecordsOcrStarted": "Documento guardado — extracción OCR en curso.",
+  "medicalRecordUploadType": "Tipo de documento",
+  "medicalRecordUploadTitle": "Título (opcional)",
+  "medicalRecordUploadNotes": "Notas (opcional)",
+  "medicalRecordUploadPatient": "Paciente implicado",
+  "medicalRecordUploadSubmit": "Subir",
+  "medicalRecordUploadMaxFiles": "{count, plural, =1{Máximo # archivo por envío} other{Máximo # archivos por envío}}",
+  "@medicalRecordUploadMaxFiles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "medicalRecordUploadFileTooLarge": "Cada archivo debe ser de 20 MB o menos.",
+  "medicalRecordUploadInvalidMime": "Formatos aceptados: PDF, JPEG o PNG únicamente.",
+  "medicalRecordUploadTypeRequired": "Selecciona un tipo de documento.",
+  "medicalRecordUploadNoFiles": "Agrega al menos un archivo.",
+  "medicalRecordUploadStorageUnavailable": "El servicio de archivos no está disponible temporalmente. Inténtalo más tarde.",
+  "medicalRecordUploadCancel": "Cancelar",
+  "medicalRecordUploadSuccess": "Documento agregado",
+  "medicalRecordUploadFailed": "Error al subir",
+  "medicalRecordDownload": "Descargar",
+  "medicalRecordShare": "Compartir",
+  "medicalRecordDownloadSuccess": "Archivo guardado en Descargas",
+  "medicalRecordViewerLoadError": "No se puede abrir el documento",
+  "medicalRecordDeleteTitle": "¿Eliminar este documento?",
+  "medicalRecordDeleteMessage": "Esta acción es permanente. El archivo será eliminado de tu expediente.",
+  "medicalRecordDeleteConfirm": "Eliminar",
+  "medicalRecordDeleteError": "No se puede eliminar",
+  "messagingTitle": "Mensajería",
+  "messagingEmpty": "Sin conversaciones aún",
+  "messagingLoadError": "No se pueden cargar las conversaciones",
+  "messagingAttachmentPreview": "Adjunto",
+  "messagingThreadPlaceholder": "Conversación — detalles próximamente",
+  "messagingComposerHint": "Escribe un mensaje…",
+  "messagingSend": "Enviar",
+  "messagingAttach": "Adjuntar documento",
+  "messagingPickAttachments": "Elegir documentos",
+  "messagingAttachConfirm": "Adjuntar selección",
+  "messagingMessagePending": "Enviando…",
+  "messagingMessageSent": "Enviado",
+  "messagingMessageRead": "Leído",
+  "messagingSendError": "Error al enviar",
+  "messagingLoadMessagesError": "No se pueden cargar los mensajes",
+  "notificationsTitle": "Notificaciones",
+  "notificationsEmpty": "Sin notificaciones",
+  "notificationsLoadError": "No se pueden cargar las notificaciones",
+  "notificationsMarkAllRead": "Marcar todo como leído",
+  "notificationsPreferences": "Preferencias",
+  "notificationsPreferencesTitle": "Preferencias de notificación",
+  "notificationsPrefPush": "Notificaciones push",
+  "notificationsPrefSms": "SMS",
+  "notificationsPrefEmail": "Correo electrónico",
+  "notificationsPrefAppointmentReminders": "Recordatorios de citas",
+  "notificationsPrefMarketing": "Ofertas y noticias",
+  "notificationsPrefReminderHours": "Recordatorio antes de la cita",
+  "notificationsPrefReminderHoursValue": "{hours} h antes",
+  "@notificationsPrefReminderHoursValue": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationsPrefSaveError": "No se puede guardar",
+  "reviewCreateTitle": "Dejar una reseña",
+  "reviewRatingLabel": "Calificación",
+  "reviewCommentLabel": "Comentario (opcional)",
+  "reviewCommentHint": "Comparte tu experiencia…",
+  "reviewSubmit": "Enviar",
+  "reviewSubmitError": "No se puede enviar la reseña.",
+  "reviewRatingRequired": "Selecciona una calificación.",
+  "reviewCommentTooLong": "El comentario no debe superar {max} caracteres.",
+  "@reviewCommentTooLong": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "reviewConfirmationTitle": "Gracias por tu reseña",
+  "reviewConfirmationBody": "Tu reseña está pendiente de moderación. Se publicará tras la validación por nuestro equipo, habitualmente en 48 horas.",
+  "reviewConfirmationStatusPending": "Pendiente de moderación",
+  "reviewAlreadySubmitted": "Ya has dejado una reseña",
+  "reviewDelete": "Eliminar mi reseña",
+  "reviewDeleteConfirm": "¿Eliminar esta reseña?",
+  "reviewDeleteSuccess": "Reseña eliminada.",
+  "reviewDeleteError": "No se puede eliminar la reseña.",
+  "reviewDeleteExpired": "La eliminación ya no es posible después de 7 días.",
+  "reviewAlreadyExistsError": "Ya existe una reseña para esta cita.",
+  "reviewNotEligibleError": "Esta cita no permite publicar una reseña.",
+  "reviewBackToAppointment": "Volver a la cita",
+  "reviewStarsLabel": "{count, plural, =1{1 estrella} other{{count} estrellas}}",
+  "@reviewStarsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentDepositTitle": "Pagar depósito",
+  "paymentDepositBody": "Se requiere un depósito de {amount} DZD para confirmar esta cita.",
+  "@paymentDepositBody": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentDepositCta": "Pagar depósito",
+  "paymentDepositAmountLabel": "{amount} DZD",
+  "@paymentDepositAmountLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentDepositProviderStripeTest": "Modo de prueba (sandbox)",
+  "paymentDepositSandboxHint": "El pago se simula en un entorno de prueba.",
+  "paymentDepositSuccess": "Pago exitoso. Tu cita está actualizada.",
+  "paymentDepositFailed": "El pago falló.",
+  "paymentDepositNotEligible": "Esta cita no es elegible para pago.",
+  "paymentDepositPayeeClinicHint": "El pago va a la clínica (no al especialista).",
+  "paymentDepositPayeeClinicNamed": "El pago va a {clinicName}.",
+  "@paymentDepositPayeeClinicNamed": {
+    "placeholders": {
+      "clinicName": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentDepositPayeeClinicFallback": "Clínica",
+  "specialistVerificationPendingTitle": "Expediente en revisión",
+  "specialistVerificationPendingBody": "Nuestro equipo está revisando tu expediente. Recibirás una notificación cuando se tome una decisión.",
+  "specialistVerificationMoreInfoTitle": "Información adicional requerida",
+  "specialistVerificationMoreInfoBody": "Nuestro equipo necesita documentos o aclaraciones adicionales antes de validar tu expediente.",
+  "specialistVerificationRejectedTitle": "Expediente rechazado",
+  "specialistVerificationRejectedBody": "Tu expediente no pudo ser validado. Revisa el mensaje a continuación y envía nuevos documentos si es necesario.",
+  "specialistVerificationSubmitCta": "Enviar mis documentos",
+  "specialistVerificationResubmitCta": "Reenviar mis documentos",
+  "specialistVerificationCompleteProfileCta": "Completar mi perfil",
+  "specialistVerificationRefreshCta": "Actualizar estado",
+  "specialistVerificationRefreshLoading": "Verificando…",
+  "specialistVerificationRefreshCompleted": "Verificación completa",
+  "specialistVerificationRefreshFailed": "Verificación fallida. Inténtalo de nuevo.",
+  "specialistVerificationLastChecked": "Última verificación: {timestamp}",
+  "@specialistVerificationLastChecked": {
+    "placeholders": {
+      "timestamp": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistProfileEditTitle": "Editar mi perfil",
+  "specialistProfileSaveChanges": "Guardar cambios",
+  "specialistProfileSectionInfo": "Información",
+  "specialistProfileSectionSpecialties": "Especialidades",
+  "specialistProfileSectionLanguages": "Idiomas hablados",
+  "specialistProfileSectionConsultation": "Consulta",
+  "specialistProfileSectionPractice": "Lugar de práctica",
+  "specialistProfileTitle": "Título",
+  "specialistProfileBio": "Biografía",
+  "specialistProfilePhotoUrl": "URL de la foto",
+  "specialistProfileSelectSpecialty": "Especialidad principal",
+  "specialistProfileFee": "Honorario de consulta (DZD)",
+  "specialistProfileCnas": "Aprobado CNAS",
+  "specialistProfileCasnos": "Aprobado CASNOS",
+  "specialistProfileTelehealth": "Telesalud disponible",
+  "specialistProfileConfirmationPolicy": "Política de confirmación",
+  "specialistProfilePolicyManual": "Manual",
+  "specialistProfilePolicyAuto": "Automático",
+  "specialistProfileBookingWindow": "Ventana de reserva (días)",
+  "specialistProfileAddressLine1": "Dirección",
+  "specialistProfileAddressLine2": "Dirección adicional",
+  "specialistProfileVerifiedBadge": "Cuenta verificada",
+  "specialistProfileUnverifiedBadge": "No verificado",
+  "specialistCredentialsTitle": "Credenciales profesionales",
+  "specialistCredentialsSubtitle": "Introduce tu número en el Colegio Médico y sube tus diplomas o tarjetas (PDF, JPEG, PNG — máx. 10 MB).",
+  "specialistCredentialsCouncilNumber": "Número en el Colegio Médico",
+  "specialistCredentialsCouncilRequired": "El número en el Colegio Médico es obligatorio.",
+  "specialistCredentialsType": "Tipo de credencial",
+  "specialistCredentialsAddFile": "Agregar archivo",
+  "specialistCredentialsNoFiles": "Agrega al menos una credencial.",
+  "specialistCredentialsSubmit": "Enviar para verificación",
+  "specialistCredentialsExisting": "Credenciales ya enviadas",
+  "specialistCredentialsSubmitSuccess": "Credenciales enviadas. Tu expediente está en revisión.",
+  "specialistCredentialsUploadFailed": "Error al subir. Inténtalo de nuevo.",
+  "specialistCredentialTypeDiploma": "Diploma",
+  "specialistCredentialTypeCouncilCard": "Tarjeta del Colegio Médico",
+  "specialistCredentialTypeSpecialtyCert": "Certificado de especialidad",
+  "specialistCredentialTypeOther": "Otro",
+  "specialistCredentialStatusPending": "Pendiente",
+  "specialistCredentialStatusApproved": "Aprobado",
+  "specialistCredentialStatusRejected": "Rechazado",
+  "specialistTabInbox": "Solicitudes",
+  "specialistTabCalendar": "Agenda",
+  "specialistTabMessages": "Mensajes",
+  "specialistTabProfile": "Perfil",
+  "specialistTabStats": "Estadísticas",
+  "specialistShellPlaceholder": "Próximamente",
+  "specialistScheduleTitle": "Mi agenda",
+  "specialistScheduleTabTemplates": "Horarios",
+  "specialistScheduleTabExceptions": "Excepciones",
+  "specialistScheduleTabPreview": "Vista previa",
+  "specialistScheduleAddWindow": "Agregar franja",
+  "specialistScheduleEditWindow": "Editar franja",
+  "specialistScheduleSaveWindow": "Guardar franja",
+  "specialistScheduleSaveSuccess": "Agenda guardada.",
+  "specialistScheduleStartTime": "Hora de inicio",
+  "specialistScheduleEndTime": "Hora de fin",
+  "specialistScheduleSlotDuration": "Duración de la franja",
+  "specialistScheduleSlotMinutes": "{minutes} min",
+  "@specialistScheduleSlotMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "specialistScheduleMode": "Modo de consulta",
+  "specialistScheduleModeInPerson": "Presencial",
+  "specialistScheduleModeTelehealth": "Telesalud",
+  "specialistScheduleModeBoth": "Ambos",
+  "specialistScheduleActive": "Franja activa",
+  "specialistScheduleActiveHint": "Desactivar elimina la franja al guardar.",
+  "specialistScheduleInactive": "Inactiva",
+  "specialistScheduleNoWindowsTitle": "Sin franjas",
+  "specialistScheduleNoWindowsBody": "Agrega tus horas de consulta para este día.",
+  "specialistScheduleDeleteWindowTitle": "¿Eliminar esta franja?",
+  "specialistScheduleDeleteWindowBody": "Las citas generadas desde esta franja ya no estarán disponibles.",
+  "specialistScheduleAddException": "Agregar excepción",
+  "specialistScheduleExceptionDates": "Período",
+  "specialistSchedulePickDates": "Elegir",
+  "specialistScheduleExceptionKind": "Tipo",
+  "specialistScheduleExceptionVacation": "Vacaciones",
+  "specialistScheduleExceptionSick": "Baja por enfermedad",
+  "specialistScheduleExceptionBlocked": "No disponible",
+  "specialistScheduleExceptionExtra": "Excepción",
+  "specialistScheduleExceptionNote": "Nota (opcional)",
+  "specialistScheduleExceptionSaved": "Excepción guardada.",
+  "specialistScheduleExceptionCount": "{count, plural, =1{1 excepción} other{{count} excepciones}}",
+  "@specialistScheduleExceptionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "specialistScheduleNoExceptionsTitle": "Sin excepciones",
+  "specialistScheduleNoExceptionsBody": "Bloquea días por vacaciones, baja o no disponibilidad.",
+  "specialistSchedulePreviewEmptyTitle": "Sin franjas",
+  "specialistSchedulePreviewEmptyBody": "Guarda tus franjas horarias y vuelve aquí para ver las citas generadas.",
+  "specialistScheduleLoadError": "No se puede cargar la agenda.",
+  "specialistScheduleErrorWeekday": "Día de la semana inválido.",
+  "specialistScheduleErrorSlotDuration": "Duración o intervalo de franja inválido.",
+  "specialistScheduleErrorMode": "Modo de consulta inválido.",
+  "specialistScheduleErrorStartTime": "Hora de inicio inválida.",
+  "specialistScheduleErrorEndTime": "Hora de fin inválida.",
+  "specialistScheduleErrorStartDate": "Fecha de inicio inválida.",
+  "specialistScheduleErrorEndDate": "Fecha de fin inválida.",
+  "specialistScheduleErrorKind": "Tipo de excepción inválido.",
+  "specialistScheduleErrorNote": "La nota no debe superar 200 caracteres.",
+  "specialistScheduleLocation": "Asignación",
+  "specialistScheduleLocationHint": "Personal (consultorio) o franjas cedidas a una clínica.",
+  "specialistScheduleLocationCabinet": "Mi consultorio",
+  "specialistScheduleLocationClinicFallback": "Clínica",
+  "specialistScheduleDonationPersonal": "Personal (mi consultorio)",
+  "specialistScheduleDonationClinicNamed": "Cedido a {clinicName}",
+  "@specialistScheduleDonationClinicNamed": {
+    "placeholders": {
+      "clinicName": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistScheduleDonationNotice": "La clínica es notificada de cualquier cambio en tus franjas cedidas.",
+  "specialistScheduleDonationNoticeTitle": "Franjas cedidas a una clínica",
+  "specialistScheduleDonationNoticeGotIt": "Entendido",
+  "specialistScheduleDonationFilterClear": "Todas las franjas",
+  "specialistScheduleDonationFilterBanner": "Mostrando franjas cedidas a {clinicName}",
+  "@specialistScheduleDonationFilterBanner": {
+    "placeholders": {
+      "clinicName": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistScheduleConflictMessage": "Esta franja se superpone a una cita existente (consultorio o clínica).",
+  "specialistClinicSessionBadge": "Sesión clínica",
+  "clinicMembershipsDonatedHours": "{hours} h / semana cedidas",
+  "@clinicMembershipsDonatedHours": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      }
+    }
+  },
+  "clinicMembershipsDonatedHoursNone": "Sin franjas cedidas",
+  "clinicMembershipsManageDonated": "Gestionar franjas cedidas",
+  "specialistProfileManageSchedule": "Gestionar mi agenda",
+  "specialistInboxTabRequests": "Solicitudes",
+  "specialistInboxTabConfirmed": "Confirmadas",
+  "specialistInboxTabHistory": "Historial",
+  "specialistInboxEmptyRequests": "Sin solicitudes pendientes",
+  "specialistInboxEmptyConfirmed": "Sin citas confirmadas",
+  "specialistInboxEmptyHistory": "Sin citas pasadas",
+  "specialistAppointmentDetailTitle": "Detalle de la cita",
+  "specialistAppointmentPatientAnonymous": "Paciente (identidad oculta)",
+  "specialistAppointmentPatientLabel": "Paciente",
+  "specialistAppointmentPatientRef": "Paciente ····{ref}",
+  "@specialistAppointmentPatientRef": {
+    "placeholders": {
+      "ref": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistAppointmentConfirmed": "Cita confirmada",
+  "specialistAppointmentCancelTitle": "Cancelar cita",
+  "specialistAppointmentStartTelehealth": "Iniciar telesalud",
+  "specialistTelehealthComingSoon": "La telesalud estará disponible pronto.",
+  "specialistAppointmentViewRecords": "Ver expediente médico",
+  "specialistAppointmentIssuePrescription": "Emitir receta",
+  "specialistAppointmentConfirm": "Confirmar cita",
+  "specialistAppointmentMarkNoShow": "Marcar como ausente",
+  "specialistCalendarMonthView": "Mes",
+  "specialistCalendarWeekView": "Semana",
+  "specialistCalendarDayAppointments": "Citas de hoy",
+  "specialistCalendarEmptyDay": "Sin citas hoy",
+  "specialistCalendarLoadError": "No se puede cargar la agenda.",
+  "specialistPatientRecordsTitle": "Expediente del paciente",
+  "specialistPatientRecordsEmpty": "Sin documentos compartidos",
+  "specialistPatientRecordsForbidden": "Ningún documento compartido contigo para este paciente",
+  "specialistPatientRecordsLoadError": "No se puede cargar el expediente.",
+  "specialistPrescriptionTitle": "Receta",
+  "specialistPrescriptionDiagnosis": "Diagnóstico",
+  "specialistPrescriptionValidUntil": "Válida hasta",
+  "specialistPrescriptionDrugsSection": "Medicamentos",
+  "specialistPrescriptionDrugNumber": "Medicamento {number}",
+  "@specialistPrescriptionDrugNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "specialistPrescriptionAddDrug": "Agregar medicamento",
+  "specialistPrescriptionDrugName": "Nombre del medicamento",
+  "specialistPrescriptionDosage": "Dosis",
+  "specialistPrescriptionFrequency": "Frecuencia",
+  "specialistPrescriptionDurationDays": "Duración (días)",
+  "specialistPrescriptionInstructions": "Instrucciones",
+  "specialistPrescriptionSubmit": "Emitir receta",
+  "specialistPrescriptionSuccess": "Receta emitida con éxito",
+  "specialistPrescriptionAtLeastOneDrug": "Agrega al menos un medicamento",
+  "specialistTeleconsultTitle": "Teleconsulta",
+  "specialistTeleconsultWindowClosed": "La sesión aún no está abierta.",
+  "specialistTeleconsultOpensIn": "Abre en {time}",
+  "@specialistTeleconsultOpensIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistTeleconsultWaitingPatient": "Esperando al paciente…",
+  "specialistTeleconsultConnectionError": "No se puede iniciar la teleconsulta.",
+  "patientTeleconsultTitle": "Teleconsulta",
+  "patientTeleconsultWindowClosed": "La sesión aún no está abierta.",
+  "patientTeleconsultOpensIn": "Abre en {time}",
+  "@patientTeleconsultOpensIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "patientTeleconsultWaitingDoctor": "Esperando al médico…",
+  "patientTeleconsultConnectionError": "No se puede iniciar la teleconsulta.",
+  "teleconsultMicOn": "Micrófono encendido",
+  "teleconsultMicOff": "Micrófono apagado",
+  "teleconsultCameraOn": "Cámara encendida",
+  "teleconsultCameraOff": "Cámara apagada",
+  "teleconsultHangupTitle": "¿Finalizar llamada?",
+  "teleconsultHangupMessage": "El otro participante será desconectado.",
+  "teleconsultHangupConfirm": "Colgar",
+  "teleconsultHangupStay": "Quedarse en la llamada",
+  "specialistStatsRatingTitle": "Valoración media",
+  "specialistStatsAppointments": "Citas",
+  "specialistStatsCompleted": "Completadas",
+  "specialistStatsRevenue": "Ingresos",
+  "specialistStatsNoShowRate": "Tasa de ausencias",
+  "specialistStatsTrendTitle": "Tendencia",
+  "specialistStatsMetricAppointments": "Citas",
+  "specialistStatsMetricRevenue": "Ingresos",
+  "specialistStatsMetricNoShow": "Ausencias",
+  "specialistStatsMetricNewPatients": "Nuevos pacientes",
+  "specialistStatsGranularityDay": "Día",
+  "specialistStatsGranularityWeek": "Semana",
+  "specialistStatsGranularityMonth": "Mes",
+  "specialistStatsLoadError": "No se pueden cargar las estadísticas.",
+  "specialistStatsChartEmpty": "No hay suficientes datos para mostrar el gráfico.",
+  "specialistStatsReviewsTitle": "Mis reseñas",
+  "specialistStatsReviewsEmpty": "Sin reseñas publicadas",
+  "specialistStatsReviewsLoadError": "No se pueden cargar las reseñas.",
+  "searchEntityDoctors": "Médicos",
+  "searchEntityClinics": "Clínicas",
+  "searchHintClinics": "Buscar clínica…",
+  "searchEmptyClinicsTitle": "Ninguna clínica coincide",
+  "searchEmptyClinicsMessage": "¿Ampliar zona o cambiar filtros?",
+  "searchSuggestionsClinics": "Clínicas",
+  "clinicCardBookCta": "Ver clínica",
+  "clinicCardTelehealth": "Telesalud",
+  "clinicCardFromPrice": "Desde {price} {currency}",
+  "@clinicCardFromPrice": {
+    "placeholders": {
+      "price": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
+    }
+  },
+  "clinicDetailTitle": "Clínica",
+  "clinicDetailAboutTitle": "Acerca de",
+  "clinicDetailAboutEmpty": "Sin descripción disponible.",
+  "clinicDetailServicesTitle": "Servicios",
+  "clinicDetailServicesEmpty": "Sin servicios publicados aún.",
+  "clinicDetailSpecialistsTitle": "Profesionales",
+  "clinicDetailSpecialistsEmpty": "Sin profesionales visibles en este perfil.",
+  "clinicDetailReviewsTitle": "Reseñas",
+  "clinicDetailReviewsEmpty": "Sin reseñas públicas aún.",
+  "clinicDetailLoadError": "No se puede cargar la clínica.",
+  "clinicDetailNotFoundTitle": "Clínica no encontrada",
+  "clinicDetailNotFoundMessage": "Esta clínica no está disponible.",
+  "clinicDetailMapUnavailable": "Mapa no disponible",
+  "clinicDetailAssignNotice": "Estás reservando un servicio; la clínica asigna al profesional.",
+  "clinicDetailDurationMinutes": "{minutes} min",
+  "@clinicDetailDurationMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "clinicDetailServicePrice": "{price} {currency}",
+  "@clinicDetailServicePrice": {
+    "placeholders": {
+      "price": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
+    }
+  },
+  "clinicDetailVerifiedPatient": "Paciente verificado",
+  "clinicDetailLoadMoreReviews": "Cargar más reseñas",
+  "clinicDetailVerifiedBadge": "Clínica verificada",
+  "discoveryClinicsEmptyTitle": "No se encontraron clínicas",
+  "discoveryClinicsEmptyMessage": "No hay clínicas verificadas disponibles en este momento.",
+  "clinicBookingCta": "Reservar",
+  "clinicBookingSummaryClinic": "Clínica",
+  "clinicBookingSummaryService": "Servicio",
+  "clinicMembershipsTitle": "Afiliaciones a clínicas",
+  "clinicMembershipsEmpty": "Sin invitaciones ni afiliaciones en este momento.",
+  "clinicMembershipsInvitations": "Invitaciones",
+  "clinicMembershipsActive": "Afiliaciones activas",
+  "clinicMembershipsAccept": "Aceptar",
+  "clinicMembershipsRefuse": "Rechazar",
+  "clinicMembershipsDetach": "Solicitar desvinculación",
+  "clinicMembershipsDetachPending": "Desvinculación pendiente de aprobación",
+  "clinicMembershipsVisibleOnProfile": "Visible en mi perfil público",
+  "clinicMembershipsLoadError": "No se pueden cargar las afiliaciones.",
+  "clinicMembershipsActionError": "Acción fallida. Inténtalo de nuevo.",
+  "appointmentDetailClinicBooking": "Reserva en clínica",
+  "appointmentDetailClinicService": "Servicio",
+  "appointmentDetailAwaitingSpecialist": "Esperando la asignación de un profesional por parte de la clínica.",
+  "appointmentDetailAssignedSpecialist": "Profesional asignado",
+  "appointmentReviewSession": "Reseña de consulta",
+  "appointmentReviewClinicProfile": "Reseña de clínica",
+  "reviewClinicProfileCreateTitle": "Reseña de clínica",
+  "reviewClinicAlreadySubmitted": "Ya has dejado una reseña para esta clínica.",
+  "painLocalizationTitle": "¿Dónde te duele?",
+  "painLocalizationDownloadProgress": "Descargando modelo ({percent}%)",
+  "@painLocalizationDownloadProgress": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "painLocalizationOfflineTitle": "Modelo no disponible sin conexión",
+  "painLocalizationOfflineMessage": "Conéctate para descargar el modelo 3D (aprox. 12 MB). Luego la herramienta funcionará sin red.",
+  "painLocalizationRetry": "Reintentar",
+  "painLocalizationWebGlTitle": "Visualización 3D no disponible",
+  "painLocalizationWebGlMessage": "Este dispositivo no puede mostrar el modelo 3D. La función está oculta aquí.",
+  "painLocalizationErrorTitle": "No se puede cargar el modelo",
+  "painLocalizationErrorMessage": "La descarga falló. Inténtalo de nuevo.",
+  "painLocalizationCardSubtitle": "Localiza la zona en un modelo 3D. Herramienta exploratoria: nada se envía a un médico.",
+  "painLocalizationChooserTitle": "¿Qué modelo mostrar?",
+  "painLocalizationChooserDisclaimer": "La elección del cuerpo es tuya; no se deduce de tu perfil. Esta herramienta es exploratoria: la selección permanece en el dispositivo y no se envía a un médico.",
+  "painLocalizationChooserMale": "Masculino",
+  "painLocalizationChooserFemale": "Femenino",
+  "painLocalizationSwitchBody": "Cambiar modelo",
+  "painLocalizationConfirm": "Confirmar",
+  "painLocalizationCancel": "Cancelar",
+  "painLocalizationClearAll": "Limpiar todo",
+  "painLocalizationClearAllTitle": "¿Limpiar selecciones?",
+  "painLocalizationClearAllMessage": "Todas las zonas indicadas serán eliminadas de este dispositivo.",
+  "painLocalizationEmpty": "Toca el modelo para explorar una zona y agrégala si es necesario. Nada se envía a un médico.",
+  "painLocalizationAddSelection": "Agregar esta zona",
+  "painLocalizationSelectionAlreadyAdded": "Esta zona ya está en tu lista",
+  "painLocalizationRemoveChip": "Eliminar",
+  "painLocalizationConfirmedSnackbar": "Selecciones guardadas en este dispositivo.",
+  "anamnesisTitle": "Cuestionario",
+  "anamnesisLoading": "Cargando cuestionario…",
+  "anamnesisError": "No se puede cargar el cuestionario.",
+  "anamnesisRetry": "Reintentar",
+  "anamnesisContinue": "Continuar",
+  "anamnesisDone": "Finalizar",
+  "anamnesisCompleteTitle": "Cuestionario completado",
+  "anamnesisCompleteMessage": "Tus respuestas han sido guardadas.",
+  "anamnesisOfflineQueued": "Respuesta guardada localmente — se sincronizará al reconectarse.",
+  "anamnesisDisclaimer": "Ayuda con la orientación — no es un diagnóstico médico.",
+  "anamnesisUnsupportedQuestion": "Tipo de pregunta no compatible.",
+  "anamnesisDurationValue": "Duración",
+  "anamnesisProgressOpen": "{answered} pregunta(s) respondida(s)",
+  "@anamnesisProgressOpen": {
+    "placeholders": {
+      "answered": {
+        "type": "int"
+      }
+    }
+  },
+  "anamnesisProgressCount": "{answered} / {total}",
+  "anamnesisScoreLabel": "Puntuación de relevancia regenerativa",
+  "anamnesisFollowUpTitle": "Preguntas de seguimiento",
+  "anamnesisFollowUpHint": "Algunos detalles más para afinar la orientación — no es un diagnóstico.",
+  "anamnesisFollowUpLoading": "Preparando preguntas de seguimiento…",
+  "anamnesisFollowUpProgress": "Pregunta {current} / {total}",
+  "@anamnesisFollowUpProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "anamnesisDocsCta": "Agregar documento (RM / radiografía / análisis)",
+  "anamnesisDocsTitle": "Documentos de examen",
+  "anamnesisDocsHint": "Adjunta un informe de imagen o biología. La extracción lee los datos clave — sin interpretación clínica.",
+  "anamnesisDocsCamera": "Foto",
+  "anamnesisDocsGallery": "Galería",
+  "anamnesisDocsPickFile": "Archivo",
+  "anamnesisDocsEmpty": "Sin documentos para esta sesión.",
+  "anamnesisDocsUntitled": "Documento",
+  "anamnesisDocsReview": "Revisar",
+  "anamnesisDocsReviewTitle": "Extracción OCR",
+  "anamnesisDocsReviewHint": "Corrige si es necesario. El texto OCR bruto nunca se sobrescribe.",
+  "anamnesisDocsStatusQueued": "En cola",
+  "anamnesisDocsStatusProcessing": "Extrayendo…",
+  "anamnesisDocsStatusExtracted": "Extraído — a revisar",
+  "anamnesisDocsStatusFailed": "Extracción fallida",
+  "anamnesisDocsFieldExamType": "Tipo de examen",
+  "anamnesisDocsFieldExamDate": "Fecha del examen",
+  "anamnesisDocsFieldBodyRegion": "Región corporal",
+  "anamnesisDocsFieldFacility": "Centro",
+  "anamnesisDocsFieldFindings": "Hallazgos clave (uno por línea)",
+  "anamnesisDocsFieldNotes": "Notas",
+  "anamnesisDocsRawOcr": "Texto OCR bruto",
+  "anamnesisDocsSaveCorrections": "Guardar correcciones",
+  "anamnesisDocsCorrectionsSaved": "Correcciones guardadas.",
+  "anamnesisUrgenceTitle": "Urgencia — consulta de inmediato",
+  "anamnesisUrgenceFallback": "Se detectaron señales de alerta. Acude a urgencias o llama a servicios de emergencia de inmediato. Este mensaje no es un diagnóstico.",
+  "anamnesisUrgenceNumbersLabel": "Números de emergencia",
+  "anamnesisUrgenceAck": "Entendido",
+  "anamnesisRegenerativeTitle": "Orientación regenerativa",
+  "anamnesisRegenerativeMessage": "Tu camino puede continuar hacia una evaluación regenerativa personalizada.",
+  "anamnesisParcoursCta": "Generar mi evaluación",
+  "anamnesisParcoursSoon": "Generando evaluación…",
+  "bilanListTitle": "Mi evaluación",
+  "bilanDetailTitle": "Evaluación detallada",
+  "bilanLoadError": "No se puede cargar la evaluación.",
+  "bilanListEmpty": "Sin evaluaciones aún.",
+  "bilanListItemTitle": "Zona {zone}",
+  "@bilanListItemTitle": {
+    "placeholders": {
+      "zone": {
+        "type": "String"
+      }
+    }
+  },
+  "bilanListItemSubtitle": "Puntuación {score} % · {date}",
+  "@bilanListItemSubtitle": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      },
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  },
+  "bilanScoreLabel": "Puntuación de relevancia: {score} %",
+  "@bilanScoreLabel": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "bilanSummarySection": "Resumen",
+  "bilanOrientationSection": "Orientación",
+  "bilanExportPdf": "Exportar PDF",
+  "bilanPdfOpenError": "No se puede abrir el PDF.",
+  "bilanTransmitCta": "Enviar al especialista",
+  "bilanTransmitTitle": "Transmisión de evaluación",
+  "bilanTransmitHelp": "Introduce el identificador del especialista destinatario (UUID directory.specialists).",
+  "bilanTransmitSpecialistId": "ID del especialista",
+  "bilanTransmitSpecialistRequired": "El identificador del especialista es obligatorio.",
+  "bilanTransmitConfirm": "Enviar",
+  "bilanTransmitSuccess": "Evaluación enviada al especialista.",
+  "profileBilanTile": "Mi evaluación",
+  "referralMatchesTitle": "Especialistas recomendados",
+  "referralMatchesEmpty": "Sin especialistas recomendados en este momento. Inténtalo de nuevo tras la validación por conserjería.",
+  "referralMatchScore": "Relevancia {score} %",
+  "@referralMatchScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "referralMatchSpecialistFallback": "Especialista",
+  "referralLoadError": "No se pueden cargar las recomendaciones.",
+  "referralSelectSuccess": "Especialista seleccionado — puedes reservar una cita.",
+  "profileCoachingTile": "Mi coaching",
+  "bilanCoachingCta": "Mi coaching biológico",
+  "coachingListTitle": "Mi coaching",
+  "coachingPlanTitle": "Plan de coaching",
+  "coachingLoadError": "No se puede cargar el coaching.",
+  "coachingListEmpty": "Sin planes de coaching aún.",
+  "coachingGenerating": "Generando plan…",
+  "coachingListItemTitle": "Sesión {sessionId}",
+  "@coachingListItemTitle": {
+    "placeholders": {
+      "sessionId": {
+        "type": "String"
+      }
+    }
+  },
+  "coachingListItemSubtitle": "Objetivo de hidratación {goalMl} ml · {date}",
+  "@coachingListItemSubtitle": {
+    "placeholders": {
+      "goalMl": {
+        "type": "int"
+      },
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
+    }
+  },
+  "coachingProgressLabel": "Optimización biológica",
+  "coachingProgressError": "No se puede cargar el progreso.",
+  "coachingHydrationTitle": "Hidratación",
+  "coachingHydrationError": "No se puede cargar la hidratación.",
+  "coachingHydrationMlGoal": "/ {goalMl} ml",
+  "@coachingHydrationMlGoal": {
+    "placeholders": {
+      "goalMl": {
+        "type": "int"
+      }
+    }
+  },
+  "coachingHydrationAdd": "+ {amountMl} ml",
+  "@coachingHydrationAdd": {
+    "placeholders": {
+      "amountMl": {
+        "type": "int"
+      }
+    }
+  },
+  "coachingHydrationLogged": "Hidratación registrada.",
+  "coachingSleepTitle": "Sueño",
+  "coachingSleepError": "No se puede cargar el sueño.",
+  "coachingSleepEmpty": "Sin registros recientes.",
+  "coachingSleepHoursLabel": "Duración: {hours} h",
+  "@coachingSleepHoursLabel": {
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      }
+    }
+  },
+  "coachingSleepQualityLabel": "Calidad (1 a 5)",
+  "coachingSleepLogCta": "Registrar noche",
+  "coachingSleepLogged": "Sueño registrado.",
+  "coachingSleepLastEntry": "Último: {date} — {hours} h, calidad {quality}/5",
+  "@coachingSleepLastEntry": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "double"
+      },
+      "quality": {
+        "type": "int"
+      }
+    }
+  },
+  "coachingSectionNutrition": "Nutrición",
+  "coachingSectionMobility": "Movilidad",
+  "coachingSectionPosture": "Postura",
+  "specialistIncomingBilansTab": "Evaluaciones",
+  "specialistIncomingBilansEmpty": "Sin evaluaciones entrantes.",
+  "specialistIncomingBilansError": "No se pueden cargar las evaluaciones entrantes.",
+  "specialistIncomingBilanItem": "Evaluación {id}",
+  "@specialistIncomingBilanItem": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "specialistIncomingBilanDetailTitle": "Evaluación entrante",
+  "specialistIncomingBilanMarkReviewed": "Marcar como revisado",
+  "specialistIncomingBilanReviewed": "Evaluación marcada como revisada.",
+  "specialistIncomingBilanOpenAgenda": "Abrir agenda",
+  "freemiumUnlockCta": "Desbloquear",
+  "freemiumUnlockSuccess": "Contenido desbloqueado con éxito.",
+  "freemiumUnlockFailed": "El pago falló.",
+  "freemiumAmountLabel": "{amount} DZD (sandbox)",
+  "@freemiumAmountLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "freemiumBilanTitle": "Evaluación detallada",
+  "freemiumBilanBody": "Accede a las secciones completas, documentos y exportación PDF.",
+  "freemiumBilanPdfCta": "Desbloquear PDF",
+  "freemiumCoachingTitle": "Coaching premium",
+  "freemiumCoachingBody": "Desbloquea el plan personalizado y los rastreadores diarios.",
+  "@anamnesisProgressCount": {
+    "placeholders": {
+      "answered": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
+}

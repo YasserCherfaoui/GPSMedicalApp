@@ -158,7 +158,7 @@ class _AuthStringsDelegate extends LocalizationsDelegate<AuthStrings> {
 
   @override
   Future<AuthStrings> load(Locale locale) async {
-    const supportedLanguageCodes = ['ar', 'ber', 'fr'];
+    const supportedLanguageCodes = ['ar', 'ber', 'fr', 'en', 'es', 'it', 'de', 'nl', 'ru', 'pt'];
     final resolvedLocale = supportedLanguageCodes.contains(locale.languageCode)
         ? locale
         : const Locale('fr');
