@@ -2865,4 +2865,269 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get freemiumCoachingBody =>
       'Unlock the personalised plan and daily trackers.';
+
+  @override
+  String get alreadyHaveAccount => 'У меня уже есть аккаунт';
+
+  @override
+  String get needHelp => 'Нужна помощь?';
+
+  @override
+  String get viewGuide => 'Открыть руководство';
+
+  @override
+  String get welcomeHeroGpsLabel => 'МЕДИЦИНСКИЙ GPS';
+
+  @override
+  String get welcomeHeroGpsCaption => 'Оптимальная близость';
+
+  @override
+  String get welcomeHeroRecordsLabel => 'КАРТЫ';
+
+  @override
+  String get welcomeHeroRecordsCaption => 'Цифровое здоровье';
+
+  @override
+  String get welcomeHeroAnalysisTitle => 'Умный анализ';
+
+  @override
+  String get welcomeHeroAnalysisCaption => 'Диагностика в реальном времени';
+
+  @override
+  String onboardingSmartTitle(String brand) {
+    return 'Ваш умный $brand';
+  }
+
+  @override
+  String onboardingSmartBody(String brand) {
+    return 'Уверенно ориентируйтесь в системе здравоохранения Алжира. $brand использует ИИ, чтобы направить вас к лучшей помощи и следить за вашим самочувствием в реальном времени.';
+  }
+
+  @override
+  String get onboardingFeatureGuidanceTitle => 'Экспертное сопровождение';
+
+  @override
+  String get onboardingFeatureGuidanceBody =>
+      'Найдите подходящих специалистов по всему Алжиру.';
+
+  @override
+  String get onboardingFeatureMonitoringTitle => 'ИИ-мониторинг';
+
+  @override
+  String get onboardingFeatureMonitoringBody =>
+      'Умное отслеживание ваших показателей здоровья.';
+
+  @override
+  String get onboardingStepPainTitle => 'Определите место боли';
+
+  @override
+  String get onboardingStepPainBody => 'Точно укажите беспокоящие вас зоны.';
+
+  @override
+  String get onboardingStepScreeningTitle => 'Умный скрининг';
+
+  @override
+  String get onboardingStepScreeningBody =>
+      'Наш ИИ анализирует ваши симптомы и документы.';
+
+  @override
+  String get onboardingStepPrepareTitle => 'Подготовьте организм';
+
+  @override
+  String get onboardingStepPrepareBody =>
+      'Получите персональные советы перед приёмом.';
+
+  @override
+  String get onboardingStepExpertTitle => 'Встретьтесь со специалистом';
+
+  @override
+  String get onboardingStepExpertBody => 'Запишитесь к нужному специалисту.';
+
+  @override
+  String get onboardingBadgeHosting => 'Локальный хостинг';
+
+  @override
+  String get onboardingBadgeEncryption => 'Шифрование';
+
+  @override
+  String get onboardingBadgeDoctors => 'Проверенные врачи';
+
+  @override
+  String get onboardingBadgeDoctorsSubtitle => 'Аккредитованы государством';
+
+  @override
+  String get onboardingTrustHosting =>
+      'Локальный хостинг с сертификацией ANPDP';
+
+  @override
+  String get onboardingTrustEncryption => 'Сквозное шифрование';
+
+  @override
+  String get onboardingTrustDoctors => 'Проверенные и аккредитованные врачи';
+
+  @override
+  String get securedLabel => 'Безопасно';
+
+  @override
+  String get instantLabel => 'Мгновенно';
+
+  @override
+  String get onboardingHeroGuidanceTitle => 'Умная навигация';
+
+  @override
+  String get onboardingHeroGuidanceSubtitle => 'ИИ + медицинская сеть Алжира';
+
+  @override
+  String get onboardingHeroSampleDoctorName => 'Д-р Карим Б.';
+
+  @override
+  String get onboardingHeroSampleDoctorSpecialty => 'Кардиология';
+
+  @override
+  String get onboardingHeroSampleDoctorRating => '4,9';
+
+  @override
+  String get onboardingHeroAiStatusLabel => 'СТАТУС ИИ';
+
+  @override
+  String get onboardingHeroAiStatusValue => 'Анализ активен';
+
+  @override
+  String get onboardingHeroPathTitle => 'Ваш маршрут';
+
+  @override
+  String get onboardingHeroPathSteps => 'Боль → Анализ → Специалист';
+
+  @override
+  String get orSeparator => 'ИЛИ';
+
+  @override
+  String get signInWithBiometrics => 'Вход по биометрии';
+
+  @override
+  String get notRegisteredYet => 'Ещё не зарегистрированы?';
+
+  @override
+  String get authToastTitle => 'Аутентификация';
+
+  @override
+  String get ninVisualGuideLabel => 'ВИЗУАЛЬНАЯ ПОДСКАЗКА';
+
+  @override
+  String get ninVisualGuideBody =>
+      'NIN находится в правом верхнем углу биометрического удостоверения.';
+
+  @override
+  String get ninFieldLabel => 'NIN';
+
+  @override
+  String get ninDigitsCount => '18 ЦИФР';
+
+  @override
+  String get ninWhyLink => 'Зачем нужен NIN?';
+
+  @override
+  String get passwordEncryptionNotice =>
+      'Сквозное шифрование в соответствии с ANPDP';
+
+  @override
+  String get passwordStrengthLabel => 'Надёжность пароля:';
+
+  @override
+  String get passwordStrengthWeak => 'Слабый';
+
+  @override
+  String get passwordStrengthMedium => 'Средний';
+
+  @override
+  String get passwordStrengthStrong => 'Надёжный';
+
+  @override
+  String get passwordRuleMinLength => 'Не менее 10 символов';
+
+  @override
+  String get passwordRuleUppercase => 'Одна заглавная буква';
+
+  @override
+  String get passwordRuleDigit => 'Одна цифра';
+
+  @override
+  String get passwordRuleSpecial => 'Один специальный символ';
+
+  @override
+  String get consentHealthSubtitle =>
+      'Необходимо для работы приложения и ведения вашей медицинской карты.';
+
+  @override
+  String get consentDataSubtitle =>
+      'Разрешить безопасную обработку и хранение ваших клинических данных.';
+
+  @override
+  String get consentMarketingSubtitle =>
+      'Получайте персональные советы по биокоучингу и новости о здоровье.';
+
+  @override
+  String get otpHelpBody =>
+      'Если код не пришёл, проверьте подключение к сети или обратитесь в поддержку.';
+
+  @override
+  String get biometricEnableTitle => 'Включите вход по биометрии';
+
+  @override
+  String get biometricEnableSubtitle =>
+      'Входите быстрее и безопасно с помощью Face ID или отпечатка пальца.';
+
+  @override
+  String get successFeatureNavigationLabel => 'НАВИГАЦИЯ';
+
+  @override
+  String get successFeatureNavigationBody => 'Находите клиники';
+
+  @override
+  String get successFeatureAppointmentsLabel => 'ЗАПИСИ';
+
+  @override
+  String get successFeatureAppointmentsBody => 'Простое управление';
+
+  @override
+  String get profilePlaceholderTitle => 'Профиль — заглушка';
+
+  @override
+  String get profilePlaceholderSession => 'Активная сессия (токен скрыт).';
+
+  @override
+  String profilePlaceholderRole(String role) {
+    return 'Роль: $role';
+  }
+
+  @override
+  String get profilePlaceholderSimulateExpiry =>
+      'Смоделировать истечение сессии';
+
+  @override
+  String get errorRegistrationIncomplete =>
+      'Данные регистрации заполнены не полностью.';
+
+  @override
+  String get errorEmptyResponse => 'Пустой ответ сервера.';
+
+  @override
+  String get errorConflict =>
+      'Возник конфликт (возможно, такой объект уже существует).';
+
+  @override
+  String get errorInvalidInput => 'Указанные данные некорректны.';
+
+  @override
+  String get errorUnexpected => 'Произошла непредвиденная ошибка.';
+
+  @override
+  String get errorPasswordUpdatedSignInAgain =>
+      'Пароль обновлён. Войдите с новым паролем.';
+
+  @override
+  String get painSelectionMissing => 'Не выбрана зона боли.';
+
+  @override
+  String get specialistPrescriptionSubmitError => 'Не удалось создать рецепт.';
 }

@@ -1314,5 +1314,107 @@
         "type": "int"
       }
     }
-  }
+  },
+  "alreadyHaveAccount": "Ich habe schon ein Konto",
+  "needHelp": "Brauchen Sie Hilfe?",
+  "viewGuide": "Leitfaden ansehen",
+  "welcomeHeroGpsLabel": "MEDIZIN-GPS",
+  "welcomeHeroGpsCaption": "Optimierte Nähe",
+  "welcomeHeroRecordsLabel": "AKTEN",
+  "welcomeHeroRecordsCaption": "Digitale Gesundheit",
+  "welcomeHeroAnalysisTitle": "Smarte Analyse",
+  "welcomeHeroAnalysisCaption": "Diagnose in Echtzeit",
+  "onboardingSmartTitle": "Ihr intelligentes {brand}",
+  "@onboardingSmartTitle": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSmartBody": "Bewegen Sie sich souverän durch die algerische Gesundheitslandschaft. {brand} nutzt KI, um Sie zur besten Versorgung zu führen und Ihre Vitalität in Echtzeit zu überwachen.",
+  "@onboardingSmartBody": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingFeatureGuidanceTitle": "Fachkundige Beratung",
+  "onboardingFeatureGuidanceBody": "Finden Sie überall in Algerien die passenden Fachärzte.",
+  "onboardingFeatureMonitoringTitle": "KI-Monitoring",
+  "onboardingFeatureMonitoringBody": "Intelligente Überwachung Ihrer Vitalwerte.",
+  "onboardingStepPainTitle": "Lokalisieren Sie Ihren Schmerz",
+  "onboardingStepPainBody": "Bestimmen Sie Ihre Beschwerdezonen genau.",
+  "onboardingStepScreeningTitle": "Intelligentes Screening",
+  "onboardingStepScreeningBody": "Unsere KI analysiert Ihre Symptome und Dokumente.",
+  "onboardingStepPrepareTitle": "Bereiten Sie Ihren Körper vor",
+  "onboardingStepPrepareBody": "Erhalten Sie persönliche Tipps vor dem Termin.",
+  "onboardingStepExpertTitle": "Treffen Sie den Experten",
+  "onboardingStepExpertBody": "Buchen Sie einen Termin beim passenden Facharzt.",
+  "onboardingBadgeHosting": "Lokales Hosting",
+  "onboardingBadgeEncryption": "Verschlüsselung",
+  "onboardingBadgeDoctors": "Geprüfte Ärzte",
+  "onboardingBadgeDoctorsSubtitle": "Staatlich zugelassen",
+  "onboardingTrustHosting": "ANPDP-zertifiziertes lokales Hosting",
+  "onboardingTrustEncryption": "Ende-zu-Ende-Verschlüsselung",
+  "onboardingTrustDoctors": "Geprüfte und zugelassene Ärzte",
+  "securedLabel": "Sicher",
+  "instantLabel": "Sofort",
+  "onboardingHeroGuidanceTitle": "Intelligente Orientierung",
+  "onboardingHeroGuidanceSubtitle": "KI + algerisches Ärztenetz",
+  "onboardingHeroSampleDoctorName": "Dr. Karim B.",
+  "onboardingHeroSampleDoctorSpecialty": "Kardiologie",
+  "onboardingHeroSampleDoctorRating": "4,9",
+  "onboardingHeroAiStatusLabel": "KI-STATUS",
+  "onboardingHeroAiStatusValue": "Analyse aktiv",
+  "onboardingHeroPathTitle": "Ihr Behandlungsweg",
+  "onboardingHeroPathSteps": "Schmerz → Analyse → Facharzt",
+  "orSeparator": "ODER",
+  "signInWithBiometrics": "Mit Biometrie anmelden",
+  "notRegisteredYet": "Noch nicht registriert?",
+  "authToastTitle": "Authentifizierung",
+  "ninVisualGuideLabel": "VISUELLE ANLEITUNG",
+  "ninVisualGuideBody": "Die NIN steht oben rechts auf Ihrem biometrischen Ausweis.",
+  "ninFieldLabel": "NIN",
+  "ninDigitsCount": "18 ZIFFERN",
+  "ninWhyLink": "Warum die NIN?",
+  "passwordEncryptionNotice": "ANPDP-konforme Ende-zu-Ende-Verschlüsselung",
+  "passwordStrengthLabel": "Passwortstärke:",
+  "passwordStrengthWeak": "Schwach",
+  "passwordStrengthMedium": "Mittel",
+  "passwordStrengthStrong": "Stark",
+  "passwordRuleMinLength": "Mindestens 10 Zeichen",
+  "passwordRuleUppercase": "Ein Großbuchstabe",
+  "passwordRuleDigit": "Eine Ziffer",
+  "passwordRuleSpecial": "Ein Sonderzeichen",
+  "consentHealthSubtitle": "Erforderlich für den Betrieb der App und die Führung Ihrer Krankenakte.",
+  "consentDataSubtitle": "Sichere Verarbeitung und Speicherung Ihrer klinischen Daten erlauben.",
+  "consentMarketingSubtitle": "Erhalten Sie persönliche Bio-Coaching-Tipps und Gesundheitsnews.",
+  "otpHelpBody": "Wenn Sie den Code nicht erhalten, prüfen Sie Ihre Netzverbindung oder wenden Sie sich an unseren Support.",
+  "biometricEnableTitle": "Biometrische Anmeldung aktivieren",
+  "biometricEnableSubtitle": "Melden Sie sich schneller und sicher mit Face ID oder Ihrem Fingerabdruck an.",
+  "successFeatureNavigationLabel": "NAVIGATION",
+  "successFeatureNavigationBody": "Kliniken finden",
+  "successFeatureAppointmentsLabel": "TERMINE",
+  "successFeatureAppointmentsBody": "Einfache Verwaltung",
+  "profilePlaceholderTitle": "Profil — Platzhalter",
+  "profilePlaceholderSession": "Aktive Sitzung (Token verborgen).",
+  "profilePlaceholderRole": "Rolle: {role}",
+  "@profilePlaceholderRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePlaceholderSimulateExpiry": "Sitzungsablauf simulieren",
+  "errorRegistrationIncomplete": "Die Registrierungsdaten sind unvollständig.",
+  "errorEmptyResponse": "Leere Antwort vom Server.",
+  "errorConflict": "Es ist ein Konflikt aufgetreten (diese Ressource existiert möglicherweise schon).",
+  "errorInvalidInput": "Die angegebenen Daten sind ungültig.",
+  "errorUnexpected": "Ein unerwarteter Fehler ist aufgetreten.",
+  "errorPasswordUpdatedSignInAgain": "Passwort aktualisiert. Melden Sie sich mit dem neuen Passwort an.",
+  "painSelectionMissing": "Die Auswahl der Schmerzzone fehlt.",
+  "specialistPrescriptionSubmitError": "Das Rezept konnte nicht erstellt werden."
 }

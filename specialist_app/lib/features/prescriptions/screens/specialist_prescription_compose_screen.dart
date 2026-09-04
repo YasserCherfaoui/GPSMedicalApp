@@ -151,7 +151,11 @@ class _SpecialistPrescriptionComposeScreenState
     } on PrescriptionSubmitException catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message)),
+        SnackBar(
+          content: Text(
+            e.message ?? l10n.specialistPrescriptionSubmitError,
+          ),
+        ),
       );
     } finally {
       if (mounted) setState(() => _submitting = false);

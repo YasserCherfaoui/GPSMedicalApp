@@ -26,6 +26,11 @@ class AuthStrings {
   String get skip => _localizations.skip;
   String get next => _localizations.next;
   String get start => _localizations.start;
+  String get back => _localizations.bookingBack;
+  String get needHelp => _localizations.needHelp;
+  String get viewGuide => _localizations.viewGuide;
+  String get securedLabel => _localizations.securedLabel;
+  String get instantLabel => _localizations.instantLabel;
 
   String onboardingTitle(int step) => switch (step) {
     1 => _localizations.onboardingTitle1,
@@ -41,10 +46,79 @@ class AuthStrings {
     _ => '',
   };
 
+  String onboardingSmartTitle(String brand) =>
+      _localizations.onboardingSmartTitle(brand);
+
+  String onboardingSmartBody(String brand) =>
+      _localizations.onboardingSmartBody(brand);
+
+  String get onboardingFeatureGuidanceTitle =>
+      _localizations.onboardingFeatureGuidanceTitle;
+  String get onboardingFeatureGuidanceBody =>
+      _localizations.onboardingFeatureGuidanceBody;
+  String get onboardingFeatureMonitoringTitle =>
+      _localizations.onboardingFeatureMonitoringTitle;
+  String get onboardingFeatureMonitoringBody =>
+      _localizations.onboardingFeatureMonitoringBody;
+  String get onboardingStepPainTitle => _localizations.onboardingStepPainTitle;
+  String get onboardingStepPainBody => _localizations.onboardingStepPainBody;
+  String get onboardingStepScreeningTitle =>
+      _localizations.onboardingStepScreeningTitle;
+  String get onboardingStepScreeningBody =>
+      _localizations.onboardingStepScreeningBody;
+  String get onboardingStepPrepareTitle =>
+      _localizations.onboardingStepPrepareTitle;
+  String get onboardingStepPrepareBody =>
+      _localizations.onboardingStepPrepareBody;
+  String get onboardingStepExpertTitle =>
+      _localizations.onboardingStepExpertTitle;
+  String get onboardingStepExpertBody =>
+      _localizations.onboardingStepExpertBody;
+  String get onboardingBadgeHosting => _localizations.onboardingBadgeHosting;
+  String get onboardingBadgeEncryption =>
+      _localizations.onboardingBadgeEncryption;
+  String get onboardingBadgeDoctors => _localizations.onboardingBadgeDoctors;
+  String get onboardingBadgeDoctorsSubtitle =>
+      _localizations.onboardingBadgeDoctorsSubtitle;
+  String get onboardingTrustHosting => _localizations.onboardingTrustHosting;
+  String get onboardingTrustEncryption =>
+      _localizations.onboardingTrustEncryption;
+  String get onboardingTrustDoctors => _localizations.onboardingTrustDoctors;
+  String get onboardingHeroGuidanceTitle =>
+      _localizations.onboardingHeroGuidanceTitle;
+  String get onboardingHeroGuidanceSubtitle =>
+      _localizations.onboardingHeroGuidanceSubtitle;
+  String get onboardingHeroSampleDoctorName =>
+      _localizations.onboardingHeroSampleDoctorName;
+  String get onboardingHeroSampleDoctorSpecialty =>
+      _localizations.onboardingHeroSampleDoctorSpecialty;
+  String get onboardingHeroSampleDoctorRating =>
+      _localizations.onboardingHeroSampleDoctorRating;
+  String get onboardingHeroAiStatusLabel =>
+      _localizations.onboardingHeroAiStatusLabel;
+  String get onboardingHeroAiStatusValue =>
+      _localizations.onboardingHeroAiStatusValue;
+  String get onboardingHeroPathTitle => _localizations.onboardingHeroPathTitle;
+  String get onboardingHeroPathSteps => _localizations.onboardingHeroPathSteps;
+
   String get welcomeTitle => _localizations.welcomeTitle;
   String get welcomeSubtitle => _localizations.welcomeSubtitle;
   String get createAccount => _localizations.createAccount;
+  String get alreadyHaveAccount => _localizations.alreadyHaveAccount;
+  String get notRegisteredYet => _localizations.notRegisteredYet;
   String get signIn => _localizations.signIn;
+  String get signInWithBiometrics => _localizations.signInWithBiometrics;
+  String get orSeparator => _localizations.orSeparator;
+  String get authToastTitle => _localizations.authToastTitle;
+  String get welcomeHeroGpsLabel => _localizations.welcomeHeroGpsLabel;
+  String get welcomeHeroGpsCaption => _localizations.welcomeHeroGpsCaption;
+  String get welcomeHeroRecordsLabel => _localizations.welcomeHeroRecordsLabel;
+  String get welcomeHeroRecordsCaption =>
+      _localizations.welcomeHeroRecordsCaption;
+  String get welcomeHeroAnalysisTitle =>
+      _localizations.welcomeHeroAnalysisTitle;
+  String get welcomeHeroAnalysisCaption =>
+      _localizations.welcomeHeroAnalysisCaption;
   String get loginTitle => _localizations.loginTitle;
   String get loginSubtitle => _localizations.loginSubtitle;
   String get phoneLabel => _localizations.phoneLabel;
@@ -56,6 +130,11 @@ class AuthStrings {
   String get ninTitle => _localizations.ninTitle;
   String get ninSubtitle => _localizations.ninSubtitle;
   String get ninHint => _localizations.ninHint;
+  String get ninFieldLabel => _localizations.ninFieldLabel;
+  String get ninDigitsCount => _localizations.ninDigitsCount;
+  String get ninVisualGuideLabel => _localizations.ninVisualGuideLabel;
+  String get ninVisualGuideBody => _localizations.ninVisualGuideBody;
+  String get ninWhyLink => _localizations.ninWhyLink;
   String get phoneTitle => _localizations.phoneTitle;
   String get phoneSubtitle => _localizations.phoneSubtitle;
   String get phoneFormatHint => _localizations.phoneFormatHint;
@@ -69,24 +148,50 @@ class AuthStrings {
 
   String get resendCode => _localizations.resendCode;
 
-  String resendIn(int seconds) => _localizations.resendIn(seconds.toString());
+  String resendIn(int seconds) =>
+      _localizations.resendIn(seconds.toString().padLeft(2, '0'));
 
+  String get otpHelpBody => _localizations.otpHelpBody;
   String get verify => _localizations.verify;
   String get passwordTitle => _localizations.passwordTitle;
+  String get passwordEncryptionNotice =>
+      _localizations.passwordEncryptionNotice;
+  String get passwordStrengthLabel => _localizations.passwordStrengthLabel;
+  String get passwordStrengthWeak => _localizations.passwordStrengthWeak;
+  String get passwordStrengthMedium => _localizations.passwordStrengthMedium;
+  String get passwordStrengthStrong => _localizations.passwordStrengthStrong;
+  String get passwordRuleMinLength => _localizations.passwordRuleMinLength;
+  String get passwordRuleUppercase => _localizations.passwordRuleUppercase;
+  String get passwordRuleDigit => _localizations.passwordRuleDigit;
+  String get passwordRuleSpecial => _localizations.passwordRuleSpecial;
   String get consentTitle => _localizations.consentTitle;
   String get consentSubtitle => _localizations.consentSubtitle;
   String get consentHealth => _localizations.consentHealth;
+  String get consentHealthSubtitle => _localizations.consentHealthSubtitle;
   String get consentData => _localizations.consentData;
+  String get consentDataSubtitle => _localizations.consentDataSubtitle;
   String get consentTerms => _localizations.consentTerms;
   String get consentMarketing => _localizations.consentMarketing;
+  String get consentMarketingSubtitle =>
+      _localizations.consentMarketingSubtitle;
   String get acceptTerms => _localizations.acceptTerms;
   String get createMyAccount => _localizations.createMyAccount;
   String get biometricTitle => _localizations.biometricTitle;
   String get biometricSubtitle => _localizations.biometricSubtitle;
+  String get biometricEnableTitle => _localizations.biometricEnableTitle;
+  String get biometricEnableSubtitle => _localizations.biometricEnableSubtitle;
   String get enable => _localizations.enable;
   String get later => _localizations.later;
   String get successTitle => _localizations.successTitle;
   String get successSubtitle => _localizations.successSubtitle;
+  String get successFeatureNavigationLabel =>
+      _localizations.successFeatureNavigationLabel;
+  String get successFeatureNavigationBody =>
+      _localizations.successFeatureNavigationBody;
+  String get successFeatureAppointmentsLabel =>
+      _localizations.successFeatureAppointmentsLabel;
+  String get successFeatureAppointmentsBody =>
+      _localizations.successFeatureAppointmentsBody;
   String get discoverApp => _localizations.discoverApp;
   String get forgotTitle => _localizations.forgotTitle;
   String get resetTitle => _localizations.resetTitle;
@@ -107,6 +212,24 @@ class AuthStrings {
   String get errorNetworkTimeout => _localizations.errorNetworkTimeout;
   String get errorNetworkConnection => _localizations.errorNetworkConnection;
   String get errorPasswordRequired => _localizations.errorPasswordRequired;
+  String get errorRegistrationIncomplete =>
+      _localizations.errorRegistrationIncomplete;
+  String get errorEmptyResponse => _localizations.errorEmptyResponse;
+  String get errorConflict => _localizations.errorConflict;
+  String get errorInvalidInput => _localizations.errorInvalidInput;
+  String get errorUnexpected => _localizations.errorUnexpected;
+  String get errorPasswordUpdatedSignInAgain =>
+      _localizations.errorPasswordUpdatedSignInAgain;
+
+  String get profileSignOut => _localizations.profileSignOut;
+  String get profilePlaceholderTitle => _localizations.profilePlaceholderTitle;
+  String get profilePlaceholderSession =>
+      _localizations.profilePlaceholderSession;
+  String get profilePlaceholderSimulateExpiry =>
+      _localizations.profilePlaceholderSimulateExpiry;
+
+  String profilePlaceholderRole(String role) =>
+      _localizations.profilePlaceholderRole(role);
 
   String get countryTitle => _localizations.countryTitle;
   String get countrySubtitle => _localizations.countrySubtitle;
@@ -158,7 +281,18 @@ class _AuthStringsDelegate extends LocalizationsDelegate<AuthStrings> {
 
   @override
   Future<AuthStrings> load(Locale locale) async {
-    const supportedLanguageCodes = ['ar', 'ber', 'fr', 'en', 'es', 'it', 'de', 'nl', 'ru', 'pt'];
+    const supportedLanguageCodes = [
+      'ar',
+      'ber',
+      'fr',
+      'en',
+      'es',
+      'it',
+      'de',
+      'nl',
+      'ru',
+      'pt',
+    ];
     final resolvedLocale = supportedLanguageCodes.contains(locale.languageCode)
         ? locale
         : const Locale('fr');

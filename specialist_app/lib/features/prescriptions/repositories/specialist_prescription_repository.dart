@@ -3,9 +3,11 @@ import 'package:dio/dio.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 class PrescriptionSubmitException implements Exception {
-  const PrescriptionSubmitException(this.message);
+  const PrescriptionSubmitException([this.message]);
 
-  final String message;
+  /// Server-provided detail, already user-readable. Null when the API gave no
+  /// usable message — call sites fall back to localized copy.
+  final String? message;
 }
 
 class SpecialistPrescriptionRepository {
@@ -41,9 +43,7 @@ class SpecialistPrescriptionRepository {
           ? data.map((k, v) => MapEntry(k.toString(), v))
           : null;
       final detail = map?['detail'] as String? ?? map?['title'] as String?;
-      throw PrescriptionSubmitException(
-        detail ?? 'Impossible de créer l\'ordonnance',
-      );
+      throw PrescriptionSubmitException(detail);
     }
   }
 }

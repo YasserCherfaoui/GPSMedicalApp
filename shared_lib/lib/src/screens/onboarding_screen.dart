@@ -89,11 +89,11 @@ class OnboardingScreen extends ConsumerWidget {
                     children: [
                       const SizedBox(height: GpsSpacing.md),
                       if (clamped == 1)
-                        _buildStep1(context)
+                        _buildStep1(context, strings)
                       else if (clamped == 2)
-                        _buildStep2(context)
+                        _buildStep2(context, strings)
                       else
-                        _buildStep3(context),
+                        _buildStep3(context, strings),
                       const SizedBox(height: GpsSpacing.xl),
                     ],
                   ),
@@ -109,7 +109,7 @@ class OnboardingScreen extends ConsumerWidget {
                         child: OutlinedButton(
                           onPressed: () =>
                               context.go(GpsRoutes.onboardingStep(clamped - 1)),
-                          child: const Text('Retour'),
+                          child: Text(strings.back),
                         ),
                       )
                     else
@@ -142,7 +142,7 @@ class OnboardingScreen extends ConsumerWidget {
   }
 
   // STEP 1: Welcome & Bento Intro
-  Widget _buildStep1(BuildContext context) {
+  Widget _buildStep1(BuildContext context, AuthStrings strings) {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Column(
@@ -152,7 +152,7 @@ class OnboardingScreen extends ConsumerWidget {
         const SizedBox(height: GpsSpacing.xl),
         // Title & Description
         Text(
-          'Votre Medora intelligent',
+          strings.onboardingSmartTitle(GpsBrand.name),
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
             color: colorScheme.onSurface,
@@ -161,7 +161,7 @@ class OnboardingScreen extends ConsumerWidget {
         ),
         const SizedBox(height: GpsSpacing.sm),
         Text(
-          "Naviguez sereinement dans le paysage médical algérien. ${GpsBrand.name} utilise l'IA pour vous guider vers les meilleurs soins et surveiller votre vitalité en temps réel.",
+          strings.onboardingSmartBody(GpsBrand.name),
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: colorScheme.onSurfaceVariant,
             height: 1.5,
@@ -177,8 +177,8 @@ class OnboardingScreen extends ConsumerWidget {
               child: _buildBentoCard(
                 context,
                 icon: Icons.explore_outlined,
-                title: 'Guidance Experte',
-                desc: 'Trouvez les spécialistes adaptés partout en Algérie.',
+                title: strings.onboardingFeatureGuidanceTitle,
+                desc: strings.onboardingFeatureGuidanceBody,
                 iconColor: colorScheme.primary,
                 bgColor: colorScheme.primaryContainer.withOpacity(0.1),
               ),
@@ -188,8 +188,8 @@ class OnboardingScreen extends ConsumerWidget {
               child: _buildBentoCard(
                 context,
                 icon: Icons.show_chart,
-                title: 'Monitoring IA',
-                desc: 'Surveillance intelligente de vos constantes de santé.',
+                title: strings.onboardingFeatureMonitoringTitle,
+                desc: strings.onboardingFeatureMonitoringBody,
                 iconColor: colorScheme.tertiary,
                 bgColor: colorScheme.tertiaryContainer.withOpacity(0.1),
               ),
@@ -262,36 +262,36 @@ class OnboardingScreen extends ConsumerWidget {
   }
 
   // STEP 2: How it works & Timeline
-  Widget _buildStep2(BuildContext context) {
+  Widget _buildStep2(BuildContext context, AuthStrings strings) {
     final colorScheme = Theme.of(context).colorScheme;
 
     final steps = [
       _TimelineItem(
         icon: Icons.accessibility_new,
-        title: 'Localisez votre douleur',
-        desc: "Identifiez précisément vos zones d'inconfort.",
+        title: strings.onboardingStepPainTitle,
+        desc: strings.onboardingStepPainBody,
       ),
       _TimelineItem(
         icon: Icons.assignment_outlined,
-        title: 'Dépistage intelligent',
-        desc: 'Notre IA analyse vos symptômes et documents.',
+        title: strings.onboardingStepScreeningTitle,
+        desc: strings.onboardingStepScreeningBody,
       ),
       _TimelineItem(
         icon: Icons.health_and_safety_outlined,
-        title: 'Préparez votre corps',
-        desc: 'Recevez des conseils personnalisés de pré-consultation.',
+        title: strings.onboardingStepPrepareTitle,
+        desc: strings.onboardingStepPrepareBody,
       ),
       _TimelineItem(
         icon: Icons.medical_services_outlined,
-        title: "Rencontrez l'expert",
-        desc: 'Prenez rendez-vous avec le bon spécialiste.',
+        title: strings.onboardingStepExpertTitle,
+        desc: strings.onboardingStepExpertBody,
       ),
     ];
 
     return Column(
       children: [
         Text(
-          'Comment ça fonctionne ?',
+          strings.onboardingTitle(2),
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
             color: colorScheme.onSurface,
@@ -382,7 +382,7 @@ class OnboardingScreen extends ConsumerWidget {
   }
 
   // STEP 3: Security & Trust
-  Widget _buildStep3(BuildContext context) {
+  Widget _buildStep3(BuildContext context, AuthStrings strings) {
     final colorScheme = Theme.of(context).colorScheme;
 
     return Column(
@@ -460,8 +460,8 @@ class OnboardingScreen extends ConsumerWidget {
                 child: _buildFloatingBadge(
                   context,
                   icon: Icons.public,
-                  title: 'Hébergement local',
-                  subtitle: 'Algérie',
+                  title: strings.onboardingBadgeHosting,
+                  subtitle: strings.countryAlgeria,
                 ),
               ),
               // Floating Badge 2: Encryption
@@ -471,8 +471,8 @@ class OnboardingScreen extends ConsumerWidget {
                 child: _buildFloatingBadge(
                   context,
                   icon: Icons.lock_outline,
-                  title: 'Chiffrement',
-                  subtitle: 'Sécurisé',
+                  title: strings.onboardingBadgeEncryption,
+                  subtitle: strings.securedLabel,
                 ),
               ),
               // Floating Badge 3: Doctors Verified
@@ -482,8 +482,8 @@ class OnboardingScreen extends ConsumerWidget {
                 child: _buildFloatingBadge(
                   context,
                   icon: Icons.verified_user,
-                  title: 'Médecins vérifiés',
-                  subtitle: "Agréés par l'État",
+                  title: strings.onboardingBadgeDoctors,
+                  subtitle: strings.onboardingBadgeDoctorsSubtitle,
                 ),
               ),
             ],
@@ -492,7 +492,7 @@ class OnboardingScreen extends ConsumerWidget {
         const SizedBox(height: GpsSpacing.xl),
         // Title
         Text(
-          'Vos données, protégées en Algérie',
+          strings.onboardingTitle(3),
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
             color: colorScheme.onSurface,
@@ -505,11 +505,11 @@ class OnboardingScreen extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: GpsSpacing.md),
           child: Column(
             children: [
-              _buildCheckRow(context, 'Hébergement local certifié ANPDP'),
+              _buildCheckRow(context, strings.onboardingTrustHosting),
               const SizedBox(height: GpsSpacing.md),
-              _buildCheckRow(context, 'Chiffrement de bout en bout'),
+              _buildCheckRow(context, strings.onboardingTrustEncryption),
               const SizedBox(height: GpsSpacing.md),
-              _buildCheckRow(context, 'Médecins vérifiés et agréés'),
+              _buildCheckRow(context, strings.onboardingTrustDoctors),
             ],
           ),
         ),

@@ -2865,4 +2865,270 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get freemiumCoachingBody =>
       'Unlock the personalised plan and daily trackers.';
+
+  @override
+  String get alreadyHaveAccount => 'Ik heb al een account';
+
+  @override
+  String get needHelp => 'Hulp nodig?';
+
+  @override
+  String get viewGuide => 'Bekijk de gids';
+
+  @override
+  String get welcomeHeroGpsLabel => 'MEDISCHE GPS';
+
+  @override
+  String get welcomeHeroGpsCaption => 'Geoptimaliseerde nabijheid';
+
+  @override
+  String get welcomeHeroRecordsLabel => 'DOSSIERS';
+
+  @override
+  String get welcomeHeroRecordsCaption => 'Digitale zorg';
+
+  @override
+  String get welcomeHeroAnalysisTitle => 'Slimme analyse';
+
+  @override
+  String get welcomeHeroAnalysisCaption => 'Diagnostiek in realtime';
+
+  @override
+  String onboardingSmartTitle(String brand) {
+    return 'Jouw slimme $brand';
+  }
+
+  @override
+  String onboardingSmartBody(String brand) {
+    return 'Navigeer met vertrouwen door het Algerijnse zorglandschap. $brand gebruikt AI om je naar de beste zorg te leiden en je vitaliteit in realtime te volgen.';
+  }
+
+  @override
+  String get onboardingFeatureGuidanceTitle => 'Deskundige begeleiding';
+
+  @override
+  String get onboardingFeatureGuidanceBody =>
+      'Vind de juiste specialisten in heel Algerije.';
+
+  @override
+  String get onboardingFeatureMonitoringTitle => 'AI-monitoring';
+
+  @override
+  String get onboardingFeatureMonitoringBody =>
+      'Slimme opvolging van je vitale waarden.';
+
+  @override
+  String get onboardingStepPainTitle => 'Lokaliseer je pijn';
+
+  @override
+  String get onboardingStepPainBody =>
+      'Bepaal precies waar je klachten zitten.';
+
+  @override
+  String get onboardingStepScreeningTitle => 'Slimme screening';
+
+  @override
+  String get onboardingStepScreeningBody =>
+      'Onze AI analyseert je symptomen en documenten.';
+
+  @override
+  String get onboardingStepPrepareTitle => 'Bereid je lichaam voor';
+
+  @override
+  String get onboardingStepPrepareBody =>
+      'Ontvang persoonlijk advies vóór je consult.';
+
+  @override
+  String get onboardingStepExpertTitle => 'Ontmoet de expert';
+
+  @override
+  String get onboardingStepExpertBody =>
+      'Maak een afspraak met de juiste specialist.';
+
+  @override
+  String get onboardingBadgeHosting => 'Lokale hosting';
+
+  @override
+  String get onboardingBadgeEncryption => 'Versleuteling';
+
+  @override
+  String get onboardingBadgeDoctors => 'Gecontroleerde artsen';
+
+  @override
+  String get onboardingBadgeDoctorsSubtitle => 'Erkend door de staat';
+
+  @override
+  String get onboardingTrustHosting => 'ANPDP-gecertificeerde lokale hosting';
+
+  @override
+  String get onboardingTrustEncryption => 'End-to-end-versleuteling';
+
+  @override
+  String get onboardingTrustDoctors => 'Gecontroleerde en erkende artsen';
+
+  @override
+  String get securedLabel => 'Beveiligd';
+
+  @override
+  String get instantLabel => 'Direct';
+
+  @override
+  String get onboardingHeroGuidanceTitle => 'Slimme oriëntatie';
+
+  @override
+  String get onboardingHeroGuidanceSubtitle => 'AI + Algerijns medisch netwerk';
+
+  @override
+  String get onboardingHeroSampleDoctorName => 'Dr. Karim B.';
+
+  @override
+  String get onboardingHeroSampleDoctorSpecialty => 'Cardiologie';
+
+  @override
+  String get onboardingHeroSampleDoctorRating => '4,9';
+
+  @override
+  String get onboardingHeroAiStatusLabel => 'AI-STATUS';
+
+  @override
+  String get onboardingHeroAiStatusValue => 'Analyse actief';
+
+  @override
+  String get onboardingHeroPathTitle => 'Jouw zorgtraject';
+
+  @override
+  String get onboardingHeroPathSteps => 'Pijn → Analyse → Specialist';
+
+  @override
+  String get orSeparator => 'OF';
+
+  @override
+  String get signInWithBiometrics => 'Inloggen met biometrie';
+
+  @override
+  String get notRegisteredYet => 'Nog niet geregistreerd?';
+
+  @override
+  String get authToastTitle => 'Authenticatie';
+
+  @override
+  String get ninVisualGuideLabel => 'VISUELE GIDS';
+
+  @override
+  String get ninVisualGuideBody =>
+      'Het NIN staat rechtsboven op je biometrische identiteitskaart.';
+
+  @override
+  String get ninFieldLabel => 'NIN';
+
+  @override
+  String get ninDigitsCount => '18 CIJFERS';
+
+  @override
+  String get ninWhyLink => 'Waarom het NIN?';
+
+  @override
+  String get passwordEncryptionNotice =>
+      'ANPDP-conforme end-to-end-versleuteling';
+
+  @override
+  String get passwordStrengthLabel => 'Wachtwoordsterkte:';
+
+  @override
+  String get passwordStrengthWeak => 'Zwak';
+
+  @override
+  String get passwordStrengthMedium => 'Gemiddeld';
+
+  @override
+  String get passwordStrengthStrong => 'Sterk';
+
+  @override
+  String get passwordRuleMinLength => 'Minstens 10 tekens';
+
+  @override
+  String get passwordRuleUppercase => 'Eén hoofdletter';
+
+  @override
+  String get passwordRuleDigit => 'Eén cijfer';
+
+  @override
+  String get passwordRuleSpecial => 'Eén speciaal teken';
+
+  @override
+  String get consentHealthSubtitle =>
+      'Nodig voor de werking van de app en het bijhouden van je medisch dossier.';
+
+  @override
+  String get consentDataSubtitle =>
+      'Veilige verwerking en hosting van je klinische gegevens toestaan.';
+
+  @override
+  String get consentMarketingSubtitle =>
+      'Ontvang persoonlijke biologische coachingtips en gezondheidsnieuws.';
+
+  @override
+  String get otpHelpBody =>
+      'Ontvang je de code niet? Controleer je netwerkverbinding of neem contact op met onze support.';
+
+  @override
+  String get biometricEnableTitle => 'Zet biometrisch inloggen aan';
+
+  @override
+  String get biometricEnableSubtitle =>
+      'Log sneller en veilig in met Face ID of je vingerafdruk.';
+
+  @override
+  String get successFeatureNavigationLabel => 'NAVIGATIE';
+
+  @override
+  String get successFeatureNavigationBody => 'Vind klinieken';
+
+  @override
+  String get successFeatureAppointmentsLabel => 'AFSPRAKEN';
+
+  @override
+  String get successFeatureAppointmentsBody => 'Eenvoudig beheer';
+
+  @override
+  String get profilePlaceholderTitle => 'Profiel — tijdelijk';
+
+  @override
+  String get profilePlaceholderSession => 'Actieve sessie (token verborgen).';
+
+  @override
+  String profilePlaceholderRole(String role) {
+    return 'Rol: $role';
+  }
+
+  @override
+  String get profilePlaceholderSimulateExpiry => 'Sessieverloop simuleren';
+
+  @override
+  String get errorRegistrationIncomplete =>
+      'De registratiegegevens zijn onvolledig.';
+
+  @override
+  String get errorEmptyResponse => 'Leeg antwoord van de server.';
+
+  @override
+  String get errorConflict =>
+      'Er is een conflict opgetreden (deze resource bestaat mogelijk al).';
+
+  @override
+  String get errorInvalidInput => 'De opgegeven gegevens zijn ongeldig.';
+
+  @override
+  String get errorUnexpected => 'Er is een onverwachte fout opgetreden.';
+
+  @override
+  String get errorPasswordUpdatedSignInAgain =>
+      'Wachtwoord bijgewerkt. Log in met je nieuwe wachtwoord.';
+
+  @override
+  String get painSelectionMissing => 'De selectie van de pijnzone ontbreekt.';
+
+  @override
+  String get specialistPrescriptionSubmitError =>
+      'Het recept kan niet worden aangemaakt.';
 }

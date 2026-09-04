@@ -6,6 +6,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../auth/auth_session.provider.dart';
 import '../auth/gps_medical_client.provider.dart';
+import '../l10n/auth_strings.dart';
 import '../models/app_info.dart';
 import '../routing/gps_routes.dart';
 import '../theme/gps_spacing.dart';
@@ -139,6 +140,8 @@ class _ProfilePlaceholderScreenState
 
   @override
   Widget build(BuildContext context) {
+    final strings = AuthStrings.of(context);
+
     return Scaffold(
       appBar: AppBar(title: Text(widget.appInfo.displayName)),
       body: SafeArea(
@@ -159,17 +162,19 @@ class _ProfilePlaceholderScreenState
                           onTap: _handleTap,
                           behavior: HitTestBehavior.opaque,
                           child: Text(
-                            'Profil — placeholder',
+                            strings.profilePlaceholderTitle,
                             style: Theme.of(context).textTheme.headlineMedium,
                           ),
                         ),
                         const SizedBox(height: GpsSpacing.sm),
                         Text(
-                          'Session active (token masqué).',
+                          strings.profilePlaceholderSession,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          'Rôle: ${widget.appInfo.clientKind.name}',
+                          strings.profilePlaceholderRole(
+                            widget.appInfo.clientKind.name,
+                          ),
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],
@@ -177,14 +182,14 @@ class _ProfilePlaceholderScreenState
                   ),
                   const Spacer(),
                   SecondaryButton(
-                    label: 'Simuler expiration de session',
+                    label: strings.profilePlaceholderSimulateExpiry,
                     onPressed: () {
                       ref.read(authSessionProvider).handleSessionExpired();
                     },
                   ),
                   const SizedBox(height: GpsSpacing.sm),
                   PrimaryButton(
-                    label: 'Se déconnecter',
+                    label: strings.profileSignOut,
                     onPressed: () async {
                       await ref.read(authSessionProvider).signOut();
                       if (context.mounted) {

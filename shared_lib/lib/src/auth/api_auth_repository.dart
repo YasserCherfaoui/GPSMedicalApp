@@ -68,7 +68,8 @@ class ApiAuthRepository implements AuthRepository {
   }) async {
     if (!draft.readyToRegister) {
       throw const AuthValidationException(
-        'Informations d\'inscription incomplètes.',
+        'Registration draft is incomplete.',
+        errorCode: AuthErrorCode.registrationIncomplete,
       );
     }
     final country = draft.country!;
@@ -96,7 +97,10 @@ class ApiAuthRepository implements AuthRepository {
       );
       final data = response.data;
       if (data == null) {
-        throw const AuthNetworkException('Réponse vide du serveur.');
+        throw const AuthNetworkException(
+          'Empty response body.',
+          errorCode: AuthErrorCode.emptyResponse,
+        );
       }
       return data;
     } on DioException catch (e) {
@@ -119,7 +123,10 @@ class ApiAuthRepository implements AuthRepository {
       );
       final data = response.data;
       if (data == null) {
-        throw const AuthNetworkException('Réponse vide du serveur.');
+        throw const AuthNetworkException(
+          'Empty response body.',
+          errorCode: AuthErrorCode.emptyResponse,
+        );
       }
       return data;
     } on DioException catch (e) {
@@ -153,7 +160,10 @@ class ApiAuthRepository implements AuthRepository {
       );
       final data = response.data;
       if (data == null) {
-        throw const AuthNetworkException('Réponse vide du serveur.');
+        throw const AuthNetworkException(
+          'Empty response body.',
+          errorCode: AuthErrorCode.emptyResponse,
+        );
       }
       return data;
     } on DioException catch (e) {
@@ -201,7 +211,8 @@ class ApiAuthRepository implements AuthRepository {
       final data = loginResponse.data;
       if (data == null) {
         throw const AuthNetworkException(
-          'Mot de passe mis à jour. Connectez-vous avec votre nouveau mot de passe.',
+          'Password updated but the follow-up login returned no tokens.',
+          errorCode: AuthErrorCode.passwordUpdatedSignInAgain,
         );
       }
       return data;
@@ -210,54 +221,34 @@ class ApiAuthRepository implements AuthRepository {
     }
   }
 
+  /// Maps a transport failure to an [AuthException].
+  ///
+  /// [AuthException.message] stays technical (diagnostics only); the attached
+  /// [AuthErrorCode] is what the UI turns into localized copy. Server-provided
+  /// messages are the exception: validation and conflict payloads are already
+  /// meant to be read by the user, so they are surfaced verbatim.
   AuthException _mapDio(DioException e) {
     if (e.response == null) {
-      final String networkMessage;
       final AuthErrorCode errorCode;
       if (e.type == DioExceptionType.connectionTimeout ||
           e.type == DioExceptionType.sendTimeout ||
           e.type == DioExceptionType.receiveTimeout) {
-        networkMessage =
-            'Connexion expirée. Veuillez vérifier votre connexion Internet et réessayer.';
         errorCode = AuthErrorCode.connectionTimeout;
       } else if (e.type == DioExceptionType.connectionError) {
-        networkMessage =
-            'Impossible de se connecter au serveur. Veuillez vérifier votre connexion Internet.';
         errorCode = AuthErrorCode.connectionError;
       } else {
-        networkMessage =
-            'Erreur réseau. Veuillez vérifier votre connexion Internet et réessayer.';
         errorCode = AuthErrorCode.unknownNetwork;
       }
-      return AuthNetworkException(networkMessage, errorCode: errorCode);
+      return AuthNetworkException(
+        'Network failure (${e.type.name}).',
+        errorCode: errorCode,
+      );
     }
 
     final response = e.response!;
     final statusCode = response.statusCode ?? 0;
-
     final parsedMessage = _parseErrorPayload(response.data);
-    final String fallback;
-
-    if (statusCode == 401) {
-      fallback =
-          'Identifiants incorrects. Veuillez vérifier votre numéro de téléphone et votre mot de passe.';
-    } else if (statusCode == 403) {
-      fallback = 'Accès refusé. Vous n\'avez pas les permissions nécessaires.';
-    } else if (statusCode == 409) {
-      fallback =
-          'Un conflit est survenu (cette ressource existe peut-être déjà).';
-    } else if (statusCode == 422 || statusCode == 400) {
-      fallback = 'Les informations fournies sont invalides.';
-    } else if (statusCode == 429) {
-      fallback =
-          'Trop de tentatives. Veuillez réessayer dans quelques minutes.';
-    } else if (statusCode >= 500) {
-      fallback = 'Erreur interne du serveur. Veuillez réessayer plus tard.';
-    } else {
-      fallback = 'Une erreur inattendue est survenue (Code: $statusCode).';
-    }
-
-    final message = parsedMessage ?? fallback;
+    final message = parsedMessage ?? 'HTTP $statusCode.';
 
     if (statusCode == 401) {
       return AuthUnauthorizedException(
@@ -274,13 +265,17 @@ class ApiAuthRepository implements AuthRepository {
     if (statusCode == 409) {
       return AuthConflictException(
         message,
-        errorCode: AuthErrorCode.conflictError,
+        errorCode: parsedMessage == null
+            ? AuthErrorCode.conflict
+            : AuthErrorCode.conflictError,
       );
     }
     if (statusCode == 400 || statusCode == 422) {
       return AuthValidationException(
         message,
-        errorCode: AuthErrorCode.validationError,
+        errorCode: parsedMessage == null
+            ? AuthErrorCode.invalidInput
+            : AuthErrorCode.validationError,
         problemCode: _parseProblemCode(response.data),
       );
     }
@@ -296,10 +291,7 @@ class ApiAuthRepository implements AuthRepository {
         errorCode: AuthErrorCode.internalServerError,
       );
     }
-    return AuthNetworkException(
-      message,
-      errorCode: AuthErrorCode.unknownNetwork,
-    );
+    return AuthNetworkException(message, errorCode: AuthErrorCode.unexpected);
   }
 }
 

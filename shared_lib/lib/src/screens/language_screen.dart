@@ -120,7 +120,7 @@ class LanguageScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: GpsSpacing.md),
                   Text(
-                    'Choisissez votre langue\nاختر لغتك',
+                    strings.chooseLanguage,
                     style: Theme.of(context).textTheme.displayMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       height: 1.3,
@@ -169,7 +169,7 @@ class LanguageScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: GpsSpacing.lg),
                         Text(
-                          'SanteDZ • Medora',
+                          GpsBrand.name,
                           style: Theme.of(context).textTheme.labelSmall
                               ?.copyWith(
                                 color: Theme.of(context).colorScheme.outline,

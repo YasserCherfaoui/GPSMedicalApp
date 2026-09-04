@@ -1314,5 +1314,107 @@
         "type": "int"
       }
     }
-  }
+  },
+  "alreadyHaveAccount": "У меня уже есть аккаунт",
+  "needHelp": "Нужна помощь?",
+  "viewGuide": "Открыть руководство",
+  "welcomeHeroGpsLabel": "МЕДИЦИНСКИЙ GPS",
+  "welcomeHeroGpsCaption": "Оптимальная близость",
+  "welcomeHeroRecordsLabel": "КАРТЫ",
+  "welcomeHeroRecordsCaption": "Цифровое здоровье",
+  "welcomeHeroAnalysisTitle": "Умный анализ",
+  "welcomeHeroAnalysisCaption": "Диагностика в реальном времени",
+  "onboardingSmartTitle": "Ваш умный {brand}",
+  "@onboardingSmartTitle": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSmartBody": "Уверенно ориентируйтесь в системе здравоохранения Алжира. {brand} использует ИИ, чтобы направить вас к лучшей помощи и следить за вашим самочувствием в реальном времени.",
+  "@onboardingSmartBody": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingFeatureGuidanceTitle": "Экспертное сопровождение",
+  "onboardingFeatureGuidanceBody": "Найдите подходящих специалистов по всему Алжиру.",
+  "onboardingFeatureMonitoringTitle": "ИИ-мониторинг",
+  "onboardingFeatureMonitoringBody": "Умное отслеживание ваших показателей здоровья.",
+  "onboardingStepPainTitle": "Определите место боли",
+  "onboardingStepPainBody": "Точно укажите беспокоящие вас зоны.",
+  "onboardingStepScreeningTitle": "Умный скрининг",
+  "onboardingStepScreeningBody": "Наш ИИ анализирует ваши симптомы и документы.",
+  "onboardingStepPrepareTitle": "Подготовьте организм",
+  "onboardingStepPrepareBody": "Получите персональные советы перед приёмом.",
+  "onboardingStepExpertTitle": "Встретьтесь со специалистом",
+  "onboardingStepExpertBody": "Запишитесь к нужному специалисту.",
+  "onboardingBadgeHosting": "Локальный хостинг",
+  "onboardingBadgeEncryption": "Шифрование",
+  "onboardingBadgeDoctors": "Проверенные врачи",
+  "onboardingBadgeDoctorsSubtitle": "Аккредитованы государством",
+  "onboardingTrustHosting": "Локальный хостинг с сертификацией ANPDP",
+  "onboardingTrustEncryption": "Сквозное шифрование",
+  "onboardingTrustDoctors": "Проверенные и аккредитованные врачи",
+  "securedLabel": "Безопасно",
+  "instantLabel": "Мгновенно",
+  "onboardingHeroGuidanceTitle": "Умная навигация",
+  "onboardingHeroGuidanceSubtitle": "ИИ + медицинская сеть Алжира",
+  "onboardingHeroSampleDoctorName": "Д-р Карим Б.",
+  "onboardingHeroSampleDoctorSpecialty": "Кардиология",
+  "onboardingHeroSampleDoctorRating": "4,9",
+  "onboardingHeroAiStatusLabel": "СТАТУС ИИ",
+  "onboardingHeroAiStatusValue": "Анализ активен",
+  "onboardingHeroPathTitle": "Ваш маршрут",
+  "onboardingHeroPathSteps": "Боль → Анализ → Специалист",
+  "orSeparator": "ИЛИ",
+  "signInWithBiometrics": "Вход по биометрии",
+  "notRegisteredYet": "Ещё не зарегистрированы?",
+  "authToastTitle": "Аутентификация",
+  "ninVisualGuideLabel": "ВИЗУАЛЬНАЯ ПОДСКАЗКА",
+  "ninVisualGuideBody": "NIN находится в правом верхнем углу биометрического удостоверения.",
+  "ninFieldLabel": "NIN",
+  "ninDigitsCount": "18 ЦИФР",
+  "ninWhyLink": "Зачем нужен NIN?",
+  "passwordEncryptionNotice": "Сквозное шифрование в соответствии с ANPDP",
+  "passwordStrengthLabel": "Надёжность пароля:",
+  "passwordStrengthWeak": "Слабый",
+  "passwordStrengthMedium": "Средний",
+  "passwordStrengthStrong": "Надёжный",
+  "passwordRuleMinLength": "Не менее 10 символов",
+  "passwordRuleUppercase": "Одна заглавная буква",
+  "passwordRuleDigit": "Одна цифра",
+  "passwordRuleSpecial": "Один специальный символ",
+  "consentHealthSubtitle": "Необходимо для работы приложения и ведения вашей медицинской карты.",
+  "consentDataSubtitle": "Разрешить безопасную обработку и хранение ваших клинических данных.",
+  "consentMarketingSubtitle": "Получайте персональные советы по биокоучингу и новости о здоровье.",
+  "otpHelpBody": "Если код не пришёл, проверьте подключение к сети или обратитесь в поддержку.",
+  "biometricEnableTitle": "Включите вход по биометрии",
+  "biometricEnableSubtitle": "Входите быстрее и безопасно с помощью Face ID или отпечатка пальца.",
+  "successFeatureNavigationLabel": "НАВИГАЦИЯ",
+  "successFeatureNavigationBody": "Находите клиники",
+  "successFeatureAppointmentsLabel": "ЗАПИСИ",
+  "successFeatureAppointmentsBody": "Простое управление",
+  "profilePlaceholderTitle": "Профиль — заглушка",
+  "profilePlaceholderSession": "Активная сессия (токен скрыт).",
+  "profilePlaceholderRole": "Роль: {role}",
+  "@profilePlaceholderRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePlaceholderSimulateExpiry": "Смоделировать истечение сессии",
+  "errorRegistrationIncomplete": "Данные регистрации заполнены не полностью.",
+  "errorEmptyResponse": "Пустой ответ сервера.",
+  "errorConflict": "Возник конфликт (возможно, такой объект уже существует).",
+  "errorInvalidInput": "Указанные данные некорректны.",
+  "errorUnexpected": "Произошла непредвиденная ошибка.",
+  "errorPasswordUpdatedSignInAgain": "Пароль обновлён. Войдите с новым паролем.",
+  "painSelectionMissing": "Не выбрана зона боли.",
+  "specialistPrescriptionSubmitError": "Не удалось создать рецепт."
 }

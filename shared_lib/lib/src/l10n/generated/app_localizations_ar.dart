@@ -2827,4 +2827,264 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get freemiumCoachingBody => 'افتح الخطة المخصصة والمتتبعات اليومية.';
+
+  @override
+  String get alreadyHaveAccount => 'لدي حساب بالفعل';
+
+  @override
+  String get needHelp => 'تحتاج مساعدة؟';
+
+  @override
+  String get viewGuide => 'الاطلاع على الدليل';
+
+  @override
+  String get welcomeHeroGpsLabel => 'نظام التوجيه الطبي';
+
+  @override
+  String get welcomeHeroGpsCaption => 'قرب محسّن';
+
+  @override
+  String get welcomeHeroRecordsLabel => 'الملفات';
+
+  @override
+  String get welcomeHeroRecordsCaption => 'الصحة الرقمية';
+
+  @override
+  String get welcomeHeroAnalysisTitle => 'تحليل ذكي';
+
+  @override
+  String get welcomeHeroAnalysisCaption => 'تشخيص في الوقت الفعلي';
+
+  @override
+  String onboardingSmartTitle(String brand) {
+    return '‏$brand الذكي الخاص بك';
+  }
+
+  @override
+  String onboardingSmartBody(String brand) {
+    return 'تنقّل بثقة في المنظومة الطبية الجزائرية. يستخدم $brand الذكاء الاصطناعي لتوجيهك نحو أفضل رعاية ومتابعة حيويتك في الوقت الفعلي.';
+  }
+
+  @override
+  String get onboardingFeatureGuidanceTitle => 'توجيه خبير';
+
+  @override
+  String get onboardingFeatureGuidanceBody =>
+      'اعثر على الأخصائيين المناسبين في كل أنحاء الجزائر.';
+
+  @override
+  String get onboardingFeatureMonitoringTitle => 'مراقبة بالذكاء الاصطناعي';
+
+  @override
+  String get onboardingFeatureMonitoringBody => 'متابعة ذكية لمؤشراتك الصحية.';
+
+  @override
+  String get onboardingStepPainTitle => 'حدّد موضع الألم';
+
+  @override
+  String get onboardingStepPainBody => 'حدّد بدقة المناطق المزعجة.';
+
+  @override
+  String get onboardingStepScreeningTitle => 'فحص ذكي';
+
+  @override
+  String get onboardingStepScreeningBody =>
+      'يحلّل ذكاؤنا الاصطناعي أعراضك ووثائقك.';
+
+  @override
+  String get onboardingStepPrepareTitle => 'هيّئ جسمك';
+
+  @override
+  String get onboardingStepPrepareBody =>
+      'احصل على نصائح مخصّصة قبل الاستشارة.';
+
+  @override
+  String get onboardingStepExpertTitle => 'التقِ بالخبير';
+
+  @override
+  String get onboardingStepExpertBody => 'احجز موعدًا مع الأخصائي المناسب.';
+
+  @override
+  String get onboardingBadgeHosting => 'استضافة محلية';
+
+  @override
+  String get onboardingBadgeEncryption => 'تشفير';
+
+  @override
+  String get onboardingBadgeDoctors => 'أطباء موثّقون';
+
+  @override
+  String get onboardingBadgeDoctorsSubtitle => 'معتمدون من الدولة';
+
+  @override
+  String get onboardingTrustHosting => 'استضافة محلية معتمدة من ANPDP';
+
+  @override
+  String get onboardingTrustEncryption => 'تشفير من الطرف إلى الطرف';
+
+  @override
+  String get onboardingTrustDoctors => 'أطباء موثّقون ومعتمدون';
+
+  @override
+  String get securedLabel => 'آمن';
+
+  @override
+  String get instantLabel => 'فوري';
+
+  @override
+  String get onboardingHeroGuidanceTitle => 'توجيه ذكي';
+
+  @override
+  String get onboardingHeroGuidanceSubtitle =>
+      'الذكاء الاصطناعي + الشبكة الطبية الجزائرية';
+
+  @override
+  String get onboardingHeroSampleDoctorName => 'د. كريم ب.';
+
+  @override
+  String get onboardingHeroSampleDoctorSpecialty => 'أمراض القلب';
+
+  @override
+  String get onboardingHeroSampleDoctorRating => '4,9';
+
+  @override
+  String get onboardingHeroAiStatusLabel => 'حالة الذكاء الاصطناعي';
+
+  @override
+  String get onboardingHeroAiStatusValue => 'التحليل نشط';
+
+  @override
+  String get onboardingHeroPathTitle => 'مسارك';
+
+  @override
+  String get onboardingHeroPathSteps => 'الألم ← التحليل ← الأخصائي';
+
+  @override
+  String get orSeparator => 'أو';
+
+  @override
+  String get signInWithBiometrics => 'تسجيل الدخول بالقياسات الحيوية';
+
+  @override
+  String get notRegisteredYet => 'لم تسجّل بعد؟';
+
+  @override
+  String get authToastTitle => 'المصادقة';
+
+  @override
+  String get ninVisualGuideLabel => 'دليل مرئي';
+
+  @override
+  String get ninVisualGuideBody =>
+      'يوجد رقم التعريف الوطني في أعلى يمين بطاقتك البيومترية.';
+
+  @override
+  String get ninFieldLabel => 'رقم التعريف الوطني';
+
+  @override
+  String get ninDigitsCount => '18 رقمًا';
+
+  @override
+  String get ninWhyLink => 'لماذا رقم التعريف الوطني؟';
+
+  @override
+  String get passwordEncryptionNotice =>
+      'تشفير من الطرف إلى الطرف مطابق لمعايير ANPDP';
+
+  @override
+  String get passwordStrengthLabel => 'قوة كلمة المرور:';
+
+  @override
+  String get passwordStrengthWeak => 'ضعيفة';
+
+  @override
+  String get passwordStrengthMedium => 'متوسطة';
+
+  @override
+  String get passwordStrengthStrong => 'قوية';
+
+  @override
+  String get passwordRuleMinLength => '10 أحرف على الأقل';
+
+  @override
+  String get passwordRuleUppercase => 'حرف كبير واحد';
+
+  @override
+  String get passwordRuleDigit => 'رقم واحد';
+
+  @override
+  String get passwordRuleSpecial => 'رمز خاص واحد';
+
+  @override
+  String get consentHealthSubtitle => 'ضروري لعمل التطبيق ومتابعة ملفك الطبي.';
+
+  @override
+  String get consentDataSubtitle =>
+      'السماح بالمعالجة الآمنة واستضافة بياناتك السريرية.';
+
+  @override
+  String get consentMarketingSubtitle =>
+      'تلقَّ نصائح تدريب بيولوجي مخصّصة وأخبارًا صحية.';
+
+  @override
+  String get otpHelpBody =>
+      'إذا لم تستلم الرمز، تحقّق من اتصالك بالشبكة أو اتصل بالدعم.';
+
+  @override
+  String get biometricEnableTitle => 'فعّل تسجيل الدخول بالقياسات الحيوية';
+
+  @override
+  String get biometricEnableSubtitle =>
+      'سجّل الدخول أسرع وبأمان باستخدام Face ID أو بصمتك.';
+
+  @override
+  String get successFeatureNavigationLabel => 'التنقّل';
+
+  @override
+  String get successFeatureNavigationBody => 'اعثر على العيادات';
+
+  @override
+  String get successFeatureAppointmentsLabel => 'المواعيد';
+
+  @override
+  String get successFeatureAppointmentsBody => 'إدارة سهلة';
+
+  @override
+  String get profilePlaceholderTitle => 'الملف الشخصي — نموذج مؤقت';
+
+  @override
+  String get profilePlaceholderSession => 'جلسة نشطة (الرمز مخفي).';
+
+  @override
+  String profilePlaceholderRole(String role) {
+    return 'الدور: $role';
+  }
+
+  @override
+  String get profilePlaceholderSimulateExpiry => 'محاكاة انتهاء الجلسة';
+
+  @override
+  String get errorRegistrationIncomplete => 'معلومات التسجيل غير كاملة.';
+
+  @override
+  String get errorEmptyResponse => 'استجابة فارغة من الخادم.';
+
+  @override
+  String get errorConflict => 'حدث تعارض (قد يكون هذا العنصر موجودًا بالفعل).';
+
+  @override
+  String get errorInvalidInput => 'المعلومات المقدَّمة غير صحيحة.';
+
+  @override
+  String get errorUnexpected => 'حدث خطأ غير متوقع.';
+
+  @override
+  String get errorPasswordUpdatedSignInAgain =>
+      'تم تحديث كلمة المرور. سجّل الدخول بكلمة المرور الجديدة.';
+
+  @override
+  String get painSelectionMissing => 'لم يتم تحديد منطقة الألم.';
+
+  @override
+  String get specialistPrescriptionSubmitError => 'تعذّر إنشاء الوصفة الطبية.';
 }

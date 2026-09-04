@@ -41,7 +41,7 @@ class AuthWelcomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: GpsSpacing.xs),
                 Text(
-                  'Votre parcours santé commence ici',
+                  strings.welcomeSubtitle,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                   ),
@@ -70,7 +70,7 @@ class AuthWelcomeScreen extends StatelessWidget {
                         side: BorderSide(color: colorScheme.primary),
                       ),
                       child: Text(
-                        "J'ai déjà un compte",
+                        strings.alreadyHaveAccount,
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: colorScheme.primary,
                           fontWeight: FontWeight.w600,
@@ -84,7 +84,7 @@ class AuthWelcomeScreen extends StatelessWidget {
                         onPressed: () {},
                         icon: const Icon(Icons.help_outline, size: 16),
                         label: Text(
-                          "Besoin d'aide ?",
+                          strings.needHelp,
                           style: Theme.of(context).textTheme.labelLarge
                               ?.copyWith(color: colorScheme.outline),
                         ),
@@ -107,6 +107,7 @@ class _HeroComposition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
 
     return Center(
@@ -172,7 +173,7 @@ class _HeroComposition extends StatelessWidget {
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
-                            'MEDICAL GPS',
+                            strings.welcomeHeroGpsLabel,
                             style: Theme.of(context).textTheme.labelSmall
                                 ?.copyWith(
                                   color: colorScheme.outline,
@@ -197,7 +198,7 @@ class _HeroComposition extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Proximité optimisée',
+                      strings.welcomeHeroGpsCaption,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                         color: colorScheme.onSurfaceVariant,
                         fontWeight: FontWeight.bold,
@@ -251,7 +252,7 @@ class _HeroComposition extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'DOSSIERS',
+                            strings.welcomeHeroRecordsLabel,
                             style: Theme.of(context).textTheme.labelSmall
                                 ?.copyWith(
                                   color: colorScheme.outline,
@@ -260,7 +261,7 @@ class _HeroComposition extends StatelessWidget {
                                 ),
                           ),
                           Text(
-                            'Santé Numérique',
+                            strings.welcomeHeroRecordsCaption,
                             style: Theme.of(context).textTheme.labelMedium
                                 ?.copyWith(
                                   color: colorScheme.onSurface,
@@ -314,7 +315,7 @@ class _HeroComposition extends StatelessWidget {
                       ),
                       const SizedBox(height: GpsSpacing.sm),
                       Text(
-                        'Analyse Smart',
+                        strings.welcomeHeroAnalysisTitle,
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: colorScheme.onSurface,
@@ -322,7 +323,7 @@ class _HeroComposition extends StatelessWidget {
                       ),
                       const SizedBox(height: GpsSpacing.xs),
                       Text(
-                        'Diagnostics en temps réel',
+                        strings.welcomeHeroAnalysisCaption,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: colorScheme.onSurfaceVariant,
                         ),

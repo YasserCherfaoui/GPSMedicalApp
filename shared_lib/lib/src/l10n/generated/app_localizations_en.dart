@@ -2865,4 +2865,268 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get freemiumCoachingBody =>
       'Unlock the personalised plan and daily trackers.';
+
+  @override
+  String get alreadyHaveAccount => 'I already have an account';
+
+  @override
+  String get needHelp => 'Need help?';
+
+  @override
+  String get viewGuide => 'View the guide';
+
+  @override
+  String get welcomeHeroGpsLabel => 'MEDICAL GPS';
+
+  @override
+  String get welcomeHeroGpsCaption => 'Optimised proximity';
+
+  @override
+  String get welcomeHeroRecordsLabel => 'RECORDS';
+
+  @override
+  String get welcomeHeroRecordsCaption => 'Digital health';
+
+  @override
+  String get welcomeHeroAnalysisTitle => 'Smart analysis';
+
+  @override
+  String get welcomeHeroAnalysisCaption => 'Real-time diagnostics';
+
+  @override
+  String onboardingSmartTitle(String brand) {
+    return 'Your smart $brand';
+  }
+
+  @override
+  String onboardingSmartBody(String brand) {
+    return 'Navigate the Algerian medical landscape with confidence. $brand uses AI to guide you to the best care and monitor your vitality in real time.';
+  }
+
+  @override
+  String get onboardingFeatureGuidanceTitle => 'Expert guidance';
+
+  @override
+  String get onboardingFeatureGuidanceBody =>
+      'Find the right specialists anywhere in Algeria.';
+
+  @override
+  String get onboardingFeatureMonitoringTitle => 'AI monitoring';
+
+  @override
+  String get onboardingFeatureMonitoringBody =>
+      'Smart tracking of your health vitals.';
+
+  @override
+  String get onboardingStepPainTitle => 'Locate your pain';
+
+  @override
+  String get onboardingStepPainBody => 'Pinpoint your areas of discomfort.';
+
+  @override
+  String get onboardingStepScreeningTitle => 'Smart screening';
+
+  @override
+  String get onboardingStepScreeningBody =>
+      'Our AI analyses your symptoms and documents.';
+
+  @override
+  String get onboardingStepPrepareTitle => 'Prepare your body';
+
+  @override
+  String get onboardingStepPrepareBody =>
+      'Get personalised pre-consultation advice.';
+
+  @override
+  String get onboardingStepExpertTitle => 'Meet the expert';
+
+  @override
+  String get onboardingStepExpertBody =>
+      'Book an appointment with the right specialist.';
+
+  @override
+  String get onboardingBadgeHosting => 'Local hosting';
+
+  @override
+  String get onboardingBadgeEncryption => 'Encryption';
+
+  @override
+  String get onboardingBadgeDoctors => 'Verified doctors';
+
+  @override
+  String get onboardingBadgeDoctorsSubtitle => 'State-approved';
+
+  @override
+  String get onboardingTrustHosting => 'ANPDP-certified local hosting';
+
+  @override
+  String get onboardingTrustEncryption => 'End-to-end encryption';
+
+  @override
+  String get onboardingTrustDoctors => 'Verified and approved doctors';
+
+  @override
+  String get securedLabel => 'Secure';
+
+  @override
+  String get instantLabel => 'Instant';
+
+  @override
+  String get onboardingHeroGuidanceTitle => 'Smart guidance';
+
+  @override
+  String get onboardingHeroGuidanceSubtitle => 'AI + Algerian medical network';
+
+  @override
+  String get onboardingHeroSampleDoctorName => 'Dr Karim B.';
+
+  @override
+  String get onboardingHeroSampleDoctorSpecialty => 'Cardiology';
+
+  @override
+  String get onboardingHeroSampleDoctorRating => '4.9';
+
+  @override
+  String get onboardingHeroAiStatusLabel => 'AI STATUS';
+
+  @override
+  String get onboardingHeroAiStatusValue => 'Analysis active';
+
+  @override
+  String get onboardingHeroPathTitle => 'Your care path';
+
+  @override
+  String get onboardingHeroPathSteps => 'Pain → Analysis → Specialist';
+
+  @override
+  String get orSeparator => 'OR';
+
+  @override
+  String get signInWithBiometrics => 'Sign in with biometrics';
+
+  @override
+  String get notRegisteredYet => 'Not registered yet?';
+
+  @override
+  String get authToastTitle => 'Authentication';
+
+  @override
+  String get ninVisualGuideLabel => 'VISUAL GUIDE';
+
+  @override
+  String get ninVisualGuideBody =>
+      'The NIN is at the top right of your biometric ID card.';
+
+  @override
+  String get ninFieldLabel => 'NIN';
+
+  @override
+  String get ninDigitsCount => '18 DIGITS';
+
+  @override
+  String get ninWhyLink => 'Why the NIN?';
+
+  @override
+  String get passwordEncryptionNotice =>
+      'ANPDP-compliant end-to-end encryption';
+
+  @override
+  String get passwordStrengthLabel => 'Password strength:';
+
+  @override
+  String get passwordStrengthWeak => 'Weak';
+
+  @override
+  String get passwordStrengthMedium => 'Medium';
+
+  @override
+  String get passwordStrengthStrong => 'Strong';
+
+  @override
+  String get passwordRuleMinLength => 'At least 10 characters';
+
+  @override
+  String get passwordRuleUppercase => 'One uppercase letter';
+
+  @override
+  String get passwordRuleDigit => 'One digit';
+
+  @override
+  String get passwordRuleSpecial => 'One special character';
+
+  @override
+  String get consentHealthSubtitle =>
+      'Required for the app to work and to follow up your medical record.';
+
+  @override
+  String get consentDataSubtitle =>
+      'Allow secure processing and hosting of your clinical data.';
+
+  @override
+  String get consentMarketingSubtitle =>
+      'Receive personalised biological coaching tips and health news.';
+
+  @override
+  String get otpHelpBody =>
+      'If you don\'t receive the code, check your network connection or contact our support team.';
+
+  @override
+  String get biometricEnableTitle => 'Turn on biometric sign-in';
+
+  @override
+  String get biometricEnableSubtitle =>
+      'Sign in faster and safely with Face ID or your fingerprint.';
+
+  @override
+  String get successFeatureNavigationLabel => 'NAVIGATION';
+
+  @override
+  String get successFeatureNavigationBody => 'Find clinics';
+
+  @override
+  String get successFeatureAppointmentsLabel => 'APPOINTMENTS';
+
+  @override
+  String get successFeatureAppointmentsBody => 'Easy management';
+
+  @override
+  String get profilePlaceholderTitle => 'Profile — placeholder';
+
+  @override
+  String get profilePlaceholderSession => 'Active session (token hidden).';
+
+  @override
+  String profilePlaceholderRole(String role) {
+    return 'Role: $role';
+  }
+
+  @override
+  String get profilePlaceholderSimulateExpiry => 'Simulate session expiry';
+
+  @override
+  String get errorRegistrationIncomplete => 'Incomplete registration details.';
+
+  @override
+  String get errorEmptyResponse => 'Empty response from the server.';
+
+  @override
+  String get errorConflict =>
+      'A conflict occurred (this resource may already exist).';
+
+  @override
+  String get errorInvalidInput => 'The details provided are invalid.';
+
+  @override
+  String get errorUnexpected => 'An unexpected error occurred.';
+
+  @override
+  String get errorPasswordUpdatedSignInAgain =>
+      'Password updated. Sign in with your new password.';
+
+  @override
+  String get painSelectionMissing => 'Pain area selection is missing.';
+
+  @override
+  String get specialistPrescriptionSubmitError =>
+      'Unable to create the prescription.';
 }

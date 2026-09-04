@@ -25,7 +25,12 @@ void main() {
           ),
         ],
         child: const MaterialApp(
-          localizationsDelegates: [AuthStrings.delegate],
+          localizationsDelegates: [
+            AuthStrings.delegate,
+            ...AppLocalizations.localizationsDelegates,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale('fr'),
           home: RegisterCountryScreen(),
         ),
       ),
@@ -61,7 +66,12 @@ void main() {
           ),
         ],
         child: const MaterialApp(
-          localizationsDelegates: [AuthStrings.delegate],
+          localizationsDelegates: [
+            AuthStrings.delegate,
+            ...AppLocalizations.localizationsDelegates,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale('fr'),
           home: RegisterCountryScreen(),
         ),
       ),

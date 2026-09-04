@@ -88,7 +88,12 @@ void main() {
           ),
         ],
         child: const MaterialApp(
-          localizationsDelegates: [AuthStrings.delegate],
+          localizationsDelegates: [
+            AuthStrings.delegate,
+            ...AppLocalizations.localizationsDelegates,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: Locale('fr'),
           home: RegisterConsentScreen(),
         ),
       ),
@@ -158,7 +163,12 @@ void main() {
         UncontrolledProviderScope(
           container: container,
           child: MaterialApp.router(
-            localizationsDelegates: const [AuthStrings.delegate],
+            localizationsDelegates: const [
+              AuthStrings.delegate,
+              ...AppLocalizations.localizationsDelegates,
+            ],
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: const Locale('fr'),
             routerConfig: router,
           ),
         ),

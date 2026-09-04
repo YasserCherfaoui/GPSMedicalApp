@@ -5291,6 +5291,492 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Débloquez le plan personnalisé et les trackers quotidiens.'**
   String get freemiumCoachingBody;
+
+  /// No description provided for @alreadyHaveAccount.
+  ///
+  /// In fr, this message translates to:
+  /// **'J\'ai déjà un compte'**
+  String get alreadyHaveAccount;
+
+  /// No description provided for @needHelp.
+  ///
+  /// In fr, this message translates to:
+  /// **'Besoin d\'aide ?'**
+  String get needHelp;
+
+  /// No description provided for @viewGuide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consulter le guide'**
+  String get viewGuide;
+
+  /// No description provided for @welcomeHeroGpsLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'GPS MÉDICAL'**
+  String get welcomeHeroGpsLabel;
+
+  /// No description provided for @welcomeHeroGpsCaption.
+  ///
+  /// In fr, this message translates to:
+  /// **'Proximité optimisée'**
+  String get welcomeHeroGpsCaption;
+
+  /// No description provided for @welcomeHeroRecordsLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'DOSSIERS'**
+  String get welcomeHeroRecordsLabel;
+
+  /// No description provided for @welcomeHeroRecordsCaption.
+  ///
+  /// In fr, this message translates to:
+  /// **'Santé numérique'**
+  String get welcomeHeroRecordsCaption;
+
+  /// No description provided for @welcomeHeroAnalysisTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Analyse smart'**
+  String get welcomeHeroAnalysisTitle;
+
+  /// No description provided for @welcomeHeroAnalysisCaption.
+  ///
+  /// In fr, this message translates to:
+  /// **'Diagnostics en temps réel'**
+  String get welcomeHeroAnalysisCaption;
+
+  /// No description provided for @onboardingSmartTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre {brand} intelligent'**
+  String onboardingSmartTitle(String brand);
+
+  /// No description provided for @onboardingSmartBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Naviguez sereinement dans le paysage médical algérien. {brand} utilise l\'IA pour vous guider vers les meilleurs soins et surveiller votre vitalité en temps réel.'**
+  String onboardingSmartBody(String brand);
+
+  /// No description provided for @onboardingFeatureGuidanceTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Guidance experte'**
+  String get onboardingFeatureGuidanceTitle;
+
+  /// No description provided for @onboardingFeatureGuidanceBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trouvez les spécialistes adaptés partout en Algérie.'**
+  String get onboardingFeatureGuidanceBody;
+
+  /// No description provided for @onboardingFeatureMonitoringTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Monitoring IA'**
+  String get onboardingFeatureMonitoringTitle;
+
+  /// No description provided for @onboardingFeatureMonitoringBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Surveillance intelligente de vos constantes de santé.'**
+  String get onboardingFeatureMonitoringBody;
+
+  /// No description provided for @onboardingStepPainTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Localisez votre douleur'**
+  String get onboardingStepPainTitle;
+
+  /// No description provided for @onboardingStepPainBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Identifiez précisément vos zones d\'inconfort.'**
+  String get onboardingStepPainBody;
+
+  /// No description provided for @onboardingStepScreeningTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dépistage intelligent'**
+  String get onboardingStepScreeningTitle;
+
+  /// No description provided for @onboardingStepScreeningBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notre IA analyse vos symptômes et documents.'**
+  String get onboardingStepScreeningBody;
+
+  /// No description provided for @onboardingStepPrepareTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Préparez votre corps'**
+  String get onboardingStepPrepareTitle;
+
+  /// No description provided for @onboardingStepPrepareBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recevez des conseils personnalisés de pré-consultation.'**
+  String get onboardingStepPrepareBody;
+
+  /// No description provided for @onboardingStepExpertTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rencontrez l\'expert'**
+  String get onboardingStepExpertTitle;
+
+  /// No description provided for @onboardingStepExpertBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prenez rendez-vous avec le bon spécialiste.'**
+  String get onboardingStepExpertBody;
+
+  /// No description provided for @onboardingBadgeHosting.
+  ///
+  /// In fr, this message translates to:
+  /// **'Hébergement local'**
+  String get onboardingBadgeHosting;
+
+  /// No description provided for @onboardingBadgeEncryption.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chiffrement'**
+  String get onboardingBadgeEncryption;
+
+  /// No description provided for @onboardingBadgeDoctors.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médecins vérifiés'**
+  String get onboardingBadgeDoctors;
+
+  /// No description provided for @onboardingBadgeDoctorsSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Agréés par l\'État'**
+  String get onboardingBadgeDoctorsSubtitle;
+
+  /// No description provided for @onboardingTrustHosting.
+  ///
+  /// In fr, this message translates to:
+  /// **'Hébergement local certifié ANPDP'**
+  String get onboardingTrustHosting;
+
+  /// No description provided for @onboardingTrustEncryption.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chiffrement de bout en bout'**
+  String get onboardingTrustEncryption;
+
+  /// No description provided for @onboardingTrustDoctors.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médecins vérifiés et agréés'**
+  String get onboardingTrustDoctors;
+
+  /// No description provided for @securedLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sécurisé'**
+  String get securedLabel;
+
+  /// No description provided for @instantLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Instantané'**
+  String get instantLabel;
+
+  /// No description provided for @onboardingHeroGuidanceTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Orientation intelligente'**
+  String get onboardingHeroGuidanceTitle;
+
+  /// No description provided for @onboardingHeroGuidanceSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'IA + réseau médical algérien'**
+  String get onboardingHeroGuidanceSubtitle;
+
+  /// No description provided for @onboardingHeroSampleDoctorName.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dr Karim B.'**
+  String get onboardingHeroSampleDoctorName;
+
+  /// No description provided for @onboardingHeroSampleDoctorSpecialty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cardiologie'**
+  String get onboardingHeroSampleDoctorSpecialty;
+
+  /// No description provided for @onboardingHeroSampleDoctorRating.
+  ///
+  /// In fr, this message translates to:
+  /// **'4,9'**
+  String get onboardingHeroSampleDoctorRating;
+
+  /// No description provided for @onboardingHeroAiStatusLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'STATUT IA'**
+  String get onboardingHeroAiStatusLabel;
+
+  /// No description provided for @onboardingHeroAiStatusValue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Analyse active'**
+  String get onboardingHeroAiStatusValue;
+
+  /// No description provided for @onboardingHeroPathTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre parcours'**
+  String get onboardingHeroPathTitle;
+
+  /// No description provided for @onboardingHeroPathSteps.
+  ///
+  /// In fr, this message translates to:
+  /// **'Douleur → Analyse → Spécialiste'**
+  String get onboardingHeroPathSteps;
+
+  /// No description provided for @orSeparator.
+  ///
+  /// In fr, this message translates to:
+  /// **'OU'**
+  String get orSeparator;
+
+  /// No description provided for @signInWithBiometrics.
+  ///
+  /// In fr, this message translates to:
+  /// **'Se connecter avec biométrie'**
+  String get signInWithBiometrics;
+
+  /// No description provided for @notRegisteredYet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas encore inscrit ?'**
+  String get notRegisteredYet;
+
+  /// No description provided for @authToastTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Authentification'**
+  String get authToastTitle;
+
+  /// No description provided for @ninVisualGuideLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'GUIDE VISUEL'**
+  String get ninVisualGuideLabel;
+
+  /// No description provided for @ninVisualGuideBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le NIN se situe en haut à droite de votre carte biométrique.'**
+  String get ninVisualGuideBody;
+
+  /// No description provided for @ninFieldLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'NIN'**
+  String get ninFieldLabel;
+
+  /// No description provided for @ninDigitsCount.
+  ///
+  /// In fr, this message translates to:
+  /// **'18 CHIFFRES'**
+  String get ninDigitsCount;
+
+  /// No description provided for @ninWhyLink.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pourquoi le NIN ?'**
+  String get ninWhyLink;
+
+  /// No description provided for @passwordEncryptionNotice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chiffrement de bout en bout conforme ANPDP'**
+  String get passwordEncryptionNotice;
+
+  /// No description provided for @passwordStrengthLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Force du mot de passe :'**
+  String get passwordStrengthLabel;
+
+  /// No description provided for @passwordStrengthWeak.
+  ///
+  /// In fr, this message translates to:
+  /// **'Faible'**
+  String get passwordStrengthWeak;
+
+  /// No description provided for @passwordStrengthMedium.
+  ///
+  /// In fr, this message translates to:
+  /// **'Moyen'**
+  String get passwordStrengthMedium;
+
+  /// No description provided for @passwordStrengthStrong.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fort'**
+  String get passwordStrengthStrong;
+
+  /// No description provided for @passwordRuleMinLength.
+  ///
+  /// In fr, this message translates to:
+  /// **'Au moins 10 caractères'**
+  String get passwordRuleMinLength;
+
+  /// No description provided for @passwordRuleUppercase.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une majuscule'**
+  String get passwordRuleUppercase;
+
+  /// No description provided for @passwordRuleDigit.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un chiffre'**
+  String get passwordRuleDigit;
+
+  /// No description provided for @passwordRuleSpecial.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un caractère spécial'**
+  String get passwordRuleSpecial;
+
+  /// No description provided for @consentHealthSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nécessaire pour le fonctionnement de l\'application et le suivi de votre dossier médical.'**
+  String get consentHealthSubtitle;
+
+  /// No description provided for @consentDataSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autoriser le traitement sécurisé et l\'hébergement de vos données cliniques.'**
+  String get consentDataSubtitle;
+
+  /// No description provided for @consentMarketingSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recevez des conseils de coaching biologique personnalisés et des actualités de santé.'**
+  String get consentMarketingSubtitle;
+
+  /// No description provided for @otpHelpBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Si vous ne recevez pas le code, vérifiez votre connexion réseau ou contactez notre support.'**
+  String get otpHelpBody;
+
+  /// No description provided for @biometricEnableTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Activez la connexion biométrique'**
+  String get biometricEnableTitle;
+
+  /// No description provided for @biometricEnableSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connectez-vous plus rapidement avec Face ID ou votre empreinte digitale, en toute sécurité.'**
+  String get biometricEnableSubtitle;
+
+  /// No description provided for @successFeatureNavigationLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'NAVIGATION'**
+  String get successFeatureNavigationLabel;
+
+  /// No description provided for @successFeatureNavigationBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trouvez des cliniques'**
+  String get successFeatureNavigationBody;
+
+  /// No description provided for @successFeatureAppointmentsLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'RENDEZ-VOUS'**
+  String get successFeatureAppointmentsLabel;
+
+  /// No description provided for @successFeatureAppointmentsBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Gestion facile'**
+  String get successFeatureAppointmentsBody;
+
+  /// No description provided for @profilePlaceholderTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Profil — placeholder'**
+  String get profilePlaceholderTitle;
+
+  /// No description provided for @profilePlaceholderSession.
+  ///
+  /// In fr, this message translates to:
+  /// **'Session active (token masqué).'**
+  String get profilePlaceholderSession;
+
+  /// No description provided for @profilePlaceholderRole.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rôle : {role}'**
+  String profilePlaceholderRole(String role);
+
+  /// No description provided for @profilePlaceholderSimulateExpiry.
+  ///
+  /// In fr, this message translates to:
+  /// **'Simuler expiration de session'**
+  String get profilePlaceholderSimulateExpiry;
+
+  /// No description provided for @errorRegistrationIncomplete.
+  ///
+  /// In fr, this message translates to:
+  /// **'Informations d\'inscription incomplètes.'**
+  String get errorRegistrationIncomplete;
+
+  /// No description provided for @errorEmptyResponse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réponse vide du serveur.'**
+  String get errorEmptyResponse;
+
+  /// No description provided for @errorConflict.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un conflit est survenu (cette ressource existe peut-être déjà).'**
+  String get errorConflict;
+
+  /// No description provided for @errorInvalidInput.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les informations fournies sont invalides.'**
+  String get errorInvalidInput;
+
+  /// No description provided for @errorUnexpected.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une erreur inattendue est survenue.'**
+  String get errorUnexpected;
+
+  /// No description provided for @errorPasswordUpdatedSignInAgain.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe mis à jour. Connectez-vous avec votre nouveau mot de passe.'**
+  String get errorPasswordUpdatedSignInAgain;
+
+  /// No description provided for @painSelectionMissing.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sélection de zone de douleur manquante.'**
+  String get painSelectionMissing;
+
+  /// No description provided for @specialistPrescriptionSubmitError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de créer l\'ordonnance.'**
+  String get specialistPrescriptionSubmitError;
 }
 
 class _AppLocalizationsDelegate

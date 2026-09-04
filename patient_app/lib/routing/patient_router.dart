@@ -414,8 +414,10 @@ GoRouter createPatientRouter({
         builder: (context, state) {
           final selection = state.extra;
           if (selection is! PainSelection) {
-            return const Scaffold(
-              body: Center(child: Text('Missing pain selection')),
+            return Scaffold(
+              body: Center(
+                child: Text(AppLocalizations.of(context)!.painSelectionMissing),
+              ),
             );
           }
           return AnamnesisQcmScreen(selection: selection);

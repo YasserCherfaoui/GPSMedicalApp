@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/generated/app_localizations.dart';
 import '../theme/gps_spacing.dart';
 import 'secondary_button.dart';
 
@@ -9,18 +10,22 @@ class ErrorState extends StatelessWidget {
     required this.title,
     super.key,
     this.message,
-    this.retryLabel = 'Réessayer',
+    this.retryLabel,
     this.onRetry,
   });
 
   final String title;
   final String? message;
-  final String retryLabel;
+
+  /// Defaults to [AppLocalizations.retry] when omitted.
+  final String? retryLabel;
   final VoidCallback? onRetry;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final resolvedRetry =
+        retryLabel ?? AppLocalizations.of(context)?.retry ?? 'Retry';
 
     return Center(
       child: SingleChildScrollView(
@@ -49,7 +54,7 @@ class ErrorState extends StatelessWidget {
             if (onRetry != null) ...[
               const SizedBox(height: GpsSpacing.lg),
               SecondaryButton(
-                label: retryLabel,
+                label: resolvedRetry,
                 onPressed: onRetry,
                 expand: false,
               ),

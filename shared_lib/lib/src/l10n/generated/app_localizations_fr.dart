@@ -2897,4 +2897,271 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get freemiumCoachingBody =>
       'Débloquez le plan personnalisé et les trackers quotidiens.';
+
+  @override
+  String get alreadyHaveAccount => 'J\'ai déjà un compte';
+
+  @override
+  String get needHelp => 'Besoin d\'aide ?';
+
+  @override
+  String get viewGuide => 'Consulter le guide';
+
+  @override
+  String get welcomeHeroGpsLabel => 'GPS MÉDICAL';
+
+  @override
+  String get welcomeHeroGpsCaption => 'Proximité optimisée';
+
+  @override
+  String get welcomeHeroRecordsLabel => 'DOSSIERS';
+
+  @override
+  String get welcomeHeroRecordsCaption => 'Santé numérique';
+
+  @override
+  String get welcomeHeroAnalysisTitle => 'Analyse smart';
+
+  @override
+  String get welcomeHeroAnalysisCaption => 'Diagnostics en temps réel';
+
+  @override
+  String onboardingSmartTitle(String brand) {
+    return 'Votre $brand intelligent';
+  }
+
+  @override
+  String onboardingSmartBody(String brand) {
+    return 'Naviguez sereinement dans le paysage médical algérien. $brand utilise l\'IA pour vous guider vers les meilleurs soins et surveiller votre vitalité en temps réel.';
+  }
+
+  @override
+  String get onboardingFeatureGuidanceTitle => 'Guidance experte';
+
+  @override
+  String get onboardingFeatureGuidanceBody =>
+      'Trouvez les spécialistes adaptés partout en Algérie.';
+
+  @override
+  String get onboardingFeatureMonitoringTitle => 'Monitoring IA';
+
+  @override
+  String get onboardingFeatureMonitoringBody =>
+      'Surveillance intelligente de vos constantes de santé.';
+
+  @override
+  String get onboardingStepPainTitle => 'Localisez votre douleur';
+
+  @override
+  String get onboardingStepPainBody =>
+      'Identifiez précisément vos zones d\'inconfort.';
+
+  @override
+  String get onboardingStepScreeningTitle => 'Dépistage intelligent';
+
+  @override
+  String get onboardingStepScreeningBody =>
+      'Notre IA analyse vos symptômes et documents.';
+
+  @override
+  String get onboardingStepPrepareTitle => 'Préparez votre corps';
+
+  @override
+  String get onboardingStepPrepareBody =>
+      'Recevez des conseils personnalisés de pré-consultation.';
+
+  @override
+  String get onboardingStepExpertTitle => 'Rencontrez l\'expert';
+
+  @override
+  String get onboardingStepExpertBody =>
+      'Prenez rendez-vous avec le bon spécialiste.';
+
+  @override
+  String get onboardingBadgeHosting => 'Hébergement local';
+
+  @override
+  String get onboardingBadgeEncryption => 'Chiffrement';
+
+  @override
+  String get onboardingBadgeDoctors => 'Médecins vérifiés';
+
+  @override
+  String get onboardingBadgeDoctorsSubtitle => 'Agréés par l\'État';
+
+  @override
+  String get onboardingTrustHosting => 'Hébergement local certifié ANPDP';
+
+  @override
+  String get onboardingTrustEncryption => 'Chiffrement de bout en bout';
+
+  @override
+  String get onboardingTrustDoctors => 'Médecins vérifiés et agréés';
+
+  @override
+  String get securedLabel => 'Sécurisé';
+
+  @override
+  String get instantLabel => 'Instantané';
+
+  @override
+  String get onboardingHeroGuidanceTitle => 'Orientation intelligente';
+
+  @override
+  String get onboardingHeroGuidanceSubtitle => 'IA + réseau médical algérien';
+
+  @override
+  String get onboardingHeroSampleDoctorName => 'Dr Karim B.';
+
+  @override
+  String get onboardingHeroSampleDoctorSpecialty => 'Cardiologie';
+
+  @override
+  String get onboardingHeroSampleDoctorRating => '4,9';
+
+  @override
+  String get onboardingHeroAiStatusLabel => 'STATUT IA';
+
+  @override
+  String get onboardingHeroAiStatusValue => 'Analyse active';
+
+  @override
+  String get onboardingHeroPathTitle => 'Votre parcours';
+
+  @override
+  String get onboardingHeroPathSteps => 'Douleur → Analyse → Spécialiste';
+
+  @override
+  String get orSeparator => 'OU';
+
+  @override
+  String get signInWithBiometrics => 'Se connecter avec biométrie';
+
+  @override
+  String get notRegisteredYet => 'Pas encore inscrit ?';
+
+  @override
+  String get authToastTitle => 'Authentification';
+
+  @override
+  String get ninVisualGuideLabel => 'GUIDE VISUEL';
+
+  @override
+  String get ninVisualGuideBody =>
+      'Le NIN se situe en haut à droite de votre carte biométrique.';
+
+  @override
+  String get ninFieldLabel => 'NIN';
+
+  @override
+  String get ninDigitsCount => '18 CHIFFRES';
+
+  @override
+  String get ninWhyLink => 'Pourquoi le NIN ?';
+
+  @override
+  String get passwordEncryptionNotice =>
+      'Chiffrement de bout en bout conforme ANPDP';
+
+  @override
+  String get passwordStrengthLabel => 'Force du mot de passe :';
+
+  @override
+  String get passwordStrengthWeak => 'Faible';
+
+  @override
+  String get passwordStrengthMedium => 'Moyen';
+
+  @override
+  String get passwordStrengthStrong => 'Fort';
+
+  @override
+  String get passwordRuleMinLength => 'Au moins 10 caractères';
+
+  @override
+  String get passwordRuleUppercase => 'Une majuscule';
+
+  @override
+  String get passwordRuleDigit => 'Un chiffre';
+
+  @override
+  String get passwordRuleSpecial => 'Un caractère spécial';
+
+  @override
+  String get consentHealthSubtitle =>
+      'Nécessaire pour le fonctionnement de l\'application et le suivi de votre dossier médical.';
+
+  @override
+  String get consentDataSubtitle =>
+      'Autoriser le traitement sécurisé et l\'hébergement de vos données cliniques.';
+
+  @override
+  String get consentMarketingSubtitle =>
+      'Recevez des conseils de coaching biologique personnalisés et des actualités de santé.';
+
+  @override
+  String get otpHelpBody =>
+      'Si vous ne recevez pas le code, vérifiez votre connexion réseau ou contactez notre support.';
+
+  @override
+  String get biometricEnableTitle => 'Activez la connexion biométrique';
+
+  @override
+  String get biometricEnableSubtitle =>
+      'Connectez-vous plus rapidement avec Face ID ou votre empreinte digitale, en toute sécurité.';
+
+  @override
+  String get successFeatureNavigationLabel => 'NAVIGATION';
+
+  @override
+  String get successFeatureNavigationBody => 'Trouvez des cliniques';
+
+  @override
+  String get successFeatureAppointmentsLabel => 'RENDEZ-VOUS';
+
+  @override
+  String get successFeatureAppointmentsBody => 'Gestion facile';
+
+  @override
+  String get profilePlaceholderTitle => 'Profil — placeholder';
+
+  @override
+  String get profilePlaceholderSession => 'Session active (token masqué).';
+
+  @override
+  String profilePlaceholderRole(String role) {
+    return 'Rôle : $role';
+  }
+
+  @override
+  String get profilePlaceholderSimulateExpiry =>
+      'Simuler expiration de session';
+
+  @override
+  String get errorRegistrationIncomplete =>
+      'Informations d\'inscription incomplètes.';
+
+  @override
+  String get errorEmptyResponse => 'Réponse vide du serveur.';
+
+  @override
+  String get errorConflict =>
+      'Un conflit est survenu (cette ressource existe peut-être déjà).';
+
+  @override
+  String get errorInvalidInput => 'Les informations fournies sont invalides.';
+
+  @override
+  String get errorUnexpected => 'Une erreur inattendue est survenue.';
+
+  @override
+  String get errorPasswordUpdatedSignInAgain =>
+      'Mot de passe mis à jour. Connectez-vous avec votre nouveau mot de passe.';
+
+  @override
+  String get painSelectionMissing => 'Sélection de zone de douleur manquante.';
+
+  @override
+  String get specialistPrescriptionSubmitError =>
+      'Impossible de créer l\'ordonnance.';
 }

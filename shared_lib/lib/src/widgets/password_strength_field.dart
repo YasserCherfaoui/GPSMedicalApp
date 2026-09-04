@@ -72,22 +72,22 @@ class _PasswordStrengthFieldState extends State<PasswordStrengthField> {
             children: [
               _RequirementRow(
                 met: widget.strength.minLength,
-                label: 'Au moins 10 caractères',
+                label: strings.passwordRuleMinLength,
               ),
               const SizedBox(height: GpsSpacing.sm),
               _RequirementRow(
                 met: widget.strength.hasUppercase,
-                label: 'Une majuscule',
+                label: strings.passwordRuleUppercase,
               ),
               const SizedBox(height: GpsSpacing.sm),
               _RequirementRow(
                 met: widget.strength.hasDigit,
-                label: 'Un chiffre',
+                label: strings.passwordRuleDigit,
               ),
               const SizedBox(height: GpsSpacing.sm),
               _RequirementRow(
                 met: widget.strength.hasSpecial,
-                label: 'Un caractère spécial',
+                label: strings.passwordRuleSpecial,
               ),
             ],
           ),
@@ -122,10 +122,11 @@ class _StrengthMeter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
-    String textStrength = 'Faible';
-    if (score == 2) textStrength = 'Moyen';
-    if (score >= 3) textStrength = 'Fort';
+    String textStrength = strings.passwordStrengthWeak;
+    if (score == 2) textStrength = strings.passwordStrengthMedium;
+    if (score >= 3) textStrength = strings.passwordStrengthStrong;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -134,7 +135,7 @@ class _StrengthMeter extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Force du mot de passe :',
+              strings.passwordStrengthLabel,
               style: Theme.of(
                 context,
               ).textTheme.labelSmall?.copyWith(color: colorScheme.outline),

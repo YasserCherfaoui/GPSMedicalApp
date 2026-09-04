@@ -9,8 +9,18 @@ enum AuthErrorCode {
   connectionTimeout,
   connectionError,
   unknownNetwork,
+
+  /// Server sent a readable validation/conflict message — surface it as-is.
   validationError,
   conflictError,
+
+  /// No usable server message: the UI substitutes localized copy.
+  invalidInput,
+  conflict,
+  unexpected,
+  emptyResponse,
+  registrationIncomplete,
+  passwordUpdatedSignInAgain,
 }
 
 /// Auth API failures surfaced to the UI.
@@ -41,6 +51,18 @@ sealed class AuthException implements Exception {
       case AuthErrorCode.validationError:
       case AuthErrorCode.conflictError:
         return message;
+      case AuthErrorCode.invalidInput:
+        return strings.errorInvalidInput;
+      case AuthErrorCode.conflict:
+        return strings.errorConflict;
+      case AuthErrorCode.unexpected:
+        return strings.errorUnexpected;
+      case AuthErrorCode.emptyResponse:
+        return strings.errorEmptyResponse;
+      case AuthErrorCode.registrationIncomplete:
+        return strings.errorRegistrationIncomplete;
+      case AuthErrorCode.passwordUpdatedSignInAgain:
+        return strings.errorPasswordUpdatedSignInAgain;
     }
   }
 

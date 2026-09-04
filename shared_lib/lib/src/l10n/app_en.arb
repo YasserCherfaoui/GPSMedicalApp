@@ -1314,5 +1314,107 @@
         "type": "int"
       }
     }
-  }
+  },
+  "alreadyHaveAccount": "I already have an account",
+  "needHelp": "Need help?",
+  "viewGuide": "View the guide",
+  "welcomeHeroGpsLabel": "MEDICAL GPS",
+  "welcomeHeroGpsCaption": "Optimised proximity",
+  "welcomeHeroRecordsLabel": "RECORDS",
+  "welcomeHeroRecordsCaption": "Digital health",
+  "welcomeHeroAnalysisTitle": "Smart analysis",
+  "welcomeHeroAnalysisCaption": "Real-time diagnostics",
+  "onboardingSmartTitle": "Your smart {brand}",
+  "@onboardingSmartTitle": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSmartBody": "Navigate the Algerian medical landscape with confidence. {brand} uses AI to guide you to the best care and monitor your vitality in real time.",
+  "@onboardingSmartBody": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingFeatureGuidanceTitle": "Expert guidance",
+  "onboardingFeatureGuidanceBody": "Find the right specialists anywhere in Algeria.",
+  "onboardingFeatureMonitoringTitle": "AI monitoring",
+  "onboardingFeatureMonitoringBody": "Smart tracking of your health vitals.",
+  "onboardingStepPainTitle": "Locate your pain",
+  "onboardingStepPainBody": "Pinpoint your areas of discomfort.",
+  "onboardingStepScreeningTitle": "Smart screening",
+  "onboardingStepScreeningBody": "Our AI analyses your symptoms and documents.",
+  "onboardingStepPrepareTitle": "Prepare your body",
+  "onboardingStepPrepareBody": "Get personalised pre-consultation advice.",
+  "onboardingStepExpertTitle": "Meet the expert",
+  "onboardingStepExpertBody": "Book an appointment with the right specialist.",
+  "onboardingBadgeHosting": "Local hosting",
+  "onboardingBadgeEncryption": "Encryption",
+  "onboardingBadgeDoctors": "Verified doctors",
+  "onboardingBadgeDoctorsSubtitle": "State-approved",
+  "onboardingTrustHosting": "ANPDP-certified local hosting",
+  "onboardingTrustEncryption": "End-to-end encryption",
+  "onboardingTrustDoctors": "Verified and approved doctors",
+  "securedLabel": "Secure",
+  "instantLabel": "Instant",
+  "onboardingHeroGuidanceTitle": "Smart guidance",
+  "onboardingHeroGuidanceSubtitle": "AI + Algerian medical network",
+  "onboardingHeroSampleDoctorName": "Dr Karim B.",
+  "onboardingHeroSampleDoctorSpecialty": "Cardiology",
+  "onboardingHeroSampleDoctorRating": "4.9",
+  "onboardingHeroAiStatusLabel": "AI STATUS",
+  "onboardingHeroAiStatusValue": "Analysis active",
+  "onboardingHeroPathTitle": "Your care path",
+  "onboardingHeroPathSteps": "Pain → Analysis → Specialist",
+  "orSeparator": "OR",
+  "signInWithBiometrics": "Sign in with biometrics",
+  "notRegisteredYet": "Not registered yet?",
+  "authToastTitle": "Authentication",
+  "ninVisualGuideLabel": "VISUAL GUIDE",
+  "ninVisualGuideBody": "The NIN is at the top right of your biometric ID card.",
+  "ninFieldLabel": "NIN",
+  "ninDigitsCount": "18 DIGITS",
+  "ninWhyLink": "Why the NIN?",
+  "passwordEncryptionNotice": "ANPDP-compliant end-to-end encryption",
+  "passwordStrengthLabel": "Password strength:",
+  "passwordStrengthWeak": "Weak",
+  "passwordStrengthMedium": "Medium",
+  "passwordStrengthStrong": "Strong",
+  "passwordRuleMinLength": "At least 10 characters",
+  "passwordRuleUppercase": "One uppercase letter",
+  "passwordRuleDigit": "One digit",
+  "passwordRuleSpecial": "One special character",
+  "consentHealthSubtitle": "Required for the app to work and to follow up your medical record.",
+  "consentDataSubtitle": "Allow secure processing and hosting of your clinical data.",
+  "consentMarketingSubtitle": "Receive personalised biological coaching tips and health news.",
+  "otpHelpBody": "If you don't receive the code, check your network connection or contact our support team.",
+  "biometricEnableTitle": "Turn on biometric sign-in",
+  "biometricEnableSubtitle": "Sign in faster and safely with Face ID or your fingerprint.",
+  "successFeatureNavigationLabel": "NAVIGATION",
+  "successFeatureNavigationBody": "Find clinics",
+  "successFeatureAppointmentsLabel": "APPOINTMENTS",
+  "successFeatureAppointmentsBody": "Easy management",
+  "profilePlaceholderTitle": "Profile — placeholder",
+  "profilePlaceholderSession": "Active session (token hidden).",
+  "profilePlaceholderRole": "Role: {role}",
+  "@profilePlaceholderRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePlaceholderSimulateExpiry": "Simulate session expiry",
+  "errorRegistrationIncomplete": "Incomplete registration details.",
+  "errorEmptyResponse": "Empty response from the server.",
+  "errorConflict": "A conflict occurred (this resource may already exist).",
+  "errorInvalidInput": "The details provided are invalid.",
+  "errorUnexpected": "An unexpected error occurred.",
+  "errorPasswordUpdatedSignInAgain": "Password updated. Sign in with your new password.",
+  "painSelectionMissing": "Pain area selection is missing.",
+  "specialistPrescriptionSubmitError": "Unable to create the prescription."
 }

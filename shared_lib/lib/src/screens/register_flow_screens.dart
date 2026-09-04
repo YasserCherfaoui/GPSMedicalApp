@@ -16,6 +16,7 @@ import '../l10n/auth_strings.dart';
 import '../models/app_info.dart';
 import '../models/app_info.provider.dart';
 import '../routing/gps_routes.dart';
+import '../theme/gps_brand.dart';
 import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 import '../validation/nin.dart';
@@ -24,8 +25,8 @@ import '../validation/phone_e164.dart';
 import '../widgets/auth_flow_scaffold.dart';
 import '../widgets/auth_toast.dart';
 import '../widgets/country_phone_field.dart';
-import '../widgets/gps_text_field.dart';
 import '../widgets/gps_logo.dart';
+import '../widgets/gps_text_field.dart';
 import '../widgets/otp_pin_input.dart';
 import '../widgets/password_strength_field.dart';
 import '../widgets/primary_button.dart';
@@ -331,7 +332,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'GUIDE VISUEL',
+                        strings.ninVisualGuideLabel,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: colorScheme.primary,
                           fontWeight: FontWeight.bold,
@@ -340,7 +341,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
                       ),
                       const SizedBox(height: GpsSpacing.xs),
                       Text(
-                        'Le NIN se situe en haut à droite de votre carte biométrique.',
+                        strings.ninVisualGuideBody,
                         style: Theme.of(context).textTheme.labelMedium
                             ?.copyWith(color: colorScheme.onSurfaceVariant),
                       ),
@@ -356,14 +357,14 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'NIN',
+                strings.ninFieldLabel,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: colorScheme.outline,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                '18 CHIFFRES',
+                strings.ninDigitsCount,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: colorScheme.outlineVariant,
                   fontWeight: FontWeight.bold,
@@ -404,7 +405,7 @@ class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
               onPressed: () {},
               icon: const Icon(Icons.help_outline, size: 16),
               label: Text(
-                'Pourquoi le NIN ?',
+                strings.ninWhyLink,
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   color: colorScheme.primary,
                   fontWeight: FontWeight.bold,
@@ -727,7 +728,7 @@ class _RegisterPasswordScreenState
               const SizedBox(width: GpsSpacing.xs),
               Expanded(
                 child: Text(
-                  'Chiffrement de bout en bout conforme ANPDP',
+                  strings.passwordEncryptionNotice,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                   ),
@@ -843,8 +844,7 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
           // Consent Cards List
           _ConsentCard(
             title: strings.consentHealth,
-            subtitle:
-                "Nécessaire pour le fonctionnement de l'application et le suivi de votre dossier médical.",
+            subtitle: strings.consentHealthSubtitle,
             value: _health,
             isRequired: true,
             onChanged: (v) => setState(() => _health = v),
@@ -852,8 +852,7 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
           const SizedBox(height: GpsSpacing.md),
           _ConsentCard(
             title: strings.consentData,
-            subtitle:
-                "Autoriser le traitement sécurisé et l'hébergement de vos données cliniques.",
+            subtitle: strings.consentDataSubtitle,
             value: _data,
             isRequired: true,
             onChanged: (v) => setState(() => _data = v),
@@ -868,8 +867,7 @@ class _RegisterConsentScreenState extends ConsumerState<RegisterConsentScreen> {
           const SizedBox(height: GpsSpacing.md),
           _ConsentCard(
             title: strings.consentMarketing,
-            subtitle:
-                'Recevez des conseils de coaching biologique personnalisés et des actualités de santé.',
+            subtitle: strings.consentMarketingSubtitle,
             value: _marketing,
             onChanged: (v) => setState(() => _marketing = v),
           ),
@@ -1121,7 +1119,7 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
               const SizedBox(width: 6),
               if (_resendSeconds > 0)
                 Text(
-                  'Renvoyer le code dans 0:${_resendSeconds.toString().padLeft(2, '0')}',
+                  strings.resendIn(_resendSeconds),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: colorScheme.onSurfaceVariant,
                   ),
@@ -1176,7 +1174,7 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Besoin d'aide ?",
+                        strings.needHelp,
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: colorScheme.primary,
@@ -1184,7 +1182,7 @@ class _RegisterOtpScreenState extends ConsumerState<RegisterOtpScreen> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Si vous ne recevez pas le code, vérifiez votre connexion réseau ou contactez notre support.',
+                        strings.otpHelpBody,
                         style: Theme.of(context).textTheme.labelMedium
                             ?.copyWith(
                               color: colorScheme.onSurfaceVariant,
@@ -1448,7 +1446,7 @@ class BiometricSetupScreen extends StatelessWidget {
           ),
           const SizedBox(height: GpsSpacing.xl),
           Text(
-            'Activez la connexion biométrique',
+            strings.biometricEnableTitle,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.w800,
               color: colorScheme.onSurface,
@@ -1457,7 +1455,7 @@ class BiometricSetupScreen extends StatelessWidget {
           ),
           const SizedBox(height: GpsSpacing.sm),
           Text(
-            'Connectez-vous plus rapidement avec Face ID ou votre empreinte digitale, en toute sécurité.',
+            strings.biometricEnableSubtitle,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: colorScheme.onSurfaceVariant,
             ),
@@ -1487,7 +1485,7 @@ class BiometricSetupScreen extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'Sécurisé',
+                        strings.securedLabel,
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.bold,
@@ -1514,7 +1512,7 @@ class BiometricSetupScreen extends StatelessWidget {
                       Icon(Icons.bolt, color: colorScheme.primary, size: 20),
                       const SizedBox(width: 8),
                       Text(
-                        'Instantané',
+                        strings.instantLabel,
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
                           color: colorScheme.onSurfaceVariant,
                           fontWeight: FontWeight.bold,
@@ -1532,7 +1530,7 @@ class BiometricSetupScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           PrimaryButton(
-            label: 'Activer',
+            label: strings.enable,
             onPressed: () => context.go(GpsRoutes.registrationSuccess),
           ),
           const SizedBox(height: GpsSpacing.sm),
@@ -1544,7 +1542,7 @@ class BiometricSetupScreen extends StatelessWidget {
               side: BorderSide(color: colorScheme.primary),
             ),
             child: Text(
-              'Plus tard',
+              strings.later,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: colorScheme.primary,
                 fontWeight: FontWeight.bold,
@@ -1570,7 +1568,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
     return AuthFlowScaffold(
       showBack: false,
       showBrandMark: true,
-      title: 'Medora',
+      title: GpsBrand.name,
       body: Column(
         children: [
           const SizedBox(height: GpsSpacing.lg),
@@ -1612,7 +1610,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
           ),
           const SizedBox(height: GpsSpacing.xl),
           Text(
-            'Bienvenue sur Medora !',
+            strings.successTitle,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.w800,
               color: colorScheme.onSurface,
@@ -1647,7 +1645,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
                       Icon(Icons.map, color: colorScheme.primary, size: 24),
                       const SizedBox(height: 8),
                       Text(
-                        'NAVIGATION',
+                        strings.successFeatureNavigationLabel,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: colorScheme.outline,
                           fontWeight: FontWeight.bold,
@@ -1656,7 +1654,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Trouvez des cliniques',
+                        strings.successFeatureNavigationBody,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: colorScheme.onSurface,
@@ -1687,7 +1685,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'RENDEZ-VOUS',
+                        strings.successFeatureAppointmentsLabel,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: colorScheme.outline,
                           fontWeight: FontWeight.bold,
@@ -1696,7 +1694,7 @@ class RegistrationSuccessScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Gestion facile',
+                        strings.successFeatureAppointmentsBody,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           fontWeight: FontWeight.bold,
                           color: colorScheme.onSurface,
@@ -1722,13 +1720,13 @@ class RegistrationSuccessScreen extends StatelessWidget {
           Center(
             child: RichText(
               text: TextSpan(
-                text: "Besoin d'aide ? ",
+                text: '${strings.needHelp} ',
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
                 children: [
                   TextSpan(
-                    text: 'Consulter le guide',
+                    text: strings.viewGuide,
                     style: TextStyle(
                       color: colorScheme.primary,
                       fontWeight: FontWeight.bold,

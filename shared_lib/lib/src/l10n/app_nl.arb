@@ -1314,5 +1314,107 @@
         "type": "int"
       }
     }
-  }
+  },
+  "alreadyHaveAccount": "Ik heb al een account",
+  "needHelp": "Hulp nodig?",
+  "viewGuide": "Bekijk de gids",
+  "welcomeHeroGpsLabel": "MEDISCHE GPS",
+  "welcomeHeroGpsCaption": "Geoptimaliseerde nabijheid",
+  "welcomeHeroRecordsLabel": "DOSSIERS",
+  "welcomeHeroRecordsCaption": "Digitale zorg",
+  "welcomeHeroAnalysisTitle": "Slimme analyse",
+  "welcomeHeroAnalysisCaption": "Diagnostiek in realtime",
+  "onboardingSmartTitle": "Jouw slimme {brand}",
+  "@onboardingSmartTitle": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSmartBody": "Navigeer met vertrouwen door het Algerijnse zorglandschap. {brand} gebruikt AI om je naar de beste zorg te leiden en je vitaliteit in realtime te volgen.",
+  "@onboardingSmartBody": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingFeatureGuidanceTitle": "Deskundige begeleiding",
+  "onboardingFeatureGuidanceBody": "Vind de juiste specialisten in heel Algerije.",
+  "onboardingFeatureMonitoringTitle": "AI-monitoring",
+  "onboardingFeatureMonitoringBody": "Slimme opvolging van je vitale waarden.",
+  "onboardingStepPainTitle": "Lokaliseer je pijn",
+  "onboardingStepPainBody": "Bepaal precies waar je klachten zitten.",
+  "onboardingStepScreeningTitle": "Slimme screening",
+  "onboardingStepScreeningBody": "Onze AI analyseert je symptomen en documenten.",
+  "onboardingStepPrepareTitle": "Bereid je lichaam voor",
+  "onboardingStepPrepareBody": "Ontvang persoonlijk advies vóór je consult.",
+  "onboardingStepExpertTitle": "Ontmoet de expert",
+  "onboardingStepExpertBody": "Maak een afspraak met de juiste specialist.",
+  "onboardingBadgeHosting": "Lokale hosting",
+  "onboardingBadgeEncryption": "Versleuteling",
+  "onboardingBadgeDoctors": "Gecontroleerde artsen",
+  "onboardingBadgeDoctorsSubtitle": "Erkend door de staat",
+  "onboardingTrustHosting": "ANPDP-gecertificeerde lokale hosting",
+  "onboardingTrustEncryption": "End-to-end-versleuteling",
+  "onboardingTrustDoctors": "Gecontroleerde en erkende artsen",
+  "securedLabel": "Beveiligd",
+  "instantLabel": "Direct",
+  "onboardingHeroGuidanceTitle": "Slimme oriëntatie",
+  "onboardingHeroGuidanceSubtitle": "AI + Algerijns medisch netwerk",
+  "onboardingHeroSampleDoctorName": "Dr. Karim B.",
+  "onboardingHeroSampleDoctorSpecialty": "Cardiologie",
+  "onboardingHeroSampleDoctorRating": "4,9",
+  "onboardingHeroAiStatusLabel": "AI-STATUS",
+  "onboardingHeroAiStatusValue": "Analyse actief",
+  "onboardingHeroPathTitle": "Jouw zorgtraject",
+  "onboardingHeroPathSteps": "Pijn → Analyse → Specialist",
+  "orSeparator": "OF",
+  "signInWithBiometrics": "Inloggen met biometrie",
+  "notRegisteredYet": "Nog niet geregistreerd?",
+  "authToastTitle": "Authenticatie",
+  "ninVisualGuideLabel": "VISUELE GIDS",
+  "ninVisualGuideBody": "Het NIN staat rechtsboven op je biometrische identiteitskaart.",
+  "ninFieldLabel": "NIN",
+  "ninDigitsCount": "18 CIJFERS",
+  "ninWhyLink": "Waarom het NIN?",
+  "passwordEncryptionNotice": "ANPDP-conforme end-to-end-versleuteling",
+  "passwordStrengthLabel": "Wachtwoordsterkte:",
+  "passwordStrengthWeak": "Zwak",
+  "passwordStrengthMedium": "Gemiddeld",
+  "passwordStrengthStrong": "Sterk",
+  "passwordRuleMinLength": "Minstens 10 tekens",
+  "passwordRuleUppercase": "Eén hoofdletter",
+  "passwordRuleDigit": "Eén cijfer",
+  "passwordRuleSpecial": "Eén speciaal teken",
+  "consentHealthSubtitle": "Nodig voor de werking van de app en het bijhouden van je medisch dossier.",
+  "consentDataSubtitle": "Veilige verwerking en hosting van je klinische gegevens toestaan.",
+  "consentMarketingSubtitle": "Ontvang persoonlijke biologische coachingtips en gezondheidsnieuws.",
+  "otpHelpBody": "Ontvang je de code niet? Controleer je netwerkverbinding of neem contact op met onze support.",
+  "biometricEnableTitle": "Zet biometrisch inloggen aan",
+  "biometricEnableSubtitle": "Log sneller en veilig in met Face ID of je vingerafdruk.",
+  "successFeatureNavigationLabel": "NAVIGATIE",
+  "successFeatureNavigationBody": "Vind klinieken",
+  "successFeatureAppointmentsLabel": "AFSPRAKEN",
+  "successFeatureAppointmentsBody": "Eenvoudig beheer",
+  "profilePlaceholderTitle": "Profiel — tijdelijk",
+  "profilePlaceholderSession": "Actieve sessie (token verborgen).",
+  "profilePlaceholderRole": "Rol: {role}",
+  "@profilePlaceholderRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePlaceholderSimulateExpiry": "Sessieverloop simuleren",
+  "errorRegistrationIncomplete": "De registratiegegevens zijn onvolledig.",
+  "errorEmptyResponse": "Leeg antwoord van de server.",
+  "errorConflict": "Er is een conflict opgetreden (deze resource bestaat mogelijk al).",
+  "errorInvalidInput": "De opgegeven gegevens zijn ongeldig.",
+  "errorUnexpected": "Er is een onverwachte fout opgetreden.",
+  "errorPasswordUpdatedSignInAgain": "Wachtwoord bijgewerkt. Log in met je nieuwe wachtwoord.",
+  "painSelectionMissing": "De selectie van de pijnzone ontbreekt.",
+  "specialistPrescriptionSubmitError": "Het recept kan niet worden aangemaakt."
 }

@@ -2859,4 +2859,268 @@ class AppLocalizationsBer extends AppLocalizations {
   @override
   String get freemiumCoachingBody =>
       'Sserreḥ aɣawas udmawan d yimedyaten n wass.';
+
+  @override
+  String get alreadyHaveAccount => 'Sɛiɣ yakan amiḍan';
+
+  @override
+  String get needHelp => 'Tesriḍ tallalt?';
+
+  @override
+  String get viewGuide => 'Ẓer amnir';
+
+  @override
+  String get welcomeHeroGpsLabel => 'GPS UṢṢAN';
+
+  @override
+  String get welcomeHeroGpsCaption => 'Tazdit yemsefhem';
+
+  @override
+  String get welcomeHeroRecordsLabel => 'IKARDISEN';
+
+  @override
+  String get welcomeHeroRecordsCaption => 'Teddwit tumḍint';
+
+  @override
+  String get welcomeHeroAnalysisTitle => 'Tesleḍt tuzmirt';
+
+  @override
+  String get welcomeHeroAnalysisCaption => 'Asemyifer deg wakud n tidet';
+
+  @override
+  String onboardingSmartTitle(String brand) {
+    return '$brand-ik uzmir';
+  }
+
+  @override
+  String onboardingSmartBody(String brand) {
+    return 'Ddu s talwit deg wammud uṣṣan azzayri. $brand yesseqdec IA akken ad k-yenher ɣer wass ifazen d uɛassi n teddwit-ik deg wakud n tidet.';
+  }
+
+  @override
+  String get onboardingFeatureGuidanceTitle => 'Anhil n yimusnawen';
+
+  @override
+  String get onboardingFeatureGuidanceBody =>
+      'Af-d imusnawen iwatan deg Dzayer meṛṛa.';
+
+  @override
+  String get onboardingFeatureMonitoringTitle => 'Aɛassi s IA';
+
+  @override
+  String get onboardingFeatureMonitoringBody =>
+      'Aɛassi uzmir n yimatuten n teddwit-ik.';
+
+  @override
+  String get onboardingStepPainTitle => 'Sbadu anida i k-teqqreḥ';
+
+  @override
+  String get onboardingStepPainBody =>
+      'Sbadu s telqey tamiwin i k-yeɛjiben ara.';
+
+  @override
+  String get onboardingStepScreeningTitle => 'Asekcem uzmir';
+
+  @override
+  String get onboardingStepScreeningBody =>
+      'IA-nneɣ tesleḍ izamulen-ik d yisemliyen-ik.';
+
+  @override
+  String get onboardingStepPrepareTitle => 'Heggi tafekka-ik';
+
+  @override
+  String get onboardingStepPrepareBody =>
+      'Awi-d ilugan udmawanen send tamlilit.';
+
+  @override
+  String get onboardingStepExpertTitle => 'Mlil amusnaw';
+
+  @override
+  String get onboardingStepExpertBody => 'Sbadu ttiɛad d umusnaw iwatan.';
+
+  @override
+  String get onboardingBadgeHosting => 'Asenser adigan';
+
+  @override
+  String get onboardingBadgeEncryption => 'Awgelhen';
+
+  @override
+  String get onboardingBadgeDoctors => 'Imsujjiyen yettwasenqden';
+
+  @override
+  String get onboardingBadgeDoctorsSubtitle => 'Yettwaqbel sɣur Awanek';
+
+  @override
+  String get onboardingTrustHosting => 'Asenser adigan yettwaselken ANPDP';
+
+  @override
+  String get onboardingTrustEncryption => 'Awgelhen seg yixef ɣer yixef';
+
+  @override
+  String get onboardingTrustDoctors =>
+      'Imsujjiyen yettwasenqden d yettwaqbelen';
+
+  @override
+  String get securedLabel => 'Yettwaɣles';
+
+  @override
+  String get instantLabel => 'Imir-nni';
+
+  @override
+  String get onboardingHeroGuidanceTitle => 'Anhil uzmir';
+
+  @override
+  String get onboardingHeroGuidanceSubtitle => 'IA + azeṭṭa uṣṣan azzayri';
+
+  @override
+  String get onboardingHeroSampleDoctorName => 'Dr Karim B.';
+
+  @override
+  String get onboardingHeroSampleDoctorSpecialty => 'Takardyulujit';
+
+  @override
+  String get onboardingHeroSampleDoctorRating => '4,9';
+
+  @override
+  String get onboardingHeroAiStatusLabel => 'ADDAD N IA';
+
+  @override
+  String get onboardingHeroAiStatusValue => 'Tesleḍt turemd';
+
+  @override
+  String get onboardingHeroPathTitle => 'Abrid-ik';
+
+  @override
+  String get onboardingHeroPathSteps => 'Aqriḥ → Tesleḍt → Amusnaw';
+
+  @override
+  String get orSeparator => 'NEƔ';
+
+  @override
+  String get signInWithBiometrics => 'Qqen s tbiyumitrit';
+
+  @override
+  String get notRegisteredYet => 'Ur tjerdeḍ ara yakan?';
+
+  @override
+  String get authToastTitle => 'Asesteb';
+
+  @override
+  String get ninVisualGuideLabel => 'AMNIR UẒRAN';
+
+  @override
+  String get ninVisualGuideBody =>
+      'NIN yella deg uzudir ayeffus n takaṛḍa-ik tabiyumitrit.';
+
+  @override
+  String get ninFieldLabel => 'NIN';
+
+  @override
+  String get ninDigitsCount => '18 N YIZWILEN';
+
+  @override
+  String get ninWhyLink => 'Acuɣer NIN?';
+
+  @override
+  String get passwordEncryptionNotice =>
+      'Awgelhen seg yixef ɣer yixef akken i d-yenna ANPDP';
+
+  @override
+  String get passwordStrengthLabel => 'Tazmert n wawal uffir:';
+
+  @override
+  String get passwordStrengthWeak => 'Fessus';
+
+  @override
+  String get passwordStrengthMedium => 'Alemmas';
+
+  @override
+  String get passwordStrengthStrong => 'Iǧhed';
+
+  @override
+  String get passwordRuleMinLength => 'Ma drus 10 n yisekkilen';
+
+  @override
+  String get passwordRuleUppercase => 'Yiwen usekkil ameqqran';
+
+  @override
+  String get passwordRuleDigit => 'Yiwen uzwil';
+
+  @override
+  String get passwordRuleSpecial => 'Yiwen usekkil uslig';
+
+  @override
+  String get consentHealthSubtitle =>
+      'Ilaq i tuddsa n usnas d uḍfar n ukaṛdis-ik uṣṣan.';
+
+  @override
+  String get consentDataSubtitle =>
+      'Serreḥ i usefrek yettwaɣles d usenser n yisefka-ik uṣṣanen.';
+
+  @override
+  String get consentMarketingSubtitle =>
+      'Awi-d ilugan n ukucin abyuluji udmawan d yisallen n teddwit.';
+
+  @override
+  String get otpHelpBody =>
+      'Ma yella ur tremseḍ ara tangalt, senqed tuqqna-ik neɣ nermes tallalt-nneɣ.';
+
+  @override
+  String get biometricEnableTitle => 'Rmed tuqqna tabiyumitrit';
+
+  @override
+  String get biometricEnableSubtitle =>
+      'Qqen s zzerb d telwit s Face ID neɣ adsil-ik.';
+
+  @override
+  String get successFeatureNavigationLabel => 'TUNIGIN';
+
+  @override
+  String get successFeatureNavigationBody => 'Af-d tinaddiwin';
+
+  @override
+  String get successFeatureAppointmentsLabel => 'TTIƐAD';
+
+  @override
+  String get successFeatureAppointmentsBody => 'Asefrek fessus';
+
+  @override
+  String get profilePlaceholderTitle => 'Amaɣnu — placeholder';
+
+  @override
+  String get profilePlaceholderSession => 'Tiɣimit turemd (token yeffer).';
+
+  @override
+  String profilePlaceholderRole(String role) {
+    return 'Tamlilt: $role';
+  }
+
+  @override
+  String get profilePlaceholderSimulateExpiry => 'Ɛiwez taggara n tɣimit';
+
+  @override
+  String get errorRegistrationIncomplete => 'Isallen n ujerred ur mmden ara.';
+
+  @override
+  String get errorEmptyResponse => 'Tiririt tilemt sɣur uqeddac.';
+
+  @override
+  String get errorConflict => 'Yella umennuɣ (ahat aɣbalu-a yella yakan).';
+
+  @override
+  String get errorInvalidInput => 'Isallen i d-tefkiḍ ur meɣtin ara.';
+
+  @override
+  String get errorUnexpected => 'Yella-d ugur ur yettwarǧan ara.';
+
+  @override
+  String get errorPasswordUpdatedSignInAgain =>
+      'Awal uffir yettwaleqqem. Qqen s wawal uffir amaynut.';
+
+  @override
+  String get painSelectionMissing => 'Ulac tafrant n temnaḍt n uqriḥ.';
+
+  @override
+  String get specialistPrescriptionSubmitError =>
+      'Ur nezmir ara ad d-nernu tasumta.';
 }

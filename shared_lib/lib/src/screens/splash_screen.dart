@@ -29,10 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              theme.colorScheme.surface,
-              GpsColors.surfaceDim,
-            ],
+            colors: [theme.colorScheme.surface, GpsColors.surfaceDim],
           ),
         ),
         child: SafeArea(

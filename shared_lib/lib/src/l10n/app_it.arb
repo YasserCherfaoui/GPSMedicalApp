@@ -1314,5 +1314,107 @@
         "type": "int"
       }
     }
-  }
+  },
+  "alreadyHaveAccount": "Ho già un account",
+  "needHelp": "Serve aiuto?",
+  "viewGuide": "Consulta la guida",
+  "welcomeHeroGpsLabel": "GPS MEDICO",
+  "welcomeHeroGpsCaption": "Prossimità ottimizzata",
+  "welcomeHeroRecordsLabel": "CARTELLE",
+  "welcomeHeroRecordsCaption": "Salute digitale",
+  "welcomeHeroAnalysisTitle": "Analisi smart",
+  "welcomeHeroAnalysisCaption": "Diagnostica in tempo reale",
+  "onboardingSmartTitle": "Il tuo {brand} intelligente",
+  "@onboardingSmartTitle": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSmartBody": "Muoviti con serenità nel panorama medico algerino. {brand} usa l'IA per guidarti verso le cure migliori e monitorare la tua vitalità in tempo reale.",
+  "@onboardingSmartBody": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingFeatureGuidanceTitle": "Guida esperta",
+  "onboardingFeatureGuidanceBody": "Trova gli specialisti giusti in tutta l'Algeria.",
+  "onboardingFeatureMonitoringTitle": "Monitoraggio IA",
+  "onboardingFeatureMonitoringBody": "Monitoraggio intelligente dei tuoi parametri vitali.",
+  "onboardingStepPainTitle": "Localizza il tuo dolore",
+  "onboardingStepPainBody": "Individua con precisione le zone di fastidio.",
+  "onboardingStepScreeningTitle": "Screening intelligente",
+  "onboardingStepScreeningBody": "La nostra IA analizza i tuoi sintomi e documenti.",
+  "onboardingStepPrepareTitle": "Prepara il tuo corpo",
+  "onboardingStepPrepareBody": "Ricevi consigli personalizzati prima della visita.",
+  "onboardingStepExpertTitle": "Incontra l'esperto",
+  "onboardingStepExpertBody": "Prenota un appuntamento con lo specialista giusto.",
+  "onboardingBadgeHosting": "Hosting locale",
+  "onboardingBadgeEncryption": "Crittografia",
+  "onboardingBadgeDoctors": "Medici verificati",
+  "onboardingBadgeDoctorsSubtitle": "Autorizzati dallo Stato",
+  "onboardingTrustHosting": "Hosting locale certificato ANPDP",
+  "onboardingTrustEncryption": "Crittografia end-to-end",
+  "onboardingTrustDoctors": "Medici verificati e autorizzati",
+  "securedLabel": "Sicuro",
+  "instantLabel": "Istantaneo",
+  "onboardingHeroGuidanceTitle": "Orientamento intelligente",
+  "onboardingHeroGuidanceSubtitle": "IA + rete medica algerina",
+  "onboardingHeroSampleDoctorName": "Dr. Karim B.",
+  "onboardingHeroSampleDoctorSpecialty": "Cardiologia",
+  "onboardingHeroSampleDoctorRating": "4,9",
+  "onboardingHeroAiStatusLabel": "STATO IA",
+  "onboardingHeroAiStatusValue": "Analisi attiva",
+  "onboardingHeroPathTitle": "Il tuo percorso",
+  "onboardingHeroPathSteps": "Dolore → Analisi → Specialista",
+  "orSeparator": "O",
+  "signInWithBiometrics": "Accedi con la biometria",
+  "notRegisteredYet": "Non sei ancora registrato?",
+  "authToastTitle": "Autenticazione",
+  "ninVisualGuideLabel": "GUIDA VISIVA",
+  "ninVisualGuideBody": "Il NIN si trova in alto a destra sulla tua carta biometrica.",
+  "ninFieldLabel": "NIN",
+  "ninDigitsCount": "18 CIFRE",
+  "ninWhyLink": "Perché il NIN?",
+  "passwordEncryptionNotice": "Crittografia end-to-end conforme ANPDP",
+  "passwordStrengthLabel": "Sicurezza della password:",
+  "passwordStrengthWeak": "Debole",
+  "passwordStrengthMedium": "Media",
+  "passwordStrengthStrong": "Forte",
+  "passwordRuleMinLength": "Almeno 10 caratteri",
+  "passwordRuleUppercase": "Una lettera maiuscola",
+  "passwordRuleDigit": "Una cifra",
+  "passwordRuleSpecial": "Un carattere speciale",
+  "consentHealthSubtitle": "Necessario per il funzionamento dell'app e il monitoraggio della tua cartella clinica.",
+  "consentDataSubtitle": "Autorizzare il trattamento sicuro e l'hosting dei tuoi dati clinici.",
+  "consentMarketingSubtitle": "Ricevi consigli di coaching biologico personalizzati e notizie sulla salute.",
+  "otpHelpBody": "Se non ricevi il codice, controlla la connessione di rete o contatta il nostro supporto.",
+  "biometricEnableTitle": "Attiva l'accesso biometrico",
+  "biometricEnableSubtitle": "Accedi più rapidamente e in sicurezza con Face ID o la tua impronta.",
+  "successFeatureNavigationLabel": "NAVIGAZIONE",
+  "successFeatureNavigationBody": "Trova cliniche",
+  "successFeatureAppointmentsLabel": "APPUNTAMENTI",
+  "successFeatureAppointmentsBody": "Gestione semplice",
+  "profilePlaceholderTitle": "Profilo — segnaposto",
+  "profilePlaceholderSession": "Sessione attiva (token nascosto).",
+  "profilePlaceholderRole": "Ruolo: {role}",
+  "@profilePlaceholderRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePlaceholderSimulateExpiry": "Simula scadenza della sessione",
+  "errorRegistrationIncomplete": "Dati di registrazione incompleti.",
+  "errorEmptyResponse": "Risposta vuota dal server.",
+  "errorConflict": "Si è verificato un conflitto (questa risorsa potrebbe già esistere).",
+  "errorInvalidInput": "I dati inseriti non sono validi.",
+  "errorUnexpected": "Si è verificato un errore inatteso.",
+  "errorPasswordUpdatedSignInAgain": "Password aggiornata. Accedi con la nuova password.",
+  "painSelectionMissing": "Manca la selezione della zona del dolore.",
+  "specialistPrescriptionSubmitError": "Impossibile creare la prescrizione."
 }

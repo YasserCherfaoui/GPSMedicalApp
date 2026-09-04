@@ -1314,5 +1314,107 @@
         "type": "int"
       }
     }
-  }
+  },
+  "alreadyHaveAccount": "Já tenho uma conta",
+  "needHelp": "Precisa de ajuda?",
+  "viewGuide": "Consultar o guia",
+  "welcomeHeroGpsLabel": "GPS MÉDICO",
+  "welcomeHeroGpsCaption": "Proximidade otimizada",
+  "welcomeHeroRecordsLabel": "PROCESSOS",
+  "welcomeHeroRecordsCaption": "Saúde digital",
+  "welcomeHeroAnalysisTitle": "Análise inteligente",
+  "welcomeHeroAnalysisCaption": "Diagnósticos em tempo real",
+  "onboardingSmartTitle": "O seu {brand} inteligente",
+  "@onboardingSmartTitle": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingSmartBody": "Navegue com tranquilidade no panorama médico argelino. O {brand} usa IA para o orientar para os melhores cuidados e acompanhar a sua vitalidade em tempo real.",
+  "@onboardingSmartBody": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingFeatureGuidanceTitle": "Orientação especializada",
+  "onboardingFeatureGuidanceBody": "Encontre os especialistas certos em toda a Argélia.",
+  "onboardingFeatureMonitoringTitle": "Monitorização por IA",
+  "onboardingFeatureMonitoringBody": "Acompanhamento inteligente dos seus sinais vitais.",
+  "onboardingStepPainTitle": "Localize a sua dor",
+  "onboardingStepPainBody": "Identifique com precisão as suas zonas de desconforto.",
+  "onboardingStepScreeningTitle": "Rastreio inteligente",
+  "onboardingStepScreeningBody": "A nossa IA analisa os seus sintomas e documentos.",
+  "onboardingStepPrepareTitle": "Prepare o seu corpo",
+  "onboardingStepPrepareBody": "Receba conselhos personalizados antes da consulta.",
+  "onboardingStepExpertTitle": "Conheça o especialista",
+  "onboardingStepExpertBody": "Marque consulta com o especialista certo.",
+  "onboardingBadgeHosting": "Alojamento local",
+  "onboardingBadgeEncryption": "Encriptação",
+  "onboardingBadgeDoctors": "Médicos verificados",
+  "onboardingBadgeDoctorsSubtitle": "Autorizados pelo Estado",
+  "onboardingTrustHosting": "Alojamento local certificado pela ANPDP",
+  "onboardingTrustEncryption": "Encriptação ponta a ponta",
+  "onboardingTrustDoctors": "Médicos verificados e autorizados",
+  "securedLabel": "Seguro",
+  "instantLabel": "Instantâneo",
+  "onboardingHeroGuidanceTitle": "Orientação inteligente",
+  "onboardingHeroGuidanceSubtitle": "IA + rede médica argelina",
+  "onboardingHeroSampleDoctorName": "Dr. Karim B.",
+  "onboardingHeroSampleDoctorSpecialty": "Cardiologia",
+  "onboardingHeroSampleDoctorRating": "4,9",
+  "onboardingHeroAiStatusLabel": "ESTADO DA IA",
+  "onboardingHeroAiStatusValue": "Análise ativa",
+  "onboardingHeroPathTitle": "O seu percurso",
+  "onboardingHeroPathSteps": "Dor → Análise → Especialista",
+  "orSeparator": "OU",
+  "signInWithBiometrics": "Entrar com biometria",
+  "notRegisteredYet": "Ainda não se registou?",
+  "authToastTitle": "Autenticação",
+  "ninVisualGuideLabel": "GUIA VISUAL",
+  "ninVisualGuideBody": "O NIN encontra-se no canto superior direito do seu cartão biométrico.",
+  "ninFieldLabel": "NIN",
+  "ninDigitsCount": "18 DÍGITOS",
+  "ninWhyLink": "Porque é preciso o NIN?",
+  "passwordEncryptionNotice": "Encriptação ponta a ponta conforme a ANPDP",
+  "passwordStrengthLabel": "Segurança da palavra-passe:",
+  "passwordStrengthWeak": "Fraca",
+  "passwordStrengthMedium": "Média",
+  "passwordStrengthStrong": "Forte",
+  "passwordRuleMinLength": "Pelo menos 10 caracteres",
+  "passwordRuleUppercase": "Uma letra maiúscula",
+  "passwordRuleDigit": "Um dígito",
+  "passwordRuleSpecial": "Um caractere especial",
+  "consentHealthSubtitle": "Necessário para o funcionamento da aplicação e o acompanhamento do seu processo clínico.",
+  "consentDataSubtitle": "Autorizar o tratamento seguro e o alojamento dos seus dados clínicos.",
+  "consentMarketingSubtitle": "Receba dicas de coaching biológico personalizadas e novidades de saúde.",
+  "otpHelpBody": "Se não receber o código, verifique a sua ligação de rede ou contacte o nosso suporte.",
+  "biometricEnableTitle": "Ative a autenticação biométrica",
+  "biometricEnableSubtitle": "Entre mais rapidamente e com segurança com o Face ID ou a sua impressão digital.",
+  "successFeatureNavigationLabel": "NAVEGAÇÃO",
+  "successFeatureNavigationBody": "Encontre clínicas",
+  "successFeatureAppointmentsLabel": "CONSULTAS",
+  "successFeatureAppointmentsBody": "Gestão simples",
+  "profilePlaceholderTitle": "Perfil — provisório",
+  "profilePlaceholderSession": "Sessão ativa (token oculto).",
+  "profilePlaceholderRole": "Função: {role}",
+  "@profilePlaceholderRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "profilePlaceholderSimulateExpiry": "Simular expiração da sessão",
+  "errorRegistrationIncomplete": "Dados de registo incompletos.",
+  "errorEmptyResponse": "Resposta vazia do servidor.",
+  "errorConflict": "Ocorreu um conflito (este recurso pode já existir).",
+  "errorInvalidInput": "Os dados indicados não são válidos.",
+  "errorUnexpected": "Ocorreu um erro inesperado.",
+  "errorPasswordUpdatedSignInAgain": "Palavra-passe atualizada. Inicie sessão com a nova palavra-passe.",
+  "painSelectionMissing": "Falta a seleção da zona de dor.",
+  "specialistPrescriptionSubmitError": "Não foi possível criar a receita."
 }

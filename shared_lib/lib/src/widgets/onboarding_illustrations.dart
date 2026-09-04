@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/auth_strings.dart';
 import '../theme/gps_colors.dart';
 import '../theme/gps_elevation.dart';
 import '../theme/gps_radii.dart';
@@ -12,6 +13,7 @@ class OnboardingSmartGuideIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
 
     return Stack(
@@ -25,7 +27,11 @@ class OnboardingSmartGuideIllustration extends StatelessWidget {
             gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [GpsColors.blue, GpsColors.blueDark, GpsColors.blueDarkest],
+              colors: [
+                GpsColors.blue,
+                GpsColors.blueDark,
+                GpsColors.blueDarkest,
+              ],
             ),
             boxShadow: GpsElevation.level1(tint: GpsColors.blue),
           ),
@@ -51,7 +57,7 @@ class OnboardingSmartGuideIllustration extends StatelessWidget {
                           const GpsLogo(size: 52),
                           const SizedBox(height: GpsSpacing.md),
                           Text(
-                            'Orientation intelligente',
+                            strings.onboardingHeroGuidanceTitle,
                             style: Theme.of(context).textTheme.titleMedium
                                 ?.copyWith(
                                   color: Colors.white,
@@ -60,7 +66,7 @@ class OnboardingSmartGuideIllustration extends StatelessWidget {
                           ),
                           const SizedBox(height: GpsSpacing.xs),
                           Text(
-                            'IA + réseau médical algérien',
+                            strings.onboardingHeroGuidanceSubtitle,
                             style: Theme.of(context).textTheme.bodySmall
                                 ?.copyWith(
                                   color: Colors.white.withValues(alpha: 0.85),
@@ -93,6 +99,8 @@ class _MiniDoctorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AuthStrings.of(context);
+
     return Container(
       width: 118,
       padding: const EdgeInsets.all(GpsSpacing.sm),
@@ -115,14 +123,14 @@ class _MiniDoctorCard extends StatelessWidget {
           ),
           const SizedBox(height: GpsSpacing.sm),
           Text(
-            'Dr. Karim B.',
+            strings.onboardingHeroSampleDoctorName,
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
               fontWeight: FontWeight.w700,
               color: colorScheme.onSurface,
             ),
           ),
           Text(
-            'Cardiologie',
+            strings.onboardingHeroSampleDoctorSpecialty,
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: colorScheme.onSurfaceVariant,
             ),
@@ -130,13 +138,13 @@ class _MiniDoctorCard extends StatelessWidget {
           const SizedBox(height: GpsSpacing.xs),
           Row(
             children: [
-              Icon(Icons.star_rounded, size: 14, color: GpsColors.green),
+              const Icon(Icons.star_rounded, size: 14, color: GpsColors.green),
               const SizedBox(width: 2),
               Text(
-                '4,9',
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+                strings.onboardingHeroSampleDoctorRating,
+                style: Theme.of(
+                  context,
+                ).textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w700),
               ),
             ],
           ),
@@ -153,6 +161,8 @@ class _StatusBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AuthStrings.of(context);
+
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: GpsSpacing.md,
@@ -161,7 +171,9 @@ class _StatusBadge extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerLowest.withValues(alpha: 0.95),
         borderRadius: BorderRadius.circular(GpsRadii.lg),
-        border: Border.all(color: colorScheme.outlineVariant.withValues(alpha: 0.5)),
+        border: Border.all(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.5),
+        ),
         boxShadow: GpsElevation.level1(),
       ),
       child: Row(
@@ -181,7 +193,7 @@ class _StatusBadge extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'STATUT IA',
+                strings.onboardingHeroAiStatusLabel,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.bold,
@@ -189,7 +201,7 @@ class _StatusBadge extends StatelessWidget {
                 ),
               ),
               Text(
-                'Analyse active',
+                strings.onboardingHeroAiStatusValue,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: colorScheme.primary,
                   fontWeight: FontWeight.w800,
@@ -209,6 +221,7 @@ class OnboardingCarePathIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
 
     return Container(
@@ -217,7 +230,9 @@ class OnboardingCarePathIllustration extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(GpsRadii.xl),
-        border: Border.all(color: colorScheme.outlineVariant.withValues(alpha: 0.35)),
+        border: Border.all(
+          color: colorScheme.outlineVariant.withValues(alpha: 0.35),
+        ),
         boxShadow: GpsElevation.level1(tint: GpsColors.blue),
       ),
       child: Padding(
@@ -230,7 +245,7 @@ class OnboardingCarePathIllustration extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Votre parcours',
+                    strings.onboardingHeroPathTitle,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: colorScheme.primary,
@@ -238,7 +253,7 @@ class OnboardingCarePathIllustration extends StatelessWidget {
                   ),
                   const SizedBox(height: GpsSpacing.xs),
                   Text(
-                    'Douleur → Analyse → Spécialiste',
+                    strings.onboardingHeroPathSteps,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: colorScheme.onSurfaceVariant,
                     ),

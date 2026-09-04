@@ -57,11 +57,7 @@ class DiscoverySearchPromo extends StatelessWidget {
                     ),
                   ),
                 ),
-                Icon(
-                  Icons.tune,
-                  color: colorScheme.onSurfaceVariant,
-                  size: 20,
-                ),
+                Icon(Icons.tune, color: colorScheme.onSurfaceVariant, size: 20),
               ],
             ),
           ),

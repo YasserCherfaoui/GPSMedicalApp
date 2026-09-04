@@ -164,7 +164,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         horizontal: GpsSpacing.md,
                       ),
                       child: Text(
-                        'OU',
+                        strings.orSeparator,
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: colorScheme.outline,
                           fontWeight: FontWeight.bold,
@@ -178,7 +178,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 OutlinedButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.fingerprint),
-                  label: const Text('Se connecter avec biométrie'),
+                  label: Text(strings.signInWithBiometrics),
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size.fromHeight(
                       GpsSpacing.minTouchTarget,
@@ -198,7 +198,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Pas encore inscrit ?',
+                strings.notRegisteredYet,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
