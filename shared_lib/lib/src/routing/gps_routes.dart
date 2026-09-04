@@ -30,6 +30,7 @@ abstract final class GpsRoutes {
   static const profile = '/profile';
   static const profileEdit = '/profile/edit';
   static const profileAccount = '/profile/account';
+  static const profileLanguage = '/profile/language';
   static const profileConsents = '/profile/consents';
   static const profileDependents = '/profile/dependents';
   static String profileDependentEdit(String id) =>

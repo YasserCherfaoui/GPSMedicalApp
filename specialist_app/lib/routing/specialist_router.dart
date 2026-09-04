@@ -131,6 +131,11 @@ GoRouter createSpecialistRouter({
         builder: (context, state) => const SpecialistProfileEditScreen(),
       ),
       GoRoute(
+        path: SpecialistRoutes.profileLanguage,
+        builder: (context, state) =>
+            const LanguageScreen(settingsMode: true),
+      ),
+      GoRoute(
         path: SpecialistRoutes.scheduleEdit,
         builder: (context, state) {
           final clinicId = state.uri.queryParameters['clinicId']?.trim();

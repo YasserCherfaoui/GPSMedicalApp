@@ -86,6 +86,13 @@ class SpecialistProfileHubScreen extends ConsumerWidget {
               label: l10n.clinicMembershipsTitle,
               onPressed: () => context.push(SpecialistRoutes.clinicMemberships),
             ),
+            const SizedBox(height: GpsSpacing.md),
+            SecondaryButton(
+              label:
+                  '${l10n.chooseLanguage} (${ref.watch(appLocaleProvider).label})',
+              onPressed: () =>
+                  context.push(SpecialistRoutes.profileLanguage),
+            ),
           ],
         );
       },

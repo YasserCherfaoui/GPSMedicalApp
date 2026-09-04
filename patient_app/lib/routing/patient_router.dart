@@ -235,6 +235,11 @@ GoRouter createPatientRouter({
         builder: (context, state) => const ProfileAccountScreen(),
       ),
       GoRoute(
+        path: GpsRoutes.profileLanguage,
+        builder: (context, state) =>
+            const LanguageScreen(settingsMode: true),
+      ),
+      GoRoute(
         path: GpsRoutes.profileConsents,
         builder: (context, state) => const ConsentManagementScreen(),
       ),

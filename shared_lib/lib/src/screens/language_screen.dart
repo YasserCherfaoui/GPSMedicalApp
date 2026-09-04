@@ -12,7 +12,11 @@ import '../widgets/gps_blur_background.dart';
 import '../widgets/primary_button.dart';
 
 class LanguageScreen extends ConsumerWidget {
-  const LanguageScreen({super.key});
+  const LanguageScreen({super.key, this.settingsMode = false});
+
+  /// When true, used from Profile: back button, scrollable list, Done pops.
+  /// When false (default), first-launch flow continues to onboarding.
+  final bool settingsMode;
 
   String _getLanguageDisplayLabel(AppLocale locale) {
     switch (locale) {
@@ -64,6 +68,17 @@ class LanguageScreen extends ConsumerWidget {
     }
   }
 
+  Future<void> _onSelect(
+    BuildContext context,
+    WidgetRef ref,
+    AppLocale locale,
+  ) async {
+    await ref.read(appLocaleProvider.notifier).setLocale(locale);
+    if (settingsMode && context.mounted) {
+      context.pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final strings = AuthStrings.of(context);
@@ -76,6 +91,8 @@ class LanguageScreen extends ConsumerWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           scrolledUnderElevation: 0,
+          title: settingsMode ? Text(strings.chooseLanguage) : null,
+          automaticallyImplyLeading: settingsMode,
         ),
         body: SafeArea(
           child: Padding(
@@ -83,47 +100,45 @@ class LanguageScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Globe Header Icon
-                Center(
-                  child: Container(
-                    width: 64,
-                    height: 64,
-                    decoration: BoxDecoration(
-                      color: Theme.of(
-                        context,
-                      ).colorScheme.primary.withOpacity(0.1),
-                      shape: BoxShape.circle,
+                if (!settingsMode) ...[
+                  Center(
+                    child: Container(
+                      width: 64,
+                      height: 64,
+                      decoration: BoxDecoration(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.primary.withOpacity(0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.language,
+                        size: 32,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
-                    child: Icon(
-                      Icons.language,
-                      size: 32,
-                      color: Theme.of(context).colorScheme.primary,
+                  ),
+                  const SizedBox(height: GpsSpacing.md),
+                  Text(
+                    'Choisissez votre langue\nاختر لغتك',
+                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      height: 1.3,
                     ),
+                    textAlign: TextAlign.center,
                   ),
-                ),
-                const SizedBox(height: GpsSpacing.md),
-                // Multilingual Title
-                Text(
-                  'Choisissez votre langue\nاختر لغتك',
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    height: 1.3,
+                  const SizedBox(height: GpsSpacing.xs),
+                  Text(
+                    GpsBrand.nameWithCountry,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: GpsSpacing.xs),
-                Text(
-                  GpsBrand.nameWithCountry,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: GpsSpacing.xxl),
-                // Language List
+                  const SizedBox(height: GpsSpacing.xxl),
+                ],
                 Expanded(
                   child: ListView(
-                    physics: const NeverScrollableScrollPhysics(),
                     children: [
                       for (final locale in AppLocale.values)
                         Padding(
@@ -135,37 +150,36 @@ class LanguageScreen extends ConsumerWidget {
                               Theme.of(context).colorScheme.onSurfaceVariant,
                             ),
                             selected: selected == locale,
-                            onTap: () => ref
-                                .read(appLocaleProvider.notifier)
-                                .setLocale(locale),
+                            onTap: () => _onSelect(context, ref, locale),
                           ),
                         ),
                     ],
                   ),
                 ),
-                // Bottom Button and Footer text
-                Padding(
-                  padding: const EdgeInsets.only(bottom: GpsSpacing.md),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      PrimaryButton(
-                        label: strings.continueLabel,
-                        onPressed: () =>
-                            context.go(GpsRoutes.onboardingStep(1)),
-                      ),
-                      const SizedBox(height: GpsSpacing.lg),
-                      Text(
-                        'SanteDZ • Medora',
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: Theme.of(context).colorScheme.outline,
-                          letterSpacing: 1.5,
+                if (!settingsMode)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: GpsSpacing.md),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        PrimaryButton(
+                          label: strings.continueLabel,
+                          onPressed: () =>
+                              context.go(GpsRoutes.onboardingStep(1)),
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                        const SizedBox(height: GpsSpacing.lg),
+                        Text(
+                          'SanteDZ • Medora',
+                          style: Theme.of(context).textTheme.labelSmall
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.outline,
+                                letterSpacing: 1.5,
+                              ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
               ],
             ),
           ),
@@ -220,7 +234,6 @@ class _LanguageCard extends StatelessWidget {
             padding: const EdgeInsets.all(GpsSpacing.md + 4),
             child: Row(
               children: [
-                // Leading Icon Container
                 Container(
                   width: 48,
                   height: 48,
@@ -231,7 +244,6 @@ class _LanguageCard extends StatelessWidget {
                   child: Center(child: leading),
                 ),
                 const SizedBox(width: GpsSpacing.md),
-                // Text Label
                 Expanded(
                   child: Text(
                     label,
@@ -241,7 +253,6 @@ class _LanguageCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Trailing Chevron
                 Icon(
                   Icons.chevron_right,
                   color: selected

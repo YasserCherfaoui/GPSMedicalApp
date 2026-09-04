@@ -3,6 +3,7 @@ abstract final class SpecialistRoutes {
   static const verificationPending = '/specialist/verification-pending';
   static const credentials = '/specialist/credentials';
   static const profileEdit = '/specialist/profile/edit';
+  static const profileLanguage = '/specialist/profile/language';
   static const scheduleEdit = '/specialist/schedule/edit';
   static const shell = '/specialist/shell';
   static const notifications = '/specialist/notifications';

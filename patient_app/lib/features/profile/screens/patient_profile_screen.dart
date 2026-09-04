@@ -195,6 +195,13 @@ class PatientProfileScreen extends ConsumerWidget {
                 onTap: () => context.push(GpsRoutes.profileConsents),
               ),
               ListTile(
+                leading: const Icon(Icons.language_outlined),
+                title: Text(l10n.chooseLanguage),
+                subtitle: Text(ref.watch(appLocaleProvider).label),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.push(GpsRoutes.profileLanguage),
+              ),
+              ListTile(
                 leading: const Icon(Icons.settings_outlined),
                 title: Text(l10n.profileAccount),
                 trailing: const Icon(Icons.chevron_right),
