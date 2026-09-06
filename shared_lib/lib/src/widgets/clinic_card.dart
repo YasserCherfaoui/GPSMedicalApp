@@ -25,6 +25,9 @@ class ClinicCard extends StatelessWidget {
     this.serviceSummary,
     this.startingFee,
     this.currency = 'DZD',
+    this.startingFeeLabel,
+    this.priceSubtitle,
+    this.priceCaveat,
     this.isVerified = false,
     this.offersTelehealth = false,
     this.distanceKm,
@@ -41,6 +44,11 @@ class ClinicCard extends StatelessWidget {
   final String? serviceSummary;
   final int? startingFee;
   final String currency;
+
+  /// When set, replaces [clinicCardFromPrice] for EUR / custom formatting.
+  final String? startingFeeLabel;
+  final String? priceSubtitle;
+  final String? priceCaveat;
   final bool isVerified;
   final bool offersTelehealth;
   final double? distanceKm;
@@ -173,16 +181,45 @@ class ClinicCard extends StatelessWidget {
             const SizedBox(height: GpsSpacing.md),
             Row(
               children: [
-                if (startingFee != null)
+                if (startingFee != null || startingFeeLabel != null)
                   Expanded(
-                    child: Text(
-                      l10n.clinicCardFromPrice(startingFee!, currency),
-                      style: theme.textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: colorScheme.primary,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          startingFeeLabel ??
+                              l10n.clinicCardFromPrice(startingFee!, currency),
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: colorScheme.primary,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        if (priceSubtitle != null) ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            priceSubtitle!,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                        if (priceCaveat != null) ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            priceCaveat!,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.onSurfaceVariant,
+                              fontStyle: FontStyle.italic,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ],
                     ),
                   )
                 else

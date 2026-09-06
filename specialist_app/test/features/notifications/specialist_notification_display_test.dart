@@ -46,9 +46,10 @@ void main() {
   });
 
   test('formatSpecialistNotificationTimestamp handles null', () {
-    expect(formatSpecialistNotificationTimestamp(null, 'fr'), '');
+    final l10n = lookupAppLocalizations(const Locale('fr'));
+    expect(formatSpecialistNotificationTimestamp(null, l10n), '');
     expect(
-      formatSpecialistNotificationTimestamp(DateTime.now(), 'fr'),
+      formatSpecialistNotificationTimestamp(DateTime.now(), l10n),
       isNotEmpty,
     );
   });

@@ -7,6 +7,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:patient_app/features/booking/widgets/booking_draft_resume_listener.dart';
 import 'package:patient_app/features/notifications/widgets/push_notifications_bootstrap.dart';
+import 'package:patient_app/features/payments/services/stripe_payment_sheet_service.dart';
 import 'package:patient_app/firebase/init_firebase.dart';
 import 'package:patient_app/routing/patient_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -29,6 +30,10 @@ void main() async {
   ]);
   final bootstrap = results[1] as AppBootstrapData;
   final vault = results[2] as DeviceVault;
+
+  // No-ops when STRIPE_PUBLISHABLE_KEY / EUR_RAIL_ENABLED unset — keeps
+  // stripe_test sandbox deposit & freemium flows unchanged.
+  await StripePaymentSheetService().ensureInitialized();
 
   final app = ProviderScope(
     overrides: [

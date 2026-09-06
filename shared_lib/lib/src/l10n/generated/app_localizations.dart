@@ -5777,6 +5777,222 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Impossible de créer l\'ordonnance.'**
   String get specialistPrescriptionSubmitError;
+
+  /// No description provided for @patientTabDiscover.
+  ///
+  /// In fr, this message translates to:
+  /// **'Découvrir'**
+  String get patientTabDiscover;
+
+  /// No description provided for @patientTabMap.
+  ///
+  /// In fr, this message translates to:
+  /// **'Carte'**
+  String get patientTabMap;
+
+  /// No description provided for @patientTabAppointments.
+  ///
+  /// In fr, this message translates to:
+  /// **'RDV'**
+  String get patientTabAppointments;
+
+  /// No description provided for @patientTabProfile.
+  ///
+  /// In fr, this message translates to:
+  /// **'Profil'**
+  String get patientTabProfile;
+
+  /// No description provided for @relativeTimeDays.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count, plural, =1{Il y a 1 jour} other{Il y a {count} jours}}'**
+  String relativeTimeDays(int count);
+
+  /// No description provided for @relativeTimeHours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Il y a {count} h'**
+  String relativeTimeHours(int count);
+
+  /// No description provided for @relativeTimeMinutes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Il y a {count} min'**
+  String relativeTimeMinutes(int count);
+
+  /// No description provided for @relativeTimeJustNow.
+  ///
+  /// In fr, this message translates to:
+  /// **'À l\'instant'**
+  String get relativeTimeJustNow;
+
+  /// No description provided for @clinicCardFromPriceLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'À partir de {price}'**
+  String clinicCardFromPriceLabel(String price);
+
+  /// No description provided for @priceIndicativeApprox.
+  ///
+  /// In fr, this message translates to:
+  /// **'≈ {amount} {currency}'**
+  String priceIndicativeApprox(int amount, String currency);
+
+  /// No description provided for @priceEurDebitCaveat.
+  ///
+  /// In fr, this message translates to:
+  /// **'montant débité en EUR'**
+  String get priceEurDebitCaveat;
+
+  /// No description provided for @paymentSheetMerchantName.
+  ///
+  /// In fr, this message translates to:
+  /// **'Medora'**
+  String get paymentSheetMerchantName;
+
+  /// No description provided for @paymentSheetUnavailable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le paiement par carte internationale n\'est pas disponible pour le moment.'**
+  String get paymentSheetUnavailable;
+
+  /// No description provided for @paymentEurTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payer la consultation'**
+  String get paymentEurTitle;
+
+  /// No description provided for @paymentEurBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le paiement intégral de {amount} € est requis pour confirmer ce rendez-vous.'**
+  String paymentEurBody(int amount);
+
+  /// No description provided for @paymentEurCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payer maintenant'**
+  String get paymentEurCta;
+
+  /// No description provided for @paymentEurAmountLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'{amount} €'**
+  String paymentEurAmountLabel(int amount);
+
+  /// No description provided for @paymentEurSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement réussi. Votre rendez-vous est mis à jour.'**
+  String get paymentEurSuccess;
+
+  /// No description provided for @paymentEurFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le paiement a échoué.'**
+  String get paymentEurFailed;
+
+  /// No description provided for @paymentEurNotEligible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce rendez-vous n\'est pas éligible au paiement en euros.'**
+  String get paymentEurNotEligible;
+
+  /// No description provided for @paymentEurDeclineTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Carte non acceptée'**
+  String get paymentEurDeclineTitle;
+
+  /// No description provided for @paymentEurDeclineBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les vendeurs européens n\'acceptent que les cartes internationales (Visa, Mastercard). Les cartes locales (CIB, Edahabia) ne peuvent pas être utilisées pour ce paiement.'**
+  String get paymentEurDeclineBody;
+
+  /// No description provided for @paymentEurDeclineDismiss.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compris'**
+  String get paymentEurDeclineDismiss;
+
+  /// No description provided for @stripeConnectTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiements — configuration Stripe'**
+  String get stripeConnectTitle;
+
+  /// No description provided for @stripeConnectHubCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiements — configuration Stripe'**
+  String get stripeConnectHubCta;
+
+  /// No description provided for @stripeConnectBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Configurez votre compte Stripe Connect pour recevoir les paiements en euros de vos patients.'**
+  String get stripeConnectBody;
+
+  /// No description provided for @stripeConnectStatusIncomplete.
+  ///
+  /// In fr, this message translates to:
+  /// **'Incomplet'**
+  String get stripeConnectStatusIncomplete;
+
+  /// No description provided for @stripeConnectStatusPending.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente'**
+  String get stripeConnectStatusPending;
+
+  /// No description provided for @stripeConnectStatusActive.
+  ///
+  /// In fr, this message translates to:
+  /// **'Actif'**
+  String get stripeConnectStatusActive;
+
+  /// No description provided for @stripeConnectStatusRestricted.
+  ///
+  /// In fr, this message translates to:
+  /// **'Restreint'**
+  String get stripeConnectStatusRestricted;
+
+  /// No description provided for @stripeConnectNotProvisionedTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Compte non provisionné'**
+  String get stripeConnectNotProvisionedTitle;
+
+  /// No description provided for @stripeConnectNotProvisionedBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre compte Stripe n\'a pas encore été créé. Contactez l\'équipe Medora pour démarrer la configuration.'**
+  String get stripeConnectNotProvisionedBody;
+
+  /// No description provided for @stripeConnectOnboardingCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer la configuration Stripe'**
+  String get stripeConnectOnboardingCta;
+
+  /// No description provided for @stripeConnectLoadError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de charger le statut des paiements.'**
+  String get stripeConnectLoadError;
+
+  /// No description provided for @stripeConnectOpenLinkError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible d\'ouvrir le lien d\'onboarding.'**
+  String get stripeConnectOpenLinkError;
+
+  /// No description provided for @stripeConnectPollingHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Statut actualisé automatiquement…'**
+  String get stripeConnectPollingHint;
 }
 
 class _AppLocalizationsDelegate

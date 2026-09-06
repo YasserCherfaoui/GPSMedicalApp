@@ -112,7 +112,7 @@ class _DetailBody extends ConsumerWidget {
         appointment.mode == AppointmentModeEnum.telehealth &&
         canJoinTelehealth(startAt: start, endAt: end, statusWire: statusWire);
     final relative = start != null
-        ? formatReviewRelativeTime(start, locale)
+        ? formatReviewRelativeTime(start, l10n)
         : '';
     final specialty = doctor?.specialties?.isNotEmpty == true
         ? specialtyDisplayName(doctor!.specialties!.first, locale)
@@ -309,14 +309,16 @@ class _DetailBody extends ConsumerWidget {
               ),
             ),
           ],
-          if (canPayAppointmentDeposit(appointment) &&
-              appointmentDepositAmountDzd(appointment, doctor) != null) ...[
+          if (canPayAppointmentDeposit(appointment)) ...[
             const SizedBox(height: GpsSpacing.md),
             AppointmentPaymentSection(
               appointment: appointment,
               doctor: doctor,
               appointmentId: appointmentId,
               clinicName: clinic?.name,
+              clinicCountryCode: clinic?.countryCode,
+              serviceCurrency: state.serviceCurrency,
+              servicePriceAmount: state.servicePriceAmount,
             ),
           ],
           if (status == AppointmentStatusEnum.completed) ...[

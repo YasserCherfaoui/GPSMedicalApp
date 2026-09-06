@@ -18,11 +18,10 @@ class ThreadRowTile extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final languageCode = Localizations.localeOf(context).languageCode;
     final thread = item.thread;
     final unread = thread.unreadCount ?? 0;
     final preview = messagePreviewLabel(item.lastMessagePreview, l10n);
-    final timestamp = formatThreadTimestamp(thread.lastMessageAt, languageCode);
+    final timestamp = formatThreadTimestamp(thread.lastMessageAt, l10n);
     return Padding(
       padding: const EdgeInsets.only(bottom: GpsSpacing.sm),
       child: GpsCard(

@@ -33,9 +33,9 @@ IconData notificationTypeIcon(NotificationTypeEnum? type) {
   };
 }
 
-String formatNotificationTimestamp(DateTime? createdAt, String languageCode) {
+String formatNotificationTimestamp(DateTime? createdAt, AppLocalizations l10n) {
   if (createdAt == null) return '';
-  return formatReviewRelativeTime(createdAt.toLocal(), languageCode);
+  return formatReviewRelativeTime(createdAt.toLocal(), l10n);
 }
 
 String? notificationDeepLinkRoute(Notification notification) {

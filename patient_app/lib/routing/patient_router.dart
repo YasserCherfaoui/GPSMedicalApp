@@ -31,6 +31,7 @@ import '../features/notifications/screens/notifications_list_screen.dart';
 import '../features/pain_localization/models/pain_selection.dart';
 import '../features/pain_localization/pain3d_constants.dart';
 import '../features/pain_localization/screens/pain_localization_gate.dart';
+import '../features/payments/screens/eur_payment_screen.dart';
 import '../features/payments/screens/payment_deposit_screen.dart';
 import '../features/profile/screens/consent_management_screen.dart';
 import '../features/profile/screens/consent_revoked_screen.dart';
@@ -357,6 +358,19 @@ GoRouter createPatientRouter({
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
           return PaymentDepositScreen(appointmentId: id);
+        },
+      ),
+      GoRoute(
+        path: '/appointments/:id/payment-eur',
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final q = state.uri.queryParameters;
+          return EurPaymentScreen(
+            appointmentId: id,
+            currency: q['currency'],
+            amountMinor: int.tryParse(q['amountMinor'] ?? ''),
+            purpose: q['purpose'],
+          );
         },
       ),
       GoRoute(

@@ -58,4 +58,45 @@ void main() {
     );
     expect(appointmentDepositAmountDzd(noFee), isNull);
   });
+
+  test('EUR rail helpers resolve currency purpose and minor amount', () {
+    expect(isEurSellerCountry('FR'), isTrue);
+    expect(isEurSellerCountry('DZ'), isFalse);
+    expect(isEurSellerCountry('TN'), isFalse);
+    expect(isEurSellerCountry(null), isFalse);
+
+    expect(
+      resolvePaymentCurrency(serviceCurrency: 'EUR'),
+      'EUR',
+    );
+    expect(
+      resolvePaymentCurrency(clinicCountryCode: 'DE'),
+      'EUR',
+    );
+    expect(
+      resolvePaymentCurrency(clinicCountryCode: 'DZ'),
+      'DZD',
+    );
+
+    final tele = Appointment(
+      (b) => b
+        ..mode = AppointmentModeEnum.telehealth
+        ..feeDzd = 80,
+    );
+    expect(eurPaymentPurpose(tele), 'teleconsultation');
+    expect(
+      appointmentEurAmountMinor(
+        appointment: tele,
+        servicePriceMajor: 80,
+      ),
+      8000,
+    );
+    expect(
+      appointmentEurAmountMinor(
+        appointment: tele,
+        overrideAmountMinor: 5000,
+      ),
+      5000,
+    );
+  });
 }

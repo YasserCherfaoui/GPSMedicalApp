@@ -174,7 +174,9 @@
   "discoveryRateLimitMessage": "{seconds, plural, =1{يرجى الانتظار ثانية واحدة قبل إعادة المحاولة.} other{يرجى الانتظار # ثوانٍ قبل إعادة المحاولة.}}",
   "@discoveryRateLimitMessage": {
     "placeholders": {
-      "seconds": { "type": "int" }
+      "seconds": {
+        "type": "int"
+      }
     }
   },
   "doctorTitleDefault": "د.",
@@ -436,7 +438,9 @@
   "notificationsPrefReminderHoursValue": "قبل {hours} ساعة",
   "@notificationsPrefReminderHoursValue": {
     "placeholders": {
-      "hours": { "type": "int" }
+      "hours": {
+        "type": "int"
+      }
     }
   },
   "notificationsPrefSaveError": "تعذر الحفظ",
@@ -450,7 +454,9 @@
   "reviewCommentTooLong": "يجب ألا يتجاوز التعليق {max} حرفًا.",
   "@reviewCommentTooLong": {
     "placeholders": {
-      "max": { "type": "int" }
+      "max": {
+        "type": "int"
+      }
     }
   },
   "reviewConfirmationTitle": "شكرًا على تقييمك",
@@ -468,21 +474,27 @@
   "reviewStarsLabel": "{count, plural, =1{نجمة واحدة} other{{count} نجوم}}",
   "@reviewStarsLabel": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "paymentDepositTitle": "دفع العربون",
   "paymentDepositBody": "مطلوب عربون بقيمة {amount} دج لتأكيد هذا الموعد.",
   "@paymentDepositBody": {
     "placeholders": {
-      "amount": { "type": "int" }
+      "amount": {
+        "type": "int"
+      }
     }
   },
   "paymentDepositCta": "دفع العربون",
   "paymentDepositAmountLabel": "{amount} دج",
   "@paymentDepositAmountLabel": {
     "placeholders": {
-      "amount": { "type": "int" }
+      "amount": {
+        "type": "int"
+      }
     }
   },
   "paymentDepositProviderStripeTest": "وضع الاختبار (sandbox)",
@@ -494,7 +506,9 @@
   "paymentDepositPayeeClinicNamed": "الدفع موجه إلى {clinicName}.",
   "@paymentDepositPayeeClinicNamed": {
     "placeholders": {
-      "clinicName": { "type": "String" }
+      "clinicName": {
+        "type": "String"
+      }
     }
   },
   "paymentDepositPayeeClinicFallback": "عيادة",
@@ -622,7 +636,9 @@
   "specialistScheduleDonationClinicNamed": "ممنوح لـ {clinicName}",
   "@specialistScheduleDonationClinicNamed": {
     "placeholders": {
-      "clinicName": { "type": "String" }
+      "clinicName": {
+        "type": "String"
+      }
     }
   },
   "specialistScheduleDonationNotice": "يتم إخطار العيادة بأي تعديل على فتراتك الممنوحة.",
@@ -632,7 +648,9 @@
   "specialistScheduleDonationFilterBanner": "عرض الفترات الممنوحة لـ {clinicName}",
   "@specialistScheduleDonationFilterBanner": {
     "placeholders": {
-      "clinicName": { "type": "String" }
+      "clinicName": {
+        "type": "String"
+      }
     }
   },
   "specialistScheduleConflictMessage": "هذا الموعد يتداخل مع موعد آخر (عيادتك أو عيادة).",
@@ -640,7 +658,9 @@
   "clinicMembershipsDonatedHours": "{hours} س / أسبوع ممنوحة",
   "@clinicMembershipsDonatedHours": {
     "placeholders": {
-      "hours": { "type": "String" }
+      "hours": {
+        "type": "String"
+      }
     }
   },
   "clinicMembershipsDonatedHoursNone": "لا فترات ممنوحة",
@@ -734,8 +754,12 @@
   "clinicCardFromPrice": "ابتداءً من {price} {currency}",
   "@clinicCardFromPrice": {
     "placeholders": {
-      "price": { "type": "int" },
-      "currency": { "type": "String" }
+      "price": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
     }
   },
   "clinicDetailTitle": "العيادة",
@@ -755,14 +779,20 @@
   "clinicDetailDurationMinutes": "{minutes} د",
   "@clinicDetailDurationMinutes": {
     "placeholders": {
-      "minutes": { "type": "int" }
+      "minutes": {
+        "type": "int"
+      }
     }
   },
   "clinicDetailServicePrice": "{price} {currency}",
   "@clinicDetailServicePrice": {
     "placeholders": {
-      "price": { "type": "int" },
-      "currency": { "type": "String" }
+      "price": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
     }
   },
   "clinicDetailVerifiedPatient": "مريض موثّق",
@@ -939,8 +969,12 @@
   "freemiumCoachingBody": "افتح الخطة المخصصة والمتتبعات اليومية.",
   "@anamnesisProgressCount": {
     "placeholders": {
-      "answered": { "type": "int" },
-      "total": { "type": "int" }
+      "answered": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "alreadyHaveAccount": "لدي حساب بالفعل",
@@ -1023,5 +1057,93 @@
   "errorUnexpected": "حدث خطأ غير متوقع.",
   "errorPasswordUpdatedSignInAgain": "تم تحديث كلمة المرور. سجّل الدخول بكلمة المرور الجديدة.",
   "painSelectionMissing": "لم يتم تحديد منطقة الألم.",
-  "specialistPrescriptionSubmitError": "تعذّر إنشاء الوصفة الطبية."
+  "specialistPrescriptionSubmitError": "تعذّر إنشاء الوصفة الطبية.",
+  "patientTabDiscover": "اكتشف",
+  "patientTabMap": "الخريطة",
+  "patientTabAppointments": "المواعيد",
+  "patientTabProfile": "الملف",
+  "relativeTimeDays": "{count, plural, =1{منذ يوم واحد} other{منذ {count} يوم}}",
+  "relativeTimeHours": "منذ {count} ساعة",
+  "relativeTimeMinutes": "منذ {count} دقيقة",
+  "relativeTimeJustNow": "الآن",
+  "@relativeTimeDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@relativeTimeHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@relativeTimeMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clinicCardFromPriceLabel": "ابتداءً من {price}",
+  "@clinicCardFromPriceLabel": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "priceIndicativeApprox": "≈ {amount} {currency}",
+  "@priceIndicativeApprox": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
+    }
+  },
+  "priceEurDebitCaveat": "المبلغ يُخصم باليورو",
+  "paymentSheetMerchantName": "Medora",
+  "paymentSheetUnavailable": "الدفع بالبطاقة الدولية غير متاح حالياً.",
+  "paymentEurTitle": "دفع الاستشارة",
+  "paymentEurBody": "يلزم دفع المبلغ كاملاً ({amount} €) لتأكيد هذا الموعد.",
+  "@paymentEurBody": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentEurCta": "ادفع الآن",
+  "paymentEurAmountLabel": "{amount} €",
+  "@paymentEurAmountLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentEurSuccess": "تم الدفع بنجاح. تم تحديث موعدك.",
+  "paymentEurFailed": "فشل الدفع.",
+  "paymentEurNotEligible": "هذا الموعد غير مؤهل للدفع باليورو.",
+  "paymentEurDeclineTitle": "البطاقة غير مقبولة",
+  "paymentEurDeclineBody": "البائعون الأوروبيون يقبلون فقط البطاقات الدولية (Visa، Mastercard). لا يمكن استخدام البطاقات المحلية (CIB، Edahabia) لهذا الدفع.",
+  "paymentEurDeclineDismiss": "حسناً",
+  "stripeConnectTitle": "المدفوعات — إعداد Stripe",
+  "stripeConnectHubCta": "المدفوعات — إعداد Stripe",
+  "stripeConnectBody": "قم بإعداد حساب Stripe Connect لاستلام مدفوعات المرضى باليورو.",
+  "stripeConnectStatusIncomplete": "غير مكتمل",
+  "stripeConnectStatusPending": "قيد الانتظار",
+  "stripeConnectStatusActive": "نشط",
+  "stripeConnectStatusRestricted": "مقيّد",
+  "stripeConnectNotProvisionedTitle": "الحساب غير مُنشأ",
+  "stripeConnectNotProvisionedBody": "لم يتم إنشاء حساب Stripe بعد. تواصل مع فريق Medora لبدء الإعداد.",
+  "stripeConnectOnboardingCta": "متابعة إعداد Stripe",
+  "stripeConnectLoadError": "تعذّر تحميل حالة المدفوعات.",
+  "stripeConnectOpenLinkError": "تعذّر فتح رابط الإعداد.",
+  "stripeConnectPollingHint": "يتم تحديث الحالة تلقائياً…"
 }

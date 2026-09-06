@@ -15,12 +15,20 @@ class AppointmentDetailState {
     this.doctor,
     this.clinic,
     this.serviceName,
+    this.serviceCurrency,
+    this.servicePriceAmount,
   });
 
   final Appointment appointment;
   final Doctor? doctor;
   final Clinic? clinic;
   final String? serviceName;
+
+  /// Clinic service currency wire label (`DZD` / `EUR` / …), when known.
+  final String? serviceCurrency;
+
+  /// Clinic service major-unit price (whole euros for EUR).
+  final int? servicePriceAmount;
 
   bool get isClinicBooking =>
       appointment.origin == AppointmentOriginEnum.clinicService;
@@ -42,6 +50,8 @@ class AppointmentDetail extends _$AppointmentDetail {
     final isClinic = appointment.origin == AppointmentOriginEnum.clinicService;
     Clinic? clinic;
     String? serviceName;
+    String? serviceCurrency;
+    int? servicePriceAmount;
     Doctor? doctor;
 
     if (isClinic && appointment.clinicId != null) {
@@ -53,6 +63,13 @@ class AppointmentDetail extends _$AppointmentDetail {
         for (final service in services) {
           if (service.id == serviceId) {
             serviceName = service.name;
+            serviceCurrency = switch (service.currency) {
+              CurrencyCode.EUR => 'EUR',
+              CurrencyCode.TND => 'TND',
+              CurrencyCode.DZD => 'DZD',
+              _ => null,
+            };
+            servicePriceAmount = service.priceAmount;
             break;
           }
         }
@@ -71,6 +88,8 @@ class AppointmentDetail extends _$AppointmentDetail {
       doctor: doctor,
       clinic: clinic,
       serviceName: serviceName,
+      serviceCurrency: serviceCurrency,
+      servicePriceAmount: servicePriceAmount,
     );
   }
 

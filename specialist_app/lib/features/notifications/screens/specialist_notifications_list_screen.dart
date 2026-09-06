@@ -52,7 +52,6 @@ class _SpecialistNotificationsListScreenState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final locale = Localizations.localeOf(context).languageCode;
     final listAsync = ref.watch(specialistNotificationsListProvider);
 
     return Scaffold(
@@ -115,7 +114,7 @@ class _SpecialistNotificationsListScreenState
                             final isUnread = notification.readAt == null;
                             final timestamp = formatSpecialistNotificationTimestamp(
                               notification.createdAt,
-                              locale,
+                              l10n,
                             );
 
                             return Card(

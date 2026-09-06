@@ -542,6 +542,7 @@ class _ClinicSearchResults extends ConsumerWidget {
               padding: const EdgeInsets.only(bottom: GpsSpacing.md),
               child: buildClinicCardTile(
                 context: context,
+                ref: ref,
                 clinic: clinic,
                 userLat: userLat,
                 userLng: userLng,

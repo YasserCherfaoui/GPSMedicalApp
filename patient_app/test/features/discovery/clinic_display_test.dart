@@ -25,4 +25,22 @@ void main() {
     expect(clinicStartingFee(clinic), 3500);
     expect(clinicStartingCurrency(clinic), 'DZD');
   });
+
+  test('clinicStartingCurrency prefers EUR teaser currency', () {
+    final clinic = $Clinic(
+      (b) => b
+        ..name = 'Paris Care'
+        ..serviceTeasers.addAll([
+          ClinicServiceTeaser(
+            (t) => t
+              ..name = 'Consult'
+              ..priceAmount = 45
+              ..currency = CurrencyCode.EUR,
+          ),
+        ]),
+    );
+
+    expect(clinicStartingFee(clinic), 45);
+    expect(clinicStartingCurrency(clinic), 'EUR');
+  });
 }

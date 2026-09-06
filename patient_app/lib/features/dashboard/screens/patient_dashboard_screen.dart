@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 class PatientDashboardScreen extends StatelessWidget {
   const PatientDashboardScreen({required this.navigationShell, super.key});
@@ -10,7 +11,7 @@ class PatientDashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final isAr = Localizations.localeOf(context).languageCode == 'ar';
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: navigationShell,
@@ -26,22 +27,22 @@ class PatientDashboardScreen extends StatelessWidget {
           NavigationDestination(
             icon: const Icon(Icons.explore_outlined),
             selectedIcon: Icon(Icons.explore, color: colorScheme.primary),
-            label: isAr ? 'Découvrir' : 'Découvrir',
+            label: l10n.patientTabDiscover,
           ),
           NavigationDestination(
             icon: const Icon(Icons.map_outlined),
             selectedIcon: Icon(Icons.map, color: colorScheme.primary),
-            label: isAr ? 'Carte' : 'Carte',
+            label: l10n.patientTabMap,
           ),
           NavigationDestination(
             icon: const Icon(Icons.receipt_long_outlined),
             selectedIcon: Icon(Icons.receipt_long, color: colorScheme.primary),
-            label: isAr ? 'Rendez-vous' : 'RDV',
+            label: l10n.patientTabAppointments,
           ),
           NavigationDestination(
             icon: const Icon(Icons.person_outline),
             selectedIcon: Icon(Icons.person, color: colorScheme.primary),
-            label: isAr ? 'Profil' : 'Profil',
+            label: l10n.patientTabProfile,
           ),
         ],
       ),

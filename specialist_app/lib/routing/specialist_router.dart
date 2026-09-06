@@ -6,18 +6,19 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../features/credentials/screens/credentials_submission_screen.dart';
 import '../features/appointments/screens/appointment_detail_screen.dart';
 import '../features/appointments/screens/specialist_reschedule_screen.dart';
-import '../features/patient_records/screens/specialist_medical_record_viewer_screen.dart';
-import '../features/patient_records/screens/specialist_patient_records_screen.dart';
+import '../features/incoming_bilans/screens/incoming_bilan_detail_screen.dart';
 import '../features/messaging/screens/specialist_messaging_thread_screen.dart';
 import '../features/messaging/screens/specialist_messaging_threads_screen.dart';
-import '../features/stats/screens/specialist_stats_screen.dart';
-import '../features/teleconsultation/screens/specialist_teleconsultation_screen.dart';
 import '../features/notifications/screens/specialist_notifications_list_screen.dart';
+import '../features/patient_records/screens/specialist_medical_record_viewer_screen.dart';
+import '../features/patient_records/screens/specialist_patient_records_screen.dart';
+import '../features/payments/screens/stripe_connect_screen.dart';
 import '../features/prescriptions/screens/specialist_prescription_compose_screen.dart';
 import '../features/profile/screens/clinic_memberships_screen.dart';
 import '../features/profile/screens/specialist_profile_edit_screen.dart';
 import '../features/schedule/screens/schedule_editor_screen.dart';
-import '../features/incoming_bilans/screens/incoming_bilan_detail_screen.dart';
+import '../features/stats/screens/specialist_stats_screen.dart';
+import '../features/teleconsultation/screens/specialist_teleconsultation_screen.dart';
 import '../screens/specialist_shell_screen.dart';
 import '../screens/verification_pending_screen.dart';
 import 'specialist_redirect.dart';
@@ -195,6 +196,10 @@ GoRouter createSpecialistRouter({
       GoRoute(
         path: SpecialistRoutes.clinicMemberships,
         builder: (context, state) => const ClinicMembershipsScreen(),
+      ),
+      GoRoute(
+        path: SpecialistRoutes.stripeConnect,
+        builder: (context, state) => const StripeConnectScreen(),
       ),
       GoRoute(
         path: '/specialist/incoming-bilans/:transmissionId',

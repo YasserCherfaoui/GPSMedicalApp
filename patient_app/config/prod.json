@@ -4,5 +4,7 @@
   "FLAVOR": "prod",
   "PAIN3D_ASSETS_BASE_URL": "https://assets.medora-corporate.com",
   "PAIN_LOCALIZATION": "true",
-  "ANAMNESIS": "true"
+  "ANAMNESIS": "true",
+  "EUR_RAIL_ENABLED": "false",
+  "STRIPE_PUBLISHABLE_KEY": ""
 }

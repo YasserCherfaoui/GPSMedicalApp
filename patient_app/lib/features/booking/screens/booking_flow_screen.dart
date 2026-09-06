@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../payments/utils/price_format.dart';
+import '../../payments/widgets/price_with_fx_label.dart';
 import '../providers/appointments_upcoming.provider.dart';
 import '../providers/booking_draft.provider.dart';
 import '../providers/connectivity.provider.dart';
@@ -284,18 +286,19 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
   }
 }
 
-class _StepConfirm extends StatelessWidget {
+class _StepConfirm extends ConsumerWidget {
   const _StepConfirm({required this.draft, required this.l10n});
 
   final BookingDraftState draft;
   final AppLocalizations l10n;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final doctor = draft.doctor;
     final slot = draft.selectedSlot;
     final locale = Localizations.localeOf(context).languageCode;
     final start = slot?.startAt?.toLocal();
+    final languageCode = Localizations.localeOf(context).languageCode;
 
     return GpsCard(
       child: Column(
@@ -362,14 +365,27 @@ class _StepConfirm extends StatelessWidget {
           ],
           const SizedBox(height: GpsSpacing.md),
           Text(l10n.bookingFeeLabel),
-          Text(
-            draft.isClinicBooking
-                ? '${draft.serviceFeeAmount ?? '—'} ${draft.serviceCurrency}'
-                : '${doctor?.consultationFeeDzd ?? '—'} DZD',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
+          if (draft.isClinicBooking && draft.serviceFeeAmount != null)
+            PriceWithFxLabel(
+              amount: draft.serviceFeeAmount!,
+              currency: draft.serviceCurrency,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            )
+          else
+            Text(
+              doctor?.consultationFeeDzd != null
+                  ? formatMoneyMajor(
+                      amount: doctor!.consultationFeeDzd!,
+                      currency: 'DZD',
+                      languageCode: languageCode,
+                    )
+                  : '—',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
-          ),
         ],
       ),
     );
@@ -526,15 +542,29 @@ class _StepReview extends ConsumerWidget {
                 l10n.bookingFeeLabel,
                 style: Theme.of(context).textTheme.labelMedium,
               ),
-              Text(
-                draft.isClinicBooking
-                    ? '${draft.serviceFeeAmount ?? '—'} ${draft.serviceCurrency}'
-                    : '${draft.doctor?.consultationFeeDzd ?? '—'} DZD',
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.w600,
+              if (draft.isClinicBooking && draft.serviceFeeAmount != null)
+                PriceWithFxLabel(
+                  amount: draft.serviceFeeAmount!,
+                  currency: draft.serviceCurrency,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
+              else
+                Text(
+                  draft.doctor?.consultationFeeDzd != null
+                      ? formatMoneyMajor(
+                          amount: draft.doctor!.consultationFeeDzd!,
+                          currency: 'DZD',
+                          languageCode: locale,
+                        )
+                      : '—',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
               const SizedBox(height: GpsSpacing.sm),
               Text(
                 l10n.bookingSummaryPatient,

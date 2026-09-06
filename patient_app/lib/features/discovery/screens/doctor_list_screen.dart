@@ -298,6 +298,7 @@ class DoctorListScreen extends ConsumerWidget {
                                   ),
                                   child: buildClinicCardTile(
                                     context: context,
+                                    ref: ref,
                                     clinic: clinic,
                                     userLat: userLocation?.lat,
                                     userLng: userLocation?.lng,

@@ -36,10 +36,10 @@ IconData specialistNotificationTypeIcon(NotificationTypeEnum? type) {
 
 String formatSpecialistNotificationTimestamp(
   DateTime? createdAt,
-  String languageCode,
+  AppLocalizations l10n,
 ) {
   if (createdAt == null) return '';
-  return formatReviewRelativeTime(createdAt.toLocal(), languageCode);
+  return formatReviewRelativeTime(createdAt.toLocal(), l10n);
 }
 
 String? specialistNotificationDeepLinkRoute(Notification notification) {

@@ -4,5 +4,7 @@
   "FLAVOR": "dev",
   "PAIN3D_ASSETS_BASE_URL": "https://pub-ed7f36d2196341beb74c5c7075fb6c5e.r2.dev",
   "PAIN_LOCALIZATION": "true",
-  "ANAMNESIS": "true"
+  "ANAMNESIS": "true",
+  "EUR_RAIL_ENABLED": "false",
+  "STRIPE_PUBLISHABLE_KEY": ""
 }

@@ -111,14 +111,18 @@
   "bookingSlotsCount": "{count, plural, =0{Aucun créneau} =1{1 créneau} other{{count} créneaux}}",
   "@bookingSlotsCount": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "bookingReserve": "Réserver",
   "bookingSlotDuration": "Durée : {minutes} min",
   "@bookingSlotDuration": {
     "placeholders": {
-      "minutes": { "type": "int" }
+      "minutes": {
+        "type": "int"
+      }
     }
   },
   "bookingModeInPerson": "En présentiel",
@@ -127,15 +131,21 @@
   "bookingWeekRange": "{from} – {to}",
   "@bookingWeekRange": {
     "placeholders": {
-      "from": { "type": "String" },
-      "to": { "type": "String" }
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
     }
   },
   "bookingSelectMode": "Choisir le mode de consultation",
   "bookingLockExpires": "Créneau réservé — expire dans {time}",
   "@bookingLockExpires": {
     "placeholders": {
-      "time": { "type": "String" }
+      "time": {
+        "type": "String"
+      }
     }
   },
   "bookingLockExpired": "Votre réservation de créneau a expiré.",
@@ -511,19 +521,25 @@
   "medicalRecordFileSizeBytes": "{size} o",
   "@medicalRecordFileSizeBytes": {
     "placeholders": {
-      "size": { "type": "int" }
+      "size": {
+        "type": "int"
+      }
     }
   },
   "medicalRecordFileSizeKb": "{size} Ko",
   "@medicalRecordFileSizeKb": {
     "placeholders": {
-      "size": { "type": "String" }
+      "size": {
+        "type": "String"
+      }
     }
   },
   "medicalRecordFileSizeMb": "{size} Mo",
   "@medicalRecordFileSizeMb": {
     "placeholders": {
-      "size": { "type": "String" }
+      "size": {
+        "type": "String"
+      }
     }
   },
   "medicalRecordsUpload": "Ajouter un document",
@@ -545,7 +561,9 @@
   "medicalRecordUploadMaxFiles": "{count, plural, =1{Maximum # fichier par envoi} other{Maximum # fichiers par envoi}}",
   "@medicalRecordUploadMaxFiles": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "medicalRecordUploadFileTooLarge": "Chaque fichier doit faire 20 Mo ou moins.",
@@ -594,7 +612,9 @@
   "notificationsPrefReminderHoursValue": "{hours} h avant",
   "@notificationsPrefReminderHoursValue": {
     "placeholders": {
-      "hours": { "type": "int" }
+      "hours": {
+        "type": "int"
+      }
     }
   },
   "notificationsPrefSaveError": "Enregistrement impossible",
@@ -608,7 +628,9 @@
   "reviewCommentTooLong": "Le commentaire ne doit pas dépasser {max} caractères.",
   "@reviewCommentTooLong": {
     "placeholders": {
-      "max": { "type": "int" }
+      "max": {
+        "type": "int"
+      }
     }
   },
   "reviewConfirmationTitle": "Merci pour votre avis",
@@ -626,21 +648,27 @@
   "reviewStarsLabel": "{count, plural, =1{1 étoile} other{{count} étoiles}}",
   "@reviewStarsLabel": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "paymentDepositTitle": "Payer l'acompte",
   "paymentDepositBody": "Un acompte de {amount} DZD est requis pour confirmer ce rendez-vous.",
   "@paymentDepositBody": {
     "placeholders": {
-      "amount": { "type": "int" }
+      "amount": {
+        "type": "int"
+      }
     }
   },
   "paymentDepositCta": "Payer l'acompte",
   "paymentDepositAmountLabel": "{amount} DZD",
   "@paymentDepositAmountLabel": {
     "placeholders": {
-      "amount": { "type": "int" }
+      "amount": {
+        "type": "int"
+      }
     }
   },
   "paymentDepositProviderStripeTest": "Mode test (sandbox)",
@@ -652,7 +680,9 @@
   "paymentDepositPayeeClinicNamed": "Le paiement est destiné à {clinicName}.",
   "@paymentDepositPayeeClinicNamed": {
     "placeholders": {
-      "clinicName": { "type": "String" }
+      "clinicName": {
+        "type": "String"
+      }
     }
   },
   "paymentDepositPayeeClinicFallback": "Clinique",
@@ -738,7 +768,9 @@
   "specialistScheduleSlotMinutes": "{minutes} min",
   "@specialistScheduleSlotMinutes": {
     "placeholders": {
-      "minutes": { "type": "int" }
+      "minutes": {
+        "type": "int"
+      }
     }
   },
   "specialistScheduleMode": "Mode de consultation",
@@ -765,7 +797,9 @@
   "specialistScheduleExceptionCount": "{count, plural, =1{1 exception} other{{count} exceptions}}",
   "@specialistScheduleExceptionCount": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "specialistScheduleNoExceptionsTitle": "Aucune exception",
@@ -790,7 +824,9 @@
   "specialistScheduleDonationClinicNamed": "Donné à {clinicName}",
   "@specialistScheduleDonationClinicNamed": {
     "placeholders": {
-      "clinicName": { "type": "String" }
+      "clinicName": {
+        "type": "String"
+      }
     }
   },
   "specialistScheduleDonationNotice": "La clinique est notifiée de toute modification de vos créneaux donnés.",
@@ -800,7 +836,9 @@
   "specialistScheduleDonationFilterBanner": "Affichage des créneaux donnés à {clinicName}",
   "@specialistScheduleDonationFilterBanner": {
     "placeholders": {
-      "clinicName": { "type": "String" }
+      "clinicName": {
+        "type": "String"
+      }
     }
   },
   "specialistScheduleConflictMessage": "Ce créneau chevauche déjà un rendez-vous (cabinet ou clinique).",
@@ -808,7 +846,9 @@
   "clinicMembershipsDonatedHours": "{hours} h / semaine données",
   "@clinicMembershipsDonatedHours": {
     "placeholders": {
-      "hours": { "type": "String" }
+      "hours": {
+        "type": "String"
+      }
     }
   },
   "clinicMembershipsDonatedHoursNone": "Aucun créneau donné",
@@ -826,7 +866,9 @@
   "specialistAppointmentPatientRef": "Patient ····{ref}",
   "@specialistAppointmentPatientRef": {
     "placeholders": {
-      "ref": { "type": "String" }
+      "ref": {
+        "type": "String"
+      }
     }
   },
   "specialistAppointmentConfirmed": "Rendez-vous confirmé",
@@ -853,7 +895,9 @@
   "specialistPrescriptionDrugNumber": "Médicament {number}",
   "@specialistPrescriptionDrugNumber": {
     "placeholders": {
-      "number": { "type": "int" }
+      "number": {
+        "type": "int"
+      }
     }
   },
   "specialistPrescriptionAddDrug": "Ajouter un médicament",
@@ -870,7 +914,9 @@
   "specialistTeleconsultOpensIn": "Ouverture dans {time}",
   "@specialistTeleconsultOpensIn": {
     "placeholders": {
-      "time": { "type": "String" }
+      "time": {
+        "type": "String"
+      }
     }
   },
   "specialistTeleconsultWaitingPatient": "En attente du patient…",
@@ -880,7 +926,9 @@
   "patientTeleconsultOpensIn": "Ouverture dans {time}",
   "@patientTeleconsultOpensIn": {
     "placeholders": {
-      "time": { "type": "String" }
+      "time": {
+        "type": "String"
+      }
     }
   },
   "patientTeleconsultWaitingDoctor": "En attente du médecin…",
@@ -922,8 +970,12 @@
   "clinicCardFromPrice": "À partir de {price} {currency}",
   "@clinicCardFromPrice": {
     "placeholders": {
-      "price": { "type": "int" },
-      "currency": { "type": "String" }
+      "price": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
     }
   },
   "clinicDetailTitle": "Clinique",
@@ -943,14 +995,20 @@
   "clinicDetailDurationMinutes": "{minutes} min",
   "@clinicDetailDurationMinutes": {
     "placeholders": {
-      "minutes": { "type": "int" }
+      "minutes": {
+        "type": "int"
+      }
     }
   },
   "clinicDetailServicePrice": "{price} {currency}",
   "@clinicDetailServicePrice": {
     "placeholders": {
-      "price": { "type": "int" },
-      "currency": { "type": "String" }
+      "price": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
     }
   },
   "clinicDetailVerifiedPatient": "Patient vérifié",
@@ -984,7 +1042,9 @@
   "painLocalizationDownloadProgress": "Téléchargement du modèle ({percent}%)",
   "@painLocalizationDownloadProgress": {
     "placeholders": {
-      "percent": { "type": "int" }
+      "percent": {
+        "type": "int"
+      }
     }
   },
   "painLocalizationOfflineTitle": "Modèle indisponible hors ligne",
@@ -1024,7 +1084,11 @@
   "anamnesisDurationValue": "Durée",
   "anamnesisProgressOpen": "{answered} question(s) répondue(s)",
   "@anamnesisProgressOpen": {
-    "placeholders": { "answered": { "type": "int" } }
+    "placeholders": {
+      "answered": {
+        "type": "int"
+      }
+    }
   },
   "anamnesisProgressCount": "{answered} / {total}",
   "anamnesisScoreLabel": "Score de pertinence régénérative",
@@ -1034,8 +1098,12 @@
   "anamnesisFollowUpProgress": "Question {current} / {total}",
   "@anamnesisFollowUpProgress": {
     "placeholders": {
-      "current": { "type": "int" },
-      "total": { "type": "int" }
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "anamnesisDocsCta": "Ajouter un document (IRM / radio / bilan)",
@@ -1076,18 +1144,31 @@
   "bilanListEmpty": "Aucun bilan pour le moment.",
   "bilanListItemTitle": "Zone {zone}",
   "@bilanListItemTitle": {
-    "placeholders": { "zone": { "type": "String" } }
+    "placeholders": {
+      "zone": {
+        "type": "String"
+      }
+    }
   },
   "bilanListItemSubtitle": "Score {score} % · {date}",
   "@bilanListItemSubtitle": {
     "placeholders": {
-      "score": { "type": "int" },
-      "date": { "type": "DateTime", "format": "yMMMd" }
+      "score": {
+        "type": "int"
+      },
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
     }
   },
   "bilanScoreLabel": "Score de pertinence : {score} %",
   "@bilanScoreLabel": {
-    "placeholders": { "score": { "type": "int" } }
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
   },
   "bilanSummarySection": "Synthèse",
   "bilanOrientationSection": "Orientation",
@@ -1105,7 +1186,11 @@
   "referralMatchesEmpty": "Aucun spécialiste recommandé pour le moment. Réessayez après validation concierge.",
   "referralMatchScore": "Pertinence {score} %",
   "@referralMatchScore": {
-    "placeholders": { "score": { "type": "int" } }
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
   },
   "referralMatchSpecialistFallback": "Spécialiste",
   "referralLoadError": "Impossible de charger les recommandations.",
@@ -1119,13 +1204,22 @@
   "coachingGenerating": "Génération du plan en cours…",
   "coachingListItemTitle": "Session {sessionId}",
   "@coachingListItemTitle": {
-    "placeholders": { "sessionId": { "type": "String" } }
+    "placeholders": {
+      "sessionId": {
+        "type": "String"
+      }
+    }
   },
   "coachingListItemSubtitle": "Objectif hydratation {goalMl} ml · {date}",
   "@coachingListItemSubtitle": {
     "placeholders": {
-      "goalMl": { "type": "int" },
-      "date": { "type": "DateTime", "format": "yMMMd" }
+      "goalMl": {
+        "type": "int"
+      },
+      "date": {
+        "type": "DateTime",
+        "format": "yMMMd"
+      }
     }
   },
   "coachingProgressLabel": "Optimisation biologique",
@@ -1134,11 +1228,19 @@
   "coachingHydrationError": "Impossible de charger l'hydratation.",
   "coachingHydrationMlGoal": "/ {goalMl} ml",
   "@coachingHydrationMlGoal": {
-    "placeholders": { "goalMl": { "type": "int" } }
+    "placeholders": {
+      "goalMl": {
+        "type": "int"
+      }
+    }
   },
   "coachingHydrationAdd": "+ {amountMl} ml",
   "@coachingHydrationAdd": {
-    "placeholders": { "amountMl": { "type": "int" } }
+    "placeholders": {
+      "amountMl": {
+        "type": "int"
+      }
+    }
   },
   "coachingHydrationLogged": "Hydratation enregistrée.",
   "coachingSleepTitle": "Sommeil",
@@ -1146,7 +1248,11 @@
   "coachingSleepEmpty": "Aucun enregistrement récent.",
   "coachingSleepHoursLabel": "Durée : {hours} h",
   "@coachingSleepHoursLabel": {
-    "placeholders": { "hours": { "type": "String" } }
+    "placeholders": {
+      "hours": {
+        "type": "String"
+      }
+    }
   },
   "coachingSleepQualityLabel": "Qualité (1 à 5)",
   "coachingSleepLogCta": "Enregistrer la nuit",
@@ -1154,9 +1260,15 @@
   "coachingSleepLastEntry": "Dernier : {date} — {hours} h, qualité {quality}/5",
   "@coachingSleepLastEntry": {
     "placeholders": {
-      "date": { "type": "String" },
-      "hours": { "type": "double" },
-      "quality": { "type": "int" }
+      "date": {
+        "type": "String"
+      },
+      "hours": {
+        "type": "double"
+      },
+      "quality": {
+        "type": "int"
+      }
     }
   },
   "coachingSectionNutrition": "Nutrition",
@@ -1167,7 +1279,11 @@
   "specialistIncomingBilansError": "Impossible de charger les bilans entrants.",
   "specialistIncomingBilanItem": "Bilan {id}",
   "@specialistIncomingBilanItem": {
-    "placeholders": { "id": { "type": "String" } }
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
   },
   "specialistIncomingBilanDetailTitle": "Bilan entrant",
   "specialistIncomingBilanMarkReviewed": "Marquer comme revu",
@@ -1178,7 +1294,11 @@
   "freemiumUnlockFailed": "Le paiement a échoué.",
   "freemiumAmountLabel": "{amount} DZD (sandbox)",
   "@freemiumAmountLabel": {
-    "placeholders": { "amount": { "type": "int" } }
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
   },
   "freemiumBilanTitle": "Bilan détaillé",
   "freemiumBilanBody": "Accédez aux sections complètes, documents et export PDF.",
@@ -1187,8 +1307,12 @@
   "freemiumCoachingBody": "Débloquez le plan personnalisé et les trackers quotidiens.",
   "@anamnesisProgressCount": {
     "placeholders": {
-      "answered": { "type": "int" },
-      "total": { "type": "int" }
+      "answered": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "alreadyHaveAccount": "J'ai déjà un compte",
@@ -1292,5 +1416,93 @@
   "errorUnexpected": "Une erreur inattendue est survenue.",
   "errorPasswordUpdatedSignInAgain": "Mot de passe mis à jour. Connectez-vous avec votre nouveau mot de passe.",
   "painSelectionMissing": "Sélection de zone de douleur manquante.",
-  "specialistPrescriptionSubmitError": "Impossible de créer l'ordonnance."
+  "specialistPrescriptionSubmitError": "Impossible de créer l'ordonnance.",
+  "patientTabDiscover": "Découvrir",
+  "patientTabMap": "Carte",
+  "patientTabAppointments": "RDV",
+  "patientTabProfile": "Profil",
+  "relativeTimeDays": "{count, plural, =1{Il y a 1 jour} other{Il y a {count} jours}}",
+  "relativeTimeHours": "Il y a {count} h",
+  "relativeTimeMinutes": "Il y a {count} min",
+  "relativeTimeJustNow": "À l'instant",
+  "@relativeTimeDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@relativeTimeHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@relativeTimeMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clinicCardFromPriceLabel": "À partir de {price}",
+  "@clinicCardFromPriceLabel": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "priceIndicativeApprox": "≈ {amount} {currency}",
+  "@priceIndicativeApprox": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
+    }
+  },
+  "priceEurDebitCaveat": "montant débité en EUR",
+  "paymentSheetMerchantName": "Medora",
+  "paymentSheetUnavailable": "Le paiement par carte internationale n'est pas disponible pour le moment.",
+  "paymentEurTitle": "Payer la consultation",
+  "paymentEurBody": "Le paiement intégral de {amount} € est requis pour confirmer ce rendez-vous.",
+  "@paymentEurBody": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentEurCta": "Payer maintenant",
+  "paymentEurAmountLabel": "{amount} €",
+  "@paymentEurAmountLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentEurSuccess": "Paiement réussi. Votre rendez-vous est mis à jour.",
+  "paymentEurFailed": "Le paiement a échoué.",
+  "paymentEurNotEligible": "Ce rendez-vous n'est pas éligible au paiement en euros.",
+  "paymentEurDeclineTitle": "Carte non acceptée",
+  "paymentEurDeclineBody": "Les vendeurs européens n'acceptent que les cartes internationales (Visa, Mastercard). Les cartes locales (CIB, Edahabia) ne peuvent pas être utilisées pour ce paiement.",
+  "paymentEurDeclineDismiss": "Compris",
+  "stripeConnectTitle": "Paiements — configuration Stripe",
+  "stripeConnectHubCta": "Paiements — configuration Stripe",
+  "stripeConnectBody": "Configurez votre compte Stripe Connect pour recevoir les paiements en euros de vos patients.",
+  "stripeConnectStatusIncomplete": "Incomplet",
+  "stripeConnectStatusPending": "En attente",
+  "stripeConnectStatusActive": "Actif",
+  "stripeConnectStatusRestricted": "Restreint",
+  "stripeConnectNotProvisionedTitle": "Compte non provisionné",
+  "stripeConnectNotProvisionedBody": "Votre compte Stripe n'a pas encore été créé. Contactez l'équipe Medora pour démarrer la configuration.",
+  "stripeConnectOnboardingCta": "Continuer la configuration Stripe",
+  "stripeConnectLoadError": "Impossible de charger le statut des paiements.",
+  "stripeConnectOpenLinkError": "Impossible d'ouvrir le lien d'onboarding.",
+  "stripeConnectPollingHint": "Statut actualisé automatiquement…"
 }

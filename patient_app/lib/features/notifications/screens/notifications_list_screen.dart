@@ -52,7 +52,6 @@ class _NotificationsListScreenState
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final locale = Localizations.localeOf(context).languageCode;
     final listAsync = ref.watch(notificationsListProvider);
 
     return Scaffold(
@@ -124,7 +123,7 @@ class _NotificationsListScreenState
                             final isUnread = notification.readAt == null;
                             final timestamp = formatNotificationTimestamp(
                               notification.createdAt,
-                              locale,
+                              l10n,
                             );
 
                             return GpsCard(

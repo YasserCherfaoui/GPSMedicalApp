@@ -1,27 +1,29 @@
 import 'package:intl/intl.dart';
 
+import '../l10n/generated/app_localizations.dart';
+
 /// Relative timestamp for reviews, messaging threads, and notifications.
-String formatReviewRelativeTime(DateTime createdAt, String languageCode) {
-  final locale = languageCode == 'ar' ? 'ar' : 'fr';
+String formatReviewRelativeTime(
+  DateTime createdAt,
+  AppLocalizations l10n, {
+  String? languageCode,
+}) {
+  final localeTag = languageCode ?? l10n.localeName;
+  // intl has no ber data — fall back to French for absolute dates.
+  final dateLocale = localeTag == 'ber' ? 'fr' : localeTag;
   final diff = DateTime.now().difference(createdAt);
 
   if (diff.inDays >= 30) {
-    return DateFormat.yMMMd(locale).format(createdAt);
+    return DateFormat.yMMMd(dateLocale).format(createdAt);
   }
   if (diff.inDays >= 1) {
-    return languageCode == 'ar'
-        ? 'منذ ${diff.inDays} يوم'
-        : 'Il y a ${diff.inDays} jour${diff.inDays > 1 ? 's' : ''}';
+    return l10n.relativeTimeDays(diff.inDays);
   }
   if (diff.inHours >= 1) {
-    return languageCode == 'ar'
-        ? 'منذ ${diff.inHours} ساعة'
-        : 'Il y a ${diff.inHours} h';
+    return l10n.relativeTimeHours(diff.inHours);
   }
   if (diff.inMinutes >= 1) {
-    return languageCode == 'ar'
-        ? 'منذ ${diff.inMinutes} دقيقة'
-        : 'Il y a ${diff.inMinutes} min';
+    return l10n.relativeTimeMinutes(diff.inMinutes);
   }
-  return languageCode == 'ar' ? 'الآن' : 'À l\'instant';
+  return l10n.relativeTimeJustNow;
 }

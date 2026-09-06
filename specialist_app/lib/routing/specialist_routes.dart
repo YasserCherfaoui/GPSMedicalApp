@@ -8,6 +8,7 @@ abstract final class SpecialistRoutes {
   static const shell = '/specialist/shell';
   static const notifications = '/specialist/notifications';
   static const clinicMemberships = '/specialist/clinic-memberships';
+  static const stripeConnect = '/specialist/payments/connect';
 
   /// Schedule editor filtered to donated blocks for [clinicId].
   static String scheduleEditForClinic(String clinicId) =>

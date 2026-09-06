@@ -521,7 +521,7 @@ class _ReviewsSection extends StatelessWidget {
                           Text(
                             formatReviewRelativeTime(
                               review.createdAt!,
-                              languageCode,
+                              l10n,
                             ),
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: colorScheme.onSurfaceVariant,

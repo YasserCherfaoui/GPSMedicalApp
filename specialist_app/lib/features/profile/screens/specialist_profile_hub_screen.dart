@@ -88,6 +88,11 @@ class SpecialistProfileHubScreen extends ConsumerWidget {
             ),
             const SizedBox(height: GpsSpacing.md),
             SecondaryButton(
+              label: l10n.stripeConnectHubCta,
+              onPressed: () => context.push(SpecialistRoutes.stripeConnect),
+            ),
+            const SizedBox(height: GpsSpacing.md),
+            SecondaryButton(
               label:
                   '${l10n.chooseLanguage} (${ref.watch(appLocaleProvider).label})',
               onPressed: () =>

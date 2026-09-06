@@ -526,6 +526,7 @@ class _NearbyDoctorsMapScreenState
               borderRadius: BorderRadius.circular(GpsRadii.lg),
               child: buildClinicCardTile(
                 context: context,
+                ref: ref,
                 clinic: _selectedClinic!,
                 variant: ClinicCardVariant.map,
               ),

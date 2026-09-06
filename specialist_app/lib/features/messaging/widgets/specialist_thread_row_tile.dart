@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
-import '../../appointments/utils/appointment_display.dart';
-
 String patientThreadDisplayLabel(AppLocalizations l10n, Thread thread) {
   final patientId = thread.patientId;
   if (patientId == null || patientId.length < 4) {
@@ -28,11 +26,10 @@ class SpecialistThreadRowTile extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final languageCode = Localizations.localeOf(context).languageCode;
     final thread = item.thread;
     final unread = thread.unreadCount ?? 0;
     final preview = messagePreviewLabel(item.lastMessagePreview, l10n);
-    final timestamp = formatThreadTimestamp(thread.lastMessageAt, languageCode);
+    final timestamp = formatThreadTimestamp(thread.lastMessageAt, l10n);
     final patientLabel = patientThreadDisplayLabel(l10n, thread);
 
     return Card(

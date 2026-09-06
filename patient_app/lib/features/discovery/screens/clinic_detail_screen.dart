@@ -5,6 +5,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../booking/providers/booking_draft.provider.dart';
 import '../../booking/widgets/offline_banner.dart';
+import '../../payments/widgets/price_with_fx_label.dart';
 import '../providers/clinic_detail.provider.dart';
 import '../repositories/clinic_repository.dart';
 import '../utils/clinic_display.dart';
@@ -339,8 +340,10 @@ class _ServiceTile extends ConsumerWidget {
                   ),
                 ),
                 if (price != null)
-                  Text(
-                    l10n.clinicDetailServicePrice(price, currency),
+                  PriceWithFxLabel(
+                    amount: price,
+                    currency: currency,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     style: theme.textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: colorScheme.primary,
@@ -538,7 +541,7 @@ class _ReviewsSection extends StatelessWidget {
                           Text(
                             formatReviewRelativeTime(
                               review.createdAt!,
-                              languageCode,
+                              l10n,
                             ),
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: colorScheme.onSurfaceVariant,

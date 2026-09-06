@@ -7,6 +7,20 @@ import '../utils/payments_api_error.dart';
 const paymentPollInterval = Duration(seconds: 2);
 const paymentPollTimeout = Duration(seconds: 60);
 
+/// Raw JSON result from EUR `POST /payments/intents` (addendum fields not yet
+/// on the generated [PaymentIntent] model).
+class EurPaymentIntentCreateResult {
+  const EurPaymentIntentCreateResult({
+    required this.id,
+    required this.status,
+    this.clientSecret,
+  });
+
+  final String id;
+  final String status;
+  final String? clientSecret;
+}
+
 class PaymentsRepository {
   PaymentsRepository(this._client);
 
@@ -34,6 +48,40 @@ class PaymentsRepository {
         throw StateError('Empty payment intent create response');
       }
       return intent;
+    } catch (e) {
+      rethrowPaymentsApiError(e);
+    }
+  }
+
+  /// EUR rail create — raw Dio until OpenAPI client includes `amount_minor`.
+  ///
+  /// Purpose must be `full_consultation` or `teleconsultation` (K-6).
+  Future<EurPaymentIntentCreateResult> createEurIntent({
+    required String appointmentId,
+    required int amountMinor,
+    required String purpose,
+  }) async {
+    try {
+      final response = await _client.v1.dio.post<Map<String, dynamic>>(
+        '/payments/intents',
+        data: {
+          'purpose': purpose,
+          'appointment_id': appointmentId,
+          'amount_minor': amountMinor,
+          'currency': 'EUR',
+          'provider': 'stripe',
+        },
+      );
+      final data = response.data;
+      final id = data?['id'] as String?;
+      if (id == null || id.isEmpty) {
+        throw StateError('Empty payment intent create response');
+      }
+      return EurPaymentIntentCreateResult(
+        id: id,
+        status: data?['status'] as String? ?? 'requires_action',
+        clientSecret: data?['client_secret'] as String?,
+      );
     } catch (e) {
       rethrowPaymentsApiError(e);
     }

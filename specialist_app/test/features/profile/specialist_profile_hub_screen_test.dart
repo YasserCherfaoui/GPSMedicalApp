@@ -39,6 +39,10 @@ void main() {
             path: SpecialistRoutes.clinicMemberships,
             builder: (context, state) => const SizedBox.shrink(),
           ),
+          GoRoute(
+            path: SpecialistRoutes.stripeConnect,
+            builder: (context, state) => const SizedBox.shrink(),
+          ),
         ],
       ),
     );
@@ -47,5 +51,6 @@ void main() {
     expect(find.text('Dr. Test Specialist'), findsOneWidget);
     expect(find.text('Modifier mon profil'), findsOneWidget);
     expect(find.text('Affiliations cliniques'), findsOneWidget);
+    expect(find.text('Paiements — configuration Stripe'), findsOneWidget);
   });
 }

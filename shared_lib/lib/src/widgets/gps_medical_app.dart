@@ -28,6 +28,7 @@ class GpsMedicalMaterialApp extends ConsumerWidget {
     final appLocale = ref.watch(appLocaleProvider);
 
     return MaterialApp.router(
+      key: ValueKey(appLocale.locale.languageCode),
       title: title,
       theme: GpsTheme.light(),
       darkTheme: GpsTheme.dark(),

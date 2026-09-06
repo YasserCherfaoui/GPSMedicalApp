@@ -26,6 +26,7 @@ class DoctorCard extends StatelessWidget {
     required this.city,
     required this.fee,
     required this.onBookPressed,
+    this.feeLabel,
     this.photoUrl,
     this.isVerified = false,
     this.offersTelehealth = false,
@@ -45,6 +46,9 @@ class DoctorCard extends StatelessWidget {
   final int reviewCount;
   final String city;
   final int fee;
+
+  /// When set (e.g. EUR), replaces the default `{fee} DZD` label.
+  final String? feeLabel;
   final VoidCallback onBookPressed;
   final String? photoUrl;
   final bool isVerified;
@@ -338,7 +342,7 @@ class DoctorCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '$fee DZD',
+                feeLabel ?? '$fee DZD',
                 style: theme.textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: colorScheme.primary,

@@ -174,7 +174,9 @@
   "discoveryRateLimitMessage": "{seconds, plural, =1{Rǧu tasint uqbel ad tɛreḍ tikelt nniḍen.} other{Rǧu {seconds} n tasinin uqbel ad tɛreḍ tikelt nniḍen.}}",
   "@discoveryRateLimitMessage": {
     "placeholders": {
-      "seconds": { "type": "int" }
+      "seconds": {
+        "type": "int"
+      }
     }
   },
   "doctorTitleDefault": "Dr.",
@@ -436,7 +438,9 @@
   "notificationsPrefReminderHoursValue": "{hours} n usrag send",
   "@notificationsPrefReminderHoursValue": {
     "placeholders": {
-      "hours": { "type": "int" }
+      "hours": {
+        "type": "int"
+      }
     }
   },
   "notificationsPrefSaveError": "Asekles ur yeddi ara",
@@ -450,7 +454,9 @@
   "reviewCommentTooLong": "Awal ur ilaq ad iεeddi {max} n isekkilen.",
   "@reviewCommentTooLong": {
     "placeholders": {
-      "max": { "type": "int" }
+      "max": {
+        "type": "int"
+      }
     }
   },
   "reviewConfirmationTitle": "Tanemmirt ɣef tamawt-ik·im",
@@ -468,21 +474,27 @@
   "reviewStarsLabel": "{count, plural, =1{1 n yitri} other{{count} n yitran}}",
   "@reviewStarsLabel": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "paymentDepositTitle": "Xelleṣ asekcem",
   "paymentDepositBody": "Yesra asekcem n {amount} DZD akken ad yettwasentem amarur-a.",
   "@paymentDepositBody": {
     "placeholders": {
-      "amount": { "type": "int" }
+      "amount": {
+        "type": "int"
+      }
     }
   },
   "paymentDepositCta": "Xelleṣ asekcem",
   "paymentDepositAmountLabel": "{amount} DZD",
   "@paymentDepositAmountLabel": {
     "placeholders": {
-      "amount": { "type": "int" }
+      "amount": {
+        "type": "int"
+      }
     }
   },
   "paymentDepositProviderStripeTest": "Askar n usekker (sandbox)",
@@ -494,7 +506,9 @@
   "paymentDepositPayeeClinicNamed": "Asefru yettwazzen ɣer {clinicName}.",
   "@paymentDepositPayeeClinicNamed": {
     "placeholders": {
-      "clinicName": { "type": "String" }
+      "clinicName": {
+        "type": "String"
+      }
     }
   },
   "paymentDepositPayeeClinicFallback": "Tasenselt",
@@ -622,7 +636,9 @@
   "specialistScheduleDonationClinicNamed": "Yettunefk i {clinicName}",
   "@specialistScheduleDonationClinicNamed": {
     "placeholders": {
-      "clinicName": { "type": "String" }
+      "clinicName": {
+        "type": "String"
+      }
     }
   },
   "specialistScheduleDonationNotice": "Tasenselt tettwaɣer i yal abeddel n tikliwin-ik yettunefken.",
@@ -632,7 +648,9 @@
   "specialistScheduleDonationFilterBanner": "Askan n tikliwin yettunefken i {clinicName}",
   "@specialistScheduleDonationFilterBanner": {
     "placeholders": {
-      "clinicName": { "type": "String" }
+      "clinicName": {
+        "type": "String"
+      }
     }
   },
   "specialistScheduleConflictMessage": "Akud-agi yemseḍfaṛ d umeẓlu nniḍen (aḥanu neɣ tasenselt).",
@@ -640,7 +658,9 @@
   "clinicMembershipsDonatedHours": "{hours} s / imalas yettunefken",
   "@clinicMembershipsDonatedHours": {
     "placeholders": {
-      "hours": { "type": "String" }
+      "hours": {
+        "type": "String"
+      }
     }
   },
   "clinicMembershipsDonatedHoursNone": "Ulac tikliwin yettunefken",
@@ -734,8 +754,12 @@
   "clinicCardFromPrice": "Seg {price} {currency}",
   "@clinicCardFromPrice": {
     "placeholders": {
-      "price": { "type": "int" },
-      "currency": { "type": "String" }
+      "price": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
     }
   },
   "clinicDetailTitle": "Tagunit",
@@ -755,14 +779,20 @@
   "clinicDetailDurationMinutes": "{minutes} tsq",
   "@clinicDetailDurationMinutes": {
     "placeholders": {
-      "minutes": { "type": "int" }
+      "minutes": {
+        "type": "int"
+      }
     }
   },
   "clinicDetailServicePrice": "{price} {currency}",
   "@clinicDetailServicePrice": {
     "placeholders": {
-      "price": { "type": "int" },
-      "currency": { "type": "String" }
+      "price": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
     }
   },
   "clinicDetailVerifiedPatient": "Amusnaw yettwasneqden",
@@ -939,8 +969,12 @@
   "freemiumCoachingBody": "Sserreḥ aɣawas udmawan d yimedyaten n wass.",
   "@anamnesisProgressCount": {
     "placeholders": {
-      "answered": { "type": "int" },
-      "total": { "type": "int" }
+      "answered": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "alreadyHaveAccount": "Sɛiɣ yakan amiḍan",
@@ -1023,5 +1057,94 @@
   "errorUnexpected": "Yella-d ugur ur yettwarǧan ara.",
   "errorPasswordUpdatedSignInAgain": "Awal uffir yettwaleqqem. Qqen s wawal uffir amaynut.",
   "painSelectionMissing": "Ulac tafrant n temnaḍt n uqriḥ.",
-  "specialistPrescriptionSubmitError": "Ur nezmir ara ad d-nernu tasumta."
+  "specialistPrescriptionSubmitError": "Ur nezmir ara ad d-nernu tasumta.",
+  "patientTabDiscover": "Snirem",
+  "patientTabMap": "Takarḍa",
+  "patientTabAppointments": "Timlilitin",
+  "patientTabProfile": "Amaɣnu",
+  "relativeTimeDays": "{count, plural, =1{Ussan 1} other{Ussan {count}}}",
+  "relativeTimeHours": "{count} n tsaɛatin",
+  "relativeTimeMinutes": "{count} n tesdatin",
+  "relativeTimeJustNow": "Tura",
+  "@relativeTimeDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@relativeTimeHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@relativeTimeMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clinicCardFromPriceLabel": "Seg {price}",
+  "@clinicCardFromPriceLabel": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "priceIndicativeApprox": "≈ {amount} {currency}",
+  "@priceIndicativeApprox": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
+    }
+  },
+  "priceEurDebitCaveat": "montant débité en EUR",
+  "paymentSheetMerchantName": "Medora",
+  "paymentSheetUnavailable": "Le paiement par carte internationale n'est pas disponible pour le moment.",
+  "paymentEurTitle": "Payer la consultation",
+  "paymentEurBody": "Le paiement intégral de {amount} € est requis pour confirmer ce rendez-vous.",
+  "@paymentEurBody": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentEurCta": "Payer maintenant",
+  "paymentEurAmountLabel": "{amount} €",
+  "@paymentEurAmountLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentEurSuccess": "Paiement réussi. Votre rendez-vous est mis à jour.",
+  "paymentEurFailed": "Le paiement a échoué.",
+  "paymentEurNotEligible": "Ce rendez-vous n'est pas éligible au paiement en euros.",
+  "paymentEurDeclineTitle": "Carte non acceptée",
+  "paymentEurDeclineBody": "Les vendeurs européens n'acceptent que les cartes internationales (Visa, Mastercard). Les cartes locales (CIB, Edahabia) ne peuvent pas être utilisées pour ce paiement.",
+  "paymentEurDeclineDismiss": "Compris",
+  "stripeConnectTitle": "Paiements — configuration Stripe",
+  "stripeConnectHubCta": "Paiements — configuration Stripe",
+  "stripeConnectBody": "Configurez votre compte Stripe Connect pour recevoir les paiements en euros de vos patients.",
+  "stripeConnectStatusIncomplete": "Incomplet",
+  "stripeConnectStatusPending": "En attente",
+  "stripeConnectStatusActive": "Actif",
+  "stripeConnectStatusRestricted": "Restreint",
+  "stripeConnectNotProvisionedTitle": "Compte non provisionné",
+  "stripeConnectNotProvisionedBody": "Votre compte Stripe n'a pas encore été créé. Contactez l'équipe Medora pour démarrer la configuration.",
+  "stripeConnectOnboardingCta": "Continuer la configuration Stripe",
+  "stripeConnectLoadError": "Impossible de charger le statut des paiements.",
+  "stripeConnectOpenLinkError": "Impossible d'ouvrir le lien d'onboarding.",
+  "stripeConnectPollingHint": "Statut actualisé automatiquement…"
+
 }

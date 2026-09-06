@@ -14,9 +14,9 @@ String doctorDisplayName(Doctor doctor) {
   return name.isEmpty ? '—' : name;
 }
 
-String formatThreadTimestamp(DateTime? timestamp, String languageCode) {
+String formatThreadTimestamp(DateTime? timestamp, AppLocalizations l10n) {
   if (timestamp == null) return '';
-  return formatReviewRelativeTime(timestamp.toLocal(), languageCode);
+  return formatReviewRelativeTime(timestamp.toLocal(), l10n);
 }
 
 String messagePreviewLabel(String? preview, AppLocalizations l10n) {

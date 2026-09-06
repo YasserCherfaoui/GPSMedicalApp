@@ -3150,4 +3150,140 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get specialistPrescriptionSubmitError =>
       'No se ha podido crear la receta.';
+
+  @override
+  String get patientTabDiscover => 'Descubrir';
+
+  @override
+  String get patientTabMap => 'Mapa';
+
+  @override
+  String get patientTabAppointments => 'Citas';
+
+  @override
+  String get patientTabProfile => 'Perfil';
+
+  @override
+  String relativeTimeDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Hace $count días',
+      one: 'Hace 1 día',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeHours(int count) {
+    return 'Hace $count h';
+  }
+
+  @override
+  String relativeTimeMinutes(int count) {
+    return 'Hace $count min';
+  }
+
+  @override
+  String get relativeTimeJustNow => 'Ahora mismo';
+
+  @override
+  String clinicCardFromPriceLabel(String price) {
+    return 'À partir de $price';
+  }
+
+  @override
+  String priceIndicativeApprox(int amount, String currency) {
+    return '≈ $amount $currency';
+  }
+
+  @override
+  String get priceEurDebitCaveat => 'montant débité en EUR';
+
+  @override
+  String get paymentSheetMerchantName => 'Medora';
+
+  @override
+  String get paymentSheetUnavailable =>
+      'Le paiement par carte internationale n\'est pas disponible pour le moment.';
+
+  @override
+  String get paymentEurTitle => 'Payer la consultation';
+
+  @override
+  String paymentEurBody(int amount) {
+    return 'Le paiement intégral de $amount € est requis pour confirmer ce rendez-vous.';
+  }
+
+  @override
+  String get paymentEurCta => 'Payer maintenant';
+
+  @override
+  String paymentEurAmountLabel(int amount) {
+    return '$amount €';
+  }
+
+  @override
+  String get paymentEurSuccess =>
+      'Paiement réussi. Votre rendez-vous est mis à jour.';
+
+  @override
+  String get paymentEurFailed => 'Le paiement a échoué.';
+
+  @override
+  String get paymentEurNotEligible =>
+      'Ce rendez-vous n\'est pas éligible au paiement en euros.';
+
+  @override
+  String get paymentEurDeclineTitle => 'Carte non acceptée';
+
+  @override
+  String get paymentEurDeclineBody =>
+      'Les vendeurs européens n\'acceptent que les cartes internationales (Visa, Mastercard). Les cartes locales (CIB, Edahabia) ne peuvent pas être utilisées pour ce paiement.';
+
+  @override
+  String get paymentEurDeclineDismiss => 'Compris';
+
+  @override
+  String get stripeConnectTitle => 'Paiements — configuration Stripe';
+
+  @override
+  String get stripeConnectHubCta => 'Paiements — configuration Stripe';
+
+  @override
+  String get stripeConnectBody =>
+      'Configurez votre compte Stripe Connect pour recevoir les paiements en euros de vos patients.';
+
+  @override
+  String get stripeConnectStatusIncomplete => 'Incomplet';
+
+  @override
+  String get stripeConnectStatusPending => 'En attente';
+
+  @override
+  String get stripeConnectStatusActive => 'Actif';
+
+  @override
+  String get stripeConnectStatusRestricted => 'Restreint';
+
+  @override
+  String get stripeConnectNotProvisionedTitle => 'Compte non provisionné';
+
+  @override
+  String get stripeConnectNotProvisionedBody =>
+      'Votre compte Stripe n\'a pas encore été créé. Contactez l\'équipe Medora pour démarrer la configuration.';
+
+  @override
+  String get stripeConnectOnboardingCta => 'Continuer la configuration Stripe';
+
+  @override
+  String get stripeConnectLoadError =>
+      'Impossible de charger le statut des paiements.';
+
+  @override
+  String get stripeConnectOpenLinkError =>
+      'Impossible d\'ouvrir le lien d\'onboarding.';
+
+  @override
+  String get stripeConnectPollingHint => 'Statut actualisé automatiquement…';
 }

@@ -67,6 +67,26 @@ abstract final class GpsRoutes {
       '/appointments/$appointmentId/review/confirmation';
   static String appointmentPaymentDeposit(String appointmentId) =>
       '/appointments/$appointmentId/payment-deposit';
+  static String appointmentPaymentEur(
+    String appointmentId, {
+    String? currency,
+    int? amountMinor,
+    String? purpose,
+  }) {
+    final params = <String, String>{};
+    if (currency != null && currency.isNotEmpty) {
+      params['currency'] = currency;
+    }
+    if (amountMinor != null) {
+      params['amountMinor'] = '$amountMinor';
+    }
+    if (purpose != null && purpose.isNotEmpty) {
+      params['purpose'] = purpose;
+    }
+    final base = '/appointments/$appointmentId/payment-eur';
+    if (params.isEmpty) return base;
+    return Uri(path: base, queryParameters: params).toString();
+  }
   static String appointmentTeleconsultation(String appointmentId) =>
       '/appointments/$appointmentId/teleconsultation';
   static const painLocalization = '/pain-localization';

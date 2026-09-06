@@ -1416,5 +1416,93 @@
   "errorUnexpected": "An unexpected error occurred.",
   "errorPasswordUpdatedSignInAgain": "Password updated. Sign in with your new password.",
   "painSelectionMissing": "Pain area selection is missing.",
-  "specialistPrescriptionSubmitError": "Unable to create the prescription."
+  "specialistPrescriptionSubmitError": "Unable to create the prescription.",
+  "patientTabDiscover": "Discover",
+  "patientTabMap": "Map",
+  "patientTabAppointments": "Appts",
+  "patientTabProfile": "Profile",
+  "relativeTimeDays": "{count, plural, =1{1 day ago} other{{count} days ago}}",
+  "relativeTimeHours": "{count}h ago",
+  "relativeTimeMinutes": "{count} min ago",
+  "relativeTimeJustNow": "Just now",
+  "@relativeTimeDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@relativeTimeHours": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@relativeTimeMinutes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clinicCardFromPriceLabel": "From {price}",
+  "@clinicCardFromPriceLabel": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "priceIndicativeApprox": "≈ {amount} {currency}",
+  "@priceIndicativeApprox": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      },
+      "currency": {
+        "type": "String"
+      }
+    }
+  },
+  "priceEurDebitCaveat": "amount charged in EUR",
+  "paymentSheetMerchantName": "Medora",
+  "paymentSheetUnavailable": "International card payment is not available right now.",
+  "paymentEurTitle": "Pay consultation",
+  "paymentEurBody": "Full payment of {amount} € is required to confirm this appointment.",
+  "@paymentEurBody": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentEurCta": "Pay now",
+  "paymentEurAmountLabel": "{amount} €",
+  "@paymentEurAmountLabel": {
+    "placeholders": {
+      "amount": {
+        "type": "int"
+      }
+    }
+  },
+  "paymentEurSuccess": "Payment successful. Your appointment is updated.",
+  "paymentEurFailed": "Payment failed.",
+  "paymentEurNotEligible": "This appointment is not eligible for EUR payment.",
+  "paymentEurDeclineTitle": "Card not accepted",
+  "paymentEurDeclineBody": "European sellers only accept international cards (Visa, Mastercard). Local cards (CIB, Edahabia) cannot be used for this payment.",
+  "paymentEurDeclineDismiss": "Got it",
+  "stripeConnectTitle": "Payments — Stripe setup",
+  "stripeConnectHubCta": "Payments — Stripe setup",
+  "stripeConnectBody": "Set up your Stripe Connect account to receive patient payments in euros.",
+  "stripeConnectStatusIncomplete": "Incomplete",
+  "stripeConnectStatusPending": "Pending",
+  "stripeConnectStatusActive": "Active",
+  "stripeConnectStatusRestricted": "Restricted",
+  "stripeConnectNotProvisionedTitle": "Account not provisioned",
+  "stripeConnectNotProvisionedBody": "Your Stripe account has not been created yet. Contact the Medora team to start onboarding.",
+  "stripeConnectOnboardingCta": "Continue Stripe setup",
+  "stripeConnectLoadError": "Unable to load payment status.",
+  "stripeConnectOpenLinkError": "Unable to open the onboarding link.",
+  "stripeConnectPollingHint": "Status updates automatically…"
 }

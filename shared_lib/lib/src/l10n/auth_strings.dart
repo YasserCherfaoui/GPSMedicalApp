@@ -309,8 +309,10 @@ class FallbackMaterialLocalizationsDelegate
     extends LocalizationsDelegate<MaterialLocalizations> {
   const FallbackMaterialLocalizationsDelegate();
 
+  /// Only claim unsupported locales so GlobalMaterialLocalizations can
+  /// serve ar/en/es/de/… with the correct language.
   @override
-  bool isSupported(Locale locale) => true;
+  bool isSupported(Locale locale) => locale.languageCode == 'ber';
 
   @override
   Future<MaterialLocalizations> load(Locale locale) async {
@@ -330,7 +332,7 @@ class FallbackCupertinoLocalizationsDelegate
   const FallbackCupertinoLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => true;
+  bool isSupported(Locale locale) => locale.languageCode == 'ber';
 
   @override
   Future<CupertinoLocalizations> load(Locale locale) async {

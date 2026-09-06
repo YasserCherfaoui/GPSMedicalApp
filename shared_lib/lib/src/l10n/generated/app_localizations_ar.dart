@@ -3087,4 +3087,136 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get specialistPrescriptionSubmitError => 'تعذّر إنشاء الوصفة الطبية.';
+
+  @override
+  String get patientTabDiscover => 'اكتشف';
+
+  @override
+  String get patientTabMap => 'الخريطة';
+
+  @override
+  String get patientTabAppointments => 'المواعيد';
+
+  @override
+  String get patientTabProfile => 'الملف';
+
+  @override
+  String relativeTimeDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'منذ $count يوم',
+      one: 'منذ يوم واحد',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String relativeTimeHours(int count) {
+    return 'منذ $count ساعة';
+  }
+
+  @override
+  String relativeTimeMinutes(int count) {
+    return 'منذ $count دقيقة';
+  }
+
+  @override
+  String get relativeTimeJustNow => 'الآن';
+
+  @override
+  String clinicCardFromPriceLabel(String price) {
+    return 'ابتداءً من $price';
+  }
+
+  @override
+  String priceIndicativeApprox(int amount, String currency) {
+    return '≈ $amount $currency';
+  }
+
+  @override
+  String get priceEurDebitCaveat => 'المبلغ يُخصم باليورو';
+
+  @override
+  String get paymentSheetMerchantName => 'Medora';
+
+  @override
+  String get paymentSheetUnavailable =>
+      'الدفع بالبطاقة الدولية غير متاح حالياً.';
+
+  @override
+  String get paymentEurTitle => 'دفع الاستشارة';
+
+  @override
+  String paymentEurBody(int amount) {
+    return 'يلزم دفع المبلغ كاملاً ($amount €) لتأكيد هذا الموعد.';
+  }
+
+  @override
+  String get paymentEurCta => 'ادفع الآن';
+
+  @override
+  String paymentEurAmountLabel(int amount) {
+    return '$amount €';
+  }
+
+  @override
+  String get paymentEurSuccess => 'تم الدفع بنجاح. تم تحديث موعدك.';
+
+  @override
+  String get paymentEurFailed => 'فشل الدفع.';
+
+  @override
+  String get paymentEurNotEligible => 'هذا الموعد غير مؤهل للدفع باليورو.';
+
+  @override
+  String get paymentEurDeclineTitle => 'البطاقة غير مقبولة';
+
+  @override
+  String get paymentEurDeclineBody =>
+      'البائعون الأوروبيون يقبلون فقط البطاقات الدولية (Visa، Mastercard). لا يمكن استخدام البطاقات المحلية (CIB، Edahabia) لهذا الدفع.';
+
+  @override
+  String get paymentEurDeclineDismiss => 'حسناً';
+
+  @override
+  String get stripeConnectTitle => 'المدفوعات — إعداد Stripe';
+
+  @override
+  String get stripeConnectHubCta => 'المدفوعات — إعداد Stripe';
+
+  @override
+  String get stripeConnectBody =>
+      'قم بإعداد حساب Stripe Connect لاستلام مدفوعات المرضى باليورو.';
+
+  @override
+  String get stripeConnectStatusIncomplete => 'غير مكتمل';
+
+  @override
+  String get stripeConnectStatusPending => 'قيد الانتظار';
+
+  @override
+  String get stripeConnectStatusActive => 'نشط';
+
+  @override
+  String get stripeConnectStatusRestricted => 'مقيّد';
+
+  @override
+  String get stripeConnectNotProvisionedTitle => 'الحساب غير مُنشأ';
+
+  @override
+  String get stripeConnectNotProvisionedBody =>
+      'لم يتم إنشاء حساب Stripe بعد. تواصل مع فريق Medora لبدء الإعداد.';
+
+  @override
+  String get stripeConnectOnboardingCta => 'متابعة إعداد Stripe';
+
+  @override
+  String get stripeConnectLoadError => 'تعذّر تحميل حالة المدفوعات.';
+
+  @override
+  String get stripeConnectOpenLinkError => 'تعذّر فتح رابط الإعداد.';
+
+  @override
+  String get stripeConnectPollingHint => 'يتم تحديث الحالة تلقائياً…';
 }
