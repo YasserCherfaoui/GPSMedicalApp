@@ -1504,5 +1504,14 @@
   "stripeConnectOnboardingCta": "Continue Stripe setup",
   "stripeConnectLoadError": "Unable to load payment status.",
   "stripeConnectOpenLinkError": "Unable to open the onboarding link.",
-  "stripeConnectPollingHint": "Status updates automatically…"
+  "stripeConnectPollingHint": "Status updates automatically…",
+  "settlementStatusPending": "Payout pending",
+  "settlementStatusReleased": "Paid out",
+  "settlementStatusReleasedOn": "Paid out on {date}",
+  "@settlementStatusReleasedOn": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  }
+
 }

@@ -5993,6 +5993,24 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Statut actualisé automatiquement…'**
   String get stripeConnectPollingHint;
+
+  /// No description provided for @settlementStatusPending.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente de versement'**
+  String get settlementStatusPending;
+
+  /// No description provided for @settlementStatusReleased.
+  ///
+  /// In fr, this message translates to:
+  /// **'Versé'**
+  String get settlementStatusReleased;
+
+  /// No description provided for @settlementStatusReleasedOn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Versé le {date}'**
+  String settlementStatusReleasedOn(String date);
 }
 
 class _AppLocalizationsDelegate

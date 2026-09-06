@@ -3219,4 +3219,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get stripeConnectPollingHint => 'يتم تحديث الحالة تلقائياً…';
+
+  @override
+  String get settlementStatusPending => 'في انتظار التحويل';
+
+  @override
+  String get settlementStatusReleased => 'تم التحويل';
+
+  @override
+  String settlementStatusReleasedOn(String date) {
+    return 'تم التحويل في $date';
+  }
 }

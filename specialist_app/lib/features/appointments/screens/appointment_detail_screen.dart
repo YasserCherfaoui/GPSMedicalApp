@@ -5,6 +5,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:intl/intl.dart';
 
 import '../../../routing/specialist_routes.dart';
+import '../../payments/providers/settlement_status.provider.dart';
 import '../../profile/providers/specialist_profile.provider.dart';
 import '../providers/appointments.provider.dart';
 import '../utils/appointment_api_error.dart';
@@ -239,6 +240,38 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
                     paymentStatusWire(appointment.paymentStatus),
                     l10n,
                   ),
+                ),
+              ],
+              if (status == 'completed') ...[
+                const SizedBox(height: GpsSpacing.sm),
+                Consumer(
+                  builder: (context, ref, _) {
+                    final settlementAsync = ref.watch(
+                      settlementByAppointmentProvider(widget.appointmentId),
+                    );
+                    return settlementAsync.when(
+                      data: (s) {
+                        if (s == null) return const SizedBox.shrink();
+                        if (s.status == 'released') {
+                          final when = s.releasedAt != null
+                              ? DateFormat.yMMMd(locale).format(s.releasedAt!)
+                              : '';
+                          return Text(
+                            when.isEmpty
+                                ? l10n.settlementStatusReleased
+                                : l10n.settlementStatusReleasedOn(when),
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          );
+                        }
+                        return Text(
+                          l10n.settlementStatusPending,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        );
+                      },
+                      loading: () => const SizedBox.shrink(),
+                      error: (_, __) => const SizedBox.shrink(),
+                    );
+                  },
                 ),
               ],
               if (appointment.reason != null &&

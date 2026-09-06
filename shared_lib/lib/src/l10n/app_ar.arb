@@ -1145,5 +1145,14 @@
   "stripeConnectOnboardingCta": "متابعة إعداد Stripe",
   "stripeConnectLoadError": "تعذّر تحميل حالة المدفوعات.",
   "stripeConnectOpenLinkError": "تعذّر فتح رابط الإعداد.",
-  "stripeConnectPollingHint": "يتم تحديث الحالة تلقائياً…"
+  "stripeConnectPollingHint": "يتم تحديث الحالة تلقائياً…",
+  "settlementStatusPending": "في انتظار التحويل",
+  "settlementStatusReleased": "تم التحويل",
+  "settlementStatusReleasedOn": "تم التحويل في {date}",
+  "@settlementStatusReleasedOn": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  }
+
 }

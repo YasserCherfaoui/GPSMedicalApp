@@ -3300,4 +3300,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get stripeConnectPollingHint => 'Statut actualisé automatiquement…';
+
+  @override
+  String get settlementStatusPending => 'En attente de versement';
+
+  @override
+  String get settlementStatusReleased => 'Versé';
+
+  @override
+  String settlementStatusReleasedOn(String date) {
+    return 'Versé le $date';
+  }
 }
