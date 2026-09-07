@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**getClinic**](ClinicsApi.md#getclinic) | **GET** /clinics/{clinicId} | Profil public d&#39;une clinique
 [**getClinicCredentialFile**](ClinicsApi.md#getcliniccredentialfile) | **GET** /clinics/me/credentials/{credentialId}/file | URL signée du justificatif
 [**getClinicMe**](ClinicsApi.md#getclinicme) | **GET** /clinics/me | Profil privé de la clinique de l&#39;utilisateur courant
+[**getClinicRosterAvailability**](ClinicsApi.md#getclinicrosteravailability) | **GET** /clinics/me/roster-availability | Créneaux donnés par les membres actifs du roster
 [**inviteClinicMembership**](ClinicsApi.md#inviteclinicmembership) | **POST** /clinics/me/memberships | Inviter un spécialiste
 [**listClinicMeServices**](ClinicsApi.md#listclinicmeservices) | **GET** /clinics/me/services | Catalogue de services (privé)
 [**listClinicMemberships**](ClinicsApi.md#listclinicmemberships) | **GET** /clinics/me/memberships | Roster (invitations, actifs, détachements)
@@ -356,6 +357,51 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ClinicPrivate**](ClinicPrivate.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getClinicRosterAvailability**
+> ClinicRosterAvailability getClinicRosterAvailability(from, to)
+
+Créneaux donnés par les membres actifs du roster
+
+Pour chaque membership `active` de *cette* clinique, retourne les intervalles donnés (`schedule_templates.clinic_id` = clinique courante) résolus sur `[from, to]` après soustraction des exceptions (`vacation` / `sick` / `blocked`). Les blocs donnés à d'autres cliniques ne sont jamais exposés. 
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getClinicsApi();
+final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final response = api.getClinicRosterAvailability(from, to);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling ClinicsApi->getClinicRosterAvailability: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **from** | **DateTime**|  | 
+ **to** | **DateTime**|  | 
+
+### Return type
+
+[**ClinicRosterAvailability**](ClinicRosterAvailability.md)
 
 ### Authorization
 

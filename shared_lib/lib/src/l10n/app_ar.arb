@@ -1151,8 +1151,20 @@
   "settlementStatusReleasedOn": "تم التحويل في {date}",
   "@settlementStatusReleasedOn": {
     "placeholders": {
-      "date": { "type": "String" }
+      "date": {
+        "type": "String"
+      }
     }
-  }
-
+  },
+  "consentSubtitleEu": "وفقاً للائحة العامة لحماية البيانات (GDPR)",
+  "consentTermsEu": "شروط وسياسة اللائحة العامة لحماية البيانات",
+  "invalidPhoneEu": "رقم غير صالح لهذا البلد (صيغة E.164).",
+  "phoneFormatHintEu": "أدخل رقم هاتفك المحمول الوطني (دون رمز البلد).",
+  "countrySearchHint": "ابحث عن بلد…",
+  "specialistCredentialsCouncilNumberTn": "رقم عمادة الأطباء التونسية",
+  "specialistCredentialsCouncilNumberFr": "رقم RPPS / CNOM",
+  "specialistCredentialsCouncilNumberDe": "رقم Ärztekammer",
+  "specialistCredentialsCouncilNumberIt": "رقم FNOMCeO",
+  "specialistCredentialsCouncilNumberEs": "رقم OMC",
+  "specialistCredentialsCouncilNumberEu": "رقم التسجيل المهني"
 }

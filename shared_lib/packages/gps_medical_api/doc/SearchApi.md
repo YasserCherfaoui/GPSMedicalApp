@@ -68,7 +68,7 @@ No authorization required
 
 Recherche multicritères de médecins
 
-Uniquement des médecins `verified=true`. Les dossiers `approved_pending_activation` sont exclus. 
+Uniquement des médecins `verified=true`. Les dossiers `approved_pending_activation` sont exclus. L'offre hors DZ est localisée par coordonnées + `city` ; un filtre `wilaya_code` ne matche simplement pas les lignes non-DZ (pas d'erreur). 
 
 ### Example
 ```dart

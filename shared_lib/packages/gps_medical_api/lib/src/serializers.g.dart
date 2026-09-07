@@ -9,7 +9,9 @@ part of 'serializers.dart';
 Serializers _$serializers =
     (Serializers().toBuilder()
           ..add($Clinic.serializer)
+          ..add($ClinicPrivate.serializer)
           ..add($ClinicUpdate.serializer)
+          ..add($ConciergeCase.serializer)
           ..add($Doctor.serializer)
           ..add($PrescriptionCreate.serializer)
           ..add($Problem.serializer)
@@ -18,6 +20,10 @@ Serializers _$serializers =
           ..add(AdminOverview.serializer)
           ..add(AdminReviewsReviewIdModeratePostRequest.serializer)
           ..add(AdminReviewsReviewIdModeratePostRequestDecisionEnum.serializer)
+          ..add(AdminTestPushDeviceResult.serializer)
+          ..add(AdminTestPushDeviceResultPlatformEnum.serializer)
+          ..add(AdminTestPushRequest.serializer)
+          ..add(AdminTestPushResponse.serializer)
           ..add(Appointment.serializer)
           ..add(AppointmentCreate.serializer)
           ..add(AppointmentCreateModeEnum.serializer)
@@ -35,21 +41,29 @@ Serializers _$serializers =
           ..add(AvailabilitySlotModeEnum.serializer)
           ..add(CheckNinRequest.serializer)
           ..add(CheckPhoneRequest.serializer)
+          ..add(ClinicAdminDetail.serializer)
           ..add(ClinicAdminUpdate.serializer)
           ..add(ClinicAvailabilitySlot.serializer)
           ..add(ClinicAvailabilitySlotModeEnum.serializer)
+          ..add(ClinicCapacityVsDonatedHours.serializer)
           ..add(ClinicCreate.serializer)
           ..add(ClinicCreateConfirmationPolicyEnum.serializer)
           ..add(ClinicCredential.serializer)
           ..add(ClinicCredentialStatusEnum.serializer)
           ..add(ClinicCredentialTypeEnum.serializer)
+          ..add(ClinicDonatedBlocksSummary.serializer)
           ..add(ClinicEarnings.serializer)
           ..add(ClinicMembership.serializer)
           ..add(ClinicMembershipStatus.serializer)
-          ..add(ClinicPrivate.serializer)
           ..add(ClinicPrivateConfirmationPolicyEnum.serializer)
           ..add(ClinicReview.serializer)
           ..add(ClinicReviewStatusEnum.serializer)
+          ..add(ClinicRosterAvailability.serializer)
+          ..add(ClinicRosterDonatedBlock.serializer)
+          ..add(ClinicRosterDonatedBlockModeEnum.serializer)
+          ..add(ClinicRosterMemberAvailability.serializer)
+          ..add(ClinicRosterMemberSummary.serializer)
+          ..add(ClinicRosterMemberSummaryStatusEnum.serializer)
           ..add(ClinicScheduleTemplate.serializer)
           ..add(ClinicScheduleTemplateCreate.serializer)
           ..add(ClinicScheduleTemplateCreateModeEnum.serializer)
@@ -69,11 +83,36 @@ Serializers _$serializers =
           ..add(ClinicStaffMember.serializer)
           ..add(ClinicStaffMemberRoleEnum.serializer)
           ..add(ClinicStatus.serializer)
+          ..add(ClinicUnderStaffedAdvisory.serializer)
+          ..add(ClinicUnderStaffedAdvisoryAffectedTemplatesInner.serializer)
+          ..add(ClinicUnderstaffedShortfall.serializer)
           ..add(ClinicUpdateConfirmationPolicyEnum.serializer)
           ..add(ClinicVerificationStatus.serializer)
           ..add(ClinicWithDistance.serializer)
           ..add(Commune.serializer)
+          ..add(ConciergeAccount.serializer)
+          ..add(ConciergeAccountCreate.serializer)
+          ..add(ConciergeAccountRoleEnum.serializer)
+          ..add(ConciergeAccountStatusEnum.serializer)
+          ..add(ConciergeCaseCreate.serializer)
+          ..add(ConciergeCaseDetail.serializer)
+          ..add(ConciergeCasePatch.serializer)
+          ..add(ConciergeCaseStatus.serializer)
+          ..add(ConciergePatientSummary.serializer)
+          ..add(ConciergeUpcomingAppointment.serializer)
           ..add(ConfirmPaymentIntentRequest.serializer)
+          ..add(ConsentBulkExportRequest.serializer)
+          ..add(ConsentBulkExportRequestCountryEnum.serializer)
+          ..add(ConsentBulkExportRequestPurposeEnum.serializer)
+          ..add(ConsentExportBundle.serializer)
+          ..add(ConsentExportFilters.serializer)
+          ..add(ConsentExportFiltersCountryEnum.serializer)
+          ..add(ConsentExportFiltersPurposeEnum.serializer)
+          ..add(ConsentExportJob.serializer)
+          ..add(ConsentExportJobStatusEnum.serializer)
+          ..add(ConsentExportVerification.serializer)
+          ..add(ConsentExportVerificationAlgorithmEnum.serializer)
+          ..add(ConsentExportVerificationSignedOverEnum.serializer)
           ..add(ConsentGrant.serializer)
           ..add(ConsentGrantConsentTypeEnum.serializer)
           ..add(CountryCode.serializer)
@@ -136,12 +175,15 @@ Serializers _$serializers =
           ..add(PaginatedClinics.serializer)
           ..add(PaginatedClinicsPrivate.serializer)
           ..add(PaginatedClinicsWithDistance.serializer)
+          ..add(PaginatedConciergeAccounts.serializer)
+          ..add(PaginatedConciergeCases.serializer)
           ..add(PaginatedDoctors.serializer)
           ..add(PaginatedDoctorsPrivate.serializer)
           ..add(PaginatedDoctorsWithDistance.serializer)
           ..add(PaginatedMedicalDocuments.serializer)
           ..add(PaginatedNotifications.serializer)
           ..add(PaginatedReviews.serializer)
+          ..add(PaginatedSeededSpecialists.serializer)
           ..add(PaginatedThreads.serializer)
           ..add(PaginatedUserAdmin.serializer)
           ..add(PaginationMeta.serializer)
@@ -200,6 +242,9 @@ Serializers _$serializers =
           ..add(ScheduleTemplateModeEnum.serializer)
           ..add(ScheduleTemplateSlotDurationMinutesEnum.serializer)
           ..add(SearchSuggestGet200Response.serializer)
+          ..add(SeededSpecialistAdmin.serializer)
+          ..add(SeededSpecialistAdminSource_Enum.serializer)
+          ..add(SeededSpecialistClaimStatus.serializer)
           ..add(Specialty.serializer)
           ..add(SpecialtyCreate.serializer)
           ..add(SuggestItem.serializer)
@@ -236,6 +281,12 @@ Serializers _$serializers =
           ..add(VerifyDoctorRequest.serializer)
           ..add(VerifyDoctorRequestDecisionEnum.serializer)
           ..add(Wilaya.serializer)
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
+              const FullType(AdminTestPushDeviceResult),
+            ]),
+            () => ListBuilder<AdminTestPushDeviceResult>(),
+          )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(Appointment)]),
             () => ListBuilder<Appointment>(),
@@ -274,6 +325,28 @@ Serializers _$serializers =
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
+              const FullType(ClinicRosterDonatedBlock),
+            ]),
+            () => ListBuilder<ClinicRosterDonatedBlock>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
+              const FullType(ClinicRosterMemberAvailability),
+            ]),
+            () => ListBuilder<ClinicRosterMemberAvailability>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
+              const FullType(ClinicRosterMemberSummary),
+            ]),
+            () => ListBuilder<ClinicRosterMemberSummary>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [const FullType(ClinicCredential)]),
+            () => ListBuilder<ClinicCredential>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
               const FullType(ClinicServiceTeaser),
             ]),
             () => ListBuilder<ClinicServiceTeaser>(),
@@ -283,12 +356,43 @@ Serializers _$serializers =
               const FullType(ClinicServiceTeaser),
             ]),
             () => ListBuilder<ClinicServiceTeaser>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
+              const FullType(ClinicServiceTeaser),
+            ]),
+            () => ListBuilder<ClinicServiceTeaser>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
+              const FullType(ClinicUnderStaffedAdvisoryAffectedTemplatesInner),
+            ]),
+            () =>
+                ListBuilder<ClinicUnderStaffedAdvisoryAffectedTemplatesInner>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(ClinicWithDistance),
             ]),
             () => ListBuilder<ClinicWithDistance>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [const FullType(ConciergeAccount)]),
+            () => ListBuilder<ConciergeAccount>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [const FullType(ConciergeCase)]),
+            () => ListBuilder<ConciergeCase>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
+              const FullType(ConciergeUpcomingAppointment),
+            ]),
+            () => ListBuilder<ConciergeUpcomingAppointment>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [const FullType(ConsentGrant)]),
+            () => ListBuilder<ConsentGrant>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(Credential)]),
@@ -373,6 +477,12 @@ Serializers _$serializers =
             () => ListBuilder<Review>(),
           )
           ..addBuilderFactory(
+            const FullType(BuiltList, const [
+              const FullType(SeededSpecialistAdmin),
+            ]),
+            () => ListBuilder<SeededSpecialistAdmin>(),
+          )
+          ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(Specialty)]),
             () => ListBuilder<Specialty>(),
           )
@@ -403,6 +513,14 @@ Serializers _$serializers =
               const FullType(ClinicSpecialistAffiliation),
             ]),
             () => ListBuilder<ClinicSpecialistAffiliation>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [const FullType(String)]),
+            () => ListBuilder<String>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [const FullType(String)]),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
@@ -473,6 +591,13 @@ Serializers _$serializers =
               const FullType(ValidationProblemAllOfErrors),
             ]),
             () => ListBuilder<ValidationProblemAllOfErrors>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltMap, const [
+              const FullType(String),
+              const FullType(String),
+            ]),
+            () => MapBuilder<String, String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltMap, const [

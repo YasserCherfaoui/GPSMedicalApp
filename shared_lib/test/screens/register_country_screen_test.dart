@@ -4,10 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 void main() {
-  testWidgets('country step lists DZ and TN with immutable notice', (
-    tester,
-  ) async {
-    tester.view.physicalSize = const Size(1080, 1920);
+  Future<void> pumpCountry(
+    WidgetTester tester, {
+    GpsMedicalClientKind kind = GpsMedicalClientKind.patient,
+  }) async {
+    tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(() {
       tester.view.resetPhysicalSize();
@@ -18,10 +19,7 @@ void main() {
       ProviderScope(
         overrides: [
           appInfoProvider.overrideWithValue(
-            const GpsMedicalAppInfo(
-              displayName: 'Test',
-              clientKind: GpsMedicalClientKind.patient,
-            ),
+            GpsMedicalAppInfo(displayName: 'Test', clientKind: kind),
           ),
         ],
         child: const MaterialApp(
@@ -36,9 +34,15 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
+  }
+
+  testWidgets('country step lists DZ, TN, FR and search', (tester) async {
+    await pumpCountry(tester);
 
     expect(find.text('Algérie'), findsOneWidget);
     expect(find.text('Tunisie'), findsOneWidget);
+    expect(find.text('France'), findsOneWidget);
+    expect(find.byType(TextField), findsOneWidget);
     expect(
       find.text(
         'Le pays choisi est définitif. Il ne pourra pas être modifié après la création du compte.',
@@ -47,48 +51,28 @@ void main() {
     );
   });
 
-  testWidgets('specialist cannot continue with Tunisia', (tester) async {
-    tester.view.physicalSize = const Size(1080, 1920);
-    tester.view.devicePixelRatio = 1.0;
-    addTearDown(() {
-      tester.view.resetPhysicalSize();
-      tester.view.resetDevicePixelRatio();
-    });
-
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          appInfoProvider.overrideWithValue(
-            const GpsMedicalAppInfo(
-              displayName: 'Test Specialist',
-              clientKind: GpsMedicalClientKind.specialist,
-            ),
-          ),
-        ],
-        child: const MaterialApp(
-          localizationsDelegates: [
-            AuthStrings.delegate,
-            ...AppLocalizations.localizationsDelegates,
-          ],
-          supportedLocales: AppLocalizations.supportedLocales,
-          locale: Locale('fr'),
-          home: RegisterCountryScreen(),
-        ),
-      ),
-    );
+  testWidgets('search filters to France', (tester) async {
+    await pumpCountry(tester);
+    await tester.enterText(find.byType(TextField), 'fran');
     await tester.pumpAndSettle();
+
+    expect(find.text('France'), findsOneWidget);
+    expect(find.text('Algérie'), findsNothing);
+  });
+
+  testWidgets('specialist can select Tunisia (quarantine, not blocked)', (
+    tester,
+  ) async {
+    await pumpCountry(tester, kind: GpsMedicalClientKind.specialist);
 
     await tester.tap(find.text('Tunisie'));
     await tester.pump();
-    await tester.tap(find.text('Continuer'));
-    await tester.pump();
-
+    expect(find.text('Continuer'), findsOneWidget);
     expect(
       find.text(
         "L'inscription des spécialistes n'est pas encore disponible en Tunisie.",
       ),
-      findsOneWidget,
+      findsNothing,
     );
-    expect(find.byType(RegisterCountryScreen), findsOneWidget);
   });
 }

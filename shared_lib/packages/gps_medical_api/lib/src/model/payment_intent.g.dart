@@ -157,6 +157,8 @@ class _$PaymentIntent extends PaymentIntent {
   @override
   final String? appointmentId;
   @override
+  final String? sessionId;
+  @override
   final int? amountDzd;
   @override
   final String? provider;
@@ -180,6 +182,7 @@ class _$PaymentIntent extends PaymentIntent {
     this.id,
     this.purpose,
     this.appointmentId,
+    this.sessionId,
     this.amountDzd,
     this.provider,
     this.status,
@@ -203,6 +206,7 @@ class _$PaymentIntent extends PaymentIntent {
         id == other.id &&
         purpose == other.purpose &&
         appointmentId == other.appointmentId &&
+        sessionId == other.sessionId &&
         amountDzd == other.amountDzd &&
         provider == other.provider &&
         status == other.status &&
@@ -219,6 +223,7 @@ class _$PaymentIntent extends PaymentIntent {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, purpose.hashCode);
     _$hash = $jc(_$hash, appointmentId.hashCode);
+    _$hash = $jc(_$hash, sessionId.hashCode);
     _$hash = $jc(_$hash, amountDzd.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
@@ -237,6 +242,7 @@ class _$PaymentIntent extends PaymentIntent {
           ..add('id', id)
           ..add('purpose', purpose)
           ..add('appointmentId', appointmentId)
+          ..add('sessionId', sessionId)
           ..add('amountDzd', amountDzd)
           ..add('provider', provider)
           ..add('status', status)
@@ -265,6 +271,10 @@ class PaymentIntentBuilder
   String? get appointmentId => _$this._appointmentId;
   set appointmentId(String? appointmentId) =>
       _$this._appointmentId = appointmentId;
+
+  String? _sessionId;
+  String? get sessionId => _$this._sessionId;
+  set sessionId(String? sessionId) => _$this._sessionId = sessionId;
 
   int? _amountDzd;
   int? get amountDzd => _$this._amountDzd;
@@ -309,6 +319,7 @@ class PaymentIntentBuilder
       _id = $v.id;
       _purpose = $v.purpose;
       _appointmentId = $v.appointmentId;
+      _sessionId = $v.sessionId;
       _amountDzd = $v.amountDzd;
       _provider = $v.provider;
       _status = $v.status;
@@ -342,6 +353,7 @@ class PaymentIntentBuilder
           id: id,
           purpose: purpose,
           appointmentId: appointmentId,
+          sessionId: sessionId,
           amountDzd: amountDzd,
           provider: provider,
           status: status,

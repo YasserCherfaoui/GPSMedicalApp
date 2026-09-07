@@ -12,6 +12,10 @@ class _$Address extends Address {
   @override
   final String? line2;
   @override
+  final CountryCode? country;
+  @override
+  final String? city;
+  @override
   final String? communeId;
   @override
   final String? communeName;
@@ -32,6 +36,8 @@ class _$Address extends Address {
   _$Address._({
     this.line1,
     this.line2,
+    this.country,
+    this.city,
     this.communeId,
     this.communeName,
     this.wilayaCode,
@@ -53,6 +59,8 @@ class _$Address extends Address {
     return other is Address &&
         line1 == other.line1 &&
         line2 == other.line2 &&
+        country == other.country &&
+        city == other.city &&
         communeId == other.communeId &&
         communeName == other.communeName &&
         wilayaCode == other.wilayaCode &&
@@ -67,6 +75,8 @@ class _$Address extends Address {
     var _$hash = 0;
     _$hash = $jc(_$hash, line1.hashCode);
     _$hash = $jc(_$hash, line2.hashCode);
+    _$hash = $jc(_$hash, country.hashCode);
+    _$hash = $jc(_$hash, city.hashCode);
     _$hash = $jc(_$hash, communeId.hashCode);
     _$hash = $jc(_$hash, communeName.hashCode);
     _$hash = $jc(_$hash, wilayaCode.hashCode);
@@ -83,6 +93,8 @@ class _$Address extends Address {
     return (newBuiltValueToStringHelper(r'Address')
           ..add('line1', line1)
           ..add('line2', line2)
+          ..add('country', country)
+          ..add('city', city)
           ..add('communeId', communeId)
           ..add('communeName', communeName)
           ..add('wilayaCode', wilayaCode)
@@ -104,6 +116,14 @@ class AddressBuilder implements Builder<Address, AddressBuilder> {
   String? _line2;
   String? get line2 => _$this._line2;
   set line2(String? line2) => _$this._line2 = line2;
+
+  CountryCode? _country;
+  CountryCode? get country => _$this._country;
+  set country(CountryCode? country) => _$this._country = country;
+
+  String? _city;
+  String? get city => _$this._city;
+  set city(String? city) => _$this._city = city;
 
   String? _communeId;
   String? get communeId => _$this._communeId;
@@ -142,6 +162,8 @@ class AddressBuilder implements Builder<Address, AddressBuilder> {
     if ($v != null) {
       _line1 = $v.line1;
       _line2 = $v.line2;
+      _country = $v.country;
+      _city = $v.city;
       _communeId = $v.communeId;
       _communeName = $v.communeName;
       _wilayaCode = $v.wilayaCode;
@@ -173,6 +195,8 @@ class AddressBuilder implements Builder<Address, AddressBuilder> {
         _$Address._(
           line1: line1,
           line2: line2,
+          country: country,
+          city: city,
           communeId: communeId,
           communeName: communeName,
           wilayaCode: wilayaCode,

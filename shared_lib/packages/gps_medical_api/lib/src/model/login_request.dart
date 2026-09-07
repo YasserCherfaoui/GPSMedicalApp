@@ -12,12 +12,12 @@ part 'login_request.g.dart';
 /// LoginRequest
 ///
 /// Properties:
-/// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
+/// * [phone] - Numéro mobile au format E.164. Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (validation libphonenumber pour les 29 `CountryCode`) ; sinon `422 phone_country_mismatch`. 
 /// * [password] 
 /// * [client] - `dashboard` — connexion réservée au tableau de bord (`admin` / `moderator` / `clinic_owner` / `clinic_admin`). 
 @BuiltValue()
 abstract class LoginRequest implements Built<LoginRequest, LoginRequestBuilder> {
-  /// Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
+  /// Numéro mobile au format E.164. Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (validation libphonenumber pour les 29 `CountryCode`) ; sinon `422 phone_country_mismatch`. 
   @BuiltValueField(wireName: r'phone')
   String get phone;
 

@@ -22,7 +22,7 @@ part 'clinic_private.g.dart';
 /// * [name] 
 /// * [description] 
 /// * [address] 
-/// * [countryCode] - ISO 3166-1 alpha-2. DZ, TN, et codes Schengen-UE. Activation `verified=true` hors DZ bloquée jusqu'à G-3. 
+/// * [countryCode] - ISO 3166-1 alpha-2. DZ, TN, et codes UE-27. G-3 cleared (Amendment 2): approve active DZ + UE ; TN reste `approved_pending_activation` (G-2). 
 /// * [verified] 
 /// * [ratingAverage] 
 /// * [ratingCount] 
@@ -39,8 +39,9 @@ part 'clinic_private.g.dart';
 /// * [bookingWindowDays] 
 /// * [credentials] 
 /// * [email] 
-@BuiltValue()
-abstract class ClinicPrivate implements Clinic, Built<ClinicPrivate, ClinicPrivateBuilder> {
+/// * [underStaffed] - Présent sur les réponses admin — `true` si au moins un créneau de capacité est sous-couvert par les blocs donnés du roster. 
+@BuiltValue(instantiable: false)
+abstract class ClinicPrivate implements Clinic {
   @BuiltValueField(wireName: r'legal_name')
   String? get legalName;
 
@@ -70,6 +71,10 @@ abstract class ClinicPrivate implements Clinic, Built<ClinicPrivate, ClinicPriva
   @BuiltValueField(wireName: r'email')
   String? get email;
 
+  /// Présent sur les réponses admin — `true` si au moins un créneau de capacité est sous-couvert par les blocs donnés du roster. 
+  @BuiltValueField(wireName: r'under_staffed')
+  bool? get underStaffed;
+
   @BuiltValueField(wireName: r'status')
   ClinicStatus? get status;
   // enum statusEnum {  pending,  active,  suspended,  rejected,  };
@@ -77,20 +82,13 @@ abstract class ClinicPrivate implements Clinic, Built<ClinicPrivate, ClinicPriva
   @BuiltValueField(wireName: r'verification_comment')
   String? get verificationComment;
 
-  ClinicPrivate._();
-
-  factory ClinicPrivate([void updates(ClinicPrivateBuilder b)]) = _$ClinicPrivate;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ClinicPrivateBuilder b) => b;
-
   @BuiltValueSerializer(custom: true)
   static Serializer<ClinicPrivate> get serializer => _$ClinicPrivateSerializer();
 }
 
 class _$ClinicPrivateSerializer implements PrimitiveSerializer<ClinicPrivate> {
   @override
-  final Iterable<Type> types = const [ClinicPrivate, _$ClinicPrivate];
+  final Iterable<Type> types = const [ClinicPrivate];
 
   @override
   final String wireName = r'ClinicPrivate';
@@ -161,6 +159,13 @@ class _$ClinicPrivateSerializer implements PrimitiveSerializer<ClinicPrivate> {
       yield serializers.serialize(
         object.ratingCount,
         specifiedType: const FullType(int),
+      );
+    }
+    if (object.underStaffed != null) {
+      yield r'under_staffed';
+      yield serializers.serialize(
+        object.underStaffed,
+        specifiedType: const FullType.nullable(bool),
       );
     }
     if (object.legalName != null) {
@@ -258,6 +263,46 @@ class _$ClinicPrivateSerializer implements PrimitiveSerializer<ClinicPrivate> {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
+  @override
+  ClinicPrivate deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($ClinicPrivate)) as $ClinicPrivate;
+  }
+}
+
+/// a concrete implementation of [ClinicPrivate], since [ClinicPrivate] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $ClinicPrivate implements ClinicPrivate, Built<$ClinicPrivate, $ClinicPrivateBuilder> {
+  $ClinicPrivate._();
+
+  factory $ClinicPrivate([void Function($ClinicPrivateBuilder)? updates]) = _$$ClinicPrivate;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($ClinicPrivateBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$ClinicPrivate> get serializer => _$$ClinicPrivateSerializer();
+}
+
+class _$$ClinicPrivateSerializer implements PrimitiveSerializer<$ClinicPrivate> {
+  @override
+  final Iterable<Type> types = const [$ClinicPrivate, _$$ClinicPrivate];
+
+  @override
+  final String wireName = r'$ClinicPrivate';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $ClinicPrivate object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(ClinicPrivate))!;
+  }
+
   void _deserializeProperties(
     Serializers serializers,
     Object serialized, {
@@ -332,6 +377,14 @@ class _$ClinicPrivateSerializer implements PrimitiveSerializer<ClinicPrivate> {
             specifiedType: const FullType(int),
           ) as int;
           result.ratingCount = valueDes;
+          break;
+        case r'under_staffed':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.underStaffed = valueDes;
           break;
         case r'legal_name':
           final valueDes = serializers.deserialize(
@@ -427,12 +480,12 @@ class _$ClinicPrivateSerializer implements PrimitiveSerializer<ClinicPrivate> {
   }
 
   @override
-  ClinicPrivate deserialize(
+  $ClinicPrivate deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = ClinicPrivateBuilder();
+    final result = $ClinicPrivateBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

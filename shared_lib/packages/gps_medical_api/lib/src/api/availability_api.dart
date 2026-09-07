@@ -12,6 +12,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:gps_medical_api/src/api_util.dart';
 import 'package:gps_medical_api/src/model/availability_slot.dart';
 import 'package:gps_medical_api/src/model/clinic_availability_slot.dart';
+import 'package:gps_medical_api/src/model/clinic_roster_availability.dart';
 import 'package:gps_medical_api/src/model/clinic_schedule_template.dart';
 import 'package:gps_medical_api/src/model/clinic_schedule_template_create.dart';
 import 'package:gps_medical_api/src/model/date.dart';
@@ -777,6 +778,95 @@ class AvailabilityApi {
     }
 
     return Response<ScheduleTemplate>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// Créneaux donnés par les membres actifs du roster
+  /// Pour chaque membership &#x60;active&#x60; de *cette* clinique, retourne les intervalles donnés (&#x60;schedule_templates.clinic_id&#x60; &#x3D; clinique courante) résolus sur &#x60;[from, to]&#x60; après soustraction des exceptions (&#x60;vacation&#x60; / &#x60;sick&#x60; / &#x60;blocked&#x60;). Les blocs donnés à d&#39;autres cliniques ne sont jamais exposés. 
+  ///
+  /// Parameters:
+  /// * [from] 
+  /// * [to] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ClinicRosterAvailability] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<ClinicRosterAvailability>> getClinicRosterAvailability({ 
+    required DateTime from,
+    required DateTime to,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/clinics/me/roster-availability';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[
+          {
+            'type': 'http',
+            'scheme': 'bearer',
+            'name': 'bearerAuth',
+          },
+        ],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      r'from': encodeQueryParameter(_serializers, from, const FullType(DateTime)),
+      r'to': encodeQueryParameter(_serializers, to, const FullType(DateTime)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    ClinicRosterAvailability? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ClinicRosterAvailability),
+      ) as ClinicRosterAvailability;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ClinicRosterAvailability>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

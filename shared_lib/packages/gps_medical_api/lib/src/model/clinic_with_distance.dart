@@ -19,7 +19,7 @@ part 'clinic_with_distance.g.dart';
 /// * [name] 
 /// * [description] 
 /// * [address] 
-/// * [countryCode] - ISO 3166-1 alpha-2. DZ, TN, et codes Schengen-UE. Activation `verified=true` hors DZ bloquée jusqu'à G-3. 
+/// * [countryCode] - ISO 3166-1 alpha-2. DZ, TN, et codes UE-27. G-3 cleared (Amendment 2): approve active DZ + UE ; TN reste `approved_pending_activation` (G-2). 
 /// * [verified] 
 /// * [ratingAverage] 
 /// * [ratingCount] 

@@ -70,6 +70,15 @@ void main() {
       // TODO
     });
 
+    // Créneaux donnés par les membres actifs du roster
+    //
+    // Pour chaque membership `active` de *cette* clinique, retourne les intervalles donnés (`schedule_templates.clinic_id` = clinique courante) résolus sur `[from, to]` après soustraction des exceptions (`vacation` / `sick` / `blocked`). Les blocs donnés à d'autres cliniques ne sont jamais exposés. 
+    //
+    //Future<ClinicRosterAvailability> getClinicRosterAvailability(DateTime from, DateTime to) async
+    test('test getClinicRosterAvailability', () async {
+      // TODO
+    });
+
     // Créneaux de capacité clinique
     //
     // Même jeton de verrouillage (TTL 5 min) que les médecins. Le token encode `clinic_id` + `service_id` (origin `clinic_service`). 

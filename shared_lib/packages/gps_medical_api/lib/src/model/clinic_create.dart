@@ -15,9 +15,10 @@ part 'clinic_create.g.dart';
 /// * [name] 
 /// * [legalName] 
 /// * [description] 
-/// * [countryCode] - ISO 3166-1 alpha-2. DZ, TN, et codes Schengen-UE. Activation `verified=true` hors DZ bloquée jusqu'à G-3. 
-/// * [wilayaCode] 
-/// * [communeId] 
+/// * [countryCode] - ISO 3166-1 alpha-2. DZ, TN, et codes UE-27. G-3 cleared (Amendment 2): approve active DZ + UE ; TN reste `approved_pending_activation` (G-2). 
+/// * [wilayaCode] - Requis pour `country_code=DZ` ; ignorer / omettre sinon.
+/// * [communeId] - DZ uniquement ; optionnel sinon.
+/// * [city] - Ville libre — recommandée hors DZ (persistée comme libellé géo).
 /// * [addressLine1] 
 /// * [addressLine2] 
 /// * [latitude] 
@@ -37,15 +38,21 @@ abstract class ClinicCreate implements Built<ClinicCreate, ClinicCreateBuilder> 
   @BuiltValueField(wireName: r'description')
   String? get description;
 
-  /// ISO 3166-1 alpha-2. DZ, TN, et codes Schengen-UE. Activation `verified=true` hors DZ bloquée jusqu'à G-3. 
+  /// ISO 3166-1 alpha-2. DZ, TN, et codes UE-27. G-3 cleared (Amendment 2): approve active DZ + UE ; TN reste `approved_pending_activation` (G-2). 
   @BuiltValueField(wireName: r'country_code')
   String get countryCode;
 
+  /// Requis pour `country_code=DZ` ; ignorer / omettre sinon.
   @BuiltValueField(wireName: r'wilaya_code')
-  String get wilayaCode;
+  String? get wilayaCode;
 
+  /// DZ uniquement ; optionnel sinon.
   @BuiltValueField(wireName: r'commune_id')
   String? get communeId;
+
+  /// Ville libre — recommandée hors DZ (persistée comme libellé géo).
+  @BuiltValueField(wireName: r'city')
+  String? get city;
 
   @BuiltValueField(wireName: r'address_line1')
   String get addressLine1;
@@ -120,15 +127,24 @@ class _$ClinicCreateSerializer implements PrimitiveSerializer<ClinicCreate> {
       object.countryCode,
       specifiedType: const FullType(String),
     );
-    yield r'wilaya_code';
-    yield serializers.serialize(
-      object.wilayaCode,
-      specifiedType: const FullType(String),
-    );
+    if (object.wilayaCode != null) {
+      yield r'wilaya_code';
+      yield serializers.serialize(
+        object.wilayaCode,
+        specifiedType: const FullType(String),
+      );
+    }
     if (object.communeId != null) {
       yield r'commune_id';
       yield serializers.serialize(
         object.communeId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.city != null) {
+      yield r'city';
+      yield serializers.serialize(
+        object.city,
         specifiedType: const FullType(String),
       );
     }
@@ -246,6 +262,13 @@ class _$ClinicCreateSerializer implements PrimitiveSerializer<ClinicCreate> {
             specifiedType: const FullType(String),
           ) as String;
           result.communeId = valueDes;
+          break;
+        case r'city':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.city = valueDes;
           break;
         case r'address_line1':
           final valueDes = serializers.deserialize(

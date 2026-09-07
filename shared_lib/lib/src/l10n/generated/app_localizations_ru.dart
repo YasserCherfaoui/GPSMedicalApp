@@ -3277,4 +3277,43 @@ class AppLocalizationsRu extends AppLocalizations {
   String settlementStatusReleasedOn(String date) {
     return 'Paid out on $date';
   }
+
+  @override
+  String get consentSubtitleEu =>
+      'В соответствии с Общим регламентом по защите данных (GDPR)';
+
+  @override
+  String get consentTermsEu => 'Условия и политика GDPR';
+
+  @override
+  String get invalidPhoneEu => 'Неверный номер для этой страны (формат E.164).';
+
+  @override
+  String get phoneFormatHintEu =>
+      'Введите национальный номер мобильного (без кода страны).';
+
+  @override
+  String get countrySearchHint => 'Поиск стран…';
+
+  @override
+  String get specialistCredentialsCouncilNumberTn =>
+      'Tunisian medical council number';
+
+  @override
+  String get specialistCredentialsCouncilNumberFr =>
+      'RPPS / CNOM registration number';
+
+  @override
+  String get specialistCredentialsCouncilNumberDe =>
+      'Ärztekammer registration number';
+
+  @override
+  String get specialistCredentialsCouncilNumberIt => 'FNOMCeO register number';
+
+  @override
+  String get specialistCredentialsCouncilNumberEs => 'OMC colegiado number';
+
+  @override
+  String get specialistCredentialsCouncilNumberEu =>
+      'Professional registration number';
 }

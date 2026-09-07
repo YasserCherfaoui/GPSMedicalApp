@@ -15,6 +15,7 @@ part 'clinic_update.g.dart';
 /// * [name] 
 /// * [legalName] 
 /// * [description] 
+/// * [city] 
 /// * [addressLine1] 
 /// * [addressLine2] 
 /// * [communeId] 
@@ -35,6 +36,9 @@ abstract class ClinicUpdate  {
 
   @BuiltValueField(wireName: r'description')
   String? get description;
+
+  @BuiltValueField(wireName: r'city')
+  String? get city;
 
   @BuiltValueField(wireName: r'address_line1')
   String? get addressLine1;
@@ -101,6 +105,13 @@ class _$ClinicUpdateSerializer implements PrimitiveSerializer<ClinicUpdate> {
       yield r'description';
       yield serializers.serialize(
         object.description,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.city != null) {
+      yield r'city';
+      yield serializers.serialize(
+        object.city,
         specifiedType: const FullType(String),
       );
     }
@@ -257,6 +268,13 @@ class _$$ClinicUpdateSerializer implements PrimitiveSerializer<$ClinicUpdate> {
             specifiedType: const FullType(String),
           ) as String;
           result.description = valueDes;
+          break;
+        case r'city':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.city = valueDes;
           break;
         case r'address_line1':
           final valueDes = serializers.deserialize(

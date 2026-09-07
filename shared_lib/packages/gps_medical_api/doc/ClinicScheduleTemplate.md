@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **mode** | **String** |  | [optional] 
 **capacity** | **int** |  | [optional] 
 **active** | **bool** |  | [optional] 
+**understaffed** | **bool** | null = zero active roster (advisory N/A). true = capacity exceeds donated concurrent coverage. false = coverage adequate. Advisory only — never blocks writes.  | [optional] 
+**understaffedShortfall** | [**ClinicUnderstaffedShortfall**](ClinicUnderstaffedShortfall.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

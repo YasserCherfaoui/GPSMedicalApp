@@ -52,5 +52,16 @@ void main() {
       // TODO
     });
 
+    // null = zero active roster (advisory N/A). true = capacity exceeds donated concurrent coverage. false = coverage adequate. Advisory only — never blocks writes. 
+    // bool understaffed
+    test('to test the property `understaffed`', () async {
+      // TODO
+    });
+
+    // ClinicUnderstaffedShortfall understaffedShortfall
+    test('to test the property `understaffedShortfall`', () async {
+      // TODO
+    });
+
   });
 }

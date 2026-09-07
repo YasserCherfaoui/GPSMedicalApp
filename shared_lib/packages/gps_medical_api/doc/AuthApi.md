@@ -9,7 +9,7 @@ All URIs are relative to *https://api.gpsmedical.dz/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**checkRegisterNin**](AuthApi.md#checkregisternin) | **POST** /auth/register/check-nin | Vérifier le format et la disponibilité d&#39;un NIN avant inscription
+[**checkRegisterNin**](AuthApi.md#checkregisternin) | **POST** /auth/register/check-nin | [Deprecated] No-op — always 204 (NIN collection retired)
 [**checkRegisterPhone**](AuthApi.md#checkregisterphone) | **POST** /auth/register/check-phone | Vérifier le format et la disponibilité d&#39;un numéro avant inscription
 [**forgotPassword**](AuthApi.md#forgotpassword) | **POST** /auth/password/forgot | Demande de réinitialisation du mot de passe
 [**getJWKS**](AuthApi.md#getjwks) | **GET** /.well-known/jwks.json | Clés publiques RSA pour vérifier les JWT (RS256)
@@ -28,9 +28,9 @@ Method | HTTP request | Description
 # **checkRegisterNin**
 > checkRegisterNin(checkNinRequest)
 
-Vérifier le format et la disponibilité d'un NIN avant inscription
+[Deprecated] No-op — always 204 (NIN collection retired)
 
-Réservé aux inscriptions **DZ**. Valide le NIN (règles locales, voir `NINAlgerian`) et vérifie qu'aucun compte existant n'utilise déjà ce numéro. Les clients TN ne doivent pas appeler cet endpoint (le parcours NIN est sauté pour `country=TN`). 
+**Deprecated (v1.2.8).** Unconditional `204` no-op so straggler client builds do not dead-end. NIN collection is retired — see addendum-1.2.8.md. 
 
 ### Example
 ```dart
@@ -72,7 +72,7 @@ No authorization required
 
 Vérifier le format et la disponibilité d'un numéro avant inscription
 
-Valide le numéro E.164 (DZ `+213` ou TN `+216`) et vérifie qu'aucun compte existant n'utilise déjà ce téléphone. `country` est obligatoire : un indicatif qui ne correspond pas au pays déclaré renvoie `422` avec `phone_country_mismatch`. 
+Valide le numéro E.164 et vérifie qu'aucun compte existant n'utilise déjà ce téléphone. `country` est obligatoire : un indicatif qui ne correspond pas au pays déclaré renvoie `422` avec `phone_country_mismatch` (libphonenumber, tous les `CountryCode`). 
 
 ### Example
 ```dart
@@ -391,7 +391,7 @@ No authorization required
 
 Inscription d'un nouvel utilisateur (patient ou médecin)
 
-Crée un compte et envoie un OTP à 6 chiffres par SMS au numéro fourni. Le compte reste à l'état `pending_verification` jusqu'à validation OTP. L'OTP expire au bout de 5 minutes.  **Pays (v1.1.0):** `country` est obligatoire (`DZ` | `TN`) et **immuable** après vérification OTP. Le numéro E.164 doit correspondre à l'indicatif du pays déclaré (`+213` ↔ `DZ`, `+216` ↔ `TN`) — sinon `422` avec `phone_country_mismatch`.  **NIN:** obligatoire si `country=DZ` (validation locale + vérification gouvernementale *best-effort* — voir `RegisterResponse.nin_verification_status`). Doit être **absent** si `country=TN` (`422 nin_not_applicable` s'il est fourni ; `422 nin_required` s'il manque pour DZ). Pour TN, `nin_verification_status = not_required`.  **Rôle:** `role=specialist` avec `country=TN` est **accepté** (v1.1.1). Le dossier TN approuvé par un admin reste en `approved_pending_activation` jusqu'à l'activation marché (flag serveur `TN_SPECIALIST_ACTIVATION`, hors API). Voir addendum-1.1.1.md.  `409 Conflict` est retourné si le numéro de téléphone **ou** le NIN (lorsque fourni) est déjà associé à un compte existant.  Les consentements obligatoires (`consent_data_processing`, `consent_health_data`, `consent_anpdp_terms`) doivent tous être `true` ; sinon la requête est rejetée avec `422`. Les versions de consentement sont scopées par pays (ex. `dz-1.2`, `tn-1.0`). 
+Crée un compte et envoie un OTP à 6 chiffres par SMS au numéro fourni. Le compte reste à l'état `pending_verification` jusqu'à validation OTP. L'OTP expire au bout de 5 minutes.  **Pays (v1.2.8):** `country` est obligatoire (DZ | TN | EU-27) et **immuable** après vérification OTP. Le numéro E.164 doit correspondre à l'indicatif du pays déclaré (validation libphonenumber) — sinon `422` avec `phone_country_mismatch`.  **NIN (v1.2.8):** la collecte est **retirée**. Le champ `nin` est optionnel et **ignoré** s'il est envoyé (pas de validation, pas de persistance pour les nouvelles inscriptions). `nin_verification_status` vaut toujours `not_required`.  **Rôle:** `role=specialist` avec `country=TN` est **accepté** (v1.1.1). Le dossier TN approuvé par un admin reste en `approved_pending_activation` jusqu'à l'activation marché (flag serveur `TN_SPECIALIST_ACTIVATION`, hors API). Voir addendum-1.1.1.md. Les spécialistes UE suivent le pipeline standard (pas de quarantaine).  `409 Conflict` est retourné si le numéro de téléphone est déjà associé à un compte existant (unicité téléphone seule — D-A2.2).  Les consentements obligatoires (`consent_data_processing`, `consent_health_data`, `consent_anpdp_terms`) doivent tous être `true` ; sinon la requête est rejetée avec `422`. Les versions de consentement sont scopées par pays (ex. `dz-1.2`, `tn-1.0`, `fr-1.0` pour l'UE). 
 
 ### Example
 ```dart

@@ -84,6 +84,9 @@ abstract mixin class ClinicUpdateBuilder {
   String? get description;
   set description(String? description);
 
+  String? get city;
+  set city(String? city);
+
   String? get addressLine1;
   set addressLine1(String? addressLine1);
 
@@ -125,6 +128,8 @@ class _$$ClinicUpdate extends $ClinicUpdate {
   @override
   final String? description;
   @override
+  final String? city;
+  @override
   final String? addressLine1;
   @override
   final String? addressLine2;
@@ -152,6 +157,7 @@ class _$$ClinicUpdate extends $ClinicUpdate {
     this.name,
     this.legalName,
     this.description,
+    this.city,
     this.addressLine1,
     this.addressLine2,
     this.communeId,
@@ -177,6 +183,7 @@ class _$$ClinicUpdate extends $ClinicUpdate {
         name == other.name &&
         legalName == other.legalName &&
         description == other.description &&
+        city == other.city &&
         addressLine1 == other.addressLine1 &&
         addressLine2 == other.addressLine2 &&
         communeId == other.communeId &&
@@ -195,6 +202,7 @@ class _$$ClinicUpdate extends $ClinicUpdate {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, legalName.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jc(_$hash, city.hashCode);
     _$hash = $jc(_$hash, addressLine1.hashCode);
     _$hash = $jc(_$hash, addressLine2.hashCode);
     _$hash = $jc(_$hash, communeId.hashCode);
@@ -215,6 +223,7 @@ class _$$ClinicUpdate extends $ClinicUpdate {
           ..add('name', name)
           ..add('legalName', legalName)
           ..add('description', description)
+          ..add('city', city)
           ..add('addressLine1', addressLine1)
           ..add('addressLine2', addressLine2)
           ..add('communeId', communeId)
@@ -247,6 +256,10 @@ class $ClinicUpdateBuilder
   String? get description => _$this._description;
   set description(covariant String? description) =>
       _$this._description = description;
+
+  String? _city;
+  String? get city => _$this._city;
+  set city(covariant String? city) => _$this._city = city;
 
   String? _addressLine1;
   String? get addressLine1 => _$this._addressLine1;
@@ -306,6 +319,7 @@ class $ClinicUpdateBuilder
       _name = $v.name;
       _legalName = $v.legalName;
       _description = $v.description;
+      _city = $v.city;
       _addressLine1 = $v.addressLine1;
       _addressLine2 = $v.addressLine2;
       _communeId = $v.communeId;
@@ -341,6 +355,7 @@ class $ClinicUpdateBuilder
           name: name,
           legalName: legalName,
           description: description,
+          city: city,
           addressLine1: addressLine1,
           addressLine2: addressLine2,
           communeId: communeId,

@@ -34,8 +34,8 @@ class AuthApi {
 
   const AuthApi(this._dio, this._serializers);
 
-  /// Vérifier le format et la disponibilité d&#39;un NIN avant inscription
-  /// Réservé aux inscriptions **DZ**. Valide le NIN (règles locales, voir &#x60;NINAlgerian&#x60;) et vérifie qu&#39;aucun compte existant n&#39;utilise déjà ce numéro. Les clients TN ne doivent pas appeler cet endpoint (le parcours NIN est sauté pour &#x60;country&#x3D;TN&#x60;). 
+  /// [Deprecated] No-op — always 204 (NIN collection retired)
+  /// **Deprecated (v1.2.8).** Unconditional &#x60;204&#x60; no-op so straggler client builds do not dead-end. NIN collection is retired — see addendum-1.2.8.md. 
   ///
   /// Parameters:
   /// * [checkNinRequest] 
@@ -48,6 +48,7 @@ class AuthApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
+  @Deprecated('This operation has been deprecated')
   Future<Response<void>> checkRegisterNin({ 
     required CheckNinRequest checkNinRequest,
     CancelToken? cancelToken,
@@ -102,7 +103,7 @@ class AuthApi {
   }
 
   /// Vérifier le format et la disponibilité d&#39;un numéro avant inscription
-  /// Valide le numéro E.164 (DZ &#x60;+213&#x60; ou TN &#x60;+216&#x60;) et vérifie qu&#39;aucun compte existant n&#39;utilise déjà ce téléphone. &#x60;country&#x60; est obligatoire : un indicatif qui ne correspond pas au pays déclaré renvoie &#x60;422&#x60; avec &#x60;phone_country_mismatch&#x60;. 
+  /// Valide le numéro E.164 et vérifie qu&#39;aucun compte existant n&#39;utilise déjà ce téléphone. &#x60;country&#x60; est obligatoire : un indicatif qui ne correspond pas au pays déclaré renvoie &#x60;422&#x60; avec &#x60;phone_country_mismatch&#x60; (libphonenumber, tous les &#x60;CountryCode&#x60;). 
   ///
   /// Parameters:
   /// * [checkPhoneRequest] 
@@ -708,7 +709,7 @@ class AuthApi {
   }
 
   /// Inscription d&#39;un nouvel utilisateur (patient ou médecin)
-  /// Crée un compte et envoie un OTP à 6 chiffres par SMS au numéro fourni. Le compte reste à l&#39;état &#x60;pending_verification&#x60; jusqu&#39;à validation OTP. L&#39;OTP expire au bout de 5 minutes.  **Pays (v1.1.0):** &#x60;country&#x60; est obligatoire (&#x60;DZ&#x60; | &#x60;TN&#x60;) et **immuable** après vérification OTP. Le numéro E.164 doit correspondre à l&#39;indicatif du pays déclaré (&#x60;+213&#x60; ↔ &#x60;DZ&#x60;, &#x60;+216&#x60; ↔ &#x60;TN&#x60;) — sinon &#x60;422&#x60; avec &#x60;phone_country_mismatch&#x60;.  **NIN:** obligatoire si &#x60;country&#x3D;DZ&#x60; (validation locale + vérification gouvernementale *best-effort* — voir &#x60;RegisterResponse.nin_verification_status&#x60;). Doit être **absent** si &#x60;country&#x3D;TN&#x60; (&#x60;422 nin_not_applicable&#x60; s&#39;il est fourni ; &#x60;422 nin_required&#x60; s&#39;il manque pour DZ). Pour TN, &#x60;nin_verification_status &#x3D; not_required&#x60;.  **Rôle:** &#x60;role&#x3D;specialist&#x60; avec &#x60;country&#x3D;TN&#x60; est **accepté** (v1.1.1). Le dossier TN approuvé par un admin reste en &#x60;approved_pending_activation&#x60; jusqu&#39;à l&#39;activation marché (flag serveur &#x60;TN_SPECIALIST_ACTIVATION&#x60;, hors API). Voir addendum-1.1.1.md.  &#x60;409 Conflict&#x60; est retourné si le numéro de téléphone **ou** le NIN (lorsque fourni) est déjà associé à un compte existant.  Les consentements obligatoires (&#x60;consent_data_processing&#x60;, &#x60;consent_health_data&#x60;, &#x60;consent_anpdp_terms&#x60;) doivent tous être &#x60;true&#x60; ; sinon la requête est rejetée avec &#x60;422&#x60;. Les versions de consentement sont scopées par pays (ex. &#x60;dz-1.2&#x60;, &#x60;tn-1.0&#x60;). 
+  /// Crée un compte et envoie un OTP à 6 chiffres par SMS au numéro fourni. Le compte reste à l&#39;état &#x60;pending_verification&#x60; jusqu&#39;à validation OTP. L&#39;OTP expire au bout de 5 minutes.  **Pays (v1.2.8):** &#x60;country&#x60; est obligatoire (DZ | TN | EU-27) et **immuable** après vérification OTP. Le numéro E.164 doit correspondre à l&#39;indicatif du pays déclaré (validation libphonenumber) — sinon &#x60;422&#x60; avec &#x60;phone_country_mismatch&#x60;.  **NIN (v1.2.8):** la collecte est **retirée**. Le champ &#x60;nin&#x60; est optionnel et **ignoré** s&#39;il est envoyé (pas de validation, pas de persistance pour les nouvelles inscriptions). &#x60;nin_verification_status&#x60; vaut toujours &#x60;not_required&#x60;.  **Rôle:** &#x60;role&#x3D;specialist&#x60; avec &#x60;country&#x3D;TN&#x60; est **accepté** (v1.1.1). Le dossier TN approuvé par un admin reste en &#x60;approved_pending_activation&#x60; jusqu&#39;à l&#39;activation marché (flag serveur &#x60;TN_SPECIALIST_ACTIVATION&#x60;, hors API). Voir addendum-1.1.1.md. Les spécialistes UE suivent le pipeline standard (pas de quarantaine).  &#x60;409 Conflict&#x60; est retourné si le numéro de téléphone est déjà associé à un compte existant (unicité téléphone seule — D-A2.2).  Les consentements obligatoires (&#x60;consent_data_processing&#x60;, &#x60;consent_health_data&#x60;, &#x60;consent_anpdp_terms&#x60;) doivent tous être &#x60;true&#x60; ; sinon la requête est rejetée avec &#x60;422&#x60;. Les versions de consentement sont scopées par pays (ex. &#x60;dz-1.2&#x60;, &#x60;tn-1.0&#x60;, &#x60;fr-1.0&#x60; pour l&#39;UE). 
   ///
   /// Parameters:
   /// * [registerRequest] 

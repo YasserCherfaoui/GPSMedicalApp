@@ -17,6 +17,11 @@ void main() {
       // TODO
     });
 
+    // String sessionId
+    test('to test the property `sessionId`', () async {
+      // TODO
+    });
+
     // int amountDzd
     test('to test the property `amountDzd`', () async {
       // TODO

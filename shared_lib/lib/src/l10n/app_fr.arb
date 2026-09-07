@@ -1510,8 +1510,20 @@
   "settlementStatusReleasedOn": "Versé le {date}",
   "@settlementStatusReleasedOn": {
     "placeholders": {
-      "date": { "type": "String" }
+      "date": {
+        "type": "String"
+      }
     }
-  }
-
+  },
+  "consentSubtitleEu": "Conformément au Règlement général sur la protection des données (RGPD)",
+  "consentTermsEu": "Conditions et politique RGPD",
+  "invalidPhoneEu": "Numéro invalide pour ce pays (format international E.164).",
+  "phoneFormatHintEu": "Saisissez votre numéro mobile national (sans l'indicatif).",
+  "countrySearchHint": "Rechercher un pays…",
+  "specialistCredentialsCouncilNumberTn": "N° à l'Ordre des médecins de Tunisie",
+  "specialistCredentialsCouncilNumberFr": "N° RPPS / Ordre (CNOM)",
+  "specialistCredentialsCouncilNumberDe": "N° Ärztekammer",
+  "specialistCredentialsCouncilNumberIt": "N° albo FNOMCeO",
+  "specialistCredentialsCouncilNumberEs": "N° de colegiado (OMC)",
+  "specialistCredentialsCouncilNumberEu": "N° d'enregistrement professionnel"
 }

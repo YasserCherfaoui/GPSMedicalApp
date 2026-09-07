@@ -5,7 +5,6 @@ import 'package:gps_medical_shared/src/auth/registration_draft.dart';
 void main() {
   const dzComplete = RegistrationDraft(
     country: RegistrationCountry.dz,
-    nin: '109880554003450000',
     phoneE164: '+213551234567',
     password: 'SecurePass1!',
     fullName: 'Amine Test',
@@ -14,11 +13,11 @@ void main() {
     consentAnpdpTerms: true,
   );
 
-  test('readyToRegister when DZ fields include NIN', () {
+  test('readyToRegister for DZ without NIN', () {
     expect(dzComplete.readyToRegister, isTrue);
   });
 
-  test('readyToRegister when TN fields omit NIN', () {
+  test('readyToRegister for TN without NIN', () {
     const draft = RegistrationDraft(
       country: RegistrationCountry.tn,
       phoneE164: '+21622123456',
@@ -31,23 +30,22 @@ void main() {
     expect(draft.readyToRegister, isTrue);
   });
 
-  test('not ready for DZ without NIN', () {
+  test('readyToRegister for FR without NIN', () {
     const draft = RegistrationDraft(
-      country: RegistrationCountry.dz,
-      phoneE164: '+213551234567',
+      country: RegistrationCountry.fr,
+      phoneE164: '+33612345678',
       password: 'SecurePass1!',
-      fullName: 'Amine Test',
+      fullName: 'Jean Dupont',
       consentDataProcessing: true,
       consentHealthData: true,
       consentAnpdpTerms: true,
     );
-    expect(draft.readyToRegister, isFalse);
+    expect(draft.readyToRegister, isTrue);
   });
 
   test('not ready without consents', () {
     const draft = RegistrationDraft(
       country: RegistrationCountry.dz,
-      nin: '109880554003450000',
       phoneE164: '+213551234567',
       password: 'SecurePass1!',
       fullName: 'Amine Test',
@@ -58,7 +56,6 @@ void main() {
   test('not ready without full name', () {
     const draft = RegistrationDraft(
       country: RegistrationCountry.dz,
-      nin: '109880554003450000',
       phoneE164: '+213551234567',
       password: 'SecurePass1!',
       consentDataProcessing: true,
@@ -70,7 +67,6 @@ void main() {
 
   test('not ready without country', () {
     const draft = RegistrationDraft(
-      nin: '109880554003450000',
       phoneE164: '+213551234567',
       password: 'SecurePass1!',
       fullName: 'Amine Test',
@@ -81,17 +77,25 @@ void main() {
     expect(draft.readyToRegister, isFalse);
   });
 
-  test('copyWith can clear nin and phone', () {
-    final cleared = dzComplete.copyWith(clearNin: true, clearPhone: true);
-    expect(cleared.nin, isNull);
+  test('copyWith can clear phone', () {
+    final cleared = dzComplete.copyWith(clearPhone: true);
     expect(cleared.phoneE164, isNull);
     expect(cleared.country, RegistrationCountry.dz);
   });
 
-  test('RegistrationSteps skip NIN for Tunisia', () {
-    expect(RegistrationSteps.total(RegistrationCountry.dz), 7);
+  test('RegistrationSteps are fixed at 6 (NIN removed)', () {
+    expect(RegistrationSteps.total(RegistrationCountry.dz), 6);
     expect(RegistrationSteps.total(RegistrationCountry.tn), 6);
-    expect(RegistrationSteps.fullName(RegistrationCountry.tn), 2);
-    expect(RegistrationSteps.nin(RegistrationCountry.dz), 2);
+    expect(RegistrationSteps.total(RegistrationCountry.fr), 6);
+    expect(RegistrationSteps.fullName(RegistrationCountry.dz), 2);
+    expect(RegistrationSteps.phone(RegistrationCountry.fr), 3);
+  });
+
+  test('EU consent version is fr-1.0', () {
+    expect(
+      RegistrationCountry.fr.consentPolicyVersion,
+      RegistrationCountries.consentVersionEu,
+    );
+    expect(RegistrationCountry.dz.requiresNin, isFalse);
   });
 }

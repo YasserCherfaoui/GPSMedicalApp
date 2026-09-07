@@ -80,10 +80,6 @@ GoRouter createSpecialistRouter({
         builder: (context, state) => const RegisterCountryScreen(),
       ),
       GoRoute(
-        path: GpsRoutes.registerNin,
-        builder: (context, state) => const RegisterNinScreen(),
-      ),
-      GoRoute(
         path: GpsRoutes.registerFullName,
         builder: (context, state) => const RegisterFullNameScreen(),
       ),

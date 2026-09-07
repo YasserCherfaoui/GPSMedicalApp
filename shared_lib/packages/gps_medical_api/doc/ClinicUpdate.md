@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **name** | **String** |  | [optional] 
 **legalName** | **String** |  | [optional] 
 **description** | **String** |  | [optional] 
+**city** | **String** |  | [optional] 
 **addressLine1** | **String** |  | [optional] 
 **addressLine2** | **String** |  | [optional] 
 **communeId** | **String** |  | [optional] 

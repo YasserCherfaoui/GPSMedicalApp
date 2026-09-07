@@ -82,9 +82,11 @@ class _$ClinicCreate extends ClinicCreate {
   @override
   final String countryCode;
   @override
-  final String wilayaCode;
+  final String? wilayaCode;
   @override
   final String? communeId;
+  @override
+  final String? city;
   @override
   final String addressLine1;
   @override
@@ -110,8 +112,9 @@ class _$ClinicCreate extends ClinicCreate {
     this.legalName,
     this.description,
     required this.countryCode,
-    required this.wilayaCode,
+    this.wilayaCode,
     this.communeId,
+    this.city,
     required this.addressLine1,
     this.addressLine2,
     required this.latitude,
@@ -138,6 +141,7 @@ class _$ClinicCreate extends ClinicCreate {
         countryCode == other.countryCode &&
         wilayaCode == other.wilayaCode &&
         communeId == other.communeId &&
+        city == other.city &&
         addressLine1 == other.addressLine1 &&
         addressLine2 == other.addressLine2 &&
         latitude == other.latitude &&
@@ -157,6 +161,7 @@ class _$ClinicCreate extends ClinicCreate {
     _$hash = $jc(_$hash, countryCode.hashCode);
     _$hash = $jc(_$hash, wilayaCode.hashCode);
     _$hash = $jc(_$hash, communeId.hashCode);
+    _$hash = $jc(_$hash, city.hashCode);
     _$hash = $jc(_$hash, addressLine1.hashCode);
     _$hash = $jc(_$hash, addressLine2.hashCode);
     _$hash = $jc(_$hash, latitude.hashCode);
@@ -178,6 +183,7 @@ class _$ClinicCreate extends ClinicCreate {
           ..add('countryCode', countryCode)
           ..add('wilayaCode', wilayaCode)
           ..add('communeId', communeId)
+          ..add('city', city)
           ..add('addressLine1', addressLine1)
           ..add('addressLine2', addressLine2)
           ..add('latitude', latitude)
@@ -217,6 +223,10 @@ class ClinicCreateBuilder
   String? _communeId;
   String? get communeId => _$this._communeId;
   set communeId(String? communeId) => _$this._communeId = communeId;
+
+  String? _city;
+  String? get city => _$this._city;
+  set city(String? city) => _$this._city = city;
 
   String? _addressLine1;
   String? get addressLine1 => _$this._addressLine1;
@@ -268,6 +278,7 @@ class ClinicCreateBuilder
       _countryCode = $v.countryCode;
       _wilayaCode = $v.wilayaCode;
       _communeId = $v.communeId;
+      _city = $v.city;
       _addressLine1 = $v.addressLine1;
       _addressLine2 = $v.addressLine2;
       _latitude = $v.latitude;
@@ -310,12 +321,9 @@ class ClinicCreateBuilder
             r'ClinicCreate',
             'countryCode',
           ),
-          wilayaCode: BuiltValueNullFieldError.checkNotNull(
-            wilayaCode,
-            r'ClinicCreate',
-            'wilayaCode',
-          ),
+          wilayaCode: wilayaCode,
           communeId: communeId,
+          city: city,
           addressLine1: BuiltValueNullFieldError.checkNotNull(
             addressLine1,
             r'ClinicCreate',

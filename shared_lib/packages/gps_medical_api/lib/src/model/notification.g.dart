@@ -40,6 +40,8 @@ const NotificationTypeEnum _$notificationTypeEnum_clinicDetachApproved =
     const NotificationTypeEnum._('clinicDetachApproved');
 const NotificationTypeEnum _$notificationTypeEnum_clinicSpecialistAssigned =
     const NotificationTypeEnum._('clinicSpecialistAssigned');
+const NotificationTypeEnum _$notificationTypeEnum_clinicMemberScheduleChanged =
+    const NotificationTypeEnum._('clinicMemberScheduleChanged');
 
 NotificationTypeEnum _$notificationTypeEnumValueOf(String name) {
   switch (name) {
@@ -77,6 +79,8 @@ NotificationTypeEnum _$notificationTypeEnumValueOf(String name) {
       return _$notificationTypeEnum_clinicDetachApproved;
     case 'clinicSpecialistAssigned':
       return _$notificationTypeEnum_clinicSpecialistAssigned;
+    case 'clinicMemberScheduleChanged':
+      return _$notificationTypeEnum_clinicMemberScheduleChanged;
     default:
       throw ArgumentError(name);
   }
@@ -101,6 +105,7 @@ final BuiltSet<NotificationTypeEnum> _$notificationTypeEnumValues =
       _$notificationTypeEnum_clinicDetachRequested,
       _$notificationTypeEnum_clinicDetachApproved,
       _$notificationTypeEnum_clinicSpecialistAssigned,
+      _$notificationTypeEnum_clinicMemberScheduleChanged,
     ]);
 
 Serializer<NotificationTypeEnum> _$notificationTypeEnumSerializer =
@@ -126,6 +131,7 @@ class _$NotificationTypeEnumSerializer
     'clinicDetachRequested': 'clinic_detach_requested',
     'clinicDetachApproved': 'clinic_detach_approved',
     'clinicSpecialistAssigned': 'clinic_specialist_assigned',
+    'clinicMemberScheduleChanged': 'clinic_member_schedule_changed',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'appointment_created': 'appointmentCreated',
@@ -145,6 +151,7 @@ class _$NotificationTypeEnumSerializer
     'clinic_detach_requested': 'clinicDetachRequested',
     'clinic_detach_approved': 'clinicDetachApproved',
     'clinic_specialist_assigned': 'clinicSpecialistAssigned',
+    'clinic_member_schedule_changed': 'clinicMemberScheduleChanged',
   };
 
   @override

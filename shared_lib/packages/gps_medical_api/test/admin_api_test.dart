@@ -14,10 +14,35 @@ void main() {
       // TODO
     });
 
+    // Provisionner un compte concierge
+    //
+    // Crée un utilisateur `role=concierge` actif (sans OTP public). Chaque création écrit une ligne d'audit. 
+    //
+    //Future<ConciergeAccount> adminCreateConciergeAccount(ConciergeAccountCreate conciergeAccountCreate) async
+    test('test adminCreateConciergeAccount', () async {
+      // TODO
+    });
+
+    // Export ANPDP bulk (job async)
+    //
+    // Crée un job asynchrone qui agrège les consentements filtrés (multi-utilisateur) et produit un bundle signé téléchargeable via `GET .../download`. 
+    //
+    //Future<ConsentExportJob> adminCreateConsentExportJob(ConsentBulkExportRequest consentBulkExportRequest) async
+    test('test adminCreateConsentExportJob', () async {
+      // TODO
+    });
+
     // Soft-delete
     //
     //Future adminDeleteClinic(String clinicId) async
     test('test adminDeleteClinic', () async {
+      // TODO
+    });
+
+    // Télécharger le bundle signé d'un job terminé
+    //
+    //Future<ConsentExportBundle> adminDownloadConsentExportJob(String jobId) async
+    test('test adminDownloadConsentExportJob', () async {
       // TODO
     });
 
@@ -30,17 +55,49 @@ void main() {
       // TODO
     });
 
+    // Export ANPDP signé et filtré (Phase 4)
+    //
+    // Retourne un bundle JSON signé (Ed25519 détachée) contenant uniquement les métadonnées `consent_grants` — jamais de PHI chiffrée côté client. Chaque export écrit une ligne d'audit avec le jeu de filtres. Voir `docs/compliance/consent-export-verification.md`. 
+    //
+    //Future<ConsentExportBundle> adminExportUserConsentsSigned(String userId, { DateTime from, DateTime to, String purpose }) async
+    test('test adminExportUserConsentsSigned', () async {
+      // TODO
+    });
+
     // Détail admin d'une clinique
     //
-    //Future<ClinicPrivate> adminGetClinic(String clinicId) async
+    // Inclut membres actifs du roster, résumé des blocs donnés, capacité vs couverture, et avis de sous-effectif (additif Phase 4). 
+    //
+    //Future<ClinicAdminDetail> adminGetClinic(String clinicId) async
     test('test adminGetClinic', () async {
+      // TODO
+    });
+
+    // Statut d'un job d'export bulk
+    //
+    //Future<ConsentExportJob> adminGetConsentExportJob(String jobId) async
+    test('test adminGetConsentExportJob', () async {
       // TODO
     });
 
     // Liste admin des cliniques
     //
-    //Future<PaginatedClinicsPrivate> adminListClinics({ int page, int pageSize, String q, ClinicStatus status, ClinicVerificationStatus verificationStatus, String countryCode, bool verified }) async
+    //Future<PaginatedClinicsPrivate> adminListClinics({ int page, int pageSize, String q, ClinicStatus status, ClinicVerificationStatus verificationStatus, String countryCode, bool verified, String wilayaCode, bool underStaffed }) async
     test('test adminListClinics', () async {
+      // TODO
+    });
+
+    // Liste des comptes concierge
+    //
+    //Future<PaginatedConciergeAccounts> adminListConciergeAccounts({ int page, int pageSize, String q }) async
+    test('test adminListConciergeAccounts', () async {
+      // TODO
+    });
+
+    // File ops — tous les dossiers concierge
+    //
+    //Future<PaginatedConciergeCases> adminListConciergeCases({ int page, int pageSize, ConciergeCaseStatus status, String conciergeUserId }) async
+    test('test adminListConciergeCases', () async {
       // TODO
     });
 
@@ -59,6 +116,15 @@ void main() {
     //
     //Future<PaginatedDoctorsPrivate> adminListPendingDoctors({ int page, int pageSize, String q, CountryCode country }) async
     test('test adminListPendingDoctors', () async {
+      // TODO
+    });
+
+    // Inventaire des spécialistes OSM non revendiqués
+    //
+    // Profils `verified=false` créés par le pipeline OSM (`SEEDED_NO_LOGIN`). Visibles admin uniquement — absents de la découverte patient. Attribution : © OpenStreetMap contributors (ODbL). 
+    //
+    //Future<PaginatedSeededSpecialists> adminListSeededSpecialists({ int page, int pageSize, String q, String wilayaCode, CountryCode country, SeededSpecialistClaimStatus claimStatus }) async
+    test('test adminListSeededSpecialists', () async {
       // TODO
     });
 
@@ -96,6 +162,15 @@ void main() {
     //
     //Future<Specialty> adminSpecialtiesPost(SpecialtyCreate specialtyCreate) async
     test('test adminSpecialtiesPost', () async {
+      // TODO
+    });
+
+    // Envoyer une notification push de test (FCM)
+    //
+    // Réservé aux administrateurs (`admin`, audience `dashboard`). Envoie synchrone vers tous les devices FCM enregistrés de l'utilisateur cible (ignore quiet hours / `push_enabled`) et crée aussi une notification in-app. Utile pour valider le transport FCM depuis l'Espace développeur. `404` si aucun device n'est enregistré pour `user_id`. 
+    //
+    //Future<AdminTestPushResponse> adminTestPushNotification(AdminTestPushRequest adminTestPushRequest) async
+    test('test adminTestPushNotification', () async {
       // TODO
     });
 

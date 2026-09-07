@@ -14,7 +14,7 @@ part 'register_response.g.dart';
 /// Properties:
 /// * [userId] 
 /// * [otpExpiresAt] 
-/// * [ninVerificationStatus] - État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
+/// * [ninVerificationStatus] - Pour les nouvelles inscriptions (v1.2.8) : toujours `not_required` (collecte NIN retirée). Valeurs historiques `pending` / `verified` / `failed` peuvent encore apparaître sur d'anciens comptes. 
 @BuiltValue()
 abstract class RegisterResponse implements Built<RegisterResponse, RegisterResponseBuilder> {
   @BuiltValueField(wireName: r'user_id')
@@ -23,7 +23,7 @@ abstract class RegisterResponse implements Built<RegisterResponse, RegisterRespo
   @BuiltValueField(wireName: r'otp_expires_at')
   DateTime get otpExpiresAt;
 
-  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
+  /// Pour les nouvelles inscriptions (v1.2.8) : toujours `not_required` (collecte NIN retirée). Valeurs historiques `pending` / `verified` / `failed` peuvent encore apparaître sur d'anciens comptes. 
   @BuiltValueField(wireName: r'nin_verification_status')
   RegisterResponseNinVerificationStatusEnum get ninVerificationStatus;
   // enum ninVerificationStatusEnum {  pending,  verified,  failed,  not_required,  };
@@ -141,16 +141,16 @@ class _$RegisterResponseSerializer implements PrimitiveSerializer<RegisterRespon
 
 class RegisterResponseNinVerificationStatusEnum extends EnumClass {
 
-  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
+  /// Pour les nouvelles inscriptions (v1.2.8) : toujours `not_required` (collecte NIN retirée). Valeurs historiques `pending` / `verified` / `failed` peuvent encore apparaître sur d'anciens comptes. 
   @BuiltValueEnumConst(wireName: r'pending')
   static const RegisterResponseNinVerificationStatusEnum pending = _$registerResponseNinVerificationStatusEnum_pending;
-  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
+  /// Pour les nouvelles inscriptions (v1.2.8) : toujours `not_required` (collecte NIN retirée). Valeurs historiques `pending` / `verified` / `failed` peuvent encore apparaître sur d'anciens comptes. 
   @BuiltValueEnumConst(wireName: r'verified')
   static const RegisterResponseNinVerificationStatusEnum verified = _$registerResponseNinVerificationStatusEnum_verified;
-  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
+  /// Pour les nouvelles inscriptions (v1.2.8) : toujours `not_required` (collecte NIN retirée). Valeurs historiques `pending` / `verified` / `failed` peuvent encore apparaître sur d'anciens comptes. 
   @BuiltValueEnumConst(wireName: r'failed')
   static const RegisterResponseNinVerificationStatusEnum failed = _$registerResponseNinVerificationStatusEnum_failed;
-  /// État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
+  /// Pour les nouvelles inscriptions (v1.2.8) : toujours `not_required` (collecte NIN retirée). Valeurs historiques `pending` / `verified` / `failed` peuvent encore apparaître sur d'anciens comptes. 
   @BuiltValueEnumConst(wireName: r'not_required')
   static const RegisterResponseNinVerificationStatusEnum notRequired = _$registerResponseNinVerificationStatusEnum_notRequired;
 

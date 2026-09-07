@@ -15,7 +15,7 @@ part 'user.g.dart';
 ///
 /// Properties:
 /// * [id] 
-/// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
+/// * [phone] - Numéro mobile au format E.164. Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (validation libphonenumber pour les 29 `CountryCode`) ; sinon `422 phone_country_mismatch`. 
 /// * [email] 
 /// * [role] 
 /// * [fullName] 
@@ -28,7 +28,7 @@ abstract class User  {
   @BuiltValueField(wireName: r'id')
   String? get id;
 
-  /// Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
+  /// Numéro mobile au format E.164. Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (validation libphonenumber pour les 29 `CountryCode`) ; sinon `422 phone_country_mismatch`. 
   @BuiltValueField(wireName: r'phone')
   String? get phone;
 
@@ -49,7 +49,7 @@ abstract class User  {
   /// Fixé à l'inscription ; jamais mutable via l'API.
   @BuiltValueField(wireName: r'country')
   CountryCode? get country;
-  // enum countryEnum {  DZ,  TN,  };
+  // enum countryEnum {  DZ,  TN,  AT,  BE,  BG,  HR,  CY,  CZ,  DK,  EE,  FI,  FR,  DE,  GR,  HU,  IE,  IT,  LV,  LT,  LU,  MT,  NL,  PL,  PT,  RO,  SK,  SI,  ES,  SE,  };
 
   /// Dérivé de `country` : `DZ` → `device_only`, `TN` → `server`. 
   @BuiltValueField(wireName: r'data_residency_mode')

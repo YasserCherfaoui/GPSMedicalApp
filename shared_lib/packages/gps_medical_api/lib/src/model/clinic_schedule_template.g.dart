@@ -196,6 +196,10 @@ class _$ClinicScheduleTemplate extends ClinicScheduleTemplate {
   final int? capacity;
   @override
   final bool? active;
+  @override
+  final bool? understaffed;
+  @override
+  final ClinicUnderstaffedShortfall? understaffedShortfall;
 
   factory _$ClinicScheduleTemplate([
     void Function(ClinicScheduleTemplateBuilder)? updates,
@@ -211,6 +215,8 @@ class _$ClinicScheduleTemplate extends ClinicScheduleTemplate {
     this.mode,
     this.capacity,
     this.active,
+    this.understaffed,
+    this.understaffedShortfall,
   }) : super._();
   @override
   ClinicScheduleTemplate rebuild(
@@ -233,7 +239,9 @@ class _$ClinicScheduleTemplate extends ClinicScheduleTemplate {
         slotDurationMinutes == other.slotDurationMinutes &&
         mode == other.mode &&
         capacity == other.capacity &&
-        active == other.active;
+        active == other.active &&
+        understaffed == other.understaffed &&
+        understaffedShortfall == other.understaffedShortfall;
   }
 
   @override
@@ -248,6 +256,8 @@ class _$ClinicScheduleTemplate extends ClinicScheduleTemplate {
     _$hash = $jc(_$hash, mode.hashCode);
     _$hash = $jc(_$hash, capacity.hashCode);
     _$hash = $jc(_$hash, active.hashCode);
+    _$hash = $jc(_$hash, understaffed.hashCode);
+    _$hash = $jc(_$hash, understaffedShortfall.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -263,7 +273,9 @@ class _$ClinicScheduleTemplate extends ClinicScheduleTemplate {
           ..add('slotDurationMinutes', slotDurationMinutes)
           ..add('mode', mode)
           ..add('capacity', capacity)
-          ..add('active', active))
+          ..add('active', active)
+          ..add('understaffed', understaffed)
+          ..add('understaffedShortfall', understaffedShortfall))
         .toString();
   }
 }
@@ -311,6 +323,17 @@ class ClinicScheduleTemplateBuilder
   bool? get active => _$this._active;
   set active(bool? active) => _$this._active = active;
 
+  bool? _understaffed;
+  bool? get understaffed => _$this._understaffed;
+  set understaffed(bool? understaffed) => _$this._understaffed = understaffed;
+
+  ClinicUnderstaffedShortfallBuilder? _understaffedShortfall;
+  ClinicUnderstaffedShortfallBuilder get understaffedShortfall =>
+      _$this._understaffedShortfall ??= ClinicUnderstaffedShortfallBuilder();
+  set understaffedShortfall(
+    ClinicUnderstaffedShortfallBuilder? understaffedShortfall,
+  ) => _$this._understaffedShortfall = understaffedShortfall;
+
   ClinicScheduleTemplateBuilder() {
     ClinicScheduleTemplate._defaults(this);
   }
@@ -327,6 +350,8 @@ class ClinicScheduleTemplateBuilder
       _mode = $v.mode;
       _capacity = $v.capacity;
       _active = $v.active;
+      _understaffed = $v.understaffed;
+      _understaffedShortfall = $v.understaffedShortfall?.toBuilder();
       _$v = null;
     }
     return this;
@@ -346,19 +371,37 @@ class ClinicScheduleTemplateBuilder
   ClinicScheduleTemplate build() => _build();
 
   _$ClinicScheduleTemplate _build() {
-    final _$result =
-        _$v ??
-        _$ClinicScheduleTemplate._(
-          id: id,
-          serviceId: serviceId,
-          weekday: weekday,
-          startTime: startTime,
-          endTime: endTime,
-          slotDurationMinutes: slotDurationMinutes,
-          mode: mode,
-          capacity: capacity,
-          active: active,
+    _$ClinicScheduleTemplate _$result;
+    try {
+      _$result =
+          _$v ??
+          _$ClinicScheduleTemplate._(
+            id: id,
+            serviceId: serviceId,
+            weekday: weekday,
+            startTime: startTime,
+            endTime: endTime,
+            slotDurationMinutes: slotDurationMinutes,
+            mode: mode,
+            capacity: capacity,
+            active: active,
+            understaffed: understaffed,
+            understaffedShortfall: _understaffedShortfall?.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'understaffedShortfall';
+        _understaffedShortfall?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'ClinicScheduleTemplate',
+          _$failedField,
+          e.toString(),
         );
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

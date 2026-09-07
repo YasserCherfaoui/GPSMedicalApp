@@ -17,6 +17,9 @@ import 'package:gps_medical_api/src/model/date.dart';
 import 'package:gps_medical_api/src/model/address.dart';
 import 'package:gps_medical_api/src/model/admin_overview.dart';
 import 'package:gps_medical_api/src/model/admin_reviews_review_id_moderate_post_request.dart';
+import 'package:gps_medical_api/src/model/admin_test_push_device_result.dart';
+import 'package:gps_medical_api/src/model/admin_test_push_request.dart';
+import 'package:gps_medical_api/src/model/admin_test_push_response.dart';
 import 'package:gps_medical_api/src/model/appointment.dart';
 import 'package:gps_medical_api/src/model/appointment_create.dart';
 import 'package:gps_medical_api/src/model/appointment_origin.dart';
@@ -28,15 +31,22 @@ import 'package:gps_medical_api/src/model/availability_slot.dart';
 import 'package:gps_medical_api/src/model/check_nin_request.dart';
 import 'package:gps_medical_api/src/model/check_phone_request.dart';
 import 'package:gps_medical_api/src/model/clinic.dart';
+import 'package:gps_medical_api/src/model/clinic_admin_detail.dart';
 import 'package:gps_medical_api/src/model/clinic_admin_update.dart';
 import 'package:gps_medical_api/src/model/clinic_availability_slot.dart';
+import 'package:gps_medical_api/src/model/clinic_capacity_vs_donated_hours.dart';
 import 'package:gps_medical_api/src/model/clinic_create.dart';
 import 'package:gps_medical_api/src/model/clinic_credential.dart';
+import 'package:gps_medical_api/src/model/clinic_donated_blocks_summary.dart';
 import 'package:gps_medical_api/src/model/clinic_earnings.dart';
 import 'package:gps_medical_api/src/model/clinic_membership.dart';
 import 'package:gps_medical_api/src/model/clinic_membership_status.dart';
 import 'package:gps_medical_api/src/model/clinic_private.dart';
 import 'package:gps_medical_api/src/model/clinic_review.dart';
+import 'package:gps_medical_api/src/model/clinic_roster_availability.dart';
+import 'package:gps_medical_api/src/model/clinic_roster_donated_block.dart';
+import 'package:gps_medical_api/src/model/clinic_roster_member_availability.dart';
+import 'package:gps_medical_api/src/model/clinic_roster_member_summary.dart';
 import 'package:gps_medical_api/src/model/clinic_schedule_template.dart';
 import 'package:gps_medical_api/src/model/clinic_schedule_template_create.dart';
 import 'package:gps_medical_api/src/model/clinic_service.dart';
@@ -48,11 +58,28 @@ import 'package:gps_medical_api/src/model/clinic_specialist_teaser.dart';
 import 'package:gps_medical_api/src/model/clinic_staff_create.dart';
 import 'package:gps_medical_api/src/model/clinic_staff_member.dart';
 import 'package:gps_medical_api/src/model/clinic_status.dart';
+import 'package:gps_medical_api/src/model/clinic_under_staffed_advisory.dart';
+import 'package:gps_medical_api/src/model/clinic_under_staffed_advisory_affected_templates_inner.dart';
+import 'package:gps_medical_api/src/model/clinic_understaffed_shortfall.dart';
 import 'package:gps_medical_api/src/model/clinic_update.dart';
 import 'package:gps_medical_api/src/model/clinic_verification_status.dart';
 import 'package:gps_medical_api/src/model/clinic_with_distance.dart';
 import 'package:gps_medical_api/src/model/commune.dart';
+import 'package:gps_medical_api/src/model/concierge_account.dart';
+import 'package:gps_medical_api/src/model/concierge_account_create.dart';
+import 'package:gps_medical_api/src/model/concierge_case.dart';
+import 'package:gps_medical_api/src/model/concierge_case_create.dart';
+import 'package:gps_medical_api/src/model/concierge_case_detail.dart';
+import 'package:gps_medical_api/src/model/concierge_case_patch.dart';
+import 'package:gps_medical_api/src/model/concierge_case_status.dart';
+import 'package:gps_medical_api/src/model/concierge_patient_summary.dart';
+import 'package:gps_medical_api/src/model/concierge_upcoming_appointment.dart';
 import 'package:gps_medical_api/src/model/confirm_payment_intent_request.dart';
+import 'package:gps_medical_api/src/model/consent_bulk_export_request.dart';
+import 'package:gps_medical_api/src/model/consent_export_bundle.dart';
+import 'package:gps_medical_api/src/model/consent_export_filters.dart';
+import 'package:gps_medical_api/src/model/consent_export_job.dart';
+import 'package:gps_medical_api/src/model/consent_export_verification.dart';
 import 'package:gps_medical_api/src/model/consent_grant.dart';
 import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:gps_medical_api/src/model/credential.dart';
@@ -92,12 +119,15 @@ import 'package:gps_medical_api/src/model/paginated_clinic_reviews.dart';
 import 'package:gps_medical_api/src/model/paginated_clinics.dart';
 import 'package:gps_medical_api/src/model/paginated_clinics_private.dart';
 import 'package:gps_medical_api/src/model/paginated_clinics_with_distance.dart';
+import 'package:gps_medical_api/src/model/paginated_concierge_accounts.dart';
+import 'package:gps_medical_api/src/model/paginated_concierge_cases.dart';
 import 'package:gps_medical_api/src/model/paginated_doctors.dart';
 import 'package:gps_medical_api/src/model/paginated_doctors_private.dart';
 import 'package:gps_medical_api/src/model/paginated_doctors_with_distance.dart';
 import 'package:gps_medical_api/src/model/paginated_medical_documents.dart';
 import 'package:gps_medical_api/src/model/paginated_notifications.dart';
 import 'package:gps_medical_api/src/model/paginated_reviews.dart';
+import 'package:gps_medical_api/src/model/paginated_seeded_specialists.dart';
 import 'package:gps_medical_api/src/model/paginated_threads.dart';
 import 'package:gps_medical_api/src/model/paginated_user_admin.dart';
 import 'package:gps_medical_api/src/model/pagination_meta.dart';
@@ -131,6 +161,8 @@ import 'package:gps_medical_api/src/model/schedule_exception_create.dart';
 import 'package:gps_medical_api/src/model/schedule_template.dart';
 import 'package:gps_medical_api/src/model/schedule_template_create.dart';
 import 'package:gps_medical_api/src/model/search_suggest_get200_response.dart';
+import 'package:gps_medical_api/src/model/seeded_specialist_admin.dart';
+import 'package:gps_medical_api/src/model/seeded_specialist_claim_status.dart';
 import 'package:gps_medical_api/src/model/specialty.dart';
 import 'package:gps_medical_api/src/model/specialty_create.dart';
 import 'package:gps_medical_api/src/model/suggest_item.dart';
@@ -165,6 +197,9 @@ part 'serializers.g.dart';
   Address,
   AdminOverview,
   AdminReviewsReviewIdModeratePostRequest,
+  AdminTestPushDeviceResult,
+  AdminTestPushRequest,
+  AdminTestPushResponse,
   Appointment,
   AppointmentCreate,
   AppointmentOrigin,
@@ -176,15 +211,22 @@ part 'serializers.g.dart';
   CheckNinRequest,
   CheckPhoneRequest,
   Clinic,$Clinic,
+  ClinicAdminDetail,
   ClinicAdminUpdate,
   ClinicAvailabilitySlot,
+  ClinicCapacityVsDonatedHours,
   ClinicCreate,
   ClinicCredential,
+  ClinicDonatedBlocksSummary,
   ClinicEarnings,
   ClinicMembership,
   ClinicMembershipStatus,
-  ClinicPrivate,
+  ClinicPrivate,$ClinicPrivate,
   ClinicReview,
+  ClinicRosterAvailability,
+  ClinicRosterDonatedBlock,
+  ClinicRosterMemberAvailability,
+  ClinicRosterMemberSummary,
   ClinicScheduleTemplate,
   ClinicScheduleTemplateCreate,
   ClinicService,
@@ -196,11 +238,28 @@ part 'serializers.g.dart';
   ClinicStaffCreate,
   ClinicStaffMember,
   ClinicStatus,
+  ClinicUnderStaffedAdvisory,
+  ClinicUnderStaffedAdvisoryAffectedTemplatesInner,
+  ClinicUnderstaffedShortfall,
   ClinicUpdate,$ClinicUpdate,
   ClinicVerificationStatus,
   ClinicWithDistance,
   Commune,
+  ConciergeAccount,
+  ConciergeAccountCreate,
+  ConciergeCase,$ConciergeCase,
+  ConciergeCaseCreate,
+  ConciergeCaseDetail,
+  ConciergeCasePatch,
+  ConciergeCaseStatus,
+  ConciergePatientSummary,
+  ConciergeUpcomingAppointment,
   ConfirmPaymentIntentRequest,
+  ConsentBulkExportRequest,
+  ConsentExportBundle,
+  ConsentExportFilters,
+  ConsentExportJob,
+  ConsentExportVerification,
   ConsentGrant,
   CountryCode,
   Credential,
@@ -240,12 +299,15 @@ part 'serializers.g.dart';
   PaginatedClinics,
   PaginatedClinicsPrivate,
   PaginatedClinicsWithDistance,
+  PaginatedConciergeAccounts,
+  PaginatedConciergeCases,
   PaginatedDoctors,
   PaginatedDoctorsPrivate,
   PaginatedDoctorsWithDistance,
   PaginatedMedicalDocuments,
   PaginatedNotifications,
   PaginatedReviews,
+  PaginatedSeededSpecialists,
   PaginatedThreads,
   PaginatedUserAdmin,
   PaginationMeta,
@@ -279,6 +341,8 @@ part 'serializers.g.dart';
   ScheduleTemplate,
   ScheduleTemplateCreate,
   SearchSuggestGet200Response,
+  SeededSpecialistAdmin,
+  SeededSpecialistClaimStatus,
   Specialty,
   SpecialtyCreate,
   SuggestItem,
@@ -377,7 +441,9 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<ClinicScheduleTemplate>(),
       )
       ..add(Clinic.serializer)
+      ..add(ClinicPrivate.serializer)
       ..add(ClinicUpdate.serializer)
+      ..add(ConciergeCase.serializer)
       ..add(Doctor.serializer)
       ..add(PrescriptionCreate.serializer)
       ..add(Problem.serializer)

@@ -3230,4 +3230,39 @@ class AppLocalizationsAr extends AppLocalizations {
   String settlementStatusReleasedOn(String date) {
     return 'تم التحويل في $date';
   }
+
+  @override
+  String get consentSubtitleEu => 'وفقاً للائحة العامة لحماية البيانات (GDPR)';
+
+  @override
+  String get consentTermsEu => 'شروط وسياسة اللائحة العامة لحماية البيانات';
+
+  @override
+  String get invalidPhoneEu => 'رقم غير صالح لهذا البلد (صيغة E.164).';
+
+  @override
+  String get phoneFormatHintEu =>
+      'أدخل رقم هاتفك المحمول الوطني (دون رمز البلد).';
+
+  @override
+  String get countrySearchHint => 'ابحث عن بلد…';
+
+  @override
+  String get specialistCredentialsCouncilNumberTn =>
+      'رقم عمادة الأطباء التونسية';
+
+  @override
+  String get specialistCredentialsCouncilNumberFr => 'رقم RPPS / CNOM';
+
+  @override
+  String get specialistCredentialsCouncilNumberDe => 'رقم Ärztekammer';
+
+  @override
+  String get specialistCredentialsCouncilNumberIt => 'رقم FNOMCeO';
+
+  @override
+  String get specialistCredentialsCouncilNumberEs => 'رقم OMC';
+
+  @override
+  String get specialistCredentialsCouncilNumberEu => 'رقم التسجيل المهني';
 }

@@ -133,7 +133,6 @@ void main() {
 
       container.read(registrationDraftProvider.notifier)
         ..updateCountry(RegistrationCountry.dz)
-        ..updateNin('109880554003450000')
         ..updateFullName('Dr. Test')
         ..updatePhone('+213555123456')
         ..updatePassword('SecurePass123!')

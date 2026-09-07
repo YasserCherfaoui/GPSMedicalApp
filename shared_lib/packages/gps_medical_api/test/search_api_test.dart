@@ -16,7 +16,7 @@ void main() {
 
     // Recherche multicritères de médecins
     //
-    // Uniquement des médecins `verified=true`. Les dossiers `approved_pending_activation` sont exclus. 
+    // Uniquement des médecins `verified=true`. Les dossiers `approved_pending_activation` sont exclus. L'offre hors DZ est localisée par coordonnées + `city` ; un filtre `wilaya_code` ne matche simplement pas les lignes non-DZ (pas d'erreur). 
     //
     //Future<PaginatedDoctors> searchDoctorsGet({ String q, String specialtyId, String wilayaCode, String communeId, String gender, BuiltList<String> language, bool acceptsCnas, bool acceptsCasnos, int maxFeeDzd, bool telehealth, int availableWithinDays, double lat, double lng, String sort, int page, int pageSize }) async
     test('test searchDoctorsGet', () async {

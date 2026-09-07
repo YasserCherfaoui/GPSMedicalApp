@@ -119,7 +119,6 @@ abstract final class GpsRoutes {
     authWelcome,
     login,
     registerCountry,
-    registerNin,
     registerFullName,
     registerPhone,
     registerOtp,

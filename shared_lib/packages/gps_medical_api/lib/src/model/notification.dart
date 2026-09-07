@@ -27,7 +27,7 @@ abstract class Notification implements Built<Notification, NotificationBuilder> 
 
   @BuiltValueField(wireName: r'type')
   NotificationTypeEnum? get type;
-  // enum typeEnum {  appointment_created,  appointment_confirmed,  appointment_reminder,  appointment_cancelled,  appointment_rescheduled,  new_message,  prescription_issued,  payment_succeeded,  payment_failed,  review_request,  admin_announcement,  clinic_membership_invited,  clinic_membership_accepted,  clinic_membership_refused,  clinic_detach_requested,  clinic_detach_approved,  clinic_specialist_assigned,  };
+  // enum typeEnum {  appointment_created,  appointment_confirmed,  appointment_reminder,  appointment_cancelled,  appointment_rescheduled,  new_message,  prescription_issued,  payment_succeeded,  payment_failed,  review_request,  admin_announcement,  clinic_membership_invited,  clinic_membership_accepted,  clinic_membership_refused,  clinic_detach_requested,  clinic_detach_approved,  clinic_specialist_assigned,  clinic_member_schedule_changed,  };
 
   @BuiltValueField(wireName: r'title')
   String? get title;
@@ -254,6 +254,8 @@ class NotificationTypeEnum extends EnumClass {
   static const NotificationTypeEnum clinicDetachApproved = _$notificationTypeEnum_clinicDetachApproved;
   @BuiltValueEnumConst(wireName: r'clinic_specialist_assigned')
   static const NotificationTypeEnum clinicSpecialistAssigned = _$notificationTypeEnum_clinicSpecialistAssigned;
+  @BuiltValueEnumConst(wireName: r'clinic_member_schedule_changed')
+  static const NotificationTypeEnum clinicMemberScheduleChanged = _$notificationTypeEnum_clinicMemberScheduleChanged;
 
   static Serializer<NotificationTypeEnum> get serializer => _$notificationTypeEnumSerializer;
 

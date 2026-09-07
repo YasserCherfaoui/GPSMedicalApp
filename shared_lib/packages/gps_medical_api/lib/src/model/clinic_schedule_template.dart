@@ -4,6 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
+import 'package:gps_medical_api/src/model/clinic_understaffed_shortfall.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -21,6 +22,8 @@ part 'clinic_schedule_template.g.dart';
 /// * [mode] 
 /// * [capacity] 
 /// * [active] 
+/// * [understaffed] - null = zero active roster (advisory N/A). true = capacity exceeds donated concurrent coverage. false = coverage adequate. Advisory only — never blocks writes. 
+/// * [understaffedShortfall] 
 @BuiltValue()
 abstract class ClinicScheduleTemplate implements Built<ClinicScheduleTemplate, ClinicScheduleTemplateBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -51,6 +54,13 @@ abstract class ClinicScheduleTemplate implements Built<ClinicScheduleTemplate, C
 
   @BuiltValueField(wireName: r'active')
   bool? get active;
+
+  /// null = zero active roster (advisory N/A). true = capacity exceeds donated concurrent coverage. false = coverage adequate. Advisory only — never blocks writes. 
+  @BuiltValueField(wireName: r'understaffed')
+  bool? get understaffed;
+
+  @BuiltValueField(wireName: r'understaffed_shortfall')
+  ClinicUnderstaffedShortfall? get understaffedShortfall;
 
   ClinicScheduleTemplate._();
 
@@ -136,6 +146,20 @@ class _$ClinicScheduleTemplateSerializer implements PrimitiveSerializer<ClinicSc
       yield serializers.serialize(
         object.active,
         specifiedType: const FullType(bool),
+      );
+    }
+    if (object.understaffed != null) {
+      yield r'understaffed';
+      yield serializers.serialize(
+        object.understaffed,
+        specifiedType: const FullType.nullable(bool),
+      );
+    }
+    if (object.understaffedShortfall != null) {
+      yield r'understaffed_shortfall';
+      yield serializers.serialize(
+        object.understaffedShortfall,
+        specifiedType: const FullType.nullable(ClinicUnderstaffedShortfall),
       );
     }
   }
@@ -224,6 +248,22 @@ class _$ClinicScheduleTemplateSerializer implements PrimitiveSerializer<ClinicSc
             specifiedType: const FullType(bool),
           ) as bool;
           result.active = valueDes;
+          break;
+        case r'understaffed':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
+          result.understaffed = valueDes;
+          break;
+        case r'understaffed_shortfall':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(ClinicUnderstaffedShortfall),
+          ) as ClinicUnderstaffedShortfall?;
+          if (valueDes == null) continue;
+          result.understaffedShortfall.replace(valueDes);
           break;
         default:
           unhandled.add(key);

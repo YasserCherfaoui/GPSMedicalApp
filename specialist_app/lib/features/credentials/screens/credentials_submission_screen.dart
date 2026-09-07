@@ -9,6 +9,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../routing/specialist_routes.dart';
+import '../council_number_label.dart';
 import '../providers/credentials_repository.provider.dart';
 import '../providers/doctor_credentials_profile.provider.dart';
 import '../utils/credential_display.dart';
@@ -242,6 +243,11 @@ class _CredentialsSubmissionScreenState
       data: (profile) => profile.credentials?.toList() ?? const <Credential>[],
       orElse: () => const <Credential>[],
     );
+    final countryIso = profileAsync.maybeWhen(
+      data: (profile) => profile.country,
+      orElse: () => null,
+    );
+    final councilLabel = specialistCouncilNumberLabel(l10n, countryIso);
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.specialistCredentialsTitle)),
@@ -259,7 +265,7 @@ class _CredentialsSubmissionScreenState
             controller: _councilController,
             enabled: !_submitting,
             decoration: InputDecoration(
-              labelText: l10n.specialistCredentialsCouncilNumber,
+              labelText: councilLabel,
               errorText: _councilError,
             ),
             onChanged: (_) => _setStateSafe(() => _councilError = null),

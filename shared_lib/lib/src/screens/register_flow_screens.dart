@@ -13,13 +13,11 @@ import '../auth/recovery_phone.provider.dart';
 import '../auth/registration_draft.provider.dart';
 import '../constants/registration_countries.dart';
 import '../l10n/auth_strings.dart';
-import '../models/app_info.dart';
 import '../models/app_info.provider.dart';
 import '../routing/gps_routes.dart';
 import '../theme/gps_brand.dart';
 import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
-import '../validation/nin.dart';
 import '../validation/password_strength.dart';
 import '../validation/phone_e164.dart';
 import '../widgets/auth_flow_scaffold.dart';
@@ -42,7 +40,7 @@ class RegisterCountryScreen extends ConsumerStatefulWidget {
 
 class _RegisterCountryScreenState extends ConsumerState<RegisterCountryScreen> {
   RegistrationCountry? _selected;
-  String? _error;
+  String _query = '';
 
   @override
   void initState() {
@@ -51,23 +49,12 @@ class _RegisterCountryScreenState extends ConsumerState<RegisterCountryScreen> {
   }
 
   void _continue() {
-    final strings = AuthStrings.of(context);
     final selected = _selected;
     if (selected == null) {
       return;
     }
-    final appInfo = ref.read(appInfoProvider);
-    if (appInfo.clientKind == GpsMedicalClientKind.specialist &&
-        selected == RegistrationCountry.tn) {
-      setState(() => _error = strings.countryNotSupportedForRole);
-      return;
-    }
     ref.read(registrationDraftProvider.notifier).updateCountry(selected);
-    if (selected.requiresNin) {
-      context.push(GpsRoutes.registerNin);
-    } else {
-      context.push(GpsRoutes.registerFullName);
-    }
+    context.push(GpsRoutes.registerFullName);
   }
 
   @override
@@ -75,6 +62,7 @@ class _RegisterCountryScreenState extends ConsumerState<RegisterCountryScreen> {
     final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     final country = _selected;
+    final options = RegistrationCountries.search(_query);
 
     return AuthFlowScaffold(
       fallbackPopLocation: GpsRoutes.authWelcome,
@@ -91,19 +79,34 @@ class _RegisterCountryScreenState extends ConsumerState<RegisterCountryScreen> {
               color: colorScheme.onSurfaceVariant,
             ),
           ),
-          const SizedBox(height: GpsSpacing.lg),
-          for (final option in RegistrationCountries.all) ...[
-            _CountryOptionCard(
-              country: option,
-              label: strings.countryName(option),
-              selected: _selected == option,
-              onTap: () => setState(() {
-                _selected = option;
-                _error = null;
-              }),
+          const SizedBox(height: GpsSpacing.md),
+          TextField(
+            decoration: InputDecoration(
+              hintText: strings.countrySearchHint,
+              prefixIcon: const Icon(Icons.search),
+              border: const OutlineInputBorder(),
+              isDense: true,
             ),
-            const SizedBox(height: GpsSpacing.md),
-          ],
+            onChanged: (value) => setState(() => _query = value),
+          ),
+          const SizedBox(height: GpsSpacing.lg),
+          if (options.isEmpty)
+            Text(
+              strings.countrySearchHint,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
+            )
+          else
+            for (final option in options) ...[
+              _CountryOptionCard(
+                country: option,
+                label: strings.countryName(option),
+                selected: _selected == option,
+                onTap: () => setState(() => _selected = option),
+              ),
+              const SizedBox(height: GpsSpacing.md),
+            ],
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -119,14 +122,6 @@ class _RegisterCountryScreenState extends ConsumerState<RegisterCountryScreen> {
               ),
             ],
           ),
-          if (_error != null) ...[
-            const SizedBox(height: GpsSpacing.md),
-            Text(
-              _error!,
-              style: TextStyle(color: colorScheme.error),
-              textAlign: TextAlign.center,
-            ),
-          ],
         ],
       ),
       bottom: PrimaryButton(
@@ -208,223 +203,9 @@ class _CountryOptionCard extends StatelessWidget {
   }
 }
 
-// --- STEP 2 (DZ): NIN ENTRY ---
-class RegisterNinScreen extends ConsumerStatefulWidget {
-  const RegisterNinScreen({super.key});
+// NIN step removed (Amendment 2 / A-A2.1).
 
-  @override
-  ConsumerState<RegisterNinScreen> createState() => _RegisterNinScreenState();
-}
-
-class _RegisterNinScreenState extends ConsumerState<RegisterNinScreen> {
-  final _controller = TextEditingController();
-  String? _error;
-  bool _checking = false;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) {
-        return;
-      }
-      final country = ref.read(registrationDraftProvider).country;
-      if (country == null) {
-        context.go(GpsRoutes.registerCountry);
-      } else if (!country.requiresNin) {
-        context.go(GpsRoutes.registerFullName);
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  Future<void> _continue() async {
-    final strings = AuthStrings.of(context);
-    final nin = NinValidator.validate(_controller.text);
-    if (nin == null) {
-      setState(() => _error = strings.invalidNin);
-      return;
-    }
-
-    setState(() {
-      _checking = true;
-      _error = null;
-    });
-
-    try {
-      await ref.read(authRepositoryProvider).checkRegisterNin(nin);
-      ref.read(registrationDraftProvider.notifier).updateNin(nin);
-      if (mounted) {
-        context.push(GpsRoutes.registerFullName);
-      }
-    } on AuthException catch (e) {
-      if (mounted) {
-        showAuthErrorToast(context, e);
-      }
-    } finally {
-      if (mounted) {
-        setState(() => _checking = false);
-      }
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final strings = AuthStrings.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
-    final country = ref.watch(registrationDraftProvider).country;
-
-    return AuthFlowScaffold(
-      fallbackPopLocation: GpsRoutes.registerCountry,
-      title: strings.registration,
-      step: RegistrationSteps.nin(country),
-      totalSteps: RegistrationSteps.total(country),
-      subtitle: strings.ninTitle,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            strings.ninSubtitle,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: colorScheme.onSurfaceVariant,
-            ),
-          ),
-          const SizedBox(height: GpsSpacing.lg),
-          // Bento guide visual card
-          Container(
-            padding: const EdgeInsets.all(GpsSpacing.md),
-            decoration: BoxDecoration(
-              color: colorScheme.surfaceContainerLow,
-              borderRadius: GpsRadii.card,
-              border: Border.all(
-                color: colorScheme.outlineVariant.withOpacity(0.3),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: colorScheme.primary.withOpacity(0.02),
-                  blurRadius: 20,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(GpsSpacing.sm),
-                  decoration: BoxDecoration(
-                    color: colorScheme.primary.withOpacity(0.08),
-                    borderRadius: GpsRadii.button,
-                  ),
-                  child: Icon(
-                    Icons.badge,
-                    color: colorScheme.primary,
-                    size: 28,
-                  ),
-                ),
-                const SizedBox(width: GpsSpacing.md),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        strings.ninVisualGuideLabel,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: colorScheme.primary,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                      const SizedBox(height: GpsSpacing.xs),
-                      Text(
-                        strings.ninVisualGuideBody,
-                        style: Theme.of(context).textTheme.labelMedium
-                            ?.copyWith(color: colorScheme.onSurfaceVariant),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: GpsSpacing.xl),
-          // Label and text count layout
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                strings.ninFieldLabel,
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: colorScheme.outline,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                strings.ninDigitsCount,
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: colorScheme.outlineVariant,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: GpsSpacing.xs),
-          GpsTextField(
-            controller: _controller,
-            hint: '1234 5678 9012 3456 78',
-            keyboardType: TextInputType.number,
-            errorText: _error,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly,
-              LengthLimitingTextInputFormatter(18),
-            ],
-            onChanged: (_) => setState(() => _error = null),
-          ),
-          const SizedBox(height: GpsSpacing.sm),
-          Row(
-            children: [
-              Icon(Icons.info_outline, size: 16, color: colorScheme.outline),
-              const SizedBox(width: GpsSpacing.xs),
-              Expanded(
-                child: Text(
-                  strings.ninHint,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: GpsSpacing.xl),
-          Center(
-            child: TextButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.help_outline, size: 16),
-              label: Text(
-                strings.ninWhyLink,
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-      bottom: PrimaryButton(
-        label: strings.continueLabel,
-        onPressed: _checking ? null : _continue,
-        isLoading: _checking,
-      ),
-    );
-  }
-}
-
-// --- Full name (required by API) ---
+// --- STEP 2: FULL NAME ---
 class RegisterFullNameScreen extends ConsumerStatefulWidget {
   const RegisterFullNameScreen({super.key});
 
@@ -433,10 +214,18 @@ class RegisterFullNameScreen extends ConsumerStatefulWidget {
       _RegisterFullNameScreenState();
 }
 
-class _RegisterFullNameScreenState
-    extends ConsumerState<RegisterFullNameScreen> {
+class _RegisterFullNameScreenState extends ConsumerState<RegisterFullNameScreen> {
   final _controller = TextEditingController();
   String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    final existing = ref.read(registrationDraftProvider).fullName;
+    if (existing != null && existing.isNotEmpty) {
+      _controller.text = existing;
+    }
+  }
 
   @override
   void dispose() {
@@ -451,6 +240,10 @@ class _RegisterFullNameScreenState
       setState(() => _error = strings.invalidFullName);
       return;
     }
+    if (ref.read(registrationDraftProvider).country == null) {
+      context.go(GpsRoutes.registerCountry);
+      return;
+    }
     ref.read(registrationDraftProvider.notifier).updateFullName(trimmed);
     context.push(GpsRoutes.registerPhone);
   }
@@ -462,6 +255,7 @@ class _RegisterFullNameScreenState
     final country = ref.watch(registrationDraftProvider).country;
 
     return AuthFlowScaffold(
+      fallbackPopLocation: GpsRoutes.registerCountry,
       title: strings.registration,
       step: RegistrationSteps.fullName(country),
       totalSteps: RegistrationSteps.total(country),

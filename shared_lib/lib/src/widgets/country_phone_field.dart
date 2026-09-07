@@ -9,9 +9,6 @@ import '../validation/phone_e164.dart';
 import 'gps_text_field.dart';
 
 /// Phone input with a country dialing code; emits E.164 when valid.
-///
-/// Pass [onCountryChanged] to let the user pick DZ `+213` or TN `+216`
-/// from a bottom sheet. Omit it to keep the prefix locked (registration).
 class CountryPhoneField extends StatefulWidget {
   const CountryPhoneField({
     required this.country,
@@ -48,8 +45,6 @@ class _CountryPhoneFieldState extends State<CountryPhoneField> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.country == widget.country) return;
     _controller.clear();
-    // Parent setState (e.g. login country switch) is what triggered this
-    // update. Notify after the frame so we don't setState during build.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       widget.onChanged(null);
@@ -82,10 +77,11 @@ class _CountryPhoneFieldState extends State<CountryPhoneField> {
     final strings = AuthStrings.of(context);
     final colorScheme = Theme.of(context).colorScheme;
     final maxDigits = PhoneE164.nationalDigitCount(widget.country);
-    final hint = switch (widget.country) {
-      RegistrationCountry.dz => '5XX XX XX XX',
-      RegistrationCountry.tn => '2X XXX XXX',
-    };
+    final hint = widget.country == RegistrationCountry.dz
+        ? '5XX XX XX XX'
+        : widget.country == RegistrationCountry.tn
+        ? '2X XXX XXX'
+        : '6XX XXX XXX';
     final selectable = widget.onCountryChanged != null;
 
     Widget prefix = Padding(
@@ -160,12 +156,36 @@ Future<RegistrationCountry?> showCountryDialCodeSheet({
   return showModalBottomSheet<RegistrationCountry>(
     context: context,
     showDragHandle: true,
+    isScrollControlled: true,
     builder: (ctx) {
-      final strings = AuthStrings.of(ctx);
-      final colorScheme = Theme.of(ctx).colorScheme;
-      return SafeArea(
+      return _CountryDialSheet(selected: selected);
+    },
+  );
+}
+
+class _CountryDialSheet extends StatefulWidget {
+  const _CountryDialSheet({required this.selected});
+
+  final RegistrationCountry selected;
+
+  @override
+  State<_CountryDialSheet> createState() => _CountryDialSheetState();
+}
+
+class _CountryDialSheetState extends State<_CountryDialSheet> {
+  String _query = '';
+
+  @override
+  Widget build(BuildContext context) {
+    final strings = AuthStrings.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+    final options = RegistrationCountries.search(_query);
+    final height = MediaQuery.sizeOf(context).height * 0.7;
+
+    return SafeArea(
+      child: SizedBox(
+        height: height,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
@@ -178,30 +198,49 @@ Future<RegistrationCountry?> showCountryDialCodeSheet({
               child: Text(
                 strings.countryTitle,
                 style: Theme.of(
-                  ctx,
+                  context,
                 ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
               ),
             ),
-            for (final option in RegistrationCountries.all)
-              ListTile(
-                leading: ExcludeSemantics(
-                  child: Text(
-                    option.flag,
-                    style: const TextStyle(fontSize: 28),
-                  ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: GpsSpacing.lg),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: strings.countrySearchHint,
+                  prefixIcon: const Icon(Icons.search),
+                  border: const OutlineInputBorder(),
+                  isDense: true,
                 ),
-                title: Text(strings.countryName(option)),
-                subtitle: Text(option.dialingCode),
-                selected: option == selected,
-                trailing: option == selected
-                    ? Icon(Icons.check, color: colorScheme.primary)
-                    : null,
-                onTap: () => Navigator.pop(ctx, option),
+                onChanged: (v) => setState(() => _query = v),
               ),
+            ),
             const SizedBox(height: GpsSpacing.sm),
+            Expanded(
+              child: ListView.builder(
+                itemCount: options.length,
+                itemBuilder: (ctx, index) {
+                  final option = options[index];
+                  return ListTile(
+                    leading: ExcludeSemantics(
+                      child: Text(
+                        option.flag,
+                        style: const TextStyle(fontSize: 28),
+                      ),
+                    ),
+                    title: Text(strings.countryName(option)),
+                    subtitle: Text(option.dialingCode),
+                    selected: option == widget.selected,
+                    trailing: option == widget.selected
+                        ? Icon(Icons.check, color: colorScheme.primary)
+                        : null,
+                    onTap: () => Navigator.pop(ctx, option),
+                  );
+                },
+              ),
+            ),
           ],
         ),
-      );
-    },
-  );
+      ),
+    );
+  }
 }

@@ -22,6 +22,11 @@ void main() {
       // TODO
     });
 
+    // String city
+    test('to test the property `city`', () async {
+      // TODO
+    });
+
     // String addressLine1
     test('to test the property `addressLine1`', () async {
       // TODO

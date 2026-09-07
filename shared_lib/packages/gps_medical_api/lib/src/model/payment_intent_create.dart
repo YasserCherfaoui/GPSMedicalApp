@@ -14,6 +14,7 @@ part 'payment_intent_create.g.dart';
 /// Properties:
 /// * [purpose] 
 /// * [appointmentId] 
+/// * [sessionId] 
 /// * [amountDzd] 
 /// * [provider] 
 /// * [returnUrl] 
@@ -21,10 +22,13 @@ part 'payment_intent_create.g.dart';
 abstract class PaymentIntentCreate implements Built<PaymentIntentCreate, PaymentIntentCreateBuilder> {
   @BuiltValueField(wireName: r'purpose')
   PaymentIntentCreatePurposeEnum get purpose;
-  // enum purposeEnum {  appointment_deposit,  teleconsultation,  full_consultation,  };
+  // enum purposeEnum {  appointment_deposit,  teleconsultation,  full_consultation,  bilan_detailed,  coaching_premium,  };
 
   @BuiltValueField(wireName: r'appointment_id')
   String? get appointmentId;
+
+  @BuiltValueField(wireName: r'session_id')
+  String? get sessionId;
 
   @BuiltValueField(wireName: r'amount_dzd')
   int get amountDzd;
@@ -68,7 +72,14 @@ class _$PaymentIntentCreateSerializer implements PrimitiveSerializer<PaymentInte
       yield r'appointment_id';
       yield serializers.serialize(
         object.appointmentId,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.sessionId != null) {
+      yield r'session_id';
+      yield serializers.serialize(
+        object.sessionId,
+        specifiedType: const FullType.nullable(String),
       );
     }
     yield r'amount_dzd';
@@ -121,9 +132,18 @@ class _$PaymentIntentCreateSerializer implements PrimitiveSerializer<PaymentInte
         case r'appointment_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.appointmentId = valueDes;
+          break;
+        case r'session_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.sessionId = valueDes;
           break;
         case r'amount_dzd':
           final valueDes = serializers.deserialize(
@@ -183,6 +203,10 @@ class PaymentIntentCreatePurposeEnum extends EnumClass {
   static const PaymentIntentCreatePurposeEnum teleconsultation = _$paymentIntentCreatePurposeEnum_teleconsultation;
   @BuiltValueEnumConst(wireName: r'full_consultation')
   static const PaymentIntentCreatePurposeEnum fullConsultation = _$paymentIntentCreatePurposeEnum_fullConsultation;
+  @BuiltValueEnumConst(wireName: r'bilan_detailed')
+  static const PaymentIntentCreatePurposeEnum bilanDetailed = _$paymentIntentCreatePurposeEnum_bilanDetailed;
+  @BuiltValueEnumConst(wireName: r'coaching_premium')
+  static const PaymentIntentCreatePurposeEnum coachingPremium = _$paymentIntentCreatePurposeEnum_coachingPremium;
 
   static Serializer<PaymentIntentCreatePurposeEnum> get serializer => _$paymentIntentCreatePurposeEnumSerializer;
 

@@ -90,9 +90,7 @@ class ApiAuthRepository implements AuthRepository {
             ..consentHealthData = draft.consentHealthData
             ..consentAnpdpTerms = draft.consentAnpdpTerms
             ..consentMarketing = draft.consentMarketing;
-          if (country.requiresNin) {
-            b.nin = draft.nin;
-          }
+          // NIN retired (Amendment 2) — never send.
         }),
       );
       final data = response.data;

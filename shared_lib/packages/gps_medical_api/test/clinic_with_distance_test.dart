@@ -27,7 +27,7 @@ void main() {
       // TODO
     });
 
-    // ISO 3166-1 alpha-2. DZ, TN, et codes Schengen-UE. Activation `verified=true` hors DZ bloquée jusqu'à G-3. 
+    // ISO 3166-1 alpha-2. DZ, TN, et codes UE-27. G-3 cleared (Amendment 2): approve active DZ + UE ; TN reste `approved_pending_activation` (G-2). 
     // String countryCode
     test('to test the property `countryCode`', () async {
       // TODO

@@ -17,6 +17,27 @@ void main() {
       );
     });
 
+    test('accepts FR national digits', () {
+      expect(
+        PhoneE164.validateNationalInput(RegistrationCountry.fr, '612345678'),
+        '+33612345678',
+      );
+    });
+
+    test('rejects DZ prefix on FR country', () {
+      expect(
+        PhoneE164.matchesCountry('+213551234567', RegistrationCountry.fr),
+        isFalse,
+      );
+    });
+
+    test('rejects FR prefix on DZ country', () {
+      expect(
+        PhoneE164.matchesCountry('+33612345678', RegistrationCountry.dz),
+        isFalse,
+      );
+    });
+
     test('rejects DZ prefix on TN country', () {
       expect(
         PhoneE164.matchesCountry('+213551234567', RegistrationCountry.tn),
@@ -24,17 +45,10 @@ void main() {
       );
     });
 
-    test('rejects TN prefix on DZ country', () {
+    test('MT sample matches', () {
       expect(
-        PhoneE164.matchesCountry('+21622123456', RegistrationCountry.dz),
-        isFalse,
-      );
-    });
-
-    test('rejects invalid TN operator prefix', () {
-      expect(
-        PhoneE164.validateNationalInput(RegistrationCountry.tn, '32123456'),
-        isNull,
+        PhoneE164.matchesCountry('+35699123456', RegistrationCountry.mt),
+        isTrue,
       );
     });
   });

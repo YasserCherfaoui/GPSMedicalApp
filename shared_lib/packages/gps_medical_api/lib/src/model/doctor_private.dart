@@ -36,7 +36,7 @@ part 'doctor_private.g.dart';
 /// * [ratingCount] 
 /// * [verified] 
 /// * [clinicAffiliations] 
-/// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
+/// * [phone] - Numéro mobile au format E.164. Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (validation libphonenumber pour les 29 `CountryCode`) ; sinon `422 phone_country_mismatch`. 
 /// * [email] 
 /// * [country] - Pays du compte médecin (lecture seule, issu de `auth.users`). 
 /// * [councilNumber] - N° au Conseil de l'Ordre
@@ -50,12 +50,12 @@ abstract class DoctorPrivate implements Doctor, Built<DoctorPrivate, DoctorPriva
   /// Pays du compte médecin (lecture seule, issu de `auth.users`). 
   @BuiltValueField(wireName: r'country')
   CountryCode? get country;
-  // enum countryEnum {  DZ,  TN,  };
+  // enum countryEnum {  DZ,  TN,  AT,  BE,  BG,  HR,  CY,  CZ,  DK,  EE,  FI,  FR,  DE,  GR,  HU,  IE,  IT,  LV,  LT,  LU,  MT,  NL,  PL,  PT,  RO,  SK,  SI,  ES,  SE,  };
 
   @BuiltValueField(wireName: r'booking_window_days')
   int? get bookingWindowDays;
 
-  /// Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
+  /// Numéro mobile au format E.164. Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (validation libphonenumber pour les 29 `CountryCode`) ; sinon `422 phone_country_mismatch`. 
   @BuiltValueField(wireName: r'phone')
   String? get phone;
 

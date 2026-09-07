@@ -17,6 +17,19 @@ void main() {
       // TODO
     });
 
+    // Pays de l'adresse (optionnel).
+    // CountryCode country
+    test('to test the property `country`', () async {
+      // TODO
+    });
+
+    // Ville en texte libre — utilisé pour l'offre non-DZ (UE) où wilaya / commune ne s'appliquent pas. 
+    // String city
+    test('to test the property `city`', () async {
+      // TODO
+    });
+
+    // Identifiant commune — **DZ uniquement** ; optionnel sinon.
     // String communeId
     test('to test the property `communeId`', () async {
       // TODO
@@ -27,6 +40,7 @@ void main() {
       // TODO
     });
 
+    // Code wilaya — **DZ uniquement** ; optionnel sinon.
     // String wilayaCode
     test('to test the property `wilayaCode`', () async {
       // TODO

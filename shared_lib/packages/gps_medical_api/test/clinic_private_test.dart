@@ -3,7 +3,7 @@ import 'package:gps_medical_api/gps_medical_api.dart';
 
 // tests for ClinicPrivate
 void main() {
-  final instance = ClinicPrivateBuilder();
+  //final instance = ClinicPrivateBuilder();
   // TODO add properties to the builder and call build()
 
   group(ClinicPrivate, () {
@@ -27,7 +27,7 @@ void main() {
       // TODO
     });
 
-    // ISO 3166-1 alpha-2. DZ, TN, et codes Schengen-UE. Activation `verified=true` hors DZ bloquée jusqu'à G-3. 
+    // ISO 3166-1 alpha-2. DZ, TN, et codes UE-27. G-3 cleared (Amendment 2): approve active DZ + UE ; TN reste `approved_pending_activation` (G-2). 
     // String countryCode
     test('to test the property `countryCode`', () async {
       // TODO
@@ -110,6 +110,12 @@ void main() {
 
     // String email
     test('to test the property `email`', () async {
+      // TODO
+    });
+
+    // Présent sur les réponses admin — `true` si au moins un créneau de capacité est sous-couvert par les blocs donnés du roster. 
+    // bool underStaffed
+    test('to test the property `underStaffed`', () async {
       // TODO
     });
 

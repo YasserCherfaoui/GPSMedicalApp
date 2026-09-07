@@ -17,7 +17,7 @@ void main() {
       // TODO
     });
 
-    // État courant de la vérification du NIN. `pending` si l'API gouvernementale est désactivée, indisponible ou n'a pas encore répondu ; `verified` si confirmée ; `failed` si l'API a répondu avec un rejet explicite (l'inscription a quand même abouti et le compte sera revu manuellement). 
+    // Pour les nouvelles inscriptions (v1.2.8) : toujours `not_required` (collecte NIN retirée). Valeurs historiques `pending` / `verified` / `failed` peuvent encore apparaître sur d'anciens comptes. 
     // String ninVerificationStatus
     test('to test the property `ninVerificationStatus`', () async {
       // TODO

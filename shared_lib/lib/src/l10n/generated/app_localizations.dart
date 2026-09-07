@@ -6011,6 +6011,72 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Versé le {date}'**
   String settlementStatusReleasedOn(String date);
+
+  /// No description provided for @consentSubtitleEu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conformément au Règlement général sur la protection des données (RGPD)'**
+  String get consentSubtitleEu;
+
+  /// No description provided for @consentTermsEu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conditions et politique RGPD'**
+  String get consentTermsEu;
+
+  /// No description provided for @invalidPhoneEu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Numéro invalide pour ce pays (format international E.164).'**
+  String get invalidPhoneEu;
+
+  /// No description provided for @phoneFormatHintEu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisissez votre numéro mobile national (sans l\'indicatif).'**
+  String get phoneFormatHintEu;
+
+  /// No description provided for @countrySearchHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher un pays…'**
+  String get countrySearchHint;
+
+  /// No description provided for @specialistCredentialsCouncilNumberTn.
+  ///
+  /// In fr, this message translates to:
+  /// **'N° à l\'Ordre des médecins de Tunisie'**
+  String get specialistCredentialsCouncilNumberTn;
+
+  /// No description provided for @specialistCredentialsCouncilNumberFr.
+  ///
+  /// In fr, this message translates to:
+  /// **'N° RPPS / Ordre (CNOM)'**
+  String get specialistCredentialsCouncilNumberFr;
+
+  /// No description provided for @specialistCredentialsCouncilNumberDe.
+  ///
+  /// In fr, this message translates to:
+  /// **'N° Ärztekammer'**
+  String get specialistCredentialsCouncilNumberDe;
+
+  /// No description provided for @specialistCredentialsCouncilNumberIt.
+  ///
+  /// In fr, this message translates to:
+  /// **'N° albo FNOMCeO'**
+  String get specialistCredentialsCouncilNumberIt;
+
+  /// No description provided for @specialistCredentialsCouncilNumberEs.
+  ///
+  /// In fr, this message translates to:
+  /// **'N° de colegiado (OMC)'**
+  String get specialistCredentialsCouncilNumberEs;
+
+  /// No description provided for @specialistCredentialsCouncilNumberEu.
+  ///
+  /// In fr, this message translates to:
+  /// **'N° d\'enregistrement professionnel'**
+  String get specialistCredentialsCouncilNumberEu;
 }
 
 class _AppLocalizationsDelegate

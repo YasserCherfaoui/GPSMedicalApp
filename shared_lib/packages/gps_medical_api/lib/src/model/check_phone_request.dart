@@ -12,18 +12,18 @@ part 'check_phone_request.g.dart';
 /// CheckPhoneRequest
 ///
 /// Properties:
-/// * [phone] - Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
-/// * [country] - Doit correspondre à l'indicatif du `phone` (`DZ`↔`+213`, `TN`↔`+216`) — sinon `422 phone_country_mismatch`. 
+/// * [phone] - Numéro mobile au format E.164. Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (validation libphonenumber pour les 29 `CountryCode`) ; sinon `422 phone_country_mismatch`. 
+/// * [country] - Doit correspondre à l'indicatif du `phone` (libphonenumber) — sinon `422 phone_country_mismatch`. 
 @BuiltValue()
 abstract class CheckPhoneRequest implements Built<CheckPhoneRequest, CheckPhoneRequestBuilder> {
-  /// Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`. 
+  /// Numéro mobile au format E.164. Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (validation libphonenumber pour les 29 `CountryCode`) ; sinon `422 phone_country_mismatch`. 
   @BuiltValueField(wireName: r'phone')
   String get phone;
 
-  /// Doit correspondre à l'indicatif du `phone` (`DZ`↔`+213`, `TN`↔`+216`) — sinon `422 phone_country_mismatch`. 
+  /// Doit correspondre à l'indicatif du `phone` (libphonenumber) — sinon `422 phone_country_mismatch`. 
   @BuiltValueField(wireName: r'country')
   CountryCode get country;
-  // enum countryEnum {  DZ,  TN,  };
+  // enum countryEnum {  DZ,  TN,  AT,  BE,  BG,  HR,  CY,  CZ,  DK,  EE,  FI,  FR,  DE,  GR,  HU,  IE,  IT,  LV,  LT,  LU,  MT,  NL,  PL,  PT,  RO,  SK,  SI,  ES,  SE,  };
 
   CheckPhoneRequest._();
 

@@ -3278,4 +3278,44 @@ class AppLocalizationsPt extends AppLocalizations {
   String settlementStatusReleasedOn(String date) {
     return 'Paid out on $date';
   }
+
+  @override
+  String get consentSubtitleEu =>
+      'Em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD)';
+
+  @override
+  String get consentTermsEu => 'Termos e política RGPD';
+
+  @override
+  String get invalidPhoneEu =>
+      'Número inválido para este país (formato E.164).';
+
+  @override
+  String get phoneFormatHintEu =>
+      'Introduza o seu número móvel nacional (sem o indicativo).';
+
+  @override
+  String get countrySearchHint => 'Pesquisar países…';
+
+  @override
+  String get specialistCredentialsCouncilNumberTn =>
+      'Tunisian medical council number';
+
+  @override
+  String get specialistCredentialsCouncilNumberFr =>
+      'RPPS / CNOM registration number';
+
+  @override
+  String get specialistCredentialsCouncilNumberDe =>
+      'Ärztekammer registration number';
+
+  @override
+  String get specialistCredentialsCouncilNumberIt => 'FNOMCeO register number';
+
+  @override
+  String get specialistCredentialsCouncilNumberEs => 'OMC colegiado number';
+
+  @override
+  String get specialistCredentialsCouncilNumberEu =>
+      'Professional registration number';
 }

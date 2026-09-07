@@ -17,6 +17,7 @@ part 'clinic_admin_update.g.dart';
 /// * [name] 
 /// * [legalName] 
 /// * [description] 
+/// * [city] 
 /// * [addressLine1] 
 /// * [addressLine2] 
 /// * [communeId] 
@@ -62,6 +63,13 @@ class _$ClinicAdminUpdateSerializer implements PrimitiveSerializer<ClinicAdminUp
       yield serializers.serialize(
         object.bookingWindowDays,
         specifiedType: const FullType(int),
+      );
+    }
+    if (object.city != null) {
+      yield r'city';
+      yield serializers.serialize(
+        object.city,
+        specifiedType: const FullType(String),
       );
     }
     if (object.confirmationPolicy != null) {
@@ -184,6 +192,13 @@ class _$ClinicAdminUpdateSerializer implements PrimitiveSerializer<ClinicAdminUp
             specifiedType: const FullType(int),
           ) as int;
           result.bookingWindowDays = valueDes;
+          break;
+        case r'city':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.city = valueDes;
           break;
         case r'confirmation_policy':
           final valueDes = serializers.deserialize(

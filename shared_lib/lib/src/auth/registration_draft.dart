@@ -41,9 +41,7 @@ class RegistrationDraft {
       return false;
     }
     final name = fullName?.trim();
-    final ninOk = !selected.requiresNin || nin != null;
-    return ninOk &&
-        phoneE164 != null &&
+    return phoneE164 != null &&
         password != null &&
         name != null &&
         name.length >= 2 &&

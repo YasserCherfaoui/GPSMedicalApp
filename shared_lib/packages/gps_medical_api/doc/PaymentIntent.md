@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | [optional] 
 **purpose** | **String** |  | [optional] 
 **appointmentId** | **String** |  | [optional] 
+**sessionId** | **String** |  | [optional] 
 **amountDzd** | **int** |  | [optional] 
 **provider** | **String** |  | [optional] 
 **status** | **String** |  | [optional] 

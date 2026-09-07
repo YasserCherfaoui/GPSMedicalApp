@@ -3270,4 +3270,42 @@ class AppLocalizationsBer extends AppLocalizations {
   String settlementStatusReleasedOn(String date) {
     return 'Paid out on $date';
   }
+
+  @override
+  String get consentSubtitleEu =>
+      'Akken i tesselmad tɣerḍa tamaɣrant n ummesten n yisefka (RGPD)';
+
+  @override
+  String get consentTermsEu => 'Tiwtilin d tsertit RGPD';
+
+  @override
+  String get invalidPhoneEu => 'Uṭṭun d aremzim i tmurt-agi (E.164).';
+
+  @override
+  String get phoneFormatHintEu => 'Sekcem uṭṭun-ik n uzenziɣ (war aneddu).';
+
+  @override
+  String get countrySearchHint => 'Nadi tamurt…';
+
+  @override
+  String get specialistCredentialsCouncilNumberTn =>
+      'Tunisian medical council number';
+
+  @override
+  String get specialistCredentialsCouncilNumberFr =>
+      'RPPS / CNOM registration number';
+
+  @override
+  String get specialistCredentialsCouncilNumberDe =>
+      'Ärztekammer registration number';
+
+  @override
+  String get specialistCredentialsCouncilNumberIt => 'FNOMCeO register number';
+
+  @override
+  String get specialistCredentialsCouncilNumberEs => 'OMC colegiado number';
+
+  @override
+  String get specialistCredentialsCouncilNumberEu =>
+      'Professional registration number';
 }

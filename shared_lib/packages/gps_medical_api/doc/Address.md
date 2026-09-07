@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **line1** | **String** |  | [optional] 
 **line2** | **String** |  | [optional] 
-**communeId** | **String** |  | [optional] 
+**country** | [**CountryCode**](CountryCode.md) | Pays de l'adresse (optionnel). | [optional] 
+**city** | **String** | Ville en texte libre — utilisé pour l'offre non-DZ (UE) où wilaya / commune ne s'appliquent pas.  | [optional] 
+**communeId** | **String** | Identifiant commune — **DZ uniquement** ; optionnel sinon. | [optional] 
 **communeName** | **String** |  | [optional] 
-**wilayaCode** | **String** |  | [optional] 
+**wilayaCode** | **String** | Code wilaya — **DZ uniquement** ; optionnel sinon. | [optional] 
 **wilayaName** | **String** |  | [optional] 
 **postalCode** | **String** |  | [optional] 
 **latitude** | **double** |  | [optional] 

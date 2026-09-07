@@ -73,7 +73,83 @@ class _$ClinicPrivateConfirmationPolicyEnumSerializer
   );
 }
 
-class _$ClinicPrivate extends ClinicPrivate {
+abstract mixin class ClinicPrivateBuilder implements ClinicBuilder {
+  void replace(covariant ClinicPrivate other);
+  void update(void Function(ClinicPrivateBuilder) updates);
+  String? get legalName;
+  set legalName(covariant String? legalName);
+
+  String? get registreCommerce;
+  set registreCommerce(covariant String? registreCommerce);
+
+  int? get bookingWindowDays;
+  set bookingWindowDays(covariant int? bookingWindowDays);
+
+  String? get agrementSante;
+  set agrementSante(covariant String? agrementSante);
+
+  ClinicVerificationStatus? get verificationStatus;
+  set verificationStatus(
+    covariant ClinicVerificationStatus? verificationStatus,
+  );
+
+  ClinicPrivateConfirmationPolicyEnum? get confirmationPolicy;
+  set confirmationPolicy(
+    covariant ClinicPrivateConfirmationPolicyEnum? confirmationPolicy,
+  );
+
+  ListBuilder<ClinicCredential> get credentials;
+  set credentials(covariant ListBuilder<ClinicCredential>? credentials);
+
+  String? get ownerUserId;
+  set ownerUserId(covariant String? ownerUserId);
+
+  String? get email;
+  set email(covariant String? email);
+
+  bool? get underStaffed;
+  set underStaffed(covariant bool? underStaffed);
+
+  ClinicStatus? get status;
+  set status(covariant ClinicStatus? status);
+
+  String? get verificationComment;
+  set verificationComment(covariant String? verificationComment);
+
+  String? get id;
+  set id(covariant String? id);
+
+  String? get name;
+  set name(covariant String? name);
+
+  String? get description;
+  set description(covariant String? description);
+
+  AddressBuilder get address;
+  set address(covariant AddressBuilder? address);
+
+  String? get countryCode;
+  set countryCode(covariant String? countryCode);
+
+  bool? get verified;
+  set verified(covariant bool? verified);
+
+  double? get ratingAverage;
+  set ratingAverage(covariant double? ratingAverage);
+
+  int? get ratingCount;
+  set ratingCount(covariant int? ratingCount);
+
+  bool? get offersTelehealth;
+  set offersTelehealth(covariant bool? offersTelehealth);
+
+  ListBuilder<ClinicServiceTeaser> get serviceTeasers;
+  set serviceTeasers(
+    covariant ListBuilder<ClinicServiceTeaser>? serviceTeasers,
+  );
+}
+
+class _$$ClinicPrivate extends $ClinicPrivate {
   @override
   final String? legalName;
   @override
@@ -92,6 +168,8 @@ class _$ClinicPrivate extends ClinicPrivate {
   final String? ownerUserId;
   @override
   final String? email;
+  @override
+  final bool? underStaffed;
   @override
   final ClinicStatus? status;
   @override
@@ -117,10 +195,10 @@ class _$ClinicPrivate extends ClinicPrivate {
   @override
   final BuiltList<ClinicServiceTeaser>? serviceTeasers;
 
-  factory _$ClinicPrivate([void Function(ClinicPrivateBuilder)? updates]) =>
-      (ClinicPrivateBuilder()..update(updates))._build();
+  factory _$$ClinicPrivate([void Function($ClinicPrivateBuilder)? updates]) =>
+      ($ClinicPrivateBuilder()..update(updates))._build();
 
-  _$ClinicPrivate._({
+  _$$ClinicPrivate._({
     this.legalName,
     this.registreCommerce,
     this.bookingWindowDays,
@@ -130,6 +208,7 @@ class _$ClinicPrivate extends ClinicPrivate {
     this.credentials,
     this.ownerUserId,
     this.email,
+    this.underStaffed,
     this.status,
     this.verificationComment,
     this.id,
@@ -144,16 +223,16 @@ class _$ClinicPrivate extends ClinicPrivate {
     this.serviceTeasers,
   }) : super._();
   @override
-  ClinicPrivate rebuild(void Function(ClinicPrivateBuilder) updates) =>
+  $ClinicPrivate rebuild(void Function($ClinicPrivateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ClinicPrivateBuilder toBuilder() => ClinicPrivateBuilder()..replace(this);
+  $ClinicPrivateBuilder toBuilder() => $ClinicPrivateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ClinicPrivate &&
+    return other is $ClinicPrivate &&
         legalName == other.legalName &&
         registreCommerce == other.registreCommerce &&
         bookingWindowDays == other.bookingWindowDays &&
@@ -163,6 +242,7 @@ class _$ClinicPrivate extends ClinicPrivate {
         credentials == other.credentials &&
         ownerUserId == other.ownerUserId &&
         email == other.email &&
+        underStaffed == other.underStaffed &&
         status == other.status &&
         verificationComment == other.verificationComment &&
         id == other.id &&
@@ -189,6 +269,7 @@ class _$ClinicPrivate extends ClinicPrivate {
     _$hash = $jc(_$hash, credentials.hashCode);
     _$hash = $jc(_$hash, ownerUserId.hashCode);
     _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, underStaffed.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jc(_$hash, verificationComment.hashCode);
     _$hash = $jc(_$hash, id.hashCode);
@@ -207,7 +288,7 @@ class _$ClinicPrivate extends ClinicPrivate {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'ClinicPrivate')
+    return (newBuiltValueToStringHelper(r'$ClinicPrivate')
           ..add('legalName', legalName)
           ..add('registreCommerce', registreCommerce)
           ..add('bookingWindowDays', bookingWindowDays)
@@ -217,6 +298,7 @@ class _$ClinicPrivate extends ClinicPrivate {
           ..add('credentials', credentials)
           ..add('ownerUserId', ownerUserId)
           ..add('email', email)
+          ..add('underStaffed', underStaffed)
           ..add('status', status)
           ..add('verificationComment', verificationComment)
           ..add('id', id)
@@ -233,9 +315,11 @@ class _$ClinicPrivate extends ClinicPrivate {
   }
 }
 
-class ClinicPrivateBuilder
-    implements Builder<ClinicPrivate, ClinicPrivateBuilder>, ClinicBuilder {
-  _$ClinicPrivate? _$v;
+class $ClinicPrivateBuilder
+    implements
+        Builder<$ClinicPrivate, $ClinicPrivateBuilder>,
+        ClinicPrivateBuilder {
+  _$$ClinicPrivate? _$v;
 
   String? _legalName;
   String? get legalName => _$this._legalName;
@@ -284,6 +368,11 @@ class ClinicPrivateBuilder
   String? _email;
   String? get email => _$this._email;
   set email(covariant String? email) => _$this._email = email;
+
+  bool? _underStaffed;
+  bool? get underStaffed => _$this._underStaffed;
+  set underStaffed(covariant bool? underStaffed) =>
+      _$this._underStaffed = underStaffed;
 
   ClinicStatus? _status;
   ClinicStatus? get status => _$this._status;
@@ -342,11 +431,11 @@ class ClinicPrivateBuilder
     covariant ListBuilder<ClinicServiceTeaser>? serviceTeasers,
   ) => _$this._serviceTeasers = serviceTeasers;
 
-  ClinicPrivateBuilder() {
-    ClinicPrivate._defaults(this);
+  $ClinicPrivateBuilder() {
+    $ClinicPrivate._defaults(this);
   }
 
-  ClinicPrivateBuilder get _$this {
+  $ClinicPrivateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _legalName = $v.legalName;
@@ -358,6 +447,7 @@ class ClinicPrivateBuilder
       _credentials = $v.credentials?.toBuilder();
       _ownerUserId = $v.ownerUserId;
       _email = $v.email;
+      _underStaffed = $v.underStaffed;
       _status = $v.status;
       _verificationComment = $v.verificationComment;
       _id = $v.id;
@@ -376,24 +466,24 @@ class ClinicPrivateBuilder
   }
 
   @override
-  void replace(covariant ClinicPrivate other) {
-    _$v = other as _$ClinicPrivate;
+  void replace(covariant $ClinicPrivate other) {
+    _$v = other as _$$ClinicPrivate;
   }
 
   @override
-  void update(void Function(ClinicPrivateBuilder)? updates) {
+  void update(void Function($ClinicPrivateBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  ClinicPrivate build() => _build();
+  $ClinicPrivate build() => _build();
 
-  _$ClinicPrivate _build() {
-    _$ClinicPrivate _$result;
+  _$$ClinicPrivate _build() {
+    _$$ClinicPrivate _$result;
     try {
       _$result =
           _$v ??
-          _$ClinicPrivate._(
+          _$$ClinicPrivate._(
             legalName: legalName,
             registreCommerce: registreCommerce,
             bookingWindowDays: bookingWindowDays,
@@ -403,6 +493,7 @@ class ClinicPrivateBuilder
             credentials: _credentials?.build(),
             ownerUserId: ownerUserId,
             email: email,
+            underStaffed: underStaffed,
             status: status,
             verificationComment: verificationComment,
             id: id,
@@ -429,7 +520,7 @@ class ClinicPrivateBuilder
         _serviceTeasers?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-          r'ClinicPrivate',
+          r'$ClinicPrivate',
           _$failedField,
           e.toString(),
         );

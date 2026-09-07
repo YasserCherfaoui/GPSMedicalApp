@@ -1510,8 +1510,20 @@
   "settlementStatusReleasedOn": "Paid out on {date}",
   "@settlementStatusReleasedOn": {
     "placeholders": {
-      "date": { "type": "String" }
+      "date": {
+        "type": "String"
+      }
     }
-  }
-
+  },
+  "consentSubtitleEu": "Overeenkomstig de Algemene Verordening Gegevensbescherming (AVG)",
+  "consentTermsEu": "AVG-voorwaarden en beleid",
+  "invalidPhoneEu": "Ongeldig nummer voor dit land (E.164-formaat).",
+  "phoneFormatHintEu": "Voer uw nationale mobiele nummer in (zonder landcode).",
+  "countrySearchHint": "Landen zoeken…",
+  "specialistCredentialsCouncilNumberTn": "Tunisian medical council number",
+  "specialistCredentialsCouncilNumberFr": "RPPS / CNOM registration number",
+  "specialistCredentialsCouncilNumberDe": "Ärztekammer registration number",
+  "specialistCredentialsCouncilNumberIt": "FNOMCeO register number",
+  "specialistCredentialsCouncilNumberEs": "OMC colegiado number",
+  "specialistCredentialsCouncilNumberEu": "Professional registration number"
 }

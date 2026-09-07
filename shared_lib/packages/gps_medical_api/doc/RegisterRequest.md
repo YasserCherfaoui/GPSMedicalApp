@@ -9,8 +9,8 @@ import 'package:gps_medical_api/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **country** | [**CountryCode**](CountryCode.md) | Pays du compte. Obligatoire. Immuable après OTP.  | 
-**phone** | **String** | Numéro mobile au format E.164 — Algérie (`+213[5-7]########`) ou Tunisie (`+216[2459]#######`). Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (`DZ` ↔ `+213`, `TN` ↔ `+216`) ; sinon `422 phone_country_mismatch`.  | 
-**nin** | **String** | Obligatoire si `country=DZ` (`422 nin_required` si absent). Doit être absent si `country=TN` (`422 nin_not_applicable` sinon).  | [optional] 
+**phone** | **String** | Numéro mobile au format E.164. Lors de l'inscription / check-phone, l'indicatif doit correspondre au `country` déclaré (validation libphonenumber pour les 29 `CountryCode`) ; sinon `422 phone_country_mismatch`.  | 
+**nin** | **String** | **Deprecated / ignored (v1.2.8).** Optionnel ; si présent, le serveur l'ignore (pas de validation, pas de persistance pour les nouvelles inscriptions). Conservé pour compatibilité des clients stragglers.  | [optional] 
 **password** | **String** |  | 
 **role** | **String** | `patient`, `specialist`, ou `clinic_owner`. `clinic_owner` peut aussi être accordé à `POST /clinics`. `specialist` + `country=TN` est accepté (v1.1.1) ; l'activation marché est une étape séparée.  | 
 **fullName** | **String** |  | 

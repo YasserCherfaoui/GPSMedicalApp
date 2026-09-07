@@ -11,10 +11,10 @@ part 'data_residency_mode.g.dart';
 
 class DataResidencyMode extends EnumClass {
 
-  /// Mode de résidence dérivé de `User.country` (lecture seule) : `DZ` → `device_only`, `TN` → `server`. 
+  /// Mode de résidence dérivé de `User.country` (lecture seule) : `DZ` → `device_only` ; tout autre `CountryCode` → `server`. 
   @BuiltValueEnumConst(wireName: r'server')
   static const DataResidencyMode server = _$server;
-  /// Mode de résidence dérivé de `User.country` (lecture seule) : `DZ` → `device_only`, `TN` → `server`. 
+  /// Mode de résidence dérivé de `User.country` (lecture seule) : `DZ` → `device_only` ; tout autre `CountryCode` → `server`. 
   @BuiltValueEnumConst(wireName: r'device_only')
   static const DataResidencyMode deviceOnly = _$deviceOnly;
 

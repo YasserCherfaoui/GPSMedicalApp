@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **purpose** | **String** |  | 
 **appointmentId** | **String** |  | [optional] 
+**sessionId** | **String** |  | [optional] 
 **amountDzd** | **int** |  | 
 **provider** | **String** |  | 
 **returnUrl** | **String** |  | [optional] 

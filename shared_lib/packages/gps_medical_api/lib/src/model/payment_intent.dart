@@ -15,6 +15,7 @@ part 'payment_intent.g.dart';
 /// * [id] 
 /// * [purpose] 
 /// * [appointmentId] 
+/// * [sessionId] 
 /// * [amountDzd] 
 /// * [provider] 
 /// * [status] 
@@ -33,6 +34,9 @@ abstract class PaymentIntent implements Built<PaymentIntent, PaymentIntentBuilde
 
   @BuiltValueField(wireName: r'appointment_id')
   String? get appointmentId;
+
+  @BuiltValueField(wireName: r'session_id')
+  String? get sessionId;
 
   @BuiltValueField(wireName: r'amount_dzd')
   int? get amountDzd;
@@ -102,7 +106,14 @@ class _$PaymentIntentSerializer implements PrimitiveSerializer<PaymentIntent> {
       yield r'appointment_id';
       yield serializers.serialize(
         object.appointmentId,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType.nullable(String),
+      );
+    }
+    if (object.sessionId != null) {
+      yield r'session_id';
+      yield serializers.serialize(
+        object.sessionId,
+        specifiedType: const FullType.nullable(String),
       );
     }
     if (object.amountDzd != null) {
@@ -201,9 +212,18 @@ class _$PaymentIntentSerializer implements PrimitiveSerializer<PaymentIntent> {
         case r'appointment_id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.appointmentId = valueDes;
+          break;
+        case r'session_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.sessionId = valueDes;
           break;
         case r'amount_dzd':
           final valueDes = serializers.deserialize(

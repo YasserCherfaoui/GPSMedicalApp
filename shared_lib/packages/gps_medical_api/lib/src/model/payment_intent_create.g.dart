@@ -15,6 +15,12 @@ _$paymentIntentCreatePurposeEnum_teleconsultation =
 const PaymentIntentCreatePurposeEnum
 _$paymentIntentCreatePurposeEnum_fullConsultation =
     const PaymentIntentCreatePurposeEnum._('fullConsultation');
+const PaymentIntentCreatePurposeEnum
+_$paymentIntentCreatePurposeEnum_bilanDetailed =
+    const PaymentIntentCreatePurposeEnum._('bilanDetailed');
+const PaymentIntentCreatePurposeEnum
+_$paymentIntentCreatePurposeEnum_coachingPremium =
+    const PaymentIntentCreatePurposeEnum._('coachingPremium');
 
 PaymentIntentCreatePurposeEnum _$paymentIntentCreatePurposeEnumValueOf(
   String name,
@@ -26,6 +32,10 @@ PaymentIntentCreatePurposeEnum _$paymentIntentCreatePurposeEnumValueOf(
       return _$paymentIntentCreatePurposeEnum_teleconsultation;
     case 'fullConsultation':
       return _$paymentIntentCreatePurposeEnum_fullConsultation;
+    case 'bilanDetailed':
+      return _$paymentIntentCreatePurposeEnum_bilanDetailed;
+    case 'coachingPremium':
+      return _$paymentIntentCreatePurposeEnum_coachingPremium;
     default:
       throw ArgumentError(name);
   }
@@ -38,6 +48,8 @@ _$paymentIntentCreatePurposeEnumValues =
         _$paymentIntentCreatePurposeEnum_appointmentDeposit,
         _$paymentIntentCreatePurposeEnum_teleconsultation,
         _$paymentIntentCreatePurposeEnum_fullConsultation,
+        _$paymentIntentCreatePurposeEnum_bilanDetailed,
+        _$paymentIntentCreatePurposeEnum_coachingPremium,
       ],
     );
 
@@ -93,11 +105,15 @@ class _$PaymentIntentCreatePurposeEnumSerializer
     'appointmentDeposit': 'appointment_deposit',
     'teleconsultation': 'teleconsultation',
     'fullConsultation': 'full_consultation',
+    'bilanDetailed': 'bilan_detailed',
+    'coachingPremium': 'coaching_premium',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'appointment_deposit': 'appointmentDeposit',
     'teleconsultation': 'teleconsultation',
     'full_consultation': 'fullConsultation',
+    'bilan_detailed': 'bilanDetailed',
+    'coaching_premium': 'coachingPremium',
   };
 
   @override
@@ -165,6 +181,8 @@ class _$PaymentIntentCreate extends PaymentIntentCreate {
   @override
   final String? appointmentId;
   @override
+  final String? sessionId;
+  @override
   final int amountDzd;
   @override
   final PaymentIntentCreateProviderEnum provider;
@@ -178,6 +196,7 @@ class _$PaymentIntentCreate extends PaymentIntentCreate {
   _$PaymentIntentCreate._({
     required this.purpose,
     this.appointmentId,
+    this.sessionId,
     required this.amountDzd,
     required this.provider,
     this.returnUrl,
@@ -197,6 +216,7 @@ class _$PaymentIntentCreate extends PaymentIntentCreate {
     return other is PaymentIntentCreate &&
         purpose == other.purpose &&
         appointmentId == other.appointmentId &&
+        sessionId == other.sessionId &&
         amountDzd == other.amountDzd &&
         provider == other.provider &&
         returnUrl == other.returnUrl;
@@ -207,6 +227,7 @@ class _$PaymentIntentCreate extends PaymentIntentCreate {
     var _$hash = 0;
     _$hash = $jc(_$hash, purpose.hashCode);
     _$hash = $jc(_$hash, appointmentId.hashCode);
+    _$hash = $jc(_$hash, sessionId.hashCode);
     _$hash = $jc(_$hash, amountDzd.hashCode);
     _$hash = $jc(_$hash, provider.hashCode);
     _$hash = $jc(_$hash, returnUrl.hashCode);
@@ -219,6 +240,7 @@ class _$PaymentIntentCreate extends PaymentIntentCreate {
     return (newBuiltValueToStringHelper(r'PaymentIntentCreate')
           ..add('purpose', purpose)
           ..add('appointmentId', appointmentId)
+          ..add('sessionId', sessionId)
           ..add('amountDzd', amountDzd)
           ..add('provider', provider)
           ..add('returnUrl', returnUrl))
@@ -239,6 +261,10 @@ class PaymentIntentCreateBuilder
   String? get appointmentId => _$this._appointmentId;
   set appointmentId(String? appointmentId) =>
       _$this._appointmentId = appointmentId;
+
+  String? _sessionId;
+  String? get sessionId => _$this._sessionId;
+  set sessionId(String? sessionId) => _$this._sessionId = sessionId;
 
   int? _amountDzd;
   int? get amountDzd => _$this._amountDzd;
@@ -262,6 +288,7 @@ class PaymentIntentCreateBuilder
     if ($v != null) {
       _purpose = $v.purpose;
       _appointmentId = $v.appointmentId;
+      _sessionId = $v.sessionId;
       _amountDzd = $v.amountDzd;
       _provider = $v.provider;
       _returnUrl = $v.returnUrl;
@@ -293,6 +320,7 @@ class PaymentIntentCreateBuilder
             'purpose',
           ),
           appointmentId: appointmentId,
+          sessionId: sessionId,
           amountDzd: BuiltValueNullFieldError.checkNotNull(
             amountDzd,
             r'PaymentIntentCreate',

@@ -1,16 +1,31 @@
+import 'package:phone_numbers_parser/phone_numbers_parser.dart';
+
 import '../constants/registration_countries.dart';
-import 'algerian_phone.dart';
 
-/// E.164 mobiles accepted at registration: DZ `+213[5-7]…` or TN `+216[2459]…`.
+/// E.164 validation for the 29 registration countries (libphonenumber-class).
 abstract final class PhoneE164 {
-  static final RegExp dzPattern = AlgerianPhone.e164Pattern;
-  static final RegExp tnPattern = RegExp(r'^\+216[2459][0-9]{7}$');
+  static final RegExp _e164Shape = RegExp(r'^\+[1-9][0-9]{6,14}$');
 
-  static int nationalDigitCount(RegistrationCountry country) =>
-      switch (country) {
-        RegistrationCountry.dz => 9,
-        RegistrationCountry.tn => 8,
-      };
+  static IsoCode? _iso(RegistrationCountry country) {
+    try {
+      return IsoCode.values.byName(country.iso);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Typical national significant-number length hint for the input field.
+  static int nationalDigitCount(RegistrationCountry country) {
+    return switch (country.iso) {
+      'DZ' => 9,
+      'TN' => 8,
+      'FR' || 'BE' || 'DE' || 'IT' || 'ES' || 'PT' || 'NL' || 'AT' || 'GR' ||
+      'PL' || 'RO' || 'HU' || 'CZ' || 'SE' || 'DK' || 'FI' || 'IE' || 'HR' ||
+      'BG' || 'SK' || 'SI' || 'LT' || 'LV' || 'EE' || 'CY' || 'LU' || 'MT' =>
+        9,
+      _ => 9,
+    };
+  }
 
   static String toE164(RegistrationCountry country, String nationalDigits) {
     final digits = nationalDigits.replaceAll(RegExp(r'\D'), '');
@@ -22,29 +37,29 @@ abstract final class PhoneE164 {
     String input,
   ) {
     final digits = input.replaceAll(RegExp(r'\D'), '');
-    if (digits.length != nationalDigitCount(country)) {
-      return null;
-    }
+    if (digits.isEmpty) return null;
     final e164 = toE164(country, digits);
     return validateE164(e164, country);
   }
 
   static String? validateE164(String phone, [RegistrationCountry? country]) {
     final normalized = phone.replaceAll(RegExp(r'\s'), '');
-    if (country == null) {
-      if (dzPattern.hasMatch(normalized) || tnPattern.hasMatch(normalized)) {
-        return normalized;
+    if (!_e164Shape.hasMatch(normalized)) return null;
+
+    try {
+      final parsed = PhoneNumber.parse(normalized);
+      if (!parsed.isValid()) return null;
+      if (country != null) {
+        final expected = _iso(country);
+        if (expected == null || parsed.isoCode != expected) return null;
+      } else {
+        final region = parsed.isoCode.name;
+        if (RegistrationCountry.fromIso(region) == null) return null;
       }
+      return '+${parsed.countryCode}${parsed.nsn}';
+    } catch (_) {
       return null;
     }
-    final pattern = switch (country) {
-      RegistrationCountry.dz => dzPattern,
-      RegistrationCountry.tn => tnPattern,
-    };
-    if (!pattern.hasMatch(normalized)) {
-      return null;
-    }
-    return normalized;
   }
 
   static bool matchesCountry(String phone, RegistrationCountry country) {
@@ -52,17 +67,11 @@ abstract final class PhoneE164 {
   }
 
   static String formatDisplay(String e164) {
-    final dz = AlgerianPhone.formatDisplay(e164);
-    if (dz != e164) {
-      return dz;
-    }
-    if (!tnPattern.hasMatch(e164)) {
+    try {
+      final parsed = PhoneNumber.parse(e164);
+      return parsed.formatNsn();
+    } catch (_) {
       return e164;
     }
-    final national = e164.substring(4);
-    return '+216 ${national.substring(0, 1)}'
-        '${national.substring(1, 3)} '
-        '${national.substring(3, 5)} '
-        '${national.substring(5, 8)}';
   }
 }

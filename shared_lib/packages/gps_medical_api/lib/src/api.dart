@@ -15,6 +15,7 @@ import 'package:gps_medical_api/src/api/appointments_api.dart';
 import 'package:gps_medical_api/src/api/auth_api.dart';
 import 'package:gps_medical_api/src/api/availability_api.dart';
 import 'package:gps_medical_api/src/api/clinics_api.dart';
+import 'package:gps_medical_api/src/api/concierge_api.dart';
 import 'package:gps_medical_api/src/api/doctors_api.dart';
 import 'package:gps_medical_api/src/api/geolocation_api.dart';
 import 'package:gps_medical_api/src/api/medical_records_api.dart';
@@ -155,6 +156,12 @@ class GpsMedicalApi {
   /// by doing that all interceptors will not be executed
   ClinicsApi getClinicsApi() {
     return ClinicsApi(dio, serializers);
+  }
+
+  /// Get ConciergeApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  ConciergeApi getConciergeApi() {
+    return ConciergeApi(dio, serializers);
   }
 
   /// Get DoctorsApi instance, base route and serializer can be overridden by a given but be careful,

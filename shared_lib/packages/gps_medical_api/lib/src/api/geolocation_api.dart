@@ -25,7 +25,7 @@ class GeolocationApi {
   const GeolocationApi(this._dio, this._serializers);
 
   /// Médecins à proximité d&#39;un point GPS
-  /// Uniquement des médecins &#x60;verified&#x3D;true&#x60;. Les dossiers &#x60;approved_pending_activation&#x60; sont exclus. 
+  /// Uniquement des médecins &#x60;verified&#x3D;true&#x60;. Les dossiers &#x60;approved_pending_activation&#x60; sont exclus. L&#39;offre hors DZ est localisée par coordonnées + &#x60;city&#x60; ; un filtre &#x60;wilaya_code&#x60; ne matche simplement pas les lignes non-DZ (pas d&#39;erreur). 
   ///
   /// Parameters:
   /// * [lat] 

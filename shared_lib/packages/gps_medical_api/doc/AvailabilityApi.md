@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**doctorsMeScheduleTemplatesPost**](AvailabilityApi.md#doctorsmescheduletemplatespost) | **POST** /doctors/me/schedule/templates | Création d&#39;un modèle hebdomadaire
 [**doctorsMeScheduleTemplatesTemplateIdDelete**](AvailabilityApi.md#doctorsmescheduletemplatestemplateiddelete) | **DELETE** /doctors/me/schedule/templates/{templateId} | Suppression d&#39;un modèle
 [**doctorsMeScheduleTemplatesTemplateIdPut**](AvailabilityApi.md#doctorsmescheduletemplatestemplateidput) | **PUT** /doctors/me/schedule/templates/{templateId} | Remplacement d&#39;un modèle
+[**getClinicRosterAvailability**](AvailabilityApi.md#getclinicrosteravailability) | **GET** /clinics/me/roster-availability | Créneaux donnés par les membres actifs du roster
 [**getClinicServiceAvailability**](AvailabilityApi.md#getclinicserviceavailability) | **GET** /clinics/{clinicId}/services/{serviceId}/availability | Créneaux de capacité clinique
 [**listClinicScheduleTemplates**](AvailabilityApi.md#listclinicscheduletemplates) | **GET** /clinics/me/schedule/templates | Templates de capacité clinique
 [**patchClinicScheduleTemplate**](AvailabilityApi.md#patchclinicscheduletemplate) | **PATCH** /clinics/me/schedule/templates/{templateId} | Modifier un template de capacité
@@ -387,6 +388,51 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getClinicRosterAvailability**
+> ClinicRosterAvailability getClinicRosterAvailability(from, to)
+
+Créneaux donnés par les membres actifs du roster
+
+Pour chaque membership `active` de *cette* clinique, retourne les intervalles donnés (`schedule_templates.clinic_id` = clinique courante) résolus sur `[from, to]` après soustraction des exceptions (`vacation` / `sick` / `blocked`). Les blocs donnés à d'autres cliniques ne sont jamais exposés. 
+
+### Example
+```dart
+import 'package:gps_medical_api/api.dart';
+
+final api = GpsMedicalApi().getAvailabilityApi();
+final DateTime from = 2013-10-20T19:20:30+01:00; // DateTime | 
+final DateTime to = 2013-10-20T19:20:30+01:00; // DateTime | 
+
+try {
+    final response = api.getClinicRosterAvailability(from, to);
+    print(response);
+} on DioException catch (e) {
+    print('Exception when calling AvailabilityApi->getClinicRosterAvailability: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **from** | **DateTime**|  | 
+ **to** | **DateTime**|  | 
+
+### Return type
+
+[**ClinicRosterAvailability**](ClinicRosterAvailability.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

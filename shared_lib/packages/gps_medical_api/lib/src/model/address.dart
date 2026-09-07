@@ -3,19 +3,22 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:gps_medical_api/src/model/country_code.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
 part 'address.g.dart';
 
-/// Address
+/// Adresse. Pour l'offre hors DZ, localiser via `latitude`/`longitude` + `city` ; les filtres wilaya des surfaces discovery n'excluent pas par erreur les lignes non-DZ (elles ne matchent simplement pas). 
 ///
 /// Properties:
 /// * [line1] 
 /// * [line2] 
-/// * [communeId] 
+/// * [country] - Pays de l'adresse (optionnel).
+/// * [city] - Ville en texte libre — utilisé pour l'offre non-DZ (UE) où wilaya / commune ne s'appliquent pas. 
+/// * [communeId] - Identifiant commune — **DZ uniquement** ; optionnel sinon.
 /// * [communeName] 
-/// * [wilayaCode] 
+/// * [wilayaCode] - Code wilaya — **DZ uniquement** ; optionnel sinon.
 /// * [wilayaName] 
 /// * [postalCode] 
 /// * [latitude] 
@@ -28,12 +31,23 @@ abstract class Address implements Built<Address, AddressBuilder> {
   @BuiltValueField(wireName: r'line2')
   String? get line2;
 
+  /// Pays de l'adresse (optionnel).
+  @BuiltValueField(wireName: r'country')
+  CountryCode? get country;
+  // enum countryEnum {  DZ,  TN,  AT,  BE,  BG,  HR,  CY,  CZ,  DK,  EE,  FI,  FR,  DE,  GR,  HU,  IE,  IT,  LV,  LT,  LU,  MT,  NL,  PL,  PT,  RO,  SK,  SI,  ES,  SE,  };
+
+  /// Ville en texte libre — utilisé pour l'offre non-DZ (UE) où wilaya / commune ne s'appliquent pas. 
+  @BuiltValueField(wireName: r'city')
+  String? get city;
+
+  /// Identifiant commune — **DZ uniquement** ; optionnel sinon.
   @BuiltValueField(wireName: r'commune_id')
   String? get communeId;
 
   @BuiltValueField(wireName: r'commune_name')
   String? get communeName;
 
+  /// Code wilaya — **DZ uniquement** ; optionnel sinon.
   @BuiltValueField(wireName: r'wilaya_code')
   String? get wilayaCode;
 
@@ -83,6 +97,20 @@ class _$AddressSerializer implements PrimitiveSerializer<Address> {
       yield r'line2';
       yield serializers.serialize(
         object.line2,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.country != null) {
+      yield r'country';
+      yield serializers.serialize(
+        object.country,
+        specifiedType: const FullType(CountryCode),
+      );
+    }
+    if (object.city != null) {
+      yield r'city';
+      yield serializers.serialize(
+        object.city,
         specifiedType: const FullType(String),
       );
     }
@@ -171,6 +199,20 @@ class _$AddressSerializer implements PrimitiveSerializer<Address> {
             specifiedType: const FullType(String),
           ) as String;
           result.line2 = valueDes;
+          break;
+        case r'country':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(CountryCode),
+          ) as CountryCode;
+          result.country = valueDes;
+          break;
+        case r'city':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.city = valueDes;
           break;
         case r'commune_id':
           final valueDes = serializers.deserialize(

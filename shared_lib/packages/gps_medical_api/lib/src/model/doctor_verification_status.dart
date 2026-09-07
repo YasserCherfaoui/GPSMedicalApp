@@ -11,19 +11,19 @@ part 'doctor_verification_status.g.dart';
 
 class DoctorVerificationStatus extends EnumClass {
 
-  /// Statut du dossier médecin. `approved` implique `Doctor.verified=true` (shell vérifié / offre patient). `approved_pending_activation` : credentials acceptés, activation marché TN différée (`verified=false`) jusqu'au flag `TN_SPECIALIST_ACTIVATION`. Voir addendum-1.1.1.md. 
+  /// Statut du dossier médecin. `approved` implique `Doctor.verified=true` (shell vérifié / offre patient). `approved_pending_activation` : credentials acceptés, activation marché TN différée (`verified=false`) jusqu'au flag `TN_SPECIALIST_ACTIVATION`. Voir addendum-1.1.1.md. Les dossiers UE n'utilisent pas la quarantaine (G-3). 
   @BuiltValueEnumConst(wireName: r'pending')
   static const DoctorVerificationStatus pending = _$pending;
-  /// Statut du dossier médecin. `approved` implique `Doctor.verified=true` (shell vérifié / offre patient). `approved_pending_activation` : credentials acceptés, activation marché TN différée (`verified=false`) jusqu'au flag `TN_SPECIALIST_ACTIVATION`. Voir addendum-1.1.1.md. 
+  /// Statut du dossier médecin. `approved` implique `Doctor.verified=true` (shell vérifié / offre patient). `approved_pending_activation` : credentials acceptés, activation marché TN différée (`verified=false`) jusqu'au flag `TN_SPECIALIST_ACTIVATION`. Voir addendum-1.1.1.md. Les dossiers UE n'utilisent pas la quarantaine (G-3). 
   @BuiltValueEnumConst(wireName: r'in_review')
   static const DoctorVerificationStatus inReview = _$inReview;
-  /// Statut du dossier médecin. `approved` implique `Doctor.verified=true` (shell vérifié / offre patient). `approved_pending_activation` : credentials acceptés, activation marché TN différée (`verified=false`) jusqu'au flag `TN_SPECIALIST_ACTIVATION`. Voir addendum-1.1.1.md. 
+  /// Statut du dossier médecin. `approved` implique `Doctor.verified=true` (shell vérifié / offre patient). `approved_pending_activation` : credentials acceptés, activation marché TN différée (`verified=false`) jusqu'au flag `TN_SPECIALIST_ACTIVATION`. Voir addendum-1.1.1.md. Les dossiers UE n'utilisent pas la quarantaine (G-3). 
   @BuiltValueEnumConst(wireName: r'approved')
   static const DoctorVerificationStatus approved = _$approved;
-  /// Statut du dossier médecin. `approved` implique `Doctor.verified=true` (shell vérifié / offre patient). `approved_pending_activation` : credentials acceptés, activation marché TN différée (`verified=false`) jusqu'au flag `TN_SPECIALIST_ACTIVATION`. Voir addendum-1.1.1.md. 
+  /// Statut du dossier médecin. `approved` implique `Doctor.verified=true` (shell vérifié / offre patient). `approved_pending_activation` : credentials acceptés, activation marché TN différée (`verified=false`) jusqu'au flag `TN_SPECIALIST_ACTIVATION`. Voir addendum-1.1.1.md. Les dossiers UE n'utilisent pas la quarantaine (G-3). 
   @BuiltValueEnumConst(wireName: r'approved_pending_activation')
   static const DoctorVerificationStatus approvedPendingActivation = _$approvedPendingActivation;
-  /// Statut du dossier médecin. `approved` implique `Doctor.verified=true` (shell vérifié / offre patient). `approved_pending_activation` : credentials acceptés, activation marché TN différée (`verified=false`) jusqu'au flag `TN_SPECIALIST_ACTIVATION`. Voir addendum-1.1.1.md. 
+  /// Statut du dossier médecin. `approved` implique `Doctor.verified=true` (shell vérifié / offre patient). `approved_pending_activation` : credentials acceptés, activation marché TN différée (`verified=false`) jusqu'au flag `TN_SPECIALIST_ACTIVATION`. Voir addendum-1.1.1.md. Les dossiers UE n'utilisent pas la quarantaine (G-3). 
   @BuiltValueEnumConst(wireName: r'rejected')
   static const DoctorVerificationStatus rejected = _$rejected;
 

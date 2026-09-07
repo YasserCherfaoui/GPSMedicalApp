@@ -247,30 +247,41 @@ class AuthStrings {
   String consentLegalVersion(String version) =>
       _localizations.consentLegalVersion(version);
 
-  String countryName(RegistrationCountry country) => switch (country) {
-    RegistrationCountry.dz => countryAlgeria,
-    RegistrationCountry.tn => countryTunisia,
-  };
+  String countryName(RegistrationCountry country) {
+    if (country == RegistrationCountry.dz) return countryAlgeria;
+    if (country == RegistrationCountry.tn) return countryTunisia;
+    return country.nameFr;
+  }
 
-  String phoneFormatHintFor(RegistrationCountry country) => switch (country) {
-    RegistrationCountry.dz => phoneFormatHint,
-    RegistrationCountry.tn => phoneFormatHintTn,
-  };
+  String phoneFormatHintFor(RegistrationCountry country) {
+    if (country == RegistrationCountry.dz) return phoneFormatHint;
+    if (country == RegistrationCountry.tn) return phoneFormatHintTn;
+    return phoneFormatHintEu;
+  }
 
-  String invalidPhoneFor(RegistrationCountry country) => switch (country) {
-    RegistrationCountry.dz => invalidPhone,
-    RegistrationCountry.tn => invalidPhoneTn,
-  };
+  String invalidPhoneFor(RegistrationCountry country) {
+    if (country == RegistrationCountry.dz) return invalidPhone;
+    if (country == RegistrationCountry.tn) return invalidPhoneTn;
+    return invalidPhoneEu;
+  }
 
-  String consentSubtitleFor(RegistrationCountry country) => switch (country) {
-    RegistrationCountry.dz => consentSubtitle,
-    RegistrationCountry.tn => consentSubtitleTn,
-  };
+  String consentSubtitleFor(RegistrationCountry country) {
+    if (country == RegistrationCountry.dz) return consentSubtitle;
+    if (country == RegistrationCountry.tn) return consentSubtitleTn;
+    return consentSubtitleEu;
+  }
 
-  String consentTermsFor(RegistrationCountry country) => switch (country) {
-    RegistrationCountry.dz => consentTerms,
-    RegistrationCountry.tn => consentTermsTn,
-  };
+  String consentTermsFor(RegistrationCountry country) {
+    if (country == RegistrationCountry.dz) return consentTerms;
+    if (country == RegistrationCountry.tn) return consentTermsTn;
+    return consentTermsEu;
+  }
+
+  String get consentSubtitleEu => _localizations.consentSubtitleEu;
+  String get consentTermsEu => _localizations.consentTermsEu;
+  String get invalidPhoneEu => _localizations.invalidPhoneEu;
+  String get phoneFormatHintEu => _localizations.phoneFormatHintEu;
+  String get countrySearchHint => _localizations.countrySearchHint;
 }
 
 class _AuthStringsDelegate extends LocalizationsDelegate<AuthStrings> {
