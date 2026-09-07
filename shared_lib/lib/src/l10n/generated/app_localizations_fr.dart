@@ -1639,6 +1639,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get specialistProfileFee => 'Tarif de consultation (DZD)';
 
   @override
+  String get specialistProfileFeeEur => 'Tarif de consultation (EUR)';
+
+  @override
   String get specialistProfileCnas => 'Conventionné CNAS';
 
   @override

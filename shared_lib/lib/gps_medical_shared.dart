@@ -55,6 +55,7 @@ export 'src/theme/gps_elevation.dart';
 export 'src/theme/gps_radii.dart';
 export 'src/theme/gps_spacing.dart';
 export 'src/theme/gps_theme.dart';
+export 'src/utils/money_format.dart';
 export 'src/utils/relative_time.dart';
 export 'src/validation/algerian_phone.dart';
 export 'src/validation/nin.dart';

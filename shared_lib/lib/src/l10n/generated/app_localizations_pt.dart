@@ -1622,6 +1622,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get specialistProfileFee => 'Consultation fee (DZD)';
 
   @override
+  String get specialistProfileFeeEur => 'Consultation fee (EUR)';
+
+  @override
   String get specialistProfileCnas => 'CNAS approved';
 
   @override

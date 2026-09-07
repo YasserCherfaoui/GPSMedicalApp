@@ -545,6 +545,7 @@
   "specialistProfilePhotoUrl": "رابط الصورة",
   "specialistProfileSelectSpecialty": "التخصص الرئيسي",
   "specialistProfileFee": "سعر الاستشارة (دج)",
+  "specialistProfileFeeEur": "تعرفة الاستشارة (يورو)",
   "specialistProfileCnas": "متعاقد CNAS",
   "specialistProfileCasnos": "متعاقد CASNOS",
   "specialistProfileTelehealth": "استشارة عن بُعد متاحة",

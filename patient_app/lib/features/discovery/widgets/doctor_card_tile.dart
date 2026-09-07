@@ -43,8 +43,13 @@ Widget buildDoctorCardTile({
     city:
         doc.practiceAddress?.communeName ??
         doc.practiceAddress?.wilayaName ??
+        doc.practiceAddress?.city ??
         '',
     fee: doc.consultationFeeDzd ?? 0,
+    feeLabel: formatMoneyMajor(
+      amount: doc.consultationFeeDzd ?? 0,
+      currency: catalogCurrencyForSellerCountry(doc.practiceAddress?.country),
+    ),
     photoUrl: doc.photoUrl,
     isVerified: doc.verified ?? false,
     offersTelehealth: doc.offersTelehealth ?? false,

@@ -364,7 +364,9 @@ class _SpecialistProfileEditScreenState
               _sectionHeader(l10n.specialistProfileSectionConsultation),
               GpsTextField(
                 controller: _feeController,
-                label: l10n.specialistProfileFee,
+                label: isEurSellerCountry(profile.country)
+                    ? l10n.specialistProfileFeeEur
+                    : l10n.specialistProfileFee,
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 errorText: _fieldErrors['consultation_fee_dzd'],

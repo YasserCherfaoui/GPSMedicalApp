@@ -1604,6 +1604,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get specialistProfileFee => 'سعر الاستشارة (دج)';
 
   @override
+  String get specialistProfileFeeEur => 'تعرفة الاستشارة (يورو)';
+
+  @override
   String get specialistProfileCnas => 'متعاقد CNAS';
 
   @override

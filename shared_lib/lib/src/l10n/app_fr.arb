@@ -719,6 +719,7 @@
   "specialistProfilePhotoUrl": "URL de la photo",
   "specialistProfileSelectSpecialty": "Spécialité principale",
   "specialistProfileFee": "Tarif de consultation (DZD)",
+  "specialistProfileFeeEur": "Tarif de consultation (EUR)",
   "specialistProfileCnas": "Conventionné CNAS",
   "specialistProfileCasnos": "Conventionné CASNOS",
   "specialistProfileTelehealth": "Téléconsultation disponible",

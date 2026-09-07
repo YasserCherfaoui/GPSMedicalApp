@@ -262,8 +262,11 @@ class _DoctorDetailBody extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              l10n.doctorDetailFeeValue(
-                                doc.consultationFeeDzd ?? 0,
+                              formatMoneyMajor(
+                                amount: doc.consultationFeeDzd ?? 0,
+                                currency: catalogCurrencyForSellerCountry(
+                                  doc.practiceAddress?.country,
+                                ),
                               ),
                               style: theme.textTheme.bodyLarge?.copyWith(
                                 fontWeight: FontWeight.bold,

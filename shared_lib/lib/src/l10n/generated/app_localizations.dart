@@ -3048,6 +3048,12 @@ abstract class AppLocalizations {
   /// **'Tarif de consultation (DZD)'**
   String get specialistProfileFee;
 
+  /// No description provided for @specialistProfileFeeEur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarif de consultation (EUR)'**
+  String get specialistProfileFeeEur;
+
   /// No description provided for @specialistProfileCnas.
   ///
   /// In fr, this message translates to:

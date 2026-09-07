@@ -1617,6 +1617,9 @@ class AppLocalizationsBer extends AppLocalizations {
   String get specialistProfileFee => 'Azal n uselmen (DZD)';
 
   @override
+  String get specialistProfileFeeEur => 'Consultation fee (EUR)';
+
+  @override
   String get specialistProfileCnas => 'Ameɣnas CNAS';
 
   @override
