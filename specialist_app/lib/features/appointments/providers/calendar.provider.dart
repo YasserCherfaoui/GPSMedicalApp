@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../providers/appointments.provider.dart';
-import '../repositories/specialist_appointment_repository.dart';
 import '../utils/appointment_dates.dart';
 
 final specialistCalendarAppointmentsProvider = FutureProvider.family<

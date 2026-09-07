@@ -120,6 +120,22 @@ class PaymentsRepository {
     }
   }
 
+  /// After Stripe PaymentSheet succeeds, ask the API to pull live PI status.
+  Future<PaymentIntent> confirmStripeSheetComplete(String intentId) async {
+    try {
+      final request = ConfirmPaymentIntentRequest(
+        (b) => b..gatewayToken = 'stripe_sheet_complete',
+      );
+      await _client.payments.confirmPaymentIntent(
+        intentId: intentId,
+        confirmPaymentIntentRequest: request,
+      );
+      return getIntent(intentId);
+    } on DioException catch (e) {
+      rethrowPaymentsApiError(e);
+    }
+  }
+
   Future<PaymentIntent> pollUntilTerminal(
     String intentId, {
     Duration interval = paymentPollInterval,

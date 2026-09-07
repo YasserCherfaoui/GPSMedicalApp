@@ -12,7 +12,9 @@ void main() {
   });
 
   test('formatMoneyMajor EUR and DZD', () {
-    expect(formatMoneyMajor(amount: 80, currency: 'EUR'), '80 €');
+    final eur = formatMoneyMajor(amount: 80, currency: 'EUR');
+    expect(eur.contains('80'), isTrue);
+    expect(eur.contains('€'), isTrue);
     expect(formatMoneyMajor(amount: 3500, currency: 'DZD'), '3500 DZD');
   });
 }

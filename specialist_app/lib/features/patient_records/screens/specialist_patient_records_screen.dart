@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:intl/intl.dart';
 
-import '../../appointments/providers/appointments.provider.dart';
 import '../../../routing/specialist_routes.dart';
+import '../../appointments/providers/appointments.provider.dart';
 import '../providers/patient_records.provider.dart';
 
 String _medicalRecordTypeLabel(

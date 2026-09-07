@@ -60,10 +60,10 @@ void main() {
   });
 
   test('EUR rail helpers resolve currency purpose and minor amount', () {
-    expect(isEurSellerCountry('FR'), isTrue);
-    expect(isEurSellerCountry('DZ'), isFalse);
-    expect(isEurSellerCountry('TN'), isFalse);
-    expect(isEurSellerCountry(null), isFalse);
+    expect(isEurRailCountryCode('FR'), isTrue);
+    expect(isEurRailCountryCode('DZ'), isFalse);
+    expect(isEurRailCountryCode('TN'), isFalse);
+    expect(isEurRailCountryCode(null), isFalse);
 
     expect(
       resolvePaymentCurrency(serviceCurrency: 'EUR'),

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
-import '../../payments/utils/price_format.dart';
 import '../../payments/widgets/price_with_fx_label.dart';
 import '../providers/appointments_upcoming.provider.dart';
 import '../providers/booking_draft.provider.dart';

@@ -76,8 +76,17 @@ class _EurPaymentScreenState extends ConsumerState<EurPaymentScreen> {
         rethrow;
       }
 
-      // Webhook may still be in flight — poll as fallback.
-      final finalIntent = await repo.pollUntilTerminal(created.id);
+      // PaymentSheet closed successfully — sync from Stripe immediately so we
+      // do not depend solely on webhooks (local CLI secret mismatches, lag).
+      PaymentIntent finalIntent;
+      try {
+        finalIntent = await repo.confirmStripeSheetComplete(created.id);
+      } catch (_) {
+        finalIntent = await repo.pollUntilTerminal(created.id);
+      }
+      if (!isPaymentIntentTerminal(finalIntent.status)) {
+        finalIntent = await repo.pollUntilTerminal(created.id);
+      }
       if (!mounted) return;
 
       if (finalIntent.status == PaymentIntentStatusEnum.succeeded) {

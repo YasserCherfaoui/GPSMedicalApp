@@ -11,7 +11,6 @@ import '../../discovery/utils/specialty_display.dart';
 import '../../discovery/widgets/specialties_picker.dart';
 import '../../discovery/widgets/wilaya_commune_picker.dart';
 import '../providers/specialist_profile.provider.dart';
-import '../repositories/specialist_profile_repository.dart';
 import '../utils/doctor_language_display.dart';
 import '../utils/profile_api_error.dart';
 

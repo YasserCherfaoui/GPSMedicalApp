@@ -5,8 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
-import 'package:patient_app/features/discovery/providers/nearby_doctors.provider.dart';
 import 'package:patient_app/features/discovery/providers/doctor_search.provider.dart';
+import 'package:patient_app/features/discovery/providers/nearby_doctors.provider.dart';
 import 'package:patient_app/features/discovery/screens/nearby_doctors_map_screen.dart';
 import 'package:patient_app/features/notifications/providers/notifications_unread_count.provider.dart';
 

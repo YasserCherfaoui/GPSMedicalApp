@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../anamnesis/anamnesis_constants.dart';
 import '../../booking/providers/connectivity.provider.dart';
 import '../models/pain3d_body.dart';
 import '../models/pain3d_download_progress.dart';
@@ -16,7 +17,6 @@ import '../pain3d_constants.dart';
 import '../pain3d_host_prep.dart';
 import '../pain3d_log.dart';
 import '../pain_viewer_controller.dart';
-import '../../anamnesis/anamnesis_constants.dart';
 import '../providers/pain3d_download.provider.dart';
 import '../providers/pain_localization_flag.provider.dart';
 import '../providers/pain_selection.provider.dart';

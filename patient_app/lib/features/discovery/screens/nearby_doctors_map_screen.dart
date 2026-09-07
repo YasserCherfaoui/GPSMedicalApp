@@ -4,7 +4,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../notifications/widgets/notifications_bell_button.dart';
-import '../providers/doctor_search.provider.dart';
 import '../providers/nearby_doctors.provider.dart';
 import '../utils/geo_display.dart';
 import '../utils/map_marker_cluster.dart';

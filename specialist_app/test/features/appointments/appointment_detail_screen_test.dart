@@ -27,7 +27,7 @@ void main() {
     harness.setLargeSurface(tester);
     await tester.pumpWidget(
       harness.wrapWithRouter(
-        SpecialistAppointmentDetailScreen(appointmentId: appointmentId),
+        const SpecialistAppointmentDetailScreen(appointmentId: appointmentId),
         extraRoutes: [
           GoRoute(
             path: SpecialistRoutes.shell,

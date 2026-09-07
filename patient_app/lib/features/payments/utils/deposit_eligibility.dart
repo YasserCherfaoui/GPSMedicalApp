@@ -30,8 +30,9 @@ int? appointmentDepositAmountDzd(
 }
 
 /// Seller country uses the EUR Stripe rail (not DZ/TN). Matches backend
-/// `IsEURRailCountry`.
-bool isEurSellerCountry(String? countryCode) {
+/// `IsEURRailCountry`. Prefer [isEurSellerCountry] when you already have a
+/// [CountryCode]; this helper accepts raw ISO strings from clinic JSON.
+bool isEurRailCountryCode(String? countryCode) {
   final c = countryCode?.trim().toUpperCase() ?? '';
   if (c.isEmpty || c == 'DZ' || c == 'TN') return false;
   return true;
@@ -49,7 +50,7 @@ String resolvePaymentCurrency({
   final fromQuery = overrideCurrency?.trim().toUpperCase();
   if (fromQuery != null && fromQuery.isNotEmpty) return fromQuery;
   if (isEurCurrency(serviceCurrency)) return 'EUR';
-  if (isEurSellerCountry(clinicCountryCode)) return 'EUR';
+  if (isEurRailCountryCode(clinicCountryCode)) return 'EUR';
   return 'DZD';
 }
 

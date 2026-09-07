@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:patient_app/features/payments/utils/price_format.dart';
 
 void main() {

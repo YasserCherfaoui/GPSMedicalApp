@@ -414,7 +414,7 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
                 isLoading: _generatingBilan,
                 onPressed: _generatingBilan || _session == null
                     ? null
-                    : () => _generateBilan(context),
+                    : _generateBilan,
               ),
               const SizedBox(height: GpsSpacing.sm),
             ],
@@ -487,7 +487,7 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
     );
   }
 
-  Future<void> _generateBilan(BuildContext context) async {
+  Future<void> _generateBilan() async {
     final sessionId = _session?.id;
     if (sessionId == null) return;
     final l10n = AppLocalizations.of(context)!;
@@ -496,21 +496,18 @@ class _AnamnesisQcmScreenState extends ConsumerState<AnamnesisQcmScreen> {
       final repo = ref.read(bilanRepositoryProvider);
       final bilan = await repo.createBilan(sessionId: sessionId);
       ref.invalidate(bilanListProvider);
-      if (mounted) {
-        context.push(GpsRoutes.bilanDetail(bilan.id));
-      }
+      if (!mounted) return;
+      context.push(GpsRoutes.bilanDetail(bilan.id));
     } on BilanApiException catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.message)),
-        );
-      }
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message)),
+      );
     } catch (_) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(l10n.bilanLoadError)),
-        );
-      }
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.bilanLoadError)),
+      );
     } finally {
       if (mounted) setState(() => _generatingBilan = false);
     }

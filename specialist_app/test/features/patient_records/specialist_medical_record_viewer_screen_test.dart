@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:specialist_app/features/patient_records/screens/specialist_medical_record_viewer_screen.dart';
 

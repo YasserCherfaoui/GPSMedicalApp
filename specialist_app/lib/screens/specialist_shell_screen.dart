@@ -5,8 +5,8 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../features/appointments/providers/appointments.provider.dart';
 import '../features/appointments/screens/appointments_calendar_screen.dart';
 import '../features/appointments/screens/appointments_inbox_screen.dart';
-import '../features/profile/screens/specialist_profile_hub_screen.dart';
 import '../features/messaging/screens/specialist_messaging_threads_screen.dart';
+import '../features/profile/screens/specialist_profile_hub_screen.dart';
 import '../features/stats/screens/specialist_stats_screen.dart';
 
 class SpecialistShellScreen extends ConsumerStatefulWidget {
