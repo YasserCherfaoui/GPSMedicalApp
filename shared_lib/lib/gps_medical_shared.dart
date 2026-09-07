@@ -34,6 +34,7 @@ export 'src/l10n/app_locale.dart';
 export 'src/l10n/auth_strings.dart';
 export 'src/l10n/generated/app_localizations.dart';
 export 'src/l10n/locale.provider.dart' hide AppLocale;
+export 'src/engagement/engagement.dart';
 export 'src/messaging/messaging.dart';
 export 'src/models/app_info.dart';
 export 'src/models/app_info.provider.dart';

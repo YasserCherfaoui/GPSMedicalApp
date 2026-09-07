@@ -51,36 +51,51 @@ class _SpecialistMessagingThreadsScreenState
             ref.read(specialistMessagingThreadsListProvider.notifier).refresh(),
       ),
       data: (state) {
-        if (state.threads.isEmpty) {
-          return EmptyState(
-            title: l10n.messagingEmpty,
-            icon: Icons.chat_bubble_outline,
-          );
-        }
-        return RefreshIndicator(
-          onRefresh: () =>
-              ref.read(specialistMessagingThreadsListProvider.notifier).refresh(),
-          child: ListView.builder(
-            controller: _scrollController,
-            padding: const EdgeInsets.all(GpsSpacing.md),
-            itemCount: state.threads.length + (state.isLoadingMore ? 1 : 0),
-            itemBuilder: (context, index) {
-              if (index >= state.threads.length) {
-                return const Padding(
-                  padding: EdgeInsets.all(GpsSpacing.md),
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              }
-              final item = state.threads[index];
-              final threadId = item.thread.id;
-              if (threadId == null) return const SizedBox.shrink();
-              return SpecialistThreadRowTile(
-                item: item,
-                onTap: () =>
-                    context.push(SpecialistRoutes.messagingThread(threadId)),
-              );
-            },
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(l10n.messagingTitle),
+            actions: [
+              IconButton(
+                tooltip: l10n.engagementRequestsInboxTitle,
+                icon: const Icon(Icons.inbox_outlined),
+                onPressed: () =>
+                    context.push(SpecialistRoutes.messageRequests),
+              ),
+            ],
           ),
+          body: state.threads.isEmpty
+              ? EmptyState(
+                  title: l10n.messagingEmpty,
+                  icon: Icons.chat_bubble_outline,
+                )
+              : RefreshIndicator(
+                  onRefresh: () => ref
+                      .read(specialistMessagingThreadsListProvider.notifier)
+                      .refresh(),
+                  child: ListView.builder(
+                    controller: _scrollController,
+                    padding: const EdgeInsets.all(GpsSpacing.md),
+                    itemCount:
+                        state.threads.length + (state.isLoadingMore ? 1 : 0),
+                    itemBuilder: (context, index) {
+                      if (index >= state.threads.length) {
+                        return const Padding(
+                          padding: EdgeInsets.all(GpsSpacing.md),
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      }
+                      final item = state.threads[index];
+                      final threadId = item.thread.id;
+                      if (threadId == null) return const SizedBox.shrink();
+                      return SpecialistThreadRowTile(
+                        item: item,
+                        onTap: () => context.push(
+                          SpecialistRoutes.messagingThread(threadId),
+                        ),
+                      );
+                    },
+                  ),
+                ),
         );
       },
     );

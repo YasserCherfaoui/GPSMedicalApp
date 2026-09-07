@@ -1376,6 +1376,149 @@ class AppLocalizationsAr extends AppLocalizations {
       'يمكن للمرضى رؤية ما إذا كنت متصلاً (الملفات والمحادثات)';
 
   @override
+  String get engagementMessageRequestCta => 'إرسال طلب رسالة';
+
+  @override
+  String get engagementMessageRequestTitle => 'طلب رسالة';
+
+  @override
+  String get engagementMessageRequestHint =>
+      'صف حاجتك باختصار (رسالة نصية واحدة)';
+
+  @override
+  String get engagementMessageRequestSend => 'إرسال';
+
+  @override
+  String get engagementMessageRequestSuccess => 'تم إرسال الطلب';
+
+  @override
+  String get engagementMessageRequestError => 'تعذر إرسال الطلب';
+
+  @override
+  String get engagementMessageRequestQuota => 'لديك طلبات كثيرة قيد الانتظار';
+
+  @override
+  String get engagementAcceptRequest => 'قبول';
+
+  @override
+  String get engagementDeclineRequest => 'رفض';
+
+  @override
+  String get engagementRequestPendingBanner => 'طلب بانتظار ردك';
+
+  @override
+  String get engagementRequestsInboxTitle => 'طلبات الرسائل';
+
+  @override
+  String get engagementRequestsEmpty => 'لا توجد طلبات';
+
+  @override
+  String get engagementInstantHomeTitle => 'استشارة فورية';
+
+  @override
+  String get engagementInstantHomeSubtitle => 'أطباء متصلون لاستشارة سريعة';
+
+  @override
+  String get engagementInstantTriageTitle => 'أسئلة أولية';
+
+  @override
+  String get engagementInstantTriageContinue => 'متابعة';
+
+  @override
+  String get engagementInstantTriageBlockedTitle => 'اتصل بالطوارئ';
+
+  @override
+  String get engagementInstantTriageBlockedBody =>
+      'بناءً على إجاباتك، اتصل فوراً بخدمات الطوارئ.';
+
+  @override
+  String get engagementInstantAvailableNowTitle => 'متاحون الآن';
+
+  @override
+  String get engagementInstantEmpty => 'لا يوجد أطباء متاحون حالياً';
+
+  @override
+  String get engagementInstantRequestSent =>
+      'تم إرسال الطلب — بانتظار الرد (90 ث)';
+
+  @override
+  String get engagementInstantTimeout => 'لم يرد الطبيب. جرّب طبيباً آخر.';
+
+  @override
+  String get engagementInstantDisabled =>
+      'الاستشارة الفورية غير مفعّلة على هذا الخادم';
+
+  @override
+  String get engagementInstantToggleTitle => 'متاح الآن';
+
+  @override
+  String get engagementInstantToggleSubtitle => 'استقبال طلبات استشارة فورية';
+
+  @override
+  String get engagementInstantPriceLabel => 'الأجر (وحدات صغرى)';
+
+  @override
+  String get engagementInstantActivate => 'تفعيل';
+
+  @override
+  String get engagementInstantDeactivate => 'إيقاف';
+
+  @override
+  String get engagementInstantIncomingTitle => 'طلب استشارة فورية';
+
+  @override
+  String get engagementInstantIncomingBody =>
+      'مريض يطلب استشارة عن بُعد الآن. اقبل خلال 90 ثانية.';
+
+  @override
+  String get engagementOfferComposeTitle => 'اقتراح موعد';
+
+  @override
+  String get engagementOfferSend => 'إرسال العرض';
+
+  @override
+  String get engagementOfferPay => 'دفع';
+
+  @override
+  String get engagementOfferDecline => 'رفض العرض';
+
+  @override
+  String get engagementOfferSent => 'تم إرسال العرض';
+
+  @override
+  String get engagementOfferError => 'تعذر إرسال العرض';
+
+  @override
+  String get engagementOfferStartLabel => 'وقت البدء';
+
+  @override
+  String get engagementOfferDurationLabel => 'المدة (دقائق)';
+
+  @override
+  String get engagementOfferModeLabel => 'الوضع';
+
+  @override
+  String get engagementOfferPendingTitle => 'عرض موعد';
+
+  @override
+  String get engagementOfferPayStarted => 'بدأ الدفع';
+
+  @override
+  String get engagementOfferPayUnavailable => 'الدفع غير متاح لهذا العرض';
+
+  @override
+  String get engagementWaitlistJoin => 'الانضمام لقائمة الانتظار';
+
+  @override
+  String get engagementWaitlistJoined => 'أنت على قائمة الانتظار';
+
+  @override
+  String get engagementWaitlistError => 'تعذر الانضمام لقائمة الانتظار';
+
+  @override
+  String get engagementSpecialtyRequired => 'اختر تخصصاً';
+
+  @override
   String get notificationsTitle => 'الإشعارات';
 
   @override

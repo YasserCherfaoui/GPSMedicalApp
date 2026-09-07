@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../booking/providers/booking_draft.provider.dart';
+import '../../engagement/widgets/message_request_sheet.dart';
 import '../providers/doctor_detail.provider.dart';
 import '../repositories/doctor_repository.dart';
 import '../utils/doctor_display.dart';
@@ -77,6 +78,32 @@ class _DoctorDetailScreenState extends ConsumerState<DoctorDetailScreen> {
           onTelehealth: detail.doctor.offersTelehealth == true
               ? () => _startTelehealthBooking(detail.doctor)
               : null,
+          onMessageRequest: () {
+            final name = detail.doctor.fullName ?? '';
+            showMessageRequestSheet(
+              context,
+              ref,
+              doctorId: widget.doctorId,
+              doctorName: name,
+            );
+          },
+          onWaitlist: () async {
+            final l10n = AppLocalizations.of(context)!;
+            try {
+              await ref
+                  .read(engagementRepositoryProvider)
+                  .joinWaitlist(widget.doctorId);
+              if (!mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(l10n.engagementWaitlistJoined)),
+              );
+            } catch (_) {
+              if (!mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(l10n.engagementWaitlistError)),
+              );
+            }
+          },
           onLoadMoreReviews: () => ref
               .read(doctorDetailProvider(widget.doctorId).notifier)
               .loadMoreReviews(),
@@ -122,6 +149,8 @@ class _DoctorDetailBody extends ConsumerWidget {
     required this.onBook,
     required this.onLoadMoreReviews,
     this.onTelehealth,
+    this.onMessageRequest,
+    this.onWaitlist,
   });
 
   final DoctorDetailState detail;
@@ -130,6 +159,8 @@ class _DoctorDetailBody extends ConsumerWidget {
   final bool isRtl;
   final VoidCallback onBook;
   final VoidCallback? onTelehealth;
+  final VoidCallback? onMessageRequest;
+  final VoidCallback? onWaitlist;
   final VoidCallback onLoadMoreReviews;
 
   @override
@@ -367,30 +398,53 @@ class _DoctorDetailBody extends ConsumerWidget {
                 top: BorderSide(color: colorScheme.outlineVariant, width: 0.5),
               ),
             ),
-            child: Row(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                if (onTelehealth != null) ...[
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(GpsRadii.md),
+                Row(
+                  children: [
+                    if (onTelehealth != null) ...[
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(GpsRadii.md),
+                            ),
+                          ),
+                          onPressed: onTelehealth,
+                          icon: const Icon(Icons.videocam_outlined),
+                          label: Text(l10n.doctorDetailTelehealthCta),
                         ),
                       ),
-                      onPressed: onTelehealth,
-                      icon: const Icon(Icons.videocam_outlined),
-                      label: Text(l10n.doctorDetailTelehealthCta),
+                      const SizedBox(width: GpsSpacing.sm),
+                    ],
+                    Expanded(
+                      child: PrimaryButton(
+                        label: l10n.doctorDetailBookCta,
+                        onPressed: onBook,
+                      ),
+                    ),
+                  ],
+                ),
+                if (onMessageRequest != null) ...[
+                  const SizedBox(height: GpsSpacing.sm),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      onPressed: onMessageRequest,
+                      icon: const Icon(Icons.mail_outline),
+                      label: Text(l10n.engagementMessageRequestCta),
                     ),
                   ),
-                  const SizedBox(width: GpsSpacing.sm),
                 ],
-                Expanded(
-                  child: PrimaryButton(
-                    label: l10n.doctorDetailBookCta,
-                    onPressed: onBook,
+                if (onWaitlist != null) ...[
+                  const SizedBox(height: GpsSpacing.sm),
+                  TextButton(
+                    onPressed: onWaitlist,
+                    child: Text(l10n.engagementWaitlistJoin),
                   ),
-                ),
+                ],
               ],
             ),
           ),

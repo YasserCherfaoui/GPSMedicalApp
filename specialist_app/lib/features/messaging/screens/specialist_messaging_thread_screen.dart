@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../engagement/widgets/offer_compose_sheet.dart';
 import '../providers/specialist_messaging.provider.dart';
 import '../widgets/specialist_thread_row_tile.dart';
 
@@ -102,6 +103,27 @@ class _SpecialistMessagingThreadScreenState
           ),
           orElse: () => Text(l10n.messagingTitle),
         ),
+        actions: [
+          threadAsync.maybeWhen(
+            data: (state) {
+              final patientId = state.thread.patientId;
+              if (patientId == null || patientId.isEmpty) {
+                return const SizedBox.shrink();
+              }
+              return IconButton(
+                tooltip: l10n.engagementOfferComposeTitle,
+                icon: const Icon(Icons.event_available_outlined),
+                onPressed: () => showOfferComposeSheet(
+                  context,
+                  ref,
+                  patientId: patientId,
+                  threadId: widget.threadId,
+                ),
+              );
+            },
+            orElse: () => const SizedBox.shrink(),
+          ),
+        ],
       ),
       body: threadAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -114,6 +136,7 @@ class _SpecialistMessagingThreadScreenState
         data: (state) {
           return Column(
             children: [
+              _RequestActionsBanner(threadId: widget.threadId),
               Expanded(
                 child: ListView.builder(
                   controller: _scrollController,
@@ -157,6 +180,102 @@ class _SpecialistMessagingThreadScreenState
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+class _RequestActionsBanner extends ConsumerStatefulWidget {
+  const _RequestActionsBanner({required this.threadId});
+
+  final String threadId;
+
+  @override
+  ConsumerState<_RequestActionsBanner> createState() =>
+      _RequestActionsBannerState();
+}
+
+class _RequestActionsBannerState extends ConsumerState<_RequestActionsBanner> {
+  var _visible = false;
+  var _busy = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _check();
+  }
+
+  Future<void> _check() async {
+    try {
+      final list = await ref
+          .read(engagementRepositoryProvider)
+          .listMessagingRequests();
+      if (!mounted) return;
+      setState(
+        () => _visible = list.any((t) => t.id == widget.threadId),
+      );
+    } catch (_) {}
+  }
+
+  Future<void> _act(bool accept) async {
+    final l10n = AppLocalizations.of(context)!;
+    setState(() => _busy = true);
+    try {
+      final repo = ref.read(engagementRepositoryProvider);
+      if (accept) {
+        await repo.acceptMessagingThread(widget.threadId);
+      } else {
+        await repo.declineMessagingThread(widget.threadId);
+      }
+      if (!mounted) return;
+      setState(() => _visible = false);
+      ref.invalidate(specialistMessagingThreadProvider(widget.threadId));
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.networkError)),
+      );
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_visible) return const SizedBox.shrink();
+    final l10n = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Material(
+      color: theme.colorScheme.secondaryContainer,
+      child: Padding(
+        padding: const EdgeInsets.all(GpsSpacing.md),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              l10n.engagementRequestPendingBanner,
+              style: theme.textTheme.titleSmall,
+            ),
+            const SizedBox(height: GpsSpacing.sm),
+            Row(
+              children: [
+                Expanded(
+                  child: FilledButton(
+                    onPressed: _busy ? null : () => _act(true),
+                    child: Text(l10n.engagementAcceptRequest),
+                  ),
+                ),
+                const SizedBox(width: GpsSpacing.sm),
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: _busy ? null : () => _act(false),
+                    child: Text(l10n.engagementDeclineRequest),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

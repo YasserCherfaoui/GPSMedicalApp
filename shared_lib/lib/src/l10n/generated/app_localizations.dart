@@ -2640,6 +2640,282 @@ abstract class AppLocalizations {
   /// **'Les patients voient si vous êtes en ligne (profils et conversations)'**
   String get specialistPresenceVisibleSubtitle;
 
+  /// No description provided for @engagementMessageRequestCta.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer une demande'**
+  String get engagementMessageRequestCta;
+
+  /// No description provided for @engagementMessageRequestTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demande de message'**
+  String get engagementMessageRequestTitle;
+
+  /// No description provided for @engagementMessageRequestHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Décrivez brièvement votre besoin (1 message, texte uniquement)'**
+  String get engagementMessageRequestHint;
+
+  /// No description provided for @engagementMessageRequestSend.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer'**
+  String get engagementMessageRequestSend;
+
+  /// No description provided for @engagementMessageRequestSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demande envoyée'**
+  String get engagementMessageRequestSuccess;
+
+  /// No description provided for @engagementMessageRequestError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible d\'envoyer la demande'**
+  String get engagementMessageRequestError;
+
+  /// No description provided for @engagementMessageRequestQuota.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous avez trop de demandes en attente'**
+  String get engagementMessageRequestQuota;
+
+  /// No description provided for @engagementAcceptRequest.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accepter'**
+  String get engagementAcceptRequest;
+
+  /// No description provided for @engagementDeclineRequest.
+  ///
+  /// In fr, this message translates to:
+  /// **'Refuser'**
+  String get engagementDeclineRequest;
+
+  /// No description provided for @engagementRequestPendingBanner.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demande en attente de votre réponse'**
+  String get engagementRequestPendingBanner;
+
+  /// No description provided for @engagementRequestsInboxTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demandes de message'**
+  String get engagementRequestsInboxTitle;
+
+  /// No description provided for @engagementRequestsEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune demande'**
+  String get engagementRequestsEmpty;
+
+  /// No description provided for @engagementInstantHomeTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Téléconsultation maintenant'**
+  String get engagementInstantHomeTitle;
+
+  /// No description provided for @engagementInstantHomeSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Médecins disponibles en ligne pour une consult rapide'**
+  String get engagementInstantHomeSubtitle;
+
+  /// No description provided for @engagementInstantTriageTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Questions préalables'**
+  String get engagementInstantTriageTitle;
+
+  /// No description provided for @engagementInstantTriageContinue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer'**
+  String get engagementInstantTriageContinue;
+
+  /// No description provided for @engagementInstantTriageBlockedTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appelez le 14'**
+  String get engagementInstantTriageBlockedTitle;
+
+  /// No description provided for @engagementInstantTriageBlockedBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'D\'après vos réponses, contactez immédiatement les urgences (SAMU / 14).'**
+  String get engagementInstantTriageBlockedBody;
+
+  /// No description provided for @engagementInstantAvailableNowTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Disponibles maintenant'**
+  String get engagementInstantAvailableNowTitle;
+
+  /// No description provided for @engagementInstantEmpty.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun médecin disponible pour le moment'**
+  String get engagementInstantEmpty;
+
+  /// No description provided for @engagementInstantRequestSent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demande envoyée — en attente de réponse (90 s)'**
+  String get engagementInstantRequestSent;
+
+  /// No description provided for @engagementInstantTimeout.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le médecin n\'a pas répondu. Réessayez avec un autre.'**
+  String get engagementInstantTimeout;
+
+  /// No description provided for @engagementInstantDisabled.
+  ///
+  /// In fr, this message translates to:
+  /// **'La téléconsultation instantanée n\'est pas activée sur ce serveur'**
+  String get engagementInstantDisabled;
+
+  /// No description provided for @engagementInstantToggleTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Disponible maintenant'**
+  String get engagementInstantToggleTitle;
+
+  /// No description provided for @engagementInstantToggleSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Recevoir des demandes de téléconsultation immédiate'**
+  String get engagementInstantToggleSubtitle;
+
+  /// No description provided for @engagementInstantPriceLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarif (unité mineure)'**
+  String get engagementInstantPriceLabel;
+
+  /// No description provided for @engagementInstantActivate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Activer'**
+  String get engagementInstantActivate;
+
+  /// No description provided for @engagementInstantDeactivate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Désactiver'**
+  String get engagementInstantDeactivate;
+
+  /// No description provided for @engagementInstantIncomingTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demande de téléconsultation immédiate'**
+  String get engagementInstantIncomingTitle;
+
+  /// No description provided for @engagementInstantIncomingBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un patient souhaite une téléconsultation maintenant. Acceptez sous 90 secondes.'**
+  String get engagementInstantIncomingBody;
+
+  /// No description provided for @engagementOfferComposeTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Proposer un rendez-vous'**
+  String get engagementOfferComposeTitle;
+
+  /// No description provided for @engagementOfferSend.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer l\'offre'**
+  String get engagementOfferSend;
+
+  /// No description provided for @engagementOfferPay.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payer'**
+  String get engagementOfferPay;
+
+  /// No description provided for @engagementOfferDecline.
+  ///
+  /// In fr, this message translates to:
+  /// **'Refuser l\'offre'**
+  String get engagementOfferDecline;
+
+  /// No description provided for @engagementOfferSent.
+  ///
+  /// In fr, this message translates to:
+  /// **'Offre envoyée'**
+  String get engagementOfferSent;
+
+  /// No description provided for @engagementOfferError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible d\'envoyer l\'offre'**
+  String get engagementOfferError;
+
+  /// No description provided for @engagementOfferStartLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heure de début'**
+  String get engagementOfferStartLabel;
+
+  /// No description provided for @engagementOfferDurationLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée (minutes)'**
+  String get engagementOfferDurationLabel;
+
+  /// No description provided for @engagementOfferModeLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mode'**
+  String get engagementOfferModeLabel;
+
+  /// No description provided for @engagementOfferPendingTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Offre de rendez-vous'**
+  String get engagementOfferPendingTitle;
+
+  /// No description provided for @engagementOfferPayStarted.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement démarré'**
+  String get engagementOfferPayStarted;
+
+  /// No description provided for @engagementOfferPayUnavailable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement indisponible pour cette offre'**
+  String get engagementOfferPayUnavailable;
+
+  /// No description provided for @engagementWaitlistJoin.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoindre la liste d\'attente'**
+  String get engagementWaitlistJoin;
+
+  /// No description provided for @engagementWaitlistJoined.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous êtes sur la liste d\'attente'**
+  String get engagementWaitlistJoined;
+
+  /// No description provided for @engagementWaitlistError.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de rejoindre la liste d\'attente'**
+  String get engagementWaitlistError;
+
+  /// No description provided for @engagementSpecialtyRequired.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez une spécialité'**
+  String get engagementSpecialtyRequired;
+
   /// No description provided for @notificationsTitle.
   ///
   /// In fr, this message translates to:

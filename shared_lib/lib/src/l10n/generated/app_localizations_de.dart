@@ -1386,6 +1386,153 @@ class AppLocalizationsDe extends AppLocalizations {
       'Patients can see when you are online (profiles and conversations)';
 
   @override
+  String get engagementMessageRequestCta => 'Send a message request';
+
+  @override
+  String get engagementMessageRequestTitle => 'Message request';
+
+  @override
+  String get engagementMessageRequestHint =>
+      'Briefly describe your need (1 text-only message)';
+
+  @override
+  String get engagementMessageRequestSend => 'Send';
+
+  @override
+  String get engagementMessageRequestSuccess => 'Request sent';
+
+  @override
+  String get engagementMessageRequestError => 'Could not send the request';
+
+  @override
+  String get engagementMessageRequestQuota => 'You have too many open requests';
+
+  @override
+  String get engagementAcceptRequest => 'Accept';
+
+  @override
+  String get engagementDeclineRequest => 'Decline';
+
+  @override
+  String get engagementRequestPendingBanner => 'Request awaiting your response';
+
+  @override
+  String get engagementRequestsInboxTitle => 'Message requests';
+
+  @override
+  String get engagementRequestsEmpty => 'No requests';
+
+  @override
+  String get engagementInstantHomeTitle => 'Telehealth now';
+
+  @override
+  String get engagementInstantHomeSubtitle =>
+      'Doctors available online for a quick consult';
+
+  @override
+  String get engagementInstantTriageTitle => 'Pre-screening questions';
+
+  @override
+  String get engagementInstantTriageContinue => 'Continue';
+
+  @override
+  String get engagementInstantTriageBlockedTitle => 'Call emergency services';
+
+  @override
+  String get engagementInstantTriageBlockedBody =>
+      'Based on your answers, contact emergency services immediately.';
+
+  @override
+  String get engagementInstantAvailableNowTitle => 'Available now';
+
+  @override
+  String get engagementInstantEmpty => 'No doctors available right now';
+
+  @override
+  String get engagementInstantRequestSent =>
+      'Request sent — waiting for a reply (90 s)';
+
+  @override
+  String get engagementInstantTimeout =>
+      'The doctor did not respond. Try another.';
+
+  @override
+  String get engagementInstantDisabled =>
+      'Instant telehealth is not enabled on this server';
+
+  @override
+  String get engagementInstantToggleTitle => 'Available now';
+
+  @override
+  String get engagementInstantToggleSubtitle =>
+      'Receive immediate telehealth requests';
+
+  @override
+  String get engagementInstantPriceLabel => 'Fee (minor units)';
+
+  @override
+  String get engagementInstantActivate => 'Turn on';
+
+  @override
+  String get engagementInstantDeactivate => 'Turn off';
+
+  @override
+  String get engagementInstantIncomingTitle => 'Instant consult request';
+
+  @override
+  String get engagementInstantIncomingBody =>
+      'A patient wants a telehealth consult now. Accept within 90 seconds.';
+
+  @override
+  String get engagementOfferComposeTitle => 'Offer an appointment';
+
+  @override
+  String get engagementOfferSend => 'Send offer';
+
+  @override
+  String get engagementOfferPay => 'Pay';
+
+  @override
+  String get engagementOfferDecline => 'Decline offer';
+
+  @override
+  String get engagementOfferSent => 'Offer sent';
+
+  @override
+  String get engagementOfferError => 'Could not send the offer';
+
+  @override
+  String get engagementOfferStartLabel => 'Start time';
+
+  @override
+  String get engagementOfferDurationLabel => 'Duration (minutes)';
+
+  @override
+  String get engagementOfferModeLabel => 'Mode';
+
+  @override
+  String get engagementOfferPendingTitle => 'Appointment offer';
+
+  @override
+  String get engagementOfferPayStarted => 'Payment started';
+
+  @override
+  String get engagementOfferPayUnavailable =>
+      'Payment is unavailable for this offer';
+
+  @override
+  String get engagementWaitlistJoin => 'Join waitlist';
+
+  @override
+  String get engagementWaitlistJoined => 'You are on the waitlist';
+
+  @override
+  String get engagementWaitlistError => 'Could not join the waitlist';
+
+  @override
+  String get engagementSpecialtyRequired => 'Choose a specialty';
+
+  @override
   String get notificationsTitle => 'Benachrichtigungen';
 
   @override

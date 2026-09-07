@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../../routing/specialist_routes.dart';
+import '../../engagement/widgets/instant_availability_tile.dart';
 import '../providers/specialist_presence_settings.provider.dart';
 import '../providers/specialist_profile.provider.dart';
 
@@ -94,6 +95,8 @@ class SpecialistProfileHubScreen extends ConsumerWidget {
                       },
               ),
             ),
+            const SizedBox(height: GpsSpacing.lg),
+            const InstantAvailabilityTile(),
             const SizedBox(height: GpsSpacing.lg),
             PrimaryButton(
               label: l10n.specialistProfileEditTitle,

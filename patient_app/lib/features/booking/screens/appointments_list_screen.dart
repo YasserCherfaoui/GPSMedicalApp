@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../engagement/widgets/patient_offers_banner.dart';
 import '../../notifications/widgets/notifications_bell_button.dart';
 import '../providers/appointments_history.provider.dart';
 import '../providers/appointments_upcoming.provider.dart';
@@ -73,33 +74,41 @@ class _UpcomingTab extends ConsumerWidget {
 
     return async.when(
       data: (state) {
+        Widget body;
         if (state.appointments.isEmpty) {
-          return EmptyState(
+          body = EmptyState(
             title: l10n.appointmentsEmptyUpcoming,
             icon: Icons.event_available_outlined,
             actionLabel: l10n.appointmentsEmptyUpcomingCta,
             onAction: () => context.push(GpsRoutes.search),
           );
+        } else {
+          body = RefreshIndicator(
+            onRefresh: () =>
+                ref.read(appointmentsUpcomingProvider.notifier).refresh(),
+            child: ListView.builder(
+              padding: const EdgeInsets.all(GpsSpacing.md),
+              itemCount: state.appointments.length,
+              itemBuilder: (context, index) {
+                final appointment = state.appointments[index];
+                return _AppointmentRow(
+                  appointment: appointment,
+                  onTap: () {
+                    final id = appointment.id;
+                    if (id != null) {
+                      context.push(GpsRoutes.appointmentDetail(id));
+                    }
+                  },
+                );
+              },
+            ),
+          );
         }
-        return RefreshIndicator(
-          onRefresh: () =>
-              ref.read(appointmentsUpcomingProvider.notifier).refresh(),
-          child: ListView.builder(
-            padding: const EdgeInsets.all(GpsSpacing.md),
-            itemCount: state.appointments.length,
-            itemBuilder: (context, index) {
-              final appointment = state.appointments[index];
-              return _AppointmentRow(
-                appointment: appointment,
-                onTap: () {
-                  final id = appointment.id;
-                  if (id != null) {
-                    context.push(GpsRoutes.appointmentDetail(id));
-                  }
-                },
-              );
-            },
-          ),
+        return Column(
+          children: [
+            const PatientOffersBanner(),
+            Expanded(child: body),
+          ],
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),

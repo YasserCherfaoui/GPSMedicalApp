@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../booking/widgets/offline_banner.dart';
+import '../../engagement/screens/instant_consult_flow_screen.dart';
 import '../../notifications/widgets/notifications_bell_button.dart';
 import '../../pain_localization/providers/pain_localization_flag.provider.dart';
 import '../../pain_localization/widgets/pain_localization_home_card.dart';
@@ -119,6 +120,8 @@ class DoctorListScreen extends ConsumerWidget {
                             const SizedBox(height: GpsSpacing.md),
                             const PainLocalizationHomeCard(),
                           ],
+                          const SizedBox(height: GpsSpacing.md),
+                          const InstantConsultHomeCard(),
                           const SizedBox(height: GpsSpacing.md),
                           Container(
                             padding: const EdgeInsets.all(4),

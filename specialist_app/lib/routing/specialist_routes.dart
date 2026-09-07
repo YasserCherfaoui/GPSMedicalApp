@@ -26,6 +26,7 @@ abstract final class SpecialistRoutes {
       '/specialist/appointments/$appointmentId/prescription';
   static String messagingThread(String threadId) =>
       '/specialist/messages/$threadId';
+  static const messageRequests = '/specialist/message-requests';
   static String teleconsultation(String appointmentId) =>
       '/specialist/appointments/$appointmentId/teleconsultation';
   static String medicalRecordViewer(String documentId, {String? title}) {

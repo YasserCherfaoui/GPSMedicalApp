@@ -94,6 +94,7 @@ abstract final class GpsRoutes {
       '$painLocalization?model=$model';
   static const anamnesisQcm = '/anamnesis/qcm';
   static const anamnesisDocuments = '/anamnesis/documents';
+  static const instantConsult = '/instant-consult';
   static const bilans = '/bilans';
   static String bilanDetail(String id) => '/bilans/$id';
   static String bilanTransmit(String id) => '/bilans/$id/transmit';

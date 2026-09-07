@@ -6,6 +6,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../features/appointments/screens/appointment_detail_screen.dart';
 import '../features/appointments/screens/specialist_reschedule_screen.dart';
 import '../features/credentials/screens/credentials_submission_screen.dart';
+import '../features/engagement/screens/specialist_message_requests_screen.dart';
 import '../features/incoming_bilans/screens/incoming_bilan_detail_screen.dart';
 import '../features/messaging/screens/specialist_messaging_thread_screen.dart';
 import '../features/notifications/screens/specialist_notifications_list_screen.dart';
@@ -194,6 +195,10 @@ GoRouter createSpecialistRouter({
       GoRoute(
         path: SpecialistRoutes.stripeConnect,
         builder: (context, state) => const StripeConnectScreen(),
+      ),
+      GoRoute(
+        path: SpecialistRoutes.messageRequests,
+        builder: (context, state) => const SpecialistMessageRequestsScreen(),
       ),
       GoRoute(
         path: '/specialist/incoming-bilans/:transmissionId',

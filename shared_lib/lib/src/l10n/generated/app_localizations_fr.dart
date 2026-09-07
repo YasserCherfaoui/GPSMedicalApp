@@ -1401,6 +1401,159 @@ class AppLocalizationsFr extends AppLocalizations {
       'Les patients voient si vous êtes en ligne (profils et conversations)';
 
   @override
+  String get engagementMessageRequestCta => 'Envoyer une demande';
+
+  @override
+  String get engagementMessageRequestTitle => 'Demande de message';
+
+  @override
+  String get engagementMessageRequestHint =>
+      'Décrivez brièvement votre besoin (1 message, texte uniquement)';
+
+  @override
+  String get engagementMessageRequestSend => 'Envoyer';
+
+  @override
+  String get engagementMessageRequestSuccess => 'Demande envoyée';
+
+  @override
+  String get engagementMessageRequestError =>
+      'Impossible d\'envoyer la demande';
+
+  @override
+  String get engagementMessageRequestQuota =>
+      'Vous avez trop de demandes en attente';
+
+  @override
+  String get engagementAcceptRequest => 'Accepter';
+
+  @override
+  String get engagementDeclineRequest => 'Refuser';
+
+  @override
+  String get engagementRequestPendingBanner =>
+      'Demande en attente de votre réponse';
+
+  @override
+  String get engagementRequestsInboxTitle => 'Demandes de message';
+
+  @override
+  String get engagementRequestsEmpty => 'Aucune demande';
+
+  @override
+  String get engagementInstantHomeTitle => 'Téléconsultation maintenant';
+
+  @override
+  String get engagementInstantHomeSubtitle =>
+      'Médecins disponibles en ligne pour une consult rapide';
+
+  @override
+  String get engagementInstantTriageTitle => 'Questions préalables';
+
+  @override
+  String get engagementInstantTriageContinue => 'Continuer';
+
+  @override
+  String get engagementInstantTriageBlockedTitle => 'Appelez le 14';
+
+  @override
+  String get engagementInstantTriageBlockedBody =>
+      'D\'après vos réponses, contactez immédiatement les urgences (SAMU / 14).';
+
+  @override
+  String get engagementInstantAvailableNowTitle => 'Disponibles maintenant';
+
+  @override
+  String get engagementInstantEmpty =>
+      'Aucun médecin disponible pour le moment';
+
+  @override
+  String get engagementInstantRequestSent =>
+      'Demande envoyée — en attente de réponse (90 s)';
+
+  @override
+  String get engagementInstantTimeout =>
+      'Le médecin n\'a pas répondu. Réessayez avec un autre.';
+
+  @override
+  String get engagementInstantDisabled =>
+      'La téléconsultation instantanée n\'est pas activée sur ce serveur';
+
+  @override
+  String get engagementInstantToggleTitle => 'Disponible maintenant';
+
+  @override
+  String get engagementInstantToggleSubtitle =>
+      'Recevoir des demandes de téléconsultation immédiate';
+
+  @override
+  String get engagementInstantPriceLabel => 'Tarif (unité mineure)';
+
+  @override
+  String get engagementInstantActivate => 'Activer';
+
+  @override
+  String get engagementInstantDeactivate => 'Désactiver';
+
+  @override
+  String get engagementInstantIncomingTitle =>
+      'Demande de téléconsultation immédiate';
+
+  @override
+  String get engagementInstantIncomingBody =>
+      'Un patient souhaite une téléconsultation maintenant. Acceptez sous 90 secondes.';
+
+  @override
+  String get engagementOfferComposeTitle => 'Proposer un rendez-vous';
+
+  @override
+  String get engagementOfferSend => 'Envoyer l\'offre';
+
+  @override
+  String get engagementOfferPay => 'Payer';
+
+  @override
+  String get engagementOfferDecline => 'Refuser l\'offre';
+
+  @override
+  String get engagementOfferSent => 'Offre envoyée';
+
+  @override
+  String get engagementOfferError => 'Impossible d\'envoyer l\'offre';
+
+  @override
+  String get engagementOfferStartLabel => 'Heure de début';
+
+  @override
+  String get engagementOfferDurationLabel => 'Durée (minutes)';
+
+  @override
+  String get engagementOfferModeLabel => 'Mode';
+
+  @override
+  String get engagementOfferPendingTitle => 'Offre de rendez-vous';
+
+  @override
+  String get engagementOfferPayStarted => 'Paiement démarré';
+
+  @override
+  String get engagementOfferPayUnavailable =>
+      'Paiement indisponible pour cette offre';
+
+  @override
+  String get engagementWaitlistJoin => 'Rejoindre la liste d\'attente';
+
+  @override
+  String get engagementWaitlistJoined => 'Vous êtes sur la liste d\'attente';
+
+  @override
+  String get engagementWaitlistError =>
+      'Impossible de rejoindre la liste d\'attente';
+
+  @override
+  String get engagementSpecialtyRequired => 'Choisissez une spécialité';
+
+  @override
   String get notificationsTitle => 'Notifications';
 
   @override

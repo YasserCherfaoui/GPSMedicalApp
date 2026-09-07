@@ -20,6 +20,7 @@ import '../features/discovery/screens/doctor_detail_screen.dart';
 import '../features/discovery/screens/doctor_list_screen.dart';
 import '../features/discovery/screens/doctor_search_screen.dart';
 import '../features/discovery/screens/nearby_doctors_map_screen.dart';
+import '../features/engagement/screens/instant_consult_flow_screen.dart';
 import '../features/medical_records/models/medical_record_upload_draft.dart';
 import '../features/medical_records/screens/medical_record_upload_screen.dart';
 import '../features/medical_records/screens/medical_record_viewer_screen.dart';
@@ -418,6 +419,10 @@ GoRouter createPatientRouter({
             modelQuery: state.uri.queryParameters['model'],
           );
         },
+      ),
+      GoRoute(
+        path: GpsRoutes.instantConsult,
+        builder: (context, state) => const InstantConsultFlowScreen(),
       ),
       GoRoute(
         path: GpsRoutes.anamnesisQcm,
