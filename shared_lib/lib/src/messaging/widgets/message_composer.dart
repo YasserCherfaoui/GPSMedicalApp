@@ -8,6 +8,7 @@ class MessageComposer extends StatelessWidget {
     required this.onAttach,
     required this.onSend,
     required this.onRemoveAttachment,
+    this.onChanged,
     this.enabled = true,
     super.key,
   });
@@ -19,6 +20,7 @@ class MessageComposer extends StatelessWidget {
   final VoidCallback onAttach;
   final VoidCallback onSend;
   final ValueChanged<String> onRemoveAttachment;
+  final ValueChanged<String>? onChanged;
   final bool enabled;
 
   @override
@@ -74,6 +76,7 @@ class MessageComposer extends StatelessWidget {
                       minLines: 1,
                       maxLines: 5,
                       textInputAction: TextInputAction.newline,
+                      onChanged: onChanged,
                       decoration: InputDecoration(
                         hintText: l10n.messagingComposerHint,
                         counterText: '',

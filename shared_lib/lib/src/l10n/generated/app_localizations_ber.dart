@@ -1369,6 +1369,22 @@ class AppLocalizationsBer extends AppLocalizations {
   String get messagingLoadMessagesError => 'Ur izmir ara ad yali iznan';
 
   @override
+  String get messagingTyping => 'yettaru…';
+
+  @override
+  String get presenceOnline => 'Yeqqen';
+
+  @override
+  String get presenceOffline => 'Ur yeqqin ara';
+
+  @override
+  String get specialistPresenceVisibleTitle => 'Sken-d tiliɣt-iw';
+
+  @override
+  String get specialistPresenceVisibleSubtitle =>
+      'Imuḍanen zemren ad walin ma yella-d online (imaɣunen d idiwenniyen)';
+
+  @override
   String get notificationsTitle => 'Ilɣa';
 
   @override

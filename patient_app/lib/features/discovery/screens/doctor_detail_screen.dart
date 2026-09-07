@@ -113,7 +113,7 @@ class _DoctorDetailScreenState extends ConsumerState<DoctorDetailScreen> {
   }
 }
 
-class _DoctorDetailBody extends StatelessWidget {
+class _DoctorDetailBody extends ConsumerWidget {
   const _DoctorDetailBody({
     required this.detail,
     required this.doctorId,
@@ -133,7 +133,7 @@ class _DoctorDetailBody extends StatelessWidget {
   final VoidCallback onLoadMoreReviews;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = AppLocalizations.of(context)!;
@@ -141,6 +141,7 @@ class _DoctorDetailBody extends StatelessWidget {
     final specialtyLabels = doctorSpecialtyLabels(doc, languageCode);
     final languages = formatDoctorLanguages(doc.languages, l10n);
     final address = formatPracticeAddress(doc.practiceAddress);
+    final presence = ref.watch(userPresenceProvider(doc.id ?? doctorId));
 
     final photoBlock = Stack(
       clipBehavior: Clip.none,
@@ -159,6 +160,11 @@ class _DoctorDetailBody extends StatelessWidget {
               child: Icon(Icons.verified, color: colorScheme.primary, size: 18),
             ),
           ),
+        PositionedDirectional(
+          bottom: 2,
+          start: 2,
+          child: PresenceDot(presence: presence, size: 14),
+        ),
       ],
     );
 

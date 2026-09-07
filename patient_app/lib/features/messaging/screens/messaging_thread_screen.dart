@@ -42,6 +42,11 @@ class _MessagingThreadScreenState extends ConsumerState<MessagingThreadScreen> {
     }
   }
 
+  void _onComposerChanged(String value) {
+    if (value.trim().isEmpty) return;
+    ref.read(messagingWebSocketClientProvider)?.sendTyping(widget.threadId);
+  }
+
   Future<void> _sendMessage() async {
     final body = _composerController.text;
     final attachments = List<String>.from(_selectedAttachments);
@@ -90,11 +95,23 @@ class _MessagingThreadScreenState extends ConsumerState<MessagingThreadScreen> {
     final threadAsync = ref.watch(messagingThreadProvider(widget.threadId));
     final profileAsync = ref.watch(patientProfileProvider);
     final currentUserId = profileAsync.valueOrNull?.id ?? '';
+    final typing = ref.watch(threadTypingProvider(widget.threadId));
+    final peerTyping =
+        typing != null &&
+        typing.isActive &&
+        typing.userId.isNotEmpty &&
+        typing.userId != currentUserId;
+    final peerId = threadAsync.valueOrNull?.doctor.id ??
+        threadAsync.valueOrNull?.thread.doctorId;
+    final peerPresence = ref.watch(userPresenceProvider(peerId));
 
     return Scaffold(
       appBar: AppBar(
         title: threadAsync.maybeWhen(
-          data: (state) => Text(doctorDisplayName(state.doctor)),
+          data: (state) => PresenceTitle(
+            label: doctorDisplayName(state.doctor),
+            presence: peerPresence,
+          ),
           orElse: () => Text(l10n.messagingTitle),
         ),
         actions: [
@@ -165,11 +182,13 @@ class _MessagingThreadScreenState extends ConsumerState<MessagingThreadScreen> {
                         ),
                 ),
               ),
+              TypingIndicator(visible: peerTyping),
               MessageComposer(
                 controller: _composerController,
                 selectedAttachmentIds: _selectedAttachments,
                 onAttach: _pickAttachments,
                 onSend: _sendMessage,
+                onChanged: _onComposerChanged,
                 onRemoveAttachment: (id) {
                   setState(() => _selectedAttachments.remove(id));
                 },

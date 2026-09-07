@@ -1370,6 +1370,22 @@ class AppLocalizationsIt extends AppLocalizations {
   String get messagingLoadMessagesError => 'Unable to load messages';
 
   @override
+  String get messagingTyping => 'typing…';
+
+  @override
+  String get presenceOnline => 'Online';
+
+  @override
+  String get presenceOffline => 'Offline';
+
+  @override
+  String get specialistPresenceVisibleTitle => 'Show my presence';
+
+  @override
+  String get specialistPresenceVisibleSubtitle =>
+      'Patients can see when you are online (profiles and conversations)';
+
+  @override
   String get notificationsTitle => 'Notifiche';
 
   @override

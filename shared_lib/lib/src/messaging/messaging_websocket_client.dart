@@ -67,16 +67,22 @@ class MessagingWebSocketClient {
   MessagingWebSocketClient({
     required this.v1BaseUrl,
     required this.accessToken,
+    this.heartbeatInterval = const Duration(seconds: 30),
+    this.typingThrottle = const Duration(seconds: 3),
   });
 
   final String v1BaseUrl;
   final String accessToken;
+  final Duration heartbeatInterval;
+  final Duration typingThrottle;
 
   final _eventsController =
       StreamController<MessagingRealtimeEvent>.broadcast();
   WebSocketChannel? _channel;
   StreamSubscription<dynamic>? _subscription;
   Timer? _reconnectTimer;
+  Timer? _heartbeatTimer;
+  DateTime? _lastTypingSentAt;
   bool _disposed = false;
   int _attempt = 0;
 
@@ -106,6 +112,7 @@ class MessagingWebSocketClient {
         cancelOnError: true,
       );
       _attempt = 0;
+      _startHeartbeat();
     } catch (e, stackTrace) {
       if (kDebugMode) {
         debugPrint(
@@ -114,6 +121,46 @@ class MessagingWebSocketClient {
       }
       _scheduleReconnect();
     }
+  }
+
+  /// Sends a client→server JSON frame on the open socket (no-op if disconnected).
+  void sendClientFrame(Map<String, dynamic> frame) {
+    final channel = _channel;
+    if (channel == null || _disposed) return;
+    try {
+      channel.sink.add(jsonEncode(frame));
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('Messaging WS send failed: $e');
+      }
+    }
+  }
+
+  void sendPresenceHeartbeat() {
+    sendClientFrame(const {'type': 'presence.heartbeat'});
+  }
+
+  /// Emits `thread.typing`, throttled to at most once per [typingThrottle].
+  void sendTyping(String threadId) {
+    if (threadId.isEmpty) return;
+    final now = DateTime.now();
+    final last = _lastTypingSentAt;
+    if (last != null && now.difference(last) < typingThrottle) return;
+    _lastTypingSentAt = now;
+    sendClientFrame({'type': 'thread.typing', 'thread_id': threadId});
+  }
+
+  void _startHeartbeat() {
+    _heartbeatTimer?.cancel();
+    sendPresenceHeartbeat();
+    _heartbeatTimer = Timer.periodic(heartbeatInterval, (_) {
+      sendPresenceHeartbeat();
+    });
+  }
+
+  void _stopHeartbeat() {
+    _heartbeatTimer?.cancel();
+    _heartbeatTimer = null;
   }
 
   void _onConnectionLost([Object? error, StackTrace? stackTrace]) {
@@ -146,6 +193,7 @@ class MessagingWebSocketClient {
   }
 
   Future<void> _disconnectChannel() async {
+    _stopHeartbeat();
     await _subscription?.cancel();
     _subscription = null;
     try {

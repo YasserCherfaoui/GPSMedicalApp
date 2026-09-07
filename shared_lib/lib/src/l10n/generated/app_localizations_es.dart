@@ -1380,6 +1380,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get messagingLoadMessagesError => 'No se pueden cargar los mensajes';
 
   @override
+  String get messagingTyping => 'escribiendo…';
+
+  @override
+  String get presenceOnline => 'En línea';
+
+  @override
+  String get presenceOffline => 'Desconectado';
+
+  @override
+  String get specialistPresenceVisibleTitle => 'Mostrar mi presencia';
+
+  @override
+  String get specialistPresenceVisibleSubtitle =>
+      'Los pacientes pueden ver si estás en línea (perfiles y conversaciones)';
+
+  @override
   String get notificationsTitle => 'Notificaciones';
 
   @override

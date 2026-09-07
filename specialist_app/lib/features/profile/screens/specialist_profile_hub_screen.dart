@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../../routing/specialist_routes.dart';
+import '../providers/specialist_presence_settings.provider.dart';
 import '../providers/specialist_profile.provider.dart';
 
 /// Profile tab hub — entry to the profile editor (S-03/S-04).
@@ -15,6 +16,7 @@ class SpecialistProfileHubScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final theme = Theme.of(context);
     final profileAsync = ref.watch(specialistProfileProvider);
+    final presenceAsync = ref.watch(specialistPresenceSettingsProvider);
 
     return profileAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -38,6 +40,8 @@ class SpecialistProfileHubScreen extends ConsumerWidget {
             ? l10n.doctorTitleDefault
             : title;
         final displayName = '$prefix ${profile.fullName ?? ''}'.trim();
+        final presenceVisible =
+            presenceAsync.valueOrNull?.presenceVisible ?? true;
 
         return ListView(
           padding: const EdgeInsets.all(GpsSpacing.lg),
@@ -67,6 +71,30 @@ class SpecialistProfileHubScreen extends ConsumerWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: GpsSpacing.xl),
+            Material(
+              type: MaterialType.transparency,
+              child: SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(l10n.specialistPresenceVisibleTitle),
+                subtitle: Text(l10n.specialistPresenceVisibleSubtitle),
+                value: presenceVisible,
+                onChanged: presenceAsync.isLoading
+                    ? null
+                    : (value) async {
+                        try {
+                          await ref
+                              .read(specialistPresenceSettingsProvider.notifier)
+                              .setPresenceVisible(value);
+                        } catch (_) {
+                          if (!context.mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(l10n.networkError)),
+                          );
+                        }
+                      },
+              ),
+            ),
+            const SizedBox(height: GpsSpacing.lg),
             PrimaryButton(
               label: l10n.specialistProfileEditTitle,
               onPressed: () => context.push(SpecialistRoutes.profileEdit),

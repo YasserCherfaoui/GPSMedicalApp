@@ -20,11 +20,23 @@ class _SpecialistMessagingThreadScreenState
   final _scrollController = ScrollController();
   final _composerController = TextEditingController();
   final _selectedAttachments = <String>[];
+  String _currentUserId = '';
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
+    _loadCurrentUserId();
+  }
+
+  Future<void> _loadCurrentUserId() async {
+    try {
+      final response = await ref.read(gpsMedicalClientProvider).auth.getMe();
+      if (!mounted) return;
+      setState(() => _currentUserId = response.data?.id ?? '');
+    } catch (_) {
+      // Presence/typing filters degrade gracefully without user id.
+    }
   }
 
   @override
@@ -42,6 +54,11 @@ class _SpecialistMessagingThreadScreenState
           .read(specialistMessagingThreadProvider(widget.threadId).notifier)
           .loadOlder();
     }
+  }
+
+  void _onComposerChanged(String value) {
+    if (value.trim().isEmpty) return;
+    ref.read(messagingWebSocketClientProvider)?.sendTyping(widget.threadId);
   }
 
   Future<void> _sendMessage() async {
@@ -67,12 +84,21 @@ class _SpecialistMessagingThreadScreenState
     final threadAsync = ref.watch(
       specialistMessagingThreadProvider(widget.threadId),
     );
+    final typing = ref.watch(threadTypingProvider(widget.threadId));
+    final peerTyping =
+        typing != null &&
+        typing.isActive &&
+        typing.userId.isNotEmpty &&
+        (_currentUserId.isEmpty || typing.userId != _currentUserId);
+    final peerId = threadAsync.valueOrNull?.thread.patientId;
+    final peerPresence = ref.watch(userPresenceProvider(peerId));
 
     return Scaffold(
       appBar: AppBar(
         title: threadAsync.maybeWhen(
-          data: (state) => Text(
-            patientThreadDisplayLabel(l10n, state.thread),
+          data: (state) => PresenceTitle(
+            label: patientThreadDisplayLabel(l10n, state.thread),
+            presence: peerPresence,
           ),
           orElse: () => Text(l10n.messagingTitle),
         ),
@@ -86,52 +112,42 @@ class _SpecialistMessagingThreadScreenState
           ),
         ),
         data: (state) {
-          final currentUserIdFuture = ref
-              .read(gpsMedicalClientProvider)
-              .auth
-              .getMe()
-              .then((r) => r.data?.id ?? '');
           return Column(
             children: [
               Expanded(
-                child: FutureBuilder<String>(
-                  future: currentUserIdFuture,
-                  builder: (context, snapshot) {
-                    final currentUserId = snapshot.data ?? '';
-                    return ListView.builder(
-                      controller: _scrollController,
-                      reverse: true,
-                      padding: const EdgeInsets.all(GpsSpacing.md),
-                      itemCount: state.messages.length +
-                          (state.isLoadingOlder ? 1 : 0),
-                      itemBuilder: (context, index) {
-                        if (index >= state.messages.length) {
-                          return const Padding(
-                            padding: EdgeInsets.all(GpsSpacing.md),
-                            child: Center(
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            ),
-                          );
-                        }
-                        final reversedIndex =
-                            state.messages.length - 1 - index;
-                        final message = state.messages[reversedIndex];
-                        final isMine = currentUserId.isNotEmpty &&
-                            message.senderId == currentUserId;
-                        return MessageBubble(
-                          message: message,
-                          isMine: isMine,
-                          currentUserId: currentUserId,
-                        );
-                      },
+                child: ListView.builder(
+                  controller: _scrollController,
+                  reverse: true,
+                  padding: const EdgeInsets.all(GpsSpacing.md),
+                  itemCount:
+                      state.messages.length + (state.isLoadingOlder ? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (index >= state.messages.length) {
+                      return const Padding(
+                        padding: EdgeInsets.all(GpsSpacing.md),
+                        child: Center(
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        ),
+                      );
+                    }
+                    final reversedIndex = state.messages.length - 1 - index;
+                    final message = state.messages[reversedIndex];
+                    final isMine = _currentUserId.isNotEmpty &&
+                        message.senderId == _currentUserId;
+                    return MessageBubble(
+                      message: message,
+                      isMine: isMine,
+                      currentUserId: _currentUserId,
                     );
                   },
                 ),
               ),
+              TypingIndicator(visible: peerTyping),
               MessageComposer(
                 controller: _composerController,
                 selectedAttachmentIds: _selectedAttachments,
                 onAttach: () {},
+                onChanged: _onComposerChanged,
                 onRemoveAttachment: (id) {
                   setState(() => _selectedAttachments.remove(id));
                 },

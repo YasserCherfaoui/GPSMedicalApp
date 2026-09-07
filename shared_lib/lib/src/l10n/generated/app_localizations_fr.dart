@@ -1385,6 +1385,22 @@ class AppLocalizationsFr extends AppLocalizations {
   String get messagingLoadMessagesError => 'Impossible de charger les messages';
 
   @override
+  String get messagingTyping => 'écrit…';
+
+  @override
+  String get presenceOnline => 'En ligne';
+
+  @override
+  String get presenceOffline => 'Hors ligne';
+
+  @override
+  String get specialistPresenceVisibleTitle => 'Afficher ma présence';
+
+  @override
+  String get specialistPresenceVisibleSubtitle =>
+      'Les patients voient si vous êtes en ligne (profils et conversations)';
+
+  @override
   String get notificationsTitle => 'Notifications';
 
   @override

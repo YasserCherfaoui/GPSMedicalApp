@@ -43,6 +43,8 @@ class MessagingRealtimeLifecycle extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(messagingWebSocketClientProvider);
+    // Keep presence fan-out subscribed for the session (A-39.1).
+    ref.watch(presenceByUserIdProvider);
     return child;
   }
 }

@@ -1360,6 +1360,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get messagingLoadMessagesError => 'تعذر تحميل الرسائل';
 
   @override
+  String get messagingTyping => 'يكتب…';
+
+  @override
+  String get presenceOnline => 'متصل';
+
+  @override
+  String get presenceOffline => 'غير متصل';
+
+  @override
+  String get specialistPresenceVisibleTitle => 'إظهار حضوري';
+
+  @override
+  String get specialistPresenceVisibleSubtitle =>
+      'يمكن للمرضى رؤية ما إذا كنت متصلاً (الملفات والمحادثات)';
+
+  @override
   String get notificationsTitle => 'الإشعارات';
 
   @override

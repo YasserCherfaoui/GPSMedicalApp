@@ -44,4 +44,29 @@ void main() {
     expect(message, isNotNull);
     expect(message!.body, 'Bonjour');
   });
+
+  test('MessagingRealtimeEvent parses presence.changed and thread.typing', () {
+    final presence = MessagingRealtimeEvent.fromJson({
+      'type': 'presence.changed',
+      'payload': {
+        'user_id': '00000000-0000-4000-8000-000000000010',
+        'presence': 'online',
+      },
+    });
+    expect(presence.type, 'presence.changed');
+    expect(presence.payload['presence'], 'online');
+    expect(parsePresenceStatus(presence.payload['presence']), PresenceStatus.online);
+
+    final typing = MessagingRealtimeEvent.fromJson({
+      'type': 'thread.typing',
+      'thread_id': '00000000-0000-4000-8000-000000000001',
+      'payload': {
+        'user_id': '00000000-0000-4000-8000-000000000011',
+        'expires_at': '2026-09-07T12:00:05Z',
+      },
+    });
+    expect(typing.type, 'thread.typing');
+    expect(typing.threadId, '00000000-0000-4000-8000-000000000001');
+    expect(typing.payload['expires_at'], '2026-09-07T12:00:05Z');
+  });
 }

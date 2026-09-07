@@ -1,9 +1,13 @@
 export 'messaging_realtime.provider.dart';
 export 'messaging_websocket_client.dart';
 export 'models/thread_display_message.dart';
+export 'presence.provider.dart';
 export 'providers/messaging_repository.provider.dart';
 export 'repositories/messaging_repository.dart';
+export 'repositories/presence_settings_repository.dart';
 export 'utils/messaging_display.dart';
 export 'widgets/message_bubble.dart';
 export 'widgets/message_composer.dart';
+export 'widgets/presence_dot.dart';
 export 'widgets/thread_row_tile.dart';
+export 'widgets/typing_indicator.dart';

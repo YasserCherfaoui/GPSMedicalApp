@@ -2610,6 +2610,36 @@ abstract class AppLocalizations {
   /// **'Impossible de charger les messages'**
   String get messagingLoadMessagesError;
 
+  /// No description provided for @messagingTyping.
+  ///
+  /// In fr, this message translates to:
+  /// **'écrit…'**
+  String get messagingTyping;
+
+  /// No description provided for @presenceOnline.
+  ///
+  /// In fr, this message translates to:
+  /// **'En ligne'**
+  String get presenceOnline;
+
+  /// No description provided for @presenceOffline.
+  ///
+  /// In fr, this message translates to:
+  /// **'Hors ligne'**
+  String get presenceOffline;
+
+  /// No description provided for @specialistPresenceVisibleTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Afficher ma présence'**
+  String get specialistPresenceVisibleTitle;
+
+  /// No description provided for @specialistPresenceVisibleSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les patients voient si vous êtes en ligne (profils et conversations)'**
+  String get specialistPresenceVisibleSubtitle;
+
   /// No description provided for @notificationsTitle.
   ///
   /// In fr, this message translates to:
