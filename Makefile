@@ -40,6 +40,10 @@ gen-models:
 		--additional-properties=pubName=gps_medical_api,dateLibrary=core,useEnumExtension=true
 	cp $(API_PUBSPEC) $(API_PKG)/pubspec.yaml
 	cp shared_lib/tool/gps_medical_api.analysis_options.yaml $(API_PKG)/analysis_options.yaml
+	# openapi-generator emits Enum.valueOf('wire_name') for defaults; BuiltValue
+	# valueOf expects the Dart name. Broken defaults abort booking before HTTP.
+	python3 -c "from pathlib import Path; p=Path('$(API_PKG)/lib/src/model/appointment_create.dart'); t=p.read_text(); o=\"AppointmentCreateOriginEnum.valueOf('doctor_direct')\"; n='AppointmentCreateOriginEnum.doctorDirect';\
+		assert o in t, 'expected broken default to patch'; p.write_text(t.replace(o, n))"
 	cd $(API_PKG) && dart pub get && dart run build_runner build --delete-conflicting-outputs
 
 pub-get:

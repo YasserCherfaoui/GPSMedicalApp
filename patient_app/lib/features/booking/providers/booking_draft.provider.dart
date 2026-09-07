@@ -259,9 +259,11 @@ class BookingDraft extends _$BookingDraft {
   }
 
   void selectSlot(AvailabilitySlot slot) {
+    final fromToken = slotLockExpiryFromToken(slot.slotLockToken);
     state = state.copyWith(
       selectedSlot: slot,
-      slotLockExpiresAt: DateTime.now().add(kSlotLockDuration),
+      slotLockExpiresAt:
+          fromToken ?? DateTime.now().add(kSlotLockDuration),
       step: 1,
     );
     _persist();
@@ -353,7 +355,7 @@ class BookingDraft extends _$BookingDraft {
         mode: modeWire,
       );
       final match = slots.where((s) {
-        return s.startAt?.toUtc() == start.toUtc() && s.mode == mode;
+        return _sameSlotInstant(s.startAt, start) && s.mode == mode;
       }).firstOrNull;
       if (match?.slotLockToken == null) {
         throw const SlotTakenException();
@@ -402,7 +404,7 @@ class BookingDraft extends _$BookingDraft {
         mode: modeWire == 'both' ? null : modeWire,
       );
       final match = slots.where((s) {
-        return s.startAt?.toUtc() == start.toUtc() && s.mode == mode;
+        return _sameSlotInstant(s.startAt, start) && s.mode == mode;
       }).firstOrNull;
       if (match?.slotLockToken == null) {
         throw const SlotTakenException();
@@ -445,4 +447,9 @@ extension _FirstOrNull<T> on Iterable<T> {
     if (!it.moveNext()) return null;
     return it.current;
   }
+}
+
+bool _sameSlotInstant(DateTime? a, DateTime? b) {
+  if (a == null || b == null) return false;
+  return a.toUtc().millisecondsSinceEpoch == b.toUtc().millisecondsSinceEpoch;
 }

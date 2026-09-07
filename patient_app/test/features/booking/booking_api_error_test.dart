@@ -51,4 +51,67 @@ void main() {
       throwsA(isA<SlotTakenException>()),
     );
   });
+
+  test('rethrowBookingApiError maps 422 when error rows are Map<dynamic,dynamic>', () {
+    expect(
+      () => rethrowBookingApiError(
+        DioException(
+          requestOptions: RequestOptions(path: '/appointments'),
+          response: Response(
+            requestOptions: RequestOptions(path: '/appointments'),
+            statusCode: 422,
+            data: <dynamic, dynamic>{
+              'errors': <dynamic>[
+                <dynamic, dynamic>{
+                  'field': 'clinic_id',
+                  'message': 'requis',
+                },
+              ],
+            },
+          ),
+        ),
+      ),
+      throwsA(
+        predicate<BookingValidationException>(
+          (e) => e.fieldErrors['clinic_id'] == 'requis',
+        ),
+      ),
+    );
+  });
+
+  test('rethrowBookingApiError maps problem+json to BookingApiException', () {
+    expect(
+      () => rethrowBookingApiError(
+        DioException(
+          requestOptions: RequestOptions(path: '/appointments'),
+          response: Response(
+            requestOptions: RequestOptions(path: '/appointments'),
+            statusCode: 404,
+            data: {
+              'title': 'Service introuvable',
+              'status': 404,
+            },
+          ),
+        ),
+      ),
+      throwsA(
+        predicate<BookingApiException>(
+          (e) => e.statusCode == 404 && e.title == 'Service introuvable',
+        ),
+      ),
+    );
+  });
+
+  test('bookingSubmitErrorMessage prefers API title', () {
+    expect(
+      bookingSubmitErrorMessage(
+        const BookingApiException(
+          statusCode: 500,
+          title: 'Erreur interne',
+        ),
+        'Network error',
+      ),
+      'Erreur interne',
+    );
+  });
 }

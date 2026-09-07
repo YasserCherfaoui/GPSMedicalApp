@@ -2,4 +2,4 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   remove_alpha_ios: true
-  image_path: "../assets/gps_medical_logo_icons/gps_medical_icon_prod.png"
+  image_path: "../assets/gps_medical_logo_icons/gps_medical_icon_gemini.png"

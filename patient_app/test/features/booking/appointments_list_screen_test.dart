@@ -85,6 +85,107 @@ void main() {
     });
   }
 
+  void mockUpcomingWithClinic() {
+    const clinicId = 'clinic-list-1';
+    adapter.onGet(
+      '/appointments',
+      (server) => server.reply(200, (RequestOptions options) {
+        final status = options.queryParameters['status'];
+        if (status == 'confirmed') {
+          return {
+            'data': <Map<String, dynamic>>[],
+            'meta': {'page': 1, 'page_size': 20, 'total': 0, 'total_pages': 0},
+          };
+        }
+        return {
+          'data': [
+            {
+              'id': 'appt-clinic-1',
+              'doctor_id': null,
+              'clinic_id': clinicId,
+              'service_id': 'svc-1',
+              'origin': 'clinic_service',
+              'start_at': '2026-09-07T08:00:00Z',
+              'end_at': '2026-09-07T08:30:00Z',
+              'mode': 'in_person',
+              'status': 'pending',
+              'fee_dzd': 3000,
+              'payment_status': 'unpaid',
+              'created_at': '2026-09-07T00:00:00Z',
+              'updated_at': '2026-09-07T00:00:00Z',
+            },
+          ],
+          'meta': {'page': 1, 'page_size': 20, 'total': 1, 'total_pages': 1},
+        };
+      }),
+    );
+    adapter.onGet('/clinics/$clinicId', (server) {
+      return server.reply(200, {
+        'id': clinicId,
+        'name': 'Clinique El Amel',
+        'country_code': 'DZ',
+        'status': 'active',
+        'verification_status': 'verified',
+      });
+    });
+  }
+
+  void mockUpcomingWithClinicAssignedEu() {
+    const clinicId = 'clinic-eu-1';
+    const doctorId = 'doc-eu-1';
+    adapter.onGet(
+      '/appointments',
+      (server) => server.reply(200, (RequestOptions options) {
+        final status = options.queryParameters['status'];
+        if (status == 'confirmed') {
+          return {
+            'data': <Map<String, dynamic>>[],
+            'meta': {'page': 1, 'page_size': 20, 'total': 0, 'total_pages': 0},
+          };
+        }
+        return {
+          'data': [
+            {
+              'id': 'appt-clinic-eu-1',
+              'doctor_id': doctorId,
+              'clinic_id': clinicId,
+              'service_id': 'svc-eu-1',
+              'origin': 'clinic_service',
+              'start_at': '2026-09-07T10:00:00Z',
+              'end_at': '2026-09-07T10:30:00Z',
+              'mode': 'telehealth',
+              'status': 'confirmed',
+              'fee_dzd': 20,
+              'payment_status': 'paid',
+              'created_at': '2026-09-07T00:00:00Z',
+              'updated_at': '2026-09-07T00:00:00Z',
+            },
+          ],
+          'meta': {'page': 1, 'page_size': 20, 'total': 1, 'total_pages': 1},
+        };
+      }),
+    );
+    adapter.onGet('/clinics/$clinicId', (server) {
+      return server.reply(200, {
+        'id': clinicId,
+        'name': 'Clinique Cherfaoui',
+        'country_code': 'FR',
+        'status': 'active',
+        'verification_status': 'verified',
+      });
+    });
+    adapter.onGet('/doctors/$doctorId', (server) {
+      return server.reply(200, {
+        'id': doctorId,
+        'full_name': 'Ahmed D.',
+        'title': 'Dr.',
+        'specialties': [
+          {'id': 's1', 'code': 'MG', 'name_fr': 'Médecine générale'},
+        ],
+      });
+    });
+  }
+
   testWidgets('shows tabs and empty upcoming CTA to search', (tester) async {
     mockEmptyUpcoming();
 
@@ -114,4 +215,38 @@ void main() {
     expect(find.text('En attente'), findsOneWidget);
     expect(find.text('En présentiel'), findsOneWidget);
   });
+
+  testWidgets('upcoming row shows clinic booking without doctor', (
+    tester,
+  ) async {
+    mockUpcomingWithClinic();
+
+    await tester.pumpWidget(wrap(const AppointmentsListScreen()));
+    await tester.pump();
+    await tester.pumpAndSettle();
+
+    expect(find.text('Clinique El Amel'), findsOneWidget);
+    expect(find.text('3000 DZD'), findsOneWidget);
+    expect(find.text('Réservation clinique'), findsOneWidget);
+    expect(find.text('En attente'), findsOneWidget);
+    expect(find.textContaining('Dr.'), findsNothing);
+  });
+
+  testWidgets(
+    'clinic booking with assigned doctor stays clinic-branded and uses EUR',
+    (tester) async {
+      mockUpcomingWithClinicAssignedEu();
+
+      await tester.pumpWidget(wrap(const AppointmentsListScreen()));
+      await tester.pump();
+      await tester.pumpAndSettle();
+
+      expect(find.text('Clinique Cherfaoui'), findsOneWidget);
+      expect(find.textContaining('Dr. Ahmed D.'), findsOneWidget);
+      expect(find.text('Réservation clinique'), findsOneWidget);
+      expect(find.text('20 DZD'), findsNothing);
+      expect(find.textContaining('20'), findsWidgets);
+      expect(find.textContaining('€'), findsOneWidget);
+    },
+  );
 }

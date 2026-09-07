@@ -29,6 +29,23 @@ void main() {
     expect(kSlotLockDuration, const Duration(minutes: 5));
   });
 
+  test('slotLockExpiryFromToken reads JWT exp', () {
+    // {"exp": 1788747772} — header.payload.sig (sig unused)
+    const token =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODg3NDc3NzJ9.sig';
+    final exp = slotLockExpiryFromToken(token);
+    expect(exp, isNotNull);
+    expect(
+      exp!.toUtc(),
+      DateTime.fromMillisecondsSinceEpoch(1788747772 * 1000, isUtc: true),
+    );
+  });
+
+  test('slotLockExpiryFromToken returns null for garbage', () {
+    expect(slotLockExpiryFromToken(null), isNull);
+    expect(slotLockExpiryFromToken('not-a-jwt'), isNull);
+  });
+
   test('groupSlotsByDay sorts by calendar day', () {
     final slots = [
       slotAt(start: DateTime(2026, 6, 12, 10)),

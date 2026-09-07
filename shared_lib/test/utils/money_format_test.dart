@@ -11,6 +11,13 @@ void main() {
     expect(catalogCurrencyForSellerCountry(null), 'DZD');
   });
 
+  test('catalog currency by ISO country string', () {
+    expect(catalogCurrencyForCountryIso('DZ'), 'DZD');
+    expect(catalogCurrencyForCountryIso('tn'), 'DZD');
+    expect(catalogCurrencyForCountryIso('FR'), 'EUR');
+    expect(catalogCurrencyForCountryIso(null), 'DZD');
+  });
+
   test('formatMoneyMajor EUR and DZD', () {
     final eur = formatMoneyMajor(amount: 80, currency: 'EUR');
     expect(eur.contains('80'), isTrue);

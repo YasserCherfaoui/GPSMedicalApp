@@ -13,6 +13,16 @@ String catalogCurrencyForSellerCountry(CountryCode? country) {
   }
 }
 
+/// Same rule as [catalogCurrencyForSellerCountry] for raw ISO country strings
+/// (e.g. clinic `country_code` on the wire).
+String catalogCurrencyForCountryIso(String? countryCode) {
+  final code = countryCode?.trim().toUpperCase();
+  if (code == null || code.isEmpty || code == 'DZ' || code == 'TN') {
+    return 'DZD';
+  }
+  return 'EUR';
+}
+
 bool isEurSellerCountry(CountryCode? country) =>
     catalogCurrencyForSellerCountry(country) == 'EUR';
 

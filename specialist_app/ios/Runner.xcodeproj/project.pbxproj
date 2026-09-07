@@ -795,7 +795,7 @@
 			baseConfigurationReference = 8267B484446DD1B75D654DCA /* Pods-RunnerTests.debug-dev.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Dev";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-dev;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -815,7 +815,7 @@
 			baseConfigurationReference = C988F0BC5B9838D4AF005930 /* Pods-RunnerTests.release-dev.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Dev";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-dev;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -833,7 +833,7 @@
 			baseConfigurationReference = 7DB65817D3A709728BB41636 /* Pods-RunnerTests.profile-dev.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Dev";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-dev;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -850,7 +850,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = "AppIcon-dev";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon-dev;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -903,7 +903,7 @@
 			baseConfigurationReference = DEFA3C8E1D35360C0083082F /* Profile-dev.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Dev";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-dev;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = UAK65HM54J;
@@ -925,7 +925,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = "AppIcon-dev";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon-dev;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -982,7 +982,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = "AppIcon-dev";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon-dev;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1037,7 +1037,7 @@
 			baseConfigurationReference = DE40EEB21CF90195004384FC /* Debug-dev.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Dev";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-dev;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = UAK65HM54J;
@@ -1061,7 +1061,7 @@
 			baseConfigurationReference = DEFA3C8E1D35360C0083082E /* Release-dev.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Dev";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-dev;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = UAK65HM54J;
@@ -1084,7 +1084,7 @@
 			baseConfigurationReference = 3381872B8A7CC16926B15E31 /* Pods-RunnerTests.debug-prod.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-prod";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-prod;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1104,7 +1104,7 @@
 			baseConfigurationReference = 427430BC53525D077E0ADA39 /* Pods-RunnerTests.release-prod.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-prod";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-prod;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1122,7 +1122,7 @@
 			baseConfigurationReference = 5B93816CC623415A255AA1E3 /* Pods-RunnerTests.profile-prod.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-prod";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-prod;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1139,7 +1139,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = "AppIcon-prod";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon-prod;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1192,7 +1192,7 @@
 			baseConfigurationReference = PRFA3C8E1D35360C0083082F /* Profile-prod.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-prod";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-prod;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = UAK65HM54J;
@@ -1214,7 +1214,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = "AppIcon-prod";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon-prod;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1271,7 +1271,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = "AppIcon-prod";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon-prod;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1326,7 +1326,7 @@
 			baseConfigurationReference = PR40EEB21CF90195004384FC /* Debug-prod.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-prod";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-prod;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = UAK65HM54J;
@@ -1350,7 +1350,7 @@
 			baseConfigurationReference = PRFA3C8E1D35360C0083082E /* Release-prod.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-prod";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-prod;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = UAK65HM54J;
@@ -1373,7 +1373,7 @@
 			baseConfigurationReference = 25D6F0582F92E1B8F21FAD90 /* Pods-RunnerTests.debug-staging.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Stg";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-staging";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-staging;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1393,7 +1393,7 @@
 			baseConfigurationReference = 4A37F4D66236723249D5DD33 /* Pods-RunnerTests.release-staging.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Stg";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-staging";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-staging;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1411,7 +1411,7 @@
 			baseConfigurationReference = AA9CC8E24D364EBA85A2ED7C /* Pods-RunnerTests.profile-staging.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Stg";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-staging";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-staging;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1428,7 +1428,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = "AppIcon-staging";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon-staging;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1481,7 +1481,7 @@
 			baseConfigurationReference = STFA3C8E1D35360C0083082F /* Profile-staging.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Stg";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-staging";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-staging;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = UAK65HM54J;
@@ -1503,7 +1503,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = "AppIcon-staging";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon-staging;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1560,7 +1560,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = "AppIcon-staging";
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon-staging;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1615,7 +1615,7 @@
 			baseConfigurationReference = ST40EEB21CF90195004384FC /* Debug-staging.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Stg";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-staging";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-staging;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = UAK65HM54J;
@@ -1639,7 +1639,7 @@
 			baseConfigurationReference = STFA3C8E1D35360C0083082E /* Release-staging.xcconfig */;
 			buildSettings = {
 				APP_DISPLAY_NAME = "Medora Spec Stg";
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-staging";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-staging;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = UAK65HM54J;

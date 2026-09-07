@@ -155,10 +155,11 @@ class _DetailBody extends ConsumerWidget {
                     Text(state.serviceName!, style: theme.textTheme.bodyLarge),
                   ],
                   const SizedBox(height: GpsSpacing.sm),
-                  Text(
-                    l10n.clinicDetailAssignNotice,
-                    style: theme.textTheme.bodySmall,
-                  ),
+                  if (state.awaitingSpecialistAssignment)
+                    Text(
+                      l10n.clinicDetailAssignNotice,
+                      style: theme.textTheme.bodySmall,
+                    ),
                 ],
               ),
             ),
@@ -252,7 +253,7 @@ class _DetailBody extends ConsumerWidget {
                   ModeBadge(mode: appointmentModeWire(appointment.mode)),
                 const SizedBox(height: GpsSpacing.sm),
                 Text(
-                  '${l10n.bookingFeeLabel}: ${appointment.feeDzd ?? doctor?.consultationFeeDzd ?? '—'} DZD',
+                  '${l10n.bookingFeeLabel}: ${_feeLabel(state, appointment, doctor, clinic, locale)}',
                 ),
                 if (appointment.paymentStatus != null) ...[
                   const SizedBox(height: GpsSpacing.xs),
@@ -371,6 +372,30 @@ class _DetailBody extends ConsumerWidget {
           ],
         ],
       ),
+    );
+  }
+
+  String _feeLabel(
+    AppointmentDetailState state,
+    Appointment appointment,
+    Doctor? doctor,
+    Clinic? clinic,
+    String languageCode,
+  ) {
+    final amount =
+        state.servicePriceAmount ??
+        appointment.feeDzd ??
+        doctor?.consultationFeeDzd;
+    if (amount == null) return '—';
+    final currency =
+        state.serviceCurrency ??
+        (state.isClinicBooking
+            ? catalogCurrencyForCountryIso(clinic?.countryCode)
+            : 'DZD');
+    return formatMoneyMajor(
+      amount: amount,
+      currency: currency,
+      languageCode: languageCode,
     );
   }
 

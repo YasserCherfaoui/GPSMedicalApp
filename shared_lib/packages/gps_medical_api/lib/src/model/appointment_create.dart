@@ -59,7 +59,9 @@ abstract class AppointmentCreate implements Built<AppointmentCreate, Appointment
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(AppointmentCreateBuilder b) => b
-      ..origin = AppointmentCreateOriginEnum.valueOf('doctor_direct');
+      // Must use the Dart enum name (doctorDirect), not the wire name (doctor_direct).
+      // valueOf('doctor_direct') throws and aborts booking before any HTTP call.
+      ..origin = AppointmentCreateOriginEnum.doctorDirect;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<AppointmentCreate> get serializer => _$AppointmentCreateSerializer();

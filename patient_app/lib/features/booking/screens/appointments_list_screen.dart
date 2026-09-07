@@ -6,6 +6,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import '../../notifications/widgets/notifications_bell_button.dart';
 import '../providers/appointments_history.provider.dart';
 import '../providers/appointments_upcoming.provider.dart';
+import '../providers/clinic_cache.provider.dart';
 import '../providers/doctor_cache.provider.dart';
 import '../widgets/appointment_row_tile.dart';
 import '../widgets/booking_error_view.dart';
@@ -203,7 +204,60 @@ class _AppointmentRow extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final doctorId = appointment.doctorId;
-    if (doctorId == null) return const SizedBox.shrink();
+    final clinicId = appointment.clinicId;
+    final isClinicBooking =
+        appointment.origin == AppointmentOriginEnum.clinicService;
+
+    if (isClinicBooking) {
+      if (clinicId == null || clinicId.isEmpty) {
+        return const SizedBox.shrink();
+      }
+      final clinicAsync = ref.watch(cachedClinicProvider(clinicId));
+      if (doctorId == null || doctorId.isEmpty) {
+        return clinicAsync.when(
+          data: (clinic) => AppointmentRowTile(
+            appointment: appointment,
+            clinic: clinic,
+            onTap: onTap,
+          ),
+          loading: () => const Padding(
+            padding: EdgeInsets.only(bottom: GpsSpacing.sm),
+            child: LoadingSkeleton(height: 88),
+          ),
+          error: (_, _) => const SizedBox.shrink(),
+        );
+      }
+
+      final doctorAsync = ref.watch(cachedDoctorProvider(doctorId));
+      return clinicAsync.when(
+        data: (clinic) => doctorAsync.when(
+          data: (doctor) => AppointmentRowTile(
+            appointment: appointment,
+            clinic: clinic,
+            doctor: doctor,
+            onTap: onTap,
+          ),
+          loading: () => const Padding(
+            padding: EdgeInsets.only(bottom: GpsSpacing.sm),
+            child: LoadingSkeleton(height: 88),
+          ),
+          error: (_, _) => AppointmentRowTile(
+            appointment: appointment,
+            clinic: clinic,
+            onTap: onTap,
+          ),
+        ),
+        loading: () => const Padding(
+          padding: EdgeInsets.only(bottom: GpsSpacing.sm),
+          child: LoadingSkeleton(height: 88),
+        ),
+        error: (_, _) => const SizedBox.shrink(),
+      );
+    }
+
+    if (doctorId == null || doctorId.isEmpty) {
+      return const SizedBox.shrink();
+    }
 
     final doctorAsync = ref.watch(cachedDoctorProvider(doctorId));
     return doctorAsync.when(

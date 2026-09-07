@@ -243,11 +243,15 @@ class _BookingFlowScreenState extends ConsumerState<BookingFlowScreen> {
     } on BookingValidationException catch (e) {
       setState(() => _fieldErrors = e.fieldErrors);
       ref.read(bookingDraftProvider.notifier).setStep(3);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(bookingSubmitErrorMessage(e, l10n.networkError))),
+      );
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(l10n.networkError)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(bookingSubmitErrorMessage(e, l10n.networkError))),
+      );
     } finally {
       if (mounted) setState(() => _submitting = false);
     }

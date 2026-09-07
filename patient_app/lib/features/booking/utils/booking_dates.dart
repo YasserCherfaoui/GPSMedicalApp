@@ -1,9 +1,41 @@
+import 'dart:convert';
+
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:intl/intl.dart';
 
 const kBookingWindowDays = 60;
 const kAvailabilityDefaultRangeDays = 14;
 const kSlotLockDuration = Duration(minutes: 5);
+
+/// Reads `exp` from a slot-lock JWT so the UI timer matches server expiry.
+///
+/// Tokens are issued when availability is fetched; the client timer used to
+/// start only on slot selection, which could show remaining time after the
+/// JWT had already expired.
+DateTime? slotLockExpiryFromToken(String? token) {
+  if (token == null || token.isEmpty) return null;
+  try {
+    final parts = token.split('.');
+    if (parts.length < 2) return null;
+    final normalized = base64Url.normalize(parts[1]);
+    final payload =
+        jsonDecode(utf8.decode(base64Url.decode(normalized)))
+            as Map<String, dynamic>;
+    final exp = payload['exp'];
+    if (exp is int) {
+      return DateTime.fromMillisecondsSinceEpoch(exp * 1000, isUtc: true);
+    }
+    if (exp is num) {
+      return DateTime.fromMillisecondsSinceEpoch(
+        exp.toInt() * 1000,
+        isUtc: true,
+      );
+    }
+  } on Object {
+    return null;
+  }
+  return null;
+}
 
 Date todayDate() => DateTime.now().toDate();
 
