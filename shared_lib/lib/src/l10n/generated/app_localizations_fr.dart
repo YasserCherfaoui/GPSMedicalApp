@@ -1480,6 +1480,14 @@ class AppLocalizationsFr extends AppLocalizations {
       'La téléconsultation instantanée n\'est pas activée sur ce serveur';
 
   @override
+  String get engagementInstantDoctorUnavailable =>
+      'Ce médecin n\'est plus disponible. Choisissez-en un autre.';
+
+  @override
+  String get engagementInstantDoctorOffline =>
+      'Ce médecin vient de passer hors ligne. Choisissez-en un autre.';
+
+  @override
   String get engagementInstantToggleTitle => 'Disponible maintenant';
 
   @override

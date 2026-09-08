@@ -1460,6 +1460,14 @@ class AppLocalizationsBer extends AppLocalizations {
       'Instant telehealth is not enabled on this server';
 
   @override
+  String get engagementInstantDoctorUnavailable =>
+      'This doctor is no longer available. Pick another.';
+
+  @override
+  String get engagementInstantDoctorOffline =>
+      'This doctor just went offline. Pick another.';
+
+  @override
   String get engagementInstantToggleTitle => 'Available now';
 
   @override

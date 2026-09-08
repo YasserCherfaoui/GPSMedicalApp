@@ -10,14 +10,11 @@ final messagingWebSocketClientProvider = Provider<MessagingWebSocketClient?>((
   final auth = ref.watch(authSessionProvider);
   if (!auth.isAuthenticated) return null;
 
-  final tokenStore = ref.watch(tokenStoreProvider);
   final client = ref.watch(gpsMedicalClientProvider);
-  final accessToken = tokenStore.accessToken;
-  if (accessToken == null || accessToken.isEmpty) return null;
 
   final ws = MessagingWebSocketClient(
     v1BaseUrl: client.v1BaseUrl,
-    accessToken: accessToken,
+    resolveAccessToken: client.ensureFreshAccessToken,
   );
   unawaited(ws.connect().catchError((_) {}));
   ref.onDispose(ws.disconnect);

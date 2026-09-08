@@ -451,6 +451,8 @@
   "engagementInstantRequestSent": "تم إرسال الطلب — بانتظار الرد (90 ث)",
   "engagementInstantTimeout": "لم يرد الطبيب. جرّب طبيباً آخر.",
   "engagementInstantDisabled": "الاستشارة الفورية غير مفعّلة على هذا الخادم",
+  "engagementInstantDoctorUnavailable": "هذا الطبيب لم يعد متاحاً. اختر طبيباً آخر.",
+  "engagementInstantDoctorOffline": "هذا الطبيب أصبح غير متصل. اختر طبيباً آخر.",
   "engagementInstantToggleTitle": "متاح الآن",
   "engagementInstantToggleSubtitle": "استقبال طلبات استشارة فورية",
   "engagementInstantPriceLabel": "الأجر (وحدات صغرى)",

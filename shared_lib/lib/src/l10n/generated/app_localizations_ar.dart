@@ -1449,6 +1449,14 @@ class AppLocalizationsAr extends AppLocalizations {
       'الاستشارة الفورية غير مفعّلة على هذا الخادم';
 
   @override
+  String get engagementInstantDoctorUnavailable =>
+      'هذا الطبيب لم يعد متاحاً. اختر طبيباً آخر.';
+
+  @override
+  String get engagementInstantDoctorOffline =>
+      'هذا الطبيب أصبح غير متصل. اختر طبيباً آخر.';
+
+  @override
   String get engagementInstantToggleTitle => 'متاح الآن';
 
   @override

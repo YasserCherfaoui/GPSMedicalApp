@@ -61,6 +61,9 @@ class _InstantConsultFlowScreenState
   String? _triageId;
   InstantConsultRequest? _pendingRequest;
   var _busy = false;
+  /// Bumped only when we intentionally reload the available-now list (not on
+  /// busy toggles) so FutureBuilder does not fan out parallel GETs.
+  var _availableListKey = 0;
   StreamSubscription<MessagingRealtimeEvent>? _wsSub;
   Timer? _waitTimer;
   final _answers = <String, bool>{
@@ -168,7 +171,7 @@ class _InstantConsultFlowScreenState
   Future<void> _requestDoctor(AvailableNowDoctor doctor) async {
     final l10n = AppLocalizations.of(context)!;
     final triageId = _triageId;
-    if (triageId == null) return;
+    if (triageId == null || _busy) return;
     setState(() => _busy = true);
     try {
       final req = await ref
@@ -187,10 +190,19 @@ class _InstantConsultFlowScreenState
       return;
     } on DioException catch (e) {
       if (!mounted) return;
-      final msg = e.response?.statusCode == 503
-          ? l10n.engagementInstantDisabled
-          : l10n.networkError;
+      final status = e.response?.statusCode;
+      final title = e.response?.data is Map
+          ? (e.response!.data as Map)['title'] as String?
+          : null;
+      final msg = switch (status) {
+        503 => l10n.engagementInstantDisabled,
+        409 when title == 'Médecin hors ligne' =>
+          l10n.engagementInstantDoctorOffline,
+        409 => l10n.engagementInstantDoctorUnavailable,
+        _ => l10n.networkError,
+      };
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+      setState(() => _availableListKey++);
     } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -224,6 +236,7 @@ class _InstantConsultFlowScreenState
           specialtyId: _specialtyId!,
           busy: _busy,
           onPick: _requestDoctor,
+          listKey: _availableListKey,
         ),
         _ => Center(
           child: Padding(
@@ -358,24 +371,52 @@ class _TriageStep extends StatelessWidget {
   }
 }
 
-class _AvailableNowStep extends ConsumerWidget {
+class _AvailableNowStep extends ConsumerStatefulWidget {
   const _AvailableNowStep({
     required this.specialtyId,
     required this.busy,
     required this.onPick,
+    required this.listKey,
   });
 
   final String specialtyId;
   final bool busy;
   final void Function(AvailableNowDoctor doctor) onPick;
+  final int listKey;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_AvailableNowStep> createState() => _AvailableNowStepState();
+}
+
+class _AvailableNowStepState extends ConsumerState<_AvailableNowStep> {
+  Future<List<AvailableNowDoctor>>? _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = _load();
+  }
+
+  @override
+  void didUpdateWidget(covariant _AvailableNowStep oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.specialtyId != widget.specialtyId ||
+        oldWidget.listKey != widget.listKey) {
+      _future = _load();
+    }
+  }
+
+  Future<List<AvailableNowDoctor>> _load() {
+    return ref
+        .read(engagementRepositoryProvider)
+        .listAvailableNow(specialtyId: widget.specialtyId);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return FutureBuilder<List<AvailableNowDoctor>>(
-      future: ref
-          .read(engagementRepositoryProvider)
-          .listAvailableNow(specialtyId: specialtyId),
+      future: _future,
       builder: (context, snap) {
         if (snap.connectionState != ConnectionState.done) {
           return const Center(child: CircularProgressIndicator());
@@ -385,13 +426,26 @@ class _AvailableNowStep extends ConsumerWidget {
           final msg = err is DioException && err.response?.statusCode == 503
               ? l10n.engagementInstantDisabled
               : l10n.networkError;
-          return ErrorState(title: msg, onRetry: () => (context as Element).markNeedsBuild());
+          return ErrorState(
+            title: msg,
+            onRetry: () {
+              setState(() {
+                _future = _load();
+              });
+            },
+          );
         }
         final doctors = snap.data ?? const [];
         if (doctors.isEmpty) {
           return EmptyState(
             title: l10n.engagementInstantEmpty,
             icon: Icons.videocam_off_outlined,
+            actionLabel: l10n.retry,
+            onAction: () {
+              setState(() {
+                _future = _load();
+              });
+            },
           );
         }
         return ListView.separated(
@@ -412,7 +466,7 @@ class _AvailableNowStep extends ConsumerWidget {
               title: Text(d.fullName),
               subtitle: price != null ? Text('$price $cur') : null,
               trailing: const Icon(Icons.chevron_right),
-              onTap: busy ? null : () => onPick(d),
+              onTap: widget.busy ? null : () => widget.onPick(d),
             );
           },
         );

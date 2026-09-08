@@ -49,15 +49,14 @@ class GpsMedicalClient {
           ),
         );
 
-    authenticatedDio.interceptors.add(
-      AuthRefreshInterceptor.withDio(
-        dio: authenticatedDio,
-        tokenStore: tokenStore,
-        refreshDio: refreshDio,
-        onSessionExpired: onSessionExpired,
-        onTokensRefreshed: onTokensRefreshed,
-      ),
+    _authRefresh = AuthRefreshInterceptor.withDio(
+      dio: authenticatedDio,
+      tokenStore: tokenStore,
+      refreshDio: refreshDio,
+      onSessionExpired: onSessionExpired,
+      onTokensRefreshed: onTokensRefreshed,
     );
+    authenticatedDio.interceptors.add(_authRefresh);
     _attachHttpDebugLogs(authenticatedDio, 'v1');
     _attachHttpDebugLogs(refreshDio, 'refresh');
 
@@ -90,8 +89,13 @@ class GpsMedicalClient {
   final Future<void> Function()? onSessionExpired;
   final void Function(TokenPair pair)? onTokensRefreshed;
 
+  late final AuthRefreshInterceptor _authRefresh;
   late final GpsMedicalApi _v1;
   late final GpsMedicalApi _root;
+
+  /// Fresh access JWT for WebSocket (and similar) handshakes.
+  Future<String?> ensureFreshAccessToken() =>
+      _authRefresh.ensureFreshAccessToken();
 
   /// OpenAPI-generated client scoped to `/v1` (authenticated routes).
   GpsMedicalApi get v1 => _v1;

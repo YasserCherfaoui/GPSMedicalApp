@@ -254,19 +254,46 @@ class AuthRefreshInterceptor extends Interceptor {
     return status == 401 || status == 403;
   }
 
-  bool _shouldRefreshProactively(RequestOptions options) {
-    if (!_shouldAttachAccessToken(options) || _isPublicPath(options.uri.path)) {
-      return false;
+  /// Returns a usable access token for non-HTTP clients (e.g. messaging WS).
+  ///
+  /// Proactively refreshes when the access JWT is missing or within
+  /// [_refreshLeadTime] of expiry — same policy as authenticated REST calls.
+  Future<String?> ensureFreshAccessToken() async {
+    final refreshToken = tokenStore.refreshToken;
+    if (refreshToken == null || refreshToken.isEmpty) {
+      final access = tokenStore.accessToken;
+      if (access == null || access.isEmpty) return null;
+      return access;
+    }
+    if (_accessTokenNeedsRefresh()) {
+      try {
+        await _refreshShared(refreshToken);
+      } catch (_) {
+        // Fall through and return whatever is still in the store.
+      }
     }
     final access = tokenStore.accessToken;
+    if (access == null || access.isEmpty) return null;
+    return access;
+  }
+
+  bool _accessTokenNeedsRefresh() {
+    final access = tokenStore.accessToken;
     if (access == null || access.isEmpty) {
-      return false;
+      return true;
     }
     final expiry = AuthUserSnapshot.expiryFromJwt(access);
     if (expiry == null) {
       return false;
     }
     return !expiry.isAfter(DateTime.now().toUtc().add(_refreshLeadTime));
+  }
+
+  bool _shouldRefreshProactively(RequestOptions options) {
+    if (!_shouldAttachAccessToken(options) || _isPublicPath(options.uri.path)) {
+      return false;
+    }
+    return _accessTokenNeedsRefresh();
   }
 
   void _attachAccessToken(RequestOptions options) {

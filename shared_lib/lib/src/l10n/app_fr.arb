@@ -625,6 +625,8 @@
   "engagementInstantRequestSent": "Demande envoyée — en attente de réponse (90 s)",
   "engagementInstantTimeout": "Le médecin n'a pas répondu. Réessayez avec un autre.",
   "engagementInstantDisabled": "La téléconsultation instantanée n'est pas activée sur ce serveur",
+  "engagementInstantDoctorUnavailable": "Ce médecin n'est plus disponible. Choisissez-en un autre.",
+  "engagementInstantDoctorOffline": "Ce médecin vient de passer hors ligne. Choisissez-en un autre.",
   "engagementInstantToggleTitle": "Disponible maintenant",
   "engagementInstantToggleSubtitle": "Recevoir des demandes de téléconsultation immédiate",
   "engagementInstantPriceLabel": "Tarif (unité mineure)",

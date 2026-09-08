@@ -1,1 +1,82 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"gpsmedical","appId":"UNCONFIGURED","fileOutput":"android/app/google-services.json"},"buildConfigurations":{"src/dev":{"projectId":"gps-medical-dev","appId":"1:647636807219:android:d5e93438c82d04e0393d46","fileOutput":"android/app/src/dev/google-services.json"}}},"ios":{"default":{"projectId":"gpsmedical","appId":"UNCONFIGURED","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"},"targets":{"Runner":{"projectId":"gpsmedical","appId":"1:32898565434:ios:2af666a3831b1e64a37c03","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"buildConfigurations":{"Debug-dev":{"projectId":"gps-medical-dev","appId":"1:647636807219:ios:e95cb545bb3f66a9393d46","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}}},"dart":{"lib/firebase_options.dart":{"projectId":"gps-medical-dev","configurations":{"android":"1:647636807219:android:d5e93438c82d04e0393d46","ios":"1:647636807219:ios:e95cb545bb3f66a9393d46"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "buildConfigurations": {
+          "src/dev": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:android:d5e93438c82d04e0393d46",
+            "fileOutput": "android/app/src/dev/google-services.json"
+          }
+        }
+      },
+      "ios": {
+        "buildConfigurations": {
+          "Debug-dev": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:e95cb545bb3f66a9393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Debug-prod": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:e95cb545bb3f66a9393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Debug-staging": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:e95cb545bb3f66a9393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Profile-dev": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:e95cb545bb3f66a9393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Profile-prod": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:e95cb545bb3f66a9393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Profile-staging": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:e95cb545bb3f66a9393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Release-dev": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:e95cb545bb3f66a9393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Release-prod": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:e95cb545bb3f66a9393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          },
+          "Release-staging": {
+            "projectId": "gps-medical-dev",
+            "appId": "1:647636807219:ios:e95cb545bb3f66a9393d46",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/Runner/GoogleService-Info.plist"
+          }
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "gps-medical-dev",
+          "configurations": {
+            "android": "1:647636807219:android:d5e93438c82d04e0393d46",
+            "ios": "1:647636807219:ios:e95cb545bb3f66a9393d46"
+          }
+        }
+      }
+    }
+  }
+}

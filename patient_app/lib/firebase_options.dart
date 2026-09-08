@@ -55,5 +55,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'gps-medical-dev.firebasestorage.app',
     iosBundleId: 'com.gpsmedical.patientApp',
   );
-
 }

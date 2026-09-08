@@ -8,6 +8,7 @@ import '../features/notifications/services/specialist_push_notification_service.
 import 'features/engagement/widgets/instant_request_prompt_host.dart';
 import 'features/verification/specialist_verification_lifecycle.dart';
 import 'firebase/init_firebase.dart';
+import 'routing/specialist_router.dart';
 import 'routing/specialist_router.provider.dart';
 
 const _appInfo = GpsMedicalAppInfo(
@@ -72,6 +73,7 @@ class _SpecialistAppState extends ConsumerState<SpecialistApp> {
     return SpecialistVerificationLifecycle(
       child: MessagingRealtimeLifecycle(
         child: InstantRequestPromptHost(
+          navigatorKey: specialistRootNavigatorKey,
           child: SpecialistPushNotificationsBootstrap(
             child: GpsMedicalMaterialApp(
               title: _appInfo.displayName,

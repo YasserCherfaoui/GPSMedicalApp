@@ -9,15 +9,24 @@ String get kDefaultApiRootUrl {
   if (!kIsWeb && Platform.isAndroid) {
     return 'http://10.0.2.2:8080';
   }
+  // Prefer IPv4 loopback on Apple — `localhost` can resolve to `::1` while
+  // dart:io WebSockets fail with Connection refused even when Dio HTTP works.
+  if (!kIsWeb && (Platform.isIOS || Platform.isMacOS)) {
+    return 'http://127.0.0.1:8080';
+  }
   return 'http://localhost:8080';
 }
 
-/// Automatically rewrites `localhost` or `127.0.0.1` to `10.0.2.2` if running on Android.
+/// Rewrites loopback hosts for mobile emulators / Apple IPv4 WebSocket quirks.
 String resolveApiUrl(String url) {
-  if (!kIsWeb && Platform.isAndroid) {
+  if (kIsWeb) return url;
+  if (Platform.isAndroid) {
     return url
         .replaceAll('localhost', '10.0.2.2')
         .replaceAll('127.0.0.1', '10.0.2.2');
+  }
+  if (Platform.isIOS || Platform.isMacOS) {
+    return url.replaceAll('localhost', '127.0.0.1');
   }
   return url;
 }

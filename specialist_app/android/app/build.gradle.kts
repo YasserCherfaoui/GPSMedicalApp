@@ -5,11 +5,8 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Applied when FlutterFire config exists (see configure_firebase.sh).
-if (file("src/dev/google-services.json").exists()
-    || file("src/prod/google-services.json").exists()
-    || file("google-services.json").exists()
-) {
+// Applied only after `make -C mobile configure-firebase-specialist` writes google-services.json.
+if (file("src/dev/google-services.json").exists()) {
     apply(plugin = "com.google.gms.google-services")
 }
 

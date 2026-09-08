@@ -15,6 +15,16 @@ void main() {
       expect(uri.queryParameters['token'], 'abc');
     });
 
+    test('keeps explicit port when building from 127.0.0.1', () {
+      final uri = buildMessagingWebSocketUri(
+        v1BaseUrl: 'http://127.0.0.1:8080/v1',
+        accessToken: 'tok',
+      );
+      expect(uri.host, '127.0.0.1');
+      expect(uri.port, 8080);
+      expect(uri.scheme, 'ws');
+    });
+
     test('converts https v1 base to wss', () {
       final uri = buildMessagingWebSocketUri(
         v1BaseUrl: 'https://api.example.com/v1',

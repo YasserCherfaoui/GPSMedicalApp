@@ -2778,6 +2778,18 @@ abstract class AppLocalizations {
   /// **'La téléconsultation instantanée n\'est pas activée sur ce serveur'**
   String get engagementInstantDisabled;
 
+  /// No description provided for @engagementInstantDoctorUnavailable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce médecin n\'est plus disponible. Choisissez-en un autre.'**
+  String get engagementInstantDoctorUnavailable;
+
+  /// No description provided for @engagementInstantDoctorOffline.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce médecin vient de passer hors ligne. Choisissez-en un autre.'**
+  String get engagementInstantDoctorOffline;
+
   /// No description provided for @engagementInstantToggleTitle.
   ///
   /// In fr, this message translates to:

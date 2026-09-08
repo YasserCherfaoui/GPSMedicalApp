@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -420,4 +421,43 @@ void main() {
       expect(tokenStore.refreshToken, 'new-refresh');
     },
   );
+
+  test('ensureFreshAccessToken refreshes near-expiry JWT for WS handshakes', () async {
+    String b64url(String json) =>
+        base64Url.encode(utf8.encode(json)).replaceAll('=', '');
+    final expiredAccess =
+        '${b64url('{"alg":"none"}')}.'
+        '${b64url('{"sub":"u1","role":"specialist","exp":1}')}.sig';
+
+    final tokenStore = InMemoryTokenStore();
+    await tokenStore.saveTokens(
+      TokenPair(
+        (b) => b
+          ..accessToken = expiredAccess
+          ..refreshToken = 'valid-refresh'
+          ..expiresIn = 0,
+      ),
+    );
+
+    var refreshCallCount = 0;
+    final dio = Dio(BaseOptions(baseUrl: 'http://localhost:8080/v1'));
+    final interceptor = AuthRefreshInterceptor(
+      dio: dio,
+      tokenStore: tokenStore,
+      refreshTokens: (_) async {
+        refreshCallCount += 1;
+        return TokenPair(
+          (b) => b
+            ..accessToken = 'fresh-access'
+            ..refreshToken = 'fresh-refresh'
+            ..expiresIn = 900,
+        );
+      },
+    );
+
+    final token = await interceptor.ensureFreshAccessToken();
+    expect(refreshCallCount, 1);
+    expect(token, 'fresh-access');
+    expect(tokenStore.accessToken, 'fresh-access');
+  });
 }

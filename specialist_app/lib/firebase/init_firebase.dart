@@ -3,10 +3,19 @@ import 'package:flutter/foundation.dart';
 
 import '../firebase_options.dart';
 
-/// Initializes Firebase when FlutterFire config is present.
+/// Initializes Firebase when FlutterFire config files are present.
 ///
-/// Safe to call before [runApp]; no-ops when already initialized or config fails.
+/// Safe to call before [runApp]; no-ops in tests and when config is missing.
 Future<void> initSpecialistFirebase() async {
+  if (!DefaultFirebaseOptions.isConfigured) {
+    if (kDebugMode) {
+      debugPrint(
+        'Firebase: skipped — run `make -C mobile configure-firebase-specialist`',
+      );
+    }
+    return;
+  }
+
   if (Firebase.apps.isNotEmpty) return;
 
   try {

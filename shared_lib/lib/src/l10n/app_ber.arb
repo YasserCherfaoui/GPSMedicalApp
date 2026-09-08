@@ -451,6 +451,8 @@
   "engagementInstantRequestSent": "Request sent — waiting for a reply (90 s)",
   "engagementInstantTimeout": "The doctor did not respond. Try another.",
   "engagementInstantDisabled": "Instant telehealth is not enabled on this server",
+  "engagementInstantDoctorUnavailable": "This doctor is no longer available. Pick another.",
+  "engagementInstantDoctorOffline": "This doctor just went offline. Pick another.",
   "engagementInstantToggleTitle": "Available now",
   "engagementInstantToggleSubtitle": "Receive immediate telehealth requests",
   "engagementInstantPriceLabel": "Fee (minor units)",

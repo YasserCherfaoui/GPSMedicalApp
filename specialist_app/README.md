@@ -23,20 +23,47 @@ cd shared_lib && flutter gen-l10n
 
 ## Firebase / FCM (dev)
 
-1. Register a distinct Android `applicationId` and iOS bundle ID in the Firebase console (`gps-medical-dev` project).
-2. `firebase login --reauth`
-3. From repo root:
+Project: **`gps-medical-dev`**
 
-```bash
-make -C mobile configure-firebase-specialist
-```
+| Platform | Dev app ID |
+|----------|------------|
+| Android (`dev` flavor) | `com.gpsmedical.specialist_app.dev` |
+| iOS (`dev` flavor) | `com.gpsmedical.specialistApp.dev` |
 
-4. The app calls `Firebase.initializeApp` at startup (`lib/firebase/init_firebase.dart`). After login it registers the FCM token via `POST /notifications/devices`. Watch debug logs for `Specialist push registration skipped` if registration fails.
+### One-time setup
+
+1. Re-authenticate Firebase CLI (token expires periodically):
+
+   ```bash
+   firebase login --reauth
+   ```
+
+2. From the repo root, generate config files and `lib/firebase_options.dart`:
+
+   ```bash
+   make -C mobile configure-firebase-specialist
+   ```
+
+3. Confirm files exist:
+
+   ```bash
+   test -f mobile/specialist_app/android/app/src/dev/google-services.json
+   test -f mobile/specialist_app/ios/Runner/GoogleService-Info.plist
+   ```
+
+4. Run the **dev** flavor (required so the Android package / iOS bundle match Firebase):
+
+   ```bash
+   cd mobile/specialist_app
+   flutter run --flavor dev --dart-define-from-file=config/dev.json
+   ```
+
+Until step 2 completes, the app builds and runs but **skips** Firebase init (debug log only). After login it registers the FCM token via `POST /notifications/devices`. Watch debug logs for `Specialist push registration skipped` if registration fails.
 
 ## Run
 
 ```bash
-cd specialist_app && flutter run
+cd specialist_app && flutter run --flavor dev --dart-define-from-file=config/dev.json
 ```
 
 ## Tests

@@ -54,25 +54,30 @@ Uri buildMessagingWebSocketUri({
     _ => 'ws',
   };
   final basePath = rest.path.replaceAll(RegExp(r'/+$'), '');
-  return rest.replace(
+  // Build explicitly so scheme changes never drop host/port (Uri.replace quirks).
+  return Uri(
     scheme: wsScheme,
+    host: rest.host,
+    port: rest.hasPort ? rest.port : null,
     path: '$basePath/messaging/ws',
     queryParameters: {'token': accessToken},
-    fragment: null,
   );
 }
+
+/// Resolves a usable access JWT immediately before each WS handshake.
+typedef MessagingAccessTokenResolver = Future<String?> Function();
 
 /// WebSocket transport for messaging with reconnect backoff (ADR 0013).
 class MessagingWebSocketClient {
   MessagingWebSocketClient({
     required this.v1BaseUrl,
-    required this.accessToken,
+    required this.resolveAccessToken,
     this.heartbeatInterval = const Duration(seconds: 30),
     this.typingThrottle = const Duration(seconds: 3),
   });
 
   final String v1BaseUrl;
-  final String accessToken;
+  final MessagingAccessTokenResolver resolveAccessToken;
   final Duration heartbeatInterval;
   final Duration typingThrottle;
 
@@ -93,11 +98,25 @@ class MessagingWebSocketClient {
   Future<void> connect() async {
     if (_disposed) return;
     await _disconnectChannel();
+    final accessToken = (await resolveAccessToken())?.trim() ?? '';
+    if (accessToken.isEmpty) {
+      if (kDebugMode) {
+        debugPrint('Messaging WS skipped connect: no access token');
+      }
+      _scheduleReconnect();
+      return;
+    }
     final uri = buildMessagingWebSocketUri(
       v1BaseUrl: v1BaseUrl,
       accessToken: accessToken,
     );
     try {
+      if (kDebugMode) {
+        debugPrint(
+          'Messaging WS connecting to '
+          '${uri.scheme}://${uri.host}:${uri.port}${uri.path}',
+        );
+      }
       final channel = WebSocketChannel.connect(uri);
       await channel.ready.timeout(const Duration(seconds: 10));
       if (_disposed) {
