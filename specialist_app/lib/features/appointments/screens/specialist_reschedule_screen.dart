@@ -68,7 +68,7 @@ class _SpecialistRescheduleScreenState
         appointmentId: widget.appointmentId,
         startAt: start,
       );
-      invalidateSpecialistAppointments(ref);
+      invalidateSpecialistAppointments(ref.invalidate);
       ref.invalidate(specialistAppointmentDetailProvider(widget.appointmentId));
       if (!mounted) return;
       context.pop();

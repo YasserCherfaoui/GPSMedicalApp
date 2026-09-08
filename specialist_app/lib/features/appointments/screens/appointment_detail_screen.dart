@@ -13,11 +13,13 @@ import '../utils/appointment_display.dart';
 import '../utils/appointment_enums.dart';
 import '../widgets/specialist_appointment_row_tile.dart';
 
-void invalidateSpecialistAppointments(WidgetRef ref) {
-  ref.invalidate(specialistPendingAppointmentsProvider);
-  ref.invalidate(specialistConfirmedAppointmentsProvider);
-  ref.invalidate(specialistHistoryAppointmentsProvider);
-  ref.invalidate(specialistPendingCountProvider);
+void invalidateSpecialistAppointments(
+  void Function(ProviderOrFamily provider) invalidate,
+) {
+  invalidate(specialistPendingAppointmentsProvider);
+  invalidate(specialistConfirmedAppointmentsProvider);
+  invalidate(specialistHistoryAppointmentsProvider);
+  invalidate(specialistPendingCountProvider);
 }
 
 class SpecialistAppointmentDetailScreen extends ConsumerWidget {
@@ -129,7 +131,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
       await ref
           .read(specialistAppointmentRepositoryProvider)
           .confirm(widget.appointmentId);
-      invalidateSpecialistAppointments(ref);
+      invalidateSpecialistAppointments(ref.invalidate);
       ref.invalidate(specialistAppointmentDetailProvider(widget.appointmentId));
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -172,7 +174,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
         appointmentId: widget.appointmentId,
         reason: reason.isEmpty ? null : reason,
       );
-      invalidateSpecialistAppointments(ref);
+      invalidateSpecialistAppointments(ref.invalidate);
       if (mounted) context.pop();
     });
   }
@@ -182,7 +184,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
       await ref
           .read(specialistAppointmentRepositoryProvider)
           .markNoShow(widget.appointmentId);
-      invalidateSpecialistAppointments(ref);
+      invalidateSpecialistAppointments(ref.invalidate);
       ref.invalidate(specialistAppointmentDetailProvider(widget.appointmentId));
     });
   }

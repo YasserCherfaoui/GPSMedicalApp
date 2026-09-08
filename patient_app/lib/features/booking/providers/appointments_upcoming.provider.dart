@@ -21,7 +21,7 @@ class AppointmentsListState {
 
 @riverpod
 class AppointmentsUpcoming extends _$AppointmentsUpcoming {
-  static const _statuses = ['pending', 'confirmed'];
+  static const _statuses = ['pending', 'pending_payment', 'confirmed'];
 
   @override
   Future<AppointmentsListState> build() async {

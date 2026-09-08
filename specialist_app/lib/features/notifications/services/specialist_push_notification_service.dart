@@ -9,7 +9,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
 import '../../../routing/specialist_router.dart';
+import '../../appointments/providers/appointments.provider.dart';
+import '../../appointments/screens/appointment_detail_screen.dart';
 import '../providers/specialist_notifications.provider.dart';
+import '../providers/specialist_notifications_list.provider.dart';
 import '../utils/specialist_notification_display.dart';
 
 final specialistPushNotificationServiceProvider =
@@ -27,7 +30,7 @@ class SpecialistPushNotificationService {
     if (_initialized || kIsWeb || Firebase.apps.isEmpty) return;
 
     try {
-      FirebaseMessaging.onMessage.listen((_) {});
+      FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
       FirebaseMessaging.onMessageOpenedApp.listen(_handleRemoteMessage);
       final initial = await FirebaseMessaging.instance.getInitialMessage();
       if (initial != null) _handleRemoteMessage(initial);
@@ -63,10 +66,24 @@ class SpecialistPushNotificationService {
     }
   }
 
+  void _handleForegroundMessage(RemoteMessage message) {
+    _invalidateFromData(message.data);
+    _ref.invalidate(specialistNotificationsListProvider);
+  }
+
   void _handleRemoteMessage(RemoteMessage message) {
+    _invalidateFromData(message.data);
     final context = specialistRootNavigatorKey.currentContext;
     if (context == null) return;
     navigateSpecialistFromNotificationData(context, message.data);
+  }
+
+  void _invalidateFromData(Map<String, dynamic> data) {
+    final appointmentId = data['appointment_id'] as String?;
+    invalidateSpecialistAppointments(_ref.invalidate);
+    if (appointmentId != null && appointmentId.isNotEmpty) {
+      _ref.invalidate(specialistAppointmentDetailProvider(appointmentId));
+    }
   }
 }
 

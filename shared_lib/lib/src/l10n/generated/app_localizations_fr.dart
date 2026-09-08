@@ -409,6 +409,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appointmentsHistory => 'Historique';
 
   @override
+  String get appointmentsFilterAll => 'Tous';
+
+  @override
+  String get appointmentsSortSoonest => 'Plus proches d\'abord';
+
+  @override
+  String get appointmentsSortLatest => 'Plus récents d\'abord';
+
+  @override
   String get appointmentsEmptyUpcoming => 'Aucun rendez-vous à venir';
 
   @override
@@ -1482,6 +1491,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Aucun médecin disponible pour le moment';
 
   @override
+  String get engagementInstantEmptyPolling =>
+      'Actualisation automatique lorsque un médecin se connecte…';
+
+  @override
   String get engagementInstantRequestSent =>
       'Demande envoyée — en attente de réponse (90 s)';
 
@@ -1507,6 +1520,15 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get engagementInstantToggleSubtitle =>
       'Recevoir des demandes de téléconsultation immédiate';
+
+  @override
+  String engagementInstantToggleUntil(String time) {
+    return 'Disponible jusqu\'à $time';
+  }
+
+  @override
+  String get engagementInstantTogglePresenceHint =>
+      'Gardez l\'application ouverte pour apparaître dans Téléconsultation maintenant.';
 
   @override
   String get engagementInstantPriceLabel => 'Tarif (unité mineure)';

@@ -5,6 +5,7 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../features/notifications/services/specialist_push_notification_service.dart';
+import 'features/appointments/widgets/specialist_appointment_realtime_host.dart';
 import 'features/engagement/widgets/instant_request_prompt_host.dart';
 import 'features/verification/specialist_verification_lifecycle.dart';
 import 'firebase/init_firebase.dart';
@@ -72,13 +73,15 @@ class _SpecialistAppState extends ConsumerState<SpecialistApp> {
 
     return SpecialistVerificationLifecycle(
       child: MessagingRealtimeLifecycle(
-        child: InstantRequestPromptHost(
-          navigatorKey: specialistRootNavigatorKey,
-          child: SpecialistPushNotificationsBootstrap(
-            child: GpsMedicalMaterialApp(
-              title: _appInfo.displayName,
-              routerConfig: router,
-              navigatorKey: specialistRootNavigatorKey,
+        child: SpecialistAppointmentRealtimeHost(
+          child: InstantRequestPromptHost(
+            navigatorKey: specialistRootNavigatorKey,
+            child: SpecialistPushNotificationsBootstrap(
+              child: GpsMedicalMaterialApp(
+                title: _appInfo.displayName,
+                routerConfig: router,
+                navigatorKey: specialistRootNavigatorKey,
+              ),
             ),
           ),
         ),

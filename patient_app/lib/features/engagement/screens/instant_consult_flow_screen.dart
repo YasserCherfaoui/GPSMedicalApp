@@ -390,11 +390,22 @@ class _AvailableNowStep extends ConsumerStatefulWidget {
 
 class _AvailableNowStepState extends ConsumerState<_AvailableNowStep> {
   Future<List<AvailableNowDoctor>>? _future;
+  Timer? _pollTimer;
+  var _lastWasEmpty = false;
+
+  static const _emptyPollInterval = Duration(seconds: 12);
 
   @override
   void initState() {
     super.initState();
     _future = _load();
+    _pollTimer = Timer.periodic(_emptyPollInterval, (_) => _pollIfEmpty());
+  }
+
+  @override
+  void dispose() {
+    _pollTimer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -406,10 +417,24 @@ class _AvailableNowStepState extends ConsumerState<_AvailableNowStep> {
     }
   }
 
-  Future<List<AvailableNowDoctor>> _load() {
-    return ref
-        .read(engagementRepositoryProvider)
-        .listAvailableNow(specialtyId: widget.specialtyId);
+  Future<List<AvailableNowDoctor>> _load() async {
+    try {
+      final list = await ref
+          .read(engagementRepositoryProvider)
+          .listAvailableNow(specialtyId: widget.specialtyId);
+      _lastWasEmpty = list.isEmpty;
+      return list;
+    } catch (_) {
+      _lastWasEmpty = false;
+      rethrow;
+    }
+  }
+
+  void _pollIfEmpty() {
+    if (!mounted || !_lastWasEmpty || widget.busy) return;
+    setState(() {
+      _future = _load();
+    });
   }
 
   @override
@@ -419,6 +444,20 @@ class _AvailableNowStepState extends ConsumerState<_AvailableNowStep> {
       future: _future,
       builder: (context, snap) {
         if (snap.connectionState != ConnectionState.done) {
+          // Keep showing previous empty state subtitle while a poll is in flight.
+          if (_lastWasEmpty && snap.connectionState == ConnectionState.waiting) {
+            return EmptyState(
+              title: l10n.engagementInstantEmpty,
+              message: l10n.engagementInstantEmptyPolling,
+              icon: Icons.videocam_off_outlined,
+              actionLabel: l10n.retry,
+              onAction: () {
+                setState(() {
+                  _future = _load();
+                });
+              },
+            );
+          }
           return const Center(child: CircularProgressIndicator());
         }
         if (snap.hasError) {
@@ -439,6 +478,7 @@ class _AvailableNowStepState extends ConsumerState<_AvailableNowStep> {
         if (doctors.isEmpty) {
           return EmptyState(
             title: l10n.engagementInstantEmpty,
+            message: l10n.engagementInstantEmptyPolling,
             icon: Icons.videocam_off_outlined,
             actionLabel: l10n.retry,
             onAction: () {

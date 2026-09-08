@@ -397,6 +397,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appointmentsHistory => 'السجل';
 
   @override
+  String get appointmentsFilterAll => 'All';
+
+  @override
+  String get appointmentsSortSoonest => 'Soonest first';
+
+  @override
+  String get appointmentsSortLatest => 'Latest first';
+
+  @override
   String get appointmentsEmptyUpcoming => 'لا توجد مواعيد قادمة';
 
   @override
@@ -1451,6 +1460,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get engagementInstantEmpty => 'لا يوجد أطباء متاحون حالياً';
 
   @override
+  String get engagementInstantEmptyPolling =>
+      'Refreshing automatically when a doctor comes online…';
+
+  @override
   String get engagementInstantRequestSent =>
       'تم إرسال الطلب — بانتظار الرد (90 ث)';
 
@@ -1474,6 +1487,15 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get engagementInstantToggleSubtitle => 'استقبال طلبات استشارة فورية';
+
+  @override
+  String engagementInstantToggleUntil(String time) {
+    return 'Available until $time';
+  }
+
+  @override
+  String get engagementInstantTogglePresenceHint =>
+      'Keep the app open to appear in Telehealth Now.';
 
   @override
   String get engagementInstantPriceLabel => 'الأجر (وحدات صغرى)';

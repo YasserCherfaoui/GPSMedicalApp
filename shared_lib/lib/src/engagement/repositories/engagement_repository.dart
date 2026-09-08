@@ -49,6 +49,13 @@ class EngagementRepository {
 
   // ── Instant consult ───────────────────────────────────────────────
 
+  Future<InstantAvailability> getInstantAvailability() async {
+    final res = await _dio.get<Map<String, dynamic>>(
+      '/doctors/me/availability/instant',
+    );
+    return InstantAvailability.fromJson(res.data!);
+  }
+
   Future<InstantAvailability> setInstantAvailability({
     required bool active,
     required int priceMinor,

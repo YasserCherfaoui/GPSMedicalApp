@@ -170,6 +170,9 @@
   "appointmentsTitle": "Citas",
   "appointmentsUpcoming": "Próximas",
   "appointmentsHistory": "Historial",
+  "appointmentsFilterAll": "All",
+  "appointmentsSortSoonest": "Soonest first",
+  "appointmentsSortLatest": "Latest first",
   "appointmentsEmptyUpcoming": "Sin citas próximas",
   "appointmentsEmptyUpcomingCta": "Encontrar un especialista",
   "appointmentsEmptyHistory": "Sin citas pasadas",
@@ -626,6 +629,7 @@
   "engagementInstantTriageBlockedBody": "Based on your answers, contact emergency services immediately.",
   "engagementInstantAvailableNowTitle": "Available now",
   "engagementInstantEmpty": "No doctors available right now",
+  "engagementInstantEmptyPolling": "Refreshing automatically when a doctor comes online…",
   "engagementInstantRequestSent": "Request sent — waiting for a reply (90 s)",
   "engagementInstantTimeout": "The doctor did not respond. Try another.",
   "engagementInstantDisabled": "Instant telehealth is not enabled on this server",
@@ -633,6 +637,13 @@
   "engagementInstantDoctorOffline": "This doctor just went offline. Pick another.",
   "engagementInstantToggleTitle": "Available now",
   "engagementInstantToggleSubtitle": "Receive immediate telehealth requests",
+  "engagementInstantToggleUntil": "Available until {time}",
+  "@engagementInstantToggleUntil": {
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+  "engagementInstantTogglePresenceHint": "Keep the app open to appear in Telehealth Now.",
   "engagementInstantPriceLabel": "Fee (minor units)",
   "engagementInstantActivate": "Turn on",
   "engagementInstantDeactivate": "Turn off",

@@ -409,6 +409,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appointmentsHistory => 'Historial';
 
   @override
+  String get appointmentsFilterAll => 'All';
+
+  @override
+  String get appointmentsSortSoonest => 'Soonest first';
+
+  @override
+  String get appointmentsSortLatest => 'Latest first';
+
+  @override
   String get appointmentsEmptyUpcoming => 'Sin citas próximas';
 
   @override
@@ -1472,6 +1481,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get engagementInstantEmpty => 'No doctors available right now';
 
   @override
+  String get engagementInstantEmptyPolling =>
+      'Refreshing automatically when a doctor comes online…';
+
+  @override
   String get engagementInstantRequestSent =>
       'Request sent — waiting for a reply (90 s)';
 
@@ -1497,6 +1510,15 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get engagementInstantToggleSubtitle =>
       'Receive immediate telehealth requests';
+
+  @override
+  String engagementInstantToggleUntil(String time) {
+    return 'Available until $time';
+  }
+
+  @override
+  String get engagementInstantTogglePresenceHint =>
+      'Keep the app open to appear in Telehealth Now.';
 
   @override
   String get engagementInstantPriceLabel => 'Fee (minor units)';

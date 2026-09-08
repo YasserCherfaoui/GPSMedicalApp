@@ -170,6 +170,9 @@
   "appointmentsTitle": "Rendez-vous",
   "appointmentsUpcoming": "À venir",
   "appointmentsHistory": "Historique",
+  "appointmentsFilterAll": "Tous",
+  "appointmentsSortSoonest": "Plus proches d'abord",
+  "appointmentsSortLatest": "Plus récents d'abord",
   "appointmentsEmptyUpcoming": "Aucun rendez-vous à venir",
   "appointmentsEmptyUpcomingCta": "Trouver un spécialiste",
   "appointmentsEmptyHistory": "Aucun rendez-vous passé",
@@ -626,6 +629,7 @@
   "engagementInstantTriageBlockedBody": "D'après vos réponses, contactez immédiatement les urgences (SAMU / 14).",
   "engagementInstantAvailableNowTitle": "Disponibles maintenant",
   "engagementInstantEmpty": "Aucun médecin disponible pour le moment",
+  "engagementInstantEmptyPolling": "Actualisation automatique lorsque un médecin se connecte…",
   "engagementInstantRequestSent": "Demande envoyée — en attente de réponse (90 s)",
   "engagementInstantTimeout": "Le médecin n'a pas répondu. Réessayez avec un autre.",
   "engagementInstantDisabled": "La téléconsultation instantanée n'est pas activée sur ce serveur",
@@ -633,6 +637,13 @@
   "engagementInstantDoctorOffline": "Ce médecin vient de passer hors ligne. Choisissez-en un autre.",
   "engagementInstantToggleTitle": "Disponible maintenant",
   "engagementInstantToggleSubtitle": "Recevoir des demandes de téléconsultation immédiate",
+  "engagementInstantToggleUntil": "Disponible jusqu'à {time}",
+  "@engagementInstantToggleUntil": {
+    "placeholders": {
+      "time": { "type": "String" }
+    }
+  },
+  "engagementInstantTogglePresenceHint": "Gardez l'application ouverte pour apparaître dans Téléconsultation maintenant.",
   "engagementInstantPriceLabel": "Tarif (unité mineure)",
   "engagementInstantActivate": "Activer",
   "engagementInstantDeactivate": "Désactiver",

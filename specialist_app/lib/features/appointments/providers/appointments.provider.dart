@@ -44,26 +44,35 @@ final specialistPendingAppointmentsProvider =
 
 class SpecialistPendingAppointmentsNotifier
     extends AsyncNotifier<AppointmentsListState> {
+  static const _statuses = ['pending', 'pending_payment'];
+
   @override
   Future<AppointmentsListState> build() => _fetch(1, append: false);
 
   Future<AppointmentsListState> _fetch(int page, {required bool append}) async {
     final repo = ref.read(specialistAppointmentRepositoryProvider);
-    final result = await repo.list(status: 'pending', page: page);
-    final sorted = result.appointments.toList()
-      ..sort((a, b) {
-        final sa = a.startAt;
-        final sb = b.startAt;
-        if (sa == null || sb == null) return 0;
-        return sa.compareTo(sb);
-      });
+    final results = await Future.wait(
+      _statuses.map((status) => repo.list(status: status, page: page)),
+    );
+    final all = <Appointment>[];
+    var hasMore = false;
+    for (final result in results) {
+      all.addAll(result.appointments);
+      if (result.hasMore) hasMore = true;
+    }
+    all.sort((a, b) {
+      final sa = a.startAt;
+      final sb = b.startAt;
+      if (sa == null || sb == null) return 0;
+      return sa.compareTo(sb);
+    });
     final current = state.valueOrNull;
     return AppointmentsListState(
       appointments: append && current != null
-          ? [...current.appointments, ...sorted]
-          : sorted,
+          ? [...current.appointments, ...all]
+          : all,
       page: page,
-      hasMore: result.hasMore,
+      hasMore: hasMore,
     );
   }
 

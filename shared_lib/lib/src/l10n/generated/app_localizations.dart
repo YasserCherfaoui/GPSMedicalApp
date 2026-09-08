@@ -822,6 +822,24 @@ abstract class AppLocalizations {
   /// **'Historique'**
   String get appointmentsHistory;
 
+  /// No description provided for @appointmentsFilterAll.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous'**
+  String get appointmentsFilterAll;
+
+  /// No description provided for @appointmentsSortSoonest.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plus proches d\'abord'**
+  String get appointmentsSortSoonest;
+
+  /// No description provided for @appointmentsSortLatest.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plus récents d\'abord'**
+  String get appointmentsSortLatest;
+
   /// No description provided for @appointmentsEmptyUpcoming.
   ///
   /// In fr, this message translates to:
@@ -2784,6 +2802,12 @@ abstract class AppLocalizations {
   /// **'Aucun médecin disponible pour le moment'**
   String get engagementInstantEmpty;
 
+  /// No description provided for @engagementInstantEmptyPolling.
+  ///
+  /// In fr, this message translates to:
+  /// **'Actualisation automatique lorsque un médecin se connecte…'**
+  String get engagementInstantEmptyPolling;
+
   /// No description provided for @engagementInstantRequestSent.
   ///
   /// In fr, this message translates to:
@@ -2825,6 +2849,18 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Recevoir des demandes de téléconsultation immédiate'**
   String get engagementInstantToggleSubtitle;
+
+  /// No description provided for @engagementInstantToggleUntil.
+  ///
+  /// In fr, this message translates to:
+  /// **'Disponible jusqu\'à {time}'**
+  String engagementInstantToggleUntil(String time);
+
+  /// No description provided for @engagementInstantTogglePresenceHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Gardez l\'application ouverte pour apparaître dans Téléconsultation maintenant.'**
+  String get engagementInstantTogglePresenceHint;
 
   /// No description provided for @engagementInstantPriceLabel.
   ///
