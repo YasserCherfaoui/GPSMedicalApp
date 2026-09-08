@@ -101,6 +101,7 @@ class _DetailBody extends ConsumerWidget {
     final canCancel =
         start != null &&
         (status == AppointmentStatusEnum.pending ||
+            status == AppointmentStatusEnum.pendingPayment ||
             status == AppointmentStatusEnum.confirmed) &&
         canPatientModifyAppointment(start);
     final canReschedule = canCancel && !state.isClinicBooking && doctor != null;

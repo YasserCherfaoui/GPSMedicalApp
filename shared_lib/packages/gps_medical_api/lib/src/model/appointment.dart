@@ -64,7 +64,7 @@ abstract class Appointment implements Built<Appointment, AppointmentBuilder> {
 
   @BuiltValueField(wireName: r'status')
   AppointmentStatusEnum? get status;
-  // enum statusEnum {  pending,  confirmed,  cancelled,  completed,  no_show,  };
+  // enum statusEnum {  pending,  pending_payment,  confirmed,  cancelled,  completed,  no_show,  };
 
   @BuiltValueField(wireName: r'reason')
   String? get reason;
@@ -419,6 +419,9 @@ class AppointmentStatusEnum extends EnumClass {
 
   @BuiltValueEnumConst(wireName: r'pending')
   static const AppointmentStatusEnum pending = _$appointmentStatusEnum_pending;
+  @BuiltValueEnumConst(wireName: r'pending_payment')
+  static const AppointmentStatusEnum pendingPayment =
+      _$appointmentStatusEnum_pendingPayment;
   @BuiltValueEnumConst(wireName: r'confirmed')
   static const AppointmentStatusEnum confirmed = _$appointmentStatusEnum_confirmed;
   @BuiltValueEnumConst(wireName: r'cancelled')

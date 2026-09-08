@@ -135,6 +135,7 @@
   "appointmentStatusCancelled": "ملغى",
   "appointmentStatusCompleted": "مكتمل",
   "appointmentStatusNoShow": "غائب",
+  "appointmentStatusPendingPayment": "بانتظار الدفع",
   "appointmentPaymentUnpaid": "غير مدفوع",
   "appointmentPaymentDeposit": "عربون مدفوع",
   "appointmentPaymentPaid": "مدفوع",

@@ -3,13 +3,21 @@ import 'package:gps_medical_shared/gps_medical_shared.dart';
 import 'package:patient_app/features/payments/utils/deposit_eligibility.dart';
 
 void main() {
-  test('canPayAppointmentDeposit allows pending/confirmed unpaid only', () {
+  test('canPayAppointmentDeposit allows pending/pending_payment/confirmed unpaid', () {
     final pendingUnpaid = Appointment(
       (b) => b
         ..status = AppointmentStatusEnum.pending
         ..paymentStatus = AppointmentPaymentStatusEnum.unpaid,
     );
     expect(canPayAppointmentDeposit(pendingUnpaid), isTrue);
+
+    final pendingPaymentUnpaid = Appointment(
+      (b) => b
+        ..status = AppointmentStatusEnum.pendingPayment
+        ..paymentStatus = AppointmentPaymentStatusEnum.unpaid
+        ..feeDzd = 5000,
+    );
+    expect(canPayAppointmentDeposit(pendingPaymentUnpaid), isTrue);
 
     final confirmedUnpaid = Appointment(
       (b) => b

@@ -455,6 +455,9 @@ class AppLocalizationsBer extends AppLocalizations {
   String get appointmentStatusNoShow => 'Ur yelli ara';
 
   @override
+  String get appointmentStatusPendingPayment => 'Yettṛaju asellek';
+
+  @override
   String get appointmentPaymentUnpaid => 'Ur yettwaf ara';
 
   @override

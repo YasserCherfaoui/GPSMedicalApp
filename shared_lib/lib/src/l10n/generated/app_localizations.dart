@@ -924,6 +924,12 @@ abstract class AppLocalizations {
   /// **'Absent'**
   String get appointmentStatusNoShow;
 
+  /// No description provided for @appointmentStatusPendingPayment.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente de paiement'**
+  String get appointmentStatusPendingPayment;
+
   /// No description provided for @appointmentPaymentUnpaid.
   ///
   /// In fr, this message translates to:

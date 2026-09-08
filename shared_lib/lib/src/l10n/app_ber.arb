@@ -134,6 +134,7 @@
   "appointmentStatusCancelled": "Yettwasefsex",
   "appointmentStatusCompleted": "Yemmed",
   "appointmentStatusNoShow": "Ur yelli ara",
+  "appointmentStatusPendingPayment": "Yettṛaju asellek",
   "appointmentPaymentUnpaid": "Ur yettwaf ara",
   "appointmentPaymentDeposit": "Asekcem yettwaf",
   "appointmentPaymentPaid": "Yettwaf",

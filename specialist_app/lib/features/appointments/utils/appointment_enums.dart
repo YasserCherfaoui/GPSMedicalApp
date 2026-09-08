@@ -9,6 +9,7 @@ String appointmentStatusWire(AppointmentStatusEnum? status) {
   if (status == null) return '';
   return switch (status) {
     AppointmentStatusEnum.pending => 'pending',
+    AppointmentStatusEnum.pendingPayment => 'pending_payment',
     AppointmentStatusEnum.confirmed => 'confirmed',
     AppointmentStatusEnum.cancelled => 'cancelled',
     AppointmentStatusEnum.completed => 'completed',

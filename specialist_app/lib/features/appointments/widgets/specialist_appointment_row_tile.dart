@@ -79,6 +79,7 @@ class AppointmentStatusPill extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final label = switch (status) {
       'pending' => l10n.appointmentStatusPending,
+      'pending_payment' => l10n.appointmentStatusPendingPayment,
       'confirmed' => l10n.appointmentStatusConfirmed,
       'cancelled' => l10n.appointmentStatusCancelled,
       'completed' => l10n.appointmentStatusCompleted,
@@ -88,7 +89,7 @@ class AppointmentStatusPill extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final (bg, fg) = switch (status) {
       'confirmed' => (colorScheme.primaryContainer, colorScheme.primary),
-      'pending' => (
+      'pending' || 'pending_payment' => (
         colorScheme.tertiaryContainer,
         colorScheme.onTertiaryContainer,
       ),

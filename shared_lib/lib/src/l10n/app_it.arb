@@ -187,6 +187,7 @@
   "appointmentStatusCancelled": "Cancelled",
   "appointmentStatusCompleted": "Completed",
   "appointmentStatusNoShow": "No-show",
+  "appointmentStatusPendingPayment": "In attesa di pagamento",
   "appointmentPaymentUnpaid": "Unpaid",
   "appointmentPaymentDeposit": "Deposit paid",
   "appointmentPaymentPaid": "Paid",

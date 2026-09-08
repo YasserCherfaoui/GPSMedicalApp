@@ -449,6 +449,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appointmentStatusNoShow => 'غائب';
 
   @override
+  String get appointmentStatusPendingPayment => 'بانتظار الدفع';
+
+  @override
   String get appointmentPaymentUnpaid => 'غير مدفوع';
 
   @override

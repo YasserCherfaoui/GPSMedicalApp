@@ -456,6 +456,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get appointmentStatusNoShow => 'No-show';
 
   @override
+  String get appointmentStatusPendingPayment => 'In attesa di pagamento';
+
+  @override
   String get appointmentPaymentUnpaid => 'Unpaid';
 
   @override

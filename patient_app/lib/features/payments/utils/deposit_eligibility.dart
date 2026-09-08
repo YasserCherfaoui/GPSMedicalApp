@@ -8,6 +8,7 @@ bool canPayAppointmentDeposit(Appointment appointment) {
   final payment = appointment.paymentStatus;
   final statusOk =
       status == AppointmentStatusEnum.pending ||
+      status == AppointmentStatusEnum.pendingPayment ||
       status == AppointmentStatusEnum.confirmed;
   return statusOk && payment == AppointmentPaymentStatusEnum.unpaid;
 }

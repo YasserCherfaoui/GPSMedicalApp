@@ -187,6 +187,7 @@
   "appointmentStatusCancelled": "Annulé",
   "appointmentStatusCompleted": "Terminé",
   "appointmentStatusNoShow": "Absent",
+  "appointmentStatusPendingPayment": "En attente de paiement",
   "appointmentPaymentUnpaid": "Non payé",
   "appointmentPaymentDeposit": "Acompte versé",
   "appointmentPaymentPaid": "Payé",

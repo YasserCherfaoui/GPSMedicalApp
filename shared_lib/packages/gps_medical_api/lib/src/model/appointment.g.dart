@@ -52,6 +52,8 @@ final BuiltSet<AppointmentModeEnum> _$appointmentModeEnumValues =
 
 const AppointmentStatusEnum _$appointmentStatusEnum_pending =
     const AppointmentStatusEnum._('pending');
+const AppointmentStatusEnum _$appointmentStatusEnum_pendingPayment =
+    const AppointmentStatusEnum._('pendingPayment');
 const AppointmentStatusEnum _$appointmentStatusEnum_confirmed =
     const AppointmentStatusEnum._('confirmed');
 const AppointmentStatusEnum _$appointmentStatusEnum_cancelled =
@@ -65,6 +67,8 @@ AppointmentStatusEnum _$appointmentStatusEnumValueOf(String name) {
   switch (name) {
     case 'pending':
       return _$appointmentStatusEnum_pending;
+    case 'pendingPayment':
+      return _$appointmentStatusEnum_pendingPayment;
     case 'confirmed':
       return _$appointmentStatusEnum_confirmed;
     case 'cancelled':
@@ -81,6 +85,7 @@ AppointmentStatusEnum _$appointmentStatusEnumValueOf(String name) {
 final BuiltSet<AppointmentStatusEnum> _$appointmentStatusEnumValues =
     BuiltSet<AppointmentStatusEnum>(const <AppointmentStatusEnum>[
       _$appointmentStatusEnum_pending,
+      _$appointmentStatusEnum_pendingPayment,
       _$appointmentStatusEnum_confirmed,
       _$appointmentStatusEnum_cancelled,
       _$appointmentStatusEnum_completed,
@@ -202,6 +207,7 @@ class _$AppointmentStatusEnumSerializer
     implements PrimitiveSerializer<AppointmentStatusEnum> {
   static const Map<String, Object> _toWire = const <String, Object>{
     'pending': 'pending',
+    'pendingPayment': 'pending_payment',
     'confirmed': 'confirmed',
     'cancelled': 'cancelled',
     'completed': 'completed',
@@ -209,6 +215,7 @@ class _$AppointmentStatusEnumSerializer
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     'pending': 'pending',
+    'pending_payment': 'pendingPayment',
     'confirmed': 'confirmed',
     'cancelled': 'cancelled',
     'completed': 'completed',

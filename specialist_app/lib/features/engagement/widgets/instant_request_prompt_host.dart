@@ -3,7 +3,10 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
+
+import '../../../routing/specialist_routes.dart';
 
 /// Listens for `instant.request` WS events and shows a blocking accept/decline.
 ///
@@ -30,6 +33,20 @@ class _InstantRequestPromptHostState
   var _showing = false;
   final _seenRequestIds = <String>{};
 
+  String? _appointmentIdFromAccept(Map<String, dynamic> result) {
+    final appointment = result['appointment'];
+    if (appointment is Map) {
+      final id = appointment['id'] as String?;
+      if (id != null && id.isNotEmpty) return id;
+    }
+    final request = result['request'];
+    if (request is Map) {
+      final id = request['appointment_id'] as String?;
+      if (id != null && id.isNotEmpty) return id;
+    }
+    return null;
+  }
+
   Future<void> _showPrompt(
     String requestId,
     Map<String, dynamic> payload,
@@ -51,6 +68,7 @@ class _InstantRequestPromptHostState
     _showing = true;
     final l10n = AppLocalizations.of(navCtx)!;
     final theme = Theme.of(navCtx);
+    String? acceptedAppointmentId;
     try {
       if (kDebugMode) {
         debugPrint('InstantRequestPromptHost: showing dialog for $requestId');
@@ -67,7 +85,10 @@ class _InstantRequestPromptHostState
                 try {
                   final repo = ref.read(engagementRepositoryProvider);
                   if (accept) {
-                    await repo.acceptInstantConsultRequest(requestId);
+                    final result = await repo.acceptInstantConsultRequest(
+                      requestId,
+                    );
+                    acceptedAppointmentId = _appointmentIdFromAccept(result);
                   } else {
                     await repo.declineInstantConsultRequest(requestId);
                   }
@@ -102,6 +123,15 @@ class _InstantRequestPromptHostState
           );
         },
       );
+
+      final appointmentId = acceptedAppointmentId;
+      final goCtx = widget.navigatorKey.currentContext;
+      if (appointmentId != null &&
+          appointmentId.isNotEmpty &&
+          goCtx != null &&
+          goCtx.mounted) {
+        GoRouter.of(goCtx).go(SpecialistRoutes.appointmentDetail(appointmentId));
+      }
     } catch (e, st) {
       if (kDebugMode) {
         debugPrint('InstantRequestPromptHost: dialog failed: $e\n$st');
@@ -123,7 +153,9 @@ class _InstantRequestPromptHostState
         if (requestId.isEmpty || _showing || !mounted) return;
         if (!_seenRequestIds.add(requestId)) return;
         if (kDebugMode) {
-          debugPrint('InstantRequestPromptHost: received instant.request $requestId');
+          debugPrint(
+            'InstantRequestPromptHost: received instant.request $requestId',
+          );
         }
         unawaited(_showPrompt(requestId, event.payload));
       },
