@@ -218,6 +218,7 @@ class _MedicalRecordUploadScreenState
           type: _type!,
           title: title.isEmpty ? null : title,
           notes: notes.isEmpty ? null : notes,
+          appointmentId: widget.draft?.appointmentId,
           cancelToken: file.cancelToken,
           onSendProgress: (sent, total) {
             if (total <= 0 || !mounted) return;

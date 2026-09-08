@@ -135,9 +135,19 @@ bool canPatientModifyAppointment(DateTime startAt) {
 bool canJoinTelehealth({
   required DateTime startAt,
   required DateTime endAt,
-  required String statusWire,
+  required AppointmentStatusEnum? status,
+  AppointmentPaymentStatusEnum? paymentStatus,
 }) {
-  if (statusWire != 'confirmed') return false;
+  final paid =
+      paymentStatus == AppointmentPaymentStatusEnum.paid ||
+      paymentStatus == AppointmentPaymentStatusEnum.depositPaid;
+  // Instant consults stay `pending_payment` until pay succeeds → `confirmed`.
+  // Also allow join when payment already succeeded but status was not promoted
+  // (older API builds).
+  final statusOk =
+      status == AppointmentStatusEnum.confirmed ||
+      (status == AppointmentStatusEnum.pendingPayment && paid);
+  if (!statusOk) return false;
   final now = DateTime.now();
   final windowStart = startAt.subtract(const Duration(minutes: 15));
   final windowEnd = endAt.add(const Duration(minutes: 30));

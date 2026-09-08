@@ -206,6 +206,7 @@ class _DetailBodyState extends ConsumerState<_DetailBody> {
     final start = appointment.startAt?.toLocal();
     final showTelehealthCta = widget.offersTelehealth &&
         appointment.mode == AppointmentModeEnum.telehealth &&
+        canJoinSpecialistTeleconsult(appointment) &&
         isTeleconsultWindowOpen(appointment);
     final canConfirm = status == 'pending';
     final canCancel = status == 'pending' || status == 'confirmed';

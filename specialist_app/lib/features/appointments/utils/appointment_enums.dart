@@ -38,3 +38,13 @@ bool isTeleconsultWindowOpen(Appointment appointment) {
   final windowEnd = end.toLocal().add(const Duration(minutes: 30));
   return !now.isBefore(windowStart) && !now.isAfter(windowEnd);
 }
+
+/// Instant consults require payment success (`confirmed`, or paid
+/// `pending_payment` on older API builds that did not promote status).
+bool canJoinSpecialistTeleconsult(Appointment appointment) {
+  final paid =
+      appointment.paymentStatus == AppointmentPaymentStatusEnum.paid ||
+      appointment.paymentStatus == AppointmentPaymentStatusEnum.depositPaid;
+  return appointment.status == AppointmentStatusEnum.confirmed ||
+      (appointment.status == AppointmentStatusEnum.pendingPayment && paid);
+}

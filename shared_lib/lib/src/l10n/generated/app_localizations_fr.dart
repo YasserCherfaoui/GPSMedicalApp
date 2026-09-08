@@ -1171,6 +1171,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get medicalRecordsTitle => 'Dossier médical';
 
   @override
+  String get appointmentMedicalRecordsBody =>
+      'Partagez des documents avec votre médecin pour cette consultation (analyses, ordonnances, imagerie…).';
+
+  @override
+  String get appointmentMedicalRecordsOpen => 'Voir mon dossier';
+
+  @override
+  String get appointmentMedicalRecordsShare =>
+      'Ajouter un document pour ce RDV';
+
+  @override
   String get medicalRecordsEmpty => 'Aucun document';
 
   @override
@@ -2350,6 +2361,22 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get teleconsultHangupStay => 'Rester dans l\'appel';
+
+  @override
+  String get teleconsultMinimize => 'Réduire l\'appel';
+
+  @override
+  String get teleconsultReturnToCall => 'Retour à l\'appel';
+
+  @override
+  String get teleconsultHangupOrMinimizeTitle => 'Quitter l\'écran d\'appel ?';
+
+  @override
+  String get teleconsultHangupOrMinimizeMessage =>
+      'Vous pouvez réduire l\'appel pour naviguer dans l\'application, ou raccrocher.';
+
+  @override
+  String get teleconsultMinimizeAction => 'Réduire';
 
   @override
   String get specialistStatsRatingTitle => 'Note moyenne';

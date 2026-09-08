@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 
 import '../../discovery/utils/doctor_display.dart';
 import '../../discovery/utils/specialty_display.dart';
+import '../../medical_records/models/medical_record_upload_draft.dart';
 import '../../payments/utils/deposit_eligibility.dart';
 import '../../payments/widgets/appointment_payment_section.dart';
 import '../../reviews/widgets/appointment_review_section.dart';
@@ -111,7 +112,12 @@ class _DetailBody extends ConsumerWidget {
         start != null &&
         end != null &&
         appointment.mode == AppointmentModeEnum.telehealth &&
-        canJoinTelehealth(startAt: start, endAt: end, statusWire: statusWire);
+        canJoinTelehealth(
+          startAt: start,
+          endAt: end,
+          status: status,
+          paymentStatus: appointment.paymentStatus,
+        );
     final relative = start != null
         ? formatReviewRelativeTime(start, l10n)
         : '';
@@ -308,6 +314,44 @@ class _DetailBody extends ConsumerWidget {
                 onPressed: () => context.push(
                   GpsRoutes.appointmentTeleconsultation(appointmentId),
                 ),
+              ),
+            ),
+          ],
+          if (status == AppointmentStatusEnum.pendingPayment ||
+              status == AppointmentStatusEnum.confirmed ||
+              status == AppointmentStatusEnum.completed) ...[
+            const SizedBox(height: GpsSpacing.md),
+            GpsCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    l10n.medicalRecordsTitle,
+                    style: theme.textTheme.titleSmall,
+                  ),
+                  const SizedBox(height: GpsSpacing.xs),
+                  Text(
+                    l10n.appointmentMedicalRecordsBody,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  const SizedBox(height: GpsSpacing.md),
+                  OutlinedButton(
+                    onPressed: () => context.push(GpsRoutes.medicalRecords),
+                    child: Text(l10n.appointmentMedicalRecordsOpen),
+                  ),
+                  const SizedBox(height: GpsSpacing.sm),
+                  FilledButton.tonal(
+                    onPressed: () => context.push(
+                      GpsRoutes.medicalRecordsUpload,
+                      extra: MedicalRecordUploadDraft(
+                        appointmentId: appointmentId,
+                      ),
+                    ),
+                    child: Text(l10n.appointmentMedicalRecordsShare),
+                  ),
+                ],
               ),
             ),
           ],

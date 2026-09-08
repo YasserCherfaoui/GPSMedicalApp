@@ -84,7 +84,11 @@ void main() {
     final start = DateTime.now().add(const Duration(minutes: 10));
     final end = start.add(const Duration(minutes: 30));
     expect(
-      canJoinTelehealth(startAt: start, endAt: end, statusWire: 'confirmed'),
+      canJoinTelehealth(
+        startAt: start,
+        endAt: end,
+        status: AppointmentStatusEnum.confirmed,
+      ),
       isTrue,
     );
   });
@@ -93,7 +97,34 @@ void main() {
     final start = DateTime.now();
     final end = start.add(const Duration(minutes: 30));
     expect(
-      canJoinTelehealth(startAt: start, endAt: end, statusWire: 'pending'),
+      canJoinTelehealth(
+        startAt: start,
+        endAt: end,
+        status: AppointmentStatusEnum.pending,
+      ),
+      isFalse,
+    );
+  });
+
+  test('canJoinTelehealth allows paid pending_payment (instant after pay)', () {
+    final start = DateTime.now().subtract(const Duration(minutes: 5));
+    final end = start.add(const Duration(minutes: 30));
+    expect(
+      canJoinTelehealth(
+        startAt: start,
+        endAt: end,
+        status: AppointmentStatusEnum.pendingPayment,
+        paymentStatus: AppointmentPaymentStatusEnum.paid,
+      ),
+      isTrue,
+    );
+    expect(
+      canJoinTelehealth(
+        startAt: start,
+        endAt: end,
+        status: AppointmentStatusEnum.pendingPayment,
+        paymentStatus: AppointmentPaymentStatusEnum.unpaid,
+      ),
       isFalse,
     );
   });

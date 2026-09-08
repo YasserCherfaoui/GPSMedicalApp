@@ -9,6 +9,7 @@ import '../l10n/app_locale.dart';
 import '../l10n/auth_strings.dart';
 import '../l10n/generated/app_localizations.dart';
 import '../l10n/locale.provider.dart' hide AppLocale;
+import '../teleconsultation/active_teleconsultation_overlay.dart';
 import '../theme/gps_theme.dart';
 import 'design_system_showcase.dart';
 
@@ -17,11 +18,13 @@ class GpsMedicalMaterialApp extends ConsumerWidget {
   const GpsMedicalMaterialApp({
     required this.title,
     required this.routerConfig,
+    required this.navigatorKey,
     super.key,
   });
 
   final String title;
   final GoRouter routerConfig;
+  final GlobalKey<NavigatorState> navigatorKey;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -62,7 +65,10 @@ class GpsMedicalMaterialApp extends ConsumerWidget {
             textDirection: appLocale.textDirection,
             child: DesignSystemShowcaseLauncher(
               router: routerConfig,
-              child: responsiveChild,
+              child: ActiveTeleconsultationOverlay(
+                navigatorKey: navigatorKey,
+                child: responsiveChild,
+              ),
             ),
           ),
         );

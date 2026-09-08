@@ -8,6 +8,9 @@ import '../theme/gps_radii.dart';
 import '../theme/gps_spacing.dart';
 import '../widgets/gps_modal.dart';
 
+/// Result of [TeleconsultationCallBar.confirmLeaveScreen].
+enum TeleconsultLeaveChoice { minimize, hangup }
+
 /// Mic, camera, and hang-up controls with a clear on/off appearance.
 class TeleconsultationCallBar extends StatelessWidget {
   const TeleconsultationCallBar({
@@ -16,18 +19,21 @@ class TeleconsultationCallBar extends StatelessWidget {
     required this.onMicPressed,
     required this.onCameraPressed,
     required this.onHangupPressed,
+    this.onMinimizePressed,
     super.key,
   });
 
   static const micKey = Key('teleconsult-mic');
   static const cameraKey = Key('teleconsult-camera');
   static const hangupKey = Key('teleconsult-hangup');
+  static const minimizeKey = Key('teleconsult-minimize');
 
   final bool micEnabled;
   final bool cameraEnabled;
   final VoidCallback onMicPressed;
   final VoidCallback onCameraPressed;
   final VoidCallback onHangupPressed;
+  final VoidCallback? onMinimizePressed;
 
   static Future<bool> confirmHangup(BuildContext context) async {
     final l10n = AppLocalizations.of(context)!;
@@ -40,6 +46,60 @@ class TeleconsultationCallBar extends StatelessWidget {
       primaryIsDestructive: true,
     );
     return confirmed == true;
+  }
+
+  /// Back navigation while in call: minimize, hang up, or stay.
+  static Future<TeleconsultLeaveChoice?> confirmLeaveScreen(
+    BuildContext context,
+  ) {
+    final l10n = AppLocalizations.of(context)!;
+    return showModalBottomSheet<TeleconsultLeaveChoice>(
+      context: context,
+      showDragHandle: true,
+      builder: (ctx) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(
+              GpsSpacing.md,
+              0,
+              GpsSpacing.md,
+              GpsSpacing.md,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  l10n.teleconsultHangupOrMinimizeTitle,
+                  style: Theme.of(ctx).textTheme.titleMedium,
+                ),
+                const SizedBox(height: GpsSpacing.sm),
+                Text(l10n.teleconsultHangupOrMinimizeMessage),
+                const SizedBox(height: GpsSpacing.md),
+                FilledButton.tonal(
+                  onPressed: () =>
+                      Navigator.pop(ctx, TeleconsultLeaveChoice.minimize),
+                  child: Text(l10n.teleconsultMinimizeAction),
+                ),
+                const SizedBox(height: GpsSpacing.sm),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Theme.of(ctx).colorScheme.error,
+                  ),
+                  onPressed: () =>
+                      Navigator.pop(ctx, TeleconsultLeaveChoice.hangup),
+                  child: Text(l10n.teleconsultHangupConfirm),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: Text(l10n.teleconsultHangupStay),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -71,6 +131,18 @@ class TeleconsultationCallBar extends StatelessWidget {
               disabledTooltip: l10n.teleconsultCameraOff,
               onPressed: onCameraPressed,
             ),
+            if (onMinimizePressed != null) ...[
+              const SizedBox(width: GpsSpacing.md),
+              _CallToggle(
+                buttonKey: minimizeKey,
+                enabled: true,
+                enabledIcon: Icons.picture_in_picture_alt,
+                disabledIcon: Icons.picture_in_picture_alt,
+                enabledTooltip: l10n.teleconsultMinimize,
+                disabledTooltip: l10n.teleconsultMinimize,
+                onPressed: onMinimizePressed!,
+              ),
+            ],
             const SizedBox(width: GpsSpacing.md),
             _CallToggle(
               buttonKey: hangupKey,
@@ -185,14 +257,16 @@ class TeleconsultationRemotePreview extends StatefulWidget {
   final String waitingLabel;
 
   @override
-  State<TeleconsultationRemotePreview> createState() =>
-      _TeleconsultationRemotePreviewState();
+  TeleconsultationRemotePreviewState createState() =>
+      TeleconsultationRemotePreviewState();
 }
 
-class _TeleconsultationRemotePreviewState
+class TeleconsultationRemotePreviewState
     extends State<TeleconsultationRemotePreview> {
   final _renderer = RTCVideoRenderer();
   var _initialized = false;
+  var _bindGeneration = 0;
+  var _detached = false;
 
   @override
   void initState() {
@@ -203,29 +277,52 @@ class _TeleconsultationRemotePreviewState
   @override
   void didUpdateWidget(TeleconsultationRemotePreview oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.stream != widget.stream) {
+    if (!_detached && oldWidget.stream != widget.stream) {
       unawaited(_bind());
     }
   }
 
   Future<void> _bind() async {
+    if (_detached) return;
+    final generation = ++_bindGeneration;
     if (!_initialized) {
       await _renderer.initialize();
+      if (!mounted || generation != _bindGeneration || _detached) return;
       _initialized = true;
     }
+    if (generation != _bindGeneration || _detached) return;
     _renderer.srcObject = widget.stream;
+    if (mounted) setState(() {});
+  }
+
+  /// Clears the texture before the route is popped (avoids ghost frames).
+  Future<void> detach() async {
+    if (_detached) return;
+    _detached = true;
+    _bindGeneration++;
+    _renderer.srcObject = null;
+    if (_initialized) {
+      _initialized = false;
+      await _renderer.dispose();
+    }
     if (mounted) setState(() {});
   }
 
   @override
   void dispose() {
-    _renderer.dispose();
+    _bindGeneration++;
+    if (!_detached) {
+      _renderer.srcObject = null;
+      if (_initialized) {
+        unawaited(_renderer.dispose());
+      }
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.stream == null) {
+    if (_detached || widget.stream == null) {
       return Center(
         child: Text(
           widget.waitingLabel,
@@ -252,14 +349,16 @@ class TeleconsultationLocalPreview extends StatefulWidget {
   final bool cameraEnabled;
 
   @override
-  State<TeleconsultationLocalPreview> createState() =>
-      _TeleconsultationLocalPreviewState();
+  TeleconsultationLocalPreviewState createState() =>
+      TeleconsultationLocalPreviewState();
 }
 
-class _TeleconsultationLocalPreviewState
+class TeleconsultationLocalPreviewState
     extends State<TeleconsultationLocalPreview> {
   final _renderer = RTCVideoRenderer();
   var _initialized = false;
+  var _bindGeneration = 0;
+  var _detached = false;
 
   @override
   void initState() {
@@ -270,28 +369,53 @@ class _TeleconsultationLocalPreviewState
   @override
   void didUpdateWidget(TeleconsultationLocalPreview oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.stream != widget.stream) {
+    if (!_detached && oldWidget.stream != widget.stream) {
       unawaited(_bind());
     }
   }
 
   Future<void> _bind() async {
+    if (_detached) return;
+    final generation = ++_bindGeneration;
     if (!_initialized) {
       await _renderer.initialize();
+      if (!mounted || generation != _bindGeneration || _detached) return;
       _initialized = true;
     }
+    if (generation != _bindGeneration || _detached) return;
     _renderer.srcObject = widget.stream;
+    if (mounted) setState(() {});
+  }
+
+  Future<void> detach() async {
+    if (_detached) return;
+    _detached = true;
+    _bindGeneration++;
+    _renderer.srcObject = null;
+    if (_initialized) {
+      _initialized = false;
+      await _renderer.dispose();
+    }
     if (mounted) setState(() {});
   }
 
   @override
   void dispose() {
-    _renderer.dispose();
+    _bindGeneration++;
+    if (!_detached) {
+      _renderer.srcObject = null;
+      if (_initialized) {
+        unawaited(_renderer.dispose());
+      }
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_detached) {
+      return const ColoredBox(color: Colors.black);
+    }
     final l10n = AppLocalizations.of(context)!;
     return ClipRRect(
       borderRadius: BorderRadius.circular(GpsRadii.md),
@@ -329,4 +453,20 @@ class _TeleconsultationLocalPreviewState
       ),
     );
   }
+}
+
+/// Waits a couple of frames after video widgets have detached their textures.
+Future<void> settleTeleconsultationVideoDetach() async {
+  await WidgetsBinding.instance.endOfFrame;
+  await Future<void>.delayed(const Duration(milliseconds: 50));
+  await WidgetsBinding.instance.endOfFrame;
+}
+
+/// Removes [RTCVideoView] platform layers before popping a call route.
+@Deprecated('Use preview.detach() + settleTeleconsultationVideoDetach')
+Future<void> detachTeleconsultationVideoPlatformViews(
+  VoidCallback removeVideoFromTree,
+) async {
+  removeVideoFromTree();
+  await settleTeleconsultationVideoDetach();
 }

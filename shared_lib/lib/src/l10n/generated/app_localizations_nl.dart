@@ -1159,6 +1159,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String get medicalRecordsTitle => 'Medisch dossier';
 
   @override
+  String get appointmentMedicalRecordsBody =>
+      'Share documents with your doctor for this visit (labs, prescriptions, imaging…).';
+
+  @override
+  String get appointmentMedicalRecordsOpen => 'Open my records';
+
+  @override
+  String get appointmentMedicalRecordsShare => 'Add a document for this visit';
+
+  @override
   String get medicalRecordsEmpty => 'No documents';
 
   @override
@@ -2321,6 +2331,22 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get teleconsultHangupStay => 'Stay in call';
+
+  @override
+  String get teleconsultMinimize => 'Minimize call';
+
+  @override
+  String get teleconsultReturnToCall => 'Return to call';
+
+  @override
+  String get teleconsultHangupOrMinimizeTitle => 'Leave the call screen?';
+
+  @override
+  String get teleconsultHangupOrMinimizeMessage =>
+      'Minimize the call to browse the app, or hang up.';
+
+  @override
+  String get teleconsultMinimizeAction => 'Minimize';
 
   @override
   String get specialistStatsRatingTitle => 'Average rating';

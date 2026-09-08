@@ -2232,6 +2232,24 @@ abstract class AppLocalizations {
   /// **'Dossier médical'**
   String get medicalRecordsTitle;
 
+  /// No description provided for @appointmentMedicalRecordsBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Partagez des documents avec votre médecin pour cette consultation (analyses, ordonnances, imagerie…).'**
+  String get appointmentMedicalRecordsBody;
+
+  /// No description provided for @appointmentMedicalRecordsOpen.
+  ///
+  /// In fr, this message translates to:
+  /// **'Voir mon dossier'**
+  String get appointmentMedicalRecordsOpen;
+
+  /// No description provided for @appointmentMedicalRecordsShare.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un document pour ce RDV'**
+  String get appointmentMedicalRecordsShare;
+
   /// No description provided for @medicalRecordsEmpty.
   ///
   /// In fr, this message translates to:
@@ -4331,6 +4349,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Rester dans l\'appel'**
   String get teleconsultHangupStay;
+
+  /// No description provided for @teleconsultMinimize.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réduire l\'appel'**
+  String get teleconsultMinimize;
+
+  /// No description provided for @teleconsultReturnToCall.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retour à l\'appel'**
+  String get teleconsultReturnToCall;
+
+  /// No description provided for @teleconsultHangupOrMinimizeTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quitter l\'écran d\'appel ?'**
+  String get teleconsultHangupOrMinimizeTitle;
+
+  /// No description provided for @teleconsultHangupOrMinimizeMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous pouvez réduire l\'appel pour naviguer dans l\'application, ou raccrocher.'**
+  String get teleconsultHangupOrMinimizeMessage;
+
+  /// No description provided for @teleconsultMinimizeAction.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réduire'**
+  String get teleconsultMinimizeAction;
 
   /// No description provided for @specialistStatsRatingTitle.
   ///

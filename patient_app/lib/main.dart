@@ -104,6 +104,7 @@ class _PatientAppState extends ConsumerState<PatientApp> {
           child: GpsMedicalMaterialApp(
             title: _appInfo.displayName,
             routerConfig: router,
+            navigatorKey: patientRootNavigatorKey,
           ),
         ),
       ),

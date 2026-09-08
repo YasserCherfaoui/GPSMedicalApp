@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gps_medical_shared/gps_medical_shared.dart';
 
+import '../../../routing/specialist_routes.dart';
 import '../../appointments/providers/appointments.provider.dart';
 import '../providers/teleconsultation.provider.dart';
 import '../repositories/specialist_teleconsultation_repository.dart';
@@ -25,12 +26,16 @@ class SpecialistTeleconsultationScreen extends ConsumerStatefulWidget {
 
 class _SpecialistTeleconsultationScreenState
     extends ConsumerState<SpecialistTeleconsultationScreen> {
+  final _remotePreviewKey = GlobalKey<TeleconsultationRemotePreviewState>();
+  final _localPreviewKey = GlobalKey<TeleconsultationLocalPreviewState>();
   TeleconsultationCallController? _controller;
   Timer? _countdownTimer;
   String? _errorMessage;
   bool _loading = true;
   bool _ending = false;
-  bool _confirmingHangup = false;
+  bool _confirmingLeave = false;
+  bool _providerOwnsController = false;
+  bool _allowPop = false;
   Duration? _opensIn;
 
   @override
@@ -42,11 +47,49 @@ class _SpecialistTeleconsultationScreenState
   @override
   void dispose() {
     _countdownTimer?.cancel();
-    unawaited(_controller?.dispose());
+    if (!_providerOwnsController) {
+      unawaited(_controller?.dispose());
+    }
     super.dispose();
   }
 
+  void _bindController(TeleconsultationCallController controller) {
+    controller
+      ..onRemoteStreamChanged = () {
+        if (mounted) setState(() {});
+      }
+      ..onLocalMediaChanged = () {
+        if (mounted) setState(() {});
+      }
+      ..onRemoteHangup = () {
+        if (mounted) unawaited(_endCall(notifyPeer: false));
+      }
+      ..onIceFailed = () {
+        if (!mounted) return;
+        setState(() {
+          _errorMessage = AppLocalizations.of(
+            context,
+          )!.specialistTeleconsultConnectionError;
+        });
+      };
+  }
+
   Future<void> _bootstrap() async {
+    final existing = ref.read(activeTeleconsultationProvider);
+    if (existing != null &&
+        existing.appointmentId == widget.appointmentId &&
+        existing.isSpecialist) {
+      _bindController(existing.controller);
+      _providerOwnsController = true;
+      ref.read(activeTeleconsultationProvider.notifier).setMinimized(false);
+      setState(() {
+        _controller = existing.controller;
+        _loading = false;
+        _errorMessage = null;
+      });
+      return;
+    }
+
     try {
       final appointment = await ref.read(
         specialistAppointmentDetailProvider(widget.appointmentId).future,
@@ -98,25 +141,8 @@ class _SpecialistTeleconsultationScreenState
         session: session,
         turnCredentials: turn,
       );
-      final controller = TeleconsultationCallController(
-        onRemoteStreamChanged: () {
-          if (mounted) setState(() {});
-        },
-        onLocalMediaChanged: () {
-          if (mounted) setState(() {});
-        },
-        onRemoteHangup: () {
-          if (mounted) unawaited(_endCall(notifyPeer: false));
-        },
-        onIceFailed: () {
-          if (!mounted) return;
-          setState(() {
-            _errorMessage = AppLocalizations.of(
-              context,
-            )!.specialistTeleconsultConnectionError;
-          });
-        },
-      );
+      final controller = TeleconsultationCallController();
+      _bindController(controller);
       await controller.initialize(
         iceServers: iceServers,
         signalling: repo.signallingClient(),
@@ -127,6 +153,23 @@ class _SpecialistTeleconsultationScreenState
         await controller.dispose();
         return;
       }
+      ref
+          .read(activeTeleconsultationProvider.notifier)
+          .attach(
+            ActiveTeleconsultationSession(
+              appointmentId: widget.appointmentId,
+              controller: controller,
+              isSpecialist: true,
+              callRoute: SpecialistRoutes.teleconsultation(widget.appointmentId),
+              endSession: ({required int durationSeconds}) {
+                return repo.endSession(
+                  appointmentId: widget.appointmentId,
+                  durationSeconds: durationSeconds,
+                );
+              },
+            ),
+          );
+      _providerOwnsController = true;
       setState(() {
         _controller = controller;
         _loading = false;
@@ -157,40 +200,61 @@ class _SpecialistTeleconsultationScreenState
     }
   }
 
+  Future<void> _requestLeave() async {
+    if (_ending || _confirmingLeave) return;
+    _confirmingLeave = true;
+    try {
+      final choice = await TeleconsultationCallBar.confirmLeaveScreen(context);
+      if (!mounted || choice == null) return;
+      if (choice == TeleconsultLeaveChoice.minimize) {
+        await _minimize();
+      } else {
+        await _endCall();
+      }
+    } finally {
+      _confirmingLeave = false;
+    }
+  }
+
   Future<void> _requestHangup() async {
-    if (_ending || _confirmingHangup) return;
-    _confirmingHangup = true;
+    if (_ending || _confirmingLeave) return;
+    _confirmingLeave = true;
     try {
       final confirmed = await TeleconsultationCallBar.confirmHangup(context);
       if (!mounted || !confirmed) return;
       await _endCall();
     } finally {
-      _confirmingHangup = false;
+      _confirmingLeave = false;
     }
+  }
+
+  Future<void> _detachVideo() async {
+    await Future.wait<void>([
+      _remotePreviewKey.currentState?.detach() ?? Future<void>.value(),
+      _localPreviewKey.currentState?.detach() ?? Future<void>.value(),
+    ]);
+    await settleTeleconsultationVideoDetach();
+  }
+
+  Future<void> _minimize() async {
+    _providerOwnsController = true;
+    await _detachVideo();
+    if (!mounted) return;
+    setState(() => _allowPop = true);
+    ref.read(activeTeleconsultationProvider.notifier).setMinimized(true);
+    if (mounted) context.pop();
   }
 
   Future<void> _endCall({bool notifyPeer = true}) async {
     if (_ending) return;
     _ending = true;
-    final controller = _controller;
-    final duration = controller?.elapsedSeconds() ?? 0;
-    if (notifyPeer) {
-      await controller?.sendHangup();
-    }
-    await controller?.dispose();
+    _providerOwnsController = true;
+    await _detachVideo();
+    if (mounted) setState(() => _allowPop = true);
+    await ref
+        .read(activeTeleconsultationProvider.notifier)
+        .hangup(notifyPeer: notifyPeer);
     _controller = null;
-    try {
-      if (duration > 0) {
-        await ref
-            .read(specialistTeleconsultationRepositoryProvider)
-            .endSession(
-              appointmentId: widget.appointmentId,
-              durationSeconds: duration,
-            );
-      }
-    } catch (_) {
-      // End is best-effort once local media is torn down.
-    }
     if (mounted) context.pop();
   }
 
@@ -238,10 +302,10 @@ class _SpecialistTeleconsultationScreenState
     }
 
     return PopScope(
-      canPop: false,
+      canPop: _allowPop,
       onPopInvokedWithResult: (didPop, _) {
         if (didPop) return;
-        unawaited(_requestHangup());
+        unawaited(_requestLeave());
       },
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -251,14 +315,15 @@ class _SpecialistTeleconsultationScreenState
           foregroundColor: Colors.white,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            tooltip: MaterialLocalizations.of(context).backButtonTooltip,
-            onPressed: _requestHangup,
+            tooltip: l10n.teleconsultMinimize,
+            onPressed: _requestLeave,
           ),
         ),
         body: Stack(
           fit: StackFit.expand,
           children: [
             TeleconsultationRemotePreview(
+              key: _remotePreviewKey,
               stream: controller.remoteStream,
               waitingLabel: l10n.specialistTeleconsultWaitingPatient,
             ),
@@ -269,6 +334,7 @@ class _SpecialistTeleconsultationScreenState
               height: 160,
               child: controller.localStream != null
                   ? TeleconsultationLocalPreview(
+                      key: _localPreviewKey,
                       stream: controller.localStream!,
                       cameraEnabled: controller.cameraEnabled,
                     )
@@ -281,10 +347,19 @@ class _SpecialistTeleconsultationScreenState
               child: TeleconsultationCallBar(
                 micEnabled: controller.micEnabled,
                 cameraEnabled: controller.cameraEnabled,
-                onMicPressed: () =>
+                onMicPressed: () {
+                  unawaited(
                     controller.setMicEnabled(!controller.micEnabled),
-                onCameraPressed: () =>
+                  );
+                  setState(() {});
+                },
+                onCameraPressed: () {
+                  unawaited(
                     controller.setCameraEnabled(!controller.cameraEnabled),
+                  );
+                  setState(() {});
+                },
+                onMinimizePressed: _minimize,
                 onHangupPressed: _requestHangup,
               ),
             ),

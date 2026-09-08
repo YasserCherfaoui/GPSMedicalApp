@@ -78,6 +78,7 @@ class _SpecialistAppState extends ConsumerState<SpecialistApp> {
             child: GpsMedicalMaterialApp(
               title: _appInfo.displayName,
               routerConfig: router,
+              navigatorKey: specialistRootNavigatorKey,
             ),
           ),
         ),
