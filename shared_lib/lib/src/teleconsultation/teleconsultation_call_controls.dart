@@ -108,51 +108,54 @@ class TeleconsultationCallBar extends StatelessWidget {
 
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: GpsSpacing.md),
+        padding: const EdgeInsets.symmetric(horizontal: GpsSpacing.sm),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _CallToggle(
-              buttonKey: micKey,
-              enabled: micEnabled,
-              enabledIcon: Icons.mic,
-              disabledIcon: Icons.mic_off,
-              enabledTooltip: l10n.teleconsultMicOn,
-              disabledTooltip: l10n.teleconsultMicOff,
-              onPressed: onMicPressed,
-            ),
-            const SizedBox(width: GpsSpacing.md),
-            _CallToggle(
-              buttonKey: cameraKey,
-              enabled: cameraEnabled,
-              enabledIcon: Icons.videocam,
-              disabledIcon: Icons.videocam_off,
-              enabledTooltip: l10n.teleconsultCameraOn,
-              disabledTooltip: l10n.teleconsultCameraOff,
-              onPressed: onCameraPressed,
-            ),
-            if (onMinimizePressed != null) ...[
-              const SizedBox(width: GpsSpacing.md),
-              _CallToggle(
-                buttonKey: minimizeKey,
-                enabled: true,
-                enabledIcon: Icons.picture_in_picture_alt,
-                disabledIcon: Icons.picture_in_picture_alt,
-                enabledTooltip: l10n.teleconsultMinimize,
-                disabledTooltip: l10n.teleconsultMinimize,
-                onPressed: onMinimizePressed!,
+            Expanded(
+              child: _CallToggle(
+                buttonKey: micKey,
+                enabled: micEnabled,
+                enabledIcon: Icons.mic,
+                disabledIcon: Icons.mic_off,
+                enabledTooltip: l10n.teleconsultMicOn,
+                disabledTooltip: l10n.teleconsultMicOff,
+                onPressed: onMicPressed,
               ),
-            ],
-            const SizedBox(width: GpsSpacing.md),
-            _CallToggle(
-              buttonKey: hangupKey,
-              enabled: true,
-              enabledIcon: Icons.call_end,
-              disabledIcon: Icons.call_end,
-              enabledTooltip: l10n.teleconsultHangupConfirm,
-              disabledTooltip: l10n.teleconsultHangupConfirm,
-              onPressed: onHangupPressed,
-              destructive: true,
+            ),
+            Expanded(
+              child: _CallToggle(
+                buttonKey: cameraKey,
+                enabled: cameraEnabled,
+                enabledIcon: Icons.videocam,
+                disabledIcon: Icons.videocam_off,
+                enabledTooltip: l10n.teleconsultCameraOn,
+                disabledTooltip: l10n.teleconsultCameraOff,
+                onPressed: onCameraPressed,
+              ),
+            ),
+            if (onMinimizePressed != null)
+              Expanded(
+                child: _CallToggle(
+                  buttonKey: minimizeKey,
+                  enabled: true,
+                  enabledIcon: Icons.picture_in_picture_alt,
+                  disabledIcon: Icons.picture_in_picture_alt,
+                  enabledTooltip: l10n.teleconsultMinimize,
+                  disabledTooltip: l10n.teleconsultMinimize,
+                  onPressed: onMinimizePressed!,
+                ),
+              ),
+            Expanded(
+              child: _CallToggle(
+                buttonKey: hangupKey,
+                enabled: true,
+                enabledIcon: Icons.call_end,
+                disabledIcon: Icons.call_end,
+                enabledTooltip: l10n.teleconsultHangupConfirm,
+                disabledTooltip: l10n.teleconsultHangupConfirm,
+                onPressed: onHangupPressed,
+                destructive: true,
+              ),
             ),
           ],
         ),
@@ -195,41 +198,41 @@ class _CallToggle extends StatelessWidget {
         ? scheme.onError
         : Colors.black87;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Tooltip(
-          message: tooltip,
-          child: Semantics(
-            button: true,
-            enabled: true,
-            label: tooltip,
-            selected: !destructive && enabled,
-            child: Material(
-              color: background,
-              shape: const CircleBorder(),
-              elevation: 2,
-              child: InkWell(
-                key: buttonKey,
-                customBorder: const CircleBorder(),
-                onTap: onPressed,
-                child: SizedBox(
-                  width: 56,
-                  height: 56,
-                  child: Icon(
-                    enabled ? enabledIcon : disabledIcon,
-                    color: foreground,
-                    size: 26,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: GpsSpacing.xs),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Tooltip(
+            message: tooltip,
+            child: Semantics(
+              button: true,
+              enabled: true,
+              label: tooltip,
+              selected: !destructive && enabled,
+              child: Material(
+                color: background,
+                shape: const CircleBorder(),
+                elevation: 2,
+                child: InkWell(
+                  key: buttonKey,
+                  customBorder: const CircleBorder(),
+                  onTap: onPressed,
+                  child: SizedBox(
+                    width: 52,
+                    height: 52,
+                    child: Icon(
+                      enabled ? enabledIcon : disabledIcon,
+                      color: foreground,
+                      size: 24,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
-        const SizedBox(height: GpsSpacing.xs),
-        SizedBox(
-          width: 88,
-          child: Text(
+          const SizedBox(height: GpsSpacing.xs),
+          Text(
             tooltip,
             textAlign: TextAlign.center,
             maxLines: 2,
@@ -237,10 +240,12 @@ class _CallToggle extends StatelessWidget {
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.w600,
+              fontSize: 10,
+              height: 1.15,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

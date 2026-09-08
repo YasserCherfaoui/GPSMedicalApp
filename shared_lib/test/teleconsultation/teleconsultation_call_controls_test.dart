@@ -95,4 +95,30 @@ void main() {
     await tester.pumpAndSettle();
     expect(hangupConfirmed, isTrue);
   });
+
+  testWidgets('call bar with minimize fits a narrow phone width', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(375, 812);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(
+      _wrap(
+        TeleconsultationCallBar(
+          micEnabled: true,
+          cameraEnabled: true,
+          onMicPressed: () {},
+          onCameraPressed: () {},
+          onMinimizePressed: () {},
+          onHangupPressed: () {},
+        ),
+      ),
+    );
+
+    expect(tester.takeException(), isNull);
+    expect(find.byKey(TeleconsultationCallBar.hangupKey), findsOneWidget);
+    expect(find.byKey(TeleconsultationCallBar.minimizeKey), findsOneWidget);
+  });
 }
